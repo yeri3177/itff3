@@ -38,7 +38,7 @@
 							<div class="visual_txt">
 								<div class="tit-l mt50">
 									<p class="kor">
-										제 1회 <br />정보기술영화제
+										제 1회 <br />정보기술영화제 커밋 테스트
 									</p>
 								</div>
 
