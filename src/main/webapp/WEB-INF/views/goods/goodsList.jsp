@@ -36,8 +36,91 @@
 	<img src="${pageContext.request.contextPath }/resources/images/goods/goods_banner.png" id="goods-banner-img" alt="굿즈배너"/>
 	
 	<hr />
-
-
+	
+	<!-- 상품 목록 부분 -->
+	<div id="goods-list-div">
+		<p id="title_text">ITFF 2022</p>
+		
+		<!-- 상품 정렬 리스트 -->
+		<ul id="goods-sort-ul">
+			<li><a href="#">인기도순</a></li>
+			<li><a href="#">낮은가격순</a></li>
+			<li><a href="#">높은가격순</a></li>
+			<li><a href="#">평점높은순</a></li>
+		</ul>
+		<br /><br /><br />
+		
+		<!-- 상품 목록 카드 -->
+		<div class="card-list">
+		<%-- <c:forEach items="${list}" var="board"> --%>
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+		<%-- </c:forEach> --%>	
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+			
+			<div class="card" style="width: 18rem;">
+			  <img src="${pageContext.request.contextPath }/resources/images/goods/goods1.png" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <p class="card-text">Limited Edition 페리리크 머그잔</p>
+			    <p class="card-text">29,900원</p>
+			  </div>
+			</div>
+		</div>
+		
+		
+		
+	</div>
 </section>
 
 <!-- footer -->
