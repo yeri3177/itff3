@@ -162,7 +162,7 @@
 									<p>정보기술영화제의 브랜드 아이덴티티는 곡선의 아름다움을 활용했고, 간결한 라인으로 표현했다. 어두운
 										남색을 중심으로 한 다양한 컬러 활용은 정보기술영화제가 담고 있는 공존, 평화, 혁신의 여러 가치를 담고 있다.</p>
 									<img src="https://i.ibb.co/kD0mzRS/image.png" alt="logo"
-										class="logo" />
+										class="logo1" />
 								</div>
 							</div>
 						</div>
