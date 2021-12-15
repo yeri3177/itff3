@@ -26,13 +26,13 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="current "><a
-				href="${pageContext.request.contextPath }/intro/outline.do"
-				target="_top" style="font-weight: bold;"> 개요</a></li>
+				href="${pageContext.request.contextPath }/intro/outline.do" target="_top">
+					개요</a></li>
 			<li class="on_"><a
-				href="${pageContext.request.contextPath }/intro/program.do" target="_top">프로그램 소개</a></li>
+				href="${pageContext.request.contextPath }/intro/program.do" target="_top" style="font-weight: bold;">프로그램 소개</a></li>
 			<li class="on_"><a
-				href="${pageContext.request.contextPath }/intro/greeting.do"
-				target="_top">집행위원장 인사말</a></li>
+				href="${pageContext.request.contextPath }/intro/greeting.do" target="_top">집행위원장
+					인사말</a></li>
 			<li class="on_"><a
 				href="/kor/addon/10000001/page.asp?page_num=2795" target="_top">포스터</a></li>
 		</ul>
