@@ -6,7 +6,7 @@
 <fmt:requestEncoding value="utf-8" />	<!-- 이거 없으면 이 밑에 jsp: -->
 
    
-
+<p>정예리</p>
 		
 	<p>최형구</p>
 	<p>장영인</p>
