@@ -1,2 +1,209 @@
 @charset "UTF-8";
 
+#cont {
+    position: relative;
+    height: auto;
+}
+.cont_sub {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.cont_sub {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: #ffffff;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    width: 1280px;
+    max-width: 1280px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-4 {
+    width: 33.33333333%;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.col-md-12 {
+    width: 100%;
+}
+
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-xs-2, .col-sm-2, .col-md-2, .col-xs-3, .col-sm-3, .col-md-3, .col-xs-4, .col-sm-4, .col-md-4, .col-xs-5, .col-sm-5, .col-md-5, .col-xs-6, .col-sm-6, .col-md-6, .col-xs-7, .col-sm-7, .col-md-7, .col-xs-8, .col-sm-8, .col-md-8, .col-xs-9, .col-sm-9, .col-md-9, .col-xs-10, .col-sm-10, .col-md-10, .col-xs-11, .col-sm-11, .col-md-11, .col-xs-12, .col-sm-12, .col-md-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+fieldset, img, abbr, acronym {
+    border: 0 none;
+}
+
+.intro .intro_desc {
+    padding-left: 30px;
+}
+
+.col-md-8 {
+    width: 66.66666667%;
+}
+
+.cont_sub .tit_sec {
+    display: block;
+    color: rgb(52, 73, 94);
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    padding-bottom: 15px;
+}
+
+.tbl_box .group:first-child {
+    border-top: none;
+}
+
+.tbl_box .group {
+    position: relative;
+    background: #fff;
+    padding: 20px 0;
+    margin-bottom: 5px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.intro .tbl_box .group .hdbox, .intro .tbl_box .group .subbox {
+    padding-left: 15px;
+    text-align: left;
+}
+
+.tbl_box .group .hdbox {
+    display: table;
+    float: left;
+    width: 180px;
+/*     height: 100%; */
+    text-align: center;
+}
+
+.tbl_box .group .hdbox .tit {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 17px;
+    color: #222;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.intro .tbl_box .group .hdbox, .intro .tbl_box .group .subbox {
+    padding-left: 15px;
+    text-align: left;
+}
+
+.tbl_box .group .subbox {
+    display: table;
+    border-left: 1px solid #f5f5f5;
+    padding-left: 30px;
+}
+
+.tbl_box .group .subbox div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cont_sub .desc, .cont_sub .desc p, .cont_sub .desc strong, .cont_sub .desc a, .cont_sub .desc span {
+    font-size: 16px;
+    line-height: 170%;
+    display: flex;
+    color: #555;
+    font-weight: 300;
+}
+
+.desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    letter-spacing: -0.5px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.cont_sub .txt_headline {
+    font-size: 22px;
+    line-height: 160%;
+    color: #444;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.tbl_box .group {
+    position: relative;
+    background: #fff;
+    padding: 20px 0;
+    margin-bottom: 5px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.logo {
+	width: 400px;
+	margin: 0 50px 0 50px;
+}
+
+.itff_logo {
+	width: 300px;
+}
+
+.list_dot > li:before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: #999;
+}
+
+.list_dot > li {
+    position: relative;
+    font-size: 16px;
+    line-height: 150%;
+    color: #555;
+    font-weight: 300;
+    padding: 3px 0;
+    padding-left: 13px;
+    text-align: left;
+}
+
+
+
+
