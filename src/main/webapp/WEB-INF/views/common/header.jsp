@@ -89,8 +89,8 @@
 
 						<div class="util">
 							<ul class="list-inline">
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll">JOIN</a></li>
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin">LOGIN</a></li>
+								<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll.do">JOIN</a></li>
+								<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin.do">LOGIN</a></li>
 							</ul>
 						</div>
 
