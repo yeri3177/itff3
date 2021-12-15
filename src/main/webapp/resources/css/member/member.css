@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/*  */
+.main-content{ 
+	height: 700px;
+	color: white;
+	background-color: #34495E!important;
+	text-align: center;
+	justify-content: center;
+	margin-top: 150px;
+	font-size: 24px;
+}
+.input-form{
+	display: inline-block;
+	text-align: center;
+
+}
+li{
+	color: white !important;
+}
+.sub-content{
+	color: white;
+}
+#exampleInputId{
+	width: 400px;
+	height: 50px;
+	text-align: center;
+}
+#exampleInputPassword{
+	width: 400px;
+	height: 50px;
+	text-align: center;
+}
+section#main-content {
+	background-color: #34495E!important;
+}
+
+
+/* 중복아이디체크관련 */
