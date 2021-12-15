@@ -107,7 +107,7 @@
 											<li><a href="${pageContext.request.contextPath }/intro/outline.do" class="" target="_top">ITFF2022</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath }/intro/outline.do" class="menu_drop">개요</a></li>
-													<li><a href="#" class="menu_drop">시상/심사위원</a></li>
+													<li><a href="${pageContext.request.contextPath }/intro/program.do" class="menu_drop">프로그램 소개</a></li>
 													<li><a href="${pageContext.request.contextPath }/intro/greeting.do" class="menu_drop">집행위원장 인사말</a></li>
 													<li><a href="#" class="menu_drop">포스터</a></li>
 												</ul>

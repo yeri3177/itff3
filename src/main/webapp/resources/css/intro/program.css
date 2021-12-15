@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+#cont {
+    position: relative;
+}
+
+.cont_sub {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.cont_sub {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background: #ffffff;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    width: 1280px;
+    max-width: 1280px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-4 {
+    width: 33.33333333%;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.col-md-8 {
+    width: 66.66666667%;
+}
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
+}
+
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-xs-2, .col-sm-2, .col-md-2, .col-xs-3, .col-sm-3, .col-md-3, .col-xs-4, .col-sm-4, .col-md-4, .col-xs-5, .col-sm-5, .col-md-5, .col-xs-6, .col-sm-6, .col-md-6, .col-xs-7, .col-sm-7, .col-md-7, .col-xs-8, .col-sm-8, .col-md-8, .col-xs-9, .col-sm-9, .col-md-9, .col-xs-10, .col-sm-10, .col-md-10, .col-xs-11, .col-sm-11, .col-md-11, .col-xs-12, .col-sm-12, .col-md-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.tbl_box_tit2.border-secondary {
+    border-color: #29b1bf !important;
+}
+
+.tbl_box_tit2 {
+    font-size: 24px;
+    line-height: 150%;
+    font-weight: 300;
+    color: #111;
+    letter-spacing: -1px;
+    padding: 20px 0 15px;
+    border-top: 1px solid #e0e0e0;
+}
+.txt-secondary {
+    color: rgb(52, 73, 94) !important;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.tbl_box_tit2 {
+    font-size: 24px;
+    line-height: 150%;
+    font-weight: 300;
+    color: #111;
+    letter-spacing: -1px;
+    padding: 20px 0 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.cont_sub .desc, .cont_sub .desc p, .cont_sub .desc strong, .cont_sub .desc a, .cont_sub .desc span {
+    font-size: 16px;
+    line-height: 170%;
+    color: #555;
+    font-weight: 300;
+}
+.desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+    letter-spacing: -0.5px;
+}
+
+
+
