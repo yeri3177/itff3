@@ -89,8 +89,8 @@
 
 						<div class="util">
 							<ul class="list-inline">
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll">회원가입</a></li>
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin">로그인</a></li>
+								<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll">JOIN</a></li>
+								<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin">LOGIN</a></li>
 							</ul>
 						</div>
 
@@ -135,7 +135,7 @@
 											<li><a href="#" class="" target="_top">커뮤니티</a>
 												<ul>
 													<li><a href="#" class="menu_drop">공지사항</a></li>
-													<li><a href="#" class="menu_drop">영화리뷰</a></li>
+													<li><a href="#" class="menu_drop">네티즌리뷰</a></li>
 													<li><a href="#" class="menu_drop">티켓나눔터</a></li>
 													<li><a href="#" class="menu_drop">자주찾는질문</a></li>
 													<li><a href="#" class="menu_drop">1:1문의</a></li>
