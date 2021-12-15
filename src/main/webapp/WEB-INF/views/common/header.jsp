@@ -111,7 +111,7 @@
 													<li><a href="#" class="menu_drop">포스터</a></li>
 												</ul>
 											</li>
-											<li><a href="#" class="" target="_top">프로그램</a>
+											<li><a href="${pageContext.request.contextPath}/movie/movieList.do" class="" target="_top">프로그램</a>
 												<ul>
 													<li><a href="#" class="menu_drop">개·폐막작</a></li>
 													<li><a href="#" class="menu_drop">인공지능</a></li>
