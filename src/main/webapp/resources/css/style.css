@@ -269,13 +269,14 @@ dl, ul, ol, menu, li {
 
 header {
 	display: inline-block;
+	width: 100%;
 }
 
 /* header.jsp 끝 */
 
 /* index.jsp 시작 */
 
-section#main-content{
+section#main-content {
 	background-color: #fff;
 	height: 600px;
 }
