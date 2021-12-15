@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="insertMember" parameterType="member">   <!-- parameterType 생략해도 됨 -->
+		insert into
+			member
+		values(
+			#{id},
+			#{password},
+			#{name},
+			#{gender},
+			#{birthday},
+			#{email},
+			#{phone},
+			#{address},
+			#{hobby},
+			default,
+			default
+		)
+	</insert>
+	
+	<select id="selectOneMember" resultType="member">
+		select
+			*
+		from
+			member
+		where
+			id=#{id}
+	</select>
+	
+	<update id="updateMember">
+		update
+			member
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="address != null and address != ''">
+				address = #{address},
+			</if>
+			<if test="gender != null and gender != ''">
+				gender = #{gender},
+			</if>
+			<if test="hobby != null and hobby != ''">
+				hobby = #{hobby},
+			</if>
+		</set>
+		where
+			id = #{id}
+	</update>
+
+<!-- 
+	선생님 풀이. 나도 처음에 이렇게 썼는데, gender 쓰면 뭐가 제대로 안돼서 gender 말고 value를 썼다. 하여튼 지금 여기에 gender쓰는경우 value쓰는경우, 
+	컨트롤러에 defaultValue 쓰는경우 required=false 쓰는경우 다 다르게 나오는데 어쨌든간에 gender는 다 안된다. 근데 선생님은 컨트롤러에서 map을 썼는데
+	map 쓰니까 gender 넣은 이 쿼리가 제대로 된다. 도대체 이유가 뭐야 
+-->
+ 	<select id="selectMemberList" resultType="member">
+	  	select
+	  		*
+	  	from
+	  		member
+	  	<where>
+	  		<if test="gender != null and gender != ''">
+	  			gender = #{gender}
+	  		</if>
+	  	</where>
+	</select> 
+<!-- 내가 한 방식으로 제대로 작동하는 쿼리 -->
+<!-- 	<select id="selectMemberList" resultType="member" parameterType="string">
+		select
+			*
+		from
+			member
+		<where>
+			<if test="gender != null and gender != ''"> 
+			gender = #{gender}
+			</if>
+		</where>
+	</select> -->
+
+<!--	<select id="selectMemberList1" resultType="member">
+		select
+			*
+		from
+			member
+	</select> -->
+	
+</mapper>

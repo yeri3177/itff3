@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat">
+	<select id="findChatMemberByMemberId" resultType="chatMember">
+		select
+			*
+		from
+			chat_member
+		where
+			member_id = #{member_id}
+	</select>
+	
+	<insert id="insertChatMember">
+		insert into
+			chat_member(chat_id, member_id)
+		values(
+			#{chatId},
+			#{memberId}
+		)
+	</insert>
+	
+	<insert id="insertChatLog">
+		insert into
+			chat_log(no, chat_id, member_id, msg, log_time)
+		values(
+			seq_chat_log_no.nextval,
+			#{chatId},
+			#{memberId},
+			#{msg},
+			#{logTime}
+		)
+	</insert>
+	
+	<select id="findChatLogByChatId" resultType="chatLog">
+		select
+			*
+		from
+			chat_log
+		where
+			chat_id = #{chat_id}
+		order by
+			log_time
+	</select>
+	
+<!--
+	관리자 챗목록 쿼리인데, 이렇게 하면 각 챗방에서 마지막 채팅이 관리자인 경우 회원아이디 자리에 관리자 아이디가 찍히게 되어 누구와의 챗방인지 모르게 된다. 그래서 항상 상대 아이디로 찍히는 아래 쿼리로 바꿨다. 
+	<select id="findRecentChatLog" resultType="chatLog">
+		select
+		    *
+		from(
+		    select
+		        CL.*,
+		        row_number() over(partition by chat_id order by no desc) rnum
+		    from
+		        chat_log CL) CL
+		where
+		    rnum = 1
+		order by
+		    log_time desc
+	</select> 
+-->
+	<select id="findRecentChatLog" resultMap="chatLogMap">
+		select
+		    *
+		from(
+		    select
+		        CL.*,
+		        (select member_id from chat_member where chat_id = CL.chat_id and member_id != 'admin')  mid,
+		        row_number() over(partition by chat_id order by no desc) rnum
+		    from
+		        chat_log CL) CL
+		where
+		    rnum = 1
+		order by
+		    log_time desc
+	</select>
+	
+	<resultMap type="chatLog" id="chatLogMap">
+		<id column="no" property="no"/>
+		<result column="chat_id" property="chatId"/>
+		<result column="mid" property="memberId"/>
+		<result column="msg" property="msg"/>
+		<result column="log_time" property="logTime"/>
+	</resultMap>
+	
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <settings>
+  	 <setting name="mapUnderscoreToCamelCase" value="true"/>   <!-- sql에서 컬럼명 reg_date 이런거 가져오려고 할 때 알아서 regDate 카멜케이싱으로 바꿔줌 -->
+  	 <setting name="jdbcTypeForNull" value="NULL"/>   <!-- sql에서 값이 null이면 NULL이라는 문자열(?)로 가져옴 (맞나 모르겠네) -->
+  </settings>
+  
+  <typeAliases>
+  	<package name="com.kh.spring"/>   <!-- 이 패키지 하위의 파일들 모두를 별칭으로 쓸 수 있게 만듬. -->
+  </typeAliases>
+  
+  <typeHandlers>
+  	<!-- <typeHandler handler="com.kh.spring.common.typehandler.StringArrayTypeHandler"/> -->  <!-- 하나씩 적지 말고 아래처럼 패키지로 적어두면 알아서 다 됨 -->
+  	<package name="com.kh.spring.common.typehandler" />
+  </typeHandlers>
+</configuration>

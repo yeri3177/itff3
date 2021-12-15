@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<!-- #11.2 aop 빈 등록 -->
+	<!-- a. xml등록 방식
+ 	<bean id="loggingAspect" class="com.kh.spring.common.aop.LoggingAspect"/>
+	<aop:config>
+		<aop:aspect id="loggingAspect" ref="loggingAspect">
+			<aop:pointcut expression="execution(* com.kh.spring.memo..*(..))" id="loggingPointcut"/>   memo 패키지 하위의 모든 클래스와 메소드를 대상으로 하겠다. (..)는 모든 패러미터 ok		
+			<aop:around method="logger" pointcut-ref="loggingPointcut"/>   LoggingAspect 클래스에 적은 메소드명 logger
+		</aop:aspect>
+	</aop:config>	 
+	-->
+
+	<!-- b. annotaion 등록방식 -->
+	<!-- @Aspect, @Pointcut advice 관련 어노테이션 등록 -->
+	<aop:aspectj-autoproxy/>
+
+</beans>
