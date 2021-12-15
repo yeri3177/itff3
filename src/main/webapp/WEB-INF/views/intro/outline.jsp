@@ -26,12 +26,12 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="current "><a
-				href="/kor/addon/10000001/page.asp?page_num=2792" target="_top">
+				href="${pageContext.request.contextPath }/intro/outline.do" target="_top">
 					개요</a></li>
 			<li class="on_"><a
 				href="/kor/addon/10000001/page.asp?page_num=3359" target="_top">시상/심사위원</a></li>
 			<li class="on_"><a
-				href="/kor/addon/10000001/page.asp?page_num=2793" target="_top">심사위원장
+				href="${pageContext.request.contextPath }/intro/greeting.do" target="_top">집행위원장
 					인사말</a></li>
 			<li class="on_"><a
 				href="/kor/addon/10000001/page.asp?page_num=2795" target="_top">포스터</a></li>
