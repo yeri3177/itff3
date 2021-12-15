@@ -26,7 +26,7 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="current "><a
-				href="${pageContext.request.contextPath }/intro/outline.do" target="_top">
+				href="${pageContext.request.contextPath }/intro/outline.do" target="_top" style="font-weight: bold;">
 					개요</a></li>
 			<li class="on_"><a
 				href="/kor/addon/10000001/page.asp?page_num=3359" target="_top">시상/심사위원</a></li>

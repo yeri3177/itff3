@@ -33,11 +33,6 @@
     padding-left: 5px;
 }
 
-/* #snb .snb_ul li.current a { */
-/*     color: #ffffff; */
-/*     font-weight: bold; */
-/* } */
-
 #snb .snb_ul li a {
     display: inline-block;
     color: #fff;
@@ -46,6 +41,10 @@
     line-height: 40px;
     padding: 0 10px;
     letter-spacing: -0.5px;
+}
+
+#snb .snb_ul li a:hover {
+	font-weight: bold;
 }
 
 /* 타이틀 큰 글씨 */
