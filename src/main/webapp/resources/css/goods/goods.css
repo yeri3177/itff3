@@ -3,18 +3,70 @@
 /***************************************************************
  * 굿즈 파일 공통 
  ***************************************************************/
-.goods-container {
-	height: 600px;
+ .goods-container {
+	height: 1500px;
 	margin: 0 auto!important;
 	text-align: center;
-}
+	padding-bottom: 80px;
+	
+	font-size: 17px;
+ }
 
 /***************************************************************
  * goodsList.jsp (상품 목록 페이지)
  ***************************************************************/
- #goods-banner-img {
- 	margin: 80px auto 30px auto;
+ #goods-list-div {
+ 	width: 1400px;
+ 	margin: 0 auto;
  }
  
+ #goods-banner-img {
+ 	margin: 80px auto 20px auto;
+ 	width: 360px;
+ }
  
+ #goods-sort-ul {
+ 	float: left;
+ 	padding-left: 80px;
+ }
  
+  #goods-sort-ul li {
+  	display: inline-block;
+  	border-right: 1px solid gray;
+  	padding-right: 6px;
+  	margin: 50px left;
+  }
+  
+  #goods-sort-ul li:last-child {
+  	border: none;
+  }
+  
+  #title_text {
+  	padding-left: 80px;
+  	font-size: 30px;
+  	font-weight: bold;
+  	text-align: left;
+  	margin: 40px 0;
+  }
+  
+  .card img {
+  	background-color: #dfdfdf;
+  }
+  
+  .card {
+	float: left;
+  	margin: 20px;
+  	text-align: center;
+  	cursor: pointer;
+  }
+  
+ .card-list {
+ 	padding-left: 40px;
+	margin: 0 auto!important;
+	text-align: center!important;
+	background-color: aqua;
+ }
+ 
+ .card-text {
+ 	text-align: left;
+ }
