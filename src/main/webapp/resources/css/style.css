@@ -148,6 +148,7 @@ dl, ul, ol, menu, li {
 	display:none;
 	position: absolute;
 	font-size:14px;
+	border: 1px solid black;
 	background: #fff;
 }
 	
