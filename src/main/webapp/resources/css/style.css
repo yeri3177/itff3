@@ -64,6 +64,7 @@ a {
 
 .logo_img {
 	width: 200px;
+	margin-left: 20px;
 }
 
 .hd_bg {
@@ -97,8 +98,10 @@ a {
     margin: 0 auto;
     width: 100%;
     max-width: 1600px;
-    padding-left: 15px;
-    padding-right: 15px;
+}
+
+.container-visual {
+	background-color: rgb(52, 73, 94);
 }
 
 #hd .util {
@@ -491,15 +494,6 @@ section#main-content {
 .cont_main .sec {
     position: relative;
     padding: 60px 0;
-}
-
-.container-l {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1600px;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .pg .main_tit {
