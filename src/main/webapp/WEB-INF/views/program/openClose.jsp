@@ -18,7 +18,7 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="current ">
-				<a href="${pageContext.request.contextPath }/movie/program.do" target="_top">개폐막작</a>
+				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
 			</li>
 			<li class="on_">
 				<a href="#" target="_top">인공지능</a>
