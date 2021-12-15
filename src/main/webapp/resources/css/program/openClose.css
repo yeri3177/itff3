@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.sub_title_wrap {
+    position: relative;
+    padding: 50px 0 50px 0;
+}
+
+.container-l {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1600px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sub_title_wrap h2.en {
+    font-size: 45px;
+    font-weight: 700 !important;
+    color: #111;
+    text-align: center;
+    letter-spacing: -2px;
+}
+
+.d3tab_basic {
+    margin: 0 0 50px;
+}
+
+.d3tab_basic ul {
+    text-align: center;
+}
+
+.list-inline {
+    list-style: none;
+}
+
+.d3tab_basic li {
+    padding: 5px 3px;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.d3tab_basic li.on a {
+    color: #fff;
+    background-color: #222;
+    border-color: #222;
+}
+
+.d3tab_basic li a {
+    display: inline-block;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+
+.pgl {
+    position: relative;
+    padding-top: 0px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.row {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+}
+
+.pgl .pg_li {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 0 40px 0;
+}
+
+.col-lg-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.pgl .pg_li .film_thumb img {
+    transform-origin: center center;
+    transform: scale(1);
+    opacity: .9;
+}
+
+.pgl .pg_li .film_thumb {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+    background: #000;
+}
+
+.pgl .pg_li .sectionName {
+    background: #333;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 13px;
+    border-radius: 25px;
+    margin: 10px 0 0 0;
+}
+
+.pgl .pg_li .txtbox {
+    height: 160px;
+    margin: 5px 0 20px 0;
+}
+
+.pgl .pg_li .txtbox .film_tit {
+    color: #000;
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    word-break: keep-all;
+}
+
+.pgl .pg_li .txtbox .dir {
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -1px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.pgl .pg_li .txtbox .dir {
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: -1px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.dir_p {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    font-family: 'Noto Sans KR', -apple-system, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    letter-spacing: 0px;
+}
+
+.en {
+	margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    
+}
+
+
