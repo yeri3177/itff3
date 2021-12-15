@@ -278,7 +278,7 @@ header {
 
 section#main-content {
 	background-color: #fff;
-	height: 600px;
+	height: auto;
 }
 
 #visual {
