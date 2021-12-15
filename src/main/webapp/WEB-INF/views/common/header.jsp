@@ -130,7 +130,7 @@
 													<li><a href="#" class="menu_drop">상영시간표</a></li>
 												</ul>
 											</li>
-											<li><a href="#" class="" target="_top">굿즈샵</a></li>
+											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a></li>
 											<li><a href="#" class="" target="_top">커뮤니티</a>
 												<ul>
 													<li><a href="#" class="menu_drop">공지사항</a></li>
@@ -157,4 +157,4 @@
 				</header>
 				<!--//header-->
 
-				<section>
+				<section id="main-content">
