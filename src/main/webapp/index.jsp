@@ -22,6 +22,7 @@ section#main-content {
 </jsp:include>
 
 <div class="container-l">
+	<div class="container-visual">
 	<div id="visual">
 		<div class="visual-slider slick-initialized slick-slider slick-dotted">
 
@@ -61,6 +62,7 @@ section#main-content {
 				</li>
 			</ul>
 		</div>
+	</div>
 	</div>
 
 </div>
