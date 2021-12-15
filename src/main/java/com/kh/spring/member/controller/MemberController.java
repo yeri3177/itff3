@@ -45,10 +45,8 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@GetMapping("/memberEnroll")
-	public String memberEnroll() {
-		return "member/memberEnroll";
-	}
+	@GetMapping("/memberEnroll.do")
+	public void memberEnroll() {}
 	
 	/**
 	 * $2a$10$fCtImVF/BtnbGsnSjM0as.tWXVpmobXNp.1msTI.laJTRy5n3vti2
@@ -93,7 +91,7 @@ public class MemberController {
 	 *            
 	 *  /member/memberLogin.do -> /WEB-INF/views/member/memberLogin.jsp
 	 */
-	@GetMapping("/memberLogin")
+	@GetMapping("/memberLogin.do")
 	public void memberLogin() {}
 	
 	
