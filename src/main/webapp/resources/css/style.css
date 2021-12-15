@@ -267,9 +267,18 @@ dl, ul, ol, menu, li {
     text-align: center;
 }
 
+header {
+	display: inline-block;
+}
+
 /* header.jsp 끝 */
 
 /* index.jsp 시작 */
+
+section#main-content{
+	background-color: #fff;
+	height: 600px;
+}
 
 #visual {
     position: relative;
