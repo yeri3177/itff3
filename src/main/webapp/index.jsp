@@ -32,7 +32,7 @@ section#main-content {
 						data-slick-index="0" aria-hidden="false" tabindex="0"
 						role="tabpanel" id="slick-slide00"
 						aria-describedby="slick-slide-control00"
-						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; border-bottom: 30px solid #212121; margin: 0px;">
 						<div class="visual_img">
 								<img class="center-block" src="https://i.ibb.co/NKfCNgq/main.png" alt="logo">
 						</div>
