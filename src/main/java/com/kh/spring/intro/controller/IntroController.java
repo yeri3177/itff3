@@ -12,8 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 public class IntroController {
 	
 	@GetMapping("/outline.do")
-	public void outline() {
-		
-	}
+	public void outline() {}
+	
+	@GetMapping("/greeting.do")
+	public void greeting() {}
 
 }
