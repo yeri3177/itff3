@@ -104,9 +104,9 @@
 									<h2 class="screen_out">주 메뉴</h2>
 									<nav id="menu">
 										<ul class="list-inline depth1">
-											<li><a href="#" class="" target="_top">ITFF2022</a>
+											<li><a href="${pageContext.request.contextPath }/intro/outline.do" class="" target="_top">ITFF2022</a>
 												<ul>
-													<li><a href="#" class="menu_drop">개요</a></li>
+													<li><a href="${pageContext.request.contextPath }/intro/outline.do" class="menu_drop">개요</a></li>
 													<li><a href="#" class="menu_drop">시상/심사위원</a></li>
 													<li><a href="#" class="menu_drop">포스터</a></li>
 												</ul>

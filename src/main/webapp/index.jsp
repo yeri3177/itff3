@@ -10,7 +10,7 @@
 	href="${pageContext.request.contextPath }/resources/css/style.css" />
 <style>
 section#main-content {
-	background-color: #34495E!important;
+	background-color: #212121 !important;
 }
 </style>
 <!-- 한글 깨지지 않게 하는 설정-->
