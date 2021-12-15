@@ -16,5 +16,9 @@ public class IntroController {
 	
 	@GetMapping("/greeting.do")
 	public void greeting() {}
+	
+	@GetMapping("/program.do")
+	public void program() {}
+
 
 }
