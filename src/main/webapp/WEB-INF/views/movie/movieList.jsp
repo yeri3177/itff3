@@ -4,10 +4,34 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8" />	<!-- 이거 없으면 이 밑에 jsp: -->
+
+
+
 	<p>지수진 두번째 시도</p>
    
+
 <p>정예리</p>
+
 		
 	<p>최형구</p>
 	<p>장영인</p>
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<p>이찬영</p>
