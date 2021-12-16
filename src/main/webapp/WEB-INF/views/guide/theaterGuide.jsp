@@ -25,15 +25,9 @@
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="current "><a
-				href="${pageContext.request.contextPath }/guide/openCloseGuide.do"
-				target="_top"> 개·폐막식 안내</a></li>
-			<li class="on_"><a
-				href="${pageContext.request.contextPath }/guide/ticketGuide.do"
-				target="_top">티켓 안내</a></li>
-			<li class="on_"><a
-				href="${pageContext.request.contextPath }/guide/theaterGuide.do"
-				target="_top" style="font-weight: bold;">상영관</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/guide/openCloseGuide.do" target="_top">개·폐막식 안내</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/guide/ticketGuide.do" target="_top">티켓 안내</a></li>
+			<li class="current"><a href="${pageContext.request.contextPath }/guide/theaterGuide.do" target="_top">상영관</a></li>
 		</ul>
 	</div>
 </div>
