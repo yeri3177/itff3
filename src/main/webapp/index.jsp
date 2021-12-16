@@ -7,6 +7,8 @@
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css" />
 <style>
 section#main-content {

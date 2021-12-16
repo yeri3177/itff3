@@ -32,8 +32,8 @@
 	crossorigin="anonymous">
 
 <!-- 사용자작성 css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
 
 <!-- sock.js 추가 -->
 <script
