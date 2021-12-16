@@ -55,56 +55,50 @@
 
 <div class="page page2-2">
 	<div class=" container">
-		<div class="cont">
-			<div class="container-l inner">
-				<div class="d3tab_basic">
-					<ul class="tab_list list-inline tab_round">
-						<li class="on"><a href="prog_list.asp?c_idx=353&amp;QueryStep=2">전체</a></li>
-						<li><a href="prog_list.asp?c_idx=353&amp;sp_idx=509&amp;QueryStep=2">개막작</a></li>
-						<li><a href="prog_list.asp?c_idx=353&amp;sp_idx=510&amp;QueryStep=2">폐막작</a></li>
-					</ul>	
-				</div>	
-			</div>
-		</div>
 
 		<div class="container-l">
 			<div id="pg_wrap">
-				<div class="pgl row">			
-					<div class="pg_li col-md-4  col-lg-3 col-xs-12">
+				<div class="pgl row">
+					<!-- col-md-4  col-lg-3 -->			
+					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
 							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
 						</a>
-						<span class="sectionName mt20">개막작</span>
-						<div class="txtbox">
-							<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-							<small class="dir">Heaven: To the Land of Happiness</small>
-							<div class="dir">
-								<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+						<div class="fighting">
+							<span class="sectionName mt20">개막작</span>
+							<div class="txtbox">
+								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
+								<small class="dir">Heaven: To the Land of Happiness</small>
+								<div class="dir">
+									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+								</div>
+								<ul class="film_info">
+									<li class="en">Korea</li>
+									<li class="en">2021</li>
+									<li class="en">101min</li>
+								</ul>
 							</div>
-							<ul class="film_info">
-								<li class="en">Korea</li>
-								<li class="en">2021</li>
-								<li class="en">101min</li>
-							</ul>
 						</div>
 					</div>					
 
-					<div class="pg_li col-md-4  col-lg-3 col-xs-12">
+					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
 							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
 						</a>
-						<span class="sectionName mt20">폐막작</span>
-						<div class="txtbox">
-							<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-							<small class="dir">Anita</small>
-							<div class="dir">
-								<p>렁록만 <span class="en">Longman LEUNG</span></p>
+						<div class="fighting">
+							<span class="sectionName mt20">폐막작</span>
+							<div class="txtbox">
+								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
+								<small class="dir">Anita</small>
+								<div class="dir">
+									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+								</div>
+								<ul class="film_info">
+									<li class="en">Hong Kong, China</li>
+									<li class="en">2021</li>
+									<li class="en">136min</li>
+								</ul>
 							</div>
-							<ul class="film_info">
-								<li class="en">Hong Kong, China</li>
-								<li class="en">2021</li>
-								<li class="en">136min</li>
-							</ul>
 						</div>
 					</div>					
 				</div>	
