@@ -14,7 +14,7 @@ public class ProgramController {
 	@GetMapping("/openClose.do")
 	public void openClose() {}
 	
-	@GetMapping("/Ai.do")
+	@GetMapping("/ai.do")
 	public void Ai() {}
 	
 	@GetMapping("/security.do")
