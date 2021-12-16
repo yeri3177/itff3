@@ -238,7 +238,10 @@ table {
     word-break: keep-all;
 }
 
-
+.total_row {
+	margin-left: 30px;
+	margin-right: 30px;
+}
 
 
 

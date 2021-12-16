@@ -11,7 +11,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/guide/openCloseGuide.css" />
+	href="${pageContext.request.contextPath }/resources/css/guide/guide.css" />
 
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
@@ -29,7 +29,7 @@
 				href="${pageContext.request.contextPath }/guide/openCloseGuide.do" target="_top" style="font-weight: bold;">
 					개·폐막식 안내</a></li>
 			<li class="on_"><a
-				href="#" target="_top">티켓 안내</a></li>
+				href="${pageContext.request.contextPath }/guide/ticketGuide.do" target="_top">티켓 안내</a></li>
 		</ul>
 	</div>
 </div>

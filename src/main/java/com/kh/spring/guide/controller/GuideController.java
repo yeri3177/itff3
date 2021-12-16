@@ -13,6 +13,9 @@ public class GuideController {
 	
 	@GetMapping("/openCloseGuide.do")
 	public void openCloseGuide() {}
+	
+	@GetMapping("/ticketGuide.do")
+	public void ticketGuide() {}
 
 
 }
