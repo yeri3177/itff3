@@ -51,19 +51,6 @@
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <div id="cont" class="cont_sub">
-
-
-	<div class="container">
-		<div class="tab_basic">
-			<ul class="tab_ul">
-				<li class="on 1_0"><a
-					href="/kor/addon/10000001/page.asp?page_num=23733" target="_top">메가박스
-						KH극장</a></li>
-			</ul>
-		</div>
-	</div>
-
-
 	<div>
 
 		<div class="container">
