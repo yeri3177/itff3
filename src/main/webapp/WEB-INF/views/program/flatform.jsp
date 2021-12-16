@@ -33,7 +33,7 @@
 				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top">빅 데이터/컴퓨팅</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼/사물 인터넷</a>
+				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top" style="font-weight: bold;">플랫폼/사물 인터넷</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력/디버깅</a>
@@ -48,7 +48,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">개폐막작</h2>
+		<h2 class="en">플랫폼/사물 인터넷</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->

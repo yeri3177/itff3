@@ -24,7 +24,7 @@
 				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/security.do">보안/암호학</a>
+				<a href="${pageContext.request.contextPath}/program/security.do" style="font-weight: bold;">보안/암호학</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top">가상현실/딥 러닝</a>
@@ -48,7 +48,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">개폐막작</h2>
+		<h2 class="en">보안/암호학</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->

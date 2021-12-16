@@ -19,5 +19,8 @@ public class GuideController {
 	
 	@GetMapping("/theaterGuide.do")
 	public void theaterGuide() {}
+	
+	@GetMapping("/trafficGuide.do")
+	public void trafficGuide() {}
 
 }

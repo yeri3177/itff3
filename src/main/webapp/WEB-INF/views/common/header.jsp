@@ -15,6 +15,9 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<!-- 카카오맵 API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
+
 <!-- bootstrap js: jquery load 이후에 작성할 것.-->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -115,13 +118,13 @@
 											<li><a href="${pageContext.request.contextPath}/program/openClose.do" class="" target="_top">프로그램</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/program/openClose.do" class="menu_drop">개·폐막작</a></li>
-													<li><a href="#" class="menu_drop">인공지능</a></li>
-													<li><a href="#" class="menu_drop">보안/암호학</a></li>
-													<li><a href="#" class="menu_drop">가상현실/딥러닝</a></li>
-													<li><a href="#" class="menu_drop">빅데이터/컴퓨팅</a></li>
-													<li><a href="#" class="menu_drop">플랫폼/사물인터넷</a></li>
-													<li><a href="#" class="menu_drop">사고력/디버깅</a></li>
-													<li><a href="#" class="menu_drop">#작품검색</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/ai.do" class="menu_drop">인공지능</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/security.do" class="menu_drop">보안/암호학</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/deepRunning.do" class="menu_drop">가상현실/딥러닝</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/bigData.do" class="menu_drop">빅데이터/컴퓨팅</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/flatform.do" class="menu_drop">플랫폼/사물인터넷</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/debugging.do" class="menu_drop">사고력/디버깅</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/programSearch.do" class="menu_drop">#작품검색</a></li>
 												</ul>
 											</li>
 											<li><a href="#" class="" target="_top">이벤트</a></li>
@@ -136,6 +139,7 @@
 													<li><a href="${pageContext.request.contextPath}/guide/openCloseGuide.do" class="menu_drop">개·폐막식 안내</a></li>
 													<li><a href="${pageContext.request.contextPath}/guide/ticketGuide.do" class="menu_drop">티켓 안내</a></li>
 													<li><a href="${pageContext.request.contextPath}/guide/theaterGuide.do" class="menu_drop">상영관</a></li>
+													<li><a href="${pageContext.request.contextPath}/guide/trafficGuide.do" class="menu_drop">교통 안내</a></li>
 												</ul>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a>

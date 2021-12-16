@@ -39,7 +39,7 @@
 				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력/디버깅</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/programSearch.do" target="_top">#작품검색</a>
+				<a href="${pageContext.request.contextPath}/program/programSearch.do" target="_top" style="font-weight: bold;">#작품검색</a>
 			</li>
 		</ul>
 	</div>
@@ -48,7 +48,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">개폐막작</h2>
+		<h2 class="en">#작품검색</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
