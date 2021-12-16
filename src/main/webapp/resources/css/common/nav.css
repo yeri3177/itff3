@@ -13,6 +13,11 @@
     margin-left: auto;
 }
 
+#snb .snb_ul li.current a {
+    color: #ffffff;
+    font-weight: bold;
+}
+
 #snb .snb_ul {
     padding: 25px 0;
 }
