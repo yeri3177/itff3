@@ -61,42 +61,42 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/4MjNVZP/Erin-Brockovich-2000-1080p-Blu-Ray-H264-mp4-20200524-123152-359.jpg" class="poster" alt="에린 브로코비치">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
+								<a href="#" class="film_tit">에린 브로코비치</a>
+								<small class="dir">Erin Brockovich</small>
 								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+									<p class="dir_p">스티븐 소더버그 <span class="en">Steven Soderbergh</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
+									<li class="en">USA</li>
+									<li class="en">2000</li>
+									<li class="en">130min</li>
 								</ul>
 							</div>
 						</div>
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/1Gy9kx7/171-BBE4950-E6-AFE819.jpg" class="poster" alt="루퍼">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">폐막작</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
+								<a href="#" class="film_tit">루퍼</a>
+								<small class="dir">Looper</small>
 								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+									<p>라이언 존슨 <span class="en">Rian Johnson</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
-									<li class="en">136min</li>
+									<li class="en">USA, China</li>
+									<li class="en">2012</li>
+									<li class="en">118min</li>
 								</ul>
 							</div>
 						</div>
