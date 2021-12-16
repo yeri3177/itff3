@@ -14,4 +14,24 @@ public class ProgramController {
 	@GetMapping("/openClose.do")
 	public void openClose() {}
 	
+	@GetMapping("/Ai.do")
+	public void Ai() {}
+	
+	@GetMapping("/security.do")
+	public void security() {}
+	
+	@GetMapping("/deepRunning.do")
+	public void deepRunning() {}
+	
+	@GetMapping("/bigData.do")
+	public void bigData() {}
+	
+	@GetMapping("/flatform.do")
+	public void flatform() {}
+	
+	@GetMapping("/debugging.do")
+	public void debugging() {}
+	
+	@GetMapping("/programSearch")
+	public void programSearch() {}
 }
