@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/member.css" />
@@ -29,9 +30,9 @@
 
 	
 <div class="input_form">
-	<form>
+	<form:form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
 	  <div class="mb-3">
-	    <input type="text" name="id" class="form-control" id="exampleInputId" aria-describedby="emailHelp">
+	    <input type="text" name="memberId" class="form-control" id="exampleInputId" aria-describedby="emailHelp">
 	  </div>
 	  <div class="mb-3">
 	    <input type="password" name="password" class="form-control" id="exampleInputPassword">
@@ -43,7 +44,7 @@
 	  </div>
 -->	  
 	 <button type="submit" class="btn btn-primary">로그인</button>
-	</form>
+	</form:form>
 </div>
 
 <br/>
