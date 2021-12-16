@@ -1,4 +1,4 @@
-package com.kh.spring.board.model.vo;
+package com.kh.spring.sharing.model.vo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,23 +6,21 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardEntity implements Serializable {
-
-	/**
+public class BoardEntity implements Serializable {/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	private int no;
-	private String title;
 	private String memberId;
+	private String title;
 	private String content;
 	private Date regDate;
 	private int readCount;
+	private String category;
 	
 }

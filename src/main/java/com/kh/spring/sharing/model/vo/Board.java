@@ -1,4 +1,4 @@
-package com.kh.spring.board.model.vo;
+package com.kh.spring.sharing.model.vo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,24 +15,20 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-public class Board extends BoardEntity implements Serializable {
-
-	/**
+public class Board extends BoardEntity implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private Member member;
+	
 	private int attachCount;
 	private List<Attachment> attachments;
+	
+	public Board(int no, String memberId, String title, String content, Date regDate, int readCount, String category, int attachCount, List<Attachment> attachments) {
+		super(no, memberId, title, content, regDate, readCount, category);
 
-	public Board(int no, String title, String memberId, String content, Date regDate, int readCount, Member member,
-			int attachCount, List<Attachment> attachments) {
-		super(no, title, memberId, content, regDate, readCount);
-		this.member = member;
 		this.attachCount = attachCount;
 		this.attachments = attachments;
 	}
-	
-	
 }
+
+	
