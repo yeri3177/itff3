@@ -17,7 +17,7 @@
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="current ">
+			<li class="on_">
 				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
 			</li>
 			<li class="on_">
@@ -82,7 +82,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://i.ibb.co/f02CNQY/200809300031.jpg" class="poster" alt="이글아이">
+							<img src="https://i.ibb.co/f02CNQY/200809300031.jpg" class="poster" alt="이글아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>

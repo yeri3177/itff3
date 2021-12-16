@@ -17,7 +17,7 @@
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="current ">
+			<li class="on_">
 				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
 			</li>
 			<li class="on_">

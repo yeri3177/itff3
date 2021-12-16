@@ -17,7 +17,7 @@
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="current ">
+			<li class="on_">
 				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
 			</li>
 			<li class="on_">
@@ -62,7 +62,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="#" class="film_thumb">
-							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스">
+							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>
