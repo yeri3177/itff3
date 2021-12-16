@@ -21,7 +21,7 @@
 				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath }/program/Ai.do" target="_top">인공지능</a>
+				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/security.do">보안/암호학</a>
@@ -30,7 +30,7 @@
 				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top">가상현실/딥 러닝</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top">빅 데이터/컴퓨팅</a>
+				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top" style="font-weight: bold;">빅 데이터/컴퓨팅</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼/사물 인터넷</a>

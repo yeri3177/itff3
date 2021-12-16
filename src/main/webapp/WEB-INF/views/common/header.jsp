@@ -115,7 +115,7 @@
 											<li><a href="${pageContext.request.contextPath}/program/openClose.do" class="" target="_top">프로그램</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/program/openClose.do" class="menu_drop">개·폐막작</a></li>
-													<li><a href="${pageContext.request.contextPath}/program/Ai.do" class="menu_drop">인공지능</a></li>
+													<li><a href="${pageContext.request.contextPath}/program/ai.do" class="menu_drop">인공지능</a></li>
 													<li><a href="${pageContext.request.contextPath}/program/security.do" class="menu_drop">보안/암호학</a></li>
 													<li><a href="${pageContext.request.contextPath}/program/deepRunning.do" class="menu_drop">가상현실/딥러닝</a></li>
 													<li><a href="${pageContext.request.contextPath}/program/bigData.do" class="menu_drop">빅데이터/컴퓨팅</a></li>
