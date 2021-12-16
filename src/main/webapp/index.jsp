@@ -151,6 +151,7 @@ section#main-content {
 				</div>
 			</div>
 		</div>
+		
 		<!--// film_list -->
 	</div>
 </div>
