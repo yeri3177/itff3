@@ -8,13 +8,13 @@
 		    *
 		from
 		    member m left join authorities a
-		        on m.member_id = a.id
+		        on m.id = a.member_id
 		where
-		    m.member_id = #{username}
+		    m.id = #{username}
 	</select>
 	
 	<resultMap type="member" id="memberMap">
-		<id column="member_id" property="memberId"/>
+		<id column="id" property="id"/>
 		<result column="password" property="password" />
 		<result column="name" property="name" />
 		<result column="phone" property="phone" />
@@ -25,6 +25,7 @@
 		<result column="nickname" property="nickname" />
 		<result column="reg_date" property="regDate" />
 		<result column="point" property="point" />
+		<result column="enabled" property="enabled" />
 		
 		<collection 
 			property="authorities" 
