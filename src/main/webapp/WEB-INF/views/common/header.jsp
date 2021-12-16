@@ -134,7 +134,8 @@
 											<li><a href="${pageContext.request.contextPath}/guide/openCloseGuide.do" class="" target="_top">행사 가이드</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/guide/openCloseGuide.do" class="menu_drop">개·폐막식 안내</a></li>
-													<li><a href="#" class="menu_drop">티켓 안내</a></li>
+													<li><a href="${pageContext.request.contextPath}/guide/ticketGuide.do" class="menu_drop">티켓 안내</a></li>
+													<li><a href="${pageContext.request.contextPath}/guide/theaterGuide.do" class="menu_drop">상영관</a></li>
 												</ul>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a>
