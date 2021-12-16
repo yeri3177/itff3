@@ -28,6 +28,7 @@
 			<li class="on_"><a href="${pageContext.request.contextPath }/guide/openCloseGuide.do" target="_top">개·폐막식 안내</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath }/guide/ticketGuide.do" target="_top">티켓 안내</a></li>
 			<li class="current"><a href="${pageContext.request.contextPath }/guide/theaterGuide.do" target="_top">상영관</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/guide/trafficGuide.do" target="_top">교통 안내</a></li>
 		</ul>
 	</div>
 </div>
