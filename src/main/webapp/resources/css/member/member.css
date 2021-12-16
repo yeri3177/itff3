@@ -1,25 +1,48 @@
 @charset "UTF-8";
 
 /*  */
+
 .main-content{ 
 	height: 700px;
 	color: white;
 	background-color: #34495E!important;
 	text-align: center;
 	justify-content: center;
-	margin-top: 150px;
 	font-size: 24px;
 }
-.input-form{
+.sub_title_wrap {
+    position: relative;
+    padding: 50px 0 50px 0;
+}
+.sub_title_wrap h2.en {
+    font-size: 45px;
+    font-weight: 700 !important;
+    color: white;
+    text-align: center;
+    letter-spacing: -2px;
+}
+.input_form{
 	display: inline-block;
 	text-align: center;
-
 }
-li{
-	color: white !important;
+.btn-primary{
+	width: 400px;
+	height: 50px;
+}
+.input_form .btn_login{
+	width: 400px;
+	font-size: 32px;
 }
 .sub-content{
 	color: white;
+	font-size: 16px;
+}
+#enroll-container{
+	background-color: white;
+}
+#formGroupExampleInput{
+	width: 200px;
+	height: 40px;
 }
 #exampleInputId{
 	width: 400px;
@@ -35,5 +58,8 @@ section#main-content {
 	background-color: #34495E!important;
 }
 
+#enroll-container{
+	font-size: 24px;	
+}
 
 /* 중복아이디체크관련 */
