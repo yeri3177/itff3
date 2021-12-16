@@ -21,7 +21,6 @@
 		<intercept-url pattern="/index.jsp" access="permitAll"/>
 		<intercept-url pattern="/program/**" access="permitAll"/>
 		<intercept-url pattern="/member/memberLogin.do" access="permitAll"/>
-		<intercept-url pattern="/member/memberEnroll.do" access="permitAll"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
 		<intercept-url pattern="/**" access="isAuthenticated()"/>   <!-- 모든 주소에 대하여 인증된 사람만 접근 가능하도록 -->
 		
@@ -31,7 +30,7 @@
 		<form-login 
 			login-page="/member/memberLogin.do"
 			login-processing-url="/member/memberLogin.do"
-			username-parameter="memberId"
+			username-parameter="id"
 			password-parameter="password"
 			/>
 		
@@ -39,7 +38,7 @@
 		<!-- logout-success-url : 로그아웃 후 리다이렉트 url (기본값: /login?logout) -->
 		<logout 
 			logout-url="/member/memberLogout.do"
-			logout-success-url="/"/>
+			/>
 			
 		<access-denied-handler error-page="/error/accessDenied.do"/>
 		

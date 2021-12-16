@@ -2,6 +2,7 @@ package com.kh.spring.member.controller;
 
 import java.beans.PropertyEditor;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,40 +98,40 @@ public class MemberController {
 	public void memberLogin() {}
 	
 	
-	@PostMapping("/memberLogin.do")
-	public String memberLogin(
-							@RequestParam String id, 
-							@RequestParam String password, 
-							RedirectAttributes redirectAttr,
-							Model model,
-							HttpSession session) {
-		
-		// 1. 업무로직 - 사용자데이터 가져오기
-		Member member = memberService.selectOneMember(id);
-		log.debug("member = {}", member);
-
-		String location = "/";
-		
-		// 2. db정보 비교하기(로그인 성공여부 판단)
-		if(member != null && passwordEncoder.matches(password, member.getPassword())) {
-			// 로그인 성공 : loginMember객체를 세션에 저장해서 로그인상태 유지
-			model.addAttribute("loginMember", member);
-			
-			// redirect주소 세션에서 가져오기
-			String redirect = (String) session.getAttribute("redirect");
-			log.debug("redirect = {}", redirect);
-			if(redirect != null) {
-				location = redirect;
-				session.removeAttribute("redirect");
-			}
-		}
-		else {
-			// 로그인 실패
-			redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 다릅니다.");
-		}
-				
-		return "redirect:" + location;
-	}
+//	@PostMapping("/memberLogin.do")
+//	public String memberLogin(
+//							@RequestParam String id, 
+//							@RequestParam String password, 
+//							RedirectAttributes redirectAttr,
+//							Model model,
+//							HttpSession session) {
+//		
+//		// 1. 업무로직 - 사용자데이터 가져오기
+//		Member member = memberService.selectOneMember(id);
+//		log.debug("member = {}", member);
+//
+//		String location = "/";
+//		
+//		// 2. db정보 비교하기(로그인 성공여부 판단)
+//		if(member != null && passwordEncoder.matches(password, member.getPassword())) {
+//			// 로그인 성공 : loginMember객체를 세션에 저장해서 로그인상태 유지
+//			model.addAttribute("loginMember", member);
+//			
+//			// redirect주소 세션에서 가져오기
+//			String redirect = (String) session.getAttribute("redirect");
+//			log.debug("redirect = {}", redirect);
+//			if(redirect != null) {
+//				location = redirect;
+//				session.removeAttribute("redirect");
+//			}
+//		}
+//		else {
+//			// 로그인 실패
+//			redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 다릅니다.");
+//		}
+//				
+//		return "redirect:" + location;
+//	}
 	
 	
 	/**
@@ -136,26 +139,34 @@ public class MemberController {
 	 * -> sessionStatus객체를 통해 사용완료처리(setComplete)
 	 * 
 	 */
-	@GetMapping("/memberLogout.do")
-	public String memberLogout(SessionStatus sessionStatus) {
-			sessionStatus.setComplete();
-		
-		return "redirect:/";
-	}
+//	@GetMapping("/memberLogout.do")
+//	public String memberLogout(SessionStatus sessionStatus) {
+//			sessionStatus.setComplete();
+//		
+//		return "redirect:/";
+//	}
 	
-	
-	@GetMapping("/memberDetail.do")
-	public ModelAndView memberDetail(
-			ModelAndView mav,
-			// @ModelAttribute의 다른 사용법. 지금 세션에 들어가있는 loginMember인데, 이것의 이름을 다르게 해서 가져오고 싶을 때 사용한다.
-//			@ModelAttribute("loginMember") Member looooginMember) {    
-//			log.debug("looooginMember = {}", looooginMember);
-			@ModelAttribute("loginMember") Member loginMember) {   // 위의 것이 아닌가? 일단 모델에 있는 멤버를 가져와야한다고 이렇게 적는다는데....
-			log.debug("loginMember = {}", loginMember);
+
+	@GetMapping("memberDetail.do")
+	public void memberDetail(Authentication authentication) {
 		
-		mav.addObject("now", System.currentTimeMillis());
-		mav.setViewName("member/memberDetail");   // ModelAndView에서 viewName 설정하기
-		return mav;
+		// 1. SecurityContextHolder 로부터 가져오기
+//		SecurityContext securityContext = SecurityContextHolder.getContext();
+//		Authentication authentication = securityContext.getAuthentication();
+//		log.debug("authentication = {}", authentication);
+		
+		// 2. HandlerMapping 으로부터 가져오기
+		log.debug("authentication = {}", authentication);
+		
+		Member member = (Member) authentication.getPrincipal();
+		log.debug("[principal] member = {}", member);
+		
+		Object credentials = authentication.getCredentials();
+		log.debug("[credentials] credentials = {}", credentials);
+		
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		log.debug("[authorities] authorities = {}", authorities);
+		
 	}
 	
 	
