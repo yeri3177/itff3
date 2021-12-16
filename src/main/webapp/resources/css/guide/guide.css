@@ -264,5 +264,78 @@ table {
     word-break: keep-all;
 }
 
+/* 교통 안내 */
+
+.traffic .add_wrap {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 30px 0;
+    text-align: center;
+    position: relative;
+}
+
+.tbl_box_tit2 {
+    font-size: 24px;
+    line-height: 150%;
+    font-weight: 300;
+    color: #111;
+    letter-spacing: -1px;
+    padding: 20px 0 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.traffic .add_wrap .add {
+    font-size: 18px;
+    line-height: 160%;
+}
+
+.traffic .btn_map_area {
+    float: right;
+}
+.mview, .mviewC {
+    display: none;
+}
+.mview {
+    display: none;
+}
+
+.traffic_box {
+    padding: 30px 0;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-4 {
+    width: 33.33333333%;
+}
+
+.traffic_tit {
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 15px;
+}
+.txt-primary {
+    color: #592a80 !important;
+}
+
+.traffic_list li {
+    padding: 15px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.traffic_list li strong {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.traffic .add_wrap:after, .traffic .add_wrap:before {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+
 
 

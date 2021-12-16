@@ -15,6 +15,9 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<!-- 카카오맵 API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
+
 <!-- bootstrap js: jquery load 이후에 작성할 것.-->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -136,6 +139,7 @@
 													<li><a href="${pageContext.request.contextPath}/guide/openCloseGuide.do" class="menu_drop">개·폐막식 안내</a></li>
 													<li><a href="${pageContext.request.contextPath}/guide/ticketGuide.do" class="menu_drop">티켓 안내</a></li>
 													<li><a href="${pageContext.request.contextPath}/guide/theaterGuide.do" class="menu_drop">상영관</a></li>
+													<li><a href="${pageContext.request.contextPath}/guide/trafficGuide.do" class="menu_drop">교통 안내</a></li>
 												</ul>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a>
