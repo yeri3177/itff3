@@ -61,42 +61,42 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/br6rzx0/17-06-43-5cf7781317799-H800.jpg" class="poster" alt="그녀">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">개막작</span>
+							<span class="sectionName mt20">빅데이터/컴퓨팅</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
+								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">그녀</a>
+								<small class="dir">Her</small>
 								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+									<p class="dir_p">스파이크 존즈 <span class="en">Spike Jonze</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
+									<li class="en">USA</li>
+									<li class="en">2013</li>
+									<li class="en">126min</li>
 								</ul>
 							</div>
 						</div>
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/njnk0PP/20161101-0402.jpg" class="poster" alt="시티즌포">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20">빅데이터/컴퓨팅</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
+								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">시티즌포</a>
+								<small class="dir">Citizenfour</small>
 								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+									<p>로라 포이트러스 <span class="en">Laura Poitras</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
-									<li class="en">136min</li>
+									<li class="en">USA</li>
+									<li class="en">2014</li>
+									<li class="en">114min</li>
 								</ul>
 							</div>
 						</div>

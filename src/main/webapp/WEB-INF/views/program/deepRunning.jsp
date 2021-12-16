@@ -62,40 +62,41 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
+							<img src="https://i.ibb.co/QPP8PBb/The-Thirteenth-Floor.jpg" class="poster" alt="13층">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">개막작</span>
+							<span class="sectionName mt20">가상현실/딥러닝</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
+								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">13층</a>
+								<small class="dir">The thirteenth floor</small>
 								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+									<p class="dir_p">조세프 루스넥 <span class="en">Joseph Rosnec</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
+									<li class="en">USA, Germany</li>
+									<li class="en">1999</li>
+									<li class="en">100min</li>
 								</ul>
 							</div>
 						</div>
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20">가상현실/딥러닝</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
+								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">매트릭스</a>
+								<small class="dir">The Matrix</small>
 								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+									<p class="dir_p">라나 워쇼스키, 릴리 워쇼스키</p>
+									<p class="en">Lana Wachowski, Lilly Wachowski </p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
+									<li class="en">USA</li>
+									<li class="en">1999</li>
 									<li class="en">136min</li>
 								</ul>
 							</div>
