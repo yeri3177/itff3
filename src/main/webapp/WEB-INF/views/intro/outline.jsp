@@ -7,7 +7,7 @@
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/style.css" />
+	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
@@ -187,7 +187,7 @@
 							<div>
 							<p class="txt_headline">앰뷸럼</p>
 							<div class="desc mt20">
-								<img src="https://i.ibb.co/djRDCB3/mark2-copy.png" alt="basic_logo" class="itff_logo" style="width: 400px;" />
+								<img src="https://i.ibb.co/djRDCB3/mark2-copy.png" alt="basic_logo" class="itff_logo" style="width: 300px;" />
 							</div>
 							</div>							
 						</div>
