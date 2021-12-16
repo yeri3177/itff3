@@ -8,7 +8,7 @@
 	<jsp:param value="프로그램" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/openClose.css" />
 
