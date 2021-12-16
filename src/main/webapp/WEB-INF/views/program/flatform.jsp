@@ -61,42 +61,42 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/2ssNXqb/unnamed.png" class="poster" alt="007:카지노로얄">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">개막작</span>
+							<span class="sectionName mt20">플랫폼/사물인터넷</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
+								<a href="#" class="film_tit">007:카지노로얄</a>
+								<small class="dir">007 Casino Royale</small>
 								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+									<p class="dir_p">마틴 캠벨 <span class="en">Martin Campbell</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
+									<li class="en">UK</li>
+									<li class="en">2006</li>
+									<li class="en">144min</li>
 								</ul>
 							</div>
 						</div>
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
+						<a href="#" class="film_thumb">
+							<img src="https://i.ibb.co/PF6fh3S/image.jpg" class="poster" alt="미션임파서블">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20">플랫폼/사물인터넷</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
+								<a href="#" class="film_tit">미션임파서블-고스트프로토콜</a>
+								<small class="dir">Mission: Impossible – Ghost Protocol</small>
 								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+									<p>브래들리 버드 <span class="en">Bradley Bird</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
-									<li class="en">136min</li>
+									<li class="en">USA</li>
+									<li class="en">2011</li>
+									<li class="en">133min</li>
 								</ul>
 							</div>
 						</div>

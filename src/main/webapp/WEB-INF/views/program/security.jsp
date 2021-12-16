@@ -62,20 +62,20 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
+							<img src="https://i.ibb.co/yN3pQwx/img.jpg" class="poster" alt="패스워드">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">개막작</span>
+							<span class="sectionName mt20">보안/암호학</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
+								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">패스워드</a>
+								<small class="dir">Password</small>
 								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
+									<p class="dir_p">피터 호윗 <span class="en">Peter Howit</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
+									<li class="en">USA</li>
+									<li class="en">2001</li>
+									<li class="en">108min</li>
 								</ul>
 							</div>
 						</div>
@@ -83,20 +83,20 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
+							<img src="https://i.ibb.co/nCCyPWB/unnamed.jpg" class="poster" alt="가타카">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20">보안/암호학</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
+								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">가타카</a>
+								<small class="dir">Gattaca</small>
 								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
+									<p>앤드루 니콜 <span class="en">Andrew Niccol</span></p>
 								</div>
 								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
-									<li class="en">136min</li>
+									<li class="en">USA</li>
+									<li class="en">1997</li>
+									<li class="en">108min</li>
 								</ul>
 							</div>
 						</div>
