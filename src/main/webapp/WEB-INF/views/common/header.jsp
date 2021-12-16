@@ -5,6 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -92,8 +94,25 @@
 
 						<div class="util">
 							<ul class="list-inline">
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll.do">JOIN</a></li>
-								<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin.do">LOGIN</a></li>
+								<%-- 로그인하지 않았을 때 --%>
+								<sec:authorize access="isAnonymous()">
+									<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll.do">JOIN</a></li>
+									<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin.do">LOGIN</a></li>
+								</sec:authorize>
+								<%-- 로그인했을때 --%>
+		    					<sec:authorize access="isAuthenticated()">
+									<li><a class="en" href="${pageContext.request.contextPath}/member/memberDetail.do">
+										<sec:authentication property="principal.name"/></a>님. 돌아오신 것을 환영합니다.</li>
+									<form:form
+							    		id="memberLogoutFrm"
+							    		method="POST"
+							    		action="${pageContext.request.contextPath}/member/memberLogout.do"
+							    		class="d-inline">
+								    	<button 
+									    	class="btn btn-outline-success my-2 my-sm-0" 
+									    	type="submit">Logout</button>
+				 				   </form:form>
+		    					</sec:authorize>
 							</ul>
 						</div>
 

@@ -32,7 +32,7 @@
 <div class="input_form">
 	<form:form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
 	  <div class="mb-3">
-	    <input type="text" name="memberId" class="form-control" id="exampleInputId" aria-describedby="emailHelp">
+	    <input type="text" name="id" class="form-control" id="exampleInputId" aria-describedby="emailHelp">
 	  </div>
 	  <div class="mb-3">
 	    <input type="password" name="password" class="form-control" id="exampleInputPassword">
@@ -43,6 +43,10 @@
 	    <label class="form-check-label" for="exampleCheck1">아이디 저장</label>
 	  </div>
 -->	  
+	<div>
+		<input type="checkbox" name="remember-me" id="remember-me" class="form-check-input" />   <!-- 부트스트랩에 있는 클래스 -->
+		<label for="remember-me" class="form-check-label">Remember me</label>
+	</div>
 	 <button type="submit" class="btn btn-primary">로그인</button>
 	</form:form>
 </div>
