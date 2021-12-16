@@ -3,102 +3,101 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/member.css" />
+
+<!-- header -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="회원등록" name="title"/>
 </jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member.css" />
 
+<!-- 제목 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">회원가입</h2>
+	</div>
+</div>
+
+<!-- 메인 콘텐츠 -->
 <div id="enroll-container" class="mx-auto text-center">
 	<form 
 		name="memberEnrollFrm" 
 		action="${pageContext.request.contextPath}/member/memberEnroll.do" 
 		method="post">
-		<table class="mx-auto">
-			<tr>
-				<th>아이디</th>
-				<td>
-					<div id="memberId-container">
-						<input type="text" 
-							   class="form-control" 
-							   placeholder="4글자이상"
-							   name="id" 
-							   id="id"
-							   value="honggd"
-							   required>
-						<span class="guide ok">이 아이디는 사용가능합니다.</span>
-						<span class="guide error">이 아이디는 이미 사용중입니다.</span>
+		<table>				
+				<tr>
+					<td>
+						<div class="enrollLeft">아이디<sup>*</sup></div>
+						<input type="text" name="userId" id="_userId" class="enrollInput" required/>
+						
+						<input type="button" value="중복검사" id="btnCheckId" onclick="checkIdDuplicate();" />
 						<input type="hidden" id="idValid" value="0" />
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>패스워드</th>
-				<td>
-					<input type="password" class="form-control" name="password" id="password" value="1234" required>
-				</td>
-			</tr>
-			<tr>
-				<th>패스워드확인</th>
-				<td>	
-					<input type="password" class="form-control" id="passwordCheck" value="1234" required>
-				</td>
-			</tr>  
-			<tr>
-				<th>이름</th>
-				<td>	
-					<input type="text" class="form-control" name="name" id="name" value="홍길동" required>
-				</td>
-			</tr>
-			<tr>
-				<th>생년월일</th>
-				<td>		
-					<input type="date" class="form-control" name="birthday" id="birthday" value="1999-09-09"/>
-				</td>
-			</tr> 
-			<tr>
-				<th>이메일</th>
-				<td>	
-					<input type="email" class="form-control" placeholder="abc@xyz.com" name="email" id="email" value="honggd@naver.com">
-				</td>
-			</tr>
-			<tr>
-				<th>휴대폰</th>
-				<td>	
-					<input type="tel" class="form-control" placeholder="(-없이)01012345678" name="phone" id="phone" maxlength="11" value="01012345678" required>
-				</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>	
-					<input type="text" class="form-control" placeholder="" name="address" id="address" value="서울시 관악구">
-				</td>
-			</tr>
-			<tr>
-				<th>성별 </th>
-				<td>
-					<div class="form-check form-check-inline">
-						<input type="radio" class="form-check-input" name="gender" id="gender0" value="M" checked>
-						<label  class="form-check-label" for="gender0">남</label>&nbsp;
-						<input type="radio" class="form-check-input" name="gender" id="gender1" value="F">
-						<label  class="form-check-label" for="gender1">여</label>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>취미 </th>
-				<td>
-					<div class="form-check form-check-inline">
-						<input type="checkbox" class="form-check-input" name="hobby" id="hobby0" value="운동" checked><label class="form-check-label" for="hobby0">운동</label>&nbsp;
-						<input type="checkbox" class="form-check-input" name="hobby" id="hobby1" value="등산"><label class="form-check-label" for="hobby1">등산</label>&nbsp;
-						<input type="checkbox" class="form-check-input" name="hobby" id="hobby2" value="독서" checked><label class="form-check-label" for="hobby2">독서</label>&nbsp;
-						<input type="checkbox" class="form-check-input" name="hobby" id="hobby3" value="게임" checked><label class="form-check-label" for="hobby3">게임</label>&nbsp;
-						<input type="checkbox" class="form-check-input" name="hobby" id="hobby4" value="여행"><label class="form-check-label" for="hobby4">여행</label>&nbsp;
-					 </div>
-				</td>
-			</tr>
-		</table>
-		<input type="submit" value="가입" >
-		<input type="reset" value="취소">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="enrollLeft">비밀번호<sup>*</sup></div>
+						<input type="password" name="password" id="_password" class="enrollInput1" required />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="enrollLeft">비밀번호 확인<sup>*</sup></div>
+						<input type="password" id="password2" class="enrollInput1" required />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="enrollLeft">이메일<sup>*</sup></div> 
+						<input type="text" name="emailId" id="emailId" class="enrollInput2" required> @ 
+						<input type="text" name="emailAddress" id="emailAddress" class="enrollInput2" required readonly> 
+						
+						<select name="emailSelect" id="emailSelect" required>
+							<option value="" disabled selected>이메일선택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="gmail.com">gmail.com</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="enrollLeft">이름<sup>*</sup></div>
+						<input type="text" name="userName" id="userName" class="enrollInput1" required />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="enrollLeft">전화번호<sup>*</sup></div>
+						<input type="text" placeholder="(-없이)01012345678" name="phone" id="phone" maxlength="11" class="enrollInput1" required />
+					</td>
+				</tr>
+			
+				<tr>
+					<td>
+						<div class="enrollLeft">생일</div>
+						<input type="text" placeholder="년(4자)" name="birthyear" id="birthyear" maxlength="4" class="enrollInput3"/>
+						<input type="number" placeholder="월" name="birthmonth" id="birthmonth" maxlength="2" class="enrollInput3"/>
+						<input type="text" placeholder="일" name="birthday" id="birthday" maxlength="2" class="enrollInput3"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<div class="enrollLeft">주소<sup>*</sup></div>
+						<input id="member_post"  type="text" placeholder="주소검색" readonly onclick="findAddr()" class="enrollInput4"><br>
+						<input id="member_addr" type="text" name="address1" id="address1" placeholder="도로명 주소" class="enrollInput5" readonly> <br>
+						<input type="text" name="address2" id="address2" placeholder="상세 주소" class="enrollInput5">
+					</td>
+				</tr>
+	
+				<tr>
+					<td id="submitbtn">
+						<input type="submit" value="가입하기" >
+					</td>
+				</tr>
+			</table>	  		
 	</form>
 </div>
 <script>
