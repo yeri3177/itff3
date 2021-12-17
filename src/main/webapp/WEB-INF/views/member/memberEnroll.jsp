@@ -264,7 +264,7 @@
 								<div class="d_tbl">
 									<span class="form_txt">
 										<input name="address" id="address1" type="text" size="50"   value="" class="inputTxt mt10">
-										<input name="address" id="address2" type="text" size="50" value="" placeholder="상세주소입력">
+										<input name="address" id="address2" type="text" size="50" value="" placeholder="상세주소 입력">
 					
 									</span>
 								</div>
