@@ -30,7 +30,7 @@
     <label for="pos4"></label>
   </p>
 </div>
-<p>하이눈물</p>
+<p>하이눈물난다</p>
 <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1>
 
 <div class="film_info">
