@@ -10,11 +10,9 @@
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/style.css" />
-<style>
-section#main-content {
-	background-color: #212121 !important;
-}
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 

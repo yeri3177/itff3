@@ -101,8 +101,9 @@
 									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin.do';">LOGIN</button></li>
 								</sec:authorize>
 								
-								<%-- 로그인했을때 --%>
+								<%-- 로그인 했을 때 --%>
 		    					<sec:authorize access="isAuthenticated()">
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
