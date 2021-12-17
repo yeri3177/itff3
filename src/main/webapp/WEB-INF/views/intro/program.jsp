@@ -62,7 +62,7 @@
 					</div>
 
 					<div class="col-md-8 col-xs-12">
-						<div class="tbl_box_tit2 mt50">인공지능(Artificial Intelligence)</div>
+						<div class="tbl_box_tit2 mt50">인공지능(Artificial Intelligence) 테스트</div>
 
 						<p class="desc">사람과 같은 모습으로 생각하고 행동하면 어떻게 될까? 
 						아마 사람이 만들었지만 그들은 단기간에 인간보다 더 영리해지고 많은 생각을 할 것이다. 
