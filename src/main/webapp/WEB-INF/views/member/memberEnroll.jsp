@@ -23,11 +23,11 @@
 				이용에 대한 동의 여부를 결정해 주시기 바랍니다.
 			</p>
 		</div>
-		
+<%-- 		
 		<form:form action="${pageContext.request.contextPath}/member/memberEnroll.do?test=wtf" method="post">
 			<input type="hidden" name="test" value="ITFF">
 			<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;">  
-		</form:form>
+		</form:form> --%>
 
 		<div class="join_con">
 			<div class="row">
@@ -118,7 +118,7 @@
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="nickname"
 										id="nickname" type="text"
-										maxlength="64" size="40" placeholder="이메일을 입력해 주세요."
+										maxlength="64" size="40" placeholder="test@itff.com"
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 										<a class="btn btn-s btn_cancel"
 										href="#"
