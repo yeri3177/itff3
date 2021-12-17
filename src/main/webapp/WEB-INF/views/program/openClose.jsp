@@ -61,13 +61,13 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="#" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/matrix.do" class="film_thumb">
 							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">매트릭스</a>
+								<a href="${pageContext.request.contextPath }/program/matrix.do" class="film_tit">매트릭스</a>
 								<small class="dir">The Matrix</small>
 								<div class="dir">
 									<p class="dir_p">라나 워쇼스키, 릴리 워쇼스키</p>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="#" class="film_thumb">
-							<img src="https://i.ibb.co/ZcGwkgn/EKdu-Ylo-Uw-AAS6r-I.jpg" class="poster" alt="에이아이">
+							<img src="https://i.ibb.co/ZcGwkgn/EKdu-Ylo-Uw-AAS6r-I.jpg" class="poster" alt="에이아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">폐막작</span>
