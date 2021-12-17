@@ -275,4 +275,16 @@ header {
 	width: 100%;
 }
 
+.btn-link {
+	display: block;
+	padding: 10px 3px;
+	color: #fff;
+	font-size: 13px;
+	margin: 0;
+}
+
+.btn-link:hover {
+	color: white;
+}
+
 /* header.jsp 끝 */
