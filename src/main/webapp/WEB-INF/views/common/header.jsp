@@ -95,14 +95,16 @@
 						<div class="util">
 							<ul class="list-inline">
 								<%-- 로그인하지 않았을 때 --%>
+								<br />
 								<sec:authorize access="isAnonymous()">
 									<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll.do">JOIN</a></li>
 									<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin.do">LOGIN</a></li>
 								</sec:authorize>
 								<%-- 로그인했을때 --%>
 		    					<sec:authorize access="isAuthenticated()">
+		    					<br />
 									<li><a class="en" href="${pageContext.request.contextPath}/member/memberDetail.do">
-										<sec:authentication property="principal.name"/></a>님. 돌아오신 것을 환영합니다.</li>
+										<sec:authentication property="principal.name"/>님. 돌아오신 것을 환영합니다.</a></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"
