@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,windows,eclipse,macos,maven
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,windows,eclipse,macos,maven
+# Created by https://www.toptal.com/developers/gitignore/api/windows,eclipse,maven,java,macos
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,eclipse,maven,java,macos
 
 ### Eclipse ###
 .metadata
@@ -14,9 +14,8 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-.classpath
 .project
-
+.classpath
 
 # External tool builders
 .externalToolBuilders/
@@ -171,4 +170,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/java,windows,eclipse,macos,maven
+# End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,maven,java,macos

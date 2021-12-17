@@ -72,7 +72,8 @@ select * from authorities;
 
 update member
 set password = '$2a$10$MB4MUotYW8SqixGCAKXemubGvkJR5MLwSntfyYm7fLDrvKJmuhy9.'
-where id = 'abcde';
+where id = 'qwerty';
+
 
 
  -- remember-me 기능을 위한 테이블 생성(테이블명과 컬럼명 그대로 사용할  것)
@@ -84,3 +85,6 @@ create table persistent_logins (
 );
 
 select * from persistent_logins;
+
+select * from attachment;
+
