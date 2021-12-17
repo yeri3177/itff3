@@ -225,7 +225,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone" type="text" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone" type="text" placeholder="1234" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -234,7 +234,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone" type="text" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone" type="text" placeholder="5678" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
