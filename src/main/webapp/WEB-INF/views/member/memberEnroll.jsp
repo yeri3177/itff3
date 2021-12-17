@@ -25,8 +25,13 @@
 		<div class="join_con">
 			<div class="row">
 
-				<form name="theForm" class="chk_member" method="post"
-					onsubmit="return OnSubmitAction();" enctype="multipart/form-data">
+				<form 
+					name="theForm"
+					action="${pageContext.request.contextPath}/member/memberEnroll.do" 
+					class="chk_member" 
+					method="post"
+					onsubmit="return OnSubmitAction();" 
+					enctype="multipart/form-data">
 					<input type="hidden" name="strBirthdayR"> 
 
 

@@ -39,14 +39,14 @@
 	</appender>
 	
 	<!-- 시스템 Logging : 지역서버 폴더 안에 하루마다 로그를 찍은 파일을 생성한다. 여기에 이거 쓰고 저 밑에 Root logger에 filelogger 추가 -->
-	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+<!-- 	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="file" value="${catalina.base}${file.separator}logs${file.separator}spring${file.separator}spring.log"/>
 		<param name="append" value="true"/>
-		<param name="datePattern" value=".yyyy-MM-dd"/> <!--기본값-->
+		<param name="datePattern" value=".yyyy-MM-dd"/> 기본값
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p:[%d{yyyy/MM/dd HH:mm:ss}] %F:%L - %m%n"/>
 		</layout>
-	</appender>
+	</appender> -->
 	
 	<!-- #10.2 log4jdbc Appender & Logger 설정 -->
 	<appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
@@ -57,17 +57,17 @@
 	
 	<!-- Query Loggers  -->
 	<logger name="jdbc.sqlonly" additivity="false">
-		<level value="INFO" />
+		<level value="DEBUG" />
 		<appender-ref ref="sqlLogger"/>
 	</logger>
 	<logger name="jdbc.resultsettable" additivity="false">
-		<level value="INFO" />
+		<level value="DEBUG" />
 		<appender-ref ref="sqlLogger"/>
 	</logger>
 	
 	<!-- Application Loggers : 로그 수집 -->
 	<!-- additivity : 부모패키지의 Logger로 전파 -->
-	<logger name="com.kh.spring" additivity="true">
+	<logger name="com.kh" additivity="true">
 		<level value="debug" />
 	</logger>
 	<logger name="com.kh.spring.log4j">
