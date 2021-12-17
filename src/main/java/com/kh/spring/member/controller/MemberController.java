@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.member.model.service.MemberService;
@@ -58,36 +62,27 @@ public class MemberController {
 	 * @param redirectAttr
 	 * @return
 	 */
-//	@PostMapping("/memberEnroll.do")
-//	public String memberEnroll(Member member, RedirectAttributes redirectAttr) {
-//		log.debug("member = {}", member);
-//		
-//		try {
-//			// 0. 비밀번호 암호화 처리
-//			log.info("{}", passwordEncoder);
-//			String rawPassword = member.getPassword();
-//			String encryptedPassword = passwordEncoder.encode(rawPassword);
-//			member.setPassword(encryptedPassword);
-//			log.info("{} -> {}", rawPassword, encryptedPassword);
-//			
-//			// 1. 업무로직
-//			int result = memberService.insertMember(member);
-//			
-//			// 2. 리다이렉트 & 사용자피드백 전달
-//			redirectAttr.addFlashAttribute("msg", "회원가입성공");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw e;
-//		}
-//		
-//		return "redirect:/";
-//	}
-	
 	@PostMapping("/memberEnroll.do")
-	public String memberEnroll(Member member) {
+	public String memberEnroll(Member member, RedirectAttributes redirectAttr) {
 		log.debug("member = {}", member);
 		
-		
+		try {
+			// 0. 비밀번호 암호화 처리
+			log.info("{}", passwordEncoder);
+			String rawPassword = member.getPassword();
+			String encryptedPassword = passwordEncoder.encode(rawPassword);
+			member.setPassword(encryptedPassword);
+			log.info("{} -> {}", rawPassword, encryptedPassword);
+			
+			// 1. 업무로직
+			int result = memberService.insertMember(member);
+			
+			// 2. 리다이렉트 & 사용자피드백 전달
+			redirectAttr.addFlashAttribute("msg", "회원가입성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		
 		return "redirect:/";
 	}
