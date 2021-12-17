@@ -32,6 +32,10 @@ public class ProgramController {
 	@GetMapping("/debugging.do")
 	public void debugging() {}
 	
-	@GetMapping("/programSearch")
+	@GetMapping("/programSearch.do")
 	public void programSearch() {}
+	
+	@GetMapping("/matrix.do")
+	public void matrix() {}
+	
 }
