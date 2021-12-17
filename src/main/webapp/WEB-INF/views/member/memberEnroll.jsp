@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="회원등록" name="title" />
 </jsp:include>
@@ -21,12 +23,22 @@
 				이용에 대한 동의 여부를 결정해 주시기 바랍니다.
 			</p>
 		</div>
+		
+		<form:form action="${pageContext.request.contextPath}/member/memberEnroll.do?test=wtf" method="post">
+			<input type="hidden" name="test" value="ITFF">
+			<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;">  
+		</form:form>
 
 		<div class="join_con">
 			<div class="row">
 
-				<form name="theForm" class="chk_member" method="post"
-					onsubmit="return OnSubmitAction();" enctype="multipart/form-data">
+				<form:form 
+					name="theForm"
+					action="${pageContext.request.contextPath}/member/memberEnroll.do" 
+					class="chk_member" 
+					method="post"
+					onsubmit="return OnSubmitAction();" 
+					enctype="multipart/form-data">
 					<input type="hidden" name="strBirthdayR"> 
 
 
@@ -39,9 +51,9 @@
 								<!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="name"
-										id="name" type="text" maxlength="30" size="20" placeholder="이름을 입력해 주세요."
+										id="name" type="text" maxlength="30" size="20" placeholder="이름을 입력해 주세요." placeholder="테스트"
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-										readonly="">
+										 >
 									</span>
 								</div>
 							</div>
@@ -55,7 +67,7 @@
 								<div class="d_tbl">
 									<span class="form_txt">
 										
-										<input name="id" id="id" type="text" maxlength="30" size="20" onchange="document.all['bitIdCheck'].value='0';" style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;" placeholder="아이디를 입력해 주세요.">
+										<input name="id" id="id" type="text" maxlength="30" size="20" onchange="document.all['bitIdCheck'].value='0';" style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;" placeholder="test">
 										
 									</span>
 								</div>
@@ -130,7 +142,7 @@
 											<input name="birthday"
 												type="text" onblur="onlynum(this, '1');" size="4"
 												maxlength="4" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="년 ex)2000" readonly="">
+												placeholder="년 ex)2000"  >
 											</span>
 										</div>
 									</div>
@@ -143,7 +155,7 @@
 											<input name="birthday"
 												type="text" onblur="onlynum(this, '1');" size="2"
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="월" readonly="">
+												placeholder="월"  >
 											</span>
 										</div>
 									</div>
@@ -155,7 +167,7 @@
 											<span class="form_txt"> <input name="birthday"
 												type="text" onblur="onlynum(this, '1');" size="2"
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="일" readonly="">
+												placeholder="일"  >
 											</span>
 										</div>
 									</div>
@@ -238,9 +250,9 @@
 							<div class="form_group wid100" style="position:relative;" "=""> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="zipcode" type="text" size="7" maxlength="7" readonly="" value="" class="inputTxt">
+										<input name="address" id="zipcode" type="text" size="7" maxlength="7"   value="" class="inputTxt">
 										&nbsp;			
-										<input name="address" type="hidden" size="4" maxlength="3" readonly="" value="" class="inputTxt">
+										<input name="address" type="hidden" size="4" maxlength="3"   value="" class="inputTxt">
 																				
 										<a href="javascript:findZip();" class="btn btn-s btn_cancel" style="position:absolute; right:5px; top:10px; z-index:1;">우편번호 찾기</a>
 					
@@ -251,7 +263,7 @@
 							<div class="form_group wid100" style="margin-top:5px"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="address1" type="text" size="50" readonly="" value="" class="inputTxt mt10">
+										<input name="address" id="address1" type="text" size="50"   value="" class="inputTxt mt10">
 										<input name="address" id="address2" type="text" size="50" value="" placeholder="상세주소 입력">
 					
 									</span>
@@ -317,7 +329,7 @@ function findZip() {
 						<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;"> 
 						&nbsp;<a class="btn btn-m btn-primary" href="javascript:;" onclick="history.go(-1);" style="background-color: #fff; width: 200px;">취소하기</a>
 					</div>
-				</form>
+				</form:form>
 
 			</div>
 		</div>

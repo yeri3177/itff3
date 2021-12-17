@@ -7,7 +7,7 @@
 <select id="selectBoardList" resultType="board">
 	select
     	b.*,
-		(select count(*) from attachment where board_no = b.no) attach_count 
+		(select count(*) from ticket_sharing_attachment where board_no = b.no) attach_count 
 	from
 		ticket_sharing_board b
 	order by
