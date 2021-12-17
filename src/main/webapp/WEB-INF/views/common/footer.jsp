@@ -18,7 +18,7 @@
 							<li><a href="#">이용약관</a></li>
 							<li><a href="#">개인정보취급방침</a></li>
 							<li><a href="#">이메일무단수집거부</a></li>
-							<li><a href="#">사무국 오시는 길</a></li>
+							<li><a href="${pageContext.request.contextPath }/guide/trafficGuide.do">사무국 오시는 길</a></li>
 						</ul>
 					</div>
 
