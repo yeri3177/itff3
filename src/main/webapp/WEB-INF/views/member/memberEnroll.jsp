@@ -207,7 +207,7 @@
 								<div class="form_group  wid100"> <!-- // focus 시 on 클래스 -->
 									<select name="phone" class="form-control input-lg" style="height:45px;">
 										<option value="">선택하세요</option>
-										<option value="010">010</option>
+										<option value="010" selected>010</option>
 										<option value="011">011</option>
 										<option value="013">013</option>
 										<option value="016">016</option>
