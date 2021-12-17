@@ -93,26 +93,22 @@
 					<div class="container-l">
 
 						<div class="util">
-							<ul class="list-inline">
+							<ul class="list-inline" style="display: flex; justify-content: flex-end;">
+								
 								<%-- 로그인하지 않았을 때 --%>
-								<br />
 								<sec:authorize access="isAnonymous()">
-									<li><a class="en" href="${pageContext.request.contextPath}/member/memberEnroll.do">JOIN</a></li>
-									<li><a class="en" href="${pageContext.request.contextPath}/member/memberLogin.do">LOGIN</a></li>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do';">JOIN</button></li>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin.do';">LOGIN</button></li>
 								</sec:authorize>
+								
 								<%-- 로그인했을때 --%>
 		    					<sec:authorize access="isAuthenticated()">
-		    					<br />
-									<li><a class="en" href="${pageContext.request.contextPath}/member/memberDetail.do">
-										<sec:authentication property="principal.name"/>님. 돌아오신 것을 환영합니다.</a></li>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"
-							    		action="${pageContext.request.contextPath}/member/memberLogout.do"
-							    		class="d-inline">
-								    	<button 
-									    	class="btn btn-outline-success my-2 my-sm-0" 
-									    	type="submit">Logout</button>
+							    		action="${pageContext.request.contextPath}/member/memberLogout.do">
+								    	<button class="btn btn-link" type="submit">Logout</button>
 				 				   </form:form>
 		    					</sec:authorize>
 							</ul>
