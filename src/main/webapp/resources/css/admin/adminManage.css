@@ -818,7 +818,7 @@ iframe {
 
 #filter-bar {
     align-items: baseline;
-    background: #b79b69;
+    background: #444444;
     box-sizing: border-box;
     display: flex;
     height: 250px !important;
@@ -1616,7 +1616,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 .ba-store-statistic-product:hover span, .ba-store-statistic-product:hover, .view-comments .comments-table .active-comment td, .view-comments .comments-table .active-comment a, .view-comments .comments-table .active-comment i, .view-comments .comments-table .active-comment td .comments-message, .view-comments .comments-table .context-active td .comments-message, .view-comments .comments-table tr:not(.sortable-helper):hover td .comments-message, .view-reviews .comments-table .active-comment td, .view-reviews .comments-table .active-comment a, .view-reviews .comments-table .active-comment i, .view-reviews .comments-table .active-comment td .comments-message, .view-reviews .comments-table .context-active td .comments-message, .view-reviews .comments-table tr:not(.sortable-helper):hover td .comments-message, .ba-custom-author-select ul li:hover, .main-table .table .context-active a, .main-table .table .context-active i, .main-table .table .context-active td, .main-table .table tr:not(.sortable-helper):hover td .zmdi, .main-table.dashboard-content .table tr.context-active td i.zmdi, .main-table .table tr:not(.sortable-helper):hover td, .main-table .table tr:not(.sortable-helper):hover td a, .ba-custom-select ul li:hover, .ba-custom-select ul li:hover i {
-    background: #b79b69 !important;
+    background: #444444 !important;
     border-bottom-color: transparent !important;
     color: #fff !important;
 }
