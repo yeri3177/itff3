@@ -44,6 +44,17 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Member> selectMemberList(Map<String, Object> param) {
 		return session.selectList("member.selectMemberList", param);
 	}
+
+	@Override
+	public Member selectOneEmail(String email) {
+		return session.selectOne("member.selectOneEmail", email);
+	}
+
+	@Override
+	public Member selectOneNickname(String nickname) {
+		return session.selectOne("member.selectOneNickname", nickname);
+	}
+	
 	
 	
 	

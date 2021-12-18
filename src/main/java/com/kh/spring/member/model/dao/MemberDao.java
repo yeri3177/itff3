@@ -19,4 +19,8 @@ public interface MemberDao {
 
 	List<Member> selectMemberList(Map<String, Object> param);
 
+	Member selectOneEmail(String email);
+
+	Member selectOneNickname(String nickname);
+
 }

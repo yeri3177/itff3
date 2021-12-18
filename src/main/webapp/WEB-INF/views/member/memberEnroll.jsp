@@ -23,22 +23,27 @@
 				이용에 대한 동의 여부를 결정해 주시기 바랍니다.
 			</p>
 		</div>
-<%-- 		
-		<form:form action="${pageContext.request.contextPath}/member/memberEnroll.do?test=wtf" method="post">
-			<input type="hidden" name="test" value="ITFF">
+		
+		<%-- <form:form action="${pageContext.request.contextPath}/member/memberEnroll.do" method="post">
+			<input type="hidden" name="id" value="test">
+			<input type="hidden" name="password" value="1234">
+			<input type="hidden" name="name" value="테스트">
+			<input type="hidden" name="phone" value="01012345678">
+			<input type="hidden" name="gender" value="M">
+			<input type="hidden" name="email" value="test@itff.com">
+			<input type="hidden" name="address" value="서울시 강남구">
+			<input type="hidden" name="nickname" value="테스트계정입니다.">
 			<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;">  
-		</form:form> --%>
+		</form:form>  --%>
 
 		<div class="join_con">
 			<div class="row">
 
 				<form:form 
-					name="theForm"
+					name="memberEnrollFrm"
 					action="${pageContext.request.contextPath}/member/memberEnroll.do" 
 					class="chk_member" 
-					method="post"
-					onsubmit="return OnSubmitAction();" 
-					enctype="multipart/form-data">
+					method="post">
 					<input type="hidden" name="strBirthdayR"> 
 
 
@@ -46,12 +51,12 @@
 
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form_group_wrap">
-							<label for="strLoginName" class="form_tit need">회원이름 확인</label>
+							<label for="strLoginName" class="form_tit need">이름</label>
 							<div class="form_group wid100">
 								<!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="name"
-										id="name" type="text" maxlength="30" size="20" placeholder="이름을 입력해 주세요." placeholder="테스트"
+										id="name" type="text" maxlength="30" size="20" placeholder="이름을 입력해 주세요." required 
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;"
 										 >
 									</span>
@@ -67,11 +72,12 @@
 								<div class="d_tbl">
 									<span class="form_txt">
 										
-										<input name="id" id="id" type="text" maxlength="30" size="20" onchange="document.all['bitIdCheck'].value='0';" style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;" placeholder="test">
-										
+										<input name="id" id="id" type="text" maxlength="30" size="20" placeholder="아이디를 4자리 이상으로 입력해 주세요." style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;">
+										<span class="guide ok">이 아이디는 사용가능합니다.</span>
+										<span class="guide error">이 아이디는 이미 사용중입니다.</span>
+										<input type="hidden" id="idValid" value="0" />
 									</span>
 								</div>
-								<a href="#" class="btn btn-s" style="position:absolute; right:5px; top:10px; z-index:1;">중복확인</a>
 							</div>
 							
 						</div>
@@ -86,7 +92,7 @@
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="password"
 										id="password" type="password" maxlength="30" size="20"
-										value="" placeholder="비밀번호를 입력해 주시기 바랍니다."
+										value="" placeholder="비밀번호를 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 									</span>
 								</div>
@@ -102,7 +108,7 @@
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="passwordCheck"
 										id="passwordCheck" type="password" maxlength="30" size="20"
-										value="" placeholder="비밀번호를 입력해 주시기 바랍니다."
+										value="" placeholder="입력하신 비밀번호를 한 번 더 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 									</span>
 								</div>
@@ -116,13 +122,15 @@
 							<div class="form_group wid100" style="position: relative;">
 								<!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
-									<span class="form_txt"> <input name="nickname"
+									<span class="form_txt"> 
+										<input name="nickname"
 										id="nickname" type="text"
-										maxlength="64" size="40" placeholder="test@itff.com"
+										maxlength="64" size="40"
+										placeholder="닉네임을 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
-										<a class="btn btn-s btn_cancel"
-										href="#"
-										style="position: absolute; right: 5px; top: 10px; z-index: 1;">중복확인</a>
+										<span class="guide1  ok1">이 닉네임은 사용가능합니다.</span>
+										<span class="guide1 error1">이 닉네임은 이미 사용중입니다.</span>
+										<input type="hidden" id="nicknameValid" />
 									</span>
 
 								</div>
@@ -132,17 +140,17 @@
 
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form_group_wrap">
-							<label for="strBirthday" class="form_tit need">생년월일 확인</label>
+							<label for="strBirthday" class="form_tit need">생년월일</label>
 							<div class="row">
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<div class="form_group wid100">
 										<!-- // focus 시 on 클래스 -->
 										<div class="d_tbl">
 											<span class="form_txt"> 
-											<input name="birthday"
+											<input name="birthday1"
 												type="text" onblur="onlynum(this, '1');" size="4"
 												maxlength="4" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="년 ex)2000"  >
+												placeholder="년 ex)2000" required>
 											</span>
 										</div>
 									</div>
@@ -152,10 +160,10 @@
 										<!-- // focus 시 on 클래스 -->
 										<div class="d_tbl">
 											<span class="form_txt"> 
-											<input name="birthday"
+											<input name="birthday2"
 												type="text" onblur="onlynum(this, '1');" size="2"
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="월"  >
+												placeholder="월" required>
 											</span>
 										</div>
 									</div>
@@ -164,10 +172,10 @@
 									<div class="form_group wid100">
 										<!-- // focus 시 on 클래스 -->
 										<div class="d_tbl">
-											<span class="form_txt"> <input name="birthday"
+											<span class="form_txt"> <input name="birthday3"
 												type="text" onblur="onlynum(this, '1');" size="2"
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
-												placeholder="일"  >
+												placeholder="일" required>
 											</span>
 										</div>
 									</div>
@@ -176,21 +184,26 @@
 						</div>
 					</div>
 
-					<input type="hidden" name="birthday" id="birthday0" value="0" checked=""> 
-					<input type="hidden" name="birthday" id="birthday1" value="1">
+					<!-- <input type="hidden" name="birthday" id="birthday0" value="0" checked=""> 
+					<input type="hidden" name="birthday" id="birthday1" value="1"> -->
 
 					<!-- E-MAIL 입력양식이라면 -->
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form_group_wrap">
-							<label for="strEmail" class="form_tit need">이메일 확인</label>
+							<label for="strEmail" class="form_tit need">이메일</label>
 							<div class="form_group wid100" style="position: relative;">
 								<!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
-									<span class="form_txt"> <input name="email"
-										id="email" type="text" onblur="checkNotEmail(this);"
-										maxlength="64" size="40" value="" placeholder="이메일을 입력해 주세요."
+									<span class="form_txt"> 
+										
+										<input name="email"
+										id="email" type="text" 
+										maxlength="64" size="40" placeholder="이메일을 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
-										<a class="btn btn-s btn_cancel" href="#" style="position: absolute; right: 5px; top: 10px; z-index: 1;">중복확인</a>
+										<span class="guide2 ok2">이 이메일은 사용가능합니다.</span>
+										<span class="guide2 error2">이 이메일은 이미 사용중입니다.</span>
+										<span class="guide2 error3">이메일 형식에 맞게 입력해주세요.</span>
+										<input type="hidden" id="emailValid" value="0" />
 									</span>
 								</div>
 							</div>
@@ -201,11 +214,11 @@
 
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form_group_wrap">
-							<label for="strMobile" class="form_tit need">휴대폰번호 확인</label>
+							<label for="strMobile" class="form_tit need">휴대폰번호</label>
 							<div class="row">		
 							<div class="col-md-4 col-sm-4 col-xs-12">
 								<div class="form_group  wid100"> <!-- // focus 시 on 클래스 -->
-									<select name="phone" class="form-control input-lg" style="height:45px;">
+									<select name="phone1" class="form-control input-lg" style="height:45px;">
 										<option value="">선택하세요</option>
 										<option value="010" selected>010</option>
 										<option value="011">011</option>
@@ -225,7 +238,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone" type="text" placeholder="1234" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone2" type="text" placeholder="" onblur="onlynum(this, '1');" size="4" maxlength="4" required style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -234,7 +247,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone" type="text" placeholder="5678" onblur="onlynum(this, '1');" size="4" maxlength="4" value="" style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone3" type="text" placeholder="" onblur="onlynum(this, '1');" size="4" maxlength="4" required style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -246,15 +259,15 @@
 					<!-- 주소 입력양식이라면 -->
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="form_group_wrap">
-							<label for="strHomeAddr" class="form_tit need">자택주소 확인</label>
-							<div class="form_group wid100" style="position:relative;" "=""> <!-- // focus 시 on 클래스 -->
+							<label for="strHomeAddr" class="form_tit need">주소</label>
+							<div class="form_group wid100" style="position:relative;"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="zipcode" type="text" size="7" maxlength="7"   value="" class="inputTxt">
+										<!-- <input name="address" id="zipcode" type="text" size="7" maxlength="7"   value="01234" class="inputTxt">
 										&nbsp;			
 										<input name="address" type="hidden" size="4" maxlength="3"   value="" class="inputTxt">
 																				
-										<a href="javascript:findZip();" class="btn btn-s btn_cancel" style="position:absolute; right:5px; top:10px; z-index:1;">우편번호 찾기</a>
+										<a href="javascript:findZip();" class="btn btn-s btn_cancel" style="position:absolute; right:5px; top:10px; z-index:1;">우편번호 찾기</a> -->
 					
 									</span>
 								</div>
@@ -263,16 +276,38 @@
 							<div class="form_group wid100" style="margin-top:5px"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="address1" type="text" size="50"   value="" class="inputTxt mt10">
-										<input name="address" id="address2" type="text" size="50" value="" placeholder="상세주소 입력">
+										<input name="address1" id="address1" type="text" size="50" required placeholder="주소 입력" class="inputTxt mt10">
+										<input name="address2" id="address2" type="text" size="50" required placeholder="상세주소 입력">
 					
 									</span>
 								</div>
 							</div>													
 						</div>
 					</div>
+							<!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
+							  <label class="btn btn-secondary">
+							    <input type="radio" name="gender" id="gender1" autocomplete="off"> 남
+							  </label>
+							  <label class="btn btn-secondary">
+							    <input type="radio" name="gender" id="gender2" autocomplete="off"> 여
+							  </label>
+							</div> -->
+					
 
 
+
+					<div class="btn-group txt-center mt30">
+
+						<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;">
+						
+						&nbsp;<a class="btn btn-m btn-primary" href="javascript:;" onclick="history.go(-1);" style="background-color: #fff; width: 200px;">취소하기</a>
+					</div>
+				</form:form>
+
+			</div>
+		</div>
+	</div>
+</div> 
 <script>													
 function findZip() {
 	new daum.Postcode({
@@ -323,21 +358,8 @@ function findZip() {
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script><script charset="UTF-8" type="text/javascript" src="//t1.daumcdn.net/postcode/api/core/211103/1635999227231/211103.js"></script>
 
 
-
-					<div class="btn-group txt-center mt30">
-
-						<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;"> 
-						&nbsp;<a class="btn btn-m btn-primary" href="javascript:;" onclick="history.go(-1);" style="background-color: #fff; width: 200px;">취소하기</a>
-					</div>
-				</form:form>
-
-			</div>
-		</div>
-	</div>
-</div>
-
 <script>
-	
+// 비번 확인 일치 검사	
 $("#passwordCheck").blur(function(){
 	var $password = $("#password"), $passwordCheck = $("#passwordCheck");
 	if($password.val() != $passwordCheck.val()){
@@ -346,12 +368,154 @@ $("#passwordCheck").blur(function(){
 	}
 });
 	
+
+// 아이디 중복검사
+$(id).keyup((e) => {
+	const $id = $(e.target);
+	const $error = $(".guide.error");
+	const $ok = $(".guide.ok");
+	const $idValid = $(idValid);
+	
+	if($id.val().length < 4) {
+		$(".guide").hide();
+		$idValid.val(0);
+		return;
+	}
+	
+	$.ajax({
+		url: `${pageContext.request.contextPath}/member/checkIdDuplicate2.do`,
+		data: {
+			id: $id.val()
+		},
+		success(data){
+			console.log(data);
+			const {available} = data;
+			if(available) {
+				$ok.show();
+				$error.hide();
+				$idValid.val(1);
+			}
+			else {
+				$ok.hide();
+				$error.show();
+				$idValid.val(0);
+			}
+		},
+		error: console.log
+	});
+	
+});	
+	
+// 닉네임 중복검사
+$(nickname).keyup((e) => {
+	const $nickname = $(e.target);
+	const $error1 = $(".guide1.error1");
+	const $ok1 = $(".guide1.ok1");
+	const $nicknameValid = $(nicknameValid);
+	
+/* 	if($nickname.val().length < 4) {
+		$(".guide").hide();
+		$idValid.val(0);
+		return;
+	} */
+	
+	$.ajax({
+		url: `${pageContext.request.contextPath}/member/checkNicknameDuplicate.do`,
+		data: {
+			nickname: $nickname.val()
+		},
+		success(data){
+			console.log(data);
+			const {available} = data;
+			if(available) {
+				$ok1.show();
+				$error1.hide();
+				$nicknameValid.val(1);
+			}
+			else {
+				$ok1.hide();
+				$error1.show();
+				$nicknameValid.val(0);
+			}
+		},
+		error: console.log
+	});
+	
+});	
+	
+// 이메일 검사
+$(email).keyup((e) => {
+	const $email = $(e.target);
+	const $error2 = $(".guide2.error2");
+	const $error20 = $(".guide2.error3");
+	const $ok2 = $(".guide2.ok2");
+	const $emailValid = $(emailValid);
+	
+	 
+	
+	 if(/[a-zA-z0-9]{4,12}@/.test($(email).val()) == false) {
+		$ok2.hide();
+		$error20.show();
+		$emailValid.val(0);
+		return;
+	 }	 
+	
+	$.ajax({
+		url: `${pageContext.request.contextPath}/member/checkEmailDuplicate.do`,
+		data: {
+			email: $email.val()
+		},
+		success(data){
+			console.log(data);
+			const {available} = data;
+			if(available) {
+				$ok2.show();
+				$error2.hide();
+				$error20.hide();
+				$emailValid.val(1);
+			}
+			else {
+				$ok2.hide();
+				$error2.show();
+				$error20.hide();
+				$emailValid.val(0);
+			}
+		},
+		error: console.log
+	});
+	
+});
+
+// 폼 제출시 검사	
 $("[name=memberEnrollFrm]").submit(function(){
 
-	var $id = $("#id");
-	if(/^\w{4,}$/.test($id.val()) == false) {
+	if(/^\w{4,}$/.test($(id).val()) == false) {
 		alert("아이디는 최소 4자리이상이어야 합니다.");
-		$id.focus();
+		$(id).focus();
+		return false;
+	}
+	
+	if($(idValid).val() == 0) {
+		alert("입력하신 아이디는 이미 사용중입니다. 다시 입력해 주세요.");
+		$(id).focus();
+		return false;
+	}
+	
+	if($(nicknameValid).val() == 0) {
+		alert("입력하신 닉네임은 이미 사용중입니다. 다시 입력해 주세요.");
+		$(nickname).focus();
+		return false;
+	}
+	
+	if($(emailValid).val() == 0) {
+		alert("입력하신 이메일은 이미 사용중입니다. 다시 입력해 주세요.");
+		$(email).focus();
+		return false;
+	}
+	
+	if(/[a-zA-z0-9]{4,12}@/.test($(email).val()) == false) {
+		alert("이메일 형식을 다시 확인해 주세요.");
+		$(email).focus();
 		return false;
 	}
 	
