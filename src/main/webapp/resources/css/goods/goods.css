@@ -27,7 +27,7 @@
  
  #goods-sort-ul {
  	float: left;
- 	padding-left: 80px;
+ 	padding-left: 60px;
  }
  
   #goods-sort-ul li {
@@ -42,7 +42,7 @@
   }
   
   #title_text {
-  	padding-left: 80px;
+  	padding-left: 60px;
   	font-size: 30px;
   	font-weight: bold;
   	text-align: left;
