@@ -24,7 +24,12 @@
   <ul>
     <li>
     	<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary video-btn btn_play_trailer js-video-button" data-toggle="modal" data-src="https://www.youtube.com/embed/CSFUIGl0BL4" data-target="#myModal">
+		<button 
+			type="button" 
+			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
+			data-toggle="modal" 
+			data-src="https://www.youtube.com/embed/CSFUIGl0BL4" 
+			data-target="#myModal">
 			▶
 		</button>
 	</li>
@@ -63,14 +68,19 @@
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         핀란드의 퀴어 예술가 토베 얀손에 대한 전기 영화. 토베는 화가로서 자신을 지지해 주지 않는 아버지와 갈등을 겪지만, 2차 세계 대전 도중 방공호에서 창작한 무민 캐릭터로 점차 명성을 쌓아간다. 한편, 연극 연출가 비비카 반들레르와의 만남과 관계는 토베의 삶과 예술에 중요한 영향을 가져 온다. 
+         인간의 기억마저 AI에 의해 입력되고 삭제 되는 세상.진짜보다 더 진짜 같은 가상 현실 ‘매트릭스’ 그 속에서 진정한 현실을 인식할 수 없게 재배되는 인간들. 그 ‘매트릭스’를 빠져 나오면서 AI에게 가장 위험한 인물이 된 '모피어스’는 자신과 함께 인류를 구할 마지막 영웅 ‘그’를 찾아 헤맨다. 마침내 ‘모피어스’는 낮에는 평범한 회사원으로, 밤에는 해커로 활동하는 청년 ‘네오’를 ‘그’로 지목하는데… 꿈에서 깨어난 자들, 이제 그들이 만드는 새로운 세상이 열린다. 
          </div>
       </div>
 
       <div id="pg_note" class="pg_note">
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
-            <p>&lt;토베 얀손&gt;은 ‘무민’ 시리즈의 창조자, 퀴어 예술가 토베 얀손의 2차 세계 대전의 막바지 시기부터 10여 년간 삶을 그리고 있다. 관객들이 가장 처음 보게 되는 것은 춤을 추듯 몽환적으로 또는 격렬하게 몸을 움직이는 토베의 모습이다. 그리고 곧 2차 세계 대전 한가운데 방공호에서 무민 캐릭터의 원형을 스케치하는 토베의 모습이 이어진다. 무민 시리즈의 탄생과 성공에 안착하기까지 토베 얀손의 작가적 경력이 영화의 원경이라면, 전경에는 여성 퀴어 예술가 토베 개인이 맺는 개인적 관계들과 그로 인한 불안과 긴장, 자아의 발견과 성장, 자유와 독립에 대한 갈망, 그리고 이 모든 것을 통과하며 발산되는 토베의 에너지와 얼굴 표정이 내세워진다. 거의 항상 인물에 가까이 다가가 있으며 시종일관 미세하게 흔들리고 있는 카메라는 이러한 영화적 구조를 뒷받침하며, 아버지와의 갈등, 비비카 반들레르와의 연애, 평생의 파트너 툴리키 피에틸레와의 만남이 어떻게 토베의 작품 세계에 불가분의 영감을 주는지 보여 준다. 린다 바스베리의 16mm 촬영은 투박함과 온화함을 동시에 전달하며, 영화의 엔딩에 삽입된 8mm 푸티지는 영화 내내 토베가 보여 준 자유로운 움직임과 활력, 생동감의 원천을 확인시켜 준다. [황미요조]&nbsp;</p>
+            <p>&lt;매트릭스&gt;
+            는 1999년 개봉한 미국의 SF 액션 영화이다. 워쇼스키 형제가 제작, 감독하고 키아누 리브스, 로렌스 피시번, 캐리앤 모스, 휴고 위빙 및 글로리아 포스터가 출연하였으며, 매트릭스 시리즈의 첫 번째 작품이다. 인공지능 컴퓨터와 기계에 의해 인간이 양육되는 2199년의 미래세계를 배경으로 하고 있다.
+			영화는 인간에 의해 감지되는 현실이 "매트릭스"라고 불리는 모의 현실(1999년의 모의 현실)인 상황에서, 인체의 열과 전기 활동을 자신의 생명 연장을 위한 에너지원으로 사용하는 인공지능 컴퓨터(sentient machines)가 인류를 지배하는 디스토피아 적 미래를 묘사한다. 컴퓨터 프로그래머인 네오(Neo)는 이러한 진실을 알게 되고, "꿈의 세계(dream world)"에서 벗어난 다른 사람들과 함께 기계에 대한 반란을 일으킨다.
+			CG(computer graphic)를 다양하고 신선한 영상으로 영화계에 혁명을 일으키면서, 동시에 은유나 암시로 가득 찬 스토리로 신앙과 철학이라는 깊숙한 테마의 표현을 양립시킨 작품이며, 1999년의 아카데미상으로는 시각 효과상, 편집상, 음향상, 음향 편집상을 수상하고 와이어 액션이나 블릿 타임 등의 VFX도 화제가 되었다. 윌리엄 깁슨에서부터 일본 애니메이션에 이르기까지 여러 가지 것에 영향을 받고 특히 장 보드리야르의 철학을 기조로 했다고 워쇼스키 형제는 말했다.
+			1999년 3월에 미국 현지에서 5월에 대한민국에 개봉되었다.
+            </p>
          </div>
       </div>
    </div>
@@ -78,29 +88,21 @@
 
 <div class="schedule">
 	<div class="container_">
-
-					
-
 		<table class=" tbl_schedule2 wid100">
-
 			<thead>
 				<tr>
 					<th class="en">Code</th>
 					<th class="en">Time</th>
 					<th class="en">Theater</th>
-					
 					<th class="en">Grade</th>
 					<th class="en">Event</th>
 				</tr><tr>
 			</tr></thead>
 			<tbody>
-
-
 				<tr>
 					<td class="code en"><span class="code_wrap">105</span></td>
-					<th class="time en">2021-08-27 | 17:10 - 18:50</th>
-					<td class="theater">메가박스 상암월드컵경기장 1관</td>
-					
+					<th class="time en">2022-01-08 | 20:00</th>
+					<td class="theater">KH ITFF 1관</td>
 					<td class="film_tit">
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
@@ -115,8 +117,40 @@
 
 				<tr>
 					<td class="code en"><span class="code_wrap">304</span></td>
-					<th class="time en">2021-08-29 | 10:50 - 12:30</th>
-					<td class="theater">메가박스 상암월드컵경기장 4관</td>
+					<th class="time en">2022-01-09 | 09:00</th>
+					<td class="theater">KH ITFF 5관</td>
+					
+					<td class="film_tit">
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
+					</td>
+					<td class="event">
+						<a href="javascript:alert('예매 기간이 아닙니다.')">
+							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
+						</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="code en"><span class="code_wrap">304</span></td>
+					<th class="time en">2022-01-10 | 10:00</th>
+					<td class="theater">KH ITFF 3관</td>
+					
+					<td class="film_tit">
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
+					</td>
+					<td class="event">
+						<a href="javascript:alert('예매 기간이 아닙니다.')">
+							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
+						</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="code en"><span class="code_wrap">304</span></td>
+					<th class="time en">2022-01-10 | 20:00</th>
+					<td class="theater">KH ITFF 5관</td>
 					
 					<td class="film_tit">
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
@@ -145,14 +179,18 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="	https://siwff.or.kr/db/9908_db/DIRECTOR_PHOTO/d_37cdbf6d17c14d.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/K2tWSL7/unnamed-1.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">차이다 베리로트</strong><span class="mt10 en">Zaida BERGROTH</span></div>
+							<div class="dir_name"><strong class="kor">앤디 워쇼스키, 래리 워쇼스키</strong><span class="mt10 en">The Wachowskis</span></div>
 							<div class="desc">
-							<p style="text-align: justify; line-height: 1.8;" align="justify"><span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">1977년 출생. 핀란드 영화감독이자 각본가. &lt;마지막 카우보이&gt;(2009), &lt;좋은 아들&gt;(2011), &lt;마이애미&gt;(2017), &lt;마리아스 파라다이스&gt;(2019)로 토론토국제영화제에 초청되었고 부산국제영화제, 시카고국제영화제 등에서 수상했다.</span></p>
+							<p style="text-align: justify; line-height: 1.8;" align="justify">
+								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
+								1965년 출생. 미국의 영화감독이자 각본가. &lt;어쌔신&gt;(1995), &lt;바운드&gt;(1996), &lt;브이 포 벤테타&gt;(2006), &lt;인베이젼&gt;(2007)등을 각본/감독하였다.
+								</span>
+							</p>
 							</div>
 						</div>
 					</li>
@@ -169,27 +207,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Andrea Reuter, Aleksi Bardy</span>
+						<span class="en">Barrie M. Osborne</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en"> Cast Alma PÖYSTI, Krista KOSONEN, Shanti RONEY, Joanna HAARTTI, Robert ENCKELL, Kajsa ERNST, Jakob ÖHRMAN, Eeva PUTRO, Liisi TANDEFELT, Wilhelm ENCKELL</span>
+						<span class="en"> Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en"> Linda Wassberg D.F.F.</span>
+						<span class="en"> Bill Pope</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en"> Samu Heikkilä</span>
+						<span class="en"> The Wachowskis</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">  Matti Bye</span>
-					</li>
-					<li>
-						<strong class="en">Sound</strong>
-						<span class="en"> Micke Nyström</span>
+						<span class="en">  Bruce Berman</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->

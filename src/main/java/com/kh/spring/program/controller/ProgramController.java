@@ -35,7 +35,7 @@ public class ProgramController {
 	@GetMapping("/programSearch.do")
 	public void programSearch() {}
 	
-	@GetMapping("/matrix.do")
+	@GetMapping("/synopsis/matrix.do")
 	public void matrix() {}
 	
 }
