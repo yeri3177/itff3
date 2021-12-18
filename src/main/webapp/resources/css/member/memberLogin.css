@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+/*  */
+
+.main-content{ 
+	color: white;
+	text-align: center;
+	justify-content: center;
+	font-size: 24px;
+	padding-bottom: 100px;
+}
+.sub_title_wrap {
+    position: relative;
+    padding: 50px 0 50px 0;
+}
+
+.input_form{
+	display: inline-block;
+	text-align: center;
+}
+.btn-primary{
+	width: 400px;
+	height: 50px;
+}
+.input_form .btn_login{
+	width: 400px;
+	font-size: 32px;
+}
+.sub-content{
+	color: white;
+	font-size: 16px;
+}
+#enroll-container{
+	background-color: white;
+}
+#formGroupExampleInput{
+	width: 200px;
+	height: 40px;
+}
+#exampleInputId{
+	width: 400px;
+	height: 50px;
+	text-align: center;
+}
+#exampleInputPassword{
+	width: 400px;
+	height: 50px;
+	text-align: center;
+}
+section#main-content {
+	background-color: #34495E!important;
+}
+
+#enroll-container{
+	font-size: 24px;	
+}
+
+.cont_sub .desc, .cont_sub .desc p, .cont_sub .desc strong, .cont_sub .desc a, .cont_sub .desc span {
+    font-size: 16px;
+    line-height: 170%;
+    color: #555;
+    font-weight: 300;
+}
+
+.list_link {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.list_link .link_arrow {
+    display: inline-block;
+    padding-right: 20px;
+    margin: 0 10px;
+    background: url(/kor/img/cmm/ico_member_arrow.png) no-repeat right center;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.txt-white {
+    color: #fff !important;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+.txt-center {
+    text-align: center !important;
+}
+
+.btn.btn-m {
+    padding: 20px 30px;
+    min-width: 200px;
+}
+
+.btn_member_login {
+    background: #ffffff4d;
+    color: #383838;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px 3;
+}
+
+.cont_member .btn {
+    display: inline-block;
+    border-radius: 3px;
+    vertical-align: middle;
+    box-shadow: 0 0 5px rgb(91 66 163 / 20%);
+}
+
+.btn-m {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px 20px;
+}
+
+.tit_sec {
+    display: block;
+    color: #4d3494;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    padding-bottom: 15px;
+}
+
+.en {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0 !important;
+}
+
+.txt-white {
+    color: #fff !important;
+}
+.txt-center {
+    text-align: center !important;
+}
+
+.login_form_wrap {
+    box-shadow: 0px 0 16px 0 rgb(0 13 57 / 20%);
+}
+
+.login_form_wrap .form_group.on {
+    border-color: #ccc;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 10%);
+    z-index: 10;
+}
+.login_form_wrap .form_group:first-child {
+    border-radius: 3px 3px 0 0;
+}
+.login_form_wrap .form_group {
+    background-color: #fff;
+    box-shadow: 0 1px 1px 0 rgb(0 0 0 / 4%);
+    -webkit-transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.form_group .d_tbl {
+    display: table;
+    width: 100%;
+}
+
+.form_group .d_tbl .form_txt {
+    display: table-cell;
+    table-layout: fixed;
+    position: relative;
+    z-index: 1;
+    vertical-align: middle;
+}
+
+.login_form_wrap .form_group:first-child.on input {
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 10;
+}
+
+.login_form_wrap .form_group .form_txt input {
+    height: 60px;
+}
+.form_group .form_txt input[type='text'], .form_group .form_txt input[type='password'], .form_group .form_txt input[type='tel'] {
+    padding: 18px 20px;
+}
+.form_group.wid100 .form_txt input {
+    width: 100%;
+}
+.form_group .form_txt input {
+    background-color: #f6f6f6;
+}
+.form_group .form_txt input {
+    height: 45px;
+    font-size: 15px;
+    border: none;
+}
+
+.form_group.wid100 {
+    display: block;
+}
+.form_group {
+    display: inline-block;
+    border: 1px solid #f1f1f1;
+    border-radius: 2px;
+    background-color: #F6F6F6;
+    box-shadow: 0 0 1px rgb(0 0 0 / 4%);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    -webkit-transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    font-size: 0;
+    box-sizing: border-box;
+}
+
+.login_con {
+    width: 480px;
+    margin: 30px auto;
+}
