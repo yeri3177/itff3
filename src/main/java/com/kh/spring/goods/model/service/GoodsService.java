@@ -6,6 +6,8 @@ import com.kh.spring.goods.model.vo.Goods;
 
 public interface GoodsService {
 
-	List<Goods> selectGoodsList();
+	List<Goods> selectGoodsList(int offset, int limit);
+
+	int selectGoodsTotalCount();
 
 }

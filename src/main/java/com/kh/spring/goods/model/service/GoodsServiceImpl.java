@@ -15,8 +15,13 @@ public class GoodsServiceImpl implements GoodsService {
 	private GoodsDao goodsDao;
 
 	@Override
-	public List<Goods> selectGoodsList() {
-		return goodsDao.selectGoodsList();
+	public List<Goods> selectGoodsList(int offset, int limit) {
+		return goodsDao.selectGoodsList(offset, limit);
+	}
+
+	@Override
+	public int selectGoodsTotalCount() {
+		return goodsDao.selectGoodsTotalCount();
 	}
 	
 	
