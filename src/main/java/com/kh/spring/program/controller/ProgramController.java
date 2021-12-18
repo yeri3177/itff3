@@ -38,4 +38,7 @@ public class ProgramController {
 	@GetMapping("/synopsis/matrix.do")
 	public void matrix() {}
 	
+	@GetMapping("/synopsis/aiSynopsis.do")
+	public void aiSynopsis() {}
+	
 }
