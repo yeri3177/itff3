@@ -10,7 +10,8 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/programCommon.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/programCommon.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->

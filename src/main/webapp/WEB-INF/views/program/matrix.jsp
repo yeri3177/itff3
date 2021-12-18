@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/synopsis.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 <div id="slide">
   <input type="radio" name="pos" id="pos1" checked>
