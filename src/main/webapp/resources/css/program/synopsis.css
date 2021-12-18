@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
 *{
    margin:0;
    padding:0;
@@ -10,14 +8,13 @@ ul,li {
    list-style:none;
 }
 #slide {
-   height:846px;
+   height: auto;
    position:relative;
   
-   top: -108px;
 }
 #slide ul {
    width:400%;
-   height:100%;
+   height:1000px;
    transition:1s;
 }
 #slide ul:after {
@@ -41,12 +38,12 @@ ul,li {
     background-size: cover;
   }
 #slide li:nth-child(3) {
-   background-image: url("https://i.ibb.co/J5Tq9xN/image.jpg"); 
+   background-image: url("https://i.ibb.co/V3PSmJw/the-matrix-wallpaper-preview.jpg"); 
    background-repeat: no-repeat; 
    background-size: cover;
 }
 #slide li:nth-child(4) {
-   background-image: url("https://i.ibb.co/SfhjD7X/common-2.jpg"); 
+   background-image: url("https://i.ibb.co/r6dfpCF/1-bdturjt4-Z16-Pev4-Okv-OPXw.jpg"); 
    background-repeat: no-repeat; 
    background-size: cover;
 }
@@ -67,7 +64,7 @@ ul,li {
 #slide .pos {
    text-align:center;
    position:absolute;
-   bottom:-74px;
+   bottom:20px;
    left:0;
    width:100%;
    text-align:center;
@@ -81,10 +78,10 @@ ul,li {
 #pos3:checked~.pos>label:nth-child(3){background:#34495e;}
 #pos4:checked~.pos>label:nth-child(4){background:#34495e;}
   
-.stillcut .txtbox .txtbox_inner .tit_movie {
-    font-size: 42px;
-    line-height: 130%;
-}
+
+
+
+
 
 .film_info {
     padding: 50px 0;
@@ -105,9 +102,13 @@ ul,li {
 }
 
 .film_info .director_name {
-    font-size: 33px;
+    font-size: 60px;
     font-weight: bold;
     letter-spacing: -0.5px;
+}
+
+.film_info_top span {
+	font-size: 20px;
 }
 
 .film_info .list_film_info {
@@ -145,7 +146,7 @@ ul,li {
 }
 
 .film_info .synopsis h4, .film_info .pg_note h4 {
-    font-size: 40px;
+    font-size: 33px;
     font-weight: bold;
     color: #34495e;
     margin-bottom: 20px;
@@ -167,7 +168,7 @@ ul,li {
 .btn_play_trailer {
     display: block;
     position: absolute;
-    bottom: -42px;
+    bottom: 33px;
     right: 50px;
     background-color: #34495e;
     border-color: #34495e;
@@ -175,7 +176,7 @@ ul,li {
     height: 60px;
 }
 
-/*모달비디오*/
+
 
 .modal-dialog {
       max-width: 1190px;
@@ -199,7 +200,7 @@ ul,li {
   opacity:1;
 }
 
-/*모달비디오 끝*/
+
 
 
 .tit_movie {
@@ -225,7 +226,7 @@ ul,li {
 }
 
 
-/*스케줄*/
+스케줄
 .schedule {
     position: relative;
     padding: 50px 0 70px;
@@ -475,15 +476,6 @@ ul,li {
     font-weight: bold;
     vertical-align: top;
 }
-
-
-
-
-
-
-
-
-
 
 
 

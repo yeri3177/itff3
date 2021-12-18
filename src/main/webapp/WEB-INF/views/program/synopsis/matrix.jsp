@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 <div id="slide">
-  <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1>
   <input type="radio" name="pos" id="pos1" checked>
   <input type="radio" name="pos" id="pos2">
   <input type="radio" name="pos" id="pos3">
@@ -23,7 +22,7 @@
   
   <ul>
     <li>
-    	<!-- Button trigger modal -->
+    	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
@@ -38,6 +37,7 @@
     <li></li>
   </ul>
   <p class="pos">
+ 
     <label for="pos1"></label>
     <label for="pos2"></label>
     <label for="pos3"></label>
@@ -50,9 +50,12 @@
 <div class="film_info">
    <div class="container_">
       <div class="film_info_top">
+      	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            앤디 워쇼스키, 래리 워쇼스키
+            매트릭스
          </p>
+         <br />
+		 <span>The Matrix</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
             <li>1999</li>
@@ -287,6 +290,7 @@ $(document).ready(function() {
 	  
 	// document ready  
 	});
+
 
 
 
