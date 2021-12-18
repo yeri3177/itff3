@@ -31,7 +31,7 @@ public class Member implements Serializable, UserDetails {
 	private String password;
 	private String name;
 	private String phone;
-	private String gender;
+//	private String gender;
 	private String email;
 	private Date birthday; 
 	private String address;

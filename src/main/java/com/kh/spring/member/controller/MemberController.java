@@ -1,6 +1,7 @@
 package com.kh.spring.member.controller;
 
 import java.beans.PropertyEditor;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -47,47 +48,60 @@ public class MemberController {
 	@GetMapping("/memberEnroll.do")
 	public void memberEnroll() {}
 	
-	/**
-	 * $2a$10$fCtImVF/BtnbGsnSjM0as.tWXVpmobXNp.1msTI.laJTRy5n3vti2
-	 * - $2a$ 알고리즘
-	 * - 10$ 알고리즘 옵션
-	 * - 22자리 randomsalt 
-	 * - 31자리 암호화처리된 비밀번호
-	 * 
-	 * @param member
-	 * @param redirectAttr
-	 * @return
-	 */
-//	@PostMapping("/memberEnroll.do")
-//	public String memberEnroll(Member member, RedirectAttributes redirectAttr) {
-//		log.debug("member = {}", member);
-//		
-//		try {
-//			// 0. 비밀번호 암호화 처리
-//			log.info("{}", passwordEncoder);
-//			String rawPassword = member.getPassword();
-//			String encryptedPassword = passwordEncoder.encode(rawPassword);
-//			member.setPassword(encryptedPassword);
-//			log.info("{} -> {}", rawPassword, encryptedPassword);
-//			
-//			// 1. 업무로직
-//			int result = memberService.insertMember(member);
-//			
-//			// 2. 리다이렉트 & 사용자피드백 전달
-//			redirectAttr.addFlashAttribute("msg", "회원가입성공");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw e;
-//		}
-//		
-//		return "redirect:/";
-//	}
+
 	
+	/**
+	 * 회원가입 폼 제출받는 메소드
+	 * memberEnroll.jsp의 날짜 입력 폼이 string이라서 그대로 member로 받으려니까 오류가 났다. 그래서 requestparam 으로 날짜값을 받아서 여기서 Date로 만들었다.
+	 * 주소 입력 폼도 두개라서 ,로 이어져 들어가길래 마찬가지로 requestparam으로 받아서 여기서 처리
+	 */
 	@PostMapping("/memberEnroll.do")
-	public String memberEnroll(Member member) {
+	public String memberEnroll(Member member, 
+								@RequestParam String birthday1, 
+								@RequestParam String birthday2, 
+								@RequestParam String birthday3, 
+								@RequestParam String address1, 
+								@RequestParam String address2, 
+								@RequestParam String phone1, 
+								@RequestParam String phone2, 
+								@RequestParam String phone3,
+								RedirectAttributes redirectAttr) {
 		log.debug("member = {}", member);
 		
+		// 생일 연월일 합쳐서 Date 타입으로 형변환
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date birthday = null;
+		try {
+			birthday = sdf.parse(birthday1 + "-" + birthday2 + "-" + birthday3);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.debug("birthday = {}", birthday);
+		member.setBirthday(birthday);
 		
+		// 주소
+		String address = address1 + " " + address2;
+		log.debug("address = {}", address);
+		member.setAddress(address);
+
+		// 전화번호
+		String phone = phone1 + phone2 + phone3;
+		log.debug("phone = {}", phone);
+		member.setPhone(phone);
+		
+		// 0. 비밀번호 암호화 처리
+		log.info("{}", passwordEncoder);
+		String rawPassword = member.getPassword();
+		String encryptedPassword = passwordEncoder.encode(rawPassword);
+		member.setPassword(encryptedPassword);
+		log.info("{} -> {}", rawPassword, encryptedPassword);
+		
+		// 1. 업무로직
+		int result = memberService.insertMember(member);
+		
+		// 2. 리다이렉트 & 사용자피드백 전달
+		redirectAttr.addFlashAttribute("msg", "회원가입성공");
 		
 		return "redirect:/";
 	}
@@ -101,55 +115,6 @@ public class MemberController {
 	 */
 	@GetMapping("/memberLogin.do")
 	public void memberLogin() {}
-	
-	
-//	@PostMapping("/memberLogin.do")
-//	public String memberLogin(
-//							@RequestParam String id, 
-//							@RequestParam String password, 
-//							RedirectAttributes redirectAttr,
-//							Model model,
-//							HttpSession session) {
-//		
-//		// 1. 업무로직 - 사용자데이터 가져오기
-//		Member member = memberService.selectOneMember(id);
-//		log.debug("member = {}", member);
-//
-//		String location = "/";
-//		
-//		// 2. db정보 비교하기(로그인 성공여부 판단)
-//		if(member != null && passwordEncoder.matches(password, member.getPassword())) {
-//			// 로그인 성공 : loginMember객체를 세션에 저장해서 로그인상태 유지
-//			model.addAttribute("loginMember", member);
-//			
-//			// redirect주소 세션에서 가져오기
-//			String redirect = (String) session.getAttribute("redirect");
-//			log.debug("redirect = {}", redirect);
-//			if(redirect != null) {
-//				location = redirect;
-//				session.removeAttribute("redirect");
-//			}
-//		}
-//		else {
-//			// 로그인 실패
-//			redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 다릅니다.");
-//		}
-//				
-//		return "redirect:" + location;
-//	}
-	
-	
-	/**
-	 * @SessionAttribute를 통해 로그인상태를 관리하고 있다.
-	 * -> sessionStatus객체를 통해 사용완료처리(setComplete)
-	 * 
-	 */
-//	@GetMapping("/memberLogout.do")
-//	public String memberLogout(SessionStatus sessionStatus) {
-//			sessionStatus.setComplete();
-//		
-//		return "redirect:/";
-//	}
 	
 
 	@GetMapping("memberDetail.do")
@@ -204,20 +169,6 @@ public class MemberController {
 	}
 	
 	
-	// 멤버업데이트 내가한거(라고 하기엔 딴사람거 보고 한거)
-//	@PostMapping("/memberUpdate.do")
-//	public String memberUpdate(Member member, RedirectAttributes redirectAttr, Model model) {
-//		
-//		log.debug("MemberUpdate member = {}", member);
-//		int result = memberService.updateMember(member);
-//		
-//		redirectAttr.addFlashAttribute("msg", result > 0 ? "회원정보 수정 완료!" : "수정 실패");
-//		
-//		model.addAttribute("loginMember", member);
-//		
-//		return "redirect:/member/memberDetail.do";
-//	}
-	
 	
 	/**
 	 * jsonView 빈을 이용해서 json응답메시지를 출력
@@ -254,6 +205,32 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<>();
 		
 		Member member = memberService.selectOneMember(id);
+		map.put("available", member == null);
+		map.put("abc", 123);
+		map.put("today", new Date());
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@GetMapping("/checkNicknameDuplicate.do")
+	public Map<String, Object> nicknameCheckDuplicate(@RequestParam String nickname) {
+		Map<String, Object> map = new HashMap<>();
+		
+		Member member = memberService.selectOneNickname(nickname);
+		map.put("available", member == null);
+		map.put("abc", 123);
+		map.put("today", new Date());
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@GetMapping("/checkEmailDuplicate.do")
+	public Map<String, Object> emailCheckDuplicate(@RequestParam String email) {
+		Map<String, Object> map = new HashMap<>();
+		
+		Member member = memberService.selectOneEmail(email);
 		map.put("available", member == null);
 		map.put("abc", 123);
 		map.put("today", new Date());

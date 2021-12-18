@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>${param.title }</title>
+<title>${param.title}</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -103,8 +103,10 @@
 								
 								<%-- 로그인 했을 때 --%>
 		    					<sec:authorize access="isAuthenticated()">
-									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
-									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
+			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
+			    					</sec:authorize>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';"><sec:authentication property="principal.name"/>님</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"
@@ -112,6 +114,8 @@
 								    	<button class="btn btn-link" type="submit">Logout</button>
 				 				   </form:form>
 		    					</sec:authorize>
+		
+		    					
 							</ul>
 						</div>
 
