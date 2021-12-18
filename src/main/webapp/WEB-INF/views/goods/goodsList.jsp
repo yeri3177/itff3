@@ -7,6 +7,7 @@
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goods.css" />
 
 <!-- 인코딩 설정 -->
@@ -55,28 +56,29 @@
 		
 			<c:forEach items="${list}" var="goods">
 			<div class="card" style="width: 18rem;">
-			  <!-- 썸네일 이미지 -->
-			  <img src="${pageContext.request.contextPath}/resources/upload/goods/goods1.png" class="card-img-top">
+			  <!-- 대표 이미지 -->
+			  <img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}" class="card-img-top">
 			  
 			  <div class="card-body">
 			   	<!-- 상품명 -->
-			    <p class="card-text">${goods.pName}</p>
+			    <p class="card-text">${goods.PName}</p>
 			    
 			    <!--가격 -->
 			    <p class="card-text">
-			    	<%-- <fmt:formatNumber value="${goods.pPrice}" pattern="#,###" /> --%>
+			    	<fmt:formatNumber value="${goods.PPrice}" pattern="#,###원" />
 			    </p>
 			  </div>
 			</div>
 			</c:forEach>
 			
 		</div>
-		
-		
-		
 	</div> <!-- 상품 목록 부분 끝 -->
+	<br /><br /><br />
 	
-	<%-- ${pagebar} --%>
+	<div id="pagebar">
+		${pagebar}
+	</div>
+	
 </section>
 
 <script>

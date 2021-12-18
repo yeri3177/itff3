@@ -2,6 +2,7 @@ package com.kh.spring.goods.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +16,14 @@ public class GoodsDaoImpl implements GoodsDao {
 	private SqlSession session;
 
 	@Override
-	public List<Goods> selectGoodsList() {
-		return session.selectList("goods.selectGoodsList");
+	public List<Goods> selectGoodsList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("goods.selectGoodsList", null, rowBounds);
+	}
+
+	@Override
+	public int selectGoodsTotalCount() {
+		return session.selectOne("goods.selectGoodsTotalCount");
 	}
 	
 	

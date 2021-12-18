@@ -158,6 +158,7 @@ a {
 /* Show collapse */
 .showCollapse {
     display: block;
+    width: 200px;
 }
 
 /* Rotate icon */
