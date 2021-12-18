@@ -19,7 +19,7 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_">
-				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개폐막작</a>
+				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top">개·폐막작</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
@@ -62,7 +62,7 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/matrix.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do" class="film_thumb">
 							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스" width="100%">
 						</a>
 						<div class="fighting">

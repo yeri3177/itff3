@@ -46,18 +46,18 @@
    <div class="container_">
       <div class="film_info_top">
          <p class="director_name">
-            차이다 베리로트
+            앤디 워쇼스키, 래리 워쇼스키
          </p>
          <ul class="list_film_info list-inline">
-            <li>핀란드, 스웨덴</li>
-            <li>2020</li>
-            <li>100min</li>
+            <li>미국</li>
+            <li>1999</li>
+            <li>136min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">Korean Premiere</strong>
+            <strong class="premiere en">virtual reality·deep running</strong>
          </p>
       </div>
       <div class="synopsis">

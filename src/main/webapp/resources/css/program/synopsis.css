@@ -127,8 +127,8 @@ ul,li {
     margin: 20px 0;
 }
 .film_info .premiere {
-    border: 1px solid #e5afe8;
-    color: #a83aae;
+    border: 1px solid #8b9197;
+    color: #546677;
     font-size: 14px;
     padding: 2px 6px;
     margin: 0 5px;
@@ -147,7 +147,7 @@ ul,li {
 .film_info .synopsis h4, .film_info .pg_note h4 {
     font-size: 40px;
     font-weight: bold;
-    color: #4d3494;
+    color: #34495e;
     margin-bottom: 20px;
     margin-top: 30px;
 }
@@ -314,7 +314,7 @@ ul,li {
     margin-bottom: 30px;
     font-size: 30px;
     font-weight: bold;
-    color: #4d3494;
+    color: #34495e;
     margin-bottom: 40px;
 }
 
@@ -376,7 +376,7 @@ ul,li {
     position: relative;
     display: inline-block;
     padding-right: 13px;
-    color: #5e35ca;
+    color: #34495e;
     font-weight: bolder;
 }
 
@@ -471,7 +471,7 @@ ul,li {
 
 .credit ul li span {
     width: 64%;
-    color: #4d3494;
+    color: #34495e;
     font-weight: bold;
     vertical-align: top;
 }
