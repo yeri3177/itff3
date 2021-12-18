@@ -50,6 +50,19 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectMemberList(Map<String, Object> param) {
 		return memberDao.selectMemberList(param);
 	}
+
+
+	@Override
+	public Member selectOneEmail(String email) {
+		return memberDao.selectOneEmail(email);
+	}
+
+
+	@Override
+	public Member selectOneNickname(String nickname) {
+		return memberDao.selectOneNickname(nickname);
+	}
+	
 	
 	
 }

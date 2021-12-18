@@ -356,6 +356,13 @@ div#memberId-container { position:relative; padding:0px; }
 span.guide { display:none; font-size:12px; position:absolute; top:12px; right:10px; }
 span.ok { color:green; }
 span.error { color:red; }
+span.guide1 { display:none; font-size:12px; position:absolute; top:12px; right:10px; }
+span.ok1 { color:green; }
+span.error1 { color:red; }
+span.guide2 { display:none; font-size:12px; position:absolute; top:12px; right:10px; }
+span.ok2 { color:green; }
+span.error2 { color:red; }
+span.error3 { color:red; }
 
 
 
