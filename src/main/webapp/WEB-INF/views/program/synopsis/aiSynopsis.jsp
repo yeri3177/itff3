@@ -21,20 +21,20 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/QfKXdCb/common.jpg);">
+    <li style="background-image: url(https://i.ibb.co/5swh97N/2273-C84357-EE1-D0-E19.jpg);">
     	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/CSFUIGl0BL4" 
+			data-src="https://www.youtube.com/embed/A-0LqKa8TGM" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/PwG46c8/common-1.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/V3PSmJw/the-matrix-wallpaper-preview.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/r6dfpCF/1-bdturjt4-Z16-Pev4-Okv-OPXw.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/JzrLPNM/d20e5626b85e000bca01ddc60d89addfc5b66a8f-s2-n1.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/80pZ1M1/rosenbaum2-lo1.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/vBzkMs5/20200709221011-norndxsi.jpg);"></li>
   </ul>
   <p class="pos">
  
