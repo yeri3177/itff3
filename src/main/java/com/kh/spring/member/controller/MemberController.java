@@ -74,6 +74,7 @@ public class MemberController {
 								@RequestParam String phone1, 
 								@RequestParam String phone2, 
 								@RequestParam String phone3,
+								Model model,
 								RedirectAttributes redirectAttr) {
 		log.debug("member = {}", member);
 		
@@ -150,11 +151,15 @@ public class MemberController {
         
 //        HiSpringUtils.mailSend(subject, content, from, to);
         
+        model.addAttribute("authKey", authKey);
+        
 		// 3. 리다이렉트 & 사용자피드백 전달
-        redirectAttr.addAttribute("authKey", authKey);
-		redirectAttr.addFlashAttribute("msg", "회원가입성공");
+        
+        log.debug("authKey = {}", authKey);
+//      redirectAttr.addAttribute("authKey", authKey);
+//		redirectAttr.addFlashAttribute("msg", "회원가입성공");
 		
-		return "redirect:/member/memberMailWaiting.do";
+		return "member/memberMailWaiting";
 	}
 		
 	@GetMapping("/memberMailWaiting.do")

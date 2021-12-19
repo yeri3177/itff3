@@ -171,7 +171,6 @@ public class HiSpringUtils {
 	public static String getRandomChatId() {
 		Random rnd = new Random();
 		StringBuffer sb = new StringBuffer();
-		sb.append("chat_");
 		
 		for(int i = 0; i < 15; i++) {
 			if(rnd.nextBoolean()) {
