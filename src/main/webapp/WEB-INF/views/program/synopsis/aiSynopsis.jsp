@@ -21,7 +21,8 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/5swh97N/2273-C84357-EE1-D0-E19.jpg);">
+  
+    <li style="background-image: url(https://i.ibb.co/JzrLPNM/d20e5626b85e000bca01ddc60d89addfc5b66a8f-s2-n1.jpg);">
     	
 		<button 
 			type="button" 
@@ -32,9 +33,9 @@
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/JzrLPNM/d20e5626b85e000bca01ddc60d89addfc5b66a8f-s2-n1.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/80pZ1M1/rosenbaum2-lo1.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/vBzkMs5/20200709221011-norndxsi.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/qJt8r47/AI-inteligenciaartificial-960x623.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/tH0SQ7T/28-21-4744.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/tm6HrsJ/20200709221011-norndxsi.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -52,20 +53,20 @@
       <div class="film_info_top">
       	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            매트릭스
+            에이아이
          </p>
          <br />
-		 <span>The Matrix</span>
+		 <span>A.I.</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>1999</li>
-            <li>136min</li>
+            <li>2001</li>
+            <li>146min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">virtual reality·deep running</strong>
+            <strong class="premiere en">Artificial Intelligence</strong>
          </p>
       </div>
       <div class="synopsis">
@@ -78,11 +79,8 @@
       <div id="pg_note" class="pg_note">
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
-            <p>&lt;매트릭스&gt;
-            는 1999년 개봉한 미국의 SF 액션 영화이다. 워쇼스키 형제가 제작, 감독하고 키아누 리브스, 로렌스 피시번, 캐리앤 모스, 휴고 위빙 및 글로리아 포스터가 출연하였으며, 매트릭스 시리즈의 첫 번째 작품이다. 인공지능 컴퓨터와 기계에 의해 인간이 양육되는 2199년의 미래세계를 배경으로 하고 있다.
-			영화는 인간에 의해 감지되는 현실이 "매트릭스"라고 불리는 모의 현실(1999년의 모의 현실)인 상황에서, 인체의 열과 전기 활동을 자신의 생명 연장을 위한 에너지원으로 사용하는 인공지능 컴퓨터(sentient machines)가 인류를 지배하는 디스토피아 적 미래를 묘사한다. 컴퓨터 프로그래머인 네오(Neo)는 이러한 진실을 알게 되고, "꿈의 세계(dream world)"에서 벗어난 다른 사람들과 함께 기계에 대한 반란을 일으킨다.
-			CG(computer graphic)를 다양하고 신선한 영상으로 영화계에 혁명을 일으키면서, 동시에 은유나 암시로 가득 찬 스토리로 신앙과 철학이라는 깊숙한 테마의 표현을 양립시킨 작품이며, 1999년의 아카데미상으로는 시각 효과상, 편집상, 음향상, 음향 편집상을 수상하고 와이어 액션이나 블릿 타임 등의 VFX도 화제가 되었다. 윌리엄 깁슨에서부터 일본 애니메이션에 이르기까지 여러 가지 것에 영향을 받고 특히 장 보드리야르의 철학을 기조로 했다고 워쇼스키 형제는 말했다.
-			1999년 3월에 미국 현지에서 5월에 대한민국에 개봉되었다.
+            <p>&lt;에이아이&gt;
+            는 2001년에 개봉된 스티븐 스필버그가 감독한 미국의 공상 과학 영화이다. 각본은 스필버그가 1969년 발표 된 브라이언 올디스의 단편 소설 《Super Toys Last All Summer Long》을 원작으로 이안 왓슨가 함께 썼다. 이 영화는 1983년 스탠리 큐브릭이 구상한 미완의 프로젝트였으며, 큐브릭은 이 영화가 제작되기 직전에 사망했다. 헤일리 조엘 오스먼트, 주드 로, 프랜시스 오코너, 브렌던 글리슨와 윌리엄 허트가 출연했다. 지구가 물에 잠긴 먼 미래를 배경으로, 감정을 가진 소년 로봇 데이비드가 잃어버린 엄마의 사랑을 되찾기 위해 벌이는 모험을 그린 이 영화는 새턴 영화제에서 최우수 공상 과학 영화상을 수상하였고, 미국 아카데미상에서 최우수 특수 효과상와 음악상 부문 후보에 올랐다.
             </p>
          </div>
       </div>
@@ -182,16 +180,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/K2tWSL7/unnamed-1.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/5rBgYmP/375px-Steven-Spielberg-by-Gage-Skidmore.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">앤디 워쇼스키, 래리 워쇼스키</strong><span class="mt10 en">The Wachowskis</span></div>
+							<div class="dir_name"><strong class="kor">스티븐 스필버그</strong><span class="mt10 en">Steven Allan Spielberg</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								1965년 출생. 미국의 영화감독이자 각본가. &lt;어쌔신&gt;(1995), &lt;바운드&gt;(1996), &lt;브이 포 벤테타&gt;(2006), &lt;인베이젼&gt;(2007)등을 각본/감독하였다.
+								미국의 영화 감독, 각본가, 영화 프로듀서이다. 드림웍스의 공동 창립자이다. 스필버그는 1993년 &lt;쉰들러 리스트&lt;와 1998년 &lt;라이언 일병 구하기&lt;로 아카데미 감독상을 받았다. 타임지는 그를 '20세기의 가장 중요한 인물 100인'에 올렸다. 2011년 해즈브로가 주최한 트랜스포머 명예의 전당에 입성하였다.
 								</span>
 							</p>
 							</div>
@@ -210,23 +208,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Barrie M. Osborne</span>
+						<span class="en">Kathleen Kennedy</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en"> Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss</span>
+						<span class="en"> Haley Joel Osment, Jude Law, Frances O'Connor</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en"> Bill Pope</span>
+						<span class="en"> Jan Harlan</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en"> The Wachowskis</span>
+						<span class="en">Steven Spielberg</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">  Bruce Berman</span>
+						<span class="en">Janusz Kaminski</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->

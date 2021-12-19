@@ -102,6 +102,29 @@
 						</div>
 					</div>
 					
+					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
+						<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_thumb">
+							<img src="https://i.ibb.co/ZcGwkgn/EKdu-Ylo-Uw-AAS6r-I.jpg" class="poster" alt="에이아이" width="100%">
+						</a>
+						<div class="fighting">
+							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20" style="margin-left: 2px">인공지능</span>
+							<div class="txtbox">
+								<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_tit">에이 아이</a>
+								<small class="dir">A.I.</small>
+								<div class="dir">
+									<p>스티븐 스필버그 <span class="en">Steven Allan Spielberg</span></p>
+								</div>
+								<ul class="film_info">
+									<li class="en">USA</li>
+									<li class="en">2001</li>
+									<li class="en">146min</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					
 				</div>	
 			</div>	
 
