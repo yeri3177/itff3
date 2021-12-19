@@ -4,14 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 
-<select id="selectMemberList" resultType="member">
+<select id="selectMemberList" resultMap="memberMap">
 	select
 	    *
 	from
-	    member
+	    member m left join authorities a
+	        on m.id = a.member_id
 	order by
 		reg_date desc
 </select>
+
+	<resultMap type="member" id="memberMap">
+		<id column="id" property="id"/>
+		<result column="password" property="password" />
+		<result column="name" property="name" />
+		<result column="phone" property="phone" />
+		<result column="gender" property="gender" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="address" property="address" />
+		<result column="nickname" property="nickname" />
+		<result column="reg_date" property="regDate" />
+		<result column="point" property="point" />
+		<result column="enabled" property="enabled" />
+		
+		<collection 
+			property="authorities" 
+			ofType="org.springframework.security.core.authority.SimpleGrantedAuthority">
+			<constructor>	
+				<arg column="authority" javaType="string"/>
+			</constructor>		
+		</collection>
+ 	</resultMap>
+ 	
+	<select id="selectMemberTotalCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			member
+	</select>
 	
 <select id="selectGoodsList" resultType="goods">
 	select
@@ -46,5 +77,12 @@
 			#{renamedFilename}
 		)		
 	</insert>
+	
+	<delete id="deleteGoods">
+		delete from
+			goods
+		where
+			p_id = #{pId}
+	</delete>
 
 </mapper>

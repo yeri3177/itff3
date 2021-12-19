@@ -55,5 +55,10 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.selectMemberTotalCount");
 	}
 
+	@Override
+	public int deleteGoods(int pId) {
+		return session.delete("admin.deleteGoods", pId);
+	}
+
 
 }
