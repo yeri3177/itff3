@@ -16,4 +16,6 @@ public interface AdminDao {
 
 	List<Member> selectMemberList(int offset, int limit);
 
+	int selectMemberTotalCount();
+
 }

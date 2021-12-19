@@ -453,7 +453,7 @@ $(email).keyup((e) => {
 	
 	 
 	
-	 if(/[a-zA-z0-9]{4,12}@/.test($(email).val()) == false) {
+	 if(/[a-zA-Z0-9]{4,12}@/.test($(email).val()) == false) {
 		$ok2.hide();
 		$error20.show();
 		$emailValid.val(0);
