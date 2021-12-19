@@ -68,7 +68,7 @@ public String adminMemberList(
 	model.addAttribute("list", list);
 	
 	// 2. totalContent
-	int totalContent = goodsService.selectGoodsTotalCount();
+	int totalContent = adminService.selectMemberTotalCount();
 	log.debug("totalContent = {}", totalContent);
 	model.addAttribute("totalContent", totalContent);
 	

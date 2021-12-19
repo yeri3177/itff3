@@ -17,26 +17,26 @@
                         <span class="nav_name">대시보드</span>
                     </a>
  
-                    <div href="#" class="nav__link collapse active" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
                         <ion-icon name="folder-outline" class="nav__icon md hydrated" role="img" aria-label="folder outline"></ion-icon>
                         <span class="nav_name">영화관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
-                        <ul class="collapse__menu showCollapse">
+                        <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminMovieList.do" class="collapse__sublink">상영 영화 목록</a><br />
                             <a href="#" class="collapse__sublink">Group</a><br />
                             <a href="#" class="collapse__sublink">Members</a>
                         </ul>
                     </div>
                     
-                     <div href="#" class="nav__link collapse active" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
                         <ion-icon name="folder-outline" class="nav__icon md hydrated" role="img" aria-label="folder outline"></ion-icon>
                         <span class="nav_name">상품관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
-                        <ul class="collapse__menu showCollapse">
+                        <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">판매 상품 관리</a><br />
                             <a href="#" class="collapse__sublink">Group</a><br />
                             <a href="#" class="collapse__sublink">Members</a>

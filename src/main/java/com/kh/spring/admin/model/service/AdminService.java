@@ -14,4 +14,6 @@ public interface AdminService {
 
 	List<Member> selectMemberList(int offset, int limit);
 
+	int selectMemberTotalCount();
+
 }

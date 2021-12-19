@@ -315,4 +315,7 @@ public class MemberController {
 		PropertyEditor editor = new CustomDateEditor(sdf, true);
 		binder.registerCustomEditor(Date.class, editor);
 	}
+	
+	@GetMapping("/memberEnrollComplete.do")
+	public void memberEnrollComplete() {}
 }
