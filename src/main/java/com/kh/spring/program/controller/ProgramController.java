@@ -41,4 +41,8 @@ public class ProgramController {
 	@GetMapping("/synopsis/aiSynopsis.do")
 	public void aiSynopsis() {}
 	
+	@GetMapping("/synopsis/iRobot.do")
+	public void iRobot() {}
+	
+	
 }

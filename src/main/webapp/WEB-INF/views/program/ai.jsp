@@ -61,13 +61,13 @@
 			<div id="pg_wrap">
 				<div class="pgl row">
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do" class="film_thumb">
 							<img src="https://i.ibb.co/wWNqZDf/image.jpg" class="poster" alt="아이로봇">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">아이로봇</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do" class="film_tit">아이로봇</a>
 								<small class="dir">I, robot</small>
 								<div class="dir">
 									<p class="dir_p">알렉스 프로야스 <span class="en">Alex Proyas</span></p>
