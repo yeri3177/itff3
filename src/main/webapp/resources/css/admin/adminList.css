@@ -349,8 +349,16 @@ table {
 	text-align: center;
 }
 
+.btn {
+	padding: 5px !important;
+	font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
-
+.add-product {
+	text-align: right;
+    margin: 10px 0 5px 0;
+}
 
 
 

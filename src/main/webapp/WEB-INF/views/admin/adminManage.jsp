@@ -106,72 +106,19 @@
 										<!-- 관리자 공통 메뉴 -->
 										<jsp:include page="/WEB-INF/views/admin/adminMenu.jsp"></jsp:include>
 
-										<div class="ba-context-menu apps-list-context-menu"
-											data-source="app-list"
-											style="left: 347px; - -context-top: 152px; display: none;">
-											<span class="context-menu-item-link" data-id="0"> <a
-												href="index.php?option=com_gridbox&amp;view=pages"
-												class="default-action"> <i class="zmdi zmdi-file"></i>
-													<span> Pages </span>
-											</a>
-											</span> <span class="context-menu-item-link" data-id="3"> <a
-												href="index.php?option=com_gridbox&amp;view=apps&amp;id=3"
-												class="default-action"> <i
-													class="zmdi zmdi-format-color-text"></i> <span>
-														Blog </span>
-											</a>
-											</span> <span class="context-menu-item-link" data-id="14"> <a
-												href="index.php?option=com_gridbox&amp;view=apps&amp;id=14"
-												class="default-action"> <i class="zmdi zmdi-crop-free"></i>
-													<span> Zero App </span>
-											</a>
-											</span> <span class="context-menu-item-link" data-id="15"> <a
-												href="index.php?option=com_gridbox&amp;view=apps&amp;id=15"
-												class="default-action"> <i class="zmdi zmdi-camera"></i>
-													<span> Portfolio </span>
-											</a>
-											</span> <span class="context-menu-item-link" data-id="16"> <a
-												href="index.php?option=com_gridbox&amp;view=apps&amp;id=16"
-												class="default-action"> <i class="zmdi zmdi-hotel"></i>
-													<span> Hotel Rooms </span>
-											</a>
-											</span> <span class="context-menu-item-link" data-id="17"> <a
-												href="index.php?option=com_gridbox&amp;view=apps&amp;id=17"
-												class="default-action"> <i
-													class="zmdi zmdi-shopping-basket"></i> <span>
-														Products </span>
-											</a>
-											</span>
-										</div>
 										<div class="ba-main-view">
+										
 											<div id="filter-bar">
 												<div class="app-title-wrapper">
-													<h1>ITFF Admin</h1>
-													<span class="ba-dashboard-popover-trigger"
-														data-target="ba-dashboard-apps-list"> <i
-														class="zmdi zmdi-plus-circle"></i> <span
-														class="ba-tooltip ba-top ba-hide-element">Add New
-															Item</span>
-													</span>
-												</div>
-												<div class="filter-dashboars-icons-wrapper">
-													<span class="ba-dashboard-popover-trigger"
-														data-target="ba-dashboard-about"> <i
-														class="zmdi zmdi-info""=""></i> <span
-														class="about-notifications-count" style="display: none;">
-															0</span> <span class="ba-tooltip ba-top ba-hide-element">About
-															Gridbox</span>
-													</span>
+													<h1>ITFF 관리자센터</h1>
 												</div>
 											</div>
+											
 											<div class="main-table dashboard-content">
 												<div class="row-fluid">
 													<div class="span12 ba-store-statistic">
 														<div class="ba-store-statistic-header">
-															<div class="ba-store-statistic-header-title-wrapper">
-																<span class="ba-store-statistic-header-title">Store
-																	Statistics</span>
-															</div>
+
 															<div class="ba-store-statistic-header-filter-wrapper">
 																<div class="ba-store-statistic-action-wrapper">
 																	<span class="ba-store-statistic-action"

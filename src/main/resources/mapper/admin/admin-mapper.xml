@@ -10,7 +10,32 @@
 	from
 		goods
 	order by
-		p_id desc
+		p_enroll desc
 </select>
+
+	<insert id="insertGoods" parameterType="goods">
+		insert into
+			goods
+		values(
+			seq_goods_id.nextval,
+			#{pName},
+			#{pPrice},
+			#{pInfo},
+			#{pImg},
+			#{pCategory},
+			default
+		)
+	</insert>
+	
+	<insert id="insertAttachment">
+		insert into
+			attachment(no, board_no, original_filename, renamed_filename)
+		values(
+			seq_ticket_sharing_attachment_attach_no.nextval,
+			#{boardNo},
+			#{originalFilename},
+			#{renamedFilename}
+		)		
+	</insert>
 
 </mapper>
