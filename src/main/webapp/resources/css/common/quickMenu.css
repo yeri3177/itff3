@@ -1,0 +1,196 @@
+@charset "UTF-8";
+
+.quickmenu_wrap {
+    position: fixed;
+    z-index: 500;
+    right: 0;
+    bottom: 0;
+}
+
+.btn_floating {
+    display: block;
+    width: 75px;
+    height: 75px;
+    position: fixed;
+    right: 70px;
+    bottom: 50px;
+    background: rgb(243, 156, 18);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 499;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
+}
+
+.btn_floating.active .quickmenu_control_txt {
+    opacity: 0;
+    -webkit-transition: none;
+    transition: none;
+}
+.btn_floating .quickmenu_control_txt {
+    display: block;
+    padding: 0;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    -webkit-transition: opacity 250ms;
+    transition: opacity 250ms;
+}
+.btn_floating button {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    border: none;
+    background: none;
+    font-weight: 600;
+}
+button {
+    border: 0 none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.btn_floating .quickmenu_control_txt:before {
+    content: '';
+    display: block;
+    width: 75px;
+    height: 75px;
+    background: url(/kor/img/layout/ico_quickmenu_btn.png) no-repeat center center;
+}
+
+.ir_pm {
+    display: block;
+    overflow: hidden;
+    font-size: 0px;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.btn_floating .quickmenu_control_icon {
+    left: 0px;
+    font-size: 24px;
+    -webkit-transform: rotate(
+90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(
+90deg);
+    opacity: 0;
+}
+.btn_floating button {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    border: none;
+    background: none;
+    font-weight: 600;
+}
+
+.btn_floating .quickmenu_control_icon span {
+    position: relative;
+    padding: 0;
+}
+
+#quickmenu_box.on {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    visibility: inherit;
+    opacity: 1;
+}
+#quickmenu_box {
+    position: fixed;
+    width: 180px;
+    right: 25px;
+    top: inherit;
+    bottom: 150px;
+    border-radius: 6px;
+    border: 1px solid #303030;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: color 300ms;
+    transition: color 300ms;
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 40%);
+}
+
+dl, ul, ol, menu, li {
+    list-style: none;
+}
+
+#quickmenu > li {
+    background-color: #212121;
+    padding: 3px 15px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+#quickmenu > li.quick_online:before {
+    background-position: -56px 50%;
+}
+#quickmenu > li:before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-image: url(/kor/img/layout/ico_quickmenu3.png);
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    margin-top: -2px;
+    margin-right: 10px;
+}
+
+#quickmenu > li a {
+    display: inline-block;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    line-height: 50px;
+}
+
+a {
+    color: #000;
+}
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    text-decoration: none;
+}
+
+.hide {
+    display: none;
+}
+
+.ir_pm {
+    display: block;
+    overflow: hidden;
+    font-size: 0px;
+    line-height: 0;
+    text-indent: -9999px;
+}
+
+.btn_floating .quickmenu_control_icon {
+    left: 0px;
+    font-size: 24px;
+    -webkit-transform: rotate(
+90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(
+90deg);
+    opacity: 0;
+}
+
+
