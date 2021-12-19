@@ -1,6 +1,7 @@
 package com.kh.spring.admin.controller;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -13,6 +14,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -193,4 +195,28 @@ public String adminMemberList(
 		return "redirect:/admin/adminGoodsList.do";
 	}
 	
+	/**
+	 * [굿즈 삭제]
+	 */
+	
+	@PostMapping("/adminGoodsDelete.do")
+	public String adminGoodsDelete(@RequestParam int pId, RedirectAttributes redirectAttr) {
+		log.debug("pId = {}", pId);
+		
+    	try {
+			int result = adminService.deleteGoods(pId);
+			redirectAttr.addFlashAttribute("msg", "상품 삭제 성공");
+			
+    	} catch (InvalidParameterException e) {
+    		log.error(e.getMessage(), e);
+    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+    		
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		
+		return "redirect:/admin/adminGoodsList.do";
+	}
 }
