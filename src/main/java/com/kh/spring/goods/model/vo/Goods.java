@@ -2,6 +2,9 @@ package com.kh.spring.goods.model.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +26,8 @@ public class Goods implements Serializable {
 	private String pImg;
 	private String pCategory;
 	private Date pEnroll;
+	
+	private int attachCount;
+	private List<Attachment> attachments;
 
 }

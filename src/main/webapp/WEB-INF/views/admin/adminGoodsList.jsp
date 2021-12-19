@@ -90,14 +90,84 @@
 	<jsp:include page="/WEB-INF/views/admin/adminMenu.jsp"></jsp:include>
 
 		<div class="container">
+			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
 					<h2 class="heading-section">판매 굿즈 목록</h2>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-md-12">
 <!-- 					<h3 class="h5 mb-4 text-center">Table Accordion</h3> -->
+				
+				<div class="add-product">
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">
+					  상품 등록
+					</button>
+				</div>
+				
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+ 				<form 
+					name="adminGoodsFrm" 
+					action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
+					method="post" 
+					enctype="multipart/form-data">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;">상품 등록</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      
+				      <div class="modal-body">
+		          		  <div class="form-group">
+						    <input type="text" name="pName" class="form-control" id="exampleFormControlInput1" placeholder="상품명" required>
+						  </div>
+						  
+		          		  <div class="form-group">
+						    <input type="text" name="pPrice" class="form-control" id="exampleFormControlInput1" placeholder="가격" required>
+						  </div>
+						  
+						  <div class="form-group">
+						    <textarea name="pInfo" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="상품 설명을 입력하세요." required></textarea>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="exampleFormControlSelect1">카테고리</label>
+						    <select name="pCategory" class="form-control" id="exampleFormControlSelect1" required>
+						      <option value="">선택</option>
+						      <option value="홈데코/리빙">홈데코/리빙</option>
+						      <option value="폰케이스/테크">폰케이스/테크</option>
+						      <option value="의류">의류</option>
+						    </select>
+						  </div>
+						  
+						  <div class="input-group">
+							  <div class="custom-file">
+							  	<input type="hidden" name="pImg" value="" />
+							    <input name="upFile" type="file" class="custom-file-input" id="inputGroupFile04" required>
+							    <label class="custom-file-label" for="inputGroupFile04">상품 이미지</label>
+							  </div>
+							  <div class="input-group-append">
+							    <button class="btn btn-outline-secondary" type="button">Button</button>
+							  </div>
+							</div>
+				      </div>
+				      
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				        <button type="submit" class="btn btn-outline-primary">등록</button>
+				      </div>
+				      
+				      </form>
+				    </div>
+				  </div>
+				</div>
+				
 					<div class="table-wrap">
 						<table class="table">
 							<thead class="thead-primary">
@@ -109,6 +179,7 @@
 									<th>가격</th>
 									<th>카테고리</th>
 									<th>등록일자</th>
+									<th colspan="2">관리</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -148,6 +219,10 @@
 									
 									<!-- 등록일자 -->
 									<td><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
+
+									<!-- 버튼 -->
+									<td><button type="button" class="btn btn-outline-success">수정</button></td>
+									<td><button type="button" class="btn btn-outline-danger">삭제</button></td>
 									
 									<!-- 취소버튼 -->
 <!-- 									<td> -->
@@ -166,6 +241,30 @@
 			</div>
 		</div>
 	</section>
+	
+<script>
+
+$(() => {
+	$("[name=upFile]").change((e) => {
+		// 1.파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
+		console.dir(e.target);
+		console.log(filename);
+		
+		// 2.label에 설정하기
+		const $label = $(e.target).next();
+		if(file != undefined)
+			$label.html(filename);
+		else
+			$label.html("파일을 선택하세요.");
+		
+		$("[name=pImg]").val(filename);
+		
+	});	
+});
+
+</script>
 
 
 
