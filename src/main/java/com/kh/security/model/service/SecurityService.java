@@ -31,6 +31,14 @@ public class SecurityService implements UserDetailsService {
 		if(member == null)   
 			throw new UsernameNotFoundException(username);
 		
+		/**
+		 * enabled가 0일때
+		 */
+		
+		if(!member.isEnabled()) {
+			
+		}
+		
 		return member;
 	}
 	

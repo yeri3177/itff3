@@ -55,6 +55,25 @@
 	<!-- #13.2 @Transactional 어노테이션 처리 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
+	<!-- gmail설정 -->
+	<bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+	     <property name="host" value="smtp.gmail.com" />
+	     <property name="port" value="587" />
+		<property name="username" value="gproject0000@gmail.com"/> <!-- 자신의 이메일 아이디 -->
+		<property name="password" value="asdf1234!!"/> <!-- 자신의 비밀번호 -->
+	 <!-- 보안연결 TLS과 관련된 설정 -->
+	     <property name="javaMailProperties">
+	    <props>
+	       <prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtp.auth">true </prop>
+			<prop key="mail.transport.protocol">smtp</prop>
+			<prop key="mail.debug">true</prop>
+			<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+	    </props>
+	     </property>
+	</bean>
+
 	
 	
 	

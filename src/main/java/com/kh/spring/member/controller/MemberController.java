@@ -7,9 +7,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
 
@@ -44,6 +50,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	@GetMapping("/memberEnroll.do")
 	public void memberEnroll() {}
@@ -100,10 +109,59 @@ public class MemberController {
 		// 1. 업무로직
 		int result = memberService.insertMember(member);
 		
-		// 2. 리다이렉트 & 사용자피드백 전달
+		// 2. 메일 전송
+		
+		//인증키 생성
+        String authKey = HiSpringUtils.getRandomChatId(); //난수가 저장될 변수
+        
+		String subject = "ITFF 회원가입 인증 메일입니다.";
+        String content = authKey;
+        String from = "gproject0000@gmail.com";
+        String to = member.getEmail();
+		
+        try {
+            MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+            // true는 멀티파트 메세지를 사용하겠다는 의미
+            
+            /*
+             * 단순한 텍스트 메세지만 사용시엔 아래의 코드도 사용 가능 
+             * MimeMessageHelper mailHelper = new MimeMessageHelper(mail,"UTF-8");
+             */
+            
+            mailHelper.setFrom(from);
+            // 빈에 아이디 설정한 것은 단순히 smtp 인증을 받기 위해 사용 따라서 보내는이(setFrom())반드시 필요
+            // 보내는이와 메일주소를 수신하는이가 볼때 모두 표기 되게 원하신다면 아래의 코드를 사용하시면 됩니다.
+            //mailHelper.setFrom("보내는이 이름 <보내는이 아이디@도메인주소>");
+            mailHelper.setTo(to);
+            mailHelper.setSubject(subject);
+            mailHelper.setText(content, true);
+            // true는 html을 사용하겠다는 의미입니다.
+            
+            /*
+             * 단순한 텍스트만 사용하신다면 다음의 코드를 사용하셔도 됩니다. mailHelper.setText(content);
+             */
+            
+            mailSender.send(mail);
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+//        HiSpringUtils.mailSend(subject, content, from, to);
+        
+		// 3. 리다이렉트 & 사용자피드백 전달
+        redirectAttr.addAttribute("authKey", authKey);
 		redirectAttr.addFlashAttribute("msg", "회원가입성공");
 		
-		return "redirect:/";
+		return "redirect:/member/memberMailWaiting.do";
+	}
+		
+	@GetMapping("/memberMailWaiting.do")
+	public String memberMailWaiting() {
+				
+		
+		return "/member/memberMailWaiting";
 	}
 	
 	
