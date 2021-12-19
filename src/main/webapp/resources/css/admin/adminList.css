@@ -9,6 +9,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 .container {
+	max-width: 2000px !important;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
@@ -26,7 +27,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 1300px;
+    width: 2000px;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
@@ -360,6 +361,16 @@ table {
     margin: 10px 0 5px 0;
 }
 
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #212121 !important;
+    border-color: #212121 !important;
+}
+
+#ft {
+	margin-bottom: 50px;
+}
 
 
 
