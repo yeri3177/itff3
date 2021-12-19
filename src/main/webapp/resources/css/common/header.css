@@ -288,3 +288,9 @@ header {
 }
 
 /* header.jsp 끝 */
+
+::selection {
+    background: rgb(52, 73, 94);
+    color: #FFF;
+    text-shadow: none;
+}

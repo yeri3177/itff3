@@ -166,4 +166,10 @@ a {
     transform: rotate(180deg);
     transition: .5s;
 }
+
+::selection {
+    background: rgb(52, 73, 94);
+    color: #FFF;
+    text-shadow: none;
+}
     

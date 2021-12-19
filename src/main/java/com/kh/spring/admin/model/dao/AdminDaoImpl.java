@@ -50,5 +50,10 @@ public class AdminDaoImpl implements AdminDao {
 		return session.insert("admin.insertAttachment", attach);
 	}
 
+	@Override
+	public int selectMemberTotalCount() {
+		return session.selectOne("admin.selectMemberTotalCount");
+	}
+
 
 }

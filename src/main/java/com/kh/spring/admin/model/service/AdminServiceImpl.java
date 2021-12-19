@@ -62,4 +62,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectMemberList(offset, limit); 
 	}
 
+	@Override
+	public int selectMemberTotalCount() {
+		return adminDao.selectMemberTotalCount();
+	}
+
 }

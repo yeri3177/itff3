@@ -111,19 +111,21 @@
 									<th>&nbsp;</th>
 									<th>아이디</th>
 									<th>닉네임</th>
-									<th style="width: 120px;">이름</th>
+									<th>이름</th>
 									<th>연락처</th>
 									<th>이메일</th>
 									<th>생년월일</th>
-									<th>주소</th>
-									<th style="width: 100px">포인트</th>
+									<th style="width: 300px;">주소</th>
+									<th>포인트</th>
 									<th>가입일자</th>
+									<th style="width: 105px;">권한</th>
 									<th>&nbsp;</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
 							<c:forEach items="${list}" var="list">
+							
 								<tr class="alert" role="alert">
 
 									<td></td>
@@ -160,7 +162,7 @@
 									<td class="quantity">${list.email }</td>
 									
 									<!-- 생년월일 -->
-									<td style="width: 200px;">
+									<td>
 										<div class="quantity">
 											<span><fmt:formatDate value="${list.birthday }" pattern="yyyy-MM-dd"/> </span> 
 										</div>
@@ -177,8 +179,11 @@
 									<td class="quantity"><fmt:formatNumber value="${list.point }" pattern="#,###" /></td>
 									
 									<!-- 가입일자 -->
-									<td style="width: 200px;"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
-
+									<td><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
+									
+									<!-- 권한 -->
+									<td>${list.authorities eq "[ROLE_USER]" ? "회원" : "관리자" }</td>
+									
 									<!-- 버튼 -->
 									<td><button type="button" class="btn btn-outline-success">수정</button></td>
 									<td></td>

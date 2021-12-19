@@ -21,14 +21,14 @@
 		<input type="button" id="re-authkey" name="re-authkey" value="재전송"/>
 		<input type="submit" placeholder="제출" />
 	</form>
-<!-- 
+
 <script>
 $(document).ready(function() {
-    console.log(${authKey});
-    console.log(11);
+    console.log($(authKey));
+    
 }); 
 </script>
- -->
+
 <script>
 var time = 600; //기준시간 작성
 var min = ""; //분
@@ -58,10 +58,12 @@ var time = 600; //기준시간 작성
 // 폼 제출시 검사	
 $("[name=memberEmailCheckFrm]").submit(function(){
 	
-	console.log($(authKey));
-	console.log(${authKey});
 	
-	if(document.getElementById("authKey").value != ${authKey}) {
+	
+	console.log($(authKey).val());
+	
+	if($(authKey).val() != "${authKey}") {
+	
 		
 		alert("인증번호가 틀립니다. 다시입력해주세요.");
 		$(authKey).focus();

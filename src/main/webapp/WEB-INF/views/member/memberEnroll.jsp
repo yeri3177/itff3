@@ -447,15 +447,15 @@ $(nickname).keyup((e) => {
 $(email).keyup((e) => {
 	const $email = $(e.target);
 	const $error2 = $(".guide2.error2");
-	const $error20 = $(".guide2.error3");
+	const $error3 = $(".guide2.error3");
 	const $ok2 = $(".guide2.ok2");
 	const $emailValid = $(emailValid);
 	
 	 
-	
-	 if(/[a-zA-z0-9]{4,12}@/.test($(email).val()) == false) {
+	 // 이메일 형식 맞는지 테스트. 안 맞으면 이메일 형식 맞추라는 빨간 글 나옴
+	 if(/[a-zA-Z0-9]{4,12}@/.test($(email).val()) == false) {
 		$ok2.hide();
-		$error20.show();
+		$error3.show();
 		$emailValid.val(0);
 		return;
 	 }	 
@@ -471,13 +471,13 @@ $(email).keyup((e) => {
 			if(available) {
 				$ok2.show();
 				$error2.hide();
-				$error20.hide();
+				$error3.hide();
 				$emailValid.val(1);
 			}
 			else {
 				$ok2.hide();
 				$error2.show();
-				$error20.hide();
+				$error3.hide();
 				$emailValid.val(0);
 			}
 		},
