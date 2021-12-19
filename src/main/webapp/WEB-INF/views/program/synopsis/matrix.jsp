@@ -182,7 +182,7 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/K2tWSL7/unnamed-1.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/J3vWyYB/unnamed-1.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">

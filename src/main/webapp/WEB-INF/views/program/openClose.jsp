@@ -67,6 +67,7 @@
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>
+							<span class="sectionName mt20" style="margin-left: 2px">가상현실·딥러닝</span>
 							<div class="txtbox">
 								<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do" class="film_tit">매트릭스</a>
 								<small class="dir">The Matrix</small>
@@ -89,6 +90,7 @@
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">폐막작</span>
+							<span class="sectionName mt20" style="margin-left: 2px">인공지능</span>
 							<div class="txtbox">
 								<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_tit">에이 아이</a>
 								<small class="dir">A.I.</small>
