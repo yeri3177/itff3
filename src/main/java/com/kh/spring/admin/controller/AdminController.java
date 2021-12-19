@@ -2,13 +2,17 @@ package com.kh.spring.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.io.File;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
 import com.kh.spring.common.HiSpringUtils;
+import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,10 +35,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping("/admin")
-public class AdminManageController {
+public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+
+	@Autowired
+	private GoodsService goodsService;
 
 	@Autowired
 	ServletContext application;
@@ -42,6 +51,42 @@ public class AdminManageController {
 	
 	@GetMapping("/adminManage.do")
 	public void adminManage() {}
+
+///////////////////////////////////////////////////////////////////////////////
+	
+@GetMapping("/adminMemberList.do")
+public String adminMemberList(
+		@RequestParam(defaultValue = "1") int cPage, 
+		Model model,
+		HttpServletRequest request
+		) {
+	
+	log.debug("cPage = {}", cPage);
+	
+	int limit = 10;
+	int offset = (cPage - 1) * limit;
+	
+	// 1. 
+	List<Member> list = adminService.selectMemberList(offset, limit);
+	log.debug("list = {}", list);
+	model.addAttribute("list", list);
+	
+	// 2. totalContent
+	int totalContent = goodsService.selectGoodsTotalCount();
+	log.debug("totalContent = {}", totalContent);
+	model.addAttribute("totalContent", totalContent);
+	
+	// 3. pagebar
+	String url = request.getRequestURI(); 
+	String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+	log.debug("pagebar = {}", pagebar);
+	model.addAttribute("pagebar", pagebar);
+	
+	return "admin/adminMemberList";
+}
+	
+	
+///////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * [상영 영화 목록] 
@@ -54,16 +99,41 @@ public class AdminManageController {
 //		model.addAttribute("list", list);
 //	}
 	
+///////////////////////////////////////////////////////////////////////////////
+	
 	/**
 	 * [굿즈 목록]
 	 */
 	
 	@GetMapping("/adminGoodsList.do")
-	public void adminGoodsList(Model model) {
-		List<Goods> list = adminService.selectGoodsList();
-		log.debug("list = {}", list);
+	public String adminGoodsList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
 		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<Goods> list = adminService.selectGoodsList(offset, limit);
+		log.debug("list = {}", list);
 		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = goodsService.selectGoodsTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsList";
 	}
 	
 	/**
@@ -71,9 +141,10 @@ public class AdminManageController {
 	 */
 
 	@RequestMapping(value="/adminGoodsInsert.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminGoodsInsert(Goods goods, 
+	public String adminGoodsInsert(
+			Goods goods,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
-			RedirectAttributes redirectAttr	
+			RedirectAttributes redirectAttr
 		) throws IllegalStateException, IOException {
 		
 		try {

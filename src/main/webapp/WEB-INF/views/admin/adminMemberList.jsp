@@ -1,3 +1,7 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.apache.tomcat.util.net.openssl.ciphers.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -77,7 +81,6 @@
 <fmt:requestEncoding value="utf-8" />
 
 <body>
-	<!-- // hd_bg -->
 
 <!-- 	Header -->
 <header id="hd" class="hd"> 
@@ -93,7 +96,7 @@
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">판매 굿즈 목록</h2>
+					<h2 class="heading-section">전체 회원 목록</h2>
 				</div>
 			</div>
 			
@@ -101,132 +104,84 @@
 				<div class="col-md-12">
 <!-- 					<h3 class="h5 mb-4 text-center">Table Accordion</h3> -->
 				
-				<div class="add-product">
-					<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalLong">
-					  상품 등록
-					</button>
-				</div>
-				
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
- 				<form 
-					name="adminGoodsFrm" 
-					action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
-					method="post" 
-					enctype="multipart/form-data">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;">상품 등록</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      
-				      <div class="modal-body">
-		          		  <div class="form-group">
-						    <input type="text" name="pName" class="form-control" id="exampleFormControlInput1" placeholder="상품명" required>
-						  </div>
-						  
-		          		  <div class="form-group">
-						    <input type="text" name="pPrice" class="form-control" id="exampleFormControlInput1" placeholder="가격" required>
-						  </div>
-						  
-						  <div class="form-group">
-						    <textarea name="pInfo" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="상품 설명을 입력하세요." required></textarea>
-						  </div>
-						  
-						  <div class="form-group">
-						    <label for="exampleFormControlSelect1">카테고리</label>
-						    <select name="pCategory" class="form-control" id="exampleFormControlSelect1" required>
-						      <option value="">선택</option>
-						      <option value="홈데코/리빙">홈데코/리빙</option>
-						      <option value="폰케이스/테크">폰케이스/테크</option>
-						      <option value="의류">의류</option>
-						    </select>
-						  </div>
-						  
-						  <div class="input-group">
-							  <div class="custom-file">
-							  	<input type="hidden" name="pImg" value="" />
-							    <input name="upFile" type="file" class="custom-file-input" id="inputGroupFile04" required>
-							    <label class="custom-file-label" for="inputGroupFile04">상품 이미지</label>
-							  </div>
-							  <div class="input-group-append">
-							    <button class="btn btn-outline-secondary" type="button">Button</button>
-							  </div>
-							</div>
-				      </div>
-				      
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				        <button type="submit" class="btn btn-outline-primary">등록</button>
-				      </div>
-				      
-				      </form>
-				    </div>
-				  </div>
-				</div>
-				
 					<div class="table-wrap">
 						<table class="table">
 							<thead class="thead-primary">
 								<tr>
 									<th>&nbsp;</th>
+									<th>아이디</th>
+									<th>닉네임</th>
+									<th style="width: 120px;">이름</th>
+									<th>연락처</th>
+									<th>이메일</th>
+									<th>생년월일</th>
+									<th>주소</th>
+									<th style="width: 100px">포인트</th>
+									<th>가입일자</th>
 									<th>&nbsp;</th>
-									<th>상품코드</th>
-									<th>상품명</th>
-									<th>가격</th>
-									<th>카테고리</th>
-									<th>등록일자</th>
 									<th>&nbsp;</th>
-									<th colspan="2">관리</th>
 								</tr>
 							</thead>
 							<tbody>
 							<c:forEach items="${list}" var="list">
 								<tr class="alert" role="alert">
-									<!-- 체크박스 -->
-									<td><label class="checkbox-wrap checkbox-primary">
-
-									</label>
-									</td>
-									
-									<!-- 이미지 -->
-									<td>
-										<div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${list.PImg })"></div>
-									</td>
-									
-									<!-- 상품코드 -->
-									<td>
-										<div class="email">
-											<span>${list.PId }</span> 
-										</div>
-									</td>
-
-									<!-- 상품명 -->
-									<td>
-										<div class="email">
-											<span>${list.PName }</span> 
-										</div>
-									</td>
-									
-									<!-- 금액 -->
-									<td><fmt:formatNumber value="${list.PPrice }" pattern="#,###" /></td>
-									
-									<!-- 카테고리  -->
-									<td class="quantity">${list.PCategory }</td>
-									
-									<!-- 등록일자 -->
-									<td><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
 
 									<td></td>
+									
+									<!-- 아이디 -->
+									<td>
+										<div class="email">
+											<span>${list.id }</span> 
+										</div>
+									</td>
+									
+									<!-- 닉네임 -->
+									<td>
+										<div class="email">
+											<span>${list.nickname }</span> 
+										</div>
+									</td>
+
+									<!-- 이름 -->
+									<td>
+										<div class="email">
+											<span>${list.name }</span> 
+										</div>
+									</td>
+									
+									<!-- 연락처 -->
+									<td>
+										<div class="email">
+											<span>${list.phone }</span> 
+										</div>
+									</td>
+									
+									<!-- 이메일  -->
+									<td class="quantity">${list.email }</td>
+									
+									<!-- 생년월일 -->
+									<td style="width: 200px;">
+										<div class="quantity">
+											<span><fmt:formatDate value="${list.birthday }" pattern="yyyy-MM-dd"/> </span> 
+										</div>
+									</td>
+									
+									<!-- 주소 -->
+									<td>
+										<div class="email">
+											<span>${list.address }</span> 
+										</div>
+									</td>
+									
+									<!-- 포인트  -->
+									<td class="quantity"><fmt:formatNumber value="${list.point }" pattern="#,###" /></td>
+									
+									<!-- 가입일자 -->
+									<td style="width: 200px;"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
 
 									<!-- 버튼 -->
 									<td><button type="button" class="btn btn-outline-success">수정</button></td>
-									<td><button type="button" class="btn btn-outline-danger">삭제</button></td>
-									
-									
+									<td></td>
 									<!-- 취소버튼 -->
 <!-- 									<td> -->
 <!-- 										<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->

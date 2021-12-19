@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +24,8 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao adminDao;
 
 	@Override
-	public List<Goods> selectGoodsList() {
-		return adminDao.selectGoodsList(); 
+	public List<Goods> selectGoodsList(int offset, int limit) {
+		return adminDao.selectGoodsList(offset, limit); 
 	}
 
 	@Override
@@ -38,8 +39,6 @@ public class AdminServiceImpl implements AdminService {
 		
 		try {
 			// goods insert
-			
-			log.debug("ㅎㅇ");
 			result = adminDao.insertGoods(goods);
 			log.debug("goods.getPId = {}", goods.getPId());
 			
@@ -56,6 +55,11 @@ public class AdminServiceImpl implements AdminService {
 			throw new AdminException("상품/첨부파일 등록 오류", e);
 		}
 		return result;
+	}
+
+	@Override
+	public List<Member> selectMemberList(int offset, int limit) {
+		return adminDao.selectMemberList(offset, limit); 
 	}
 
 }
