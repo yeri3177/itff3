@@ -16,4 +16,6 @@ public interface AdminService {
 
 	int selectMemberTotalCount();
 
+	int deleteGoods(int pId);
+
 }

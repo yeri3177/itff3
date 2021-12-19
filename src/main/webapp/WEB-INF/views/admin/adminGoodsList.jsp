@@ -102,20 +102,20 @@
 <!-- 					<h3 class="h5 mb-4 text-center">Table Accordion</h3> -->
 				
 				<div class="add-product">
-					<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalLong">
+					<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModalLong1">
 					  상품 등록
 					</button>
 				</div>
 				
-				<!-- Modal -->
-				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<!-- 굿즈 추가 -->
+				<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
- 				<form 
-					name="adminGoodsFrm" 
-					action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
-					method="post" 
-					enctype="multipart/form-data">
+	 				<form 
+						name="adminGoodsFrm" 
+						action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
+						method="post" 
+						enctype="multipart/form-data">
 				      <div class="modal-header">
 				        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;">상품 등록</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -224,7 +224,7 @@
 
 									<!-- 버튼 -->
 									<td><button type="button" class="btn btn-outline-success">수정</button></td>
-									<td><button type="button" class="btn btn-outline-danger">삭제</button></td>
+									<td><button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteGoodsModal" value="${list.PId }">삭제</button></td>
 									
 									
 									<!-- 취소버튼 -->
@@ -236,17 +236,46 @@
 								</tr>
 								</c:forEach>
 								
-
 							</tbody>
 						</table>
 					</div>
 				</div>
+				
+				<!-- 굿즈 삭제 -->
+				<div class="modal fade" id="deleteGoodsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+    	 				<form 
+						name="adminGoodsDelFrm" 
+						action="${pageContext.request.contextPath}/admin/adminGoodsDelete.do?${_csrf.parameterName}=${_csrf.token}" 
+						method="post">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">상품 삭제</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      <input type="hidden" name="pId" />
+				        정말 삭제하시겠습니까?
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				        <button type="submit" class="btn btn-primary">삭제</button>
+				      </div>
+				      </form>
+				    </div>
+				  </div>
+				</div>
+				<!-- 굿즈 삭제 끝 -->
+				
 			</div>
 		</div>
 	</section>
 	
 <script>
 
+// 파일명 바꾸기 & 이미지 이름
 $(() => {
 	$("[name=upFile]").change((e) => {
 		// 1.파일명 가져오기
@@ -269,7 +298,17 @@ $(() => {
 
 </script>
 
+<script>
 
+// 굿즈 삭제
+$(".btn-outline-danger").click((e) => {
+	$("[name=pId]").val($(e.target).val());
+	$("#deleteGoodsModal").modal();
+	console.log($(e.target).val());
+	console.log("[name=pId]".val());
+});
+
+</script>
 
 	<!-- //container -->
 

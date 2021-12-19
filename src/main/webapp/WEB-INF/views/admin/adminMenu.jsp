@@ -47,7 +47,7 @@
                         <ion-icon name="people-outline" class="nav__icon md hydrated" role="img" aria-label="people outline"></ion-icon>
                         <span class="nav_name">회원관리</span>
 
-                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated" role="img" aria-label="chevron down outline"></ion-icon>
+                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="collapse__sublink">전체 회원 목록</a><br />

@@ -18,4 +18,6 @@ public interface AdminDao {
 
 	int selectMemberTotalCount();
 
+	int deleteGoods(int pId);
+
 }

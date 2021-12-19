@@ -58,6 +58,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public int deleteGoods(int pId) {
+		return adminDao.deleteGoods(pId);
+	}
+
+	@Override
 	public List<Member> selectMemberList(int offset, int limit) {
 		return adminDao.selectMemberList(offset, limit); 
 	}
@@ -66,5 +71,6 @@ public class AdminServiceImpl implements AdminService {
 	public int selectMemberTotalCount() {
 		return adminDao.selectMemberTotalCount();
 	}
+
 
 }
