@@ -62,13 +62,13 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="#" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/erin.do" class="film_thumb">
 							<img src="https://i.ibb.co/4MjNVZP/Erin-Brockovich-2000-1080p-Blu-Ray-H264-mp4-20200524-123152-359.jpg" class="poster" alt="에린 브로코비치">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">사고력·디버깅</span>
 							<div class="txtbox">
-								<a href="#" class="film_tit">에린 브로코비치</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/erin.do" class="film_tit">에린 브로코비치</a>
 								<small class="dir">Erin Brockovich</small>
 								<div class="dir">
 									<p class="dir_p">스티븐 소더버그 <span class="en">Steven Soderbergh</span></p>
@@ -83,13 +83,13 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="#" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/looper.do" class="film_thumb">
 							<img src="https://i.ibb.co/1Gy9kx7/171-BBE4950-E6-AFE819.jpg" class="poster" alt="루퍼">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">사고력·디버깅</span>
 							<div class="txtbox">
-								<a href="#" class="film_tit">루퍼</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/looper.do" class="film_tit">루퍼</a>
 								<small class="dir">Looper</small>
 								<div class="dir">
 									<p>라이언 존슨 <span class="en">Rian Johnson</span></p>

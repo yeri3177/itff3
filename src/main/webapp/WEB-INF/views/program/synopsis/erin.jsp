@@ -22,20 +22,20 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/Nt3VLSt/17-52-31-564edf4f98647-H800.jpg);">
+    <li style="background-image: url(https://i.ibb.co/09kxJvR/c6cb79171b0fce570fe72cc1f16160636507f4c1e32268fc3ea810c9ab40f945-V-SX1080.jpg);">
     	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/XJzbPCKq_zw" 
+			data-src="https://www.youtube.com/embed/jjqUUxIy_yk" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/D5wSG97/60rg-A3s-Oh-Rn-J2-md-KIJcfg.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/fp8xk5d/M0020027-007-1-H800.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/gyrPY0r/unnamed.png);"></li>
+    <li style="background-image: url(https://i.ibb.co/nr6n3Zn/733514f4d74b46919ae984d11c28174c.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/XyTnrSr/AAAABTYo-IP8-Vtxij3-B6-Gyl0-XMOo-JGt-Gi-Xc320m-JNSt8q-REBl-RMcpu-PWAe-Dj-O6s-Bh-BItp8jr-OAy-Ior-PGT7.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/ys9NNc2/2354-A73657-B8785-B23.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -52,26 +52,28 @@
    <div class="container_">
       <div class="film_info_top">
          <p class="director_name">
-            007:카지노 로얄
+            에린 브로코비치
          </p>
          <br />
-		 <span>007:Casino Royale</span>
+		 <span>Erin Brockovich</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>2006</li>
-            <li>144min</li>
+            <li>2000</li>
+            <li>130min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">Flatform·IoT</strong>
+            <strong class="premiere en">Thinking Power·Debugging</strong>
          </p>
       </div>
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-			아직 영국첩보국 MI6의 평범한 요원이던 제임스 본드(다니엘 크레이그). 체코에서의 위험한 암살을 마치고 007로 승격된 그에게 첫번째 임무가 주어진다. 국제 테러조직의 자금줄로 알려진 수수께끼의 인물 르쉬프(매즈 미켈슨)의 배후를 밝혀내는 것. 마다가스카에서 작전을 수행하던 007은 르쉬프가 몬테카를로의 ‘카지노 로얄’에서 무제한 배팅이 가능한 ‘홀뎀포커’를 통해 대규모 테러자금을 모으려는 음모를 밝혀내는데
+			두 번의 이혼 경력에 세 아이를 거느린 아줌마 에린 브로코비치(줄리아 로버츠)는 계속해서 구직에 실패하고 교통사고까지 당한다. 통장에 고작 16달러 만이 남아있던 그녀는 보상금이라도 받아보려고 변호사를 고용하지만 실패하고 빚만 더 떠안게 된다.
+막무가내로 변호사 사무실을 찾아가 결국 일자리를 얻게 되는 그녀. 험한 입담과 노출이 심한 옷 때문에 직장동료들은 그녀를 곱지 않은 시선으로 보지만 그녀는 자신에게 주어진 일을 착실히 배워나간다.
+그러던 중 그녀는 대기업 PG&E의 공장에서 유출되는 중금속 크롬이 마을 사람들의 건강에 치명적인 영향을 미치고 있다는 사실을 알게 된다. 그녀는 마을을 직접 찾아가 사람들을 만나고 조사를 추진한다. 변호사 에드를 설득해 소송을 준비하게 되는데..
          </div>
       </div>
 
@@ -79,7 +81,8 @@
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
             <p>
-				<007 카지노 로얄>은 시리즈의 기원으로 거슬러 올라가 제임스 본드가 살인면허를 받기 전의 활약부터 소개한다. 살인면허가 없어도 제임스 본드가 위험한 인물인 건 마찬가지. 그는 자신에게 주어진 두번의 중요한 임무를 훌륭하게 처리한 후 암호명 '00'(살인면허)을 받는다. 제임스 본드는 첩보기관 MI6으로부터 007이란 암호명을 부여받고 마다가스카에서 테러리스트 몰라카(세바스찬 푸캉)를 감시하는 임무를 맡게 된다. 임무 수행 중 상황이 급변하게 되면서 007은 상부의 지시를 어기고 테러리스트 조직에 대한 독자적인 작전에 돌입한다. 단서를 쫓아 바하마에 도착한 007은 신비한 인물 드미트리오스와 그의 애인 솔랑게(카테리나 뮤리노)를 만나게 되고, 드미트리오스가 국제 테러 조직의 자금줄인 르 쉬프르(매즈 미켈슨)와 직결되어 있음을 직감한다. 
+				《에린 브로코비치》(영어: Erin Brockovich)는 2000년 개봉한 미국의 영화이다. 에린 브로코비치가 미국 서부 해안의 에너지 회사인 PG&E와 벌인 법적 분쟁을 영화화한 실화 영화이다.
+스티븐 소더버그가 감독을 맡았으며, 줄리아 로버츠가 주인공 에린 브로코비치 역할을 맡았다. 이 역할로 로버츠는 아카데미상 여우주연상을 수상하기도 하였다. 실제 에린 브로코비치가 줄리아라는 이름의 식당 종업원으로 카메오 출연하기도 하였다.
             </p>
          </div>
       </div>
@@ -179,16 +182,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/R4QbkXn/movie-image-15.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/0hVTgKq/7347c1a6fadd5d5f3cac606bdc9262a5bb0ffedd4bf26b819e2604cb95bfe986b841b4bf9a8a20ada16b6994aa024a99bd27.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">마틴 캠벨</strong><span class="mt10 en">Martin Campbell</span></div>
+							<div class="dir_name"><strong class="kor">스티븐 소더버그</strong><span class="mt10 en">Steven Soderbergh</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								고향인 영국에서 최고의 감독 위치를 차지하고 있었는데, 텔레비전 영화인 &lt;Reilly: Ace of Spies &gt;로 비평적인 찬사를 받았고, BBC 시리즈인 <Edge of Darkness>로 BAFTA(British Academy of Film and Television Awards)에서 6개 부문을 휩쓸며 평단의 신뢰를 이끌었다.
+									스티븐 소더버그(Steven Soderbergh, 1963년 1월 14일 ~ )는 미국의 영화 감독이다. 대표 작품으로는 《에린 브로코비치》와 《트래픽》이 있으며 오스카상 수상자이다.
 								</span>
 							</p>
 							</div>
@@ -207,23 +210,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Barbara Broccoli</span>
+						<span class="en">Danny DeVito,  Michael Shamberg</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en">Daniel Craig, Eva Green, Mads Mikkelsen</span>
+						<span class="en">Julia Roberts, Albert Finney</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en">Phil Meheux</span>
+						<span class="en">Edward Lachman</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en">Stuart Baird</span>
+						<span class="en">Anne V. Coates</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">David Arnold</span>
+						<span class="en">Thomas Newman</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->
