@@ -208,16 +208,77 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("/memberUpdate.do")
+	public void memberUpdate() {}
 	
 	// memberUpdate 선생님 풀이
 	@PostMapping("/memberUpdate.do")
 	public String memberUpdate(
 			@ModelAttribute Member member,
-			@ModelAttribute("loginMember") Member loginMember,
+			@RequestParam String birthday1, 
+			@RequestParam String birthday2, 
+			@RequestParam String birthday3, 
+			@RequestParam String address1, 
+			@RequestParam String address2, 
+			@RequestParam String phone1, 
+			@RequestParam String phone2, 
+			@RequestParam String phone3,
 			RedirectAttributes redirectAttr){
 		try { 
+			
+			log.debug("=========== form --> controller ===========");
+			log.debug("===========================================");
+			log.debug("birthday1 = {}", birthday1);
+			log.debug("birthday2 = {}", birthday2);
+			log.debug("birthday3 = {}", birthday3);
+			log.debug("===========================================");
+			log.debug("address1 = {}", address1);
+			log.debug("address2 = {}", address2);
+			log.debug("===========================================");
+			log.debug("phone1 = {}", phone1);
+			log.debug("phone2 = {}", phone2);
+			log.debug("phone3 = {}", phone3);
+			log.debug("===========================================");
+			
 			log.debug("member = {}", member);
-			log.debug("loginMember = {}", loginMember);
+			
+			// 생일 연월일 합쳐서 Date 타입으로 형변환
+			if(!birthday1.isEmpty()) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date birthday = null;
+				try {
+					birthday = sdf.parse(birthday1 + "-" + birthday2 + "-" + birthday3);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				log.debug("birthday = {}", birthday);
+				member.setBirthday(birthday);
+			}
+			
+			// 주소
+			if(!address1.isEmpty()) {
+				String address = address1 + " " + address2;
+				log.debug("address = {}", address);
+				member.setAddress(address);				
+			}
+			
+			// 전화번호
+			if(!phone1.isEmpty()) {
+				String phone = phone1 + phone2 + phone3;
+				log.debug("phone = {}", phone);
+				member.setPhone(phone);				
+			}
+			
+			// 0. 비밀번호 암호화 처리
+			if(member.getPassword() != null) {
+				log.info("{}", passwordEncoder);
+				String rawPassword = member.getPassword();
+				String encryptedPassword = passwordEncoder.encode(rawPassword);
+				member.setPassword(encryptedPassword);
+				log.info("{} -> {}", rawPassword, encryptedPassword);				
+			}
+
 			
 			//1.비지니스로직 실행
 			int result = memberService.updateMember(member);
