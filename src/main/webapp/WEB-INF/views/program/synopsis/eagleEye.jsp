@@ -22,20 +22,20 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/RvZGkjK/508c170a29cc5d641c41b070d18d1431.jpg);">
+    <li style="background-image: url(https://i.ibb.co/wsQ5Wbw/AAAABWft-A3w-H3v7gg-Kxxfj-OV0-V3-Hc-BZx-Flx-Wdy-Esqdg-Tlj-Hhfod-Dc-I20-Won-UGFm-X0-Kaz74-GDb-Zek-Bl2.jpg);">
     	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/rL6RRIOZyCM" 
+			data-src="https://www.youtube.com/embed/Ve_HGFCyCd8" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/ZKgV268/99-ADAE455-BB1-B27001.png);"></li>
-    <li style="background-image: url(https://i.ibb.co/m6ZkdSd/9903-BA4-C5-D5-C9-B3430.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/XkpFN6v/9904-E7375-D5-C99942-E.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/2Y4hsY0/img-1.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/bvLCLJ7/53510cfb-c4d0-4fab-8073-8306b8c3db98.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/VMBnTjd/image-1355343481544086407962.png);"></li>
   </ul>
   <p class="pos">
  
@@ -53,15 +53,15 @@
       <div class="film_info_top">
       	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            아이, 로봇
+            이글아이
          </p>
          <br />
-		 <span>i, Robot</span>
+		 <span>Eagle Eye</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>2004</li>
-            <li>110min</li>
-            <li>15 +</li>
+            <li>2008</li>
+            <li>119min</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 
@@ -72,15 +72,16 @@
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         영화의 배경은 가까운 미래인 2035년의 시카고이다. 로봇회사 USR의 신형 로봇 모델인 'NS-5'의 출시를 앞두고, 개발자인 래닝 박사(제임스 크롬웰)가 숨지는 사건이 발생한다. 형사인 델 스프너(윌 스미스)가 수사를 개시하고, 캘빈 박사(브리짓 모이나한)가 이를 도우면서 이야기가 시작된다. 
+         평범한 청년 제리(샤이아 라보프)의 통장에 의문의 75만불이 입금 된다. 집에는 각종 무기와 자신의 이름으로 된 여러 개의 여권들이 배달되어있다. 그리고 걸려온 전화의 차가운 목소리는 "30초 후, FBI가 닥칠 테니, 도망갈 것"을 명령한다. 결국 테러리스트로 몰리게 된 제리는 FBI의 추격전에서, 아들의 목숨을 담보로 전화 지시에 따르고 있는, 같은 처지의 레이첼(미셀 모나한)을 만나게 되고, 이 둘은 거대한 사건 속으로 빠져들게 된다.
+  핸드폰, 현금지급기, 거리의 CCTV, 교통안내 LED사인보드, 신호등 등 그들 주변의 전자장치와 시스템이 그들의 행동을 조종한다. 그들은 선택되었고, 살기 위해선 복종해야 한다. 과연 그것의 정체는 무엇인가? 왜 그들은 선택되었는가? 
          </div>
       </div>
 
       <div id="pg_note" class="pg_note">
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
-            <p>&lt;아이로봇&gt;
-            은 할리웃 톱스타 윌 스미스의 출연 뿐 아니라 아카데미 수상을 통해 실력을 인정받은 스텝들의 참여로 제작 초기부터 이슈를 만들었다. 수많은 뮤직 비디오 제작과 SF영화 &lt;다크 시티&gt;와 &lt;크로우&gt; 등에서 보여준 감각적인 영상미로 두터운 팬층을 확보하고 있는 알렉스 프로야스 감독과 &lt;글라디에이터&gt;로 아카데미 비주얼 효과상을 수상한 존 넬슨, &lt;반지의 제왕&gt;으로 역시 아카데미에서 수상한 뉴질랜드의 비주얼 이펙트 팀 WETA, 그리고 &gt;인디펜던스 데이&gt;의 타투포우로스가 그 핵심 멤버. 그들이 &lt;아이,로봇&gt; 제작에 참여한다는 소식이 전해지자 SF영화 팬들은 지금껏 보여지지 않은 새로운 스타일의 영화를 볼 수 있을 거란 기대감에 열광했다. 지금까지 그려진 미래와 전혀 다른 미래 세계를 만들고 싶어하는 프로야스 감독의 깐깐한 눈높이를 맞추기 위해 스텝들은 영화 전반에 걸쳐 로케이션 촬영과 특별 제작된 세트, CG를 병행해야만 했다. 이는 최첨단 기술로 만들어진 디지털 캐릭터인 "써니" 뿐 아니라 다른 로봇들이 등장하는 1000커트가 넘는 장면들을 고작 수백명의 엑스트라를 동원해 수만의 로봇들로 재창조하는 과정을 통해 &lt;아이,로봇&gt;은 CG 역사상 가장 복잡하고 다양한 형태의 테크닉이 총동원된 기록을 남겼다.
+            <p>
+            &lt;라이언 일병 구하기&gt; &lt;마이너리티 리포트&gt; &lt;우주 전쟁&gt; &lt;트랜스포머&gt; 등으로 전세계 영화팬의 사랑을 받아온 스티븐 스필버그의 드림웍스가 2008 초대형 프로젝트를 공개했다. 세상을 조종하는 또 하나의 눈 '이글 아이'라는 미지의 존재에 관한 초대형 액션 스릴러가 바로 그것이다! &lt;이글 아이&gt;의 컨셉은 10년 전부터 스필버그가 개발해온 것으로 알려져 있다. 그의 첫 번째 발상은‘주변의 기계들이 우리의 삶을 지배한다’는 내용. 그러나 그 아이디어는 현실화 될 수 없었다. 이 흥미로운 스릴러의 내러티브를 영상으로 구현할 테크놀로지가 현재만큼 발전하지 못했었기 때문이다. 그러나 2006년, 스필버그는 자신의 아이디어를 &lt;미션 임파서블3&gt; &lt;트랜스포머&gt;의 각색자인 알렉스 커츠먼과 로베르토 오씨에게 넘김으로써 현실화시킨다.
             </p>
          </div>
       </div>
@@ -105,7 +106,7 @@
 					<th class="time en">2022-01-08 | 20:00</th>
 					<td class="theater">KH ITFF 1관</td>
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -122,7 +123,7 @@
 					<td class="theater">KH ITFF 5관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -138,7 +139,7 @@
 					<td class="theater">KH ITFF 3관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -154,7 +155,7 @@
 					<td class="theater">KH ITFF 5관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -180,16 +181,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/cxYm5JP/11-48-58-568f239a83fde-X252-310.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/GW3bGDk/movie-image-1.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">알렉스 프로야스</strong><span class="mt10 en">Alex Proyas</span></div>
+							<div class="dir_name"><strong class="kor">D.J. 카루소</strong><span class="mt10 en">D.J. Caruso</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								10살 때 영화를 만들기 시작했고 두 편의 단편 '소녀 자신의 이야기'(1984년)와 그가 촬영한 '열정의 순간'(1985년)을 작업했다. 스피릿 오브 에어, 그렘린스 오브 더 클라우드 (1987)는 프로야스의 감독 겸 시나리오 작가로서의 장편 데뷔작이었다.
+								감독이자 동시에 제작자의 경험을 갖추고 있기도 한 그는 심리 스릴러물을 다루는데 아주 탁월한 능력을 가지고 있다고 정평이 나 있다. 차기작은 역시 드림웍스 제작, 스티븐 스필버그의 아이디어로 만들어질 &lt;이글 아이&gt;. 이번에도 또 한번 샤이아 라보프를 선택, 완벽한 팀워크를 선보일 예정이다.
 								</span>
 							</p>
 							</div>
@@ -208,23 +209,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Laurence Mark</span>
+						<span class="en">Steven Spielberg</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en">Will Smith, Bridget Moynahan, Bruce Greenwood</span>
+						<span class="en">Shia LaBeouf, Michelle Monaghan</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en">Will Smith</span>
+						<span class="en"> Roberto Orci </span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en">Akiva Goldsman </span>
+						<span class="en">Steven Spielberg</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">Wyck Godfrey </span>
+						<span class="en">Brian Tyler</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->

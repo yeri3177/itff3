@@ -44,5 +44,10 @@ public class ProgramController {
 	@GetMapping("/synopsis/iRobot.do")
 	public void iRobot() {}
 	
+	@GetMapping("/synopsis/eagleEye.do")
+	public void eagleEye() {}
+	
+	@GetMapping("/synopsis/password.do")
+	public void password() {}
 	
 }
