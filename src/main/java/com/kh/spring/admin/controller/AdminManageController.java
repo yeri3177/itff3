@@ -303,7 +303,7 @@ public String adminMemberList(
 		}
 		
 		
-		return "redirect:/admin/adminGoodsDetail.do";
+		return "redirect:/admin/adminGoodsList.do";
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////
