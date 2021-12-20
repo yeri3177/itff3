@@ -8,7 +8,7 @@ ul,li {
    list-style:none;
 }
 #slide {
-   height: auto;
+   height: 1100px;
    position:relative;
   
 }
@@ -25,7 +25,7 @@ ul,li {
 #slide li {
    float:left;
    width:25%;
-   height:100%;
+   height:1100px;
 }
 #slide li:nth-child(1) {
    
@@ -64,7 +64,7 @@ ul,li {
 #slide .pos {
    text-align:center;
    position:absolute;
-   bottom:20px;
+   bottom: 20px;
    left:0;
    width:100%;
    text-align:center;
@@ -168,7 +168,7 @@ ul,li {
 .btn_play_trailer {
     display: block;
     position: absolute;
-    bottom: 33px;
+    bottom: 35px;
     right: 50px;
     background-color: #34495e;
     border-color: #34495e;
