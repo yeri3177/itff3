@@ -79,12 +79,12 @@
 	
 	<select id="findChatLog" resultType="chatLog">
 	  	select
-		    no,
-		    chat_id,
-		    (select member_id from chat_member where chat_id = CL.chat_id and member_id != 'admin') member_id,
-		    msg,
-		    log_time,
-		    (select count(*) from chat_log where chat_id = CL.chat_id and log_time > (select last_check from chat_member where chat_id = CL.chat_id and member_id = 'admin')) unread_count
+	    	no,
+	        chat_id,
+	        (select member_id from chat_member where chat_id = CL.chat_id and member_id != 'admin') member_id,
+	        msg,
+	        log_time,
+	        (select count(*) from chat_log where chat_id = CL.chat_id and log_time > (select last_check from chat_member where chat_id = CL.chat_id and member_id = 'admin')) unread_count
 		from (
 		    select
 		        CL.*,
@@ -104,8 +104,7 @@
 		<result column="msg" property="msg"/>
 		<result column="log_time" property="logTime"/>
 	</resultMap>
-	
-	  
+		  
   <update id="updateLastCheck">
   	update
   		chat_member
