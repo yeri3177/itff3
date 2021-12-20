@@ -125,7 +125,9 @@ $(sendBtn).click((e) => {
 	// publishUrl, headers, msg(json)
 	stompClient.send("/app/chat/${chatId}", {}, JSON.stringify(obj));
 	
-	$(message).val(''); // 초기화
+	$(message).val('').focus; // 초기화
+	
+	window.setTimeout('window.location.reload()', 10000);
 		
 });
 
@@ -133,7 +135,6 @@ $(sendBtn).click((e) => {
    $(message).keyup((e) => {
        if(e.keyCode == 13) {
            $(sendBtn).trigger('click');
-       		location.reload();
        }
    });
 
@@ -153,12 +154,12 @@ const lastCheck = () => {
 };
 
 </script>
-
+ 
 <script>
+
 $('#messages')
 .stop()
-.animate({ scrollTop: $('#messages')[0].scrollHeight }, 1000);
-
+.animate({ scrollTop: $('#messages')[0].scrollHeight }, 500);
 
 </script>
 
