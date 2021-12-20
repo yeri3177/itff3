@@ -22,7 +22,7 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/Nt3VLSt/17-52-31-564edf4f98647-H800.jpg);">
+    <li style="background-image: url(https://i.ibb.co/NpHRyHd/8n-Bx9-T56-Gz-ARm-Hq-AZ7y-Pf-Z3-X3o-W.jpg);">
     	
 		<button 
 			type="button" 
@@ -33,9 +33,9 @@
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/D5wSG97/60rg-A3s-Oh-Rn-J2-md-KIJcfg.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/fp8xk5d/M0020027-007-1-H800.jpg); "></li>
     <li style="background-image: url(https://i.ibb.co/ZTbTHnm/AAAABfz-Bso-Hw-Ttv-CG9kc1b-Edk5w-O98fu5-NO2dz-Qoe-GLPjrbr2-Ip-ZGZUdoua9-LYHc9g-j8-Xro-Jgq-Oodr2p-VEp.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/7YHF2X8/movie-image-17.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/vJ0g0x3/unnamed-3.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -55,7 +55,7 @@
             미션임파서블: 고스트 프로토콜
          </p>
          <br />
-		 <span>MissionL Impossible - Ghost Protocol </span>
+		 <span>Mission: Impossible - Ghost Protocol </span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
             <li>2011</li>
