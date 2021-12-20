@@ -50,4 +50,10 @@ public class ProgramController {
 	@GetMapping("/synopsis/password.do")
 	public void password() {}
 	
+	@GetMapping("/synopsis/gattaca.do")
+	public void gattaca() {}
+	
+	@GetMapping("/synopsis/thirteen.do")
+	public void thirteen() {}
+	
 }

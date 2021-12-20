@@ -83,13 +83,13 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do" class="film_thumb">
 							<img src="https://i.ibb.co/nCCyPWB/unnamed.jpg" class="poster" alt="가타카">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">보안/암호학</span>
 							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">가타카</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do" class="film_tit">가타카</a>
 								<small class="dir">Gattaca</small>
 								<div class="dir">
 									<p>앤드루 니콜 <span class="en">Andrew Niccol</span></p>
