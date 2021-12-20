@@ -1,6 +1,7 @@
 package com.kh.spring.chat.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,16 @@ public class ChatDaoImpl implements ChatDao {
 	@Override
 	public List<ChatLog> findRecentChatLog() {
 		return session.selectList("chat.findRecentChatLog");
+	}
+	
+	@Override
+	public List<ChatLog> findChatLog() {
+		return session.selectList("chat.findChatLog");
+	}
+	
+	@Override
+	public int updateLastCheck(Map<String, Object> fromMessage) {
+		return session.update("chat.updateLastCheck", fromMessage);
 	}
 
 	
