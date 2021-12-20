@@ -53,5 +53,17 @@ public class GoodsController {
 		
 		return "goods/goodsList";
 	}
+	
+	@GetMapping("/sellerInfo.do")
+	public String sellerInfo() {
+		
+		return "goods/sellerInfo";
+	}
+	
+	@GetMapping("/goodsQna.do")
+	public String goodsQna() {
+		
+		return "goods/goodsQna";
+	}
 
 }

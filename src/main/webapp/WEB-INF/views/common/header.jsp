@@ -167,8 +167,8 @@
 											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="menu_drop">전체상품</a></li>
-													<li><a href="#" class="menu_drop">묻고 답하기</a></li>
-													<li><a href="#" class="menu_drop">판매자정보</a></li>
+													<li><a href="${pageContext.request.contextPath}/goods/goodsQna.do" class="menu_drop">묻고 답하기</a></li>
+													<li><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" class="menu_drop">판매자정보</a></li>
 												</ul>
 											</li>
 																		
