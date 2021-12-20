@@ -58,11 +58,12 @@
 		</div>
 </div>
 <div>
-		<div class="chat_container">
+		<div class="chat_container" id="messages">
 		<ul class="list-group list-group-flush" id="data">
-			<c:forEach items="${list}" var="chatLog">
+		<c:forEach items="${list}" var="chatLog">
 				<li class="list-group-item">${chatLog.memberId eq "admin" ? "관리자" : chatLog.memberId} : ${chatLog.msg}</li>
-			</c:forEach>
+		</c:forEach>
+
 		</ul>
 	</div>
 </div>
@@ -79,17 +80,21 @@
 </body>
 
 <script>
+
 // websocket 연결(SockJS)
 const ws = new SockJS(`http://\${location.host}${pageContext.request.contextPath}/stomp`);
+
 // StompClient객체 생성
 const stompClient = Stomp.over(ws);
+
 // connect
 stompClient.connect({}, (frame) => {
+	
 	// 구독신청 및 핸들러 등록
 	stompClient.subscribe("/chat/${chatId}", (message) => {
 		console.log("message : ", message);
 		const {memberId, msg} = JSON.parse(message.body);
-		$(data).append(`<li class="list-group-item">\${memberId} : \${msg}</li>`);
+		$(data).append(`<li class="list-group-item">\${memberId} : \${msg} </li>`);
 	});	
 
 	// 팝업생성, stompClient가 연결되면 chat_member.last_check컬럼을 update한다.
@@ -121,16 +126,25 @@ $(sendBtn).click((e) => {
 	stompClient.send("/app/chat/${chatId}", {}, JSON.stringify(obj));
 	
 	$(message).val(''); // 초기화
-	
+		
 });
+
+	// 엔터키 쳐도 전송되게 하기
+   $(message).keyup((e) => {
+       if(e.keyCode == 13) {
+           $(sendBtn).trigger('click');
+       		location.reload();
+       }
+   });
 
 /**
  * 관리자 채팅방 마지막 확인시각을 메세지로 발행 -> db chat_member.last_check update
  */
 const lastCheck = () => {
+	
 	const data = {
 			chatId : "${chatId}",
-			memberId : "${loginMember.id}",
+			memberId : "${memberId}",
 			lastCheck : Date.now(),
 			type : "LAST_CHECK"
 	};
@@ -138,7 +152,15 @@ const lastCheck = () => {
 	stompClient.send("/app/lastCheck", {}, JSON.stringify(data));
 };
 
+</script>
+
+<script>
+$('#messages')
+.stop()
+.animate({ scrollTop: $('#messages')[0].scrollHeight }, 1000);
+
 
 </script>
+
 </html>
 

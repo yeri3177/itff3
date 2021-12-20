@@ -97,7 +97,7 @@ table.table th, table.table td {text-align: center;}
 		  		<td>${chatLog.memberId}</td>
 		  		<td class="msg">${chatLog.msg}</td>
 		  		<td>
-<%-- 		  			<span class="unread-count badge badge-danger ${chatLog.unreadCount eq 0 ? 'd-none' : ''}">${chatLog.unreadCount}</span> --%>
+		  			<span class="unread-count badge badge-danger ${chatLog.unreadCount eq 0 ? 'd-none' : ''}">${chatLog.unreadCount}</span>
 		  		</td>
 		  	</tr>
 	  	</c:forEach>

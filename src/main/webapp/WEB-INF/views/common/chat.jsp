@@ -100,7 +100,7 @@
 		</div>
 </div>
 <div>
-		<div class="chat_container">
+		<div class="chat_container" id="messages">
 		<ul class="list-group list-group-flush" id="data">
 			<c:forEach items="${list}" var="chatLog">
 				<li class="list-group-item">${chatLog.memberId} : ${chatLog.msg}</li>
@@ -152,6 +152,14 @@ $(sendBtn).click((e) => {
 	console.log(obj);
 	stompClient.send("/app/chat/${chatId}", {}, JSON.stringify(obj));
 	$(message).val(''); // #message 초기화
+});
+
+// 엔터키 쳐도 전송되게 하기
+$(message).keyup((e) => {
+    if(e.keyCode == 13) {
+        $(sendBtn).trigger('click');
+        location.reload();
+    }
 });
 
 </script>
