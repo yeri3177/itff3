@@ -110,15 +110,29 @@ public class MemberController {
 		// 1. 업무로직
 		int result = memberService.insertMember(member);
 		
-		// 2. 메일 전송
+		return "member/memberEnrollComplete";
+	}
 		
-		//인증키 생성
+//	@GetMapping("/memberMailWaiting.do")
+//	public String memberMailWaiting() {
+//				
+//		
+//		return "/member/memberMailWaiting";
+//	}
+	
+	@PostMapping("/memberMailWaiting")
+	public void memberMailWaiting(Model model, @RequestParam String memberEmail) {
+		log.debug("memberEmail = {}", memberEmail);
+		
+		// 메일 전송
+
+		// 인증키 생성
         String authKey = HiSpringUtils.getRandomChatId(); //난수가 저장될 변수
         
 		String subject = "ITFF 회원가입 인증 메일입니다.";
         String content = authKey;
         String from = "gproject0000@gmail.com";
-        String to = member.getEmail();
+        String to = memberEmail;
 		
         try {
             MimeMessage mail = mailSender.createMimeMessage();
@@ -149,25 +163,17 @@ public class MemberController {
             e.printStackTrace();
         }
         
-//        HiSpringUtils.mailSend(subject, content, from, to);
+//		        HiSpringUtils.mailSend(subject, content, from, to);
         
         model.addAttribute("authKey", authKey);
         
 		// 3. 리다이렉트 & 사용자피드백 전달
         
         log.debug("authKey = {}", authKey);
-//      redirectAttr.addAttribute("authKey", authKey);
-//		redirectAttr.addFlashAttribute("msg", "회원가입성공");
-		
-		return "member/memberMailWaiting";
+//		      redirectAttr.addAttribute("authKey", authKey);
+//				redirectAttr.addFlashAttribute("msg", "회원가입성공");
 	}
-		
-	@GetMapping("/memberMailWaiting.do")
-	public String memberMailWaiting() {
-				
-		
-		return "/member/memberMailWaiting";
-	}
+	
 	
 	
 	/**

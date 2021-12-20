@@ -4,30 +4,26 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="" name="title"/>
-</jsp:include>
 
-	<h1>메일인증페이지</h1>
-	<div>남은시간 : <div id="demo"/></div>
-	<div><c:out value="${authKey}"></c:out></div>
-	<form
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<h1>메일이 전송되었습니다. 받으신 인증키를 입력해주세요.</h1>
+	<div>남은시간 : <div id="demo"></div>
+	
+		<%-- <input type="text" value="${authKey}" /> --%>
+		<input type="text" id="authKey" name="authKey" placeholder="인증키 입력..."/>	
+		<input type="button" onclick="checkCode();" value="제출" />
+	</div>
+	<%-- <form
 		name="memberEmailCheckFrm"
-		action="${pageContext.request.contextPath}" 
+		action="${pageContext.request.contextPath}/" 
 		class="chk_email" 
 		method="GET">
 		<input type="text" value="${authKey }" />
 		<input type="text" id="authKey" name="authKey" placeholder="인증키를 넣어주세요"/>	
 		<input type="button" id="re-authkey" name="re-authkey" value="재전송"/>
 		<input type="submit" placeholder="제출" />
-	</form>
-
-<script>
-$(document).ready(function() {
-    console.log($(authKey));
-    
-}); 
-</script>
+	</form> --%>
 
 <script>
 var time = 600; //기준시간 작성
@@ -56,7 +52,7 @@ var time = 600; //기준시간 작성
 	}, 1000);
  
 // 폼 제출시 검사	
-$("[name=memberEmailCheckFrm]").submit(function(){
+/* $("[name=memberEmailCheckFrm]").submit(function(){
 	
 	
 	
@@ -70,8 +66,20 @@ $("[name=memberEmailCheckFrm]").submit(function(){
 		return false;
 	}
 	return true;
-});
+}); */
+
+const checkCode = () => {
+	
+	if($(authKey).val() != "${authKey}") {
+		
+		alert("인증번호가 틀립니다. 다시입력해주세요.");
+		$(authKey).focus();
+		return false;
+	}
+	
+	$("#emailValid", opener.document).val(1);
+	close();
+};
 
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 		
