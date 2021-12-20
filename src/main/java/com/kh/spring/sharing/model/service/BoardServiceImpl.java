@@ -34,6 +34,11 @@ public class BoardServiceImpl implements BoardService {
 	 * 트랜잭션 처리
 	 * - 여러건의 dml이 모두 성공/ 실패로 처리되어야 하는 최소단위
 	 */
+
+	@Override
+	public int insertBoard(Board board) {
+		return boardDao.insertBoard(board);
+	}
 	
 //	@Override
 //	@Transactional(

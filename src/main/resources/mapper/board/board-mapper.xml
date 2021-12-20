@@ -20,4 +20,16 @@
 	from
 		ticket_sharing_board
 </select>
+
+<insert id="insertBoard" parameterType="board">
+	insert into
+		board(no, member_id, title, content, category)
+	values(
+		seq_ticket_sharing_board_no.nextval,
+		#{memberId},
+		#{title},
+		#{content},
+		#{category}
+	)
+</insert>
 </mapper>
