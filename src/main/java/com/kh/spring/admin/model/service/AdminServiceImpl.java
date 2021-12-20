@@ -72,5 +72,39 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectMemberTotalCount();
 	}
 
+	@Override
+	public Goods selectOneGoods(int pId) {
+		return adminDao.selectOneGoods(pId);
+	}
+
+	@Override
+	@Transactional(
+			propagation = Propagation.REQUIRED, 
+			isolation = Isolation.READ_COMMITTED, 
+			rollbackFor = Exception.class 
+	)
+	public int updateGoods(Goods goods) {
+		int result = 0;
+		
+		try {
+			// goods insert
+			result = adminDao.updateGoods(goods);
+			log.debug("goods.getPId = {}", goods.getPId());
+			
+			// attachment insert
+			List<Attachment> attachments = goods.getAttachments();
+			if(attachments != null) {
+				for(Attachment attach : attachments) {
+					attach.setBoardNo(goods.getPId()); // fk컬럼값 세팅(필수)
+					result = adminDao.insertAttachment(attach);
+				}
+			}
+		} catch (Exception e) {
+			// 사용자정의예외(RuntimeException)로 전환 던짐
+			throw new AdminException("상품/첨부파일 등록 오류", e);
+		}
+		return result;
+	}
+
 
 }
