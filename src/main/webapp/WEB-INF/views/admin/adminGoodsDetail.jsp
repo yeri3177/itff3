@@ -238,7 +238,7 @@
 				        </button>
 				      </div>
 				      <div class="modal-body">
-				      <input type="hidden" name="pId" />
+				      <input type="hidden" name="pId" value="${goods.PId }" />
 				        정말 삭제하시겠습니까?
 				      </div>
 				      <div class="modal-footer">

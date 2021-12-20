@@ -221,14 +221,10 @@ section#main-content {
 				</ul>
 			</div>
 		</div>
-
 		<h2 class="main_tit en">NEWS</h2>
-
 	</div>
-
 </div>
 </div>
-
 
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
