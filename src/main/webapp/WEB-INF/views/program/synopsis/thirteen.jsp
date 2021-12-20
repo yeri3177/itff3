@@ -179,7 +179,7 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/4jdjd9D/Kakao-Talk-20211220-151124069.png" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/LpT3Y4s/josef-rusnak-ce82e52b-e128-4d2b-aeaa-50bde254890-resize-750.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
