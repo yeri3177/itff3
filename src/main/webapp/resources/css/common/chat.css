@@ -1,20 +1,15 @@
 @charset "UTF-8";
 
-
-
-
 .chat_body {
 	padding: 20px;
+	background-color: #e5e5e5 !important;
 }
-
-/* .input-group { */
-/* 	bottom: -370px; */
-/* } */
 
 .chat_container {
 	width: 470px;
 	height: 570px;
 	overflow-y: scroll;
+	flex-direction:column_reverse;
 	white-space: nowrap;
 	padding-right: 5px;
 }

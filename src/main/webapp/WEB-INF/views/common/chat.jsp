@@ -131,7 +131,7 @@ stompClient.connect({}, (frame) => {
 	console.log("Stomp Client Connect : ", frame);
 	
 	// 3.구독요청
-	stompClient.subscribe("/chat/${chatId}", (message) => {
+	stompClient.subscribe("/chat/admin", (message) => {
 		console.log("message : ", message);
 		const obj = JSON.parse(message.body);
 		console.log(obj);
@@ -158,8 +158,16 @@ $(sendBtn).click((e) => {
 $(message).keyup((e) => {
     if(e.keyCode == 13) {
         $(sendBtn).trigger('click');
-        location.reload();
     }
 });
+
+</script>
+
+<script>
+$('#messages')
+.stop()
+.animate({ scrollTop: $('#messages')[0].scrollHeight }, 1000);
+
+window.setTimeout('window.location.reload()', 10000);
 
 </script>
