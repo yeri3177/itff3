@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/programCommon.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/programSearch.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 
@@ -54,61 +54,21 @@
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
-<div class="page page2-2">
-	<div class=" container">
-
-		<div class="container-l">
-			<div id="pg_wrap">
-				<div class="pgl row">
-					<!-- col-md-4  col-lg-3 -->			
-					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1628053788.jpg" class="poster" alt="행복의 나라로">
-						</a>
-						<div class="fighting">
-							<span class="sectionName mt20">개막작</span>
-							<div class="txtbox">
-								<a href="prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2" class="film_tit">행복의 나라로</a>
-								<small class="dir">Heaven: To the Land of Happiness</small>
-								<div class="dir">
-									<p class="dir_p">임상수 <span class="en">IM Sang-soo</span></p>
-								</div>
-								<ul class="film_info">
-									<li class="en">Korea</li>
-									<li class="en">2021</li>
-									<li class="en">101min</li>
-								</ul>
-							</div>
-						</div>
-					</div>					
-
-					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_thumb">
-							<img src="https://img.biff.kr/9611_DATA/FILM_PHOTO/2021/1630903356.jpg" class="poster" alt="매염방">
-						</a>
-						<div class="fighting">
-							<span class="sectionName mt20">폐막작</span>
-							<div class="txtbox">
-								<a href="prog_view.asp?idx=55943&amp;c_idx=353&amp;sp_idx=510&amp;QueryStep=2" class="film_tit">매염방</a>
-								<small class="dir">Anita</small>
-								<div class="dir">
-									<p>렁록만 <span class="en">Longman LEUNG</span></p>
-								</div>
-								<ul class="film_info">
-									<li class="en">Hong Kong, China</li>
-									<li class="en">2021</li>
-									<li class="en">136min</li>
-								</ul>
-							</div>
-						</div>
-					</div>					
-				</div>	
-			</div>	
-
-			<div class="pagenation" style="display:none;">
-				<i class="current">1</i>   
-			</div>
-		</div>
+<div class="search_wrap">
+	<span class="hide">
+	<select name="SearchField" title="검색방법선택" onchange="onSerch_tb(this)" style="vertical-align: top; padding: 12px 10px;">
+		<option value="m_title">작품명</option>
+		<option value="d_name_kor">감독명</option>
+	</select>
+	</span>
+	<div class="inp_search_wrap" style="display:inline-flex;">
+		<input name="SearchQuery1" id="SearchQuery1" type="text" size="30" value="" class="inp_search text ac_input" title="검색어를 입력하세요" placeholder="상영작, 감독 검색" autocomplete="off" style="display:block;">
+		<input name="SearchQuery2" id="SearchQuery2" type="text" size="30" value="" class="inp_search text ac_input" title="검색어를 입력하세요" placeholder="감독 검색" autocomplete="off" style="display:none;">
+		
+		<button class="sbtn" onclick="topGoodsSearch()">
+			<img src="https://www.biff.kr/kor/img/program/btn_search.png" alt="검색" class="wview">
+			<!-- <img src="//kor/img/program/btn_search_m.png" alt="검색" class="mview"> -->
+		</button>
 	</div>
 </div>
 
