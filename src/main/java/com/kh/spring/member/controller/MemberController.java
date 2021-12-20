@@ -6,10 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -34,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -298,7 +301,43 @@ public class MemberController {
 		return "redirect:/member/memberDetail.do";
 	}
 	
-	
+	@GetMapping("/memberWrittenBoardList.do")
+	public String memberWrittenBoard(
+			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
+			Model model,
+			HttpServletRequest request,
+			Authentication authentication
+			) {
+		
+		Member member = (Member) authentication.getPrincipal();
+		
+		String id = member.getId();
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.전체 게시글 목록 가져오기(첨부파일 갯수 포함)
+		List<Board> list = memberService.selectBoardListByMemberId(offset, limit, id);
+		log.debug("BoardList = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 총 게시물 수 가져오기
+		int totalContent = memberService.selectBoardTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); // /spring/sharing/boardList.do
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		
+		return "/member/memberWrittenBoardList";
+	}
 	
 	/**
 	 * jsonView 빈을 이용해서 json응답메시지를 출력
