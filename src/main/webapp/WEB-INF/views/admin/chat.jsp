@@ -170,5 +170,6 @@ table.table th, table.table td {text-align: center;}
 		open(url, name, spec);
 	});
 	
+	window.setTimeout('window.location.reload()', 10000);
 	
 	</script>

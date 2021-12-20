@@ -10,4 +10,6 @@ public interface BoardDao {
 
 	int selectBoardTotalCount();
 
+	int insertBoard(Board board);
+
 }

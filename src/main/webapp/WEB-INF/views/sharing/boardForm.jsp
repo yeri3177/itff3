@@ -43,13 +43,31 @@ $(() => {
 });
 
 </script>
+<br />
+<br />
+<br />
+<br />
+<br />
 <div id="board-container">
 	<form 
 		name="boardFrm" 
-		action="${pageContext.request.contextPath}/board/boardEnroll.do" 
+		action="${pageContext.request.contextPath}/sharing/boardEnroll.do" 
 		method="post" 
 		enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
+		
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <label class="input-group-text" for="inputGroupSelect01">종류</label>
+	  </div>
+	  <select class="custom-select" id="inputGroupSelect01" name="category" >
+	    <option selected>종류를 선택해 주세요</option>
+	    <option value="P">티켓구함</option>
+	    <option value="S">티켓양도</option>
+	    <option value="R">티켓교환</option>
+	  </select>
+	</div>
+		
 		<input type="text" class="form-control" placeholder="제목" name="title" id="title" required>
 		<input type="text" class="form-control" name="memberId" value="${loginMember.id}" readonly required>
 		<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
@@ -78,4 +96,9 @@ $(() => {
 		<input type="submit" class="btn btn-outline-success" value="저장" >
 	</form>
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
