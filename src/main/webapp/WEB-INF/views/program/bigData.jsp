@@ -25,19 +25,19 @@
 				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/security.do">보안/암호학</a>
+				<a href="${pageContext.request.contextPath}/program/security.do">보안·암호학</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top">가상현실/딥 러닝</a>
+				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top">가상현실·딥 러닝</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top" style="font-weight: bold;">빅 데이터/컴퓨팅</a>
+				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top" style="font-weight: bold;">빅 데이터·컴퓨팅</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼/사물 인터넷</a>
+				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼·사물 인터넷</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력/디버깅</a>
+				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력·디버깅</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/programSearch.do" target="_top">#작품검색</a>
@@ -49,7 +49,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">빅 테이터/컴퓨팅</h2>
+		<h2 class="en">빅 테이터·컴퓨팅</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
@@ -66,7 +66,7 @@
 							<img src="https://i.ibb.co/br6rzx0/17-06-43-5cf7781317799-H800.jpg" class="poster" alt="그녀">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">빅데이터/컴퓨팅</span>
+							<span class="sectionName mt20">빅데이터·컴퓨팅</span>
 							<div class="txtbox">
 								<a href="${pageContext.request.contextPath }/program/synopsis/her.do" class="film_tit">그녀</a>
 								<small class="dir">Her</small>
@@ -87,7 +87,7 @@
 							<img src="https://i.ibb.co/njnk0PP/20161101-0402.jpg" class="poster" alt="시티즌포">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">빅데이터/컴퓨팅</span>
+							<span class="sectionName mt20">빅데이터·컴퓨팅</span>
 							<div class="txtbox">
 								<a href="${pageContext.request.contextPath }/program/synopsis/citizenFour.do" class="film_tit">시티즌포</a>
 								<small class="dir">Citizenfour</small>

@@ -25,19 +25,19 @@
 				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/security.do">보안/암호학</a>
+				<a href="${pageContext.request.contextPath}/program/security.do">보안·암호학</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top" style="font-weight: bold;">가상현실/딥 러닝</a>
+				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top" style="font-weight: bold;">가상현실·딥 러닝</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top">빅 데이터/컴퓨팅</a>
+				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top">빅 데이터·컴퓨팅</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼/사물 인터넷</a>
+				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼·사물 인터넷</a>
 			</li>
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력/디버깅</a>
+				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력·디버깅</a>
 			</li>
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/program/programSearch.do" target="_top">#작품검색</a>
@@ -49,7 +49,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">가상현실/딥 러닝</h2>
+		<h2 class="en">가상현실·딥 러닝</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
@@ -66,7 +66,7 @@
 							<img src="https://i.ibb.co/QPP8PBb/The-Thirteenth-Floor.jpg" class="poster" alt="13층">
 						</a>
 						<div class="fighting">
-							<span class="sectionName mt20">가상현실/딥러닝</span>
+							<span class="sectionName mt20">가상현실·딥러닝</span>
 							<div class="txtbox">
 								<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do" class="film_tit">13층</a>
 								<small class="dir">The thirteenth floor</small>
