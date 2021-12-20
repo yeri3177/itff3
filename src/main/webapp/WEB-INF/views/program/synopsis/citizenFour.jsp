@@ -21,20 +21,21 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/6vqcF3g/243-EF046532-AFD0501.png);">
-    	<!-- 13층 예고편 못찾아서 링크 매트릭스임 -->
+  
+    <li style="background-image: url(https://i.ibb.co/2qpH6d1/movie-image-1.png);">
+    	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/CSFUIGl0BL4" 
+			data-src="https://www.youtube.com/embed/Qcu-5MNJ0u4" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/fD9mWFx/The-Thirteenth-Floor.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/KV6DYHB/hqdefault.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/J2rmVZR/unnamed-2.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/mtgdnwX/movie-image-3.png);"></li>
+    <li style="background-image: url(https://i.ibb.co/bFNTP8m/movie-image.png); "></li>
+    <li style="background-image: url(https://i.ibb.co/X3XHkjy/movie-image-2.png);"></li>
   </ul>
   <p class="pos">
  
@@ -50,28 +51,30 @@
 <div class="film_info">
    <div class="container_">
       <div class="film_info_top">
-      	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            13층
+            시티즌포
          </p>
          <br />
-		 <span>The thirteenth floor</span>
+		 <span>CitizenFour</span>
          <ul class="list_film_info list-inline">
-            <li>미국 독일</li>
-            <li>1999</li>
-            <li>100min</li>
+            <li>미국</li>
+            <li>2014</li>
+            <li>114min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">virtual reality·deep running</strong>
+            <strong class="premiere en">Big data·Computing</strong>
          </p>
       </div>
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         잠에서 깨어난 컴퓨터 프로그래머 하논 퓰러(아민 뮐러-스탈)는 무언가 엄청난 사실을 발견하게 된다. 그는 자신의 동료 더글라스 홀(크레이그 비에르코)에게 그 사실을 알리기 위해 급히 메모를 남기고 술집으로 향한다. 하지만 하논은 그 날 밤 살해 당하고, 그의 동료 더글라스가 의심을 받게 된다. 더글라스는 자신의 침실에서 죽은 하논의 피묻은 셔츠를 발견하지만, 지난 밤 무슨 일이 있었는지 기억할 수가 없다. 그는 하논과 함께 1937년대 L.A.를 재현한 시뮬레이션 게임을 개발 중이었다. 그는 하논이 남겨둔 편지를 찾기 위해 그 게임에 들어가 놀라운 사실을 발견하게 된다. 
+			스노든이 2013년 1월 “시티즌포”라는 ID로 접촉해왔을 당시 포이트라스 감독은 2년 동안 정부 감시에 대한 영화를 작업 중이었다.
+ 스노든은 포이트라스가 오랫동안 정부 감시 리스트에 올라 공항을 이용할 때마다 심문을 당했지만 이에 굴하지 않았다는 사실을 알았기 때문에 포이트라스에게 접근했다.
+ 자신이 정보 기관의 수석 분석가이며 미국 국가안보국(NSA)의 미국인 대량 감시를 폭로하겠다는 뜻을 스노든이 밝히자 포이트라스는 그를 설득해 촬영을 하기로 한다.
+ 포이트라스와 그린월드, 스노든은 쏟아지는 언론의 관심을 피해가며 호텔방에 모여 자신과 주변 사람들의 인생에 커다란 영향을 줄 결정을 내린다
          </div>
       </div>
 
@@ -79,7 +82,8 @@
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
             <p>
-            《13층》은 1999년 조세프 루스넥 감독이 만든 SF 영화로 1960년대 SF 소설인 대니얼 갤로이의 《시뮬라크론 3》를 원작으로 하였다. 같은 시기의 영화 《매트릭스》처럼 가상현실을 다룬 영화지만 가상과 현실을 오가는 데에서 《13층》은 한걸음 더 나아간다. 영화는 주인공의 정체성을 통해서 우리가 지각하는 세계의 진실성에 대해 의문을 제기한다.
+				다큐멘터리 감독인 로라 포이트라스는 미국정부의 개인정보 수집과 감시와 관련한 영화를 작업 중이었다. 그런데 어느날 ‘CITIZENFOUR’라는 아이디를 가진 익명의 제보자가 접근한다. 그는 자신을 미 정보기관 소속이라고 밝힌다. 그리고 미국 국가안보국이 미국민과 외국인 등을 상대로 무차별 대량 통신 감청을 벌였다며 이를 폭로하겠다고 의사를 밝힌다. 이때부터 실제 내용을 폭로하기까지가 영상으로 생생하게 담기게 됐다.
+‘CITIZENFOUR’라는 아이디를 벗고 모습을 드러낸 에드워드 스노든이 폭로한 내용은 경악할만한 내용들이었다. 미국이 다양한 감시프로그램을 운영 중이고, 구글, 페이스북 등 인터넷 사이트는 물론 각종 통신사 등을 통해 전 세계를 감청하고 있다는 사실이 밝혀졌다. 그리고 이를 증명하는 일급 기밀문서들이 쏟아진다. 광범위한 감청 범위와 정보 수집량은 상상을 초월했다. 결국 미국 정부는 에드워드 스노든을 보안법 위반과 간첩 혐의로 수배한다. 결국 에드워드 스노든은 러시아로 망명할 수밖에 없었다. 
             </p>
          </div>
       </div>
@@ -179,16 +183,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/4jdjd9D/Kakao-Talk-20211220-151124069.png" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/1bdXj77/1.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">조세프 루스넥</strong><span class="mt10 en">Josef Rusnak</span></div>
+							<div class="dir_name"><strong class="kor">로라 포이트러스</strong><span class="mt10 en">Laura Poitras</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								독일 출생. 25살 때 데뷔작 &lt;차가운 열병(Kaltes Fieber)&gt; (84)으로 독일 영화제에서 감독상을 받으면서 독일-프랑스 합작영화인 &lt;The Window of the Rouet&gt;, &lt;The House on the Canal&gt; &lt;Pinic at Checkpoint Charlie&gt; 등을 연속해서 연출하는 행운을 얻는다. 그의 실력을 눈 여겨 보던 독일 &lt;No strings Attached&gt;의 연출을 맡으면서 헐리웃 진출의 발판을 마련, &lt;13층&gt;을 통해 헐리웃에 데뷔하였다.
+								로라 포이트러스는 미국의 다큐멘터리 영화 감독이다. 에드워드 스노든을 다룬 다큐멘터리 영화 《시티즌포》로 2015년 아카데미 다큐멘터리 영화상을 수상하였다.
 								</span>
 							</p>
 							</div>
@@ -207,23 +211,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Roland Emmerich</span>
+						<span class="en">Mathilde Bonnefoy</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en"> Craig Bierko, Armin Mueller-Stahl, Gretchen Mol</span>
+						<span class="en">Eward Snowden, Laura Poitras</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en"> Joe Bauer</span>
+						<span class="en">David Menschel</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en"> Henry Richardson</span>
+						<span class="en">Mathilde Bonnefoy</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">Harald Kloser</span>
+						<span class="en">Kirsten Johnson</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->

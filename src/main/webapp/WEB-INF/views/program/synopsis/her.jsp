@@ -21,20 +21,21 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/6vqcF3g/243-EF046532-AFD0501.png);">
-    	<!-- 13층 예고편 못찾아서 링크 매트릭스임 -->
+  
+    <li style="background-image: url(https://i.ibb.co/fH0tWPM/movie-image-12.jpg);">
+    	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/CSFUIGl0BL4" 
+			data-src="https://www.youtube.com/embed/NHA69lCd1ZM" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/fD9mWFx/The-Thirteenth-Floor.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/KV6DYHB/hqdefault.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/J2rmVZR/unnamed-2.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/V31nZBX/movie-image-11.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/Sy8Ffgb/movie-image-13.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/12bxpZ5/movie-image-14.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -50,28 +51,28 @@
 <div class="film_info">
    <div class="container_">
       <div class="film_info_top">
-      	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            13층
+            그녀
          </p>
          <br />
-		 <span>The thirteenth floor</span>
+		 <span>Her</span>
          <ul class="list_film_info list-inline">
-            <li>미국 독일</li>
-            <li>1999</li>
-            <li>100min</li>
+            <li>미국</li>
+            <li>2013</li>
+            <li>126min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">virtual reality·deep running</strong>
+            <strong class="premiere en">Big data·Computing</strong>
          </p>
       </div>
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         잠에서 깨어난 컴퓨터 프로그래머 하논 퓰러(아민 뮐러-스탈)는 무언가 엄청난 사실을 발견하게 된다. 그는 자신의 동료 더글라스 홀(크레이그 비에르코)에게 그 사실을 알리기 위해 급히 메모를 남기고 술집으로 향한다. 하지만 하논은 그 날 밤 살해 당하고, 그의 동료 더글라스가 의심을 받게 된다. 더글라스는 자신의 침실에서 죽은 하논의 피묻은 셔츠를 발견하지만, 지난 밤 무슨 일이 있었는지 기억할 수가 없다. 그는 하논과 함께 1937년대 L.A.를 재현한 시뮬레이션 게임을 개발 중이었다. 그는 하논이 남겨둔 편지를 찾기 위해 그 게임에 들어가 놀라운 사실을 발견하게 된다. 
+         다른 사람의 편지를 써주는 대필 작가로 일하고 있는 ‘테오도르’는 타인의 마음을 전해주는 일을 하고 있지만 정작 자신은 아내와 별거 중인 채 외롭고 공허한 삶을 살아가고 있다.
+어느 날, 스스로 생각하고 느끼는 인공지능 운영체제 ‘사만다’를 만나게 되고, 자신의 말에 귀를 기울이며 이해해주는 ‘사만다’로 인해 조금씩 상처를 회복하고 행복을 되찾기 시작한 ‘테오도르’는 어느새 점점 그녀에게 사랑의 감정을 느끼게 되는데 
          </div>
       </div>
 
@@ -79,7 +80,7 @@
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
             <p>
-            《13층》은 1999년 조세프 루스넥 감독이 만든 SF 영화로 1960년대 SF 소설인 대니얼 갤로이의 《시뮬라크론 3》를 원작으로 하였다. 같은 시기의 영화 《매트릭스》처럼 가상현실을 다룬 영화지만 가상과 현실을 오가는 데에서 《13층》은 한걸음 더 나아간다. 영화는 주인공의 정체성을 통해서 우리가 지각하는 세계의 진실성에 대해 의문을 제기한다.
+				소통의 부재 속에서 외롭게 살아가는 작가와 스스로 생각하고 느끼며 성장하는 운영체제의 사랑과 소통을 그린 독창적인 러브 스토리 <그녀>는 해외 유수의 영화제에서 인정 받고 있는 스파이크 존즈 감독의 화제작으로 전세계 평단의 뜨거운 호평 속에 올해 가장 독창적인 로맨스라는 찬사를 받고 있는 작품이다. 스파이크 존즈 감독은 이 영화로 제86회 아카데미 각본상, 제71회 골든글로브 각본상, 미국작가협회 각본상, 센트럴오하이오비평가협회 작품상, 디자인상, 촬영상, 음악상을 수상하고 오스틴비평가협회 작품상, 각본상, 심사위원상, 특별명예상을 비롯한 전세계 유수의 영화제에서 43개 상을 휩쓸며 해외 언론과 평단들의 끊임없는 찬사를 받았다. 
             </p>
          </div>
       </div>
@@ -179,16 +180,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/4jdjd9D/Kakao-Talk-20211220-151124069.png" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/pr3XhkJ/image.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">조세프 루스넥</strong><span class="mt10 en">Josef Rusnak</span></div>
+							<div class="dir_name"><strong class="kor">스파이크 존즈</strong><span class="mt10 en">Spike Jonze</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								독일 출생. 25살 때 데뷔작 &lt;차가운 열병(Kaltes Fieber)&gt; (84)으로 독일 영화제에서 감독상을 받으면서 독일-프랑스 합작영화인 &lt;The Window of the Rouet&gt;, &lt;The House on the Canal&gt; &lt;Pinic at Checkpoint Charlie&gt; 등을 연속해서 연출하는 행운을 얻는다. 그의 실력을 눈 여겨 보던 독일 &lt;No strings Attached&gt;의 연출을 맡으면서 헐리웃 진출의 발판을 마련, &lt;13층&gt;을 통해 헐리웃에 데뷔하였다.
+								1969년 미국에서 태어난 스파이크 존즈 감독은 영화감독, 프로듀서, 각본가이자 배우이다. 이번 영화 &lt;그녀&gt;를 통해 제 86회 아카데미 각본상, 제 71회 골든글로브 각본상을 수상하였고 해외 유수 영화제에서 43회 수상하였다.
 								</span>
 							</p>
 							</div>
@@ -207,23 +208,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Roland Emmerich</span>
+						<span class="en"> Megan Ellison</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en"> Craig Bierko, Armin Mueller-Stahl, Gretchen Mol</span>
+						<span class="en">Joaquin Phoenix, Scarlett Johansson</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en"> Joe Bauer</span>
+						<span class="en"> K.K. Barrett</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en"> Henry Richardson</span>
+						<span class="en">Jeff Buchanan</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">Harald Kloser</span>
+						<span class="en">Arcade Fire</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->
