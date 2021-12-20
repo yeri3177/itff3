@@ -84,5 +84,23 @@
 		where
 			p_id = #{pId}
 	</delete>
+	
+	<select id="selectOneGoods" resultType="goods">
+		select
+			*
+		from
+			goods
+		where
+			p_id = #{pId}
+	</select>
+	
+	<update id="updateGoods">
+		update
+			goods
+		set 
+			p_name = #{pName}, p_price = #{pPrice}, p_info = #{pInfo}, p_img = #{pImg}, p_category = #{pCategory}
+		where
+			p_id = #{pId}
+	</update>
 
 </mapper>

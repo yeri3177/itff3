@@ -18,4 +18,8 @@ public interface AdminService {
 
 	int deleteGoods(int pId);
 
+	Goods selectOneGoods(int pId);
+
+	int updateGoods(Goods goods);
+
 }
