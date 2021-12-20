@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
@@ -32,16 +33,16 @@
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <div class="">
-	<p>회원이름 : ${member.name }</p>
-	<p>내 포인트 : ${member.point }</p>
+	<p>회원이름 : <sec:authentication property="principal.name"/></p>
+	<p>내 포인트 : <sec:authentication property="principal.point"/></p>
 	<br />
 	<ul>
-		<li><a href="">예매내역</a></li>
-		<li><a href="">장바구니</a></li>
-		<li><a href="">상품 구매내역</a></li>
+		<li><a href="#">예매내역</a></li>
+		<li><a href="#">장바구니</a></li>
+		<li><a href="#">상품 구매내역</a></li>
+		<li><a href="#">포인트 이용 내역</a></li>
 		<li><a href="${pageContext.request.contextPath }/member/memberWrittenBoardList.do">내가 쓴 게시글</a></li>
-		<li><a href="">정보수정</a></li>
-		<li><a href="${pageContext.request.contextPath }/member/memberSms.do">본인인증</a></li>
+		<li><a href="${pageContext.request.contextPath }/member/memberUpdate.do">정보수정</a></li>
 	</ul>
 </div>
 
