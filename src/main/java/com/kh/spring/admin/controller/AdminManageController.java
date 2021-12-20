@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
+import com.kh.spring.chat.model.service.ChatService;
+import com.kh.spring.chat.model.vo.ChatLog;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
@@ -40,6 +44,9 @@ public class AdminManageController {
 
 	@Autowired
 	private GoodsService goodsService;
+	
+	@Autowired
+	private ChatService chatService;
 
 	@Autowired
 	ServletContext application;
@@ -219,4 +226,35 @@ public String adminMemberList(
 		
 		return "redirect:/admin/adminGoodsList.do";
 	}
+	
+///////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * [채팅]
+	 */
+	
+	@GetMapping("/chat.do")
+	public String chat(Model model) {
+		
+		List<ChatLog> list = chatService.findChatLog();
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		return "admin/chat";
+	}
+	
+	@GetMapping("/{chatId}/{memberId}/chat.do")
+	public String chat(@PathVariable String chatId, @PathVariable String memberId, Model model) {
+		
+		List<ChatLog> list = chatService.findChatLogByChatId(chatId);
+		log.debug("list = {}", list);
+		log.debug("memberId = {}", memberId);
+	
+		model.addAttribute("list", list);
+//		model.addAttribute("memberId", memberId);
+//		model.addAttribute("chatId", chatId);
+		
+		return "admin/popup";
+	}
+	
 }

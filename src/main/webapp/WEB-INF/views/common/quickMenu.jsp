@@ -27,13 +27,14 @@
 
 	<div id="quickmenu_box" class="quickmenu_box">
 		<ul id="quickmenu" class="quickmenu">
+		
 			
 			<!-- 퀵메뉴 어떤거 넣을지는 나중에 생각해보자 -->
 			<li class="quick_online"><a href="#" target="_blank">온라인상영안내</a></li> 
 			<li class="quick_check"><a href="#">예매권 확인</a></li>
 			<li class="quick_tica"><a href="#" target="_blank">티켓카탈로그</a></li>
 			<li class="quick_faq"><a href="#">1:1 문의</a></li>
-			<li class="quick_chant"><a href="#">챗봇</a></li>
+			<li class="quick_chant"><a onclick="window.open('${pageContext.request.contextPath}/common/chat.do','ITFF Chat','width=450,height=690,top=100,location=no,status=no,scrollbars=yes');">챗봇</a></li>
 			<li class="quick_kakao"><a href="#" target="_blank">카카오톡</a></li>
 		</ul>
 		<a href="#" target="_blank"></a>
@@ -53,4 +54,3 @@ $(document).ready(function() {
 });
 
 </script>
-

@@ -56,7 +56,7 @@
                         </ul>
                     </div>
                     
-                          <a href="#" class="nav__link">
+                          <a href="${pageContext.request.contextPath}/admin/chat.do" class="nav__link">
                         <ion-icon name="chatbubbles-outline" class="nav__icon md hydrated" role="img" aria-label="chatbubbles outline"></ion-icon>
                         <span class="nav_name">채팅</span>
                     </a>

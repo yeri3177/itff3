@@ -13,6 +13,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/member/memberEnroll.css" />
 
+<%-- 이메일 인증용 히든 폼 --%>
+<form:form id="checkEmailFrm" name="checkEmailFrm" action="${pageContext.request.contextPath}/member/memberMailWaiting?${_csrf.parameterName}=${_csrf.token}" method="POST">
+	<input type="hidden" name="memberEmail" />
+</form:form>
+
 <div class="join">
 	<div class="container">
 
@@ -24,22 +29,12 @@
 			</p>
 		</div>
 		
-		<%-- <form:form action="${pageContext.request.contextPath}/member/memberEnroll.do" method="post">
-			<input type="hidden" name="id" value="test">
-			<input type="hidden" name="password" value="1234">
-			<input type="hidden" name="name" value="테스트">
-			<input type="hidden" name="phone" value="01012345678">
-			<input type="hidden" name="gender" value="M">
-			<input type="hidden" name="email" value="test@itff.com">
-			<input type="hidden" name="address" value="서울시 강남구">
-			<input type="hidden" name="nickname" value="테스트계정입니다.">
-			<input value="회원가입" type="submit" name="imageField" class="btn btn-m btn-action" style="width: 200px;">  
-		</form:form>  --%>
 
 		<div class="join_con">
 			<div class="row">
 
 				<form:form 
+					id="memberEnrollFrm"
 					name="memberEnrollFrm"
 					action="${pageContext.request.contextPath}/member/memberEnroll.do" 
 					class="chk_member" 
@@ -200,7 +195,7 @@
 										id="email" type="text" 
 										maxlength="64" size="40" placeholder="이메일을 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
-										<span class="guide2 ok2">이 이메일은 사용가능합니다.</span>
+										<span><button type="button" id="emailCheck" class="btn btn-secondary btn-lg guide2 ok2" onclick="checkEmail();">이메일 인증코드 전송</button></span>
 										<span class="guide2 error2">이 이메일은 이미 사용중입니다.</span>
 										<span class="guide2 error3">이메일 형식에 맞게 입력해주세요.</span>
 										<input type="hidden" id="emailValid" value="0" />
@@ -359,6 +354,12 @@ function findZip() {
 
 
 <script>
+// 페이지 로드됐을때 이메일인증버튼 안보이게 함
+$(() => {
+	$(".guide2").hide();
+}); 
+
+
 // 비번 확인 일치 검사	
 $("#passwordCheck").blur(function(){
 	var $password = $("#password"), $passwordCheck = $("#passwordCheck");
@@ -413,11 +414,11 @@ $(nickname).keyup((e) => {
 	const $ok1 = $(".guide1.ok1");
 	const $nicknameValid = $(nicknameValid);
 	
-/* 	if($nickname.val().length < 4) {
-		$(".guide").hide();
-		$idValid.val(0);
+ 	if($nickname.val().length < 4) {
+		$(".guide1").hide();
+		$nicknameValid.val(0);
 		return;
-	} */
+	} 
 	
 	$.ajax({
 		url: `${pageContext.request.contextPath}/member/checkNicknameDuplicate.do`,
@@ -451,13 +452,18 @@ $(email).keyup((e) => {
 	const $ok2 = $(".guide2.ok2");
 	const $emailValid = $(emailValid);
 	
+ 	if($email.val().length < 4) {
+		$(".guide2").hide();
+		$emailValid.val(0);
+		return;
+	} 
 	 
 	 // 이메일 형식 맞는지 테스트. 안 맞으면 이메일 형식 맞추라는 빨간 글 나옴
-	 if(/[a-zA-Z0-9]{4,12}@/.test($(email).val()) == false) {
+	 if(/^[a-zA-Z0-9_!#$%&'\*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$/.test($(email).val()) == false) {     
 		$ok2.hide();
 		$error3.show();
 		$emailValid.val(0);
-		return;
+		return;  
 	 }	 
 	
 	$.ajax({
@@ -471,8 +477,7 @@ $(email).keyup((e) => {
 			if(available) {
 				$ok2.show();
 				$error2.hide();
-				$error3.hide();
-				$emailValid.val(1);
+				$error3.hide();				
 			}
 			else {
 				$ok2.hide();
@@ -485,6 +490,22 @@ $(email).keyup((e) => {
 	});
 	
 });
+
+
+// 이메일 인증 기능
+const checkEmail = () => {
+	/* 그냥 제출하면 페이지가 이동해버리기 때문에 팝업을 띄우든지 새 탭을 띄우든지 해야 한다. 여기서는 팝업으로 한다. */
+	const title = "popupEmailCheck";
+	const spec = "left=500px, top=300px, width=500px, height=200px";
+	const popup = open("", title, spec);  // url은 반드시 비워야 한다. 
+	
+	const $frm = $(document.checkEmailFrm);
+	$frm.find("[name=memberEmail]").val($(email).val()); 
+	console.log($(email).val());
+	$frm.attr("target", title)   // form 제출을 위에 만든 popup에서 진행
+		.submit();
+};
+
 
 // 폼 제출시 검사	
 $("[name=memberEnrollFrm]").submit(function(){
@@ -508,16 +529,12 @@ $("[name=memberEnrollFrm]").submit(function(){
 	}
 	
 	if($(emailValid).val() == 0) {
-		alert("입력하신 이메일은 이미 사용중입니다. 다시 입력해 주세요.");
+		alert("이메일 형식에 맞게 입력하신 후 받으신 인증코드를 입력해 주세요.");
 		$(email).focus();
 		return false;
 	}
 	
-	if(/[a-zA-z0-9]{4,12}@/.test($(email).val()) == false) {
-		alert("이메일 형식을 다시 확인해 주세요.");
-		$(email).focus();
-		return false;
-	}
+
 	
 	return true;
 });
