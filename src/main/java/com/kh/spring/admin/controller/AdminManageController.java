@@ -206,6 +206,82 @@ public String adminMemberList(
 	}
 	
 	/**
+	 * [굿즈 상세]
+	 */
+	
+	@GetMapping("/adminGoodsDetail.do")
+	public void adminGoodsUpdate(@RequestParam int pId, Model model) {
+		log.debug("pId = {}", pId);
+		
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+	}
+	
+	/**
+	 * [굿즈 수정]
+	 */
+	@RequestMapping(value="/adminGoodsUpdate.do",method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminGoodsUpdate(
+			Goods goods,
+			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
+			RedirectAttributes redirectAttr,
+			@RequestParam int pId
+		) throws IllegalStateException, IOException {
+		
+		try {
+			log.debug("pId = {}", pId);
+			log.debug("goods = {}", goods);
+			
+			// 첨부파일 list생성
+			List<Attachment> attachments = new ArrayList<>();
+			
+			// application객체(ServletContext)
+			String saveDirectory = application.getRealPath("/resources/upload/goods");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			for(MultipartFile upFile : upFiles) {
+	
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					String originalFilename = upFile.getOriginalFilename();
+	
+					// 1. 서버컴퓨터에 저장
+					File dest = new File(saveDirectory, originalFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+					
+					// 2. DB에 attachment 레코드 등록
+					Attachment attach = new Attachment();
+					attach.setRenamedFilename(originalFilename);
+					attach.setOriginalFilename(originalFilename);
+					attachments.add(attach);
+				}
+			}
+			
+			// 업무로직
+			if(!attachments.isEmpty())
+				goods.setAttachments(attachments);
+			
+			int result = adminService.updateGoods(goods);
+			
+			String msg = result > 0 ? "상품 수정 성공" : "다시 시도해주세요.";
+			
+			redirectAttr.addFlashAttribute("msg", msg);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e); // 로깅
+			
+			throw e; // spring container에게 던짐.
+		}
+		return "redirect:/admin/adminGoodsList.do";
+	}
+	
+	/**
 	 * [굿즈 삭제]
 	 */
 	

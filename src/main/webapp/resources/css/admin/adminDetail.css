@@ -24,8 +24,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 .row {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 2000px;
     -ms-flex-wrap: wrap;
@@ -108,17 +106,11 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 
 h5, .h5 {
-    font-size: 1.2rem;
-    font-family: 'Noto Sans KR';
-}
-
-.table-wrap {
-    overflow-x: scroll;
+    font-size: 1.25rem;
 }
 
 .table {
-    min-width: 1000px!important;
-    width: 100%;
+	width: 500px;
     background: #fff;
     -webkit-box-shadow: 0 5px 12px -12px rgb(0 0 0 / 29%);
     -moz-box-shadow: 0 5px 12px -12px rgba(0,0,0,.29);
@@ -126,13 +118,18 @@ h5, .h5 {
 }
 
 .table {
-    width: 100%;
     margin-bottom: 1rem;
     color: #212529;
+    margin: 0 auto;
 }
 
 table {
     border-collapse: collapse;
+}
+
+.table th {
+    background: #444444;
+    color: white;
 }
 
 .table thead.thead-primary {
@@ -150,7 +147,6 @@ table {
     padding: 30px;
     font-size: 13px;
     font-weight: 500;
-    color: #fff;
 }
 
 .table thead th {
@@ -184,7 +180,6 @@ th {
     border: none;
     padding: 30px;
     font-size: 14px;
-    background: #fff;
     border-bottom: 4px solid #f8f9fd;
     vertical-align: middle;
 }
@@ -262,7 +257,6 @@ input[type="radio"], input[type="checkbox"] {
 .table tbody td .img {
     width: 100px;
     height: 80px;
-    margin: 0 auto;
 }
 .img {
     background-size: cover;
@@ -374,15 +368,11 @@ table {
 	margin-bottom: 50px;
 }
 
-a {
-	color: #212121;
+.btn_wrap {
+    text-align: center;
+    margin-top: 40px;
 }
 
-a:hover {
-	color: #212121;
-	text-decoration: none;
-	font-weight: bold;
-}
 
 
 
