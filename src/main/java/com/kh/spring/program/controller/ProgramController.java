@@ -68,4 +68,11 @@ public class ProgramController {
 	@GetMapping("/synopsis/missionImpossible.do")
 	public void missionImpossible() {}
 	
+	@GetMapping("/synopsis/erin.do")
+	public void erin() {}
+	
+	@GetMapping("/synopsis/looper.do")
+	public void looper() {}
+	
+	
 }

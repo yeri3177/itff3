@@ -28,14 +28,14 @@
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/XJzbPCKq_zw" 
+			data-src="https://www.youtube.com/embed/4W_jkjioxBA" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
     <li style="background-image: url(https://i.ibb.co/D5wSG97/60rg-A3s-Oh-Rn-J2-md-KIJcfg.jpg);"></li>
     <li style="background-image: url(https://i.ibb.co/fp8xk5d/M0020027-007-1-H800.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/gyrPY0r/unnamed.png);"></li>
+    <li style="background-image: url(https://i.ibb.co/ZTbTHnm/AAAABfz-Bso-Hw-Ttv-CG9kc1b-Edk5w-O98fu5-NO2dz-Qoe-GLPjrbr2-Ip-ZGZUdoua9-LYHc9g-j8-Xro-Jgq-Oodr2p-VEp.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -52,14 +52,14 @@
    <div class="container_">
       <div class="film_info_top">
          <p class="director_name">
-            007:카지노 로얄
+            미션임파서블: 고스트 프로토콜
          </p>
          <br />
-		 <span>007:Casino Royale</span>
+		 <span>MissionL Impossible - Ghost Protocol </span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>2006</li>
-            <li>144min</li>
+            <li>2011</li>
+            <li>133min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
@@ -71,7 +71,7 @@
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-			아직 영국첩보국 MI6의 평범한 요원이던 제임스 본드(다니엘 크레이그). 체코에서의 위험한 암살을 마치고 007로 승격된 그에게 첫번째 임무가 주어진다. 국제 테러조직의 자금줄로 알려진 수수께끼의 인물 르쉬프(매즈 미켈슨)의 배후를 밝혀내는 것. 마다가스카에서 작전을 수행하던 007은 르쉬프가 몬테카를로의 ‘카지노 로얄’에서 무제한 배팅이 가능한 ‘홀뎀포커’를 통해 대규모 테러자금을 모으려는 음모를 밝혀내는데
+			지상 최대의 스케일, 사상 초유의 액션 불가능한 미션이 다시 시작된다! 러시아 크렘린 궁 폭발 테러 사건에 연루되어 위기를 맞게 된 IMF(Impossible Mission Force). 국가적 분쟁을 피하기 위해 정부는 IMF 조직에 대해 ‘고스트 프로토콜’을 발동하고, 조직의 과거도 정체도 모두 지워버린다. 순식간에 국제 테러리스트가 되어 버린 특수비밀요원 ‘이단 헌트’(톰 크루즈)는 자신과 조직의 명예를 되찾기 위해 지상 최대의 불가능한 미션을 다시 시작한다
          </div>
       </div>
 
@@ -79,7 +79,8 @@
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
             <p>
-				<007 카지노 로얄>은 시리즈의 기원으로 거슬러 올라가 제임스 본드가 살인면허를 받기 전의 활약부터 소개한다. 살인면허가 없어도 제임스 본드가 위험한 인물인 건 마찬가지. 그는 자신에게 주어진 두번의 중요한 임무를 훌륭하게 처리한 후 암호명 '00'(살인면허)을 받는다. 제임스 본드는 첩보기관 MI6으로부터 007이란 암호명을 부여받고 마다가스카에서 테러리스트 몰라카(세바스찬 푸캉)를 감시하는 임무를 맡게 된다. 임무 수행 중 상황이 급변하게 되면서 007은 상부의 지시를 어기고 테러리스트 조직에 대한 독자적인 작전에 돌입한다. 단서를 쫓아 바하마에 도착한 007은 신비한 인물 드미트리오스와 그의 애인 솔랑게(카테리나 뮤리노)를 만나게 되고, 드미트리오스가 국제 테러 조직의 자금줄인 르 쉬프르(매즈 미켈슨)와 직결되어 있음을 직감한다. 
+			《미션 임파서블: 고스트 프로토콜》(영어: Mission: Impossible – Ghost Protocol)은 2011년 미국의 첩보 액션 스릴러 영화이자 《미션 임파서블 시리즈》의 4번째 작품이다. 브래드 버드가 감독을 맡았다.[3] IMF 요원 에단 헌트 역을 맡은 톰 크루즈가 출연하며 제러미 레너, 사이먼 페그, 폴라 패튼이 팀원으로 출연한다. 안드레 네멕과 조시 애플바움이 각본을 썼으며, J. J. 에이브럼스, 브라이언 버크, 톰 크루즈가 제작 하였다. 시리즈 중 아이맥스 형식으로 제작된 첫 영화이다.
+파라마운트 픽처스가 배급하여 2011년 1월 16일 북아메리카에서 공개되었으며, 작품에 대해 비평가들에게 높은 평가를 얻었다. 또한, 전 세계적으로 약 7억 달러의 흥행 수입을 내 시리즈에서 가장 많은 수입을 낸 영화가 되었다. 2012년 4월 17일, DVD와 블루레이가 발매되었다. 
             </p>
          </div>
       </div>
@@ -179,16 +180,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/R4QbkXn/movie-image-15.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/bP4pnmN/2.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">마틴 캠벨</strong><span class="mt10 en">Martin Campbell</span></div>
+							<div class="dir_name"><strong class="kor">브래드 버드</strong><span class="mt10 en">Philip Bradley Bird</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								고향인 영국에서 최고의 감독 위치를 차지하고 있었는데, 텔레비전 영화인 &lt;Reilly: Ace of Spies &gt;로 비평적인 찬사를 받았고, BBC 시리즈인 <Edge of Darkness>로 BAFTA(British Academy of Film and Television Awards)에서 6개 부문을 휩쓸며 평단의 신뢰를 이끌었다.
+								필립 브래들리 버드(Philip Bradley Bird, 1957년 9월 24일 ~ )는 아카데미상을 받은 적이 있는 미국의 애니메이션 제작자로, 픽사의 인크레더블 (2004)과 워너브라더즈의 아이언 자이언트 (1999)의 감독으로 잘 알려져 있다.
 								</span>
 							</p>
 							</div>
@@ -207,7 +208,7 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Barbara Broccoli</span>
+						<span class="en">J.J. Abrams</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
@@ -215,15 +216,15 @@
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en">Phil Meheux</span>
+						<span class="en">Jeffrey Chernov</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en">Stuart Baird</span>
+						<span class="en">Paul Hirsch</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">David Arnold</span>
+						<span class="en">Michael Giacchino</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->

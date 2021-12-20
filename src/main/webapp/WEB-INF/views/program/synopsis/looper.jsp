@@ -22,20 +22,20 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/Nt3VLSt/17-52-31-564edf4f98647-H800.jpg);">
+    <li style="background-image: url(https://i.ibb.co/9tXMbRF/movie-image-16.jpg);">
     	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/XJzbPCKq_zw" 
+			data-src="https://www.youtube.com/embed/Ac7VlMsgPU4" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/D5wSG97/60rg-A3s-Oh-Rn-J2-md-KIJcfg.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/fp8xk5d/M0020027-007-1-H800.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/gyrPY0r/unnamed.png);"></li>
+    <li style="background-image: url(https://i.ibb.co/X5jjzC4/2019120210552289664.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/dGRDD20/rupeo.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/GQSw7Kx/common-4.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -52,26 +52,29 @@
    <div class="container_">
       <div class="film_info_top">
          <p class="director_name">
-            007:카지노 로얄
+            루퍼
          </p>
          <br />
-		 <span>007:Casino Royale</span>
+		 <span>Looper</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>2006</li>
-            <li>144min</li>
+            <li>2012</li>
+            <li>118min</li>
             <li>15 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">Flatform·IoT</strong>
+            <strong class="premiere en">Thinking Power·Debugging</strong>
          </p>
       </div>
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-			아직 영국첩보국 MI6의 평범한 요원이던 제임스 본드(다니엘 크레이그). 체코에서의 위험한 암살을 마치고 007로 승격된 그에게 첫번째 임무가 주어진다. 국제 테러조직의 자금줄로 알려진 수수께끼의 인물 르쉬프(매즈 미켈슨)의 배후를 밝혀내는 것. 마다가스카에서 작전을 수행하던 007은 르쉬프가 몬테카를로의 ‘카지노 로얄’에서 무제한 배팅이 가능한 ‘홀뎀포커’를 통해 대규모 테러자금을 모으려는 음모를 밝혀내는데
+			완벽한 증거 소멸과 시체 처리를 위해 미래의 조직들은
+ 제거 대상들을 비밀리에 2044년에 활동하고 있는 ‘루퍼’라는 킬러들에게 보낸다.
+ 어느 날, 완벽한 임무수행으로 최고의 자리를 지켜내고 있는 킬러 ‘조(조셉 고든 레빗)’의 앞에 새로운 타겟이 등장한다. 그는 바로 ‘레인메이커’에 의해 살해 당한 아내를 다시 살려내고자 과거로 돌아온 30년 후의 바로 자신(브루스 윌리스인)임을 알게 되는데…
+ 미래의 나와 현재의 내가 만나는 순간, 피할 수 없는 시간 전쟁이 시작된다
          </div>
       </div>
 
@@ -79,7 +82,7 @@
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
             <p>
-				<007 카지노 로얄>은 시리즈의 기원으로 거슬러 올라가 제임스 본드가 살인면허를 받기 전의 활약부터 소개한다. 살인면허가 없어도 제임스 본드가 위험한 인물인 건 마찬가지. 그는 자신에게 주어진 두번의 중요한 임무를 훌륭하게 처리한 후 암호명 '00'(살인면허)을 받는다. 제임스 본드는 첩보기관 MI6으로부터 007이란 암호명을 부여받고 마다가스카에서 테러리스트 몰라카(세바스찬 푸캉)를 감시하는 임무를 맡게 된다. 임무 수행 중 상황이 급변하게 되면서 007은 상부의 지시를 어기고 테러리스트 조직에 대한 독자적인 작전에 돌입한다. 단서를 쫓아 바하마에 도착한 007은 신비한 인물 드미트리오스와 그의 애인 솔랑게(카테리나 뮤리노)를 만나게 되고, 드미트리오스가 국제 테러 조직의 자금줄인 르 쉬프르(매즈 미켈슨)와 직결되어 있음을 직감한다. 
+				놀라운 상상력과 화려한 볼거리로 무장된 SF장르는 할리우드 영화 전체의 역사라고 해도 과언이 아닐 만큼 항상 스크린 속 흥행 소재로 사랑 받아 왔다. 특히 ‘시간여행’이란 테마는 <터미네이터>를 시작으로 <백 투 더 퓨쳐><12 몽키즈><맨 인 블랙><나비 효과> 등에 이어, 최근 <인셉션><소스 코드>까지 다양한 표현 방식으로 그려져 왔으며, 놀라운 흥행 성적과 뛰어난 작품성으로 SF 장르의 든든한 소재 역할을 하고 있다. 이에 2012년, <루퍼>가 새로운 SF액션스릴러의 기준을 제시한다. 라이언 존슨 감독은 <루퍼>를 기획할 당시, 머리 속에 온통 SF에 대한 무궁무진한 영감들로 가득 차 있었다. 그는 ‘시간여행’이라는 매력적인 소재를 통해 가장 간단하면서도 신선한 스토리를 만들어내고 싶었는데 그의 이러한 열망은 현재와 미래의 동일 인물이 한 공간에서 만나는 설정을 통해 비로소 성공하게 된다. 특히 시공간을 초월한 시간전쟁을 보여줄 <루퍼>의 스토리는 그 어떤 SF 대작들보다 매우 세밀하고 탄탄함을 자랑한다. 미국의 ‘할리우드 리포터’가 “촘촘히 짜여진 매력적인 시간여행 스토리”라 극찬할 만큼 가장 근사한 시간여행을 그려낸 <루퍼>는 이 모든 것을 완벽한 발란스로 매끄럽게 표현해내며 새로운 센세이션을 예고하고 있다.
             </p>
          </div>
       </div>
@@ -179,16 +182,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/R4QbkXn/movie-image-15.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/0cKjwWw/375px-Star-Wars-The-Last-Jedi-Japan-Premiere-Red-Carpet-Rian-Johnson-38905282292-cropped.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">마틴 캠벨</strong><span class="mt10 en">Martin Campbell</span></div>
+							<div class="dir_name"><strong class="kor">라이언 존슨</strong><span class="mt10 en">Rian Johnson</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								고향인 영국에서 최고의 감독 위치를 차지하고 있었는데, 텔레비전 영화인 &lt;Reilly: Ace of Spies &gt;로 비평적인 찬사를 받았고, BBC 시리즈인 <Edge of Darkness>로 BAFTA(British Academy of Film and Television Awards)에서 6개 부문을 휩쓸며 평단의 신뢰를 이끌었다.
+									라이언 존슨(영어: Rian Johnson, 1973년 12월 17일 ~ )은 미국의 영화 감독이다. 흔히 스타워즈 에피소드 8 《스타워즈: 라스트 제다이》의 감독으로 알려져 있으며, 이외의 연출작으로 초기작 《브릭》과 《블룸 형제 사기단》, SF 스릴러 《루퍼》, 퍼즐 미스터리 《나이브스 아웃》이 있다. 영화 외에는 드라마 《브레이킹 배드》의 3개 에피소드를 연출했다.
 								</span>
 							</p>
 							</div>
@@ -207,23 +210,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Barbara Broccoli</span>
+						<span class="en">Ram Bergman</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en">Daniel Craig, Eva Green, Mads Mikkelsen</span>
+						<span class="en">Joseph Gordon Levitt, Bruce Willis, Emily Blunt</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en">Phil Meheux</span>
+						<span class="en">Steve Yedlin</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en">Stuart Baird</span>
+						<span class="en">Bob Ducsay</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">David Arnold</span>
+						<span class="en">Nathan Johnson</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->
