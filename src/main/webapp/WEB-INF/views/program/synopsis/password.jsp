@@ -22,20 +22,20 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/RvZGkjK/508c170a29cc5d641c41b070d18d1431.jpg);">
+    <li style="background-image: url(https://i.ibb.co/L1SdF00/movie-image-2.jpg);">
     	
 		<button 
 			type="button" 
 			class="btn btn-primary video-btn btn_play_trailer js-video-button" 
 			data-toggle="modal" 
-			data-src="https://www.youtube.com/embed/rL6RRIOZyCM" 
+			data-src="https://www.youtube.com/embed/zAxFqXTwBmo" 
 			data-target="#myModal">
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/ZKgV268/99-ADAE455-BB1-B27001.png);"></li>
-    <li style="background-image: url(https://i.ibb.co/m6ZkdSd/9903-BA4-C5-D5-C9-B3430.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/XkpFN6v/9904-E7375-D5-C99942-E.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/1052TMx/movie-image-3.jpg);"></li>
+    <li style="background-image: url(https://i.ibb.co/rczwvxB/movie-image-4.jpg); "></li>
+    <li style="background-image: url(https://i.ibb.co/4YmKHgm/movie-image-5.jpg);"></li>
   </ul>
   <p class="pos">
  
@@ -53,34 +53,41 @@
       <div class="film_info_top">
       	 <!-- <h1 class="tit_movie">매트릭스<span>The Matrix</span></h1> -->
          <p class="director_name">
-            아이, 로봇
+            패스워드
          </p>
          <br />
-		 <span>i, Robot</span>
+		 <span>Anti trust</span>
          <ul class="list_film_info list-inline">
             <li>미국</li>
-            <li>2004</li>
-            <li>110min</li>
-            <li>15 +</li>
+            <li>2001</li>
+            <li>108min</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 
          <p class="">
-            <strong class="premiere en">Artificial Intelligence</strong>
+            <strong class="premiere en">security·cryptography</strong>
          </p>
       </div>
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         영화의 배경은 가까운 미래인 2035년의 시카고이다. 로봇회사 USR의 신형 로봇 모델인 'NS-5'의 출시를 앞두고, 개발자인 래닝 박사(제임스 크롬웰)가 숨지는 사건이 발생한다. 형사인 델 스프너(윌 스미스)가 수사를 개시하고, 캘빈 박사(브리짓 모이나한)가 이를 도우면서 이야기가 시작된다. 
+         스탠포드 대학의 졸업생이자 컴퓨터 업계의 촉망 받는 젊은 희망 마일로(라이언 필립 분)그는 제 2의 빌 게이츠를 꿈꾸며 친구들과 함께 자신의 집 주차장을 개조하여 벤처 회사를 설립 의욕적인 사업을 시작한다.  그러던 중, 마일로의 친한 친구이자 벤처 회사에 같이 참여했던 친구 테디가 살해되는 사건이 발생하자 마일로는 큰 슬픔에 잠긴다. 우연히 테디의 방을 방문하게 된 마일로는 테디의 방에서 테디의 죽음과 관련된 어머어마한 비밀을 발견하게 되면서 생명의 위협까지 받게 되는 극한 상황으로 사건은 치닫게 되는데. 
          </div>
       </div>
 
       <div id="pg_note" class="pg_note">
          <h4>PROGRAM NOTE</h4>
          <div class="desc_">
-            <p>&lt;아이로봇&gt;
-            은 할리웃 톱스타 윌 스미스의 출연 뿐 아니라 아카데미 수상을 통해 실력을 인정받은 스텝들의 참여로 제작 초기부터 이슈를 만들었다. 수많은 뮤직 비디오 제작과 SF영화 &lt;다크 시티&gt;와 &lt;크로우&gt; 등에서 보여준 감각적인 영상미로 두터운 팬층을 확보하고 있는 알렉스 프로야스 감독과 &lt;글라디에이터&gt;로 아카데미 비주얼 효과상을 수상한 존 넬슨, &lt;반지의 제왕&gt;으로 역시 아카데미에서 수상한 뉴질랜드의 비주얼 이펙트 팀 WETA, 그리고 &gt;인디펜던스 데이&gt;의 타투포우로스가 그 핵심 멤버. 그들이 &lt;아이,로봇&gt; 제작에 참여한다는 소식이 전해지자 SF영화 팬들은 지금껏 보여지지 않은 새로운 스타일의 영화를 볼 수 있을 거란 기대감에 열광했다. 지금까지 그려진 미래와 전혀 다른 미래 세계를 만들고 싶어하는 프로야스 감독의 깐깐한 눈높이를 맞추기 위해 스텝들은 영화 전반에 걸쳐 로케이션 촬영과 특별 제작된 세트, CG를 병행해야만 했다. 이는 최첨단 기술로 만들어진 디지털 캐릭터인 "써니" 뿐 아니라 다른 로봇들이 등장하는 1000커트가 넘는 장면들을 고작 수백명의 엑스트라를 동원해 수만의 로봇들로 재창조하는 과정을 통해 &lt;아이,로봇&gt;은 CG 역사상 가장 복잡하고 다양한 형태의 테크닉이 총동원된 기록을 남겼다.
+            <p>
+            실제로 제작진은 애플사와 넷스케이프사 같은 첨단 하이테크 회사
+들의 업무환경을 조사해 촬영에 반영했다고 한다. 하지만 낭만적
+인 환상도 잠시. 테디의 죽음과 그 속의 음모가 밝혀지면서 영화
+는 긴장감이 더해진다. 특히 실리콘 밸리의 전당을 보는 듯한‘니
+브’의 내부와 보완전산시스템을 자유자제로 움직이는 마일로의
+활약상은 아이안 소프틀리 감독의 ‘해커스’나 필 앨든 로빈슨
+감독의 ‘스니커스’가 보여줬던 긴장감과 같은‘무게’로 관객들
+에게 전해진다.
             </p>
          </div>
       </div>
@@ -105,7 +112,7 @@
 					<th class="time en">2022-01-08 | 20:00</th>
 					<td class="theater">KH ITFF 1관</td>
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -122,7 +129,7 @@
 					<td class="theater">KH ITFF 5관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -138,7 +145,7 @@
 					<td class="theater">KH ITFF 3관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -154,7 +161,7 @@
 					<td class="theater">KH ITFF 5관</td>
 					
 					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
@@ -180,16 +187,16 @@
 					<li>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="dir_img">
-								<img src="https://i.ibb.co/cxYm5JP/11-48-58-568f239a83fde-X252-310.jpg" width="175" height="180" border="0" "alt="감독사진">
+								<img src="https://i.ibb.co/w66fnLD/movie-image-6.jpg" width="175" height="180" border="0" "alt="감독사진">
 							</div>
 						</div>
 						<div class="col-md-9 col-sm-9 col-xs-12 dir_info">
 							
-							<div class="dir_name"><strong class="kor">알렉스 프로야스</strong><span class="mt10 en">Alex Proyas</span></div>
+							<div class="dir_name"><strong class="kor">피터 호윗</strong><span class="mt10 en">Peter Howitt</span></div>
 							<div class="desc">
 							<p style="text-align: justify; line-height: 1.8;" align="justify">
 								<span style="font-family: 나눔고딕코딩, NanumGothicCoding, sans-serif;">
-								10살 때 영화를 만들기 시작했고 두 편의 단편 '소녀 자신의 이야기'(1984년)와 그가 촬영한 '열정의 순간'(1985년)을 작업했다. 스피릿 오브 에어, 그렘린스 오브 더 클라우드 (1987)는 프로야스의 감독 겸 시나리오 작가로서의 장편 데뷔작이었다.
+								데뷔작 &lt;슬라이딩 도어즈(Sliding Doors)&gt;로 전세계적인 흥행은 물론 유럽 필름 어워드 최우수 각본상과 엠파이어 어워드 최우수 영국 감독상을 수상하는 등 작품성을 인정받으며 화려한 신고식을 마쳤다. 이후 팀 로빈스, 라이언 필립이 주연한 &lt;패스워드(Anti Trust)&gt;와 로완 앳킨슨이 주연한 &lt;쟈니 잉글리쉬(Johnny English)&gt;로 흥행 감독임을 다시 한번 입증해냈다.
 								</span>
 							</p>
 							</div>
@@ -208,23 +215,23 @@
 				<ul>
 					<li>
 						<strong class="en">Producer</strong>
-						<span class="en">Laurence Mark</span>
+						<span class="en">Nick Wechsler</span>
 					</li>
 					<li>
 						<strong class="en">Cast</strong>
-						<span class="en">Will Smith, Bridget Moynahan, Bruce Greenwood</span>
+						<span class="en">Shia LaBeouf, Michelle Monaghan</span>
 					</li>
 					<li>
 						<strong class="en">Cinematographer</strong>
-						<span class="en">Will Smith</span>
+						<span class="en">Howard Franklin</span>
 					</li>
 					<li>
 						<strong class="en">Editor</strong>
-						<span class="en">Akiva Goldsman </span>
+						<span class="en">John Bailey</span>
 					</li>
 					<li>
 						<strong class="en">Music</strong>
-						<span class="en">Wyck Godfrey </span>
+						<span class="en">Keith Addis</span>
 					</li>
 				</ul>
 			</div> <!-- // credit -->
