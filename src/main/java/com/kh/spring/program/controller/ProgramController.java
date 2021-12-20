@@ -62,4 +62,10 @@ public class ProgramController {
 	@GetMapping("/synopsis/citizenFour.do")
 	public void citizenFour() {}
 	
+	@GetMapping("/synopsis/casinoRoyale.do")
+	public void casinoRoyale() {}
+	
+	@GetMapping("/synopsis/missionImpossible.do")
+	public void missionImpossible() {}
+	
 }
