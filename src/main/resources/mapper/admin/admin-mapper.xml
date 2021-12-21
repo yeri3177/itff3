@@ -102,5 +102,15 @@
 		where
 			p_id = #{pId}
 	</update>
+	
+	<select id="selectRecentTenGoodsList" resultType="goods">
+		select 
+			* 
+		from 
+			goods 
+			<![CDATA[where rownum <= 10]]>
+		order by 
+			p_enroll desc
+	</select>
 
 </mapper>

@@ -22,4 +22,6 @@ public interface AdminService {
 
 	int updateGoods(Goods goods);
 
+	List<Goods> selectRecentTenGoodsList();
+
 }

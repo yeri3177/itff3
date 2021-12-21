@@ -237,107 +237,8 @@
 																	<th><span> ID </span></th>
 																</tr>
 															</thead>
-															<tbody>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=43">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://i.ibb.co/Vgq006M/20211217-185555.png);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">23</td>
-																	<td>43</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=40">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/21.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">26</td>
-																	<td>40</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=39">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/11.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">32</td>
-																	<td>39</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=44">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/61.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">51</td>
-																	<td>44</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=41">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/31.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">55</td>
-																	<td>41</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=36">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/hotel-rooms/hr-8.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">214</td>
-																	<td>36</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=21">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-2.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">692</td>
-																	<td>21</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=24">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/cover-1920x1280.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">99</td>
-																	<td>24</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=20">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-1.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">1758</td>
-																	<td>20</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=23">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-4.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">126</td>
-																	<td>23</td>
-																</tr>
+															<tbody id="goods_list">
+																
 															</tbody>
 														</table>
 													</div>
@@ -1349,7 +1250,6 @@
 <!-- //footer -->
 
 </body>
-</html>
 
 <script>
 
@@ -1385,4 +1285,23 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 }
 </script>
 
+<script>
+
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/selectRecentTenGoodsList.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#goods_list").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
+
+</html>
 <%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> --%>

@@ -24,4 +24,6 @@ public interface AdminDao {
 
 	int updateGoods(Goods goods);
 
+	List<Goods> selectRecentTenGoodsList();
+
 }

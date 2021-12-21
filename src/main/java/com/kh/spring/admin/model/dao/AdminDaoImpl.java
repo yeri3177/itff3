@@ -70,5 +70,10 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.updateGoods", goods);
 	}
 
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return session.selectList("admin.selectRecentTenGoodsList");
+	}
+
 
 }
