@@ -28,4 +28,6 @@ public interface AdminService {
 
 	List<PointHistory> selectMemberPointHistoryList(String id);
 
+	int updateMember(Member member);
+
 }

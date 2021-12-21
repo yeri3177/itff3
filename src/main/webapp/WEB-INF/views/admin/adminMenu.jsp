@@ -32,7 +32,6 @@
                         	</li>
                         	<li class="collapse_li">회원관리
                              <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="collapse__sublink">전체 회원 목록</a>
-                             <a href="${pageContext.request.contextPath}/admin/adminMemberPointList.do" class="collapse__sublink">회원 포인트 관리</a>
                         	</li>
 <!--                             <a href="#" class="collapse__sublink">Group</a><br /> -->
 <!--                             <a href="#" class="collapse__sublink">Members</a> -->
