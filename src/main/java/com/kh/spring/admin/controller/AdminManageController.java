@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.io.File;
@@ -14,13 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,26 +85,6 @@ public class AdminManageController {
 		return list;
 	}
 	
-	/**
-	 * [회원정보]
-	 */
-	
-	@GetMapping("/adminMemberDetailModal.do")
-	public Member adminMemberDetailModal(@RequestParam(value = "id", required = false) String id, Model model) {
-		log.debug("id = {}", id);
-
-		Member member = adminService.selectOneMember(id);
-		log.debug("member = {}", member);
-		
-		List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
-		log.debug("list = {}", list);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("list", list);
-		
-		return member;
-	}
-	
 
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -140,32 +125,55 @@ public class AdminManageController {
 	}
 	
 	/**
-	 * [모달 테스트]
+	 * [회원 상세]
 	 */
 	
+	@GetMapping("/adminMemberDetail.do")
+	public Member adminMemberDetail(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
 
-//	/**
-//	 * [멤버 상세]
-//	 */
-//
-//	@GetMapping("/adminMemberDetail.do")
-//	public void adminMemberDetail(@RequestParam String id, Model model) {
-//		log.debug("id = {}", id);
-//		
-//		try {
-//			Member member = adminService.selectOneMember(id);
-//			log.debug("member = {}", member);
-//			
-//			List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
-//			
-//			model.addAttribute("member", member);
-//			model.addAttribute("list", list);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-//		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		
+		return member;
+	}
+
+	/**
+	 * [회원 정보 수정]
+	 */
+	
+	@GetMapping("/adminMemberUpdate.do")
+	public Member adminMemberUpdate(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberUpdate.do")
+	public String memberUpdate(@ModelAttribute Member member, Model model, RedirectAttributes redirectAttr){
+		
+		log.debug("member = {}", member);
+		
+		// 1. DB 정보 갱신(생략)
+		int result = adminService.updateMember(member);
+		
+		
+		redirectAttr.addFlashAttribute("msg", "회원 정보를 수정했습니다.");
+		
+		return "redirect:/admin/adminMemberList.do";
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
@@ -282,13 +290,15 @@ public class AdminManageController {
 	 */
 	
 	@GetMapping("/adminGoodsDetail.do")
-	public void adminGoodsDetail(@RequestParam int pId, Model model) {
+	public Goods adminGoodsDetail(@RequestParam(value = "pId", required = false) int pId, Model model) {
 		log.debug("pId = {}", pId);
-		
+
 		Goods goods = adminService.selectOneGoods(pId);
 		log.debug("goods = {}", goods);
 		
 		model.addAttribute("goods", goods);
+		
+		return goods;
 	}
 	
 	/**

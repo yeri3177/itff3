@@ -86,6 +86,11 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectList("admin.selectMemberPointHistoryList", id);
 	}
 
+	@Override
+	public int updateMember(Member member) {
+		return session.update("admin.updateMember", member);
+	}
+
 
 
 }

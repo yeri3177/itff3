@@ -31,4 +31,6 @@ public interface AdminDao {
 
 	List<PointHistory> selectMemberPointHistoryList(String id);
 
+	int updateMember(Member member);
+
 }

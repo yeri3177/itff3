@@ -35,7 +35,10 @@ public class AdminServiceImpl implements AdminService {
 			isolation = Isolation.READ_COMMITTED, 
 			rollbackFor = Exception.class 
 	)
+	
 	public int insertGoods(Goods goods) {
+		log.debug("goods = {}", goods);
+		
 		int result = 0;
 		
 		try {
@@ -45,9 +48,10 @@ public class AdminServiceImpl implements AdminService {
 			
 			// attachment insert
 			List<Attachment> attachments = goods.getAttachments();
+			
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setBoardNo(goods.getPId()); // fk컬럼값 세팅(필수)
+//					attach.setAttachNo(goods.getPId()); // fk컬럼값 세팅(필수)
 					result = adminDao.insertAttachment(attach);
 				}
 			}
@@ -94,9 +98,10 @@ public class AdminServiceImpl implements AdminService {
 			
 			// attachment insert
 			List<Attachment> attachments = goods.getAttachments();
+			
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setBoardNo(goods.getPId()); // fk컬럼값 세팅(필수)
+//					attach.setAttachNo(goods.getPId()); // fk컬럼값 세팅(필수)
 					result = adminDao.insertAttachment(attach);
 				}
 			}
@@ -120,6 +125,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<PointHistory> selectMemberPointHistoryList(String id) {
 		return adminDao.selectMemberPointHistoryList(id);
+	}
+
+	@Override
+	public int updateMember(Member member) {
+		return adminDao.updateMember(member);
 	}
 
 
