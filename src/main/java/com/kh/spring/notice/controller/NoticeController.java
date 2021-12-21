@@ -1,14 +1,17 @@
 package com.kh.spring.notice.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +41,9 @@ public class NoticeController {
 	
 	@Autowired
 	ServletContext application;
+	
+	@Autowired
+	ResourceLoader resourceLoader;
 	
 	@GetMapping("/noticeList.do")
 	public String noticeList(
@@ -137,5 +144,29 @@ public class NoticeController {
 		
 		return "redirect:/notice/noticeList.do";
 	}
+	
+	
+//	@GetMapping("/noticeDetail.do")
+//	public void noticeDetail(@RequestParam int no, Model model) {
+//		log.debug("글번호 = {}", no);
+//		
+//		Notice notice = noticeService.selectOneNoticeCollection(no);
+//		log.debug("notice = {}", notice);
+//		model.addAttribute("notice", notice);
+//		
+//	}
+//	
+//	@GetMapping (
+//			value = "/fileDownload.do",
+//			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
+//	)
+//	@ResponseBody
+//	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
+//		
+//		// db attachment 행 조회하기
+//		
+//		
+//		return resource;
+//	}
 	
 }
