@@ -100,9 +100,8 @@
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" id="row">
 				<div class="col-md-12">
-<!-- 					<h3 class="h5 mb-4 text-center">Table Accordion</h3> -->
 				
 					<div class="table-wrap">
 						<table class="table">
@@ -120,11 +119,10 @@
 									<th>가입일자</th>
 									<th style="width: 105px;">권한</th>
 									<th>&nbsp;</th>
-									<th>&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${list}" var="list">
+							<c:forEach items="${list}" var="list" varStatus="status">
 							
 								<tr class="alert" role="alert">
 
@@ -132,8 +130,9 @@
 									
 									<!-- 아이디 -->
 									<td>
-										<div class="email">
-											<span>${list.id }</span> 
+										<div class="email" data-id="${list.id }">
+											<span>${list.id }</span>
+											<input type="hidden" name=id${status.index} value="${list.id }" /> 
 										</div>
 									</td>
 									
@@ -164,7 +163,7 @@
 									<!-- 생년월일 -->
 									<td>
 										<div class="quantity">
-											<span><fmt:formatDate value="${list.birthday }" pattern="yyyy-MM-dd"/> </span> 
+											<span><fmt:formatDate value="${list.birthday }" pattern="yyyy-MM-dd"/></span> 
 										</div>
 									</td>
 									
@@ -184,25 +183,38 @@
 									<!-- 권한 -->
 									<td>${list.authorities eq "[ROLE_USER]" ? "회원" : "관리자" }</td>
 									
-									<!-- 버튼 -->
-									<td><button type="button" class="btn btn-outline-success">수정</button></td>
-									<td></td>
-									<!-- 취소버튼 -->
-<!-- 									<td> -->
-<!-- 										<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
-<!-- 											<span aria-hidden="true"><i class="fa fa-close"></i></span> -->
-<!-- 										</button> -->
-<!-- 									</td> -->
+									<td>
+									<button 
+										id="${list.id }"
+										type="button" 
+										class="btn btn-secondary" 
+										data-toggle="modal" 
+										data-target="#adminMemberDetail" 
+										onclick="memberDetail_btn('${list.id}');">
+										상세
+									</button>
+									</td>
+
 								</tr>
 								</c:forEach>
 								
-
 							</tbody>
 						</table>
+						
+						<!-- 회원 상세 -->
+						<div class="modal fade" id="adminMemberDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document" style="max-width: 600px;">
+						    <div class="modal-content" id="modal_ajax" style="text-align: left;">
+						    
+				   		    </div>
+						  </div>
+						</div>
+						<!-- 회원 상세 끝 -->
+						
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	
 <script>
@@ -229,7 +241,29 @@ $(() => {
 
 </script>
 
+ <script>
+ 
+function memberDetail_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
 
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberDetailModal.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
 
 	<!-- //container -->
 

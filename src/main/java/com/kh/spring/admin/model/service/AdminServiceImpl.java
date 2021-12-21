@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -109,6 +110,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Goods> selectRecentTenGoodsList() {
 		return adminDao.selectRecentTenGoodsList(); 
+	}
+
+	@Override
+	public Member selectOneMember(String id) {
+		return adminDao.selectOneMember(id);
+	}
+
+	@Override
+	public List<PointHistory> selectMemberPointHistoryList(String id) {
+		return adminDao.selectMemberPointHistoryList(id);
 	}
 
 

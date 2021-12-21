@@ -2,6 +2,7 @@ package com.kh.spring.admin.model.dao;
 
 import java.util.List;
 
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -25,5 +26,9 @@ public interface AdminDao {
 	int updateGoods(Goods goods);
 
 	List<Goods> selectRecentTenGoodsList();
+
+	Member selectOneMember(String id);
+
+	List<PointHistory> selectMemberPointHistoryList(String id);
 
 }

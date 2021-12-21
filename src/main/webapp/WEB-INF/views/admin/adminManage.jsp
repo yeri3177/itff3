@@ -120,18 +120,7 @@
 														<div class="ba-store-statistic-header">
 
 															<div class="ba-store-statistic-header-filter-wrapper">
-																<div class="ba-store-statistic-action-wrapper">
-																	<span class="ba-store-statistic-action"
-																		data-action="-"> <i
-																		class="zmdi zmdi-caret-left"></i> <span
-																		class="ba-tooltip ba-top ba-hide-element">Prev</span>
-																	</span> <span class="ba-store-statistic-custom-action">
-																		<input type="hidden" class="open-calendar-dialog"
-																		data-format="Y-m-d" data-type="range-dates"
-																		data-key="from" data-created="true"> <i
-																		class="zmdi zmdi-calendar-alt"></i>
-																	</span>
-																</div>
+
 																<div class="ba-store-statistic-select-wrapper">
 																	<div
 																		class="ba-custom-select ba-store-statistic-select">
@@ -143,18 +132,7 @@
 																		<i class="zmdi zmdi-caret-down"></i>
 																	</div>
 																</div>
-																<div class="ba-store-statistic-action-wrapper">
-																	<span class="ba-store-statistic-action ba-disabled"
-																		data-action="+"> <i
-																		class="zmdi zmdi-caret-right"></i> <span
-																		class="ba-tooltip ba-top ba-hide-element">Next</span>
-																	</span> <span class="ba-store-statistic-custom-action">
-																		<input type="hidden" class="open-calendar-dialog"
-																		data-format="Y-m-d" data-type="range-dates"
-																		data-key="to" data-created="true"> <i
-																		class="zmdi zmdi-calendar-alt"></i>
-																	</span>
-																</div>
+
 															</div>
 														</div>
 														<div class="ba-store-statistic-body">
@@ -164,19 +142,19 @@
 																		data-type="orders"
 																		style="-statistic-count-color: #ffc700;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Orders</span>
+																			class="ba-store-statistic-text">신규 가입자 수</span>
 																	</div>
 																	<div class="ba-store-statistic-count-wrapper"
 																		data-type="completed"
 																		style="-statistic-count-color: #34dca2;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Sales</span>
+																			class="ba-store-statistic-text">당일 예매 건수</span>
 																	</div>
 																	<div class="ba-store-statistic-count-wrapper"
 																		data-type="refunded"
 																		style="-statistic-count-color: #35404a;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Refunds</span>
+																			class="ba-store-statistic-text">당일 주문 건수</span>
 																	</div>
 																</div>
 																<div class="span4">
@@ -233,8 +211,8 @@
 															<thead>
 																<tr>
 																	<th><span> Recently Opened </span></th>
-																	<th><span> Views </span></th>
 																	<th><span> ID </span></th>
+																	<th><span> Enroll Date </span></th>
 																</tr>
 															</thead>
 															<tbody id="goods_list">
@@ -1257,7 +1235,7 @@ function printClock() {
     
     var clock = document.getElementById("clock"); // 출력할 장소 선택
     var currentDate = new Date(); // 현재시간
-    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+    var calendar = currentDate.getFullYear() + ". " + (currentDate.getMonth()+1) + ". " + currentDate.getDate() + " " // 현재 날짜
     var amPm = 'AM'; // 초기값 AM
     var currentHours = addZeros(currentDate.getHours(),2); 
     var currentMinute = addZeros(currentDate.getMinutes() ,2);
@@ -1268,7 +1246,7 @@ function printClock() {
     	currentHours = addZeros(currentHours - 12,2);
     }
 
-    clock.innerHTML = calendar+", "+currentHours+":"+currentMinute+":"+currentSeconds+ amPm+"</span>"; //날짜를 출력해 줌
+    clock.innerHTML = calendar+"  "+currentHours+":"+currentMinute+":"+currentSeconds+ amPm+"</span>"; //날짜를 출력해 줌
     
     setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
 }

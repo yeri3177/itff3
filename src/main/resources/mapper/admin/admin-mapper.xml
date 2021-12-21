@@ -112,5 +112,23 @@
 		order by 
 			p_enroll desc
 	</select>
+	
+	<select id="selectOneMember" resultType="member">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	
+	<select id="selectMemberPointHistoryList" resultType="pointHistory">
+		select
+			*
+		from
+			point_history
+		where
+			member_id = #{id}
+	</select>
 
 </mapper>
