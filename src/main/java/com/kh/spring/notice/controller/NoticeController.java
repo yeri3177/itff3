@@ -1,6 +1,7 @@
 package com.kh.spring.notice.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -146,27 +147,68 @@ public class NoticeController {
 	}
 	
 	
-//	@GetMapping("/noticeDetail.do")
-//	public void noticeDetail(@RequestParam int no, Model model) {
-//		log.debug("글번호 = {}", no);
-//		
-//		Notice notice = noticeService.selectOneNoticeCollection(no);
-//		log.debug("notice = {}", notice);
-//		model.addAttribute("notice", notice);
-//		
-//	}
-//	
-//	@GetMapping (
-//			value = "/fileDownload.do",
-//			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
-//	)
-//	@ResponseBody
-//	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
-//		
-//		// db attachment 행 조회하기
-//		
-//		
-//		return resource;
-//	}
+	@GetMapping("/noticeDetail.do")
+	public void noticeDetail(@RequestParam int no, Model model) {
+		log.debug("글번호 = {}", no);
+		
+		Notice notice = noticeService.selectOneNoticeCollection(no);
+		log.debug("notice = {}", notice);
+		model.addAttribute("notice", notice);
+		
+	}
+	
+	@GetMapping (
+			value = "/fileDownload.do",
+			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
+	)
+	@ResponseBody
+	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
+		
+		// resource 객체 생성
+		Resource resource = null;
+		try {
+			// db attachment 행 조회하기
+			Attachment attach = noticeService.selectOneAttachment(no);
+			log.debug("attach = {}", attach);
+			
+			// 실제 다운로드 할 파일경로 가져오기
+			String saveDirectory = application.getRealPath("/resource/upload/notice");
+			File downFile = new File(saveDirectory, attach.getRenamedFilename());
+			
+			resource = resourceLoader.getResource("file:" + downFile);
+			log.debug("file : {}", downFile);
+			
+			// 헤더값 설정
+			String filename = new String(attach.getOriginalFilename().getBytes("utf-8"), "iso-8859-1");
+			response.addHeader("Content-Disposition", "attachment; filename=" + filename);
+			
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resource;
+		
+	}
+	
+	/**
+    * URL Resource 처리
+    * - 외부자원을 자바 앱으로 가져올 때 이용
+    * - 웹크롤링할 때 사용하면 좋다.
+    */
+	@GetMapping(
+			value = "/resource.do",
+			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
+	)
+	@ResponseBody
+	public Resource resource(HttpServletResponse response) {
+		
+		Resource resource = resourceLoader.getResource("https://docs.oracle.com/javase/8/docs/api/java/io/File.html"); // html이 날라왔을 때 html 파일로 다운
+		log.debug("resource = {}", resource);
+		// 헤더부 설정
+		response.addHeader("Content-Disposition", "attachment; filename=File.html");
+		
+		return resource;
+	}
 	
 }

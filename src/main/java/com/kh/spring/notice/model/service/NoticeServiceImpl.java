@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.notice.model.dao.NoticeDao;
-import com.kh.spring.notice.model.exception.BoardException;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +51,16 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		
 		return result;
+	}
+
+	@Override
+	public Notice selectOneNoticeCollection(int no) {
+		return noticeDao.selectOneNoticeCollection(no);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int no) {
+		return noticeDao.selectOneAttachment(no);
 	}
 	
 }

@@ -15,4 +15,8 @@ public interface NoticeDao {
 
 	int insertAttachment(Attachment attach);
 
+	Notice selectOneNoticeCollection(int no);
+
+	Attachment selectOneAttachment(int no);
+
 }

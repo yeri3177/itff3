@@ -40,5 +40,15 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int insertAttachment(Attachment attach) {
 		return session.insert("notice.insertAttachment", attach);
 	}
+
+	@Override
+	public Notice selectOneNoticeCollection(int no) {
+		return session.selectOne("notice.selectOneNoticeCollection", no);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int no) {
+		return session.selectOne("notice.selectOneAttachment", no);
+	}
 	
 }
