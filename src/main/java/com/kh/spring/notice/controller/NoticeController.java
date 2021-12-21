@@ -172,7 +172,9 @@ public class NoticeController {
 			log.debug("attach = {}", attach);
 			
 			// 실제 다운로드 할 파일경로 가져오기
-			String saveDirectory = application.getRealPath("/resource/upload/notice");
+			String saveDirectory = application.getRealPath("/resources/upload/notice");
+			log.debug("saveDirectory 찍히나? {}", saveDirectory);
+			
 			File downFile = new File(saveDirectory, attach.getRenamedFilename());
 			
 			resource = resourceLoader.getResource("file:" + downFile);
