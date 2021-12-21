@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+div#board-container{width:800px; margin:0 auto; text-align:center;}
+div#board-container input{margin-bottom:15px;}
+/* 부트스트랩: 파일라벨명 정렬 */
+div#board-container label.custom-file-label{text-align:left;}
+
+textarea.form-control {
+	height: 500px;
+}
+
+.btn-outline-success {
+    color: #34495e;
+    background-color: transparent;
+    background-image: none;
+    border-color: #34495e;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #34495e;
+    border-color: #34495e;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active {
+	color: #fff;
+    background-color: #34495e;
+    border-color: #34495e;
+}
+
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 0.2rem rgb(211 211 211 / 50%);
+}

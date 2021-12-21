@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+	
+	<select id="selectNoticeList" resultType="notice">
+		select 
+        	b.*,
+        	(select count(*) from attachment where attach_no = b.notice_no) attach_count
+		from notice_board b
+		order by notice_no desc
+	</select>
+	
+	<select id="countTotalContent" resultType="_int">
+		select count(*)
+		from notice_board
+	</select>
+	
+	<insert id="insertNotice" parameterType="notice">
+		insert into notice_board(notice_no, notice_title, notice_content)
+		values (
+			seq_notice_no.nextval,
+			#{noticeTitle},
+			#{noticeContent}
+		)
+		
+		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
+			select seq_notice_no.currval
+			from dual
+		</selectKey>
+	</insert>
+
+	<insert id="insertAttachment">
+		insert into attachment(attach_no, notice_no, original_filename, renamed_filename)
+		values (
+			seq_attachment_no.nextval,
+			#{boardNo},
+			#{originalFilename},
+			#{renamedFilename}
+		)
+	</insert>
+	
+	
+</mapper>
