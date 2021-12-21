@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.spring.sharing.model.dao.BoardDao;
+import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service("boardService")
 @Slf4j
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
@@ -36,31 +38,46 @@ public class BoardServiceImpl implements BoardService {
 	 */
 
 	@Override
+	@Transactional(
+			propagation = Propagation.REQUIRED, 
+			isolation = Isolation.READ_COMMITTED, 
+			rollbackFor = Exception.class
+	)
 	public int insertBoard(Board board) {
-		return boardDao.insertBoard(board);
+		int result = 0;
+		// board insert
+		try {
+			result = boardDao.insertBoard(board);
+			log.debug("board.no = {}", board.getNo());
+			// attachment insert
+			List<Attachment> attachments = board.getAttachments();
+			if(attachments != null) {
+				for(Attachment attach : attachments) {
+					attach.setMarketNo(board.getNo()); // fk컬럼값 세팅(필수)
+					result = boardDao.insertAttachment(attach);
+				}
+			}
+		} catch (Exception e) {
+			// 사용자정의예외(RuntimeException)로 전환 던짐
+			throw new BoardException("게시글/첨부파일 등록 오류", e);
+		} 
+		return result;
 	}
-	
-//	@Override
-//	@Transactional(
-//			propagation = Propagation.REQUIRED, 
-//			isolation = Isolation.READ_COMMITTED,
-//			rollbackFor = Exception.class
-//			)
-//	public int insertBoard(Board board) {
-//		
-//		int result = 0;
-//		
-//		// board insert
-//		result = boardDao.insertBoard(board);
-//		log.debug("board.no = {}", board.getNo()); // 등록한 글의 번호
-//		
-//		// attachment insert
-//		List<Attachment> attachments = board.getAttachments();
-//		if(attachments != null) {
-//			for(Attachment attach : attachments) {
-//				attach.setBoardNo(board.getNo());
-//			}
-//		}
-//	}
+
+	@Override
+	public Board selectOneBoard(int no) {
+		//1. board레코드(1행) 조회
+		Board board = boardDao.selectOneBoard(no);
+		log.debug("board = {}", board);
+		
+		//2. attachment레코드(n행) 조회
+		List<Attachment> attachments = boardDao.selectAttachmentListByBoardNo(no);
+		log.debug("attachment = {}", attachments);
+		
+		if(!attachments.isEmpty())
+			board.setAttachments(attachments);
+		
+		return board;
+	}
 	
 }

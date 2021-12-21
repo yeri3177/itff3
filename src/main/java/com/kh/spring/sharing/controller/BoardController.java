@@ -1,6 +1,8 @@
 package com.kh.spring.sharing.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.sharing.model.service.BoardService;
+import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
@@ -82,25 +85,59 @@ public class BoardController {
 		
 		try {
 			// 첨부파일 list생성
-		
+			List<Attachment> attachments = new ArrayList<>();
+			
+			// application객체 (ServletContext)
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			
+			
 			for(MultipartFile upFile : upFiles) {
-				
-				log.debug("upFile = {}", upFile);
-				log.debug("upFile.name = {}", upFile.getOriginalFilename());
-				log.debug("upFile.size = {}", upFile.getSize());
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+
+					String originalFilename = upFile.getOriginalFilename();
+					String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
+					
+					// 1.서버컴퓨터에 저장
+					File dest = new File(saveDirectory, renamedFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+						
+					// 2. DB에 attachment 레코드 등록
+					Attachment attach = new Attachment();
+					attach.setRenamedFilename(renamedFilename);
+					attach.setOriginalFilename(originalFilename);
+					attachments.add(attach);
+				}
 			}
 			// 업무로직
+			if(!attachments.isEmpty())
+				board.setAttachments(attachments);
 			
 			int result = boardService.insertBoard(board);
 			String msg = result > 0 ? "게시글 등록 성공!" : "게시글 등록 실패!";
 			redirectAttr.addFlashAttribute("msg", msg);
 			
 		} catch(Exception e) {
-			log.error(e.getMessage(), e); 
-			throw e; 
+			log.error(e.getMessage(), e);  // 로킹
+			throw e; // spring container에게 던짐.
 		}
 		
 		return "redirect:/sharing/boardList.do";
 	}
 	
+	@GetMapping("/boardDetail.do")
+	public void boardDetail(@RequestParam int no, Model model) {
+		log.debug("no = {}", no);
+		
+		// 업무로직
+		Board board = boardService.selectOneBoard(no);
+		log.debug("board = {}", board);
+		model.addAttribute("board", board);
+	}
 }
