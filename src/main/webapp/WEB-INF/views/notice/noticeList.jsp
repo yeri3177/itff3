@@ -68,7 +68,11 @@ $(() => {
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 	
 <section id="board-container" class="cont">
+
+
 	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
+	
+	
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr style="display:none">
 			<th>제목</th>

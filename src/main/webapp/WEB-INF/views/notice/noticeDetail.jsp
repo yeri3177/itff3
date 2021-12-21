@@ -46,32 +46,57 @@
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
-<div id="board-container" class="mx-auto text-center">
-
-	<input type="text" class="form-control" 
-		   placeholder="제목" name="title" id="title" 
-		   value="${notice.noticeTitle}" required>
+<div class=noticeDetail2>
+	<div id="board-container" class="mx-auto text-center">
 	
-	<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
-		<button type="button" 
-				class="btn btn-outline-success btn-block attach"
-				value="${attach.attachNo}">
-			첨부파일${vs.count} - ${attach.originalFilename}
-		</button>
-	</c:forEach>
-	
-   	<textarea class="form-control" name="content" 
-   		  placeholder="내용" required>${notice.noticeContent}</textarea>
-	<input type="" class="form-control" name="regDate" 
-		   value='<fmt:formatDate value="${notice.regDate}" pattern="yyyy.MM.dd"/>'>
+		<div class="noticeDetail">
+			<input type="text" class="form-control" 
+				   placeholder="제목" name="title" id="title" 
+				   value="${notice.noticeTitle}" required>
+			<input type="" class="form-control" name="regDate" 
+				   value='<fmt:formatDate value="${notice.regDate}" pattern="yyyy.MM.dd"/>'>
+			
+			<div class="buttons">
+				<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
+					<button type="button" 
+							class="btn btn-outline-success btn-block attach"
+							value="${attach.attachNo}">
+							${vs.count} - ${attach.originalFilename}
+							</a>
+					</button>
+				</c:forEach>
+			</div>
+			
+		   	<div class="form-control" name="content" 
+		   		  placeholder="내용" required>
+		   		  <br />
+		   		  <c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
+						<img src="${pageContext.request.contextPath}/resources/upload/notice/${attach.renamedFilename}" alt="" />
+		   		  </c:forEach>
+		   		  <br />
+		   		  ${notice.noticeContent}
+   		  	</div>
+		   		  
+			<div class="brd_view_btm">
+				<div class="btn_group">
+					<a href="javascript:OnBoardList();" class="btn_page_list">목록</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
 	
-<script>
+<script type="text/javascript">
 $(".attach").click((e) => {
 	const no = $(e.target).val();
 	console.log(no);
 	location.href = `${pageContext.request.contextPath}/notice/fileDownload.do?no=\${no}`;
 });
+
+function OnBoardList() {
+	location.href = `${pageContext.request.contextPath}/notice/noticeList.do`;
+}
 </script>	
 		
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
