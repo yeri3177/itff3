@@ -172,4 +172,9 @@ a {
     color: #FFF;
     text-shadow: none;
 }
+
+.collapse_li {
+	display: grid;
+	margin-bottom: 10px;
+}
     

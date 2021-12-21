@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.chat.model.service.ChatService;
 import com.kh.spring.chat.model.vo.ChatLog;
 import com.kh.spring.common.HiSpringUtils;
@@ -62,6 +63,12 @@ public class AdminManageController {
 	
 	@GetMapping("/adminManage.do")
 	public void adminManage() {}
+
+///////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * [메인화면: 최근 상품 10개]
+	 */
 	
 	@GetMapping("/selectRecentTenGoodsList.do")
 	public List<Goods> selectRecentTenGoodsList(@ModelAttribute("Goods") Goods param, Model model) {
@@ -72,41 +79,93 @@ public class AdminManageController {
 		
 		return list;
 	}
+	
+	/**
+	 * [회원정보]
+	 */
+	
+	@GetMapping("/adminMemberDetailModal.do")
+	public Member adminMemberDetailModal(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		
+		return member;
+	}
+	
 
 ///////////////////////////////////////////////////////////////////////////////
 	
-@GetMapping("/adminMemberList.do")
-public String adminMemberList(
-		@RequestParam(defaultValue = "1") int cPage, 
-		Model model,
-		HttpServletRequest request
-		) {
+	/**
+	 * [회원 목록]
+	 */
 	
-	log.debug("cPage = {}", cPage);
+	@GetMapping("/adminMemberList.do")
+	public String adminMemberList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		List<Member> list = adminService.selectMemberList(offset, limit);
+
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectMemberTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMemberList";
+	}
 	
-	int limit = 10;
-	int offset = (cPage - 1) * limit;
+	/**
+	 * [모달 테스트]
+	 */
 	
-	// 1. 
-	List<Member> list = adminService.selectMemberList(offset, limit);
-	log.debug("list = {}", list);
-	model.addAttribute("list", list);
-	
-	// 2. totalContent
-	int totalContent = adminService.selectMemberTotalCount();
-	log.debug("totalContent = {}", totalContent);
-	model.addAttribute("totalContent", totalContent);
-	
-	// 3. pagebar
-	String url = request.getRequestURI(); 
-	String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-	log.debug("pagebar = {}", pagebar);
-	model.addAttribute("pagebar", pagebar);
-	
-	return "admin/adminMemberList";
-}
-	
-	
+
+//	/**
+//	 * [멤버 상세]
+//	 */
+//
+//	@GetMapping("/adminMemberDetail.do")
+//	public void adminMemberDetail(@RequestParam String id, Model model) {
+//		log.debug("id = {}", id);
+//		
+//		try {
+//			Member member = adminService.selectOneMember(id);
+//			log.debug("member = {}", member);
+//			
+//			List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
+//			
+//			model.addAttribute("member", member);
+//			model.addAttribute("list", list);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//		
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
@@ -223,7 +282,7 @@ public String adminMemberList(
 	 */
 	
 	@GetMapping("/adminGoodsDetail.do")
-	public void adminGoodsUpdate(@RequestParam int pId, Model model) {
+	public void adminGoodsDetail(@RequestParam int pId, Model model) {
 		log.debug("pId = {}", pId);
 		
 		Goods goods = adminService.selectOneGoods(pId);

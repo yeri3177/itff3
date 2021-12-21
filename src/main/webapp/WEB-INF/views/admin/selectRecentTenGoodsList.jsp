@@ -18,7 +18,7 @@
 			style="background-image: url(https://i.ibb.co/Vgq006M/20211217-185555.png);"></span>
 			${list.PName }
 	</a></td>
-	<td class="hits-cell">${list.PPrice }</td>
-	<td>${list.PId }</td>
+	<td class="second-cell">${list.PId }</td>
+	<td class="hits-cell"><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
 </tr>
 </c:forEach>
