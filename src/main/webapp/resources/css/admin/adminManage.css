@@ -976,10 +976,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 0;
 }
 
-.ba-store-statistic-header-filter-wrapper {
-    margin: 0 auto;
-}
-
 .ba-store-statistic-header-filter-wrapper .ba-store-statistic-action-wrapper {
     display: block !important;
     text-align: center;
@@ -1143,7 +1139,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 .ba-store-statistic-total-price {
-    background: #a2bf5c;
+    background: #bbbbbb;
     border-radius: 6px;
     color: #fff;
     display: inline-flex;
@@ -1507,6 +1503,7 @@ tbody, td, tfoot, th, thead, tr {
 
 .main-table.dashboard-content table tbody:not(.order-list-sorting) tr td {
     cursor: default;
+    text-align: center;
 }
 
 #app-group-modal .group-apps-list-item:not(:last-child), .main-table .table-striped tbody > tr:not(:last-child) > td {
@@ -1629,11 +1626,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     font-size: 18px;
     color: #212121;
 }
-    
-    
-
-
-
 
 
 
