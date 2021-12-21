@@ -12,4 +12,6 @@ public interface BoardService {
 
 	int insertBoard(Board board);
 
+	Board selectOneBoard(int no);
+
 }

@@ -3,15 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="티켓나눔터" name="title"/>
+<jsp:param value="티켓나눔터" name="title"/>
 </jsp:include>
 
 <style>
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
-
-
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -38,7 +37,23 @@ input#btn-add{float:right; margin: 0 0 15px;}
 function goBoardForm(){
 	location.href = "${pageContext.request.contextPath}/sharing/boardForm.do";
 }
+
+$(() => {
+	/**
+	* event bubbling 기반 핸들링
+	* tr > td 
+	*/
+	$("tr[data-no]").click((e) => {
+		//console.log(e.target);
+		//console.log($(e.target).data("no"));
+		const $tr = $(e.target).parents("tr");  // 부모중에 tr태크를 찾아주세요.
+		const no = $tr.data("no");
+		location.href = `${pageContext.request.contextPath}/sharing/boardDetail.do?no=\${no}`; // '\' 사용한 이유: el이 아니라 javascript $라는 걸 표시하기 위해서.
+	});
+})
 </script>
+
+
 
 <section id="board-container" class="container">
 <div class="title">
@@ -54,7 +69,6 @@ function goBoardForm(){
 				<!-- <td><span class="badge badge-\${board.category == 'P' ? 'danger' : (board.category == 'S' ? 'primary')}"></span></td> -->
 		<c:forEach items="${list}" var="board">
 			<tr data-no="${board.no}">
-				
 				<td>
 					<span class="badge badge-${board.category == 'P' ? 'danger' : (board.category == 'S' ? 'primary' : 'secondary') }">
 						<c:choose>
@@ -66,7 +80,7 @@ function goBoardForm(){
 				</td>
 				<td>${board.title}</td>
 				<td>${board.memberId}</td>
-				<td><fmt:formatDate value="${board.regDate}" pattern="yy-MM-dd HH:mm"/></td>		
+				<td><fmt:formatDate value="${board.regDate}" pattern="yy-MM-dd HH:mm" /></td>		
 			</tr>
 		</c:forEach>
 	</table>
