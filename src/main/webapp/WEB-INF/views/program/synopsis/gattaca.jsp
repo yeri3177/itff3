@@ -47,7 +47,6 @@
 </div>
 
 
-
 <div class="film_info">
    <div class="container_">
       <div class="film_info_top">
