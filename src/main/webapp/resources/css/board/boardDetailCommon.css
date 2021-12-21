@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+div#board-container{width:400px;}
+input, button, textarea {margin-bottom:15px;}
+button { overflow: hidden; }
+/* 부트스트랩 : 파일라벨명 정렬*/
+div#board-container label.custom-file-label{text-align:left;}
