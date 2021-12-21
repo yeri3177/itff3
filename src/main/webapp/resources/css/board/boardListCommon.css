@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+.cont {
+    /* max-width: 1000px; */
+    margin: 0 200px;
+    height: 1000px;
+}
+
+.btn-outline-success {
+	float: right;
+    margin-bottom: 8px;
+    color: #34495e;
+    border-color: #34495e;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #34495e;
+    border-color: #34495e;
+}
+
+.brd_li {
+    position: relative;
+    padding: 25px 0;
+    border-bottom: 1px solid #efefef;
+    border-top: 1px solid #efefef;
+}
+
+.brd_li :first-child {
+	position: relative;
+    width: calc(100% - 150px);
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 40px;
+    overflow: hidden;
+    font-size: 21px;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    letter-spacing: -0.8px;
+    border-top: 0px solid #dee2e6;
+}
+
+.brd_li :last-child {
+	font-size: 18px;
+    margin-top: 2px;
+    float: right;
+    line-height: 40px;
+    border-top: 0px solid #dee2e6;
+}
+
+.pagenation {
+    padding: 30px 0;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Lato','돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;
+    width: 100%;
+}
+
+#tbl-board {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    text-align: center;
+    margin : auto;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #000;
+    background-color: #34495e3b;
+    border-color: #34495e00;
+}
+
+.table-hover tbody tr:hover {
+	cursor: pointer;
+    background-color: rgb(255 255 255 / 8%);
+}
+
+.btn-outline-success:active, .btn-outline-success:focus {
+	color: #000;
+    background-color: #ffffff;
+    border-color: #34495e;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus {
+	box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 50%);
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active {
+	color: #fff;
+    background-color: #34495e;
+    border-color: #ffffff;
+}
+
+.btn-outline-success:focus {
+    box-shadow: 0 0 0 0.2rem rgb(193 193 193 / 50%);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(255 255 255 / 5%);
+}
