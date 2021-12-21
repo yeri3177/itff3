@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.io.File;
 
 import javax.servlet.ServletContext;
@@ -17,8 +18,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,6 +62,16 @@ public class AdminManageController {
 	
 	@GetMapping("/adminManage.do")
 	public void adminManage() {}
+	
+	@GetMapping("/selectRecentTenGoodsList.do")
+	public List<Goods> selectRecentTenGoodsList(@ModelAttribute("Goods") Goods param, Model model) {
+		List<Goods> list = adminService.selectRecentTenGoodsList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
 
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -227,12 +240,23 @@ public String adminMemberList(
 			Goods goods,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
 			RedirectAttributes redirectAttr,
-			@RequestParam int pId
+			@RequestParam("pId") int pId
 		) throws IllegalStateException, IOException {
 		
 		try {
 			log.debug("pId = {}", pId);
 			log.debug("goods = {}", goods);
+			
+			// 기존 파일 삭제
+    		Goods Oldgoods = adminService.selectOneGoods(pId);
+    		
+    		if(Oldgoods != null) {
+    			String saveDirectory = application.getRealPath("/resources/upload/goods");
+    			String filename = Oldgoods.getPImg();
+    			File delFile = new File(saveDirectory, filename);
+    			boolean result = delFile.delete();
+    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+    		}
 			
 			// 첨부파일 list생성
 			List<Attachment> attachments = new ArrayList<>();
@@ -273,7 +297,8 @@ public String adminMemberList(
 			String msg = result > 0 ? "상품 수정 성공" : "다시 시도해주세요.";
 			
 			redirectAttr.addFlashAttribute("msg", msg);
-		} catch (Exception e) {
+		
+		}catch (Exception e) {
 			log.error(e.getMessage(), e); // 로깅
 			
 			throw e; // spring container에게 던짐.
@@ -290,6 +315,16 @@ public String adminMemberList(
 		log.debug("pId = {}", pId);
 		
     	try {
+    		Goods goods = adminService.selectOneGoods(pId);
+    		
+    		if(goods != null) {
+    			String saveDirectory = application.getRealPath("/resources/upload/goods");
+    			String filename = goods.getPImg();
+    			File delFile = new File(saveDirectory, filename);
+    			boolean result = delFile.delete();
+    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+    		}
+    		
 			int result = adminService.deleteGoods(pId);
 			redirectAttr.addFlashAttribute("msg", "상품 삭제 성공");
 			

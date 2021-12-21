@@ -106,5 +106,10 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return adminDao.selectRecentTenGoodsList(); 
+	}
+
 
 }
