@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Board;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -61,6 +62,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member selectOneNickname(String nickname) {
 		return memberDao.selectOneNickname(nickname);
+	}
+
+
+	@Override
+	public List<Board> selectBoardListByMemberId(int offset, int limit, String id) {
+		return memberDao.selectBoardListByMemberId(offset, limit, id);
+	}
+
+
+	@Override
+	public int selectBoardTotalCount() {
+		return memberDao.selectBoardTotalCount();
 	}
 	
 	

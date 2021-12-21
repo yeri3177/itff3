@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Board;
 
 public interface MemberDao {
 
@@ -22,5 +23,9 @@ public interface MemberDao {
 	Member selectOneEmail(String email);
 
 	Member selectOneNickname(String nickname);
+
+	List<Board> selectBoardListByMemberId(int offset, int limit, String id);
+
+	int selectBoardTotalCount();
 
 }

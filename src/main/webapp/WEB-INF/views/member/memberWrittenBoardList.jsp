@@ -54,6 +54,7 @@ $(() => {
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr class="text-center">
 			<th>번호</th>
+			<th>카테고리</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
@@ -63,9 +64,18 @@ $(() => {
 		<c:forEach items="${list}" var="board">
 			<tr class="text-center" data-no="${board.no}">
 				<td>${board.no}</td>
+				<td>
+					<span class="badge badge-${board.category == 'P' ? 'danger' : (board.category == 'S' ? 'primary' : 'secondary') }">
+						<c:choose>
+							<c:when test="${board.category == 'P'}">티켓구함</c:when>
+							<c:when test="${board.category == 'S'}">티켓양도</c:when>
+							<c:otherwise>티켓교환</c:otherwise>
+						</c:choose>
+					</span>
+				</td>
 				<td>${board.title}</td>
 				<td>${board.memberId}</td>
-				<td><fmt:formatDate value="${board.regDate}" pattern="yy년 MM월 dd일 HH시 mm분"/> </td>
+				<td><fmt:formatDate value="${board.regDate}" pattern="yy-MM-dd HH:mm"/> </td>
 				<td class="text-center">
 					<c:if test="${board.attachCount gt 0}">
 						<img src="${pageContext.request.contextPath}/resources/images/file.png" alt="" width="16px"/>

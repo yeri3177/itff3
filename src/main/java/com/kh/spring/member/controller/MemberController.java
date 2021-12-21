@@ -6,10 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -34,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -208,16 +211,77 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("/memberUpdate.do")
+	public void memberUpdate() {}
 	
 	// memberUpdate 선생님 풀이
 	@PostMapping("/memberUpdate.do")
 	public String memberUpdate(
 			@ModelAttribute Member member,
-			@ModelAttribute("loginMember") Member loginMember,
+			@RequestParam String birthday1, 
+			@RequestParam String birthday2, 
+			@RequestParam String birthday3, 
+			@RequestParam String address1, 
+			@RequestParam String address2, 
+			@RequestParam String phone1, 
+			@RequestParam String phone2, 
+			@RequestParam String phone3,
 			RedirectAttributes redirectAttr){
 		try { 
+			
+			log.debug("=========== form --> controller ===========");
+			log.debug("===========================================");
+			log.debug("birthday1 = {}", birthday1);
+			log.debug("birthday2 = {}", birthday2);
+			log.debug("birthday3 = {}", birthday3);
+			log.debug("===========================================");
+			log.debug("address1 = {}", address1);
+			log.debug("address2 = {}", address2);
+			log.debug("===========================================");
+			log.debug("phone1 = {}", phone1);
+			log.debug("phone2 = {}", phone2);
+			log.debug("phone3 = {}", phone3);
+			log.debug("===========================================");
+			
 			log.debug("member = {}", member);
-			log.debug("loginMember = {}", loginMember);
+			
+			// 생일 연월일 합쳐서 Date 타입으로 형변환
+			if(!birthday1.isEmpty()) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date birthday = null;
+				try {
+					birthday = sdf.parse(birthday1 + "-" + birthday2 + "-" + birthday3);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				log.debug("birthday = {}", birthday);
+				member.setBirthday(birthday);
+			}
+			
+			// 주소
+			if(!address1.isEmpty()) {
+				String address = address1 + " " + address2;
+				log.debug("address = {}", address);
+				member.setAddress(address);				
+			}
+			
+			// 전화번호
+			if(!phone1.isEmpty()) {
+				String phone = phone1 + phone2 + phone3;
+				log.debug("phone = {}", phone);
+				member.setPhone(phone);				
+			}
+			
+			// 0. 비밀번호 암호화 처리
+			if(member.getPassword() != null) {
+				log.info("{}", passwordEncoder);
+				String rawPassword = member.getPassword();
+				String encryptedPassword = passwordEncoder.encode(rawPassword);
+				member.setPassword(encryptedPassword);
+				log.info("{} -> {}", rawPassword, encryptedPassword);				
+			}
+
 			
 			//1.비지니스로직 실행
 			int result = memberService.updateMember(member);
@@ -237,7 +301,43 @@ public class MemberController {
 		return "redirect:/member/memberDetail.do";
 	}
 	
-	
+	@GetMapping("/memberWrittenBoardList.do")
+	public String memberWrittenBoard(
+			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
+			Model model,
+			HttpServletRequest request,
+			Authentication authentication
+			) {
+		
+		Member member = (Member) authentication.getPrincipal();
+		
+		String id = member.getId();
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.전체 게시글 목록 가져오기(첨부파일 갯수 포함)
+		List<Board> list = memberService.selectBoardListByMemberId(offset, limit, id);
+		log.debug("BoardList = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 총 게시물 수 가져오기
+		int totalContent = memberService.selectBoardTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); // /spring/sharing/boardList.do
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		
+		return "/member/memberWrittenBoardList";
+	}
 	
 	/**
 	 * jsonView 빈을 이용해서 json응답메시지를 출력
