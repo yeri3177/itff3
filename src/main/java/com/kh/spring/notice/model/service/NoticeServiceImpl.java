@@ -41,7 +41,7 @@ public class NoticeServiceImpl implements NoticeService {
 			List<Attachment> attachments = notice.getAttachments();
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setBoardNo(notice.getNoticeNo());
+					attach.setAttachNo(notice.getNoticeNo());
 					result = noticeDao.insertAttachment(attach);
 				}
 			}

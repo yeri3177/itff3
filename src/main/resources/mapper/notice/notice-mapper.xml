@@ -35,7 +35,7 @@
 		insert into attachment(attach_no, notice_no, original_filename, renamed_filename)
 		values (
 			seq_attachment_no.nextval,
-			#{boardNo},
+			#{attachNo},
 			#{originalFilename},
 			#{renamedFilename}
 		)
