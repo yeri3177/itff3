@@ -145,5 +145,65 @@
 		where
 			id = #{id}
 	</update>
+	
+	<select id="searchMember" resultType="member">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('id')">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					m.* 
+				from 
+					member m)
+			where 
+				id like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+			select 
+				* 
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					m.* 
+				from 
+					member m) 
+			where 
+				name like #{searchKeyword}
+		</if>
+	</select>
+	
+<!-- 	<resultMap type="member" id="searchMemberMap"> -->
+<!-- 		<id column="rnum" property="rnum"/> -->
+<!-- 		<result column="id" property="id"/> -->
+<!-- 		<result column="password" property="password"/> -->
+<!-- 		<result column="name" property="name"/> -->
+<!-- 		<result column="phone" property="phone"/> -->
+<!-- 		<result column="email" property="email"/> -->
+<!-- 		<result column="birthday" property="birthday"/> -->
+<!-- 		<result column="address" property="address"/> -->
+<!-- 		<result column="nickname" property="nickname"/> -->
+<!-- 		<result column="reg_date" property="regDate"/> -->
+<!-- 		<result column="point" property="point"/> -->
+<!-- 		<result column="enabled" property="enabled"/> -->
+<!-- 	</resultMap> -->
 
+	<select id="searchMemberCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('id')">
+			select 
+				count(*) 
+			from 
+				member 
+			where 
+				id like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+			select 
+				count(*) 
+			from 
+				member 
+			where 
+				name like #{searchKeyword}
+		</if>
+	</select>
 </mapper>

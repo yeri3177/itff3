@@ -1,6 +1,7 @@
 package com.kh.spring.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -89,6 +90,22 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int updateMember(Member member) {
 		return session.update("admin.updateMember", member);
+	}
+
+	@Override
+	public List<Member> searchMember(Map<String, Object> param) {
+			int offset = (int) param.get("start");
+			int limit = (int) param.get("end");
+			log.debug("offset, limit = {}", offset, limit);
+			log.debug("param = {}", param);
+			RowBounds rowBounds = new RowBounds(offset, limit); 
+			
+		return session.selectList("admin.searchMember", param, rowBounds);
+	}
+
+	@Override
+	public int searchMemberCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchMemberCount", param);
 	}
 
 

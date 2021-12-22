@@ -1,6 +1,7 @@
 package com.kh.spring.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
@@ -29,5 +30,9 @@ public interface AdminService {
 	List<PointHistory> selectMemberPointHistoryList(String id);
 
 	int updateMember(Member member);
+
+	List<Member> searchMember(Map<String, Object> param);
+
+	int searchMemberCount(Map<String, Object> param);
 
 }
