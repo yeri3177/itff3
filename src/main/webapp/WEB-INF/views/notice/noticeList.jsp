@@ -1,9 +1,21 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	Member loginMember = (Member) authentication.getPrincipal();
+	pageContext.setAttribute("loginMember", loginMember);
+%>
+
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -69,9 +81,16 @@ $(() => {
 	
 <section id="board-container" class="cont">
 
-
-	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
-	
+		<c:set var="author" value="${loginMember.authorities}"/>
+		<c:forEach var="a" items="${author}" varStatus="status">
+			<c:if test="${a eq 'ROLE_ADMIN'}">
+				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
+				</sec:authorize>
+		</sec:authorize>
+			</c:if>
+		</c:forEach>		
 	
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr style="display:none">

@@ -25,5 +25,6 @@ public class NoticeEntity implements Serializable {
 	private String noticeContent;
 	private Date regDate;
 	private int readCount;
+	private String memberId;
 
 }

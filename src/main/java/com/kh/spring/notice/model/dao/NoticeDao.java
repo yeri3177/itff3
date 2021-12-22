@@ -2,6 +2,7 @@ package com.kh.spring.notice.model.dao;
 
 import java.util.List;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.vo.Attachment;
 
@@ -18,5 +19,7 @@ public interface NoticeDao {
 	Notice selectOneNoticeCollection(int no);
 
 	Attachment selectOneAttachment(int no);
+
+	List<Member> selectOneloginMember(int no);
 
 }

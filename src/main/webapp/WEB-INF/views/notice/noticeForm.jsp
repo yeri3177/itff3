@@ -1,9 +1,19 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	Member loginMember = (Member) authentication.getPrincipal();
+	pageContext.setAttribute("loginMember", loginMember);
+%>
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -93,7 +103,7 @@ $(() => {
       enctype="multipart/form-data"
       onsubmit="return boardValidate();"
    >
-      
+      <input type="hidden" name="memberId" value="${loginMember.id}" required readonly>
       <input type="text" class="form-control" placeholder="제목" name="noticeTitle" id="title" required>
       
       <!-- input: file소스: https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
