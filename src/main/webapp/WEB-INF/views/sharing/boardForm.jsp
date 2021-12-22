@@ -1,8 +1,20 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%
+    SecurityContext securityContext = SecurityContextHolder.getContext();
+    Authentication authentication = securityContext.getAuthentication();
+    Member loginMember = (Member) authentication.getPrincipal();
+    pageContext.setAttribute("loginMember", loginMember);
+%>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="게시글 작성" name="title"/>
 </jsp:include>
@@ -32,7 +44,7 @@ $(() => {
 		// 1. 파일명 가져오기
 		const file = $(e.target).prop("files")[0];
 		const filename = file?.name;   // optional chaining : 객체가 undefined인 경우에도 오류가 나지 않는다.
-		console.log(e.target);
+		console.dir(e.target);
 		console.log(filename);
 		
 		// 2. label에 설정하기
@@ -54,26 +66,26 @@ $(() => {
 <div id="board-container">
 	<form 
 		name="boardFrm" 
-		action="${pageContext.request.contextPath}/sharing/boardEnroll.do" 
+		action="${pageContext.request.contextPath}/sharing/boardEnroll.do?${_csrf.parameterName}=${_csrf.token}" 
 		method="post" 
 		enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
-		
-	<div class="input-group mb-3">
-	  <div class="input-group-prepend">
-	    <label class="input-group-text" for="inputGroupSelect01">종류</label>
-	  </div>
-	  <select class="custom-select" id="inputGroupSelect01" name="category" >
-	    <option selected>종류를 선택해 주세요</option>
-	    <option value="P">티켓구함</option>
-	    <option value="S">티켓양도</option>
-	    <option value="R">티켓교환</option>
-	  </select>
-	</div>
-		
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <label class="input-group-text" for="inputGroupSelect01">종류</label>
+		  </div>
+		  <select class="custom-select" id="inputGroupSelect01" name="category" >
+		    <option selected>종류를 선택해 주세요</option>
+		    <option value="P">티켓구함</option>
+		    <option value="S">티켓양도</option>
+		    <option value="R">티켓교환</option>
+		  </select>
+		</div>	
 		<input type="text" class="form-control" placeholder="제목" name="title" id="title" required>
 		<input type="text" class="form-control" name="memberId" value="${loginMember.id}" readonly required>
+<%-- 		<p type="text" class="form-control" name="memberId"><sec:authentication property="principal.id"/></p> --%>
 		<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
+		<br />
 		<div class="input-group mb-3" style="padding:0px;">
 		  <div class="input-group-prepend" style="padding:0px;">
 		    <span class="input-group-text">첨부파일1</span>
@@ -83,7 +95,6 @@ $(() => {
 		    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
 		  </div>
 		</div>
-		
 		<div class="input-group mb-3" style="padding:0px;">
 		  <div class="input-group-prepend" style="padding:0px;">
 		    <span class="input-group-text">첨부파일2</span>
@@ -95,7 +106,6 @@ $(() => {
 		</div>
 		
 	    <textarea class="form-control" name="content" placeholder="내용" required></textarea>
-	    	    
 		<br />
 		<input type="submit" class="btn btn-outline-success" value="저장" >
 	</form>

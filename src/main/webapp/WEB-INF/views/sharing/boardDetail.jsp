@@ -32,7 +32,7 @@ div#board-container label.custom-file-label{text-align:left;}
 		<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
 			<button type="button" 
 					class="btn btn-outline-success btn-block attach"
-					value="${attach.no}">
+					value="${attach.attachNo}">
 				첨부파일${vs.count} - ${attach.originalFilename}	
 			</button>
 		</c:forEach>
@@ -45,6 +45,12 @@ div#board-container label.custom-file-label{text-align:left;}
 			   value='<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm"></fmt:formatDate>'>   <!-- datetime-local이 원하는 포맷이 이거라서 패턴을 여기에 맞게 써줌. 'T'의 홑따옴표는 이스케이핑이라고 함 -->   
 	</div>
 </div>
+<script>
+$(".attach").click((e) => {
+	const no = $(e.target).val();
+	console.log(no);
+});
+</script>
 <br />
 <br />
 <br />
