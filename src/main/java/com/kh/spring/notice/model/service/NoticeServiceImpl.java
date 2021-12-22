@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.notice.model.dao.NoticeDao;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.exception.BoardException;
@@ -61,6 +62,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public Attachment selectOneAttachment(int no) {
 		return noticeDao.selectOneAttachment(no);
+	}
+
+	@Override
+	public List<Member> selectOneloginMember(int no) {
+		return noticeDao.selectOneloginMember(no);
 	}
 	
 }

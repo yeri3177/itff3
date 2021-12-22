@@ -18,11 +18,12 @@
 	</select>
 	
 	<insert id="insertNotice" parameterType="notice">
-		insert into notice_board(notice_no, notice_title, notice_content)
+		insert into notice_board(notice_no, notice_title, notice_content, member_id)
 		values (
 			seq_notice_no.nextval,
 			#{noticeTitle},
-			#{noticeContent}
+			#{noticeContent},
+			#{memberId}
 		)
 		
 		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
@@ -74,6 +75,13 @@
 		select *
 		from attachment
 		where attach_no = #{no}
+	</select>
+	
+	<select id="selectOneloginMember" resultType="string">
+		select authority
+		from notice_board a left join authorities b
+            on a.member_id = b.member_id
+        where a.notice_no = #{noticeNo}
 	</select>
 	
 </mapper>

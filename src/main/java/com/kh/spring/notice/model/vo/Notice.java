@@ -23,8 +23,8 @@ public class Notice extends NoticeEntity implements Serializable {
 	private int attachCount;
 	private List<Attachment> attachments;
 	
-	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date regDate, int readCount, int attachCount, List<Attachment> attachments) {
-		super(noticeNo, noticeTitle, noticeContent, regDate, readCount);
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date regDate, int readCount, int attachCount, String memberId, List<Attachment> attachments) {
+		super(noticeNo, noticeTitle, noticeContent, regDate, readCount, memberId);
 		this.attachCount = attachCount;
 		this.attachments = attachments;
 	}

@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.notice.model.service.NoticeService;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -35,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping(value="/notice", method= {RequestMethod.GET, RequestMethod.POST})
 @Slf4j
+@SessionAttributes({"loginMember"})
 public class NoticeController {
 
 	@Autowired
@@ -154,6 +157,11 @@ public class NoticeController {
 		Notice notice = noticeService.selectOneNoticeCollection(no);
 		log.debug("notice = {}", notice);
 		model.addAttribute("notice", notice);
+		
+		log.debug("모델이 뭐지? = {}", model);
+		
+		List<Member> list = noticeService.selectOneloginMember(no);
+		log.debug("글번호에 일치하는 멤버의 = {}", list);
 		
 	}
 	
