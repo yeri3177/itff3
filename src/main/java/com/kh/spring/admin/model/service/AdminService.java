@@ -35,4 +35,8 @@ public interface AdminService {
 
 	int searchMemberCount(Map<String, Object> param);
 
+	List<Goods> searchGoods(Map<String, Object> param);
+
+	int searchGoodsCount(Map<String, Object> param);
+
 }

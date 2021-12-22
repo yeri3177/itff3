@@ -143,5 +143,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.searchMemberCount(param);
 	}
 
+	@Override
+	public List<Goods> searchGoods(Map<String, Object> param) {
+		return adminDao.searchGoods(param);
+	}
+
+	@Override
+	public int searchGoodsCount(Map<String, Object> param) {
+		return adminDao.searchGoodsCount(param);
+	}
+
 
 }

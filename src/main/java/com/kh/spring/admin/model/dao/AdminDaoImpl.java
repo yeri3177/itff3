@@ -36,6 +36,37 @@ public class AdminDaoImpl implements AdminDao {
 	public Member selectOneMember(String id) {
 		return session.selectOne("admin.selectOneMember", id);
 	}
+	
+	@Override
+	public int selectMemberTotalCount() {
+		return session.selectOne("admin.selectMemberTotalCount");
+	}
+	
+	@Override
+	public List<PointHistory> selectMemberPointHistoryList(String id) {
+		return session.selectList("admin.selectMemberPointHistoryList", id);
+	}
+	
+	@Override
+	public int updateMember(Member member) {
+		return session.update("admin.updateMember", member);
+	}
+
+	@Override
+	public List<Member> searchMember(Map<String, Object> param) {
+			int offset = (int) param.get("start");
+			int limit = (int) param.get("end");
+			log.debug("offset, limit = {}", offset, limit);
+			log.debug("param = {}", param);
+			RowBounds rowBounds = new RowBounds(offset, limit); 
+			
+		return session.selectList("admin.searchMember", param, rowBounds);
+	}
+
+	@Override
+	public int searchMemberCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchMemberCount", param);
+	}
 
 	/**
 	 * [굿즈]
@@ -55,11 +86,6 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int insertAttachment(Attachment attach) {
 		return session.insert("admin.insertAttachment", attach);
-	}
-
-	@Override
-	public int selectMemberTotalCount() {
-		return session.selectOne("admin.selectMemberTotalCount");
 	}
 
 	@Override
@@ -83,29 +109,19 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<PointHistory> selectMemberPointHistoryList(String id) {
-		return session.selectList("admin.selectMemberPointHistoryList", id);
+	public List<Goods> searchGoods(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchGoods", param, rowBounds);
 	}
 
 	@Override
-	public int updateMember(Member member) {
-		return session.update("admin.updateMember", member);
-	}
-
-	@Override
-	public List<Member> searchMember(Map<String, Object> param) {
-			int offset = (int) param.get("start");
-			int limit = (int) param.get("end");
-			log.debug("offset, limit = {}", offset, limit);
-			log.debug("param = {}", param);
-			RowBounds rowBounds = new RowBounds(offset, limit); 
-			
-		return session.selectList("admin.searchMember", param, rowBounds);
-	}
-
-	@Override
-	public int searchMemberCount(Map<String, Object> param) {
-		return session.selectOne("admin.searchMemberCount", param);
+	public int searchGoodsCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchGoodsCount", param);
 	}
 
 
