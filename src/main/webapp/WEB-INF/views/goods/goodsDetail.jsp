@@ -158,9 +158,9 @@
 					<div>수량</div>
 					
 					<div class="qty-btn-div">
-						<input type="button" value="+" class="cnt-bnt" onclick="add();">
-						<input type="text" name="amount" id="amount" value="1" onchange="change();">
 						<input type="button" value="-" class="cnt-bnt" onclick="del();">
+						<input type="text" name="amount" id="amount" value="1" onchange="change();">
+						<input type="button" value="+" class="cnt-bnt" onclick="add();">
 					</div>
 				</div>
 				
@@ -199,9 +199,8 @@ var sell_price = document.getElementById('sell_price').value;
 /* 상품 수량 값*/
 var amount = hm.value;
 
-
+/* +,- 버튼 클릭 이벤트 > 수량span값 바뀌기 */
 $(".cnt-bnt").click((e) => {
-	/* $cnt.text($("#amount").val()); */
 	$cnt.text(hm.value);
 });
 
