@@ -200,4 +200,45 @@
 				name like #{searchKeyword}
 		</if>
 	</select>
+	
+	<select id="searchGoods" resultType="goods">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by p_enroll desc) rnum, 
+					g.* 
+				from 
+					goods g)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('pId')">
+				where 
+					p_id like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('pName')">
+				where 
+					p_name like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+	
+	<select id="searchGoodsCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('pId')">
+			select 
+				count(*) 
+			from 
+				goods
+			where 
+				p_id like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('pName')">
+			select 
+				count(*) 
+			from 
+				goods 
+			where 
+				p_name like #{searchKeyword}
+		</if>
+	</select>
+	
 </mapper>

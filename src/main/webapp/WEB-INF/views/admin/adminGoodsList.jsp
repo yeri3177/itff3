@@ -77,6 +77,11 @@
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
+<style>
+div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
+</style>
+
 <body>
 	<!-- // hd_bg -->
 
@@ -260,6 +265,54 @@
 		</div>
 	</section>
 	
+<!-- //footer -->
+<footer id="ft" class="ft">
+
+   <div class="input-group rounded" style="justify-content: center; margin: 20px 0 20px 0">
+        <select 
+        	id="searchType" 
+        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none;">
+            <option value="pId" ${"pId".equals(searchType) ? "selected" : ""}>상품코드</option>		
+            <option value="pName" ${"pName".equals(searchType) ? "selected" : ""}>상품명</option>
+        </select>
+        <div id="search-pId" class="search-type">
+            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+            	<div style="display: flex;">
+                <input type="hidden" name="searchType" value="pId"/>
+                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}"/>
+                <button type="submit" class="btn btn-outline-primary">search</button>		
+            	</div>
+            </form>	
+        </div>
+        <div id="search-pName" class="search-type" style="display: none;">
+            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+            <div style="display: flex;">
+                <input type="hidden" name="searchType" value="pName"/>
+                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}"/>
+                <button type="submit" class="btn btn-outline-primary">search</button>		
+            </div>
+            </form>	
+        </div>
+    </div>
+
+${pagebar}
+
+</footer>
+<!-- //footer -->
+	
+<script>
+$("#searchType").change((e) => {
+	// e.target 이벤트발생객체 -> #searchType
+	const type = $(e.target).val();
+	
+	// 1. .search-type 감추기
+	$(".search-type").hide();
+	
+	// 2. #search-${type} 보여주기(display:inline-block)
+	$(`#search-\${type}`).css("display", "inline-block");
+});
+</script>
+
 <script>
 
 // 파일명 바꾸기 & 이미지 이름
@@ -311,13 +364,6 @@ function goodsDetail_btn(pId) {
 
 	<!-- //container -->
 
-<!-- //footer -->
-<footer id="ft" class="ft">
-
-${pagebar}
-
-</footer>
-<!-- //footer -->
 
 </body>
 </html>
