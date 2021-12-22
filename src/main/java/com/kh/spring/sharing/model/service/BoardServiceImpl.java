@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		// board insert
 		try {
 			result = boardDao.insertBoard(board);
-			log.debug("board.no = {}", board.getNo());
+			log.debug("BoardServiceImpl_board.no = {}", board.getNo());
 			// attachment insert
 			List<Attachment> attachments = board.getAttachments();
 			if(attachments != null) {
@@ -78,6 +78,11 @@ public class BoardServiceImpl implements BoardService {
 			board.setAttachments(attachments);
 		
 		return board;
+	}
+
+	@Override
+	public Board selectOneBoardCollection(int no) {
+		return boardDao.selectOneBoardCollection(no);
 	}
 	
 }

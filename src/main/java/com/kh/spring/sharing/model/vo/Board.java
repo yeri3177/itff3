@@ -20,12 +20,14 @@ public class Board extends BoardEntity implements Serializable{/**
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Member member;
 	private int attachCount;
 	private List<Attachment> attachments;
 	
-	public Board(int no, String memberId, String title, String content, Date regDate, int readCount, String category, int attachCount, List<Attachment> attachments) {
+	public Board(int no, String memberId, String title, String content, Date regDate, int readCount, String category, int attachCount, Member member,
+			List<Attachment> attachments) {
 		super(no, memberId, title, content, regDate, readCount, category);
-
+		this.member = member;
 		this.attachCount = attachCount;
 		this.attachments = attachments;
 	}

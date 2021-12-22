@@ -19,4 +19,6 @@ public interface BoardDao {
 
 	List<Attachment> selectAttachmentListByBoardNo(int no);
 
+	Board selectOneBoardCollection(int no);
+
 }
