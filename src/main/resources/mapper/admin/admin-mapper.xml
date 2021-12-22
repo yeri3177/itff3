@@ -241,4 +241,19 @@
 		</if>
 	</select>
 	
+	<insert id="insertPointHistory">
+		insert into
+			point_history
+		values (seq_history_no.nextval, #{id}, #{reason}, #{change}, #{point}, default)
+	</insert>
+	
+	<update id="updateMemberPoint" parameterType="hashmap">
+		update 
+			member
+		set
+			point = #{point}
+		where
+			id = #{id}
+	</update>
+	
 </mapper>

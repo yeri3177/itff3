@@ -9,91 +9,25 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
-<title>ITFF Admin</title>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- 카카오맵 API -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
-
-<!-- bootstrap js: jquery load 이후에 작성할 것.-->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	crossorigin="anonymous"></script>
-
-<!-- bootstrap css -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-	crossorigin="anonymous">
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminList.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminMenu.css">
 
-<!-- sock.js 추가 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"
-	integrity="sha512-ayb5R/nKQ3fgNrQdYynCti/n+GD0ybAhd3ACExcYvOR2J1o3HebiAe/P0oZDx5qwB+xkxuKG6Nc0AFTsPT/JDQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- stomp.js 추가 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
-	integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- IE 지원용 babel-standalone -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
-	integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- IE 지원용: babel-polyfill -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
-	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- 폰트 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap"
-	rel="stylesheet">
-
-
-</head>
-
-<!-- 한글 깨지지 않게 하는 설정-->
-<fmt:requestEncoding value="utf-8" />
+<jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
+	<jsp:param value="ITFF" name="title" />
+</jsp:include>
 
 <style>
 div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".equals(${searchType}) ? "inline-block" : "none"; }
 div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
-<body>
-	<!-- // hd_bg -->
+<!-- 굿즈 nav -->
+<jsp:include page="/WEB-INF/views/admin/common/adminGoodsNavBar.jsp"></jsp:include>
 
-<!-- 	Header -->
-<header id="hd" class="hd"> 
-</header> 
-<!-- 	//header -->
+<!-- 관리자 공통 메뉴 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 
-	<section class="ftco-section">
-	
-	<!-- 관리자 공통 메뉴 -->
-	<jsp:include page="/WEB-INF/views/admin/adminMenu.jsp"></jsp:include>
 
 		<div class="container">
 			
@@ -106,13 +40,14 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 			<div class="row">
 				<div class="col-md-12">
 				
+				<!-- 
 				<div class="add-product">
 					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalLong1">
 					  상품 등록
 					</button>
 				</div>
 				
-				<!-- 굿즈 추가 -->
+				굿즈 추가 
 				<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
@@ -121,6 +56,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 						action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
 						method="post" 
 						enctype="multipart/form-data">
+						
 				      <div class="modal-header">
 				        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;">상품 등록</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -160,7 +96,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							  <div class="input-group-append">
 							    <button class="btn btn-outline-secondary" type="button">Button</button>
 							  </div>
-							</div>
+						  </div>
 				      </div>
 				      
 				      <div class="modal-footer">
@@ -172,6 +108,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 				    </div>
 				  </div>
 				</div>
+				 -->
 				<!-- 굿즈 추가 끝 -->
 				
 					<div class="table-wrap">
@@ -226,8 +163,11 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<td><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
 
 									<td>
-										<button id="${list.PId }" type="button"
-										class="btn btn-secondary" data-toggle="modal"
+										<button 
+										id="${list.PId }" 
+										type="button"
+										class="btn btn-secondary" 
+										data-toggle="modal"
 										data-target="#adminGoodsDetail"
 										onclick="goodsDetail_btn('${list.PId}');">상세</button>
 									</td>
@@ -238,35 +178,42 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</tbody>
 						</table>
 						
-						<!-- 회원 상세 -->
+						<!-- 상품 상세 -->
 						<div class="modal fade" id="adminGoodsDetail" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
 								style="max-width: 600px;">
-								<div class="modal-content" id="modal_ajax"
+								<div class="modal-content"
 									style="text-align: left;">
-								    		  <div class="modal-body">
+								  	<div class="modal-body" id="modal_ajax1">
 								    		  
-								</div>
-								<div class="modal-footer">
-									<!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-									<button type="button" class="btn btn-primary">수정</button>
-									<button type="button" class="btn btn-success">삭제</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- 회원 상세 끝 -->
+						<!-- 상품 상세 끝 -->
+						<!-- 상품 정보 수정 -->
+						<div class="modal fade" id="adminGoodsUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax2">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 상세 끝 -->
 						
 					</div>
 				</div>	
 			</div>
 		</div>
-	</section>
-	
-<!-- //footer -->
-<footer id="ft" class="ft">
 
    <div class="input-group rounded" style="justify-content: center; margin: 20px 0 20px 0">
         <select 
@@ -297,8 +244,6 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 
 ${pagebar}
 
-</footer>
-<!-- //footer -->
 	
 <script>
 $("#searchType").change((e) => {
@@ -313,33 +258,10 @@ $("#searchType").change((e) => {
 });
 </script>
 
-<script>
-
-// 파일명 바꾸기 & 이미지 이름
-$(() => {
-	$("[name=upFile]").change((e) => {
-		// 1.파일명 가져오기
-		const file = $(e.target).prop("files")[0];
-		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
-		console.dir(e.target);
-		console.log(filename);
-		
-		// 2.label에 설정하기
-		const $label = $(e.target).next();
-		if(file != undefined)
-			$label.html(filename);
-		else
-			$label.html("파일을 선택하세요.");
-		
-		$("[name=pImg]").val(filename);
-		
-	});	
-});
-
-</script>
 
 <script>
- 
+
+// 상품 상세
 function goodsDetail_btn(pId) {
 	
 	console.log(pId);
@@ -352,7 +274,7 @@ function goodsDetail_btn(pId) {
 		contentType: "application/json",
 		dateType: "text",
 		success: function(data) {
-			$("#modal_ajax").html(data);
+			$("#modal_ajax1").html(data);
 		},
 		complete: function() {
 			console.log("complete")
@@ -362,10 +284,57 @@ function goodsDetail_btn(pId) {
 
 </script>
 
+<script>
+
+// 상품 정보 수정
+function goodsUpdate_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsUpdate.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax2").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 파일명 바꾸기 & 이미지 이름
+$(() => {
+	$("[name=upFile]").change((e) => {
+		
+		// 1.파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
+		console.dir(e.target);
+		console.log(file);
+		console.log(filename);
+		
+		// 2.label에 설정하기
+		const $label = $(e.target).next();
+		console.log($label);
+		
+		if(file != undefined) {
+			$label.html(filename);
+			$("[name=pImg]").val(filename);			
+		}
+	});	
+});
+
+</script>
+
 	<!-- //container -->
 
-
-</body>
-</html>
-
-<%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> --%>
+<jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

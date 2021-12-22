@@ -13,89 +13,24 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
-<title>ITFF Admin</title>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<!-- 카카오맵 API -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
-
-<!-- bootstrap js: jquery load 이후에 작성할 것.-->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-	crossorigin="anonymous"></script>
-
-<!-- bootstrap css -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-	crossorigin="anonymous">
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminList.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminMenu.css">
 
-<!-- sock.js 추가 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"
-	integrity="sha512-ayb5R/nKQ3fgNrQdYynCti/n+GD0ybAhd3ACExcYvOR2J1o3HebiAe/P0oZDx5qwB+xkxuKG6Nc0AFTsPT/JDQ=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- stomp.js 추가 -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
-	integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- IE 지원용 babel-standalone -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
-	integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- IE 지원용: babel-polyfill -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
-	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<!-- 폰트 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap"
-	rel="stylesheet">
-
-</head>
-
-<!-- 한글 깨지지 않게 하는 설정-->
-<fmt:requestEncoding value="utf-8" />
+<jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
+	<jsp:param value="ITFF" name="title" />
+</jsp:include>
 
 <style>
-div#search-id {display: ${searchType} == '' || ${searchType} == null ||"id".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-id {display: ${searchType} == '' || ${searchType} == null || "id".equals(${searchType}) ? "inline-block" : "none"; }
 div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
-<body>
+<!-- 굿즈 nav -->
+<jsp:include page="/WEB-INF/views/admin/common/adminMemberNavBar.jsp"></jsp:include>
 
-<!-- 	Header -->
-<header id="hd" class="hd"> 
-</header> 
-<!-- 	//header -->
-
-	<section class="ftco-section">
-	
-	<!-- 관리자 공통 메뉴 -->
-	<jsp:include page="/WEB-INF/views/admin/adminMenu.jsp"></jsp:include>
+<!-- 관리자 공통 메뉴 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 
 		<div class="container">
 			
@@ -234,18 +169,30 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									</div>
 								</div>
 								<!-- 회원 정보 수정 끝 -->
+								<!-- 회원 포인트 지급 -->
+								<div class="modal fade" id="adminMemberPoint" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax3">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+									<!-- 회원 포인트 지급 -->
 						
 						</div>
 					</div>
 				</div>
 			</div>
-	</section>
 	        
 <!-- //container -->
 	
 
-<!-- //footer -->
-<footer id="ft" class="ft">
 
    <div class="input-group rounded" style="justify-content: center; margin: 20px 0 20px 0">
         <select 
@@ -276,10 +223,10 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 
 ${pagebar}
 
-</footer>
 <!-- //footer -->
 
 <script>
+// 검색
 $("#searchType").change((e) => {
 	// e.target 이벤트발생객체 -> #searchType
 	const type = $(e.target).val();
@@ -365,6 +312,31 @@ function memberUpdate_btn(memberId) {
 
 <script>
 
+// 포인트 지급
+function memberPoint_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberPoint.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax3").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
 //Bootstrap multiple modal
 var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
 
@@ -387,5 +359,4 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 
 </script>
 
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

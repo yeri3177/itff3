@@ -153,5 +153,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.searchGoodsCount(param);
 	}
 
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return adminDao.insertPointHistory(param);
+	}
+
+	@Override
+	public int updateMemberPoint(Map<String, Object> param) {
+		return adminDao.updateMemberPoint(param);
+	}
+
 
 }
