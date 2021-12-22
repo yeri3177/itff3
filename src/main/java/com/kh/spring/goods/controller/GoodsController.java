@@ -1,5 +1,6 @@
 package com.kh.spring.goods.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.OptionDetail;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,17 +44,43 @@ public class GoodsController {
 		
 		// 2. 전체게시물수 
 		int totalContent = goodsService.selectGoodsTotalCount();
-		log.debug("totalContent = {}", totalContent);
+		//log.debug("totalContent = {}", totalContent);
 		model.addAttribute("totalContent", totalContent);
 		
 		// 3. pagebar
 		String url = request.getRequestURI(); // /spring/board/boardList.do
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		log.debug("pagebar = {}", pagebar);
+		//log.debug("pagebar = {}", pagebar);
 		model.addAttribute("pagebar", pagebar);
 		
 		return "goods/goodsList";
 	}
+	
+	@GetMapping("/goodsDetail.do")
+	public void goodsDetail(@RequestParam int pid, Model model) {
+		// 상품 아이디 확인 
+		log.debug("pid = {}", pid);
+		
+		// 상품아이디 -> 굿즈테이블 레코드 조회 
+		Goods goods = goodsService.selectOneGoods(pid);
+		log.debug("goods = {}", goods);
+		model.addAttribute("goods", goods);
+		
+		// 상품아이디 -> 옵션아이디 
+		List<Integer> optionIdList = goodsService.selectOptionId(pid);
+		log.debug("옵션 아이디 리스트 = {}", optionIdList);
+		
+		// 옵션아이디 -> 옵션상세 테이블 레코드 조회 
+		List<OptionDetail> optionList = new ArrayList<>();
+		for(Integer option : optionIdList) {
+			optionList.add(goodsService.selectOptionList(option));
+		}
+		log.debug("optionList = {}", optionList);
+		
+		// 옵션 list 셋팅
+		model.addAttribute("optionList", optionList);
+	}
+	
 	
 	@GetMapping("/sellerInfo.do")
 	public String sellerInfo() {

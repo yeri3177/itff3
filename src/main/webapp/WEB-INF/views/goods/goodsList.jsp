@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goods.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsList.css" />
 
 <!-- 인코딩 설정 -->
 <fmt:requestEncoding value="utf-8"/>
@@ -50,25 +50,27 @@
 		</ul>
 		<br /><br /><br />
 		
-		<!-- 상품 목록 카드 -->
+		<!-- 상품 목록 카드 리스트-->
 		
 		<div class="card-list">
-		
+			
+			<!-- 개별 상품 카드 -->
 			<c:forEach items="${list}" var="goods">
-			<div class="card" style="width: 18rem;">
-			  <!-- 대표 이미지 -->
-			  <img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}" class="card-img-top">
-			  
-			  <div class="card-body">
-			   	<!-- 상품명 -->
-			    <p class="card-text">${goods.PName}</p>
-			    
-			    <!--가격 -->
-			    <p class="card-text">
-			    	<fmt:formatNumber value="${goods.PPrice}" pattern="#,###원" />
-			    </p>
-			  </div>
-			</div>
+				<div class="card" style="width: 18rem;" data-id="${goods.PId}">
+				  <!-- 대표 이미지 -->
+				  <div class="img-div">
+				  	<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}">
+				  </div>
+				  <div class="card-body">
+				   	<!-- 상품명 -->
+				    <p class="card-text">${goods.PName}</p>
+				    
+				    <!--가격 -->
+				    <p class="card-text">
+				    	<fmt:formatNumber value="${goods.PPrice}" pattern="#,###원" />
+				    </p>
+				  </div>
+				</div>
 			</c:forEach>
 			
 		</div>
@@ -83,7 +85,23 @@
 
 <script>
 
+$(() => {
+	$(".card").click((e) => {
+		//console.log(e.target);
+		
+		const $card = $(e.target).parents(".card");
+		const pid = $card.data("id");
+		
+		console.log(pid);
+		location.href = `${pageContext.request.contextPath}/goods/goodsDetail.do?pid=\${pid}`;
+		
+	});
+	
+});
+
+
 
 </script>
+
 <!-- footer -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

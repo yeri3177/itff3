@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.goods.model.dao.GoodsDao;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.OptionDetail;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -23,6 +24,23 @@ public class GoodsServiceImpl implements GoodsService {
 	public int selectGoodsTotalCount() {
 		return goodsDao.selectGoodsTotalCount();
 	}
+
+	@Override
+	public List<Integer> selectOptionId(int pid) {
+		return goodsDao.selectOptionId(pid);
+	}
+
+	@Override
+	public OptionDetail selectOptionList(Integer option) {
+		return goodsDao.selectOptionList(option);
+	}
+
+	@Override
+	public Goods selectOneGoods(int pid) {
+		return goodsDao.selectOneGoods(pid);
+	}
+
+
 	
 	
 }

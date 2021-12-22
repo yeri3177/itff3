@@ -20,4 +20,33 @@
 			goods
 	</select>
 	
+	<select id="selectOptionId" resultMap="optionList">
+		select
+			*
+		from 
+			goods_option
+		where
+			p_id = #{pId}
+	</select>
+	
+	<resultMap type="java.lang.Integer" id="optionList">
+		<result property ="optionId" column = "option_id"/>
+	</resultMap>
+	
+	<select id="selectOptionList" resultType="optionDetail">
+		select
+			*
+		from 
+			option_detail
+		where option_id = #{option}
+	</select>
+	
+	<select id="selectOneGoods" resultType="goods">
+		select
+			*
+		from
+			goods
+		where
+			p_id = #{pid}
+	</select>
 </mapper>

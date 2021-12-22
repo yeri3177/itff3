@@ -55,10 +55,6 @@
   	margin: 40px 0;
   }
   
-  .card img {
-  	background-color: #f6f6f6;
-  }
-  
   .card {
 	float: left;
   	margin: 20px;
@@ -76,13 +72,26 @@
  	text-align: left;
  }
  
- .card-img-top {
- 	width: 285px;
- 	height: 265px;
+ .img-div img {
+ 	width: 250px;
+ 	height: auto;
+ 	vertical-align: middle;
  }
  
+ .img-div {
+ 	width: 285px;
+ 	height: 265px;
+ 	line-height: 265px;
+ 	background-color: #f6f6f6;
 
+ }
  
+ .img-div:after{
+ 	display:inline-block; 
+ 	height:100%; 
+ 	content:""; 
+ 	vertical-align:middle;
+ }
  
  
  
