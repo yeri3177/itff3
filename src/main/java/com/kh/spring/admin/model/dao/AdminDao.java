@@ -42,4 +42,8 @@ public interface AdminDao {
 
 	int searchGoodsCount(Map<String, Object> param);
 
+	int insertPointHistory(Map<String, Object> param);
+
+	int updateMemberPoint(Map<String, Object> param);
+
 }

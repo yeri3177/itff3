@@ -25,7 +25,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 2000px;
+    width: 100%;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
@@ -386,5 +386,14 @@ a:hover {
 
 .modal-title {
 	font-weight: bold;
+}
+
+.point_notice {
+	text-align: center;
+    margin: 20px 0 0 0;
+}
+
+.strong_blue {
+	color: #0069d9;
 }
 

@@ -124,6 +124,13 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.searchGoodsCount", param);
 	}
 
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return session.insert("admin.insertPointHistory", param);
+	}
 
-
+	@Override
+	public int updateMemberPoint(Map<String, Object> param) {
+		return session.update("admin.updateMemberPoint", param);
+	}
 }
