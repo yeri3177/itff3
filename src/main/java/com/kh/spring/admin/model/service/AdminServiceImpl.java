@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -34,7 +35,10 @@ public class AdminServiceImpl implements AdminService {
 			isolation = Isolation.READ_COMMITTED, 
 			rollbackFor = Exception.class 
 	)
+	
 	public int insertGoods(Goods goods) {
+		log.debug("goods = {}", goods);
+		
 		int result = 0;
 		
 		try {
@@ -44,9 +48,10 @@ public class AdminServiceImpl implements AdminService {
 			
 			// attachment insert
 			List<Attachment> attachments = goods.getAttachments();
+			
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setBoardNo(goods.getPId()); // fk컬럼값 세팅(필수)
+//					attach.setAttachNo(goods.getPId()); // fk컬럼값 세팅(필수)
 					result = adminDao.insertAttachment(attach);
 				}
 			}
@@ -93,9 +98,10 @@ public class AdminServiceImpl implements AdminService {
 			
 			// attachment insert
 			List<Attachment> attachments = goods.getAttachments();
+			
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setBoardNo(goods.getPId()); // fk컬럼값 세팅(필수)
+//					attach.setAttachNo(goods.getPId()); // fk컬럼값 세팅(필수)
 					result = adminDao.insertAttachment(attach);
 				}
 			}
@@ -104,6 +110,26 @@ public class AdminServiceImpl implements AdminService {
 			throw new AdminException("상품/첨부파일 등록 오류", e);
 		}
 		return result;
+	}
+
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return adminDao.selectRecentTenGoodsList(); 
+	}
+
+	@Override
+	public Member selectOneMember(String id) {
+		return adminDao.selectOneMember(id);
+	}
+
+	@Override
+	public List<PointHistory> selectMemberPointHistoryList(String id) {
+		return adminDao.selectMemberPointHistoryList(id);
+	}
+
+	@Override
+	public int updateMember(Member member) {
+		return adminDao.updateMember(member);
 	}
 
 

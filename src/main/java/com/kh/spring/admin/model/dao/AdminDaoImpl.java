@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -30,6 +31,11 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectList("admin.selectMemberList", null, rowBounds);
 	}
 	
+	@Override
+	public Member selectOneMember(String id) {
+		return session.selectOne("admin.selectOneMember", id);
+	}
+
 	/**
 	 * [굿즈]
 	 */
@@ -69,6 +75,22 @@ public class AdminDaoImpl implements AdminDao {
 	public int updateGoods(Goods goods) {
 		return session.update("admin.updateGoods", goods);
 	}
+
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return session.selectList("admin.selectRecentTenGoodsList");
+	}
+
+	@Override
+	public List<PointHistory> selectMemberPointHistoryList(String id) {
+		return session.selectList("admin.selectMemberPointHistoryList", id);
+	}
+
+	@Override
+	public int updateMember(Member member) {
+		return session.update("admin.updateMember", member);
+	}
+
 
 
 }

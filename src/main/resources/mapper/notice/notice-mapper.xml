@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+	
+	<select id="selectNoticeList" resultType="notice">
+		select 
+        	b.*,
+        	(select count(*) from attachment where attach_no = b.notice_no) attach_count
+		from notice_board b
+		order by notice_no desc
+	</select>
+	
+	<select id="countTotalContent" resultType="_int">
+		select count(*)
+		from notice_board
+	</select>
+	
+	<insert id="insertNotice" parameterType="notice">
+		insert into notice_board(notice_no, notice_title, notice_content)
+		values (
+			seq_notice_no.nextval,
+			#{noticeTitle},
+			#{noticeContent}
+		)
+		
+		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
+			select seq_notice_no.currval
+			from dual
+		</selectKey>
+	</insert>
+
+	<insert id="insertAttachment">
+		insert into attachment(attach_no, notice_no, original_filename, renamed_filename)
+		values (
+			seq_attachment_no.nextval,
+			#{attachNo},
+			#{originalFilename},
+			#{renamedFilename}
+		)
+	</insert>
+	
+	<select id="selectOneNoticeCollection" resultMap="noticeCollectionMap">
+		select
+			b.*,
+			a.*,
+			a.attach_no attach_no
+		from notice_board b left join attachment a
+				on b.notice_no = a.notice_no
+		where b.notice_no = #{no}
+		order by b.notice_no desc
+	</select>
+	
+	<resultMap type="notice" id="noticeCollectionMap">
+		<id column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		
+		<collection property="attachments" ofType="attachment">
+			<id column="attach_no" property="attachNo"/>
+			<result column="notice_no" property="noticeNo"/>
+			<result column="original_filename" property="originalFilename"/>
+			<result column="renamed_filename" property="renamedFilename"/>
+			<result column="reg_date" property="regDate"/>
+			
+		</collection>
+		
+	</resultMap>
+	
+	<select id="selectOneAttachment" resultType="attachment">
+		select *
+		from attachment
+		where attach_no = #{no}
+	</select>
+	
+</mapper>

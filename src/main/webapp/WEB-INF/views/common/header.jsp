@@ -174,7 +174,7 @@
 																		
 											<li><a href="#" class="" target="_top">커뮤니티</a>
 												<ul>
-													<li><a href="#" class="menu_drop">공지사항</a></li>
+													<li><a href="${pageContext.request.contextPath }/notice/noticeList.do" class="menu_drop">공지사항</a></li>
 													<li><a href="#" class="menu_drop">네티즌리뷰</a></li>
 													<li><a href="${pageContext.request.contextPath}/sharing/boardList.do" class="menu_drop">티켓나눔터</a></li>
 													<li><a href="#" class="menu_drop">자주찾는질문</a></li>

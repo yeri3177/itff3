@@ -100,10 +100,9 @@
 			
 			<div class="row">
 				<div class="col-md-12">
-					<h3 class="h5 mb-4 text-center">상품명을 클릭하시면 상세페이지로 이동합니다.</h3>
 				
 				<div class="add-product">
-					<button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalLong1">
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalLong1">
 					  상품 등록
 					</button>
 				</div>
@@ -208,9 +207,7 @@
 									<!-- 상품명 -->
 									<td>
 										<div class="email">
-											<a href="${pageContext.request.contextPath}/admin/adminGoodsDetail.do?pId=${list.PId }">
 												<span>${list.PName }</span> 
-											</a>
 										</div>
 									</td>
 									
@@ -223,24 +220,40 @@
 									<!-- 등록일자 -->
 									<td><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
 
-									<td></td>
+									<td>
+										<button id="${list.PId }" type="button"
+										class="btn btn-secondary" data-toggle="modal"
+										data-target="#adminGoodsDetail"
+										onclick="goodsDetail_btn('${list.PId}');">상세</button>
+									</td>
 
-<!-- 									버튼 -->
-<%-- 									<td><button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#updateGoodsModal" value="${list.PId }">수정</button></td> --%>
-<%-- 									<td><button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteGoodsModal" value="${list.PId }">삭제</button></td> --%>
-									
-									
-									<!-- 취소버튼 -->
-<!-- 									<td> -->
-<!-- 										<button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
-<!-- 											<span aria-hidden="true"><i class="fa fa-close"></i></span> -->
-<!-- 										</button> -->
-<!-- 									</td> -->
 								</tr>
 								</c:forEach>
 								
 							</tbody>
 						</table>
+						
+						<!-- 회원 상세 -->
+						<div class="modal fade" id="adminGoodsDetail" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 600px;">
+								<div class="modal-content" id="modal_ajax"
+									style="text-align: left;">
+								    		  <div class="modal-body">
+								    		  
+								</div>
+								<div class="modal-footer">
+									<!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+									<button type="button" class="btn btn-primary">수정</button>
+									<button type="button" class="btn btn-success">삭제</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 회원 상세 끝 -->
+						
 					</div>
 				</div>	
 			</div>
@@ -269,6 +282,30 @@ $(() => {
 		
 	});	
 });
+
+</script>
+
+<script>
+ 
+function goodsDetail_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsDetail.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
 
 </script>
 

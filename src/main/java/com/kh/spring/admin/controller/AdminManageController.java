@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.io.File;
 
 import javax.servlet.ServletContext;
@@ -13,12 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
+import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.chat.model.service.ChatService;
 import com.kh.spring.chat.model.vo.ChatLog;
 import com.kh.spring.common.HiSpringUtils;
@@ -62,37 +71,108 @@ public class AdminManageController {
 
 ///////////////////////////////////////////////////////////////////////////////
 	
-@GetMapping("/adminMemberList.do")
-public String adminMemberList(
-		@RequestParam(defaultValue = "1") int cPage, 
-		Model model,
-		HttpServletRequest request
-		) {
+	/**
+	 * [메인화면: 최근 상품 10개]
+	 */
 	
-	log.debug("cPage = {}", cPage);
+	@GetMapping("/selectRecentTenGoodsList.do")
+	public List<Goods> selectRecentTenGoodsList(@ModelAttribute("Goods") Goods param, Model model) {
+		List<Goods> list = adminService.selectRecentTenGoodsList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
 	
-	int limit = 10;
-	int offset = (cPage - 1) * limit;
+
+///////////////////////////////////////////////////////////////////////////////
 	
-	// 1. 
-	List<Member> list = adminService.selectMemberList(offset, limit);
-	log.debug("list = {}", list);
-	model.addAttribute("list", list);
+	/**
+	 * [회원 목록]
+	 */
 	
-	// 2. totalContent
-	int totalContent = adminService.selectMemberTotalCount();
-	log.debug("totalContent = {}", totalContent);
-	model.addAttribute("totalContent", totalContent);
+	@GetMapping("/adminMemberList.do")
+	public String adminMemberList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		List<Member> list = adminService.selectMemberList(offset, limit);
+
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectMemberTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMemberList";
+	}
 	
-	// 3. pagebar
-	String url = request.getRequestURI(); 
-	String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-	log.debug("pagebar = {}", pagebar);
-	model.addAttribute("pagebar", pagebar);
+	/**
+	 * [회원 상세]
+	 */
 	
-	return "admin/adminMemberList";
-}
+	@GetMapping("/adminMemberDetail.do")
+	public Member adminMemberDetail(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		List<PointHistory> list = adminService.selectMemberPointHistoryList(id);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("list", list);
+		
+		return member;
+	}
+
+	/**
+	 * [회원 정보 수정]
+	 */
 	
+	@GetMapping("/adminMemberUpdate.do")
+	public Member adminMemberUpdate(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberUpdate.do")
+	public String memberUpdate(@ModelAttribute Member member, Model model, RedirectAttributes redirectAttr){
+		
+		log.debug("member = {}", member);
+		
+		// 1. DB 정보 갱신(생략)
+		int result = adminService.updateMember(member);
+		
+		
+		redirectAttr.addFlashAttribute("msg", "회원 정보를 수정했습니다.");
+		
+		return "redirect:/admin/adminMemberList.do";
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -210,13 +290,15 @@ public String adminMemberList(
 	 */
 	
 	@GetMapping("/adminGoodsDetail.do")
-	public void adminGoodsUpdate(@RequestParam int pId, Model model) {
+	public Goods adminGoodsDetail(@RequestParam(value = "pId", required = false) int pId, Model model) {
 		log.debug("pId = {}", pId);
-		
+
 		Goods goods = adminService.selectOneGoods(pId);
 		log.debug("goods = {}", goods);
 		
 		model.addAttribute("goods", goods);
+		
+		return goods;
 	}
 	
 	/**
@@ -227,12 +309,23 @@ public String adminMemberList(
 			Goods goods,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
 			RedirectAttributes redirectAttr,
-			@RequestParam int pId
+			@RequestParam("pId") int pId
 		) throws IllegalStateException, IOException {
 		
 		try {
 			log.debug("pId = {}", pId);
 			log.debug("goods = {}", goods);
+			
+			// 기존 파일 삭제
+    		Goods Oldgoods = adminService.selectOneGoods(pId);
+    		
+    		if(Oldgoods != null) {
+    			String saveDirectory = application.getRealPath("/resources/upload/goods");
+    			String filename = Oldgoods.getPImg();
+    			File delFile = new File(saveDirectory, filename);
+    			boolean result = delFile.delete();
+    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+    		}
 			
 			// 첨부파일 list생성
 			List<Attachment> attachments = new ArrayList<>();
@@ -273,7 +366,8 @@ public String adminMemberList(
 			String msg = result > 0 ? "상품 수정 성공" : "다시 시도해주세요.";
 			
 			redirectAttr.addFlashAttribute("msg", msg);
-		} catch (Exception e) {
+		
+		}catch (Exception e) {
 			log.error(e.getMessage(), e); // 로깅
 			
 			throw e; // spring container에게 던짐.
@@ -290,6 +384,16 @@ public String adminMemberList(
 		log.debug("pId = {}", pId);
 		
     	try {
+    		Goods goods = adminService.selectOneGoods(pId);
+    		
+    		if(goods != null) {
+    			String saveDirectory = application.getRealPath("/resources/upload/goods");
+    			String filename = goods.getPImg();
+    			File delFile = new File(saveDirectory, filename);
+    			boolean result = delFile.delete();
+    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+    		}
+    		
 			int result = adminService.deleteGoods(pId);
 			redirectAttr.addFlashAttribute("msg", "상품 삭제 성공");
 			

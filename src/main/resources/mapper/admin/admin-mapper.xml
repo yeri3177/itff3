@@ -65,14 +65,20 @@
 			#{pCategory},
 			default
 		)
+		
+		<selectKey keyProperty="pId" resultType="_int" order="AFTER">
+			select 
+				seq_goods_id.currval
+			from 
+				dual
+		</selectKey>
 	</insert>
 	
 	<insert id="insertAttachment">
 		insert into
-			attachment(no, board_no, original_filename, renamed_filename)
+			attachment(attach_no, original_filename, renamed_filename)
 		values(
-			seq_ticket_sharing_attachment_attach_no.nextval,
-			#{boardNo},
+			seq_attachment_no.nextval,
 			#{originalFilename},
 			#{renamedFilename}
 		)		
@@ -101,6 +107,43 @@
 			p_name = #{pName}, p_price = #{pPrice}, p_info = #{pInfo}, p_img = #{pImg}, p_category = #{pCategory}
 		where
 			p_id = #{pId}
+	</update>
+	
+	<select id="selectRecentTenGoodsList" resultType="goods">
+		select 
+			* 
+		from 
+			goods 
+			<![CDATA[where rownum <= 10]]>
+		order by 
+			p_enroll desc
+	</select>
+	
+	<select id="selectOneMember" resultType="member">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	
+	<select id="selectMemberPointHistoryList" resultType="pointHistory">
+		select
+			*
+		from
+			point_history
+		where
+			member_id = #{id}
+	</select>
+	
+	<update id="updateMember">
+		update
+			member
+		set
+			nickname=#{nickname}, phone=#{phone}, email=#{email}, address=#{address}
+		where
+			id = #{id}
 	</update>
 
 </mapper>

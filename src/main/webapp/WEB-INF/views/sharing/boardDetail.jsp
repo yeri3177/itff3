@@ -6,36 +6,50 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="게시판 상세보기" name="title"/>
 </jsp:include>
+
 <style>
+div#board{margin:20px 20px 20px 20px;}
 div#board-container{width:400px;}
 input, button, textarea {margin-bottom:15px;}
 button { overflow: hidden; }
 /* 부트스트랩 : 파일라벨명 정렬*/
 div#board-container label.custom-file-label{text-align:left;}
 </style>
-<div id="board-container" class="mx-auto text-center">
-	<input type="text" class="form-control" 
-		   placeholder="제목" name="title" id="title" 
-		   value="${board.title}" required>
-	<input type="text" class="form-control"  
-		   name="memberId" 
-		   value="${board.member.name} (${board.memberId})" readonly required>
-
-	<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
-		<button type="button" 
-				class="btn btn-outline-success btn-block attach"
-				value="${attach.no}">
-			첨부파일${vs.count} - ${attach.originalFilename}	
-		</button>
-	</c:forEach>
-	  
-    <textarea class="form-control" name="content" 
-    		  placeholder="내용" required>${board.content}</textarea>
-    <input type="number" class="form-control" name="readCount" title="조회수"
-		   value="${board.readCount}" readonly>
-	<input type="datetime-local" class="form-control" name="regDate" 
-		   value='<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm"></fmt:formatDate>'>   <!-- datetime-local이 원하는 포맷이 이거라서 패턴을 여기에 맞게 써줌. 'T'의 홑따옴표는 이스케이핑이라고 함 -->   
+<br />
+<br />
+<br />
+<br />
+<br />
+<div id="board">
+	<div id="board-container" class="mx-auto text-center">
+		<input type="text" class="form-control" 
+			   placeholder="제목" name="title" id="title" 
+			   value="${board.title}" required>
+		<input type="text" class="form-control"  
+			   name="memberId" 
+			   value="${board.memberId}" readonly required>
+	
+		<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
+			<button type="button" 
+					class="btn btn-outline-success btn-block attach"
+					value="${attach.no}">
+				첨부파일${vs.count} - ${attach.originalFilename}	
+			</button>
+		</c:forEach>
+		  
+	    <textarea class="form-control" name="content" 
+	    		  placeholder="내용" required>${board.content}</textarea>
+	    <input type="number" class="form-control" name="readCount" title="조회수"
+			   value="${board.readCount}" readonly>
+		<input type="datetime-local" class="form-control" name="regDate" 
+			   value='<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd'T'HH:mm"></fmt:formatDate>'>   <!-- datetime-local이 원하는 포맷이 이거라서 패턴을 여기에 맞게 써줌. 'T'의 홑따옴표는 이스케이핑이라고 함 -->   
+	</div>
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
 
 <script>
 $(".attach").click((e) => {

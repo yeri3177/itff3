@@ -13,6 +13,9 @@ div#board-container input{margin-bottom:15px;}
 div#board-container label.custom-file-label{text-align:left;}
 
 </style>
+<link rel="stylesheet"
+    href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+
 <script>
 /* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function boardValidate(){
@@ -92,6 +95,7 @@ $(() => {
 		</div>
 		
 	    <textarea class="form-control" name="content" placeholder="내용" required></textarea>
+	    	    
 		<br />
 		<input type="submit" class="btn btn-outline-success" value="저장" >
 	</form>

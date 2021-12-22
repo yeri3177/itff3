@@ -120,18 +120,7 @@
 														<div class="ba-store-statistic-header">
 
 															<div class="ba-store-statistic-header-filter-wrapper">
-																<div class="ba-store-statistic-action-wrapper">
-																	<span class="ba-store-statistic-action"
-																		data-action="-"> <i
-																		class="zmdi zmdi-caret-left"></i> <span
-																		class="ba-tooltip ba-top ba-hide-element">Prev</span>
-																	</span> <span class="ba-store-statistic-custom-action">
-																		<input type="hidden" class="open-calendar-dialog"
-																		data-format="Y-m-d" data-type="range-dates"
-																		data-key="from" data-created="true"> <i
-																		class="zmdi zmdi-calendar-alt"></i>
-																	</span>
-																</div>
+
 																<div class="ba-store-statistic-select-wrapper">
 																	<div
 																		class="ba-custom-select ba-store-statistic-select">
@@ -143,18 +132,7 @@
 																		<i class="zmdi zmdi-caret-down"></i>
 																	</div>
 																</div>
-																<div class="ba-store-statistic-action-wrapper">
-																	<span class="ba-store-statistic-action ba-disabled"
-																		data-action="+"> <i
-																		class="zmdi zmdi-caret-right"></i> <span
-																		class="ba-tooltip ba-top ba-hide-element">Next</span>
-																	</span> <span class="ba-store-statistic-custom-action">
-																		<input type="hidden" class="open-calendar-dialog"
-																		data-format="Y-m-d" data-type="range-dates"
-																		data-key="to" data-created="true"> <i
-																		class="zmdi zmdi-calendar-alt"></i>
-																	</span>
-																</div>
+
 															</div>
 														</div>
 														<div class="ba-store-statistic-body">
@@ -164,19 +142,19 @@
 																		data-type="orders"
 																		style="-statistic-count-color: #ffc700;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Orders</span>
+																			class="ba-store-statistic-text">신규 가입자 수</span>
 																	</div>
 																	<div class="ba-store-statistic-count-wrapper"
 																		data-type="completed"
 																		style="-statistic-count-color: #34dca2;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Sales</span>
+																			class="ba-store-statistic-text">당일 예매 건수</span>
 																	</div>
 																	<div class="ba-store-statistic-count-wrapper"
 																		data-type="refunded"
 																		style="-statistic-count-color: #35404a;">
 																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">Refunds</span>
+																			class="ba-store-statistic-text">당일 주문 건수</span>
 																	</div>
 																</div>
 																<div class="span4">
@@ -233,111 +211,12 @@
 															<thead>
 																<tr>
 																	<th><span> Recently Opened </span></th>
-																	<th><span> Views </span></th>
 																	<th><span> ID </span></th>
+																	<th><span> Enroll Date </span></th>
 																</tr>
 															</thead>
-															<tbody>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=43">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://i.ibb.co/Vgq006M/20211217-185555.png);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">23</td>
-																	<td>43</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=40">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/21.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">26</td>
-																	<td>40</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=39">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/11.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">32</td>
-																	<td>39</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=44">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/61.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">51</td>
-																	<td>44</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=41">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/products/31.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">55</td>
-																	<td>41</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=36">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/hotel-rooms/hr-8.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">214</td>
-																	<td>36</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=21">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-2.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">692</td>
-																	<td>21</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=24">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/cover-1920x1280.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">99</td>
-																	<td>24</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=20">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-1.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">1758</td>
-																	<td>20</td>
-																</tr>
-																<tr>
-																	<td class="title-cell"><a target="_blank"
-																		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=23">
-																			<span class="post-intro-image"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/blog-post-4.jpg);"></span>
-																			Limited Edition 페리리크 머그잔
-																	</a></td>
-																	<td class="hits-cell">126</td>
-																	<td>23</td>
-																</tr>
+															<tbody id="goods_list">
+																
 															</tbody>
 														</table>
 													</div>
@@ -1349,7 +1228,6 @@
 <!-- //footer -->
 
 </body>
-</html>
 
 <script>
 
@@ -1357,7 +1235,7 @@ function printClock() {
     
     var clock = document.getElementById("clock"); // 출력할 장소 선택
     var currentDate = new Date(); // 현재시간
-    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+    var calendar = currentDate.getFullYear() + ". " + (currentDate.getMonth()+1) + ". " + currentDate.getDate() + " " // 현재 날짜
     var amPm = 'AM'; // 초기값 AM
     var currentHours = addZeros(currentDate.getHours(),2); 
     var currentMinute = addZeros(currentDate.getMinutes() ,2);
@@ -1368,7 +1246,7 @@ function printClock() {
     	currentHours = addZeros(currentHours - 12,2);
     }
 
-    clock.innerHTML = calendar+", "+currentHours+":"+currentMinute+":"+currentSeconds+ amPm+"</span>"; //날짜를 출력해 줌
+    clock.innerHTML = calendar+"  "+currentHours+":"+currentMinute+":"+currentSeconds+ amPm+"</span>"; //날짜를 출력해 줌
     
     setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
 }
@@ -1385,4 +1263,23 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 }
 </script>
 
+<script>
+
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/selectRecentTenGoodsList.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#goods_list").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
+
+</html>
 <%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> --%>
