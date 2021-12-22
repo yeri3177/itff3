@@ -106,23 +106,76 @@ public class AdminManageController {
 		
 		// 1. 
 		List<Member> list = adminService.selectMemberList(offset, limit);
-
 		log.debug("list = {}", list);
+		
 		model.addAttribute("list", list);
 		
 		// 2. totalContent
 		int totalContent = adminService.selectMemberTotalCount();
 		log.debug("totalContent = {}", totalContent);
+		
 		model.addAttribute("totalContent", totalContent);
 		
 		// 3. pagebar
 		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 		log.debug("pagebar = {}", pagebar);
+		
 		model.addAttribute("pagebar", pagebar);
 		
 		return "admin/adminMemberList";
 	}
+	
+	/**
+	 * [회원 목록 검색]
+	 */
+	
+	@GetMapping("/adminMemberFinder.do")
+	public String adminMemberFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", limit);
+		param.put("end", offset);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Member> list = adminService.searchMember(param);
+		log.debug("param2 = {}", param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchMemberCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMemberList";
+	}
+	
 	
 	/**
 	 * [회원 상세]

@@ -1,6 +1,7 @@
 package com.kh.spring.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -130,6 +131,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int updateMember(Member member) {
 		return adminDao.updateMember(member);
+	}
+
+	@Override
+	public List<Member> searchMember(Map<String, Object> param) {
+		return adminDao.searchMember(param);
+	}
+
+	@Override
+	public int searchMemberCount(Map<String, Object> param) {
+		return adminDao.searchMemberCount(param);
 	}
 
 

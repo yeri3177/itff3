@@ -80,6 +80,13 @@
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
+<style>
+div#search-container {margin:0 0 10px 0; padding:3px; background-color: rgba(0, 188, 212, 0.3);}
+div#search-id {display:  ${searchType} == null || "id".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none";}
+</style>
+
+
 <body>
 
 <!-- 	Header -->
@@ -235,7 +242,53 @@
 				</div>
 			</div>
 	</section>
+	        
 <!-- //container -->
+
+
+<!-- //footer -->
+<footer id="ft" class="ft">
+
+   <div id="search-container">
+        검색타입 : 
+        <select id="searchType">
+            <option value="id" ${"id".equals(searchType) ? "selected" : ""}>아이디</option>		
+            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>회원명</option>
+        </select>
+        <div id="search-id" class="search-type">
+            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
+                <input type="hidden" name="searchType" value="id"/>
+                <input type="text" name="searchKeyword"  size="25" placeholder="검색할 아이디를 입력하세요." value="${'id' eq searchType ? searchKeyword : ''}"/>
+                <button type="submit">검색</button>			
+            </form>	
+        </div>
+        <div id="search-name" class="search-type">
+            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
+                <input type="hidden" name="searchType" value="name"/>
+                <input type="text" name="searchKeyword" size="25" placeholder="검색할 이름을 입력하세요." value="${'name' eq searchType ? searchKeyword : ''}"/>
+                <button type="submit">검색</button>			
+            </form>	
+        </div>
+    </div>
+
+
+${pagebar}
+
+</footer>
+<!-- //footer -->
+
+<script>
+$("#searchType").change((e) => {
+	// e.target 이벤트발생객체 -> #searchType
+	const type = $(e.target).val();
+	
+	// 1. .search-type 감추기
+	$(".search-type").hide();
+	
+	// 2. #search-${type} 보여주기(display:inline-block)
+	$(`#search-\${type}`).css("display", "inline-block");
+});
+</script>
 	
 <script>
 
@@ -332,16 +385,5 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 
 </script>
 
-
-<!-- //footer -->
-<footer id="ft" class="ft">
-
-${pagebar}
-
-</footer>
-<!-- //footer -->
-
 </body>
 </html>
-
-<%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include> --%>
