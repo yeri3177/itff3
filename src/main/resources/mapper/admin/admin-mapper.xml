@@ -147,7 +147,6 @@
 	</update>
 	
 	<select id="searchMember" resultType="member">
-		<if test="searchType != null and !searchType.equals('') and searchType.equals('id')">
 			select 
 				*
 			from (
@@ -156,21 +155,16 @@
 					m.* 
 				from 
 					member m)
-			where 
-				id like #{searchKeyword}
-		</if>
-		<if test="searchType != null and !searchType.equals('') and searchType.equals('name')">
-			select 
-				* 
-			from (
-				select 
-					row_number() over(order by reg_date desc) rnum, 
-					m.* 
-				from 
-					member m) 
-			where 
-				name like #{searchKeyword}
-		</if>
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('id')">
+				where 
+					id like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+				where 
+					name like #{searchKeyword}
+			</when>
+			</choose>
 	</select>
 	
 <!-- 	<resultMap type="member" id="searchMemberMap"> -->

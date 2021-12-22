@@ -149,14 +149,15 @@ public class AdminManageController {
 		param.put("searchType", searchType);
 		String newSearchKeyword = "%" + searchKeyword + "%";
 		param.put("searchKeyword", newSearchKeyword);
-		param.put("start", limit);
-		param.put("end", offset);
+		param.put("start", offset);
+		param.put("end", limit);
 		log.debug("param1 = {}", param);
 		
 		// 1. 
 		List<Member> list = adminService.searchMember(param);
 		log.debug("param2 = {}", param);
 		log.debug("list = {}", list);
+		log.debug("list.size() = {}", list.size());
 		
 		model.addAttribute("list", list);
 		
