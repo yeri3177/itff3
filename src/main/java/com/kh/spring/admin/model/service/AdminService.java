@@ -56,4 +56,8 @@ public interface AdminService {
 
 	List<MovieJoin> selectOneTheater(int theaterId);
 
+	List<MovieJoin> adminOneMovieSchedule(String movieId);
+
+	List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param);
+
 }

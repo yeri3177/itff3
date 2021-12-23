@@ -26,7 +26,7 @@
 						  <tr>
 						   <tr>
 						     <th scope="row" style="width: 100px;">작품명</th>
-						     <td><strong>${movie.titleKor }</strong>, ${movie.titleEng }</td>
+						     <td><strong>${movie.titleKor }</strong>(${movie.titleEng })</td>
 						   </tr>
 						   <tr>
 						     <th scope="row" style="width: 100px;">작품설명</th>
