@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Movie implements Serializable {
 
 	/**
