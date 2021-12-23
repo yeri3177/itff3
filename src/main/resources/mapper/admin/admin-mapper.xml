@@ -263,4 +263,13 @@
 			movie
 	</select>
 	
+	<select id="selectOneMovie" resultType="movie">
+		select
+			*
+		from
+			movie
+		where
+			movie_id = #{movieId}
+	</select>
+	
 </mapper>

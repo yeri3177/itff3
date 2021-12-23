@@ -46,4 +46,6 @@ public interface AdminService {
 
 	List<Movie> selectMovieList();
 
+	Movie selectOneMovie(String movieId);
+
 }
