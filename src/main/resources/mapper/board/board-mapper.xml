@@ -23,7 +23,7 @@
 
 <insert id="insertBoard" parameterType="board">
 	insert into
-		board(no, member_id, title, content, category)
+		ticket_sharing_board(no, member_id, title, content, category)
 	values(
 		seq_ticket_sharing_board_no.nextval,
 		#{memberId},
@@ -41,10 +41,10 @@
 
 <insert id="insertAttachment">
 	insert into
-		attachment(no, board_no, original_filename, renamed_filename)
+		attachment(attach_no, market_no, original_filename, renamed_filename)
 	values(
 		seq_attachment_no.nextval,
-		#{boardNo},
+		#{marketNo},
 		#{originalFilename},
 		#{renamedFilename}
 	)
@@ -75,7 +75,7 @@
 		select 
 		    b.*,
 		    a.*,
-		    a.no attach_no,
+		    a.attach_no attach_no,
 		    m.*
 		from
 		    ticket_sharing_board b 
@@ -95,18 +95,13 @@
 	<result column="content" property="content"/>
 	<result column="reg_date" property="regDate"/>
 	<result column="read_count" property="readCount"/>
-	<association property="member" javaType="member">
-		<id column="id" property="id"/>
-		<result column="name" property="name"/>
-	</association>
+
 	<collection property="attachments" ofType="attachment">
 		<id column="attach_no" property="no"/>
-		<result column="board_no" property="boardNo"/>
+		<result column="market_no" property="boardNo"/>
 		<result column="original_filename" property="originalFilename"/>
 		<result column="renamed_filename" property="renamedFilename"/>
-		<result column="upload_date" property="uploadDate"/>
-		<result column="download_count" property="downloadCount"/>
-		<result column="status" property="status"/>
+		<result column="reg_date" property="regDate"/>
 	</collection>
 </resultMap>
 

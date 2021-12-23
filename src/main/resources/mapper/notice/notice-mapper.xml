@@ -18,11 +18,12 @@
 	</select>
 	
 	<insert id="insertNotice" parameterType="notice">
-		insert into notice_board(notice_no, notice_title, notice_content)
+		insert into notice_board(notice_no, notice_title, notice_content, member_id)
 		values (
 			seq_notice_no.nextval,
 			#{noticeTitle},
-			#{noticeContent}
+			#{noticeContent},
+			#{memberId}
 		)
 		
 		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
@@ -35,7 +36,7 @@
 		insert into attachment(attach_no, notice_no, original_filename, renamed_filename)
 		values (
 			seq_attachment_no.nextval,
-			#{attachNo},
+			#{noticeNo},
 			#{originalFilename},
 			#{renamedFilename}
 		)
@@ -75,5 +76,35 @@
 		from attachment
 		where attach_no = #{no}
 	</select>
+	
+	<select id="selectOneloginMember" resultType="string">
+		select authority
+		from notice_board a left join authorities b
+            on a.member_id = b.member_id
+        where a.notice_no = #{noticeNo}
+	</select>
+	
+	
+	<update id="updateNotice">
+		update notice_board
+		set
+			notice_title = #{noticeTitle},
+			notice_content = #{noticeContent}
+		where notice_no = #{noticeNo}
+	</update>
+	
+	<!-- <update id="updateAttachment">
+		update attachment
+		set
+			original_filename = #{originalFilename},
+			renamed_filename = #{renamedFilename}
+		where notice_no = #{noticeNo}
+	</update> -->
+	
+	<delete id="deleteNoticeAttachment">
+		delete from attachment
+		where attach_no = #{attachNo}
+	</delete>
+	
 	
 </mapper>

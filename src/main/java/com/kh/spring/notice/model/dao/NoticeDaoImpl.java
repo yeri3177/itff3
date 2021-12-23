@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.vo.Attachment;
 
@@ -49,6 +50,26 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public Attachment selectOneAttachment(int no) {
 		return session.selectOne("notice.selectOneAttachment", no);
+	}
+
+	@Override
+	public List<Member> selectOneloginMember(int no) {
+		return session.selectList("notice.selectOneloginMember", no);
+	}
+
+	@Override
+	public int updateNotice(Notice notice) {
+		return session.update("notice.updateNotice", notice);
+	}
+
+	@Override
+	public int updateAttachment(Attachment attach) {
+		return session.update("notice.updateAttachment", attach);
+	}
+
+	@Override
+	public int deleteNoticeAttachment(int attachNo) {
+		return session.delete("notice.deleteNoticeAttachment", attachNo);
 	}
 	
 }

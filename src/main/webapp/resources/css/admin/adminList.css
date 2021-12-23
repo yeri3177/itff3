@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-
+*{
+	font-family: 'Noto Sans KR';
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
@@ -25,13 +27,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 2000px;
+    width: 100%;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .text-center {
@@ -350,6 +352,7 @@ table {
 	padding: 6px !important;
 	font-size: 14px;
     font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 0 important;
 }
 
 .add-product {
@@ -388,3 +391,41 @@ a:hover {
 	font-weight: bold;
 }
 
+.point_notice {
+	text-align: center;
+    margin: 20px 0 0 0;
+}
+
+.strong_blue {
+	color: #0069d9;
+}
+
+.recheck {
+	text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Noto Sans KR';
+}
+
+.rounded {
+	width: 500px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+	display: flex;
+	flex-wrap: nowrap !important;
+	flex-direction: row !important;
+	width: 500px !important;
+}
+
+.search-total {
+	text-align: -webkit-right;
+	width: 1600px;
+    min-width: 1600px;
+}
+
+.search-total-total {
+	width: 1800px;
+    margin: auto;
+}

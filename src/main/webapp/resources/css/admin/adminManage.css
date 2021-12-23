@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+	font-family: 'Noto Sans KR';
+}
+
 .group-apps-list-item.sorting-grid-handle-item.group-apps-list a, .com_gridbox .container-main {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -121,14 +125,6 @@ body[data-joomla-version="4"] .content {
 
 .subhead+.content {
     padding-top: 0;
-}
-
-.content {
-    padding: 0 2rem;
-}
-
-.content {
-    padding: 1rem;
 }
 
 body[data-joomla-version="4"] .row {
@@ -562,6 +558,7 @@ iframe {
 
 #gridbox-content {
     display: flex;
+    justify-content: center;
 }
 
 [data-joomla-version="4"] .ba-sidebar {
@@ -813,7 +810,7 @@ iframe {
     min-height: calc(100vh - 110px);
     overflow: hidden;
     transition: all .3s ease-in-out;
-    width: calc(100% - 60px);
+    width: calc(100%);
 }
 
 #filter-bar {

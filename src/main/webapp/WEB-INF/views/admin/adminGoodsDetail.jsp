@@ -6,6 +6,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
+	<jsp:param value="ITFF" name="title" />
+</jsp:include>
+
 		      <div class="modal-header">
 		        <h4 class="modal-title" id="exampleModalLabel">상품 정보</h4>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -14,7 +18,6 @@
 		      </div>
 		      
     		  <div class="modal-body">
-<!-- 		        <h5 class="detail-modal-title" id="exampleModalLabel">상품 상세</h5> -->
 					<table class="table">
 					  <tbody>
 						  <tr>
@@ -50,6 +53,43 @@
 		      </div>
 		      <div class="modal-footer">
 <!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-		      	<button type="button" class="btn btn-success">수정</button>
-		        <button type="button" class="btn btn-danger">삭제</button>
+		      	<button 
+		      		type="button" 
+		      		class="btn btn-success"
+		      		data-toggle="modal"
+					data-target="#adminGoodsUpdate"
+					onclick="goodsUpdate_btn('${goods.PId}');">수정</button>
+		        <button 
+		        	type="button" 
+		        	class="btn btn-danger"
+  			      	data-toggle="modal"
+					data-target="#adminGoodsDelete"
+					onclick="goodsDelete_btn('${goods.PId}');">삭제</button>
 		      </div>
+
+<script>
+
+// 파일명 바꾸기 & 이미지 이름
+$(() => {
+	$("[name=upFile]").change((e) => {
+		
+		// 1.파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
+		console.dir(e.target);
+		console.log(file);
+		console.log(filename);
+		
+		// 2.label에 설정하기
+		const $label = $(e.target).next();
+		console.log($label);
+		
+		if(file != undefined)
+			$label.html(filename);
+		else
+			$label.html("파일을 선택하세요.");	
+	});	
+		$("[name=pImg]").val(filename);
+});
+
+</script>

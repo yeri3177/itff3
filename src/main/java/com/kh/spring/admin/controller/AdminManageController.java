@@ -42,6 +42,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -85,7 +86,6 @@ public class AdminManageController {
 		return list;
 	}
 	
-
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
@@ -106,23 +106,75 @@ public class AdminManageController {
 		
 		// 1. 
 		List<Member> list = adminService.selectMemberList(offset, limit);
-
 		log.debug("list = {}", list);
+		
 		model.addAttribute("list", list);
 		
 		// 2. totalContent
 		int totalContent = adminService.selectMemberTotalCount();
 		log.debug("totalContent = {}", totalContent);
+		
 		model.addAttribute("totalContent", totalContent);
 		
 		// 3. pagebar
 		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 		log.debug("pagebar = {}", pagebar);
+		
 		model.addAttribute("pagebar", pagebar);
 		
 		return "admin/adminMemberList";
 	}
+	
+	/**
+	 * [회원 목록 검색]
+	 */
+	
+	@GetMapping("/adminMemberFinder.do")
+	public String adminMemberFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Member> list = adminService.searchMember(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchMemberCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMemberList";
+	}
+	
 	
 	/**
 	 * [회원 상세]
@@ -174,18 +226,86 @@ public class AdminManageController {
 		return "redirect:/admin/adminMemberList.do";
 	}
 	
+	/**
+	 * [포인트 지급]
+	 */
+	
+	@GetMapping("/adminMemberPoint.do")
+	public Member adminMemberPoint(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberPoint.do")
+	public String memberPoint(@RequestParam String id, @RequestParam int point, @RequestParam int change, @RequestParam String reason, Model model, RedirectAttributes redirectAttr){
+		
+		log.debug("id = {}", id);
+		log.debug("reason = {}", reason); // 지급사유
+		log.debug("change = {}", change); // +-
+		log.debug("point = {}", point); // 계산하고 된 포인트
+		
+		// change는 관리자가 입력하는 것 앞에 "+"가 붙어야 한다.
+		String newChange = "+"+change;
+		log.debug("newChange = {}", newChange);
+		
+		// 회원 포인트
+		// 회원의 포인트는 변동 + 기존 포인트로 다시 업데이트 되어야 한다.
+		int newPoint = change + point;
+		log.debug("newPoint = {}", newPoint);
+		
+		
+		// map에 담아서 보내자
+		Map<String, Object> param = new HashMap<>();
+		param.put("id", id);
+		param.put("reason", reason);
+		param.put("change", newChange);
+		param.put("point", newPoint);
+		log.debug("param = {}", param);
+		
+		// 포인트 내역
+		int result1 = adminService.updateMemberPoint(param);
+		int result2 = adminService.insertPointHistory(param);
+		
+		redirectAttr.addFlashAttribute("msg", "포인트 지급 성공");
+		
+		return "redirect:/admin/adminMemberList.do";
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * [상영 영화 목록] 
 	 */
 	
-//	@GetMapping("/adminMovieList.do")
-//	public void adminMovieList(Model model) {
-//		List<Movie> list = adminService.selectMovieList();
-//		log.debug("list = {}", list);
-//		model.addAttribute("list", list);
-//	}
+	@GetMapping("/adminMovieList.do")
+	public void adminMovieList(Model model) {
+		List<Movie> list = adminService.selectMovieList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
+	
+	/**
+	 * [굿즈 상세]
+	 */
+	
+	@GetMapping("/adminMovieInfo.do")
+	public Movie adminMovieInfo(@RequestParam("movieId") String movieId, Model model) {
+		log.debug("movieId = {}", movieId);
+
+		Movie movie = adminService.selectOneMovie(movieId);
+		log.debug("movie = {}", movie);
+		
+		model.addAttribute("movie", movie);
+		
+		return movie;
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -225,10 +345,62 @@ public class AdminManageController {
 	}
 	
 	/**
+	 * [굿즈 목록 검색]
+	 */
+	
+	@GetMapping("/adminGoodsFinder.do")
+	public String adminGoodsFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Goods> list = adminService.searchGoods(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchGoodsCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsList";
+	}
+	
+	/**
 	 * [굿즈 추가]
 	 */
+	
+	@GetMapping("/adminGoodsInsert.do")
+	public void adminGoodsInsert() {}
 
-	@RequestMapping(value="/adminGoodsInsert.do",method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/adminGoodsInsert.do",method = {RequestMethod.POST})
 	public String adminGoodsInsert(
 			Goods goods,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
@@ -290,7 +462,7 @@ public class AdminManageController {
 	 */
 	
 	@GetMapping("/adminGoodsDetail.do")
-	public Goods adminGoodsDetail(@RequestParam(value = "pId", required = false) int pId, Model model) {
+	public Goods adminGoodsDetail(@RequestParam("pId") int pId, Model model) {
 		log.debug("pId = {}", pId);
 
 		Goods goods = adminService.selectOneGoods(pId);
@@ -304,7 +476,20 @@ public class AdminManageController {
 	/**
 	 * [굿즈 수정]
 	 */
-	@RequestMapping(value="/adminGoodsUpdate.do",method = {RequestMethod.GET, RequestMethod.POST})
+	
+	@GetMapping("/adminGoodsUpdate.do")
+	public Goods adminGoodsUpdate(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+		
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+		
+		return goods;
+	}
+		
+	@PostMapping("/adminGoodsUpdate.do")
 	public String adminGoodsUpdate(
 			Goods goods,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
@@ -378,6 +563,18 @@ public class AdminManageController {
 	/**
 	 * [굿즈 삭제]
 	 */
+	
+	@GetMapping("/adminGoodsDelete.do")
+	public Goods adminGoodsDelete(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+		
+		return goods;
+	}
 	
 	@PostMapping("/adminGoodsDelete.do")
 	public String adminGoodsDelete(@RequestParam int pId, RedirectAttributes redirectAttr) {

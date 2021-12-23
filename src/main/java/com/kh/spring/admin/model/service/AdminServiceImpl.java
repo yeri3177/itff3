@@ -1,6 +1,7 @@
 package com.kh.spring.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -130,6 +132,46 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int updateMember(Member member) {
 		return adminDao.updateMember(member);
+	}
+
+	@Override
+	public List<Member> searchMember(Map<String, Object> param) {
+		return adminDao.searchMember(param);
+	}
+
+	@Override
+	public int searchMemberCount(Map<String, Object> param) {
+		return adminDao.searchMemberCount(param);
+	}
+
+	@Override
+	public List<Goods> searchGoods(Map<String, Object> param) {
+		return adminDao.searchGoods(param);
+	}
+
+	@Override
+	public int searchGoodsCount(Map<String, Object> param) {
+		return adminDao.searchGoodsCount(param);
+	}
+
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return adminDao.insertPointHistory(param);
+	}
+
+	@Override
+	public int updateMemberPoint(Map<String, Object> param) {
+		return adminDao.updateMemberPoint(param);
+	}
+
+	@Override
+	public List<Movie> selectMovieList() {
+		return adminDao.selectMovieList();
+	}
+
+	@Override
+	public Movie selectOneMovie(String movieId) {
+		return adminDao.selectOneMovie(movieId);
 	}
 
 

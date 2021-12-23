@@ -1,6 +1,7 @@
 package com.kh.spring.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,46 @@ public class AdminDaoImpl implements AdminDao {
 	public Member selectOneMember(String id) {
 		return session.selectOne("admin.selectOneMember", id);
 	}
+	
+	@Override
+	public int selectMemberTotalCount() {
+		return session.selectOne("admin.selectMemberTotalCount");
+	}
+	
+	@Override
+	public List<PointHistory> selectMemberPointHistoryList(String id) {
+		return session.selectList("admin.selectMemberPointHistoryList", id);
+	}
+	
+	@Override
+	public int updateMember(Member member) {
+		return session.update("admin.updateMember", member);
+	}
+
+	@Override
+	public List<Member> searchMember(Map<String, Object> param) {
+			int offset = (int) param.get("start");
+			int limit = (int) param.get("end");
+			log.debug("offset, limit = {}", offset, limit);
+			log.debug("param = {}", param);
+			RowBounds rowBounds = new RowBounds(offset, limit); 
+			
+		return session.selectList("admin.searchMember", param, rowBounds);
+	}
+
+	@Override
+	public int searchMemberCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchMemberCount", param);
+	}
+	
+	/**
+	 * 영화
+	 */
+	
+	@Override
+	public List<Movie> selectMovieList() {
+		return session.selectList("admin.searchMovieList");
+	}
 
 	/**
 	 * [굿즈]
@@ -54,11 +96,6 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int insertAttachment(Attachment attach) {
 		return session.insert("admin.insertAttachment", attach);
-	}
-
-	@Override
-	public int selectMemberTotalCount() {
-		return session.selectOne("admin.selectMemberTotalCount");
 	}
 
 	@Override
@@ -82,15 +119,34 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<PointHistory> selectMemberPointHistoryList(String id) {
-		return session.selectList("admin.selectMemberPointHistoryList", id);
+	public List<Goods> searchGoods(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchGoods", param, rowBounds);
 	}
 
 	@Override
-	public int updateMember(Member member) {
-		return session.update("admin.updateMember", member);
+	public int searchGoodsCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchGoodsCount", param);
 	}
 
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return session.insert("admin.insertPointHistory", param);
+	}
 
+	@Override
+	public int updateMemberPoint(Map<String, Object> param) {
+		return session.update("admin.updateMemberPoint", param);
+	}
+
+	@Override
+	public Movie selectOneMovie(String movieId) {
+		return session.selectOne("admin.selectOneMovie", movieId);
+	}
 
 }

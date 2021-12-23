@@ -52,10 +52,11 @@
 					  <c:choose>
 					  <c:when test="${not empty list}">
 					    <tr>
-					      <th scope="col">이력번호</th>
-					      <th scope="col">날짜</th>
-					      <th scope="col">내용</th>
-					      <th scope="col">내역</th>
+					      <th scope="col" style="color:#212121;">이력번호</th>
+					      <th scope="col" style="color:#212121;">날짜</th>
+					      <th scope="col" style="color:#212121;">내용</th>
+					      <th scope="col" style="color:#212121;">내역</th>
+					      <th scope="col" style="color:#212121;">포인트</th>
 					    </tr>
 					  </c:when>
 					  <c:otherwise>
@@ -70,7 +71,8 @@
 					      <th scope="row">${list.historyNo }</th>
 					      <td><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
 					      <td>${list.reason }</td>
-					      <td>${change }</td>
+					      <td>${list.change }</td>
+					      <td><fmt:formatNumber value="${list.point }" pattern="#,###" /></td>
 					    </tr>
 					  </c:forEach>
 					  </tbody>
@@ -78,7 +80,12 @@
 		      </div>
 		      <div class="modal-footer">
 <!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-		      	<button type="button" class="btn btn-primary">포인트 지급</button>
+		      	<button 
+		      		type="button" 
+		      		class="btn btn-primary"
+		      		data-toggle="modal"
+					data-target="#adminMemberPoint"
+					onclick="memberPoint_btn('${member.id}');">포인트 지급</button>
 		        <button 
 		        	type="button" 
 		        	class="btn btn-success" 												

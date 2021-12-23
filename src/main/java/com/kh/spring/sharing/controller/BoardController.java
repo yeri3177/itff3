@@ -7,27 +7,31 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.sharing.model.service.BoardService;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @Slf4j
+@Controller
 @RequestMapping("/sharing")
 public class BoardController {
 	
@@ -76,24 +80,34 @@ public class BoardController {
 	@GetMapping("/boardForm.do")
 	public void boardForm() {}
 	
+	//@RequestMapping(value="/sharing/boardEnroll.do", method=RequestMethod.POST)
 	@PostMapping("/boardEnroll.do")
 	public String boardEnroll(
 			Board board,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles,
 			RedirectAttributes redirectAttr
+			
 		) throws IllegalStateException, IOException {
 		
+		log.debug("board = {}", board);
+		
 		try {
+			
+		    // login한 맴버 id가져오기
+			/* Authentication authentication */
+			//Member member = (Member)authentication.getPrincipal();
+			//String MemberId = member.getId();
+			
+			
 			// 첨부파일 list생성
 			List<Attachment> attachments = new ArrayList<>();
 			
 			// application객체 (ServletContext)
 			String saveDirectory = application.getRealPath("/resources/upload/board");
 			log.debug("saveDirectory = {}", saveDirectory);
-			
-			
-			
+				
 			for(MultipartFile upFile : upFiles) {
+				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
 					
 					log.debug("upFile = {}", upFile);
@@ -115,6 +129,12 @@ public class BoardController {
 					attachments.add(attach);
 				}
 			}
+			
+			//조회수 증가 쿼리
+	        //boardservice.increaseViewCount(member_bno, session);
+	        //ModelAndView mav = new ModelAndView();
+	        //mav.setViewName("board/memberboardview");
+	        
 			// 업무로직
 			if(!attachments.isEmpty())
 				board.setAttachments(attachments);
@@ -122,12 +142,10 @@ public class BoardController {
 			int result = boardService.insertBoard(board);
 			String msg = result > 0 ? "게시글 등록 성공!" : "게시글 등록 실패!";
 			redirectAttr.addFlashAttribute("msg", msg);
-			
 		} catch(Exception e) {
 			log.error(e.getMessage(), e);  // 로킹
 			throw e; // spring container에게 던짐.
 		}
-		
 		return "redirect:/sharing/boardList.do";
 	}
 	
@@ -136,7 +154,8 @@ public class BoardController {
 		log.debug("no = {}", no);
 		
 		// 업무로직
-		Board board = boardService.selectOneBoard(no);
+		//Board board = boardService.selectOneBoard(no);
+		Board board = boardService.selectOneBoardCollection(no);
 		log.debug("board = {}", board);
 		model.addAttribute("board", board);
 	}

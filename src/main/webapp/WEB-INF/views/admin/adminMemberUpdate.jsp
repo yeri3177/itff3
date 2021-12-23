@@ -12,10 +12,12 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
+		      
   				<form
 					action="${pageContext.request.contextPath}/admin/adminMemberUpdate.do?${_csrf.parameterName}=${_csrf.token}"
 					name="member_update_frm"
 					method="post">
+					
 		      <div class="modal-body">
 <!-- 		        <h5 class="detail-modal-title" id="exampleModalLabel">회원정보</h5> -->
 		        <table class="table" id="modal_table">
@@ -52,8 +54,8 @@
 		      </div>
 		      
 		      <div class="modal-footer">
-<%-- 		        <button type="button" class="btn btn-primary" onclick="memberUpdate_btn2('${member.id}');">수정</button> --%>
 		        <button type="submit" class="btn btn-primary">수정</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		      </div>
-			    </form>
+		      
+			</form>
