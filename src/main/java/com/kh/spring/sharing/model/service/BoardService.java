@@ -2,6 +2,7 @@ package com.kh.spring.sharing.model.service;
 
 import java.util.List;
 
+import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
 public interface BoardService {
@@ -15,5 +16,7 @@ public interface BoardService {
 	Board selectOneBoard(int no);
 
 	Board selectOneBoardCollection(int no);
+
+	Attachment selectOneAttachment(int no);
 
 }

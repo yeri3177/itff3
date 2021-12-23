@@ -75,7 +75,7 @@
 		select 
 		    b.*,
 		    a.*,
-		    a.attach_no attach_no,
+		    a.attach_no,
 		    m.*
 		from
 		    ticket_sharing_board b 
@@ -95,10 +95,11 @@
 	<result column="content" property="content"/>
 	<result column="reg_date" property="regDate"/>
 	<result column="read_count" property="readCount"/>
-
+	<!-- association 은 1:1 관계를 표현 -->
+	<!-- collection 은 1:n 관계를 표현하는데 적합 -->
 	<collection property="attachments" ofType="attachment">
-		<id column="attach_no" property="no"/>
-		<result column="market_no" property="boardNo"/>
+		<id column="attach_no" property="attachNo"/>
+		<result column="market_no" property="marketNo"/>
 		<result column="original_filename" property="originalFilename"/>
 		<result column="renamed_filename" property="renamedFilename"/>
 		<result column="reg_date" property="regDate"/>
@@ -111,7 +112,7 @@
 	from
 		attachment
 	where
-		market_no = #{market_no}
+		attach_no = #{no}
 </select>
 
 </mapper>

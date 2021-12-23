@@ -10,7 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class BoardDaoImpl implements BoardDao {
 
 	@Autowired
@@ -50,6 +53,12 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public Board selectOneBoardCollection(int no) {
 		return session.selectOne("board.selectOneBoardCollection", no);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int no) {
+		log.debug("no = {}", no);
+		return session.selectOne("board.selectOneAttachment", no);
 	}
 
 	
