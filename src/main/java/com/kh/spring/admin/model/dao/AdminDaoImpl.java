@@ -163,4 +163,14 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectList("admin.selectOneTheater", theaterId);
 	}
 
+	@Override
+	public List<MovieJoin> adminOneMovieSchedule(String movieId) {
+		return session.selectList("admin.adminOneMovieSchedule", movieId);
+	}
+
+	@Override
+	public List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param) {
+		return session.selectList("admin.adminOneMovieScheduleDate", param);
+	}
+
 }

@@ -188,5 +188,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectOneTheater(theaterId);
 	}
 
+	@Override
+	public List<MovieJoin> adminOneMovieSchedule(String movieId) {
+		return adminDao.adminOneMovieSchedule(movieId);
+	}
+
+	@Override
+	public List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param) {
+		return adminDao.adminOneMovieScheduleDate(param);
+	}
+
 
 }
