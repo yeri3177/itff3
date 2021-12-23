@@ -2,6 +2,7 @@ package com.kh.spring.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -48,6 +51,7 @@ import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
+import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -745,6 +749,158 @@ public class AdminManageController {
 //		model.addAttribute("chatId", chatId);
 		
 		return "admin/popup";
+	}
+
+///////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * [공지사항] 
+	 */
+	
+	@GetMapping("/adminNoticeList.do")
+	public void adminNoticeList(
+			Model model,
+			@RequestParam(defaultValue = "1") int cPage,
+			HttpServletRequest request
+			) {
+		
+		try {	
+			log.debug("cPage = {}", cPage); // defaultValue = "1" 로 해둬서 cPage 값이 없으면 1이 나온다.
+			
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			
+			// 전체 게시물 목록
+			List<Notice> list = adminService.adminSelectNoticeList(offset, limit);
+			log.debug("list = {}", list);
+			
+			// 전체 게시물 수
+			int totalContent = adminService.countTotalContent();
+			log.debug("전체 게시물 수 = {}", totalContent);
+						
+			// pagebar
+			String url = request.getRequestURI(); 
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			log.debug("pagebar = {}", pagebar);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("totalContent", totalContent);
+			model.addAttribute("pagebar", pagebar);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@GetMapping("/adminNoticeForm.do")
+	public void adminNoticeForm() {}
+	
+	@PostMapping("/adminNoticeEnroll.do")
+	public String adminNoticeEnroll(
+			// 한 게시물에 여러 첨부파일이라 [] 형식
+	         @RequestParam(value = "upFile", required = false) MultipartFile[] upFiles,
+	         @ModelAttribute Notice notice, 
+	         RedirectAttributes redirectAttr
+			 ) throws Exception {
+		
+		try {
+			String saveDirectory = application.getRealPath("/resources/upload/notice");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			// 첨부파일 List 생성
+			List<Attachment> attachments = new ArrayList<>();
+			
+			for(MultipartFile upFile : upFiles) {
+				
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					// 새이름 부여해서 관리하기
+					String originalFilename = upFile.getOriginalFilename();
+			        String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
+					
+					File dest = new File(saveDirectory, renamedFilename);
+					log.debug("dest  = {}", dest);
+					upFile.transferTo(dest);
+					
+					// 파일별로 attachment 테이블에 저장되어야 함.
+		            // 2. db에 attachment 레코드 등록
+		            Attachment attach = new Attachment();
+		            attach.setRenamedFilename(renamedFilename);
+		            attach.setOriginalFilename(originalFilename);
+		            
+		            attachments.add(attach);
+					
+				}
+			}
+			
+			if(!attachments.isEmpty()) {
+				notice.setAttachments(attachments);
+			}
+			int result = adminService.insertNotice(notice);
+			
+			String msg = result > 0 ? "등록 성공" : "등록 실패";
+			redirectAttr.addFlashAttribute("msg", msg);
+			
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminNoticeList.do";
+	}
+	
+	@GetMapping("/adminNoticeDetail.do")
+	public void adminNoticeDetail(@RequestParam int noticeNo, Model model) {
+		log.debug("noticeNo = {}", noticeNo);
+		
+		Notice notice = adminService.selectOneNoticeCollection(noticeNo);
+		log.debug("notice = {}", notice);
+		
+		model.addAttribute("notice", notice);
+		
+		List<Member> list = adminService.selectOneloginMember(noticeNo);
+		log.debug("list = {}", list);
+		
+	}
+	
+	@GetMapping (
+			value = "/fileDownload.do",
+			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
+	)
+	@ResponseBody
+	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
+		
+		// resource 객체 생성
+		Resource resource = null;
+		
+		try {
+			// db attachment 행 조회하기
+			Attachment attach = adminService.selectOneAttachment(no);
+			log.debug("attach = {}", attach);
+			
+			// 실제 다운로드 할 파일경로 가져오기
+			String saveDirectory = application.getRealPath("/resources/upload/notice");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			File downFile = new File(saveDirectory, attach.getRenamedFilename());
+			
+			resource = resourceLoader.getResource("file:" + downFile);
+			log.debug("file : {}", downFile);
+			
+			// 헤더값 설정
+			String filename = new String(attach.getOriginalFilename().getBytes("utf-8"), "iso-8859-1");
+			response.addHeader("Content-Disposition", "attachment; filename=" + filename);
+			
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return resource;
+		
 	}
 	
 }
