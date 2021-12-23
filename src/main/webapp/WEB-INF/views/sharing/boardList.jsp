@@ -1,3 +1,7 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,6 +11,18 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 <jsp:param value="티켓나눔터" name="title"/>
 </jsp:include>
+
+<%
+boolean editable = false;
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+System.out.println(authentication.getPrincipal());
+
+if(authentication.getPrincipal() != "anonymousUser"){
+	Member loginMember = (Member) authentication.getPrincipal();
+	editable = loginMember != null;
+}
+%>
 
 <style>
 /*글쓰기버튼*/
@@ -104,8 +120,9 @@ $(() => {
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="button" value="등록" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
-	
+<% 	if(editable){ %>	
+		<input type="button" value="등록" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
+<% 	} %>
 	<br />
 	<br />
 	<br />
