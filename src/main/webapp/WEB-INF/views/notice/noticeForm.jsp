@@ -132,8 +132,9 @@ $(() => {
 
 		<textarea class="form-control" name="noticeContent" placeholder="내용"
 			required></textarea>
-		<br /> <input type="submit" class="btn btn-outline-success"
-			value="저장">
+		<br /> 
+		<input type="button" value="취소" onclick="history.go(-1);"class="cancelBtn" />
+		<input type="submit" class="btn btn-outline-success"value="저장">
 	</form>
 </div>
 

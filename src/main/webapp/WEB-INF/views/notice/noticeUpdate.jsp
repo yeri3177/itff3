@@ -99,6 +99,7 @@ $(() => {
 		action="${pageContext.request.contextPath}/notice/noticeUpdate.do?${_csrf.parameterName}=${_csrf.token}"
 		method="POST" enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
+		
 		<input type="hidden" name="noticeNo" value="${notice.noticeNo}" /> <input
 			type="hidden" name="memberId" value="${loginMember.id}" required
 			readonly> <input type="text" class="form-control"
@@ -124,6 +125,11 @@ $(() => {
 							<input type="checkbox" name="delFile${vs.count}" id="delFile"
 								value="${attach.attachNo}" /> <label for="delFile">기존파일삭제</label>
 						</div>
+						
+						<%--기존파일삭제 누르지 않았을 경우 --%>
+						<input type="hidden" name="delFile${vs.count}" value="0" id="delFilePlz"/>
+						
+						
 					</div>
 				</c:forEach>
 			</c:when>
@@ -182,6 +188,11 @@ $(() => {
 								value="${attach.attachNo}" /> <label for="delFile">기존파일삭제</label>
 						</div>
 					</div>
+					
+					<%--기존파일삭제 누르지 않았을 경우 --%>
+					<input type="hidden" name="delFile1" value="0" id="delFilePlz">
+					
+					
 					<div class="input-group mb-3" style="padding: 0px;">
 						<div class="input-group-prepend" style="padding: 0px;">
 							<span class="input-group-text">첨부파일2</span>
@@ -191,6 +202,7 @@ $(() => {
 								id="upFile2"> <label class="custom-file-label"
 								for="upFile2">파일을 선택하세요</label>
 						</div>
+						
 					</div>
 					<div id="checkbox" style="display: none">
 						<input type="hidden" name="delFile2" id="delFile" value="1" /> <label
@@ -204,9 +216,9 @@ $(() => {
 
 		<textarea class="form-control" name="noticeContent" required>${notice.noticeContent}</textarea>
 
-		<br /> <input type="button" value="취소" onclick="history.go(-1);"
-			class="cancelBtn" /> <input type="submit"
-			class="btn btn-outline-success" value="저장">
+		<br /> 
+		<input type="button" value="취소" onclick="history.go(-1);"class="cancelBtn" /> 
+		<input type="submit" class="btn btn-outline-success" value="저장">
 	</form>
 </div>
 

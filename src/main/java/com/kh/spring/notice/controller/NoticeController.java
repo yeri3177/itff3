@@ -1,7 +1,6 @@
 package com.kh.spring.notice.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -326,6 +323,19 @@ public class NoticeController {
 				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
 				log.debug("delFile1 첨부파일은? {}", yn);
 			}
+			else if (delFile1 == 0 && delFile2 != 0) {
+				int attachNo2 = delFile2;
+				Attachment attach = noticeService.selectOneAttachment(attachNo2);
+				
+				// 서버컴퓨터에서 파일삭제
+				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				// db 레코드 삭제
+				result = noticeService.deleteNoticeAttachment(attachNo2);
+				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
+				log.debug("delFile2 첨부파일은? {}", yn);
+			}
 			
 			
 			
@@ -338,6 +348,53 @@ public class NoticeController {
 		
 		return "redirect:/notice/noticeDetail.do?no=" + notice.getNoticeNo();
 		
+	}
+	
+	@GetMapping("/noticeDelete.do")
+	public String noticeDelete(@RequestParam int no, Notice notice) {
+		
+		log.debug("해당 글번호가 왔니? {}", no);
+		log.debug("delete에서의 notice는? {}", notice);
+
+		
+		// 여기서 no 는 notice_board의 글번호
+		List<Attachment> attach = noticeService.selectAttachmentByNoticeNo(no);
+		log.debug("attach는? {}", attach);
+		
+		
+		// 파일을 서버에서도 삭제
+		if(attach.size() >= 2) {
+			log.debug("첫번째 attach? {}", attach.get(0));
+			log.debug("두번째 attach? {}", attach.get(1));
+			
+			for(int i = 0; i < attach.size(); i++) {
+				if(attach.get(i) != null && attach.get(i).getNoticeNo() != 0) {
+					log.debug("첨부파일 있음");
+					
+					String saveDirectory = application.getRealPath("/resources/upload/notice");
+					File targetFile = new File(saveDirectory, attach.get(i).getRenamedFilename());
+					boolean isDelete = targetFile.delete();
+					log.debug("서버에서 파일 삭제 됐니? = {}", isDelete);
+				}
+				
+			}
+		}
+		
+		else if(attach.size() == 1) {
+			log.debug("첫번째 attach? {}", attach.get(0));
+			String saveDirectory = application.getRealPath("/resources/upload/notice");
+			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
+			boolean isDelete = targetFile.delete();
+			log.debug("서버에서 파일 삭제 됐니? = {}", isDelete);
+		}
+		
+		
+		int result = noticeService.deleteOneNotice(no);
+		String msg = result > 0 ? no + "번 글 삭제됨" : no + "번 글 삭제 실패함";
+		log.debug(msg);
+		
+		
+		return "redirect:/notice/noticeList.do";
 	}
 	
 	

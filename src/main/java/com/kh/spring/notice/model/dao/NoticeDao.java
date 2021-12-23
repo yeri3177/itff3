@@ -28,4 +28,8 @@ public interface NoticeDao {
 
 	int deleteNoticeAttachment(int attachNo);
 
+	int deleteOneNotice(int no);
+
+	List<Attachment> selectAttachmentByNoticeNo(int no);
+
 }
