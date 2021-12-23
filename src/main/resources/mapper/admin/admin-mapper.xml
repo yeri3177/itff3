@@ -272,4 +272,65 @@
 			movie_id = #{movieId}
 	</select>
 	
+	<select id="selectTheaterList" resultType="theater">
+		select
+			*
+		from
+			theater
+	</select>
+	
+	<select id="selectOneTheater" resultMap="movieJoinMap">
+		select distinct
+			s.seat_no, s.is_booked
+		from
+			movie_schedule c
+			left join theater t
+			on c.theater_id = t.theater_id
+			left join seat s
+			on c.movie_schedule_id = s.movie_schedule_id
+		where 
+			t.theater_id = #{theaterId} and not s.seat_no is null
+		order by s.seat_no asc
+	</select>
+	
+	<resultMap type="movie" id="movieMap">
+		<id column="movie_id" property="movieId"/>
+		<result column="title_kor" property="titleKor"/>
+		<result column="title_eng" property="titleEng"/>
+		<result column="description" property="description"/>
+		<result column="opening_date" property="openingDate"/>
+		<result column="director" property="director"/>
+		<result column="actors" property="actors"/>
+		<result column="genre" property="genre"/>
+		<result column="running_time" property="runningTime"/>
+		<result column="age_limit" property="ageLimit"/>
+		<result column="imgage" property="image"/>
+	</resultMap>
+
+	<resultMap type="movieSchedule" id="movieScheduleMap">
+		<id column="movie_schedule_id" property="movieScheduleId"/>
+		<result column="theater_id" property="theaterId"/>
+		<result column="movie_id" property="movieId"/>
+		<result column="start_date" property="startDate"/>
+		<result column="start_time" property="startTime"/>
+	</resultMap>
+
+	<resultMap type="theater" id="theaterMap">
+		<id column="theater_id" property="theaterId"/>
+		<result column="max_seat" property="maxSeat"/>
+	</resultMap>
+	
+	<resultMap type="seat" id="seatMap">
+		<id column="seat_no" property="seatNo"/>
+		<result column="movie_schedule_id" property="movieScheduleId"/>
+		<result column="is_booked" property="isBooked"/>
+	</resultMap>
+	
+	<resultMap type="movieJoin" id="movieJoinMap">
+		<collection property="movie" resultMap="movieMap" />
+		<collection property="movieSchedule" resultMap="movieScheduleMap" />
+		<collection property="theater" resultMap="theaterMap" />
+		<collection property="seat" resultMap="seatMap" />
+	</resultMap>
+	
 </mapper>

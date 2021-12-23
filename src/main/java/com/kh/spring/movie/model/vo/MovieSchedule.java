@@ -16,18 +16,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Theater implements Serializable {
+public class MovieSchedule implements Serializable {
 
 	/**
 	 * 
 	 */
-	
 	private static final long serialVersionUID = 1L;
 	
+	private String movieScheduleId;
 	private int theaterId;
-	private int maxSeat;
-	
-	private Movie movie;
-	private Seat seat;
-	private MovieSchedule movieSchedule;
+	private String movieId;
+	private Date startDate;
+	private String startTime;
 }

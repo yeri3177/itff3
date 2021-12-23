@@ -15,6 +15,10 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieSchedule;
+import com.kh.spring.movie.model.vo.Seat;
+import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -172,6 +176,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Movie selectOneMovie(String movieId) {
 		return adminDao.selectOneMovie(movieId);
+	}
+
+	@Override
+	public List<Theater> selectTheaterList() {
+		return adminDao.selectTheaterList();
+	}
+
+	@Override
+	public List<MovieJoin> selectOneTheater(int theaterId) {
+		return adminDao.selectOneTheater(theaterId);
 	}
 
 

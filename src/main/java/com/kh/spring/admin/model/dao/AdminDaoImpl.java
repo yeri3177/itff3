@@ -12,6 +12,10 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieSchedule;
+import com.kh.spring.movie.model.vo.Seat;
+import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -147,6 +151,16 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public Movie selectOneMovie(String movieId) {
 		return session.selectOne("admin.selectOneMovie", movieId);
+	}
+
+	@Override
+	public List<Theater> selectTheaterList() {
+		return session.selectList("admin.selectTheaterList");
+	}
+
+	@Override
+	public List<MovieJoin> selectOneTheater(int theaterId) {
+		return session.selectList("admin.selectOneTheater", theaterId);
 	}
 
 }
