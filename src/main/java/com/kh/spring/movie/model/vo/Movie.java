@@ -19,16 +19,15 @@ public class Movie implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int movieId;
-	private String description;
+	private String movieId;
 	private String titleKor;
 	private String titleEng;
-	private Date productionDate;
+	private String description;
 	private Date openingDate;
 	private String director; 
-	private String field;
+	private String actors;
 	private String genre;
 	private String runningTime;
 	private String ageLimit;
-	private String imageUrl;
+	private String image;
 }

@@ -20,7 +20,7 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 	
-	@GetMapping("/movieList.do")
+	@GetMapping("/booking.do")
 	public String movieList() {
 		List<Movie> list = movieService.selectMovieList();
 		log.debug("list = {}", list);
