@@ -546,6 +546,18 @@ public class AdminManageController {
 	 * [굿즈 삭제]
 	 */
 	
+	@GetMapping("/adminGoodsDelete.do")
+	public Goods adminGoodsDelete(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+		
+		return goods;
+	}
+	
 	@PostMapping("/adminGoodsDelete.do")
 	public String adminGoodsDelete(@RequestParam int pId, RedirectAttributes redirectAttr) {
 		log.debug("pId = {}", pId);

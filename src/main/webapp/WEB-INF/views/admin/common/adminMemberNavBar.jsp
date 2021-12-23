@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<div class="shadow-sm p-3 mb-5 bg-body rounded">
+<div class="shadow-sm p-3 mb-5 bg-body">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Noto Sans KR';">
   <a class="navbar-brand" href="#" style="font-weight: bold;">회원관리</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
