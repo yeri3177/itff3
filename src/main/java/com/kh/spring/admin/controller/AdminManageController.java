@@ -43,6 +43,10 @@ import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieSchedule;
+import com.kh.spring.movie.model.vo.Seat;
+import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -290,9 +294,10 @@ public class AdminManageController {
 		
 		model.addAttribute("list", list);
 	}
+
 	
 	/**
-	 * [굿즈 상세]
+	 * [작품정보]
 	 */
 	
 	@GetMapping("/adminMovieInfo.do")
@@ -305,6 +310,46 @@ public class AdminManageController {
 		model.addAttribute("movie", movie);
 		
 		return movie;
+	}
+	
+	/**
+	 * [상영관 정보] 
+	 */
+	
+	@GetMapping("/adminTheaterInfo.do")
+	public void adminTheaterInfo(Model model) {
+		List<Theater> list = adminService.selectTheaterList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
+
+	/**
+	 * [상영관 상세] 
+	 */
+	
+	@GetMapping("/adminTheaterDetail.do")
+	public void adminTheaterDetail(@RequestParam("theaterId") int theaterId, Model model) {
+		List<MovieJoin> list = adminService.selectOneTheater(theaterId);
+		log.debug("list = {}", list);
+		
+		List<Seat> seats = new ArrayList<Seat>();
+		
+		for(int i=0; i < list.size(); i++ ) {
+			Seat seat = new Seat();
+			
+			String seatNo = list.get(i).getSeat().getSeatNo();
+			int isBooked = list.get(i).getSeat().getIsBooked();
+			
+			seat.setSeatNo(seatNo);
+			seat.setIsBooked(isBooked);
+			
+			seats.add(seat);
+//			log.debug("seats = {}", seats);
+		}
+
+		model.addAttribute("seats", seats);
+		model.addAttribute("theaterId", theaterId);
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////

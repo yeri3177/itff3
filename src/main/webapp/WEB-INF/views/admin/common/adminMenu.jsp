@@ -25,6 +25,7 @@
 
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminMovieList.do" class="collapse__sublink">상영목록</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do" class="collapse__sublink">상영관정보</a><br />
                              <a href="#" class="collapse__sublink">Members</a> 
                         </ul> 
                      </div>
@@ -50,7 +51,7 @@
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="collapse__sublink">전체 회원 목록</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="collapse__sublink">회원목록</a><br />
                              <a href="#" class="collapse__sublink">Group</a><br />
                              <a href="#" class="collapse__sublink">Members</a>
                          </ul> 

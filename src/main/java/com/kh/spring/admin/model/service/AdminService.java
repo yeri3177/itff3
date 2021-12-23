@@ -7,6 +7,10 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieSchedule;
+import com.kh.spring.movie.model.vo.Seat;
+import com.kh.spring.movie.model.vo.Theater;
 
 public interface AdminService {
 
@@ -47,5 +51,9 @@ public interface AdminService {
 	List<Movie> selectMovieList();
 
 	Movie selectOneMovie(String movieId);
+
+	List<Theater> selectTheaterList();
+
+	List<MovieJoin> selectOneTheater(int theaterId);
 
 }
