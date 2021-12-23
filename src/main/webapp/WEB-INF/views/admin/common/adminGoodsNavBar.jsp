@@ -4,7 +4,7 @@
 
 <div class="shadow-sm p-3 mb-5 bg-body">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Noto Sans KR';">
-  <a class="navbar-brand" href="#" style="font-weight: bold;">상품관리</a>
+  <a class="navbar-brand" href="#" style="font-weight: bold; color: #145ee9;">상품관리</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

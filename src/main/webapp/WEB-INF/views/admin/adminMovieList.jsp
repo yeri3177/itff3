@@ -32,7 +32,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">상영작 목록</h2>
+					<h2 class="heading-section">상영목록</h2>
 				</div>
 			</div>
 			
