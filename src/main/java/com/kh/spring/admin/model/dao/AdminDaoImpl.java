@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +67,15 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int searchMemberCount(Map<String, Object> param) {
 		return session.selectOne("admin.searchMemberCount", param);
+	}
+	
+	/**
+	 * 영화
+	 */
+	
+	@Override
+	public List<Movie> selectMovieList() {
+		return session.selectList("admin.searchMovieList");
 	}
 
 	/**
@@ -133,4 +143,5 @@ public class AdminDaoImpl implements AdminDao {
 	public int updateMemberPoint(Map<String, Object> param) {
 		return session.update("admin.updateMemberPoint", param);
 	}
+
 }
