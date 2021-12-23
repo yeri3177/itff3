@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 
 public interface AdminService {
 
@@ -42,5 +43,7 @@ public interface AdminService {
 	int insertPointHistory(Map<String, Object> param);
 
 	int updateMemberPoint(Map<String, Object> param);
+
+	List<Movie> selectMovieList();
 
 }

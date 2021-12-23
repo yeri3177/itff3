@@ -14,6 +14,7 @@ import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -161,6 +162,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int updateMemberPoint(Map<String, Object> param) {
 		return adminDao.updateMemberPoint(param);
+	}
+
+	@Override
+	public List<Movie> selectMovieList() {
+		return adminDao.selectMovieList();
 	}
 
 
