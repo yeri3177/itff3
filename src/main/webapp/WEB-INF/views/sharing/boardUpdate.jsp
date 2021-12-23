@@ -1,22 +1,14 @@
 <%@page import="com.kh.spring.member.model.vo.Member"%>
 <%@page import="org.springframework.security.core.Authentication"%>
-<%@page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@page
-	import="org.springframework.security.core.context.SecurityContext"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<%
-	SecurityContext securityContext = SecurityContextHolder.getContext();
-	Authentication authentication = securityContext.getAuthentication();
-	Member loginMember = (Member) authentication.getPrincipal();
-	pageContext.setAttribute("loginMember", loginMember);
-%>
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -32,7 +24,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
-<!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
@@ -48,14 +39,12 @@
 		</ul>
 	</div>
 </div>
-<!-- 여기까지 nav 입니다. -->
-<!-- 해당 페이지 큰 글씨 -->
+
 <div class="sub_title_wrap">
 	<div class="container">
 		<h2 class="en">공지사항</h2>
 	</div>
 </div>
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <script>
 
