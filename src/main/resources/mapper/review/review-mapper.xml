@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<select id="selectReviewList" resultType="review">
+		select
+			r.*,
+			(select count(*) from attachment where review_no = r.review_no) attach_count
+		from
+			review_board r
+		order by
+			review_no desc
+	</select>
+	
+	<select id="selectReviewTotalCount" resultType="_int">
+		select
+		    count(*)
+		from
+		    review_board
+	</select>
+	
+</mapper>
