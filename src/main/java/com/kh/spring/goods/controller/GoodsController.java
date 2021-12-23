@@ -57,20 +57,20 @@ public class GoodsController {
 	}
 	
 	@GetMapping("/goodsDetail.do")
-	public void goodsDetail(@RequestParam int pid, Model model) {
+	public void goodsDetail(@RequestParam int pid, Model model, HttpServletRequest request) {
 		// 상품 아이디 확인 
 		log.debug("pid = {}", pid);
 		
-		// 상품아이디 -> 굿즈테이블 레코드 조회 
+		// 상품아이디 -> 굿즈 테이블의 레코드 조회 
 		Goods goods = goodsService.selectOneGoods(pid);
 		log.debug("goods = {}", goods);
 		model.addAttribute("goods", goods);
 		
-		// 상품아이디 -> 옵션아이디 
+		// 상품아이디 -> 굿즈-옵션 테이블의 옵션아이디 리스트 
 		List<Integer> optionIdList = goodsService.selectOptionId(pid);
 		log.debug("옵션 아이디 리스트 = {}", optionIdList);
 		
-		// 옵션아이디 -> 옵션상세 테이블 레코드 조회 
+		// 옵션아이디 리스트 -> 옵션상세 테이블 레코드 조회 
 		List<OptionDetail> optionList = new ArrayList<>();
 		for(Integer option : optionIdList) {
 			optionList.add(goodsService.selectOptionList(option));
@@ -79,6 +79,7 @@ public class GoodsController {
 		
 		// 옵션 list 셋팅
 		model.addAttribute("optionList", optionList);
+		request.setAttribute("optionList", optionList);
 	}
 	
 	
