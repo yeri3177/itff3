@@ -10,13 +10,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<%
+<%-- <%
 SecurityContext securityContext = SecurityContextHolder.getContext();
 Authentication authentication = securityContext.getAuthentication();
 Member loginMember = (Member) authentication.getPrincipal();
 pageContext.setAttribute("loginMember", loginMember);
-%>
+%> --%>
 
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
@@ -53,6 +54,7 @@ $(() => {
 	});
 });
 </script>
+<sec:authorize access="isAnonymous() || isAuthenticated()">
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -81,17 +83,19 @@ $(() => {
 
 <section id="board-container" class="cont">
 
-	<c:set var="author" value="${loginMember.authorities}" />
+<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<input type="button" value="글쓰기" id="btn-add"
+		class="btn btn-outline-success" onclick="goBoardForm();" />
+</sec:authorize>
+	<%-- <c:set var="author" value="${loginMember.authorities}" />
 	<c:forEach var="a" items="${author}" varStatus="status">
 		<c:if test="${a eq 'ROLE_ADMIN'}">
 			<sec:authorize access="isAuthenticated()">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<input type="button" value="글쓰기" id="btn-add"
-						class="btn btn-outline-success" onclick="goBoardForm();" />
 				</sec:authorize>
 			</sec:authorize>
 		</c:if>
-	</c:forEach>
+	</c:forEach> --%>
 
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr style="display: none">
@@ -112,3 +116,4 @@ $(() => {
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
+</sec:authorize>

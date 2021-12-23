@@ -1,5 +1,7 @@
 package com.kh.spring.notice.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.authentication;
+
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,9 +53,15 @@ public class NoticeController {
 	public String noticeList(
 			Model model,
 			@RequestParam(defaultValue = "1") int cPage,
-			HttpServletRequest request) {
+			HttpServletRequest request
+			) {
 		
 		try {
+//			log.debug("authentication = {}", authentication);
+//			Member member = (Member) authentication.getPrincipal();
+//			String id = member.getId();
+//			log.debug("아이디는? {}", id);
+			
 			log.debug("cPage = {}", cPage); // defaultValue = "1" 로 해둬서 cPage 값이 없으면 1이 나온다.
 			
 			int limit = 10; // 한페이지당 게시글 수 

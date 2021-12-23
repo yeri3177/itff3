@@ -8,12 +8,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%-- <%
 SecurityContext securityContext = SecurityContextHolder.getContext();
 Authentication authentication = securityContext.getAuthentication();
 Member loginMember = (Member) authentication.getPrincipal();
 pageContext.setAttribute("loginMember", loginMember);
-%>
+%> --%>
 
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
@@ -29,6 +30,8 @@ pageContext.setAttribute("loginMember", loginMember);
 	href="${pageContext.request.contextPath }/resources/css/board/boardDetailCommon.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+
+<sec:authorize access="isAnonymous() || isAuthenticated()">
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -94,21 +97,14 @@ pageContext.setAttribute("loginMember", loginMember);
 
 
 <div class="admin_btn_group">
-	<c:set var="author" value="${loginMember.authorities}" />
-	<c:forEach var="a" items="${author}" varStatus="status">
-		<c:if test="${a eq 'ROLE_ADMIN'}">
-			<sec:authorize access="isAuthenticated()">
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<div class="btn_group_right">
-						<a href="javascript:OnBoardUpdate();"
-							class="btn_brd_edit btn btn-xs btn-secondary">수정</a> <a
-							href="javascript:OnBoardRemove();"
-							class="btn_brd_del btn btn-xs btn-secondary">삭제</a>
-					</div>
-				</sec:authorize>
-			</sec:authorize>
-		</c:if>
-	</c:forEach>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<div class="btn_group_right">
+			<a href="javascript:OnBoardUpdate();"
+				class="btn_brd_edit btn btn-xs btn-secondary">수정</a> <a
+				href="javascript:OnBoardRemove();"
+				class="btn_brd_del btn btn-xs btn-secondary">삭제</a>
+		</div>
+	</sec:authorize>
 </div>
 
 
@@ -144,4 +140,4 @@ function OnBoardRemove() {
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-
+</sec:authorize>
