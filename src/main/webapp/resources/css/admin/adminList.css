@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-
+*{
+	font-family: 'Noto Sans KR';
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
@@ -31,7 +33,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     margin-right: -15px;
     margin-left: -15px;
     margin-bottom: 50px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .text-center {
@@ -397,3 +399,32 @@ a:hover {
 	color: #0069d9;
 }
 
+.recheck {
+	text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: 'Noto Sans KR';
+}
+
+.rounded {
+	width: 500px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+	display: flex;
+	flex-wrap: nowrap !important;
+	flex-direction: row !important;
+	width: 500px !important;
+}
+
+.search-total {
+	text-align: -webkit-right;
+	width: 1600px;
+    min-width: 1600px;
+}
+
+.search-total-total {
+	width: 1800px;
+    margin: auto;
+}

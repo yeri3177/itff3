@@ -32,18 +32,49 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 <!-- 관리자 공통 메뉴 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 
-		<div class="container">
-			
+		<div class="container">	
+		
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
 					<h2 class="heading-section">전체 회원 목록</h2>
 				</div>
 			</div>
 			
+			<div class="search-total-total">
 			<div class="row" id="row">
 				<div class="col-md-12">
-
 					<div class="table-wrap">
+					
+					<div class="search-total">
+						<div class="input-group rounded">
+					        <select 
+					        	id="searchType" 
+					        	class="custom-select"
+					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
+					            <option value="id" ${"id".equals(searchType) ? "selected" : ""}>아이디</option>		
+					            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>회원명</option>
+					        </select>
+					        <div id="search-id" class="search-type" style="width: 500px !important;">
+					            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
+					            	<div style="display: flex;">
+					                <input type="hidden" name="searchType" value="id"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="ID를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 아이디를 입력하세요." value="${'id' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					            	</div>
+					            </form>	
+					        </div>
+					        <div id="search-name" class="search-type" style="display: none;">
+					            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
+					            <div style="display: flex;">
+					                <input type="hidden" name="searchType" value="name"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="이름을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 이름을 입력하세요." value="${'name' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					            </div>
+					            </form>	
+					        </div>
+					    </div>
+					</div>
+					    
 						<table class="table">
 							<thead class="thead-primary">
 								<tr>
@@ -138,6 +169,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 								</c:forEach>
 							</tbody>
 						</table>
+						</div>
 
 						<!-- 회원 상세 -->
 						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
@@ -191,39 +223,8 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 			</div>
 	        
 <!-- //container -->
-	
-
-
-   <div class="input-group rounded" style="justify-content: center; margin: 20px 0 20px 0">
-        <select 
-        	id="searchType" 
-        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none;">
-            <option value="id" ${"id".equals(searchType) ? "selected" : ""}>아이디</option>		
-            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>회원명</option>
-        </select>
-        <div id="search-id" class="search-type">
-            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
-            	<div style="display: flex;">
-                <input type="hidden" name="searchType" value="id"/>
-                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="ID를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 아이디를 입력하세요." value="${'id' eq searchType ? searchKeyword : ''}"/>
-                <button type="submit" class="btn btn-outline-primary">search</button>		
-            	</div>
-            </form>	
-        </div>
-        <div id="search-name" class="search-type" style="display: none;">
-            <form action="${pageContext.request.contextPath}/admin/adminMemberFinder.do">
-            <div style="display: flex;">
-                <input type="hidden" name="searchType" value="name"/>
-                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="이름을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 이름을 입력하세요." value="${'name' eq searchType ? searchKeyword : ''}"/>
-                <button type="submit" class="btn btn-outline-primary">search</button>		
-            </div>
-            </form>	
-        </div>
-    </div>
 
 ${pagebar}
-
-<!-- //footer -->
 
 <script>
 // 검색

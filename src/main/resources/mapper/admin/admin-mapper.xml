@@ -256,4 +256,11 @@
 			id = #{id}
 	</update>
 	
+	<select id="searchMovieList" resultType="movie">
+		select
+			*
+		from
+			movie
+	</select>
+	
 </mapper>

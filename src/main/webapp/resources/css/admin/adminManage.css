@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*{
+	font-family: 'Noto Sans KR';
+}
+
 .group-apps-list-item.sorting-grid-handle-item.group-apps-list a, .com_gridbox .container-main {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;

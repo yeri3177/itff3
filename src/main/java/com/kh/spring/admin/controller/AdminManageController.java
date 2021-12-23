@@ -42,6 +42,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -282,12 +283,13 @@ public class AdminManageController {
 	 * [상영 영화 목록] 
 	 */
 	
-//	@GetMapping("/adminMovieList.do")
-//	public void adminMovieList(Model model) {
-//		List<Movie> list = adminService.selectMovieList();
-//		log.debug("list = {}", list);
-//		model.addAttribute("list", list);
-//	}
+	@GetMapping("/adminMovieList.do")
+	public void adminMovieList(Model model) {
+		List<Movie> list = adminService.selectMovieList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -545,6 +547,18 @@ public class AdminManageController {
 	/**
 	 * [굿즈 삭제]
 	 */
+	
+	@GetMapping("/adminGoodsDelete.do")
+	public Goods adminGoodsDelete(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+		
+		return goods;
+	}
 	
 	@PostMapping("/adminGoodsDelete.do")
 	public String adminGoodsDelete(@RequestParam int pId, RedirectAttributes redirectAttr) {
