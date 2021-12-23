@@ -36,7 +36,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 		
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">전체 회원 목록</h2>
+					<h2 class="heading-section">회원목록</h2>
 				</div>
 			</div>
 			
