@@ -71,7 +71,22 @@
 		</button>
 	</div>
 </div>
-
+<section id="board-container" class="cont">
+	<table id="tbl-board" class="table table-striped table-hover">
+		<tr style="display: none">
+			<th>제목</th>
+			<th>작성일</th>
+		</tr>
+		<c:forEach var="notice" items="${noticeList}" varStatus="vs">
+			<tr data-no="${notice.noticeNo}" class="brd_li">
+				<td>${notice.noticeTitle}</td>
+				<td><fmt:formatDate value="${notice.regDate}"
+						pattern="yyyy/MM/dd" /></td>
+			</tr>
+		</c:forEach>
+	</table>
+	<div class="pagenation">${pagebar}</div>
+</section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 	

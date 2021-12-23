@@ -83,19 +83,10 @@ $(() => {
 
 <section id="board-container" class="cont">
 
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-	<input type="button" value="글쓰기" id="btn-add"
-		class="btn btn-outline-success" onclick="goBoardForm();" />
-</sec:authorize>
-	<%-- <c:set var="author" value="${loginMember.authorities}" />
-	<c:forEach var="a" items="${author}" varStatus="status">
-		<c:if test="${a eq 'ROLE_ADMIN'}">
-			<sec:authorize access="isAuthenticated()">
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-				</sec:authorize>
-			</sec:authorize>
-		</c:if>
-	</c:forEach> --%>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="button" value="글쓰기" id="btn-add"
+			class="btn btn-outline-success" onclick="goBoardForm();" />
+	</sec:authorize>
 
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr style="display: none">
