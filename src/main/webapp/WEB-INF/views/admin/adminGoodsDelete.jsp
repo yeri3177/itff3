@@ -11,13 +11,19 @@
 </jsp:include>
 
 		      <div class="modal-header">
-		        <h4 class="modal-title" id="exampleModalLabel">상품 정보</h4>
+		        <h4 class="modal-title" id="exampleModalLabel">상품 삭제</h4>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      
+    	    <form
+				action="${pageContext.request.contextPath}/admin/adminGoodsDelete.do?${_csrf.parameterName}=${_csrf.token}"
+				name="goods_delete_frm"
+				method="post">
+		      
     		  <div class="modal-body">
+    		  	<input type="hidden" name="pId" value="${goods.PId }" />
 					<table class="table">
 					  <tbody>
 						  <tr>
@@ -50,23 +56,14 @@
 						   </tr>
 					  </tbody>
 					</table>
+					<p class="recheck">정말 삭제하시겠습니까?</p>
 		      </div>
 		      <div class="modal-footer">
-<!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-		      	<button 
-		      		type="button" 
-		      		class="btn btn-success"
-		      		data-toggle="modal"
-					data-target="#adminGoodsUpdate"
-					onclick="goodsUpdate_btn('${goods.PId}');">수정</button>
-		        <button 
-		        	type="button" 
-		        	class="btn btn-danger"
-  			      	data-toggle="modal"
-					data-target="#adminGoodsDelete"
-					onclick="goodsDelete_btn('${goods.PId}');">삭제</button>
+				<button type="submit" class="btn btn-danger">삭제</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		      </div>
-
+			</form>
+			
 <script>
 
 // 파일명 바꾸기 & 이미지 이름

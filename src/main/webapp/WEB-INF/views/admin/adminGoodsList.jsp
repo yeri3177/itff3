@@ -37,81 +37,41 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 				</div>
 			</div>
 			
+			<div class="search-total-total">
 			<div class="row">
 				<div class="col-md-12">
-				
-				<!-- 
-				<div class="add-product">
-					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalLong1">
-					  상품 등록
-					</button>
-				</div>
-				
-				굿즈 추가 
-				<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-	 				<form 
-						name="adminGoodsFrm" 
-						action="${pageContext.request.contextPath}/admin/adminGoodsInsert.do?${_csrf.parameterName}=${_csrf.token}" 
-						method="post" 
-						enctype="multipart/form-data">
-						
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold;">상품 등록</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      
-				      <div class="modal-body">
-		          		  <div class="form-group">
-						    <input type="text" name="pName" class="form-control" id="exampleFormControlInput1" placeholder="상품명" required>
-						  </div>
-						  
-		          		  <div class="form-group">
-						    <input type="text" name="pPrice" class="form-control" id="exampleFormControlInput1" placeholder="가격" required>
-						  </div>
-						  
-						  <div class="form-group">
-						    <textarea name="pInfo" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="상품 설명을 입력하세요." required></textarea>
-						  </div>
-						  
-						  <div class="form-group">
-						    <label for="exampleFormControlSelect1">카테고리</label>
-						    <select name="pCategory" class="form-control" id="exampleFormControlSelect1" required>
-						      <option value="">선택</option>
-						      <option value="홈데코/리빙">홈데코/리빙</option>
-						      <option value="폰케이스/테크">폰케이스/테크</option>
-						      <option value="의류">의류</option>
-						    </select>
-						  </div>
-						  
-						  <div class="input-group">
-							  <div class="custom-file">
-							  	<input type="hidden" name="pImg" value="" />
-							    <input name="upFile" type="file" class="custom-file-input" id="inputGroupFile04" required>
-							    <label class="custom-file-label" for="inputGroupFile04">상품 이미지</label>
-							  </div>
-							  <div class="input-group-append">
-							    <button class="btn btn-outline-secondary" type="button">Button</button>
-							  </div>
-						  </div>
-				      </div>
-				      
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				        <button type="submit" class="btn btn-outline-primary">등록</button>
-				      </div>
-				      
-				      </form>
-				    </div>
-				  </div>
-				</div>
-				 -->
-				<!-- 굿즈 추가 끝 -->
-				
 					<div class="table-wrap">
+					
+					<div class="search-total">
+					   <div class="input-group rounded">
+					        <select 
+					        	id="searchType" 
+					        	class="custom-select"
+					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
+					            <option value="pId" ${"pId".equals(searchType) ? "selected" : ""}>상품코드</option>		
+					            <option value="pName" ${"pName".equals(searchType) ? "selected" : ""}>상품명</option>
+					        </select>
+					        <div id="search-pId" class="search-type" style="width: 500px !important;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					            	<div style="display: flex;">
+					                <input type="hidden" name="searchType" value="pId"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					            	</div>
+					            </form>	
+					        </div>
+					        <div id="search-pName" class="search-type" style="display: none;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					            <div style="display: flex;">
+					                <input type="hidden" name="searchType" value="pName"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					            </div>
+					            </form>	
+					        </div>
+					    </div>
+					  </div>
+					
 						<table class="table">
 							<thead class="thead-primary">
 								<tr>
@@ -177,6 +137,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 								
 							</tbody>
 						</table>
+						</div>
 						
 						<!-- 상품 상세 -->
 						<div class="modal fade" id="adminGoodsDetail" tabindex="-1"
@@ -209,41 +170,28 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 상품 상세 끝 -->
+						<!-- 상품 삭제 -->
+						<div class="modal fade" id="adminGoodsDelete" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content"
+									style="text-align: left;" id="modal_ajax3">
+									<div class="modal-body" id="modal_ajax3">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 삭제 -->
 						
 					</div>
 				</div>	
 			</div>
 		</div>
 
-   <div class="input-group rounded" style="justify-content: center; margin: 20px 0 20px 0">
-        <select 
-        	id="searchType" 
-        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none;">
-            <option value="pId" ${"pId".equals(searchType) ? "selected" : ""}>상품코드</option>		
-            <option value="pName" ${"pName".equals(searchType) ? "selected" : ""}>상품명</option>
-        </select>
-        <div id="search-pId" class="search-type">
-            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
-            	<div style="display: flex;">
-                <input type="hidden" name="searchType" value="pId"/>
-                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}"/>
-                <button type="submit" class="btn btn-outline-primary">search</button>		
-            	</div>
-            </form>	
-        </div>
-        <div id="search-pName" class="search-type" style="display: none;">
-            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
-            <div style="display: flex;">
-                <input type="hidden" name="searchType" value="pName"/>
-                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}"/>
-                <button type="submit" class="btn btn-outline-primary">search</button>		
-            </div>
-            </form>	
-        </div>
-    </div>
-
 ${pagebar}
-
 	
 <script>
 $("#searchType").change((e) => {
@@ -311,6 +259,31 @@ function goodsUpdate_btn(pId) {
 
 <script>
 
+// 상품 삭제
+function goodsDelete_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsDelete.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax3").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
 // 파일명 바꾸기 & 이미지 이름
 $(() => {
 	$("[name=upFile]").change((e) => {
@@ -331,6 +304,30 @@ $(() => {
 			$("[name=pImg]").val(filename);			
 		}
 	});	
+});
+
+</script>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
 });
 
 </script>
