@@ -1,31 +1,37 @@
 <%@page import="com.kh.spring.member.model.vo.Member"%>
 <%@page import="org.springframework.security.core.Authentication"%>
-<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@page import="org.springframework.security.core.context.SecurityContext"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
+	pageEncoding="UTF-8"%>
+<!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-	SecurityContext securityContext = SecurityContextHolder.getContext();
-	Authentication authentication = securityContext.getAuthentication();
-	Member loginMember = (Member) authentication.getPrincipal();
-	pageContext.setAttribute("loginMember", loginMember);
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+Member loginMember = (Member) authentication.getPrincipal();
+pageContext.setAttribute("loginMember", loginMember);
 %>
 
 <!-- 한글 깨지지 않게 처리 -->
-<fmt:requestEncoding value="utf-8"/>
+<fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="공지사항" name="title"/>
+	<jsp:param value="공지사항" name="title" />
 </jsp:include>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/boardListCommon.css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/board/boardListCommon.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 <script>
 
@@ -52,21 +58,15 @@ $(() => {
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="on_">
-				<a href="${pageContext.request.contextPath }/notice/noticeList.do" target="_top">공지사항</a>
-			</li>
-			<li class="on_">
-				<a href="#" target="_top">네티즌리뷰</a>
-			</li>
-			<li class="on_">
-				<a href="${pageContext.request.contextPath}/sharing/boardList.do" target="_top">티켓나눔터</a>
-			</li>
-			<li class="on_">
-				<a href="#" target="_top">자주찾는 질문</a>
-			</li>
-			<li class="on_">
-				<a href="#" target="_top">1:1 문의</a>
-			</li>
+			<li class="on_"><a
+				href="${pageContext.request.contextPath }/notice/noticeList.do"
+				target="_top">공지사항</a></li>
+			<li class="on_"><a href="#" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a
+				href="${pageContext.request.contextPath}/sharing/boardList.do"
+				target="_top">티켓나눔터</a></li>
+			<li class="on_"><a href="#" target="_top">자주찾는 질문</a></li>
+			<li class="on_"><a href="#" target="_top">1:1 문의</a></li>
 		</ul>
 	</div>
 </div>
@@ -78,39 +78,37 @@ $(() => {
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-	
+
 <section id="board-container" class="cont">
 
-		<c:set var="author" value="${loginMember.authorities}"/>
-		<c:forEach var="a" items="${author}" varStatus="status">
-			<c:if test="${a eq 'ROLE_ADMIN'}">
-				<sec:authorize access="isAuthenticated()">
+	<c:set var="author" value="${loginMember.authorities}" />
+	<c:forEach var="a" items="${author}" varStatus="status">
+		<c:if test="${a eq 'ROLE_ADMIN'}">
+			<sec:authorize access="isAuthenticated()">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="goBoardForm();"/>
+					<input type="button" value="글쓰기" id="btn-add"
+						class="btn btn-outline-success" onclick="goBoardForm();" />
 				</sec:authorize>
-		</sec:authorize>
-			</c:if>
-		</c:forEach>		
-	
+			</sec:authorize>
+		</c:if>
+	</c:forEach>
+
 	<table id="tbl-board" class="table table-striped table-hover">
-		<tr style="display:none">
+		<tr style="display: none">
 			<th>제목</th>
 			<th>작성일</th>
-			<!-- <th>조회수</th> -->
 		</tr>
-	<c:forEach var="notice" items="${noticeList}" varStatus="vs">
-		<tr data-no="${notice.noticeNo}" class="brd_li">
-			<td>${notice.noticeTitle}</td>
-			<td><fmt:formatDate value="${notice.regDate}" pattern="yyyy/MM/dd"/></td>
-			<%-- <td>${board.readCount}</td> --%>
-		</tr>
-	</c:forEach>
+		<c:forEach var="notice" items="${noticeList}" varStatus="vs">
+			<tr data-no="${notice.noticeNo}" class="brd_li">
+				<td>${notice.noticeTitle}</td>
+				<td><fmt:formatDate value="${notice.regDate}"
+						pattern="yyyy/MM/dd" /></td>
+			</tr>
+		</c:forEach>
 	</table>
-	<div class="pagenation">
-		${pagebar}
-	</div>
-</section> 	
-	
-		
+	<div class="pagenation">${pagebar}</div>
+</section>
+
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-	
+

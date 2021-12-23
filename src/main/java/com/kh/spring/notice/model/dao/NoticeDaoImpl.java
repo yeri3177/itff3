@@ -56,5 +56,20 @@ public class NoticeDaoImpl implements NoticeDao {
 	public List<Member> selectOneloginMember(int no) {
 		return session.selectList("notice.selectOneloginMember", no);
 	}
+
+	@Override
+	public int updateNotice(Notice notice) {
+		return session.update("notice.updateNotice", notice);
+	}
+
+	@Override
+	public int updateAttachment(Attachment attach) {
+		return session.update("notice.updateAttachment", attach);
+	}
+
+	@Override
+	public int deleteNoticeAttachment(int attachNo) {
+		return session.delete("notice.deleteNoticeAttachment", attachNo);
+	}
 	
 }

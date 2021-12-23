@@ -22,4 +22,10 @@ public interface NoticeDao {
 
 	List<Member> selectOneloginMember(int no);
 
+	int updateNotice(Notice notice);
+
+	int updateAttachment(Attachment attach);
+
+	int deleteNoticeAttachment(int attachNo);
+
 }

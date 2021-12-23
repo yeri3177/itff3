@@ -20,4 +20,8 @@ public interface NoticeService {
 
 	List<Member> selectOneloginMember(int no);
 
+	int updateNotice(Notice notice);
+
+	int deleteNoticeAttachment(int attachNo);
+
 }
