@@ -134,8 +134,9 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<!-- 생년월일 -->
 										<td>
 											<div class="quantity">
-												<span><fmt:formatDate value="${list.birthday }"
-														pattern="yyyy-MM-dd" /></span>
+												<span>
+												<fmt:formatDate value="${list.birthday }" pattern="yyyy-MM-dd" />
+												</span>
 											</div>
 										</td>
 

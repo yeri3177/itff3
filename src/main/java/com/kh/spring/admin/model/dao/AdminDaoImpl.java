@@ -16,6 +16,7 @@ import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
+import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -171,6 +172,37 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param) {
 		return session.selectList("admin.adminOneMovieScheduleDate", param);
+	}
+
+	@Override
+	public List<Notice> adminSelectNoticeList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("admin.adminSelectNoticeList", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalContent() {
+		return session.selectOne("admin.countTotalContent");
+	}
+
+	@Override
+	public int insertNotice(Notice notice) {
+		return session.insert("admin.insertNotice", notice);
+	}
+
+	@Override
+	public Notice selectOneNoticeCollection(int no) {
+		return session.selectOne("admin.selectOneNoticeCollection", no);
+	}
+
+	@Override
+	public List<Member> selectOneloginMember(int no) {
+		return session.selectList("admin.selectOneloginMember", no);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int no) {
+		return session.selectOne("admin.selectOneAttachment", no);
 	}
 
 }
