@@ -130,6 +130,16 @@ function OnBoardUpdate() {
 	location.href = `${pageContext.request.contextPath}/notice/noticeUpdate.do?no=\${noticeNo}`;
 }
 
+function OnBoardRemove() {
+	var delConfirm = confirm("정말로 삭제하시겠습니까?");
+	if(delConfirm) {
+		const noticeNo = $("[name=no]").val();
+		console.log("noticeNo = ", noticeNo);
+		location.href = `${pageContext.request.contextPath}/notice/noticeDelete.do?no=\${noticeNo}`;
+	}
+	
+}
+
 
 </script>
 

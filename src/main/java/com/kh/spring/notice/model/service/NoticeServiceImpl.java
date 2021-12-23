@@ -42,7 +42,8 @@ public class NoticeServiceImpl implements NoticeService {
 			List<Attachment> attachments = notice.getAttachments();
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
-					attach.setAttachNo(notice.getNoticeNo());
+					attach.setNoticeNo(notice.getNoticeNo());
+					log.debug("attach? {}", attach);
 					result = noticeDao.insertAttachment(attach);
 				}
 			}
@@ -82,7 +83,7 @@ public class NoticeServiceImpl implements NoticeService {
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
 					attach.setNoticeNo(notice.getNoticeNo());
-					log.debug("attach?", attach);
+					log.debug("attach {}?", attach);
 					result = noticeDao.insertAttachment(attach);
 				}
 			}
@@ -98,6 +99,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int deleteNoticeAttachment(int attachNo) {
 		return noticeDao.deleteNoticeAttachment(attachNo);
+	}
+
+	@Override
+	public int deleteOneNotice(int no) {
+		return noticeDao.deleteOneNotice(no);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByNoticeNo(int no) {
+		return noticeDao.selectAttachmentByNoticeNo(no);
 	}
 	
 }

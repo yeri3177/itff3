@@ -71,5 +71,15 @@ public class NoticeDaoImpl implements NoticeDao {
 	public int deleteNoticeAttachment(int attachNo) {
 		return session.delete("notice.deleteNoticeAttachment", attachNo);
 	}
+
+	@Override
+	public int deleteOneNotice(int no) {
+		return session.delete("notice.deleteOneNotice", no);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByNoticeNo(int no) {
+		return session.selectList("notice.selectAttachmentByNoticeNo", no);
+	}
 	
 }

@@ -106,5 +106,16 @@
 		where attach_no = #{attachNo}
 	</delete>
 	
+	<delete id="deleteOneNotice">
+		delete from notice_board
+		where notice_no = #{no}
+	</delete>
+	
+	<select id="selectAttachmentByNoticeNo" resultType="attachment">
+		select *
+		from attachment 
+		where notice_no = #{no}
+	</select>
+	
 	
 </mapper>
