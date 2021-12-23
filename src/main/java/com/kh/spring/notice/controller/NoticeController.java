@@ -1,6 +1,7 @@
 package com.kh.spring.notice.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +36,8 @@ import com.kh.spring.sharing.model.vo.Attachment;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping(value="/notice", method= {RequestMethod.GET, RequestMethod.POST})
+@RequestMapping("/notice")
 @Slf4j
-@SessionAttributes({"loginMember"})
 public class NoticeController {
 
 	@Autowired
@@ -220,5 +220,125 @@ public class NoticeController {
 		
 		return resource;
 	}
+	
+	// 게시글 수정하기
+	@GetMapping("/noticeUpdate.do")
+	public void noticeUpdate(@RequestParam int no, Model model) {
+		
+		log.debug("글번호 = {}", no);
+		
+		Notice notice = noticeService.selectOneNoticeCollection(no);
+		log.debug("notice = {}", notice);
+		model.addAttribute("notice", notice);
+		
+	}
+	
+	@PostMapping("/noticeUpdate.do")
+	public String noticeUpdate(
+			 @RequestParam(value = "upFile", required = false) MultipartFile[] upFiless,
+	         @ModelAttribute Notice notice,
+	         @RequestParam int delFile1,
+	         @RequestParam int delFile2,
+	         RedirectAttributes redirectAttr
+			) {
+		
+		try {
+			int result = 0;
+			String saveDirectory = application.getRealPath("/resources/upload/notice");
+			log.debug("saveDirectory = {}",saveDirectory);
+			
+			List<Attachment> attachments = new ArrayList<>();
+			
+			for(MultipartFile upFile : upFiless) {
+				
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+			        log.debug("upFile.name = {}", upFile.getOriginalFilename());
+			        log.debug("upFile.size = {}", upFile.getSize());
+					
+			        // 새 이름 부여해서 관리하기
+			        String originalFilename = upFile.getOriginalFilename();
+			        String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
+			        
+			        File dest = new File(saveDirectory, renamedFilename);
+			        log.debug("dest = {}", dest);
+			        upFile.transferTo(dest);
+			        
+			        // 파일별로 attachment 테이블에 저장되어야 함.
+			        // 2. db에 attachment 레코드 등록
+			        Attachment attach = new Attachment();
+			        attach.setRenamedFilename(renamedFilename);
+			        attach.setOriginalFilename(originalFilename);
+			        
+			        attachments.add(attach);
+			        
+				}
+			}
+			
+			// 게시물 수정 + 새 첨부파일 등록
+			
+			if(!attachments.isEmpty())
+				notice.setAttachments(attachments);
+			
+			result = noticeService.updateNotice(notice);
+
+			log.debug("delFile1 몇? {}", delFile1);
+			log.debug("delFile2 몇? {}", delFile2);
+			// 첨부파일이 변경되었거나 삭제 체크박스가 체크되면 기존 첨부파일 삭제
+			
+			if(delFile1 != 0 && delFile2 != 0) {
+				int attachNo1 = delFile1;
+				Attachment attach = noticeService.selectOneAttachment(attachNo1);
+				
+				// 서버컴퓨터에서 파일삭제
+				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				// db 레코드 삭제
+				result = noticeService.deleteNoticeAttachment(attachNo1);
+				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
+				log.debug("delFile1 첨부파일은? {}", yn);
+				
+				int attachNo2 = delFile2;
+				attach = noticeService.selectOneAttachment(attachNo2);
+				
+				// 서버컴퓨터에서 파일삭제
+				targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				// db 레코드 삭제
+				result = noticeService.deleteNoticeAttachment(attachNo2);
+				yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
+				log.debug("delFile2 첨부파일은? {}", yn);
+				
+			}
+			else if (delFile1 != 0 && delFile2 == 0) {
+				int attachNo1 = delFile1;
+				Attachment attach = noticeService.selectOneAttachment(attachNo1);
+				
+				// 서버컴퓨터에서 파일삭제
+				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				// db 레코드 삭제
+				result = noticeService.deleteNoticeAttachment(attachNo1);
+				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
+				log.debug("delFile1 첨부파일은? {}", yn);
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		
+		
+		
+		return "redirect:/notice/noticeDetail.do?no=" + notice.getNoticeNo();
+		
+	}
+	
 	
 }

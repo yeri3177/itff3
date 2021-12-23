@@ -88,7 +88,7 @@ div#board-container label.custom-file-label{text-align:left;}
 }
 
 .noticeDetail2 {
-	padding-bottom:60px;
+	padding-bottom:0px;
 }
 
 .btn-outline-success {
@@ -133,3 +133,27 @@ div#board-container label.custom-file-label{text-align:left;}
 .buttons {
 	float: left;
 }
+
+.admin_btn_group {
+    padding: 30px 0 60px 0;
+    text-align: right;
+    padding-right: 100px;
+}
+
+.btn-secondary {
+    color: #888;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+.btn-xs {
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 8px 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+
