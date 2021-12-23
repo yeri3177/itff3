@@ -49,4 +49,6 @@ public interface AdminDao {
 
 	List<Movie> selectMovieList();
 
+	Movie selectOneMovie(String movieId);
+
 }

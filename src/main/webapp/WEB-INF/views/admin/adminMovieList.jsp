@@ -32,7 +32,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">상영작 목록</h2>
+					<h2 class="heading-section">상영목록</h2>
 				</div>
 			</div>
 			
@@ -49,6 +49,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<th>작품코드</th>
 									<th>작품명</th>
 									<th>감독</th>
+									<th>&nbsp;</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -91,10 +92,22 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										<button 
 										id="${list.movieId }" 
 										type="button"
-										class="btn btn-secondary" 
+										class="btn btn-info" 
 										data-toggle="modal"
-										data-target="#adminMovieDetail"
-										onclick="movieDetail_btn('${list.movieId}');">상세</button>
+										data-target="#adminMovieInfo"
+										onclick="movieInfo_btn('${list.movieId}');"
+										style="border-radius: 0;">작품정보</button>
+									</td>
+
+									<td>
+										<button 
+										id="${list.movieId }" 
+										type="button"
+										class="btn btn-dark" 
+										data-toggle="modal"
+										data-target="#adminMovieSchedule"
+										onclick="movie_schedule_btn('${list.movieId}');"
+										style="border-radius: 0;">상영조회</button>
 									</td>
 
 								</tr>
@@ -104,12 +117,12 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 						</table>
 						</div>
 						
-						<!-- 상품 상세 -->
-						<div class="modal fade" id="adminGoodsDetail" tabindex="-1"
+						<!-- 작품 정보 -->
+						<div class="modal fade" id="adminMovieInfo" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 600px;">
+								style="max-width: 1000px;">
 								<div class="modal-content"
 									style="text-align: left;">
 								  	<div class="modal-body" id="modal_ajax1">
@@ -118,7 +131,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 								</div>
 							</div>
 						</div>
-						<!-- 상품 상세 끝 -->
+						<!-- 작품 정보 끝 -->
 						
 					</div>
 				</div>	
@@ -144,14 +157,14 @@ $("#searchType").change((e) => {
 <script>
 
 // 상품 상세
-function goodsDetail_btn(pId) {
+function movieInfo_btn(movieId) {
 	
-	console.log(pId);
-	var id = pId;
+	console.log(movieId);
+	var id = movieId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsDetail.do",
-		data: {pId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMovieInfo.do",
+		data: {movieId: id},
 		method: "get",
 		contentType: "application/json",
 		dateType: "text",

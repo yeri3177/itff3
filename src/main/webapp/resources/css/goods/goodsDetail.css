@@ -6,8 +6,8 @@
 }
 
 #preview-img-div {
-	width: 520px;
-	height: 520px;
+	width: 550px;
+	height: 550px;
 	line-height: 470px;
 	
 	display: flex!important;
@@ -33,7 +33,7 @@
 /* 상단 오른쪽 박스 */
 #top-right-box {
 	width: 600px;
-	padding: 0 50px;
+	padding-left: 60px;
 	font-size: 20px;
 }
 
@@ -41,6 +41,10 @@
 .goods-name {
 	font-size: 30px;
 	font-weight: bold;
+}
+
+.goods-price {
+	margin-bottom: 50px;
 }
 
 .profile-box {
@@ -52,6 +56,8 @@
 
 .logo-img-box img {
 	width: 100px;
+	border: 3px solid #d1d1d1;
+	border-radius: 10px;
 }
 
 .profile-text-box {
@@ -78,6 +84,7 @@
 	width: 100%;
 	height: 50px;
 	cursor: pointer;
+	padding-left: 15px;
 }
 /******************* 사이즈 옵션 ***************/
 .size-box {
@@ -109,13 +116,13 @@
 }
 
 .size-btn-box input:checked +label{
-	border: 3px solid black;
+	border: 2px solid black;
 }
 
 
 .size-btn-box label:hover {
 	background-color: #ececec;
-	border: 3px solid black;
+	border: 2px solid black;
 	color: black;
 }
 
@@ -146,9 +153,18 @@
 
 .price-box #sum {
 	text-align: right;
+	font-weight: 700;
 }
 
+.cnt-box2 {
+	font-size: 25px;
+	font-weight: bold;
+}
 
+.cnt-box1 {
+	font-size: 18px;
+	color:gray;
+}
 
 /******************* 색상 옵션 ***************/
 .option-colors-div {
@@ -159,7 +175,7 @@
 	display: inline-block;
 	/* background-color: aqua; */
 	text-align: center;
-	margin-right: 10px;
+	/* margin-right: 2px; */
 	width: 70px;
 	font-size: 15px;
 }
@@ -186,7 +202,7 @@
   width: 35px;
   height: 35px;
   border-radius: 100%;
-  margin-right: 0.1rem;
+  /* margin-right: 0.1rem; */
 }
 
 /******************* 수량 박스 영역 ***************/
@@ -226,7 +242,69 @@
 
 
 
+/*********** 탭 메뉴 **************/
+/* 탭 전체 스타일 */
+.tabs {
+  margin-top: 100px!important;
+  width: 90%;
+  padding-bottom: 40px;
+  background-color: #fff;
+  margin: 0 auto;
+  
+}
 
+/* 탭 스타일 */
+.tab_item {
+  width: calc(100%/4);
+  height: 50px;
+  /* border-bottom: 3px solid #333333; */
+  border-bottom: 2px solid #d5d5d5;
+ /*  background-color: #f8f8f8; */
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #a5a5a5;
+  display: block;
+  float: left;
+  text-align: center;
+  /* font-weight: bold; */
+  transition: all 0.2s ease;
+}
+
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/* 라디오 버튼 UI삭제*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/* 탭 컨텐츠 스타일 */
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+
+/* 선택 된 탭 콘텐츠를 표시 */
+#tab-btn-1:checked ~ #tab1_content,
+#tab-btn-2:checked ~ #tab2_content,
+#tab-btn-3:checked ~ #tab3_content,
+#tab-btn-4:checked ~ #tab4_content {
+  display: block;
+}
+
+/* 선택된 탭 스타일 */
+.tabs input:checked + .tab_item {
+  /* background-color: #333333;
+  color: #fff; */
+  border-bottom: 2px solid black;
+  color: black;
+  font-weight: bold;
+}
 
 
 

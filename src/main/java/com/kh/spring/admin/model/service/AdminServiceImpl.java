@@ -169,5 +169,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectMovieList();
 	}
 
+	@Override
+	public Movie selectOneMovie(String movieId) {
+		return adminDao.selectOneMovie(movieId);
+	}
+
 
 }
