@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.io.File;
@@ -263,7 +264,6 @@ public class AdminManageController {
 		int newPoint = change + point;
 		log.debug("newPoint = {}", newPoint);
 		
-		
 		// map에 담아서 보내자
 		Map<String, Object> param = new HashMap<>();
 		param.put("id", id);
@@ -330,6 +330,7 @@ public class AdminManageController {
 	
 	@GetMapping("/adminTheaterDetail.do")
 	public void adminTheaterDetail(@RequestParam("theaterId") int theaterId, Model model) {
+		
 		List<MovieJoin> list = adminService.selectOneTheater(theaterId);
 		log.debug("list = {}", list);
 		
@@ -350,6 +351,70 @@ public class AdminManageController {
 
 		model.addAttribute("seats", seats);
 		model.addAttribute("theaterId", theaterId);
+	}
+	
+	
+	/**
+	 * [작품당 상영정보] 
+	 */
+	
+	@GetMapping("/adminOneMovieSchedule.do")
+	public void adminOneMovieSchedule(@RequestParam("movieId") String movieId, Model model) {
+		
+		Movie movie = adminService.selectOneMovie(movieId);
+		List<MovieJoin> list = adminService.adminOneMovieSchedule(movieId);
+		log.debug("list = {}", list);
+		log.debug("movie = {}", movie);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		HashSet<String> date = new HashSet<>();
+		
+		for(int i=0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();	
+			
+			String startDate = list.get(i).getMovieSchedule().getStartDate();
+			
+			movieSchedule.add(movieSchedules);
+			date.add(startDate);
+		}
+		log.debug("date = {}", date);
+		
+		model.addAttribute("movie", movie);
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("date", date);
+		model.addAttribute("movieId", movieId);		
+	}
+	
+	/**
+	 * [작품당 상영시간표] 
+	 */
+	
+	@GetMapping("/adminOneMovieScheduleDate.do")
+	public void adminOneMovieScheduleDate(@RequestParam("movieId") String movieId, @RequestParam("startDate") String startDate,  Model model) {
+		log.debug("movieId = {}", movieId);
+		log.debug("startDate = {}", startDate);
+		
+		// map에 담아서 보내자
+		Map<String, Object> param = new HashMap<>();
+		param.put("movieId", movieId);
+		param.put("startDate", startDate);
+
+		log.debug("param = {}", param);
+		
+		List<MovieJoin> list = adminService.adminOneMovieScheduleDate(param);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> oneDateSchedule = new ArrayList<MovieSchedule>();
+		
+		for(int i=0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();	
+			
+			oneDateSchedule.add(movieSchedules);
+		}
+		
+		model.addAttribute("oneDateSchedule", oneDateSchedule);		
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////

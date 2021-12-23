@@ -333,4 +333,26 @@
 		<collection property="seat" resultMap="seatMap" />
 	</resultMap>
 	
+	<select id="adminOneMovieSchedule" resultMap="movieJoinMap">
+		select
+		   *
+		from
+		    movie m
+		left join movie_schedule s
+		on m.movie_id = s.movie_id
+		where 
+			m.movie_id = #{movieId}
+	</select>
+	
+	<select id="adminOneMovieScheduleDate" resultMap="movieJoinMap">
+		select
+		   *
+		from
+		    movie m
+		left join movie_schedule s
+		on m.movie_id = s.movie_id
+		where 
+			s.start_date = #{startDate} and m.movie_id = #{movieId}
+	</select>
+	
 </mapper>

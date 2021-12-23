@@ -26,6 +26,6 @@ public class MovieSchedule implements Serializable {
 	private String movieScheduleId;
 	private int theaterId;
 	private String movieId;
-	private Date startDate;
+	private String startDate;
 	private String startTime;
 }

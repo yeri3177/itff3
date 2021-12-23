@@ -59,4 +59,8 @@ public interface AdminDao {
 
 	List<MovieJoin> selectOneTheater(int theaterId);
 
+	List<MovieJoin> adminOneMovieSchedule(String movieId);
+
+	List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param);
+
 }

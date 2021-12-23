@@ -17,12 +17,7 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<style>
-div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
-</style>
-
-<!-- 굿즈 nav -->
+<!-- 영화 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMovieNavBar.jsp"></jsp:include>
 
 <!-- 관리자 공통 메뉴 -->
@@ -77,7 +72,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<!-- 작품명 -->
 									<td>
 										<div class="email">
-											<span><strong>${list.titleKor }</strong>, ${list.titleEng }</span> 
+											<span><strong>${list.titleKor }</strong>(${list.titleEng })</span> 
 										</div>
 									</td>
 									
@@ -105,8 +100,8 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										type="button"
 										class="btn btn-dark" 
 										data-toggle="modal"
-										data-target="#adminMovieSchedule"
-										onclick="movie_schedule_btn('${list.movieId}');"
+										data-target="#adminOneMovieSchedule"
+										onclick="one_movie_schedule_btn('${list.movieId}');"
 										style="border-radius: 0;">상영조회</button>
 									</td>
 
@@ -132,6 +127,21 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 작품 정보 끝 -->
+						<!-- 상영조회 -->
+						<div class="modal fade" id="adminOneMovieSchedule" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 1000px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax2">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상영조회 -->
 						
 					</div>
 				</div>	
@@ -153,7 +163,6 @@ $("#searchType").change((e) => {
 });
 </script>
 
-
 <script>
 
 // 상품 상세
@@ -170,6 +179,31 @@ function movieInfo_btn(movieId) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 상영조회
+function one_movie_schedule_btn(movieId) {
+	
+	console.log(movieId);
+	var id = movieId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminOneMovieSchedule.do",
+		data: {movieId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax2").html(data);
 		},
 		complete: function() {
 			console.log("complete")
