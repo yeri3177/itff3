@@ -352,6 +352,7 @@ table {
 	padding: 6px !important;
 	font-size: 14px;
     font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 0 important;
 }
 
 .add-product {

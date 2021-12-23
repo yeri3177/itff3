@@ -144,4 +144,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.updateMemberPoint", param);
 	}
 
+	@Override
+	public Movie selectOneMovie(String movieId) {
+		return session.selectOne("admin.selectOneMovie", movieId);
+	}
+
 }

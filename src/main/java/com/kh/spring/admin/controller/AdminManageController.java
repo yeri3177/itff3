@@ -291,6 +291,22 @@ public class AdminManageController {
 		model.addAttribute("list", list);
 	}
 	
+	/**
+	 * [굿즈 상세]
+	 */
+	
+	@GetMapping("/adminMovieInfo.do")
+	public Movie adminMovieInfo(@RequestParam("movieId") String movieId, Model model) {
+		log.debug("movieId = {}", movieId);
+
+		Movie movie = adminService.selectOneMovie(movieId);
+		log.debug("movie = {}", movie);
+		
+		model.addAttribute("movie", movie);
+		
+		return movie;
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
