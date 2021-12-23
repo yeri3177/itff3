@@ -23,13 +23,13 @@ input#btn-add{float:right; margin: 0 0 15px;}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/board/board.css" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/board.css" />
+	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />	
 	
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
@@ -54,11 +54,31 @@ $(() => {
 </script>
 
 
+	
+<div id="snb">
+	<div class="container-xl">
+		<ul class="list-inline snb_ul" id="snbul1">
+			<li class="on_"><a
+				href="${pageContext.request.contextPath }/notice/noticeList.do"
+				target="_top">공지사항</a></li>
+			<li class="on_"><a href="#" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a
+				href="${pageContext.request.contextPath}/sharing/boardList.do"
+				target="_top">티켓나눔터</a></li>
+			<li class="on_"><a href="#" target="_top">자주찾는 질문</a></li>
+			<li class="on_"><a href="#" target="_top">1:1 문의</a></li>
+		</ul>
+	</div>
+</div>
+<!-- 여기까지 nav -->
+<!-- 해당 페이지 큰 글씨 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">티켓나눔터</h2>
+	</div>
+</div>
 
 <section id="board-container" class="container">
-<div class="title">
-	<p style="font-size:30px"; align="center" >티켓나눔터</p>
-</div>
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr>
 			<th class="text-center">종류</th>
