@@ -18,7 +18,7 @@
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="공지사항 상세보기" name="title" />
+	<jsp:param value="티켓나눔터 상세보기" name="title" />
 </jsp:include>
 
 <link rel="stylesheet"
@@ -30,22 +30,37 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
+
+<!-- // 	boolean editable = false; -->
+<!-- // 	SecurityContext securityContext = SecurityContextHolder.getContext(); -->
+<!-- // 	Authentication authentication = securityContext.getAuthentication(); -->
+	
+<!-- // 	Member loginMember = (Member) authentication.getPrincipal(); -->
+<!-- // 	if(loginMember != null){ -->
+<!-- // 		pageContext.setAttribute("loginMember", loginMember); -->
+		
+<!-- // 	 	Board board = (Board) request.getAttribute("board"); -->
+<!-- // 		editable = loginMember != null && ( -->
+<!-- // 						  loginMember.getId().equals(board.getMemberId()) -->
+<!-- // 						  ); -->
+<!-- // 	} -->
+
+
 <%
 	boolean editable = false;
 	SecurityContext securityContext = SecurityContextHolder.getContext();
 	Authentication authentication = securityContext.getAuthentication();
-	Member loginMember = (Member) authentication.getPrincipal();
-	if(loginMember != null){
+	System.out.println(authentication.getPrincipal());
+	
+	if(authentication.getPrincipal() != "anonymousUser"){
+		Member loginMember = (Member) authentication.getPrincipal();
 		pageContext.setAttribute("loginMember", loginMember);
-		
-	 	Board board = (Board) request.getAttribute("board");
+		Board board = (Board) request.getAttribute("board");
 		editable = loginMember != null && (
-						  loginMember.getId().equals(board.getMemberId())
-						  );
-	}
+				loginMember.getId().equals(board.getMemberId())
+				);
+}
 %>
-
-
 
 
 <div id="snb">
