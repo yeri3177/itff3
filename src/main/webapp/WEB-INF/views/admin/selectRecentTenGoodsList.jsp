@@ -11,14 +11,14 @@
 
 
 <c:forEach items="${list }" var="list">
-<tr>
-	<td class="title-cell"><a target="_blank"
-		href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=43">
-			<span class="post-intro-image"
-			style="background-image: url(https://i.ibb.co/Vgq006M/20211217-185555.png);"></span>
-			${list.PName }
-	</a></td>
-	<td class="second-cell">${list.PId }</td>
-	<td class="hits-cell"><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
-</tr>
+	<tr>
+		<td class="title-cell">
+			<a target="_blank" href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=43">
+					<span class="post-intro-image" style="url(${pageContext.request.contextPath}/resources/upload/goods/${list.PImg });"></span>
+					${list.PName }
+			</a>
+		</td>
+		<td class="second-cell">${list.PId }</td>
+		<td class="hits-cell"><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
+	</tr>
 </c:forEach>

@@ -32,8 +32,4 @@ public class Movie implements Serializable {
 	private String ageLimit;
 	private String image;
 	
-	private MovieSchedule movieSchedule;
-	private Seat seat;
-	private Theater theater;
-	
 }

@@ -355,4 +355,132 @@
 			s.start_date = #{startDate} and m.movie_id = #{movieId}
 	</select>
 	
+	<select id="adminSelectNoticeList" resultType="notice">
+		select 
+        	b.*,
+        	(select count(*) from attachment where attach_no = b.notice_no) attach_count
+		from 
+			notice_board b
+		order by 
+			notice_no desc
+	</select>
+	
+	<select id="countTotalContent" resultType="_int">
+		select 
+			count(*)
+		from 
+			notice_board
+	</select>
+	
+	<insert id="insertNotice" parameterType="notice">
+		insert into 
+			notice_board(notice_no, notice_title, notice_content, member_id)
+		values (
+			seq_notice_no.nextval,
+			#{noticeTitle},
+			#{noticeContent},
+			#{memberId}
+		)
+		
+		<selectKey keyProperty="noticeNo" resultType="_int" order="AFTER">
+			select 
+				seq_notice_no.currval
+			from 
+				dual
+		</selectKey>
+	</insert>
+	
+	<select id="selectOneNoticeCollection" resultMap="noticeCollectionMap">
+		select
+			b.*,
+			a.*,
+			a.attach_no attach_no
+		from 
+		notice_board b left join attachment a
+				on b.notice_no = a.notice_no
+		where 
+			b.notice_no = #{no}
+		order by 
+			b.notice_no desc
+	</select>
+	
+	<resultMap type="notice" id="noticeCollectionMap">
+		<id column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		
+		<collection property="attachments" ofType="attachment">
+			<id column="attach_no" property="attachNo"/>
+			<result column="notice_no" property="noticeNo"/>
+			<result column="original_filename" property="originalFilename"/>
+			<result column="renamed_filename" property="renamedFilename"/>
+			<result column="reg_date" property="regDate"/>
+			
+		</collection>
+		
+	</resultMap>
+	
+	<select id="selectOneAttachment" resultType="attachment">
+		select 
+			*
+		from 
+			attachment
+		where 
+			attach_no = #{no}
+	</select>
+	
+	<select id="selectOneloginMember" resultType="string">
+		select 
+			authority
+		from 
+			notice_board a left join authorities b
+            on a.member_id = b.member_id
+        where 
+        	a.notice_no = #{noticeNo}
+	</select>
+	
+	<select id="selectOneGoodsDetail" resultMap="goodsJoinMap">
+		select
+			*
+		from
+			goods_option o
+		left join goods g
+		on o.p_id = g.p_id
+		left join option_detail d
+		on o.option_id = d.option_id
+		where 
+			g.p_id = #{pId}
+	</select>
+	
+	<resultMap type="goods" id="goodsMap">
+		<id column="p_id" property="pId"/>
+		<result column="p_name" property="pName"/>
+		<result column="p_price" property="pPrice"/>
+		<result column="p_info" property="pInfo"/>
+		<result column="p_category" property="pCategory"/>
+		<result column="p_enroll" property="pEnroll"/>
+	</resultMap>
+
+	<resultMap type="goodsOption" id="goodsOptionMap">
+		<id column="p_id" property="pId"/>
+		<result column="option_id" property="optionId"/>
+	</resultMap>
+	
+	<resultMap type="optionDetail" id="optionDetailMap">
+		<id column="option_id" property="optionId"/>
+		<result column="option_type" property="optionType"/>
+		<result column="option_color" property="optionColor"/>
+		<result column="option_size" property="optionSize"/>
+		<result column="option_stock" property="optionStock"/>
+		<result column="option_img" property="optionImg"/>
+	</resultMap>
+	
+	<resultMap type="goodsJoin" id="goodsJoinMap">
+		<collection property="goods" resultMap="goodsMap" />
+		<collection property="goodsOption" resultMap="goodsOptionMap" />
+		<collection property="optionDetail" resultMap="optionDetailMap" />
+	</resultMap>
+	
 </mapper>

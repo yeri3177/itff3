@@ -33,7 +33,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">판매 상품 목록</h2>
+					<h2 class="heading-section">상품조회</h2>
 				</div>
 			</div>
 			
@@ -42,7 +42,16 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 				<div class="col-md-12">
 					<div class="table-wrap">
 					
-					<div class="search-total">
+					
+					<div class="search-total insert">
+					
+					<button 
+					type="button"
+					class="btn btn-primary" 
+					data-toggle="modal"
+					data-target="#adminGoodsInsert"
+					onclick="goods_insert_btn();">상품등록</button>
+					
 					   <div class="input-group rounded">
 					        <select 
 					        	id="searchType" 
@@ -82,6 +91,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<th>가격</th>
 									<th>카테고리</th>
 									<th>등록일자</th>
+									<th>&nbsp;</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -129,7 +139,19 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										class="btn btn-secondary" 
 										data-toggle="modal"
 										data-target="#adminGoodsDetail"
-										onclick="goodsDetail_btn('${list.PId}');">상세</button>
+										onclick="goodsDetail_btn('${list.PId}');"
+										>상품관리</button>
+									</td>
+									
+									<td>
+										<button 
+										id="${list.PId }" 
+										type="button"
+										class="btn btn-secondary" 
+										data-toggle="modal"
+										data-target="#adminGoodsOptionDetail"
+										onclick="goods_option_detail_btn('${list.PId}');"
+										>옵션관리</button>
 									</td>
 
 								</tr>
@@ -139,6 +161,21 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 						</table>
 						</div>
 						
+						<!-- 상품 추가 -->
+						<div class="modal fade" id="adminGoodsInsert" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax5">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 상품 추가 끝 -->
 						<!-- 상품 상세 -->
 						<div class="modal fade" id="adminGoodsDetail" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
@@ -185,7 +222,21 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 상품 삭제 -->
-						
+						<!-- 옵션 상세 -->
+						<div class="modal fade" id="adminGoodsOptionDetail" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 1200px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax4">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 옵션 상세 끝 -->
 					</div>
 				</div>	
 			</div>
@@ -273,6 +324,52 @@ function goodsDelete_btn(pId) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax3").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 옵션 상세
+function goods_option_detail_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDetail.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax4").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 굿즈 추가
+function goods_insert_btn() {
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsInsert.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax5").html(data);
 		},
 		complete: function() {
 			console.log("complete")

@@ -1,24 +1,24 @@
+<%@page import="org.springframework.web.context.request.RequestContextListener"%>
 <%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="com.kh.spring.sharing.model.vo.Board"%>
+
 <%@page import="org.springframework.security.core.Authentication"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
-	SecurityContext securityContext = SecurityContextHolder.getContext();
-	Authentication authentication = securityContext.getAuthentication();
-	Member loginMember = (Member) authentication.getPrincipal();
-	pageContext.setAttribute("loginMember", loginMember);
-%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<sec:authorize access="isAnonymous() || isAuthenticated()">
 
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="공지사항 상세보기" name="title" />
+	<jsp:param value="티켓나눔터 상세보기" name="title" />
 </jsp:include>
 
 <link rel="stylesheet"
@@ -30,7 +30,39 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
-<!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
+
+<!-- // 	boolean editable = false; -->
+<!-- // 	SecurityContext securityContext = SecurityContextHolder.getContext(); -->
+<!-- // 	Authentication authentication = securityContext.getAuthentication(); -->
+	
+<!-- // 	Member loginMember = (Member) authentication.getPrincipal(); -->
+<!-- // 	if(loginMember != null){ -->
+<!-- // 		pageContext.setAttribute("loginMember", loginMember); -->
+		
+<!-- // 	 	Board board = (Board) request.getAttribute("board"); -->
+<!-- // 		editable = loginMember != null && ( -->
+<!-- // 						  loginMember.getId().equals(board.getMemberId()) -->
+<!-- // 						  ); -->
+<!-- // 	} -->
+
+
+<%
+	boolean editable = false;
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	System.out.println(authentication.getPrincipal());
+	
+	if(authentication.getPrincipal() != "anonymousUser"){
+		Member loginMember = (Member) authentication.getPrincipal();
+		pageContext.setAttribute("loginMember", loginMember);
+		Board board = (Board) request.getAttribute("board");
+		editable = loginMember != null && (
+				loginMember.getId().equals(board.getMemberId())
+				);
+}
+%>
+
+
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
@@ -60,7 +92,8 @@
 		<div class="sharingDetail">
 			
 			<input type="text" class="form-control" placeholder="제목" name="title"
-				id="title" value="${board.title}" readonly required><input
+				id="title" value="${board.title}" readonly required>
+			<input
 				type="text" class="form-control" name="regDate"
 				value='<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>' readonly required>
 				
@@ -85,32 +118,29 @@
 				</c:forEach>
 				<br /> 
 				
+
+
 			</div>
-			<br /><br /><br />
-			<input type="button" value="목록으로 돌아가기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
+			<br />
+
+<sec:authorize access="isAuthenticated()">
+<% 	if(editable){ %>	
+
+			<%-- 작성자만 수정/삭제버튼이 보일수 있게 할 것 --%>
+			<input type="button" value="수정하기" id="btn-add" class="btn btn-outline-success" onclick="updateBoard()">
+			<input type="button" value="삭제하기" id="btn-add" class="btn btn-outline-success" onclick="deleteBoard()">	
+			
+<% 	} %>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<input type="button" value="수정하기" onclick="updateBoard()" class="btn_brd_edit btn btn-xs btn-secondary">
+					<input type="button" value="삭제하기" onclick="deleteBoard()" class="btn_brd_del btn btn-xs btn-secondary">	
+			</sec:authorize>
+</sec:authorize>
+			<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
+			<br />
 		</div>
 	</div>
 </div>
-
-
-<div class="admin_check">
-	<c:set var="author" value="${loginMember.authorities}" />
-	<c:forEach var="a" items="${author}" varStatus="status">
-		<c:if test="${a eq 'ROLE_ADMIN'}">
-			<sec:authorize access="isAuthenticated()">
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<div class="btn_group_right">
-						<a href="javascript:OnBoardUpdate();"
-							class="btn_brd_edit btn btn-xs btn-secondary">수정</a> <a
-							href="javascript:OnBoardRemove();"
-							class="btn_brd_del btn btn-xs btn-secondary">삭제</a>
-					</div>
-				</sec:authorize>
-			</sec:authorize>
-		</c:if>
-	</c:forEach>
-</div>
-
 
 <script>
 
@@ -134,4 +164,4 @@ function OnBoardUpdate() {
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-
+</sec:authorize>

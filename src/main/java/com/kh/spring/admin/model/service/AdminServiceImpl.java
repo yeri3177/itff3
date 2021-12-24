@@ -13,12 +13,15 @@ import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
+import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -196,6 +199,61 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MovieJoin> adminOneMovieScheduleDate(Map<String, Object> param) {
 		return adminDao.adminOneMovieScheduleDate(param);
+	}
+
+	@Override
+	public List<Notice> adminSelectNoticeList(int offset, int limit) {
+		return adminDao.adminSelectNoticeList(offset, limit);
+	}
+
+	@Override
+	public int countTotalContent() {
+		return adminDao.countTotalContent();
+	}
+
+	@Override
+	public int insertNotice(Notice notice) {
+		int result = 0;
+
+		try {
+			result = adminDao.insertNotice(notice);
+			log.debug("새로 생성된 notice.noticeNo = {}", notice.getNoticeNo());
+			
+			// attachmenet insert 나눠서 처리
+			List<Attachment> attachments = notice.getAttachments();
+			if(attachments != null) {
+				for(Attachment attach : attachments) {
+					attach.setNoticeNo(notice.getNoticeNo());
+					log.debug("attach? {}", attach);
+					result = adminDao.insertAttachment(attach);
+				}
+			}
+		} catch (Exception e) {
+			throw new BoardException("공지사항 글/첨부파일 등록 오류", e);
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	public Notice selectOneNoticeCollection(int no) {
+		return adminDao.selectOneNoticeCollection(no);
+	}
+
+	@Override
+	public List<Member> selectOneloginMember(int no) {
+		return adminDao.selectOneloginMember(no);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int no) {
+		return adminDao.selectOneAttachment(no);
+	}
+
+	@Override
+	public List<GoodsJoin> selectOneGoodsDetail(int pId) {
+		return adminDao.selectOneGoodsDetail(pId);
 	}
 
 
