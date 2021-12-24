@@ -57,10 +57,6 @@ public class NoticeController {
 			) {
 		
 		try {
-//			log.debug("authentication = {}", authentication);
-//			Member member = (Member) authentication.getPrincipal();
-//			String id = member.getId();
-//			log.debug("아이디는? {}", id);
 			
 			log.debug("cPage = {}", cPage); // defaultValue = "1" 로 해둬서 cPage 값이 없으면 1이 나온다.
 			
@@ -143,8 +139,8 @@ public class NoticeController {
 			}
 			int result = noticeService.insertNotice(notice);
 			
-			String msg = result > 0 ? "공지사항이 등록되었습니다." : "등록 실패";
-			redirectAttr.addFlashAttribute("msg", msg);
+//			String msg = result > 0 ? "공지사항이 등록되었습니다." : "등록 실패";
+//			redirectAttr.addFlashAttribute("msg", msg);
 			
 			
 		} catch (Exception e) {

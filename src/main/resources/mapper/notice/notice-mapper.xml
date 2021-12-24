@@ -7,7 +7,7 @@
 	<select id="selectNoticeList" resultType="notice">
 		select 
         	b.*,
-        	(select count(*) from attachment where attach_no = b.notice_no) attach_count
+        	(select count(*) from attachment where notice_no = b.notice_no) attach_count
 		from notice_board b
 		order by notice_no desc
 	</select>

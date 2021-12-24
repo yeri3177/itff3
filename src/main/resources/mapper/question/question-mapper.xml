@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="question">
+	
+	<insert id="insertQuestion" parameterType="question">
+		insert into question_board(question_no, member_id, question_title, question_content, reg_date)
+		values (
+			default,
+			#{memberId},
+			#{questionTitle},
+			#{questionContent},
+			default
+		)
+		
+		<selectKey keyProperty="questionNo" resultType="_int" order="AFTER">
+			select seq_question_board_no.currval
+			from dual
+		</selectKey>
+		
+	</insert>
+	
+	<insert id="insertAttachment">
+		insert into attachment(attach_no, question_no, original_filename, renamed_filename)
+		values (
+			default,
+			#{questionNo},
+			#{originalFilename},
+			#{renamedFilename}
+		)
+	</insert>
+	
+	<select id="selectQuestionList" resultType="question">
+		select
+			b.*,
+			(select count(*) from attachment where question_no = b.question_no) attach_count
+		from question_board b left join member a
+                    on b.member_id = a.id
+        where b.member_id = #{memberId}
+		order by question_no desc
+	</select>
+	
+	<select id="countTotalContent" resultType="_int">
+		select count(*)
+		from question_board a left join member b
+		        on a.member_id = b.id
+		where a.member_id = #{id}
+	</select>
+	
+	<select id="selectOneQuestionCollection" resultMap="questionCollectionMap">
+		select 
+			b.*,
+			a.*,
+			a.attach_no attach_no
+		from question_board b left join attachment a
+				on b.question_no = a.question_no
+		where b.question_no = #{no}
+		order by b.question_no desc
+	</select>
+	
+	<resultMap type="question" id="questionCollectionMap">
+		<id column="question_no" property="questionNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="question_title" property="questionTitle"/>
+		<result column="question_content" property="questionContent"/>
+		<result column="reg_date" property="regDate"/>
+		
+		<collection property="attachments" ofType="attachment">
+			<id column="attach_no" property="attachNo"/>
+			<result column="question_no" property="questionNo"/>
+			<result column="original_filename" property="originalFilename"/>
+			<result column="renamed_filename" property="renamedFilename"/>
+			<result column="reg_date" property="regDate"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectOneAttachment" resultType="attachment">
+		select * 
+		from attachment
+		where attach_no = #{no}
+	</select>
+	
+	<update id="updateQuestion">
+		update question_board
+		set
+			question_title = #{questionTitle},
+			question_content = #{questionContent}
+		where question_no = #{questionNo}
+	</update>
+	
+	<delete id="deleteQuestionAttachment">
+		delete from attachment
+		where attach_no = #{attachNo}
+	</delete>
+	
+	<delete id="deleteOneQuestion">
+		delete from question_board
+		where question_no = #{no}
+	</delete>
+	
+	<select id="selectAttachmentByQuestionNo" resultType="attachment">
+		select *
+		from attachment 
+		where question_no = #{no}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
