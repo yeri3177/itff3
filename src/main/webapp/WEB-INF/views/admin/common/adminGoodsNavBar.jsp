@@ -14,9 +14,6 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsList.do">상품조회</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsInsert.do">상품등록</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="#">상품</a>
       </li>
       <li class="nav-item">

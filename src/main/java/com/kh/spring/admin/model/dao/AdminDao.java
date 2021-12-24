@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -75,5 +76,7 @@ public interface AdminDao {
 	List<Member> selectOneloginMember(int no);
 
 	Attachment selectOneAttachment(int no);
+
+	List<GoodsJoin> selectOneGoodsDetail(int pId);
 
 }

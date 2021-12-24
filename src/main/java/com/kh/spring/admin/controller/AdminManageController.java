@@ -45,6 +45,8 @@ import com.kh.spring.chat.model.vo.ChatLog;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -357,7 +359,6 @@ public class AdminManageController {
 		model.addAttribute("theaterId", theaterId);
 	}
 	
-	
 	/**
 	 * [작품당 상영정보] 
 	 */
@@ -571,6 +572,7 @@ public class AdminManageController {
 		return "redirect:/admin/adminGoodsList.do";
 	}
 	
+	
 	/**
 	 * [굿즈 상세]
 	 */
@@ -720,6 +722,154 @@ public class AdminManageController {
 		
 		return "redirect:/admin/adminGoodsList.do";
 	}
+	
+	/**
+	 * [상품별 옵션관리 조회]
+	 */
+	
+	@GetMapping("/adminGoodsOptionList.do")
+	public String adminGoodsOptionList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<Goods> list = adminService.selectGoodsList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = goodsService.selectGoodsTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsOptionList";
+	}
+	
+	/**
+	 * [굿즈 옵션 상세]
+	 */
+	
+	@GetMapping("/adminGoodsOptionDetail.do")
+	public void adminGoodsOptionDetail(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+		
+		Goods goods = adminService.selectOneGoods(pId);
+		List<GoodsJoin> list = adminService.selectOneGoodsDetail(pId);
+		log.debug("list = {}", list);
+		
+		List<OptionDetail> optionDetail = new ArrayList<>();
+		
+		for(int i=0; i < list.size(); i++ ) {
+			OptionDetail optionDetails = new OptionDetail();
+			optionDetails = list.get(i).getOptionDetail();	
+			
+			optionDetail.add(optionDetails);
+		}
+		
+		model.addAttribute("goods", goods);
+		model.addAttribute("optionDetail", optionDetail);
+	}
+	
+	/**
+	 * [상품별 굿즈 옵션 추가]
+	 */
+	
+	@GetMapping("/adminGoodsOptionInsert.do")
+	public Goods adminGoodsOptionInsert(@RequestParam("pId") int pId, Model model) {
+		log.debug("pId = {}", pId);
+		
+		Goods goods = adminService.selectOneGoods(pId);
+		log.debug("goods = {}", goods);
+		
+		model.addAttribute("goods", goods);
+		
+		return goods;
+	}
+	
+	@PostMapping("/adminGoodsOptionInsert.do")
+	public String adminGoodsOptionInsert(
+			Goods goods,
+			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
+			RedirectAttributes redirectAttr,
+			@RequestParam("pId") int pId
+			) throws IllegalStateException, IOException {
+		
+		try {
+			log.debug("pId = {}", pId);
+			log.debug("goods = {}", goods);
+			
+			// 기존 파일 삭제
+			Goods Oldgoods = adminService.selectOneGoods(pId);
+			
+			if(Oldgoods != null) {
+				String saveDirectory = application.getRealPath("/resources/upload/goods");
+				String filename = Oldgoods.getPImg();
+				File delFile = new File(saveDirectory, filename);
+				boolean result = delFile.delete();
+				log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+			}
+			
+			// 첨부파일 list생성
+			List<Attachment> attachments = new ArrayList<>();
+			
+			// application객체(ServletContext)
+			String saveDirectory = application.getRealPath("/resources/upload/goods");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			for(MultipartFile upFile : upFiles) {
+				
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					String originalFilename = upFile.getOriginalFilename();
+					
+					// 1. 서버컴퓨터에 저장
+					File dest = new File(saveDirectory, originalFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+					
+					// 2. DB에 attachment 레코드 등록
+					Attachment attach = new Attachment();
+					attach.setRenamedFilename(originalFilename);
+					attach.setOriginalFilename(originalFilename);
+					attachments.add(attach);
+				}
+			}
+			
+			// 업무로직
+			if(!attachments.isEmpty())
+				goods.setAttachments(attachments);
+			
+			int result = adminService.updateGoods(goods);
+			
+			String msg = result > 0 ? "상품 수정 성공" : "다시 시도해주세요.";
+			
+			redirectAttr.addFlashAttribute("msg", msg);
+			
+		}catch (Exception e) {
+			log.error(e.getMessage(), e); // 로깅
+			
+			throw e; // spring container에게 던짐.
+		}
+		return "redirect:/admin/adminGoodsList.do";
+	}
+
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
