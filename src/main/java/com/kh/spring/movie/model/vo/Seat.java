@@ -26,8 +26,4 @@ public class Seat implements Serializable {
 	private String seatNo;
 	private String movieScheduleId;
 	private int isBooked;
-	
-	private Movie movie;
-	private MovieSchedule movieSchedule;
-	private Theater theater;
 }
