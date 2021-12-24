@@ -14,14 +14,14 @@
 </jsp:include>
 
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLongTitle">옵션 등록</h5>
+		        <h5 class="modal-title" id="exampleModalLongTitle">옵션 수정</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      
 	    		<form
-					action="${pageContext.request.contextPath}/admin/adminGoodsOptionInsert.do?${_csrf.parameterName}=${_csrf.token}"
+					action="${pageContext.request.contextPath}/admin/adminGoodsOptionUpdate.do?${_csrf.parameterName}=${_csrf.token}"
 					name="goods_option_update_frm"
 					method="post"
 					enctype="multipart/form-data">
@@ -29,9 +29,9 @@
 		      <div class="modal-body">
 				  <div class="form_side_container">
 				  <div class="form-group">
-				  <label for="exampleFormControlTextarea1">상품대표이미지</label>
+				  <label for="exampleFormControlTextarea1"></label>
 					<div id="image_container">
-						<img id="View2"/>
+						<img id="View1" src="${pageContext.request.contextPath }/resources/upload/goods/${optionDetail.optionImg}"/>
 					</div>
 				  </div>
 				  
@@ -39,34 +39,33 @@
 					
 						  <div class="form-group">
 						    <label for="exampleFormControlInput1">타입</label>
-						    <input type="hidden" name="pId" value="${goods.PId }" />
-						    <input type="hidden" name="optionId" value="${optionId }" />
-						    <input type="text" name="optionType" class="form-control" id="exampleFormControlInput1">
+						    <input type="hidden" name="optionId" value="${optionDetail.optionId }">
+						    <input type="text" name="optionType" class="form-control" id="exampleFormControlInput1" value="${optionDetail.optionType != '' ? optionDetail.optionType : 'null'}">
 						  </div>
 				  
 						  <div class="form-group">
 						    <label for="exampleFormControlInput1">색상</label>
-						    <input type="text" name="optionColor" class="form-control" id="exampleFormControlInput1">
+						    <input type="text" name="optionColor" class="form-control" id="exampleFormControlInput1" value="${optionDetail.optionColor != '' ? optionDetail.optionColor : 'null'}">
 						  </div>
 						  
 						  <div class="form-group">
 						    <label for="exampleFormControlTextarea1">사이즈</label>
-						    <input type="text" class="form-control" name="optionSize" id="exampleFormControlTextarea1" rows="3" style="height: 100px;"/>
+						    <input type="text" class="form-control" name="optionSize" id="exampleFormControlTextarea1" value="${optionDetail.optionSize != '' ? optionDetail.optionSize : 'null'}" rows="3" style="height: 100px;"/>
 						  </div>
 
 						  <div class="form-group">
 						    <label for="exampleFormControlTextarea1">수량</label>
-						    <input type="number" class="form-control" name="optionStock" id="exampleFormControlTextarea1" rows="3"/>
+						    <input type="number" class="form-control" name="optionStock" id="exampleFormControlTextarea1" value="${optionDetail.optionStock != '' ? optionDetail.optionStock : 'null'}" rows="3"/>
 						  </div>
 						  
 						  <div class="form-group">
-						   <label for="exampleFormControlTextarea1">상품이미지</label>
+						   <label for="exampleFormControlTextarea1">이미지</label>
 							<div class="input-group-prepend">
 							  </div>
 							  <div class="custom-file">
-							  	<input type="hidden" name="optionImg" value="" />
-							    <input type="file" name="upFile" class="custom-file-input" id="inputGroupFile02" accept="image/*">
-							    <label class="custom-file-label" for="inputGroupFile02">이미지를 선택하세요.</label>
+							  	<input type="hidden" name="optionImg" value="${optionDetail.optionImg != '' ? optionDetail.optionImg : 'null'}" />
+							    <input type="file" name="upFile" class="custom-file-input" id="inputGroupFile01" accept="image/*">
+							    <label class="custom-file-label" for="inputGroupFile01">${optionDetail.optionImg }</label>
 							  </div>
 							</div>
 						</div>
@@ -85,7 +84,7 @@
 
 //파일명 바꾸기 & 이미지 이름
 $(() => {
-	$("#inputGroupFile02").change((e) => {
+	$("#inputGroupFile01").change((e) => {
 		
 		// 1.파일명 가져오기
 		const file = $(e.target).prop("files")[0];
@@ -111,17 +110,15 @@ $(() => {
 
 //사진 미리보기
 $(function() {
- $("#inputGroupFile02").on('change', function(){
+ $("#inputGroupFile01").on('change', function(){
  readURL1(this);
  });
 });
-
 function readURL1(input) {
-	
  if (input.files && input.files[0]) {
      var reader = new FileReader();
      reader.onload = function (e) {
-     $('#View2').attr('src', e.target.result);
+     $('#View1').attr('src', e.target.result);
      }
      reader.readAsDataURL(input.files[0]);
  }

@@ -41,6 +41,8 @@
 						<div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-evenly; align-items: center;">
 						
 						<c:forEach items="${optionDetail }" var="od">
+						<div style="margin-bottom: 30px; border: 1px solid whitesmoke; padding: 15px;">
+						  
 						<table class="table" style="width: 300px !important;">
 					  	  <tbody>
 						   <tr>
@@ -48,7 +50,7 @@
 						     <td><div class="img" style="height: 120px !important; background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${od.optionImg })"></div></td>
 						   </tr>
 						   <tr>
-						     <th scope="row">아이디</th>
+						     <th scope="row">옵션코드</th>
 						     <td>${od.optionId }</td>
 						   </tr>
 						   <tr>
@@ -69,6 +71,24 @@
 						   </tr>
 						  </tbody>
 						</table>
+						<div style="text-align: center;">
+					   <button
+				      		id="option_update_select_btn" 
+				      		type="button" 
+				      		class="btn btn-outline-success"
+				      		data-toggle="modal"
+							data-target="#adminGoodsOptionUpdate"
+							onclick="goods_option_update_btn('${od.optionId}');"
+							style="font-size: 12px;">수정</button>
+						<button 
+				        	type="button" 
+				        	class="btn btn-outline-danger"
+		  			      	data-toggle="modal"
+							data-target="#adminGoodsOptionDelete"
+							onclick="goods_option_delete_btn('${od.optionId}');"
+							style="font-size: 12px;">삭제</button>
+						</div>
+						</div>
 					</c:forEach>
 					
 				</div>
@@ -77,22 +97,11 @@
 		      <div class="modal-footer">
 		      	<button 
 		      		type="button" 
-		      		class="btn btn-primary"
+		      		class="btn btn-outline-info"
 		      		data-toggle="modal"
 					data-target="#adminGoodsOptionInsert"
-					onclick="goods_option_insert_btn('${goods.PId}');">옵션등록</button>
-		      	<button 
-		      		type="button" 
-		      		class="btn btn-success"
-		      		data-toggle="modal"
-					data-target="#adminGoodsOptionUpdate"
-					onclick="goods_option_update_btn('${goods.PId}');">옵션수정</button>
-		        <button 
-		        	type="button" 
-		        	class="btn btn-danger"
-  			      	data-toggle="modal"
-					data-target="#adminGoodsOptionDelete"
-					onclick="goods_option_delete_btn('${goods.PId}');">옵션삭제</button>
+					onclick="goods_option_insert_btn('${goods.PId }');">옵션등록</button>
+				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 		      </div>
 
 <script>

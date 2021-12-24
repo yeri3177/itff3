@@ -47,7 +47,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					
 					<button 
 					type="button"
-					class="btn btn-primary" 
+					class="btn btn-outline-info"
 					data-toggle="modal"
 					data-target="#adminGoodsInsert"
 					onclick="goods_insert_btn();">상품등록</button>
@@ -65,7 +65,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="pId"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -74,7 +74,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="pName"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -136,7 +136,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										<button 
 										id="${list.PId }" 
 										type="button"
-										class="btn btn-secondary" 
+										class="btn btn-outline-dark"
 										data-toggle="modal"
 										data-target="#adminGoodsDetail"
 										onclick="goodsDetail_btn('${list.PId}');"
@@ -147,7 +147,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										<button 
 										id="${list.PId }" 
 										type="button"
-										class="btn btn-secondary" 
+										class="btn btn-outline-dark"
 										data-toggle="modal"
 										data-target="#adminGoodsOptionDetail"
 										onclick="goods_option_detail_btn('${list.PId}');"
@@ -237,6 +237,54 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 옵션 상세 끝 -->
+						<!-- 옵션 추가 -->
+						<div class="modal fade" id="adminGoodsOptionInsert" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax7">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 옵션 추가 끝 -->
+						<!-- 옵션 수정 -->
+						<div class="modal fade" id="adminGoodsOptionUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax6">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 옵션 수정 끝 -->
+						<!-- 옵션 삭제 -->
+						<div class="modal fade" id="adminGoodsOptionDelete" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax8">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 옵션 삭제 끝 -->
 					</div>
 				</div>	
 			</div>
@@ -370,6 +418,81 @@ function goods_insert_btn() {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax5").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 수정
+function goods_option_update_btn(optionId) {
+	
+	console.log(optionId);
+	var id = optionId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionUpdate.do",
+		data: {optionId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax6").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 추가
+function goods_option_insert_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionInsert.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax7").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 삭제
+function goods_option_delete_btn(optionId) {
+	
+	console.log(optionId);
+	var id = optionId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDelete.do",
+		data: {optionId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax8").html(data);
 		},
 		complete: function() {
 			console.log("complete")

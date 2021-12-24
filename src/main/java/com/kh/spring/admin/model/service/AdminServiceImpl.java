@@ -14,6 +14,7 @@ import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -254,6 +255,36 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<GoodsJoin> selectOneGoodsDetail(int pId) {
 		return adminDao.selectOneGoodsDetail(pId);
+	}
+
+	@Override
+	public OptionDetail selectOneGoodsOption(int optionId) {
+		return adminDao.selectOneGoodsOption(optionId);
+	}
+
+	@Override
+	public int updateGoodsOption(OptionDetail optionDetail) {
+		return adminDao.updateGoodsOption(optionDetail);
+	}
+
+	@Override
+	public int insertGoodsOption(Map<String, Object> param) {
+		return adminDao.insertGoodsOption(param);
+	}
+
+	@Override
+	public int insertOptionDetail(Map<String, Object> param) {
+		return adminDao.insertOptionDetail(param);
+	}
+
+	@Override
+	public int selectOptionId() {
+		return adminDao.selectOptionId();
+	}
+
+	@Override
+	public int deleteGoodsOption(int optionId) {
+		return adminDao.deleteGoodsOption(optionId);
 	}
 
 

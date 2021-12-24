@@ -46,6 +46,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -572,7 +573,6 @@ public class AdminManageController {
 		return "redirect:/admin/adminGoodsList.do";
 	}
 	
-	
 	/**
 	 * [굿즈 상세]
 	 */
@@ -788,39 +788,111 @@ public class AdminManageController {
 	 */
 	
 	@GetMapping("/adminGoodsOptionInsert.do")
-	public Goods adminGoodsOptionInsert(@RequestParam("pId") int pId, Model model) {
+	public void adminGoodsOptionInsert(@RequestParam("pId") int pId, Model model) {
 		log.debug("pId = {}", pId);
 		
 		Goods goods = adminService.selectOneGoods(pId);
 		log.debug("goods = {}", goods);
 		
-		model.addAttribute("goods", goods);
+		int optionId = adminService.selectOptionId();
+		log.debug("optionId = {}", optionId);
 		
-		return goods;
+		model.addAttribute("goods", goods);
+		model.addAttribute("optionId", optionId);
 	}
 	
 	@PostMapping("/adminGoodsOptionInsert.do")
 	public String adminGoodsOptionInsert(
-			Goods goods,
-			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
+			OptionDetail optionDetail,
+			@RequestParam(value="upFile") MultipartFile[] upFiles, 
 			RedirectAttributes redirectAttr,
-			@RequestParam("pId") int pId
+			@RequestParam("pId") int pId,
+			@RequestParam("optionId") int optionId
 			) throws IllegalStateException, IOException {
 		
 		try {
-			log.debug("pId = {}", pId);
-			log.debug("goods = {}", goods);
+			log.debug("optionDetail = {}", optionDetail);
 			
-			// 기존 파일 삭제
-			Goods Oldgoods = adminService.selectOneGoods(pId);
+			// 첨부파일 list생성
+			List<Attachment> attachments = new ArrayList<>();
 			
-			if(Oldgoods != null) {
-				String saveDirectory = application.getRealPath("/resources/upload/goods");
-				String filename = Oldgoods.getPImg();
-				File delFile = new File(saveDirectory, filename);
-				boolean result = delFile.delete();
-				log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+			// application객체(ServletContext)
+			String saveDirectory = application.getRealPath("/resources/upload/goods");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			for(MultipartFile upFile : upFiles) {
+	
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					String originalFilename = upFile.getOriginalFilename();
+	
+					// 1. 서버컴퓨터에 저장
+					File dest = new File(saveDirectory, originalFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+					
+					// 2. DB에 attachment 레코드 등록
+					Attachment attach = new Attachment();
+					attach.setRenamedFilename(originalFilename);
+					attach.setOriginalFilename(originalFilename);
+					attachments.add(attach);
+				}
 			}
+			
+			// 업무로직
+			if(!attachments.isEmpty())
+				optionDetail.setAttachments(attachments);
+
+			Map<String, Object> param = new HashMap<>();
+			param.put("optionDetail", optionDetail);
+			param.put("pId", pId);
+			param.put("optionId", optionId);
+			
+			log.debug("param = {}", param);
+
+			int result = adminService.insertOptionDetail(param);
+			result = adminService.insertGoodsOption(param);
+			
+			String msg = result > 0 ? "옵션 등록 성공" : "다시 시도해주세요.";
+			
+			redirectAttr.addFlashAttribute("msg", msg);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e); // 로깅
+			
+			throw e; // spring container에게 던짐.
+		}
+		return "redirect:/admin/adminGoodsList.do";
+	}
+	
+	/**
+	 * [굿즈 옵션 수정]
+	 */
+	
+	@GetMapping("/adminGoodsOptionUpdate.do")
+	public void adminGoodsOptionUpdate(@RequestParam("optionId") int optionId, Model model) {
+		log.debug("optionId = {}", optionId);
+		
+		OptionDetail optionDetail = adminService.selectOneGoodsOption(optionId);
+		log.debug("optionDetail = {}", optionDetail);
+		
+		model.addAttribute("optionDetail", optionDetail);
+	}
+	
+	@PostMapping("/adminGoodsOptionUpdate.do")
+	public String adminGoodsOptionUpdate(
+			OptionDetail optionDetail,
+			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
+			RedirectAttributes redirectAttr,
+			@RequestParam("optionId") int optionId
+			) throws IllegalStateException, IOException {
+		
+		try {
+			log.debug("optionId = {}", optionId);
+			log.debug("optionDetail = {}", optionDetail);
 			
 			// 첨부파일 list생성
 			List<Attachment> attachments = new ArrayList<>();
@@ -832,6 +904,17 @@ public class AdminManageController {
 			for(MultipartFile upFile : upFiles) {
 				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					// 기존 파일 삭제
+					OptionDetail oldOptionDetail = adminService.selectOneGoodsOption(optionId);
+					
+					if(oldOptionDetail != null) {
+						saveDirectory = application.getRealPath("/resources/upload/goods");
+						String filename = oldOptionDetail.getOptionImg();
+						File delFile = new File(saveDirectory, filename);
+						boolean result = delFile.delete();
+						log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+					}
 					
 					log.debug("upFile = {}", upFile);
 					log.debug("upFile.name = {}", upFile.getOriginalFilename());
@@ -854,11 +937,11 @@ public class AdminManageController {
 			
 			// 업무로직
 			if(!attachments.isEmpty())
-				goods.setAttachments(attachments);
+				optionDetail.setAttachments(attachments);
 			
-			int result = adminService.updateGoods(goods);
+			int result = adminService.updateGoodsOption(optionDetail);
 			
-			String msg = result > 0 ? "상품 수정 성공" : "다시 시도해주세요.";
+			String msg = result > 0 ? "옵션 수정 성공" : "다시 시도해주세요.";
 			
 			redirectAttr.addFlashAttribute("msg", msg);
 			
@@ -867,6 +950,51 @@ public class AdminManageController {
 			
 			throw e; // spring container에게 던짐.
 		}
+		return "redirect:/admin/adminGoodsList.do";
+	}
+	
+	/**
+	 * [굿즈 옵션 삭제]
+	 */
+	
+	@GetMapping("/adminGoodsOptionDelete.do")
+	public void adminGoodsOptionDelete(@RequestParam("optionId") int optionId, Model model) {
+		log.debug("optionId = {}", optionId);
+		
+		OptionDetail optionDetail = adminService.selectOneGoodsOption(optionId);
+		log.debug("optionDetail = {}", optionDetail);
+		
+		model.addAttribute("optionDetail", optionDetail);
+	}
+	
+	@PostMapping("/adminGoodsOptionDelete.do")
+	public String adminGoodsOptionDelete(@RequestParam int optionId, RedirectAttributes redirectAttr) {
+		log.debug("optionId = {}", optionId);
+		
+    	try {
+    		OptionDetail optionDetail = adminService.selectOneGoodsOption(optionId);
+    		
+    		if(optionDetail != null) {
+    			String saveDirectory = application.getRealPath("/resources/upload/goods");
+    			String filename = optionDetail.getOptionImg();
+    			File delFile = new File(saveDirectory, filename);
+    			boolean result = delFile.delete();
+    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+    		}
+    		
+			int result = adminService.deleteGoodsOption(optionId);
+			redirectAttr.addFlashAttribute("msg", "옵션 삭제 성공");
+			
+    	} catch (InvalidParameterException e) {
+    		log.error(e.getMessage(), e);
+    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+    		
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		
 		return "redirect:/admin/adminGoodsList.do";
 	}
 
@@ -904,7 +1032,7 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * [공지사항] 
+	 * [공지사항 목록] 
 	 */
 	
 	@GetMapping("/adminNoticeList.do")
@@ -941,6 +1069,10 @@ public class AdminManageController {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * [공지사항 작성] 
+	 */
 	
 	@GetMapping("/adminNoticeForm.do")
 	public void adminNoticeForm() {}
@@ -1002,6 +1134,10 @@ public class AdminManageController {
 		
 		return "redirect:/admin/adminNoticeList.do";
 	}
+	
+	/**
+	 * [공지사항 상세] 
+	 */
 	
 	@GetMapping("/adminNoticeDetail.do")
 	public void adminNoticeDetail(@RequestParam int noticeNo, Model model) {
