@@ -195,29 +195,8 @@ section#main-content {
 				</ul>
 			</div>
 			<div class="col-md-9 col-xs-12">
-				<ul class="news_list">
-				
-				<c:out value=""></c:out>
+				<ul class="news_list" id="notice">
 
-					<li><a href="#"> <span class="date en">2022.01.07</span> <span
-							class="brd_tit">[알림] 정보기술영화제 사무국 스태프(프로그래밍 팀장) 모집</span>
-					</a></li>
-
-					<li><a href="#"> <span class="date en">2022.01.07</span> <span
-							class="brd_tit">[알림] 정보기술영화제 사무국 스태프(프로그래밍 팀장) 모집</span>
-					</a></li>
-
-					<li><a href="#"> <span class="date en">2022.01.07</span> <span
-							class="brd_tit">[알림] 정보기술영화제 사무국 스태프(프로그래밍 팀장) 모집</span>
-					</a></li>
-
-					<li><a href="#"> <span class="date en">2022.01.07</span> <span
-							class="brd_tit">[알림] 정보기술영화제 사무국 스태프(프로그래밍 팀장) 모집</span>
-					</a></li>
-
-					<li><a href="#"> <span class="date en">2022.01.07</span> <span
-							class="brd_tit">[알림] 정보기술영화제 사무국 스태프(프로그래밍 팀장) 모집</span>
-					</a></li>
 				</ul>
 			</div>
 		</div>
@@ -225,6 +204,23 @@ section#main-content {
 	</div>
 </div>
 </div>
+
+<script>
+
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMainNotice.do",
+		method: "GET",
+		success: function(data) {
+			$("#notice").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+</script>
 
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -97,11 +97,11 @@
 		      <div class="modal-footer">
 		      	<button 
 		      		type="button" 
-		      		class="btn btn-outline-info"
+		      		class="btn btn-primary"
 		      		data-toggle="modal"
 					data-target="#adminGoodsOptionInsert"
 					onclick="goods_option_insert_btn('${goods.PId }');">옵션등록</button>
-				<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 		      </div>
 
 <script>

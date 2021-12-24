@@ -55,13 +55,13 @@
 <!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
 		      	<button 
 		      		type="button" 
-		      		class="btn btn-success"
+		      		class="btn btn-primary"
 		      		data-toggle="modal"
 					data-target="#adminGoodsUpdate"
 					onclick="goodsUpdate_btn('${goods.PId}');">수정</button>
 		        <button 
 		        	type="button" 
-		        	class="btn btn-danger"
+		        	class="btn btn-secondary"
   			      	data-toggle="modal"
 					data-target="#adminGoodsDelete"
 					onclick="goodsDelete_btn('${goods.PId}');">삭제</button>

@@ -92,4 +92,6 @@ public interface AdminDao {
 
 	int deleteGoodsOption(int optionId);
 
+	List<Notice> adminMainNotice();
+
 }

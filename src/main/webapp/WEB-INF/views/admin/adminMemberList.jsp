@@ -161,7 +161,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<td>
 											<button 
 												type="button"
-												class="btn btn-secondary" 
+												class="btn btn-outline-dark"
 												data-toggle="modal"
 												data-target="#adminMemberDetail"
 												onclick="memberDetail_btn('${list.id}');">상세</button>
