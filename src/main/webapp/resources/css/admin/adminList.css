@@ -429,3 +429,9 @@ a:hover {
 	width: 1800px;
     margin: auto;
 }
+
+.insert {
+	display: flex; 
+	justify-content: 
+	space-between; align-items: center;
+}

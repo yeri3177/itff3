@@ -38,8 +38,8 @@
 
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품조회</a><br />
-                            <a href="${pageContext.request.contextPath}/admin/adminGoodsInsert.do" class="collapse__sublink">상품등록</a><br />
-                             <a href="#" class="collapse__sublink">Group</a><br /> 
+<!--                             <a href="#" class="collapse__sublink">상품등록</a><br /> -->
+<%--                              <a href="#" class="collapse__sublink">상품별 옵션관리</a><br />  --%>
                              <a href="#" class="collapse__sublink">Members</a> 
                         </ul> 
                      </div> 

@@ -13,6 +13,7 @@ import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -248,6 +249,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Attachment selectOneAttachment(int no) {
 		return adminDao.selectOneAttachment(no);
+	}
+
+	@Override
+	public List<GoodsJoin> selectOneGoodsDetail(int pId) {
+		return adminDao.selectOneGoodsDetail(pId);
 	}
 
 

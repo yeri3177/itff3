@@ -23,6 +23,11 @@
 	justify-content: space-between;
 }
 
+.form_side_container2 {
+	display: flex;
+	justify-content: space-evenly;
+}
+
 .insert_btn {
 	text-align: center;
 	margin-top: 50px;
@@ -54,6 +59,9 @@ img {
 
 .input_wrap {
 	margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #image_container { 
@@ -66,4 +74,10 @@ img {
 #goods_insert_btn {
 	padding: 10px !important;
     font-size: 16px;
+}
+
+#option_con {
+	display: block;
+    background-color: white;
+    margin-top: 30px;
 }

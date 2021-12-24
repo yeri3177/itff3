@@ -441,4 +441,46 @@
         	a.notice_no = #{noticeNo}
 	</select>
 	
+	<select id="selectOneGoodsDetail" resultMap="goodsJoinMap">
+		select
+			*
+		from
+			goods_option o
+		left join goods g
+		on o.p_id = g.p_id
+		left join option_detail d
+		on o.option_id = d.option_id
+		where 
+			g.p_id = #{pId}
+	</select>
+	
+	<resultMap type="goods" id="goodsMap">
+		<id column="p_id" property="pId"/>
+		<result column="p_name" property="pName"/>
+		<result column="p_price" property="pPrice"/>
+		<result column="p_info" property="pInfo"/>
+		<result column="p_category" property="pCategory"/>
+		<result column="p_enroll" property="pEnroll"/>
+	</resultMap>
+
+	<resultMap type="goodsOption" id="goodsOptionMap">
+		<id column="p_id" property="pId"/>
+		<result column="option_id" property="optionId"/>
+	</resultMap>
+	
+	<resultMap type="optionDetail" id="optionDetailMap">
+		<id column="option_id" property="optionId"/>
+		<result column="option_type" property="optionType"/>
+		<result column="option_color" property="optionColor"/>
+		<result column="option_size" property="optionSize"/>
+		<result column="option_stock" property="optionStock"/>
+		<result column="option_img" property="optionImg"/>
+	</resultMap>
+	
+	<resultMap type="goodsJoin" id="goodsJoinMap">
+		<collection property="goods" resultMap="goodsMap" />
+		<collection property="goodsOption" resultMap="goodsOptionMap" />
+		<collection property="optionDetail" resultMap="optionDetailMap" />
+	</resultMap>
+	
 </mapper>
