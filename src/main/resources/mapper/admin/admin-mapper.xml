@@ -483,4 +483,47 @@
 		<collection property="optionDetail" resultMap="optionDetailMap" />
 	</resultMap>
 	
+	<select id="selectOneGoodsOption" resultType="optionDetail">
+		select
+			*
+		from
+			option_detail
+		where
+			option_id = #{optionId}
+	</select>
+	
+	<update id="updateGoodsOption">
+		update
+			option_detail
+		set
+			option_type = #{optionType}, option_color = #{optionColor}, option_size = #{optionSize}, option_stock = #{optionStock}, option_img = #{optionImg}
+		where option_id = #{optionId}
+	</update>
+	
+	<insert id="insertOptionDetail">
+		insert into
+			option_detail
+		values (#{optionId}, #{optionDetail.optionType}, #{optionDetail.optionColor}, #{optionDetail.optionSize}, #{optionDetail.optionStock}, #{optionDetail.optionImg})
+	</insert>
+	
+	<select id="selectOptionId" resultType="int">
+		select 
+			seq_option_detail_id.nextval 
+		from 
+			dual
+	</select>
+
+	<insert id="insertGoodsOption">
+			insert into 
+				goods_option
+			values(#{pId}, #{optionId})
+	</insert>
+	
+	<delete id="deleteGoodsOption">
+		delete from
+			option_detail
+		where
+			option_id = #{optionId}
+	</delete>
+	
 </mapper>

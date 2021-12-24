@@ -51,7 +51,7 @@
 					  <div class="custom-file">
 					  	<input type="hidden" name="pImg" value="" />
 					    <input name="upFile" id="myFile" type="file" class="custom-file-input" id="inputGroupFile04" required>
-					    <label class="custom-file-label" id="showFiles" for="inputGroupFile04">상품 이미지</label>
+					    <label class="custom-file-label" id="showFiles" for="inputGroupFile04">${goods.PImg }</label>
 					  </div>
 					  <div class="input-group-append">
 					    <button class="btn btn-outline-secondary" type="button">Button</button>

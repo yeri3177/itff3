@@ -1,6 +1,9 @@
 package com.kh.spring.goods.model.vo;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +28,7 @@ public class OptionDetail implements Serializable {
 	private String optionSize;
 	private int optionStock;
 	private String optionImg;
+	
+	private int attachCount;
+	private List<Attachment> attachments;
 }
