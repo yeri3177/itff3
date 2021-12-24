@@ -25,6 +25,7 @@ public class Attachment implements Serializable{/**
 	private int marketNo;
 	private int noticeNo;
 	private int reviewNo;
+	private int questionNo;
 	private String renamedFilename;
 	private String originalFilename;
 	private Date regDate;
