@@ -90,4 +90,6 @@ public interface AdminService {
 
 	int deleteGoodsOption(int optionId);
 
+	List<Notice> adminMainNotice();
+
 }

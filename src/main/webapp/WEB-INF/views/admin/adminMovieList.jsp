@@ -87,22 +87,22 @@
 										<button 
 										id="${list.movieId }" 
 										type="button"
-										class="btn btn-info" 
+										class="btn btn-outline-dark" 
 										data-toggle="modal"
 										data-target="#adminMovieInfo"
 										onclick="movieInfo_btn('${list.movieId}');"
-										style="border-radius: 0;">작품정보</button>
+										>작품정보</button>
 									</td>
 
 									<td>
 										<button 
 										id="${list.movieId }" 
 										type="button"
-										class="btn btn-dark" 
+										class="btn btn-outline-dark" 
 										data-toggle="modal"
 										data-target="#adminOneMovieSchedule"
 										onclick="one_movie_schedule_btn('${list.movieId}');"
-										style="border-radius: 0;">상영조회</button>
+										>상영조회</button>
 									</td>
 
 								</tr>

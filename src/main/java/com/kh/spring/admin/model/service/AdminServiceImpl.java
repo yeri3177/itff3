@@ -287,5 +287,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.deleteGoodsOption(optionId);
 	}
 
+	@Override
+	public List<Notice> adminMainNotice() {
+		return adminDao.adminMainNotice();
+	}
+
 
 }
