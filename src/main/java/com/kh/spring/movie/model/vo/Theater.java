@@ -26,8 +26,4 @@ public class Theater implements Serializable {
 	
 	private int theaterId;
 	private int maxSeat;
-	
-	private Movie movie;
-	private Seat seat;
-	private MovieSchedule movieSchedule;
 }

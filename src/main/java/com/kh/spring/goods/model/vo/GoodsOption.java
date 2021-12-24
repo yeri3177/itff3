@@ -1,4 +1,4 @@
-package com.kh.spring.movie.model.vo;
+package com.kh.spring.goods.model.vo;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MovieJoin implements Serializable  {
+public class GoodsOption implements Serializable  {
 
 	/**
 	 * 
@@ -19,8 +19,6 @@ public class MovieJoin implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Movie movie;
-	private MovieSchedule movieSchedule;
-	private Seat seat;
-	private Theater theater;
+	private int pId;
+	private int optionId;
 }
