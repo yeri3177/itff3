@@ -402,5 +402,19 @@ public class NoticeController {
 		return "redirect:/notice/noticeList.do";
 	}
 	
+	/**
+	 * [메인페이지: 공지 5개]
+	 */
+	
+	@GetMapping("/mainNotice.do")
+	public List<Notice> mainNotice(Model model) {
+		List<Notice> list = noticeService.mainNotice();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
+	
 	
 }

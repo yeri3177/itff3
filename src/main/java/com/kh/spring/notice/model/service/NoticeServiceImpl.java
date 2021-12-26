@@ -110,5 +110,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Attachment> selectAttachmentByNoticeNo(int no) {
 		return noticeDao.selectAttachmentByNoticeNo(no);
 	}
+
+	@Override
+	public List<Notice> mainNotice() {
+		return noticeDao.mainNotice();
+	}
 	
 }

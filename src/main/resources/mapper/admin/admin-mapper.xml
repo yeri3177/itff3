@@ -526,17 +526,4 @@
 			option_id = #{optionId}
 	</delete>
 	
-	<select id="adminMainNotice" resultType="notice">
-	<![CDATA[
-		select 
-			* 
-		from 
-			notice_board 
-		where 
-			rownum <= 5 
-		order by 
-			notice_no desc
-	]]>
-	</select>
-	
 </mapper>

@@ -84,19 +84,7 @@ public class AdminManageController {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * [메인페이지: 공지 5개]
-	 */
-	
-	@GetMapping("/adminMainNotice.do")
-	public List<Notice> adminMainNotice(Model model) {
-		List<Notice> list = adminService.adminMainNotice();
-		log.debug("list = {}", list);
-		
-		model.addAttribute("list", list);
-		
-		return list;
-	}
+
 	
 ///////////////////////////////////////////////////////////////////////////////
 	

@@ -32,4 +32,6 @@ public interface NoticeDao {
 
 	List<Attachment> selectAttachmentByNoticeNo(int no);
 
+	List<Notice> mainNotice();
+
 }
