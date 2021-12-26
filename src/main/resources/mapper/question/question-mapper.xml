@@ -105,7 +105,15 @@
 		where question_no = #{no}
 	</select>
 	
-	
+	<update id="updateAttachment">
+		update attachment
+		set
+			attach_no = default,
+			renamed_filename = #{renamedFilename},
+			original_filename = #{originalFilename},
+			reg_date = default
+		where question_no = #{questionNo}
+	</update>
 	
 	
 	

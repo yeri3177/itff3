@@ -24,7 +24,6 @@ public interface NoticeDao {
 
 	int updateNotice(Notice notice);
 
-	int updateAttachment(Attachment attach);
 
 	int deleteNoticeAttachment(int attachNo);
 

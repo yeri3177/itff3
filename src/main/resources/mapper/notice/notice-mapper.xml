@@ -93,13 +93,6 @@
 		where notice_no = #{noticeNo}
 	</update>
 	
-	<!-- <update id="updateAttachment">
-		update attachment
-		set
-			original_filename = #{originalFilename},
-			renamed_filename = #{renamedFilename}
-		where notice_no = #{noticeNo}
-	</update> -->
 	
 	<delete id="deleteNoticeAttachment">
 		delete from attachment
