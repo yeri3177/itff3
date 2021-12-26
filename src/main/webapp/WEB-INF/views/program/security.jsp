@@ -63,7 +63,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/password.do" class="film_thumb">
-							<img src="https://i.ibb.co/yN3pQwx/img.jpg" class="poster" alt="패스워드">
+							<img src="https://i.imgur.com/zrU0uIj.jpg" class="poster" alt="패스워드">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">보안·암호학</span>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do" class="film_thumb">
-							<img src="https://i.ibb.co/nCCyPWB/unnamed.jpg" class="poster" alt="가타카">
+							<img src="https://i.imgur.com/v1jO7Ag.jpg" class="poster" alt="가타카">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">보안·암호학</span>
