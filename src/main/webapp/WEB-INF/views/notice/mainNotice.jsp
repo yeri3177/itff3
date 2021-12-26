@@ -12,7 +12,7 @@
 
 <c:forEach items="${list }" var="list">
 	<li>
-		<a href="#"> 
+		<a href="${pageContext.request.contextPath}/notice/noticeList.do"> 
 			<span class="date en"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span> 
 			<span class="brd_tit">[알림] ${list.noticeTitle }</span>
 		</a>

@@ -121,7 +121,7 @@
 
 						<div class="hd_inner">
 							<h1 class="logo" onclick="location.href='${pageContext.request.contextPath }'">
-								<img src="https://i.ibb.co/jJFK12W/Untitled-12.png" alt="logo" class="logo_img"/>
+								<img src="https://i.imgur.com/fFC9orj.png" alt="logo" class="logo_img"/>
 							</h1>
 
 							<div class="f_r">
