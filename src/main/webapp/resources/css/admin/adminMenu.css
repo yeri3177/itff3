@@ -106,6 +106,8 @@ a {
 
 .nav__link:hover {
     background-color: var(--first-color);
+    color: white !important;
+	text-decoration: none !important; 
 }
 
 .nav__icon {
@@ -170,7 +172,7 @@ a {
 }
 
 ::selection {
-    background: rgb(52, 73, 94);
+    background: rgb(43, 63, 107);
     color: #FFF;
     text-shadow: none;
 }
@@ -178,10 +180,5 @@ a {
 .collapse_li {
 	display: grid;
 	margin-bottom: 10px;
-}
-
-a:hover {
-	color: white !important;
-	text-decoration: none !important; 
 }
     
