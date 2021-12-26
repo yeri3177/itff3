@@ -247,7 +247,7 @@ public class QuestionController {
 	public String questionUpdate(
 			 @RequestParam(value = "upFile", required = false) MultipartFile upFile,
 	         @ModelAttribute Question question,
-	         @RequestParam int delFile1,
+	         @RequestParam int delFile,
 	         RedirectAttributes redirectAttr
 			) {
 				log.debug("question???????????{}", question);
@@ -282,15 +282,11 @@ public class QuestionController {
 			    
 			}
 			
-			if(!attachments.isEmpty())
-				question.setAttachments(attachments);
-			log.debug("여기 question 뭔데 {}", question);
-			result = questionService.updateQuestion(question);
 			
-			log.debug("delFile1 몇? {}", delFile1);
+			log.debug("delFile 몇? {}", delFile);
 			
-			if(delFile1 != 0) {
-				int attachNo1 = delFile1;
+			if(delFile != 0) {
+				int attachNo1 = delFile;
 				Attachment attach = questionService.selectOneAttachment(attachNo1);
 				
 				// 서버컴퓨터에서 파일삭제
@@ -300,9 +296,16 @@ public class QuestionController {
 				// db 레코드 삭제
 				result = questionService.deleteQuestionAttachment(attachNo1);
 				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
-				log.debug("delFile1 첨부파일은? {}", yn);
+				log.debug("delFile 첨부파일은? {}", yn);
 				
 			}
+			
+			if(!attachments.isEmpty()) {
+				
+				question.setAttachments(attachments);
+			}
+			log.debug("여기 question 뭔데 {}", question);
+			result = questionService.updateQuestion(question);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

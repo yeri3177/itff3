@@ -75,11 +75,16 @@ public class QuestionServiceImpl implements QuestionService {
 			
 			List<Attachment> attachments = question.getAttachments();
 			if(attachments != null) {
+				log.debug("attachments? {}", attachments);
+				log.debug("attachments.get(0).getAttachNo() : {}", attachments.get(0).getAttachNo());
+				log.debug("attachments.get(0).getQuestionNo() ? {}", attachments.get(0).getQuestionNo());
 				
 				for(Attachment attach : attachments) {
-					attach.setQuestionNo(question.getQuestionNo());
-					log.debug("attach = {}", attach);
-					result = questionDao.insertAttachment(attach);
+					
+						attach.setQuestionNo(question.getQuestionNo());
+						log.debug("attach = {}", attach);
+						result = questionDao.insertAttachment(attach);
+						
 				}
 			}
 		} catch (Exception e) {

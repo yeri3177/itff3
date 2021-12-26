@@ -78,19 +78,25 @@ $(() => {
       const filename = file?.name; // ?: optional chaining 객체가 undefined 경우에도 오류가 나지 않음
       
       console.dir(e.target);
-      console.log(filename);
+      console.log("filename : ", filename);
       
       // 2. label에 설정하기
       const $label = $(e.target).next(); // e.target의 다음 요소
       
       if(file != undefined) {
          $label.html(filename);
+         $(delFile)
+			.prop("checked", true);
       }
       else {
          $label.html("파일을 선택하세요.");
       }
+      
+   
    })
 });
+
+
 
 </script>
 
@@ -107,56 +113,47 @@ $(() => {
 
 		<!-- input: file소스: https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
 
-		<c:choose>
-			<%-- 첨부파일이 없을 떄 --%>
-			<c:when test="${question.attachments[0].attachNo == 0}">
-				<c:forEach items="${question.attachments}" var="attach" varStatus="vs">
-					<!-- upFile1 -->
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일1</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile"
-								id="upFile1" multiple="multiple"> <label
-								class="custom-file-label" for="upFile1" id="fname">파일을
-								선택하세요.</label>
-						</div>
-					</div>
-					<div id="checkbox" style="display: none;">
-						<input type="hidden" name="delFile1" id="delFile" value="0" /> 
-						<label for="delFile">기존파일삭제</label>
-					</div>
-				</c:forEach>
-			</c:when>
 
-			<%-- 첨부파일이 하나 일 때 --%>
-			<c:otherwise>
-				<c:forEach items="${question.attachments}" var="attach" varStatus="vs">
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일1</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile"
-								id="upFile1" multiple="multiple"> <label
-								class="custom-file-label" for="upFile1" id="fname">${attach.originalFilename}</label>
-						</div>
-						<div id="checkbox">
-							<input type="checkbox" name="delFile${vs.count}" id="delFile"
-								value="${attach.attachNo}" /> <label for="delFile">기존파일삭제</label>
-						</div>
+			<!-- 첨부파일 있을 때 -->
+			<c:if test="${question.attachments[0].attachNo != 0 }">
+				<div class="input-group mb-3" style="padding: 0px;">
+					<div class="input-group-prepend" style="padding: 0px;">
+						<span class="input-group-text">첨부파일</span>
+					</div>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" name="upFile"
+							id="upFile1" multiple="multiple"> 
+						<label class="custom-file-label" for="upFile" id="fname">${question.attachments[0].originalFilename}</label>
+					</div>
+					<div id="checkbox">
+						<input type="checkbox" name="delFile" id="delFile"
+							value="${question.attachments[0].attachNo}" /> 
+						<label for="delFile">기존파일삭제</label>
 					</div>
 					
 					<%--기존파일삭제 누르지 않았을 경우 --%>
-					<input type="hidden" name="delFile1" value="0" id="delFilePlz">
+					<input type="hidden" name="delFile" value="0" id="delFilePlz"/>
 					
-				
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+				</div>
+			</c:if>
 
-
+			<!-- 첨부파일 없을 때 -->
+			<c:if test="${question.attachments[0].attachNo == 0 }">
+				<div class="input-group mb-3" style="padding: 0px;">
+					<div class="input-group-prepend" style="padding: 0px;">
+						<span class="input-group-text">첨부파일</span>
+					</div>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" name="upFile"
+							id="upFile1" multiple="multiple"> <label
+							class="custom-file-label" for="upFile" id="fname">파일을
+							선택하세요.</label>
+					</div>
+					
+					<input type="hidden" name="delFile" value="0" id="delFilePlz"/>
+					
+				</div>
+			</c:if>
 
 		<textarea class="form-control" name="questionContent" required>${question.questionContent}</textarea>
 
@@ -168,7 +165,9 @@ $(() => {
 
 <script>
 
-
+/* $("[name=upFile]").change(e => {
+	
+}); */
 
 </script>
 

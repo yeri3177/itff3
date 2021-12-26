@@ -62,10 +62,6 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.update("notice.updateNotice", notice);
 	}
 
-	@Override
-	public int updateAttachment(Attachment attach) {
-		return session.update("notice.updateAttachment", attach);
-	}
 
 	@Override
 	public int deleteNoticeAttachment(int attachNo) {

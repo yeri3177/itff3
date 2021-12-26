@@ -24,4 +24,6 @@ public interface QuestionDao {
 
 	int deleteQuestionAttachment(int attachNo1);
 
+
+
 }

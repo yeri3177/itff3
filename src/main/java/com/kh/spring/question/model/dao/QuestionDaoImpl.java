@@ -63,4 +63,6 @@ public class QuestionDaoImpl implements QuestionDao {
 	public int deleteQuestionAttachment(int attachNo1) {
 		return session.delete("question.deleteQuestionAttachment", attachNo1);
 	}
+
+
 }
