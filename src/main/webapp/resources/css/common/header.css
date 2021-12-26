@@ -41,14 +41,14 @@ body {
 }
 
 a {
-    color: #333;
+    color: #212121;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
     text-decoration: none !important;
 }
 
 .menu_drop:hover {
-	color: #333;
+	color: white;
 	font-weight: bold;
 }
 
@@ -159,7 +159,7 @@ dl, ul, ol, menu, li {
 }
 	
 #menu > ul > li > ul > li:hover {
-	background: rgb(243, 156, 18);
+	background: rgb(123 142 169);
 	transition: ease 1s;
 }
 			

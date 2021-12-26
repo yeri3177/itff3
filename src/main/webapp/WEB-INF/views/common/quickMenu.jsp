@@ -20,6 +20,7 @@
 	</div>
 
 	<div class="btn_floating">
+	<img src="https://i.imgur.com/jZ8at6D.png" alt="" style="width: 30px;" />
 		<button class="quickmenu_control_txt"><span class="ir_pm">QUICK Menu</span></button>
 		<button class="quickmenu_control_icon"><span>x</span></button>
 	</div>
