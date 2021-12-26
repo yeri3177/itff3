@@ -295,6 +295,48 @@ body[data-joomla-version="4"] .row {
 .grid-sorting-droppable-text, .group-apps-list-item.sorting-grid-handle-item.group-apps-list .app-item-title, #app-group-modal .group-apps-list-item .app-item-title, #import-csv-tab .csv-import-step-2 .ba-options-group-element-title, .csv-import-options .ba-checkbox-parent > span, .csv-export-field .csv-export-field-title, .recent-gridbox-apps td a, .recent-gridbox-reviews .comments-text-wrapper .comments-name, .recent-gridbox-comments .comments-date, .recent-gridbox-comments .comments-text-wrapper .comments-name, .file-title, .filesize-td, .last-edit-pages > .table a, .last-edit-pages > .table td, #ba-notification p, #export-dialog ul li label, .ba-folder-tree a, .ba-items-list span:not(.zmdi-folder), .ba-items-list, .ba-modal-sm .ba-footer-content a, .ba-modal-sm h3, #import-export-csv-modal .tab-footer a, .modal-footer a, .uploader-nav, .view-blogs .category-list li a, .main-table .zmdi.zmdi-check, .main-table > .table td, .main-table > .table a {
     font-weight: 500;
     color: #3f3f3f;
+    font-size: 13px;
+}
+
+.ba-store-statistic-select input[type="text"], .ba-store-statistic-product-description, .order-status-history-record-text, .recent-gridbox-reviews .comments-text-wrapper .comments-message, .recent-gridbox-comments .comments-text-wrapper .comments-message, .comments-sidebar-body .comment-message, .view-comments .comment-user-info .comment-user-email, .view-comments .comment-user-info .comment-user-ip, .view-comments .comments-table .comments-message, .view-reviews .comment-user-info .comment-user-email, .view-reviews .comment-user-info .comment-user-ip, .view-reviews .comments-table .comments-message {
+    color: #999;
+    display: inline-block;
+    font-weight: 400;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ba-store-statistic-product-description, .ba-store-statistic-product-title, .recent-gridbox-reviews .comments-text-wrapper .comments-text .comments-name-wrapper, .recent-gridbox-comments .comments-text-wrapper .comments-text .comments-name-wrapper {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-between;
+    width: 280px;
+}
+
+.ba-store-statistic-select input[type="text"], .ba-store-statistic-product-description, .recent-gridbox-reviews .comments-text-wrapper .comments-text, .recent-gridbox-comments .comments-text-wrapper .comments-text {
+    font-size: 12px;
+    text-align: left;
+    width: 100%;
+}
+
+.group-apps-list-item.sorting-grid-handle-item.group-apps-list .gridbox-app-item-icon-wrapper, #app-group-modal .group-apps-list-item .gridbox-app-item-icon-wrapper, .recent-gridbox-files .recent-file-image, .dashboard-content span.post-intro-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-apps-list-item.sorting-grid-handle-item.group-apps-list .gridbox-app-item-icon-wrapper, #app-group-modal .group-apps-list-item .gridbox-app-item-icon-wrapper, .ba-store-statistic-product-image, .payment-methods-table .ba-item-thumbnail, .recent-gridbox-reviews .ba-author-avatar, .recent-gridbox-comments .ba-author-avatar, #ba-media-manager table.ba-items-list tbody tr td .ba-image i.ba-file-icon, .recent-gridbox-files .title-td i, .recent-gridbox-files .recent-file-image, .dashboard-content span.post-intro-image, .view-blogs .blog-layout .title-cell .post-intro-image {
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    border-radius: 3px;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-right: 15px;
+    min-width: 50px;
+    pointer-events: none;
 }
 
 .ba-modal-sm .modal-body {
@@ -815,7 +857,7 @@ iframe {
 
 #filter-bar {
     align-items: baseline;
-    background: #444444;
+    background: #45a7b9;
     box-sizing: border-box;
     display: flex;
     height: 250px !important;
@@ -836,7 +878,6 @@ iframe {
 }
 
 #filter-bar > .app-title-wrapper h1 {
-    font-family: 'Roboto';
     font-size: 26px;
     font-weight: 700;
     line-height: 28px;
@@ -1104,7 +1145,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 .ba-store-statistic-text {
-    background-color: #35404a;
+    background-color: #f7826c;
     border-radius: 3px;
     color: #fff;
     margin-left: 10px;
@@ -1136,7 +1177,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 .ba-store-statistic-total-price {
-    background: #bbbbbb;
+    background: #aab3b5;
     border-radius: 6px;
     color: #fff;
     display: inline-flex;
@@ -1383,9 +1424,19 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     table-layout: fixed;
     width: 100%;
 }
+
+.group-apps-list-item.sorting-grid-handle-item.group-apps-list a, .com_gridbox .container-main {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    min-height: calc(100vh - 110px);
+    padding: 0;
+    width: 100%;
+}
+
 .table>thead {
     vertical-align: bottom;
 }
+
 tbody, td, tfoot, th, thead, tr {
     border: 0 solid;
     border-color: inherit;
@@ -1406,6 +1457,11 @@ tbody, td, tfoot, th, thead, tr {
     width: 75%;
 }
 
+.title-cell > a:hover {
+	text-decoration: none;
+	font-weight: bold;
+}
+
 .table>:not(:last-child)>:last-child>* {
     border-bottom-color: #dee2e6;
 }
@@ -1419,7 +1475,6 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .group-apps-list-item.sorting-grid-handle-item.group-apps-list, #app-group-modal .group-apps-list-item, .recent-gridbox-files .title-td, .main-table thead th:first-child, .main-table .table-striped tbody > tr > td:first-child {
-    padding-left: 15px;
     padding-right: 10px;
 }
 
@@ -1429,14 +1484,6 @@ tbody, td, tfoot, th, thead, tr {
 
 #app-group-modal .modal-header, .sorting-grid-handle-item.apps-list .gridbox-app-item-header, .apps-list-wrapper .gridbox-app-item .gridbox-app-item-header, .ba-store-statistic-header, .main-table thead th {
     border-bottom: 1px solid #f3f3f3 !important;
-}
-
-.ba-store-statistic-header, .main-table .table-striped tbody > tr:nth-child(odd) > td, .main-table .table-striped tbody > tr:nth-child(odd) > th, .main-table .table-striped tbody > tr > td, .main-table .table-striped tbody > tr > th, .main-table thead th {
-    background: transparent;
-    border: none;
-    padding: 28px 5px;
-    vertical-align: middle !important;
-    white-space: nowrap;
 }
 
 #app-group-modal .modal-header .app-group-modal-title, .sorting-grid-handle-item.apps-list .gridbox-app-item-header span, .apps-list-wrapper .gridbox-app-item .gridbox-app-item-header span, .ba-store-statistic-products-title, .ba-store-statistic-header .ba-store-statistic-header-title, .main-table.dashboard-content .last-edit-pages thead th:first-child span, .main-table.dashboard-content .recent-gridbox-apps thead th:first-child, .main-table.dashboard-content .last-edit-pages thead th:first-child *, .main-table.dashboard-content .recent-gridbox-reviews thead th:first-child *, .main-table.dashboard-content .recent-gridbox-comments thead th:first-child *, .main-table.dashboard-content .recent-gridbox-files thead th:first-child * {
@@ -1493,9 +1540,22 @@ tbody, td, tfoot, th, thead, tr {
     text-decoration: none;
 }
 
-.view-paymentmethods .payment-methods-table .payment-methods-text-wrapper, .not-permitted-wrapper, .recent-gridbox-apps td a, .dashboard-content .title-cell a, .view-blogs .blog-layout .title-cell a {
-    display: flex;
+.ba-item-thumbnail, .ba-comment-xhr-attachment .post-intro-image, .profile-picture-wrapper .image-field-tooltip, .ba-author-avatar {
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    display: inline-block;
+    height: 35px;
+    margin-right: 10px;
+    min-width: 35px;
+    vertical-align: middle;
+    width: 35px;
+}
+
+.recent-gridbox-reviews .comments-text-wrapper, .recent-gridbox-comments .comments-text-wrapper, .view-comments .comments-text-wrapper, .view-reviews .comments-text-wrapper {
     align-items: center;
+    display: flex;
+    margin: 2px 0;
 }
 
 .main-table.dashboard-content table tbody:not(.order-list-sorting) tr td {
@@ -1510,6 +1570,7 @@ tbody, td, tfoot, th, thead, tr {
 
 .ba-hide-checkbox, .main-table .table thead th:nth-last-child(2), .main-table .table thead th:last-child, .main-table .table-striped tbody > tr > td.hits-cell, .main-table .table-striped tbody > tr > td:last-child {
     text-align: center;
+    font-size: 14px;
 }
 
 .ba-store-statistic-header, .main-table .table-striped tbody > tr:nth-child(odd) > td, .main-table .table-striped tbody > tr:nth-child(odd) > th, .main-table .table-striped tbody > tr > td, .main-table .table-striped tbody > tr > th, .main-table thead th {
@@ -1531,6 +1592,7 @@ tbody, td, tfoot, th, thead, tr {
 
 .main-table .recent-gridbox-reviews .table-striped tbody > tr > td:last-child, .main-table .recent-gridbox-comments .table-striped tbody > tr > td:last-child, .main-table thead th:last-child, .main-table .table-striped tbody > tr > td:last-child {
     padding-right: 15px;
+    padding-left: 15px;
 }
 
 body[data-joomla-version="4"] .row-fluid [class*="span"] {
@@ -1609,23 +1671,13 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     box-shadow: none !important;
 }
 
-.ba-store-statistic-product:hover span, .ba-store-statistic-product:hover, .view-comments .comments-table .active-comment td, .view-comments .comments-table .active-comment a, .view-comments .comments-table .active-comment i, .view-comments .comments-table .active-comment td .comments-message, .view-comments .comments-table .context-active td .comments-message, .view-comments .comments-table tr:not(.sortable-helper):hover td .comments-message, .view-reviews .comments-table .active-comment td, .view-reviews .comments-table .active-comment a, .view-reviews .comments-table .active-comment i, .view-reviews .comments-table .active-comment td .comments-message, .view-reviews .comments-table .context-active td .comments-message, .view-reviews .comments-table tr:not(.sortable-helper):hover td .comments-message, .ba-custom-author-select ul li:hover, .main-table .table .context-active a, .main-table .table .context-active i, .main-table .table .context-active td, .main-table .table tr:not(.sortable-helper):hover td .zmdi, .main-table.dashboard-content .table tr.context-active td i.zmdi, .main-table .table tr:not(.sortable-helper):hover td, .main-table .table tr:not(.sortable-helper):hover td a, .ba-custom-select ul li:hover, .ba-custom-select ul li:hover i {
-    background: #444444 !important;
-    border-bottom-color: transparent !important;
-    color: #fff !important;
-}
-
 #clock {
-	background-color: whitesmoke;
+	background-color: #aab3b5;
     padding: 10px 50px 10px 50px;
-    border: 1px solid #ededed;
     font-weight: bold;
     font-size: 18px;
-    color: #212121;
+    color: white;
 }
-
-
-
 
 
 

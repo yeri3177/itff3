@@ -604,6 +604,16 @@ section#main-content {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.program {
+	margin-left: 150px !important; 
+	border-color: #212121 !important; 
+	z-index: 999 !important; 
+	width: 350px !important; 
+	height: 200px !important; 
+	left: -140px !important;
+	padding-top: 100px;
+}
 /* index.jsp 끝 */
 
 ::selection {
