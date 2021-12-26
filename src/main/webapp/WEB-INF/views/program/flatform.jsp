@@ -63,7 +63,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do" class="film_thumb">
-							<img src="https://i.ibb.co/2ssNXqb/unnamed.png" class="poster" alt="007:카지노로얄">
+							<img src="https://i.imgur.com/My5qWd0.jpg" class="poster" alt="007:카지노로얄">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">플랫폼·사물인터넷</span>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/missionImpossible.do" class="film_thumb">
-							<img src="https://i.ibb.co/PF6fh3S/image.jpg" class="poster" alt="미션임파서블">
+							<img src="https://i.imgur.com/DAtzvdf.jpg" class="poster" alt="미션임파서블">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">플랫폼·사물인터넷</span>
