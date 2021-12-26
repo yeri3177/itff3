@@ -63,8 +63,8 @@ a {
 }
 
 .logo_img {
-	width: 200px;
-	margin-left: 20px;
+	width: 150px;
+	margin-left: 45px;
 }
 
 .hd_bg {
@@ -219,7 +219,7 @@ dl, ul, ol, menu, li {
 
 .gnb nav > .depth1 > li > a {
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     margin: 15px 0;
     line-height: 50px;
     color: #fff;
