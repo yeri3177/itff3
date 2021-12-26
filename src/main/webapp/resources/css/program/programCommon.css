@@ -95,7 +95,7 @@
 
 .pgl .pg_li .film_thumb img {
     transform-origin: center center;
-    transform: scale(1);
+    transform: scale(1.1);
     opacity: .9;
 }
 
