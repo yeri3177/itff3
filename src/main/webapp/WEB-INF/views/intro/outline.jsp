@@ -163,7 +163,7 @@
 								<div class="desc mt20">
 									<p>정보기술영화제의 브랜드 아이덴티티는 곡선의 아름다움을 활용했고, 간결한 라인으로 표현했다. 어두운
 										남색을 중심으로 한 다양한 컬러 활용은 정보기술영화제가 담고 있는 공존, 평화, 혁신의 여러 가치를 담고 있다.</p>
-									<img src="https://i.ibb.co/kD0mzRS/image.png" alt="logo"
+									<img src="https://i.imgur.com/jm3vCrf.png" alt="logo"
 										class="logo1" />
 								</div>
 							</div>
@@ -176,20 +176,20 @@
 							<p class="txt_headline">기본형</p>
 							<br />
 							<div class="desc mt20">
-								<img src="https://i.ibb.co/L5Qr0VV/mark-black.png" alt="basic_logo" class="itff_logo" />
+								<img src="https://i.imgur.com/4QxNI0j.png" alt="basic_logo" class="itff_logo" />
 							</div>
 						</div>
 							<div>
 							<p class="txt_headline">응용형</p>
 							<div class="desc mt20">
-								<img src="https://i.ibb.co/kD0mzRS/image.png" alt="basic_logo" class="itff_logo" />
+								<img src="https://i.imgur.com/jm3vCrf.png" alt="basic_logo" class="itff_logo" />
 							</div>
 							</div>
 
 							<div>
 							<p class="txt_headline">앰뷸럼</p>
 							<div class="desc mt20">
-								<img src="https://i.ibb.co/djRDCB3/mark2-copy.png" alt="basic_logo" class="itff_logo" style="width: 300px;" />
+								<img src="https://i.imgur.com/txbLZFy.png" alt="basic_logo" class="itff_logo" style="width: 300px;" />
 							</div>
 							</div>							
 						</div>
