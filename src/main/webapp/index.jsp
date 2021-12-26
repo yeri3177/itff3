@@ -50,7 +50,7 @@ section#main-content {
 								<div class="tit-l mt50">
 									<p class="kor">제1회 <br />정보기술영화제</p>
 								</div>
-								<div class="txt">2022. 1. 7(금)  1. 14(금)</div>
+								<div class="txt">2022. 1. 7(금) - 1. 14(금)</div>
 							</div>
 						</a>
 					</div>
@@ -290,11 +290,11 @@ section#main-content {
 		<div class="slick-list draggable">
 			<div class="slick-track">
 				<div class="bn_inner bn1 slick-slide slick-current slick-active"
-					style="width: 100%; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+					style="width: 100%; height: 300px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
 					data-slick-index="0" aria-hidden="false" tabindex="0"
 					role="tabpanel" id="slick-slide40"
 					aria-describedby="slick-slide-control40"
-					onclick="location.href='${pageContext.request.contextPath }'"> <!-- 이 부분 굿즈샵 링크 연결 -->
+					onclick="location.href='${pageContext.request.contextPath }/goods/goodsList.do'"> <!-- 이 부분 굿즈샵 링크 연결 -->
 					<div class="container">
 						<a href="#" target="_blank" tabindex="0">
 						</a>

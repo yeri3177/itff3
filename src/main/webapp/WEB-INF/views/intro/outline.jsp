@@ -176,20 +176,20 @@
 							<p class="txt_headline">기본형</p>
 							<br />
 							<div class="desc mt20">
-								<img src="https://i.imgur.com/4QxNI0j.png" alt="basic_logo" class="itff_logo" />
+								<img src="https://i.imgur.com/32HU2Lz.png" alt="basic_logo" class="itff_logo" />
 							</div>
 						</div>
 							<div>
 							<p class="txt_headline">응용형</p>
 							<div class="desc mt20">
-								<img src="https://i.imgur.com/jm3vCrf.png" alt="basic_logo" class="itff_logo" />
+								<img src="https://i.imgur.com/Ha05Pws.png" alt="basic_logo" class="itff_logo" />
 							</div>
 							</div>
 
 							<div>
 							<p class="txt_headline">앰뷸럼</p>
 							<div class="desc mt20">
-								<img src="https://i.imgur.com/txbLZFy.png" alt="basic_logo" class="itff_logo" style="width: 300px;" />
+								<img src="https://i.imgur.com/067fEiX.png" alt="basic_logo" class="itff_logo" style="width: 300px;" />
 							</div>
 							</div>							
 						</div>
