@@ -81,5 +81,10 @@ public class NoticeDaoImpl implements NoticeDao {
 	public List<Attachment> selectAttachmentByNoticeNo(int no) {
 		return session.selectList("notice.selectAttachmentByNoticeNo", no);
 	}
+
+	@Override
+	public List<Notice> mainNotice() {
+		return session.selectList("notice.mainNotice");
+	}
 	
 }

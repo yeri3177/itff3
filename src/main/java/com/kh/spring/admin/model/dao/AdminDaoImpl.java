@@ -242,9 +242,4 @@ public class AdminDaoImpl implements AdminDao {
 		return session.delete("admin.deleteGoodsOption", optionId);
 	}
 
-	@Override
-	public List<Notice> adminMainNotice() {
-		return session.selectList("admin.adminMainNotice");
-	}
-
 }

@@ -28,4 +28,6 @@ public interface NoticeService {
 
 	List<Attachment> selectAttachmentByNoticeNo(int no);
 
+	List<Notice> mainNotice();
+
 }
