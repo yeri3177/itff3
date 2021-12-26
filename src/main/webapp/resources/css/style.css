@@ -132,7 +132,7 @@ section#main-content {
 
 #visual .visual_txt .tit-l .kor {
     font-size: 45px;
-    letter-spacing: -1px;
+    letter-spacing: 5px;
     line-height: 1.1;
 }
 
@@ -393,11 +393,6 @@ section#main-content {
     margin-bottom: 50px;
 }
 
-.banner .bn_inner {
-    padding: 60px 0 80px;
-    background: #444;
-}
-
 .slick-slider .slick-track, .slick-slider .slick-list {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -433,7 +428,11 @@ section#main-content {
 
 .banner .bn_inner {
     padding: 60px 0 80px;
-    background: #444;
+    background: url(https://i.imgur.com/jXcBmgg.jpg);
+}
+
+.banner .bn_inner:hover {
+	cursor: pointer;
 }
 
 .slick-slide {
