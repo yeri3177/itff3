@@ -74,7 +74,7 @@ IE 지원용: babel-polyfill
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
-<body>
+<body onload="printClock()">
 	<!-- // hd_bg -->
 
 <!-- 	Header -->

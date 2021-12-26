@@ -40,7 +40,7 @@ section#main-content {
 						aria-describedby="slick-slide-control00"
 						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; margin: 0px;">
 						<div class="visual_img">
-								<img class="center-block" src="https://i.imgur.com/6bBCDoK.jpg" alt="logo">
+								<img class="center-block" src="https://i.imgur.com/NMHYnrm.jpg" alt="logo">
 						</div>
 
 						<a href="#" tabindex="0">
@@ -70,7 +70,7 @@ section#main-content {
 
 	<!-- 이 부분 페이지 밀리면 안 없어지는데 추후 수정 예정 -->
 	<div class="container-l">
-		<h2 class="main_tit en" style="margin-left: 150px;">PROGRAM</h2>
+		<h2 class="main_tit en program" style="background-color: #212121;">PROGRAM</h2>
 	</div>
 
 	<div class="container">
