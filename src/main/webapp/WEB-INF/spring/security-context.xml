@@ -21,6 +21,7 @@
 		<intercept-url pattern="/index.jsp" access="permitAll"/>
 		<intercept-url pattern="/program/**" access="permitAll"/>
 		<intercept-url pattern="/member/memberLogin.do" access="permitAll"/>
+		<intercept-url pattern="/notice/mainNotice.do" access="permitAll"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
 		<intercept-url pattern="/notice/noticeForm.do" access="hasRole('ADMIN')"/>
 		<intercept-url pattern="/sharing/boardForm.do" access="isAuthenticated()"/>
