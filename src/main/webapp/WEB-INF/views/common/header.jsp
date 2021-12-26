@@ -106,12 +106,12 @@
 			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 			    					</sec:authorize>
-									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';"><sec:authentication property="principal.name"/>님</button></li>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"
 							    		action="${pageContext.request.contextPath}/member/memberLogout.do">
-								    	<button class="btn btn-link" type="submit">Logout</button>
+								    	<button class="btn btn-link" type="submit">LOGOUT</button>
 				 				   </form:form>
 		    					</sec:authorize>
 		
