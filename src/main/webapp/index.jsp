@@ -73,7 +73,7 @@ section#main-content {
 
 	<!-- 이 부분 페이지 밀리면 안 없어지는데 추후 수정 예정 -->
 	<div class="container-l">
-		<h2 class="main_tit en">PROGRAM</h2>
+		<h2 class="main_tit en" style="margin-left: 150px;">PROGRAM</h2>
 	</div>
 
 	<div class="container">
