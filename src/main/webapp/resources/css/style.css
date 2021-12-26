@@ -608,27 +608,7 @@ section#main-content {
 /* index.jsp 끝 */
 
 ::selection {
-    background: rgb(52, 73, 94);
+    background: rgb(43, 63, 107);
     color: #FFF;
     text-shadow: none;
 }
-
-/* /* 슬라이드 */ 
-
-/* .slick-track { */
-/*   position: absolute; */
-/*   top: 0; */
-/*   left: 0; */
-/*   transition: all 1s ease; */
-/* } */
-
-/* .film_li { */
-/*   display: inline-block; */
-/*   position: relative; */
-/* /*   position: absolute; */ 
-/*   top: 50%; */
-/*   left: 50%; */
-/*   transform: translate(-50%, -50%); */
-/*   max-width: 200px; */
-/*   max-height: 100px; */
-/* } */

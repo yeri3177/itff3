@@ -48,7 +48,7 @@ a {
 }
 
 .menu_drop:hover {
-	color: white;
+	color: #212121;
 	font-weight: bold;
 }
 
@@ -75,8 +75,8 @@ a {
     margin: 0;
     padding: 0;
     height: 650px;
-    border-color: rgb(52, 73, 94);
-    background: rgb(52, 73, 94);
+    border-color: rgb(43, 63, 107);
+    background: rgb(43, 63, 107);
     z-index: -1;
 }
 
@@ -100,7 +100,7 @@ a {
 }
 
 .container-visual {
-	background-color: rgb(52, 73, 94);
+	background-color: rgb(43, 63, 107);
 }
 
 #hd .util {
@@ -159,7 +159,6 @@ dl, ul, ol, menu, li {
 }
 	
 #menu > ul > li > ul > li:hover {
-	background: rgb(123 142 169);
 	transition: ease 1s;
 }
 			
@@ -291,7 +290,7 @@ header {
 /* header.jsp 끝 */
 
 ::selection {
-    background: rgb(52, 73, 94);
+    background: rgb(43, 63, 107);
     color: #FFF;
     text-shadow: none;
 }

@@ -3,7 +3,7 @@
 .join {
     margin-top: 90px;
     padding-bottom: 120px;
-	background-color: rgb(52, 73, 94);
+	background-color: rgb(43, 63, 107);
 }
 
 .join .top_txt_box p {
@@ -21,7 +21,6 @@
 
 .tit_sec {
     display: block;
-    color: #4d3494;
     font-size: 30px;
     line-height: 40px;
     font-weight: bold;
@@ -55,7 +54,6 @@
 
 .cont_sub .tit_sec {
     display: block;
-    color: #4d3494;
     font-size: 30px;
     line-height: 40px;
     font-weight: bold;
@@ -249,7 +247,6 @@ label {
     content: '*';
     margin: 0 5px;
     display: inline-block;
-    color: #7457c7;
     vertical-align: middle;
 }
 
@@ -309,13 +306,13 @@ label {
 }
 
 .btn.btn-primary {
-    border: 1px solid rgb(52, 73, 94);
+    border: 1px solid rgb(43, 63, 107);
     color: #fff;
-    background-color: rgb(52, 73, 94);
+    background-color: rgb(43, 63, 107);
     background-image: linear-gradient(
--135deg, rgb(52, 73, 94) 0%, rgb(52, 73, 94) 100%);
+-135deg, rgb(43, 63, 107) 0%, rgb(43, 63, 107) 100%);
     background-image: -webkit-linear-gradient(
--135deg, rgb(52, 73, 94) 0%, rgb(52, 73, 94) 100%);
+-135deg, rgb(43, 63, 107) 0%, rgb(43, 63, 107) 100%);
     box-shadow: 0 0 3px rgb(20 0 77 / 20%);
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
@@ -445,7 +442,7 @@ span.error3 { color:red; }
 .info2 {
 	font-size: 18px;
 	font-weight: bold;
-	color: rgb(52, 73, 94);
+	color: rgb(43, 63, 107);
 }
 
 .homeBtn {

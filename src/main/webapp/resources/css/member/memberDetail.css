@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 section#main-content {
-	background-color: #34495E!important;
+	background-color: rgb(43, 63, 107) !important;
 }
 
 .main-content{ 
