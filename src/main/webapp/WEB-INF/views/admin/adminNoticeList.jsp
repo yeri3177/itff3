@@ -132,7 +132,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					</table>
 					</div>
 
-					<!-- 회원 상세 -->
+					<!-- 공지사항 상세 -->
 					<div class="modal fade" id="adminNoticeDetail" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
@@ -146,7 +146,23 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 								</div>
 							</div>
 						</div>
-						<!-- 회원 상세 끝 -->
+						<!-- 공지사항 상세 끝 -->
+
+						<!-- 공지사항 수정 -->
+						<div class="modal fade" id="adminNoticeUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content" style="text-align: left;">
+								   	<div class="modal-body" id="modal_ajax2">
+								    		  
+									</div>
+	
+									</div>
+								</div>
+							</div>
+							<!-- 공지사항 수정 끝 -->
 					
 					</div>
 				</div>
@@ -189,6 +205,31 @@ function notice_detail_btn(noticeNo) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 공지사항 수정
+function notice_update_btn(noticeNo) {
+	
+	console.log(noticeNo);
+	var no = noticeNo;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminNoticeUpdate.do",
+		data: {noticeNo: no},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax2").html(data);
 		},
 		complete: function() {
 			console.log("complete")

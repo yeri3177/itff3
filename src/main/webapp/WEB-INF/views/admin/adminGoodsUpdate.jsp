@@ -49,8 +49,8 @@
 				  
 				  <div class="input-group">
 					  <div class="custom-file">
-					  	<input type="hidden" name="pImg" value="" />
-					    <input name="upFile" id="myFile" type="file" class="custom-file-input" id="inputGroupFile04" required>
+					  	<input type="hidden" name="pImg" value="${goods.PImg }" />
+					    <input name="upFile" id="myFile" type="file" class="custom-file-input" id="inputGroupFile04">
 					    <label class="custom-file-label" id="showFiles" for="inputGroupFile04">${goods.PImg }</label>
 					  </div>
 					  <div class="input-group-append">
