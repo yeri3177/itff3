@@ -163,7 +163,7 @@
 									<p class="time en">09:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/her.do"><span
 											class="film_tit_kor">그녀</span><span
 											class="film_tit_eng en">Her</span>
 										</a>
@@ -180,7 +180,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/matrix.do"><span
 											class="film_tit_kor">매트릭스</span><span
 											class="film_tit_eng en">The Matrix</span></a>
 									</div>
@@ -196,7 +196,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/password.do"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>
@@ -212,7 +212,7 @@
 									<p class="time en">11:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do"><span
 											class="film_tit_kor">13층</span><span
 											class="film_tit_eng en">the</span></a>
 									</div>
@@ -228,7 +228,7 @@
 									<p class="time en">11:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/gattaca.do"><span
 											class="film_tit_kor">가타카</span><span
 											class="film_tit_eng en">Gattaka</span></a>
 									</div>
@@ -244,7 +244,7 @@
 									<p class="time en">12:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/erin.do"><span
 											class="film_tit_kor">에린 브로코비치</span><span
 											class="film_tit_eng en">Erin Brockovich</span></a>
 									</div>
@@ -260,7 +260,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/missionImpossible.do"><span
 											class="film_tit_kor">미션 임파서블: 고스트 프로토콜</span><span
 											class="film_tit_eng en">Mission: Impossible - Ghost Protocol</span></a>
 									</div>
@@ -276,7 +276,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/casinoRoyale.do"><span
 											class="film_tit_kor">007 카지노 로얄</span><span
 											class="film_tit_eng en">Casino Royale</span></a>
 									</div>
@@ -292,7 +292,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -308,7 +308,7 @@
 									<p class="time en">14:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/citizenFour.do"><span
 											class="film_tit_kor">시티즌포</span><span
 											class="film_tit_eng en">Citizenfour</span></a>
 									</div>
@@ -333,7 +333,7 @@
 									<p class="time en">16:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/casinoRoyale.do"><span
 											class="film_tit_kor">007 카지노 로얄</span><span
 											class="film_tit_eng en">Casino Royale</span></a>
 									</div>
@@ -349,7 +349,7 @@
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/iRobot.do"><span
 											class="film_tit_kor">아이, 로봇</span><span
 											class="film_tit_eng en">I, Robot</span></a>
 									</div>
@@ -365,7 +365,7 @@
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -381,7 +381,7 @@
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/missionImpossible.do"><span
 											class="film_tit_kor">미션 임파서블: 고스트 프로토콜</span><span
 											class="film_tit_eng en">Mission: Impossible - Ghost Protocol</span></a>
 									</div>
@@ -397,7 +397,7 @@
 									<p class="time en">18:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/erin.do"><span
 											class="film_tit_kor">에린 브로코비치</span><span
 											class="film_tit_eng en">Erin Brockovich</span></a>
 									</div>

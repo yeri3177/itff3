@@ -93,13 +93,37 @@ public class AdminManageController {
 	 */
 	
 	@GetMapping("/selectRecentTenGoodsList.do")
-	public List<Goods> selectRecentTenGoodsList(@ModelAttribute("Goods") Goods param, Model model) {
+	public List<Goods> selectRecentTenGoodsList(Model model) {
 		List<Goods> list = adminService.selectRecentTenGoodsList();
 		log.debug("list = {}", list);
 		
 		model.addAttribute("list", list);
 		
 		return list;
+	}
+
+	/**
+	 * [메인화면: 일주일 가입]
+	 */
+	
+	@GetMapping("/adminManageRegisterAweekAgoCount.do")
+	public void adminManageRegisterAweekAgoCount(Model model) {
+		int count = adminService.adminManageRegisterAweekAgoCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+	
+	/**
+	 * [메인화면: 오늘 상영]
+	 */
+	
+	@GetMapping("/adminManageTodayScreeningCount.do")
+	public void adminManageTodayScreeningCount(Model model) {
+		int count = adminService.adminManageTodayScreeningCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
 	}
 	
 	

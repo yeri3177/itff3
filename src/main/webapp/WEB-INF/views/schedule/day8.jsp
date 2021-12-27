@@ -163,7 +163,7 @@
 									<p class="time en">09:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do"><span
 											class="film_tit_kor">13층</span><span
 											class="film_tit_eng en">the</span>
 										</a>
@@ -180,7 +180,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -204,7 +204,7 @@
 									<p class="time en">12:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/password.do"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>
@@ -224,7 +224,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -260,7 +260,7 @@
 									<p class="time en">16:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>(폐막작)
 									</div>

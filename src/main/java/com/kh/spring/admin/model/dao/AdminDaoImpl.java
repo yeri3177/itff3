@@ -262,4 +262,14 @@ public class AdminDaoImpl implements AdminDao {
 		return session.delete("admin.deleteNotice", noticeNo);
 	}
 
+	@Override
+	public int adminManageRegisterAweekAgoCount() {
+		return session.selectOne("admin.adminManageRegisterAweekAgoCount");
+	}
+
+	@Override
+	public int adminManageTodayScreeningCount() {
+		return session.selectOne("admin.adminManageTodayScreeningCount");
+	}
+
 }

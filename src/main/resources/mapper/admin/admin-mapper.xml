@@ -559,5 +559,23 @@
 		where 
 			notice_no = #{noticeNo}
 	</select>
+	
+	<select id="adminManageRegisterAweekAgoCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			member 
+		where 
+			<![CDATA[to_char(reg_date, 'YYYYMMDD') >= to_char(sysdate-7,'YYYYMMDD')]]>
+	</select>
+	
+	<select id="adminManageTodayScreeningCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			movie_schedule 
+		where 
+			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
+	</select>
 
 </mapper>

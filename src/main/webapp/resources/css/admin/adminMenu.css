@@ -105,7 +105,7 @@ a {
 }
 
 .nav__link:hover {
-    background-color: #29b1bf;
+    background-color: #ec7b65;
     color: white !important;
 	text-decoration: none !important; 
 }
@@ -130,7 +130,7 @@ a {
 
 /* Active links menu */
 .active {
-    background-color: var(--first-color);
+    background-color: #ec7b65;
 }
 
 /* COLLAPSE */

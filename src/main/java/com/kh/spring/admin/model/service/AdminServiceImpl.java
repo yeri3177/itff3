@@ -333,4 +333,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.deleteNotice(noticeNo);
 	}
 
+	@Override
+	public int adminManageRegisterAweekAgoCount() {
+		return adminDao.adminManageRegisterAweekAgoCount();
+	}
+
+	@Override
+	public int adminManageTodayScreeningCount() {
+		return adminDao.adminManageTodayScreeningCount();
+	}
+
 }

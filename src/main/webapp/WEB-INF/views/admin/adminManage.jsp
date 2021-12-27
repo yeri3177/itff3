@@ -48,10 +48,9 @@
 							                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
 											  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
 											</svg>
-							                <div class="ms-2">
-							                  <h3 class="h4 text-dark text-uppercase fw-normal">가입</h3>
-							                  <p class="text-gray-500 small">Last 7 days</p>
-							                  <p class="display-6 mb-0">25</p>
+							                <div class="ms-2" id="register">
+
+							                 
 							                </div>
 							              </div>
 							            </div>
@@ -90,10 +89,8 @@
 											  <path d="M14 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM2.5 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z"/>
 											  <path fill-rule="evenodd" d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1H5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1 2 2 0 0 1-2-2V6Zm2-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
 											</svg>
-							                <div class="ms-2">
-							                  <h3 class="h4 text-dark text-uppercase fw-normal">상영</h3>
-							                  <p class="text-gray-500 small">Today</p>
-							                  <p class="display-6 mb-0">123</p>
+							                <div class="ms-2" id="screening">
+							                
 							                </div>
 							              </div>
 							            </div>
@@ -1205,6 +1202,7 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 
 <script>
 
+// 굿즈 최근 10개
 $(document).ready(function () {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/selectRecentTenGoodsList.do",
@@ -1219,6 +1217,39 @@ $(document).ready(function () {
 		}
 	});
 });
+
+// 최근 일주일 가입
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageRegisterAweekAgoCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#register").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 오늘 상영
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageTodayScreeningCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#screening").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

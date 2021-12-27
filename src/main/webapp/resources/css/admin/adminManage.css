@@ -1685,7 +1685,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 .py-5 {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
-    background-color: rgb(43, 63, 107);
+    background-color: #45a7b9;
     color: white;
 }
 
