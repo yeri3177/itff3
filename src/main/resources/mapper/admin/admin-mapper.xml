@@ -366,7 +366,7 @@
 			notice_no desc
 	</select>
 	
-	<select id="countTotalContent" resultType="_int">
+	<select id="countTotalNoticeContent" resultType="_int">
 		select 
 			count(*)
 		from 
@@ -577,5 +577,111 @@
 		where 
 			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
 	</select>
+	
+	<select id="adminManageRecentTenReviewList" resultType="review"> 
+		select 
+			* 
+		from 
+			review_board 
+		where 
+			<![CDATA[rownum <= 10]]> 
+		order by 
+			reg_date desc
+	</select>
+	
+	<select id="adminSelectQuestionList" resultType="question">
+		select
+			b.*,
+			(select count(*) from attachment where question_no = b.question_no) attach_count
+		from 
+			question_board b left join member a
+                    on b.member_id = a.id
+		order by 
+			question_no desc
+	</select>
+	
+	<select id="countTotalQuestionContent" resultType="_int">
+		select 
+			count(*)
+		from 
+			question_board a left join member b
+		        on a.member_id = b.id
+	</select>
+	
+	<select id="selectQuestionCollection" resultMap="questionCollectionMap">
+		select 
+			b.*,
+			a.*,
+			a.attach_no attach_no
+		from 
+			question_board b left join attachment a
+				on b.question_no = a.question_no
+		where 
+			b.question_no = #{questionNo}
+		order by 
+			b.question_no desc
+	</select>
+	
+	<resultMap type="question" id="questionCollectionMap">
+		<id column="question_no" property="questionNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="question_title" property="questionTitle"/>
+		<result column="question_content" property="questionContent"/>
+		<result column="reg_date" property="regDate"/>
+		
+		<collection property="attachments" ofType="attachment">
+			<id column="attach_no" property="attachNo"/>
+			<result column="question_no" property="questionNo"/>
+			<result column="original_filename" property="originalFilename"/>
+			<result column="renamed_filename" property="renamedFilename"/>
+			<result column="reg_date" property="regDate"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectQuestionComment" resultType="QuestionComment">
+		select 
+			*
+		from 
+			question_comment
+		where 
+			question_no = #{questionNo}
+	</select>
+	
+	<insert id="insertQuestionComment">
+		insert into 
+			question_comment(no, question_no, writer, content, reg_date)
+		values (
+			default,
+			#{questionNo},
+			#{writer},
+			#{content},
+			default
+		)
+	</insert>
+	
+	<update id="updateQuestionAnswer">
+		update 
+			question_board
+		set 
+			answer = 'Y'
+		where 
+			question_no = #{questionNo}
+	</update>
+	
+	<delete id="deleteQuestionComment">
+		delete from 
+			question_comment
+		where 
+			no = #{commentNo}
+	</delete>
+	
+	<update id="updateQuestionAnswerToN">
+		update 
+			question_board
+		set
+			answer = default
+		where 
+			question_no = #{questionNo}
+	</update>
 
 </mapper>

@@ -77,7 +77,7 @@
 
                         <ul class="collapse__menu">
                             <a href="#" class="collapse__sublink">신규문의</a><br />
-                             <a href="#" class="collapse__sublink">문의내역</a><br />
+                             <a href="${pageContext.request.contextPath}/admin/adminQuestionList.do" class="collapse__sublink">문의 리스트</a><br />
                          </ul> 
                      </div> 
 

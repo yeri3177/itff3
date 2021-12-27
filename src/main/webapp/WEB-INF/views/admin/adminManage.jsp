@@ -379,227 +379,11 @@
 																	<th><span> Recent Reviews </span></th>
 																</tr>
 															</thead>
-															<tbody>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Ellisha
-																							Sanford</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">There is
-																					nothing I can say that hasn't been said already.
-																					It is really an experience of a life time. Being
-																					so close to nature in the open air is a wonderful
-																					change from the hustle and bustle of the city. You
-																					are also like a 10min walk to some restaurants and
-																					grocery store. Would gladly stay here again. It's
-																					a beautiful place to reconnect with yourself.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Nicolle
-																							Odom</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">We loved
-																					every single moment of our time here, and didn’t
-																					want to leave. We walked away with so much joy in
-																					our hearts and a sense of calm we haven’t felt in
-																					a long time, living in an especially hectic city.
-																					Most importantly, perhaps, is the deep sense of
-																					gratitude we felt, both for being able to
-																					experience this exceptional place as well as for
-																					everything nature makes possible. We are forever
-																					grateful, and will forever remember your wise
-																					words about always having an “escape” in life to
-																					rest and truly relax.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/ffd74f686fc5bfb87fe041ab2a922f7a?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/ffd74f686fc5bfb87fe041ab2a922f7a?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Darrel
-																							Gallagher</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">Great
-																					location and super clean, but noisy neighbors.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Nicolle
-																							Odom</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">Good location
-																					for quick stay and access to local eateries.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Ellisha
-																							Sanford</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i> <i
-																							class="zmdi zmdi-star"></i> <i
-																							class="zmdi zmdi-star"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">It's not
-																					clean enough. It was amazingly cold</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/456b702febf89b2653206536a43eaa85?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Nicolle
-																							Odom</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">Nice place
-																					and a great value.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/ffd74f686fc5bfb87fe041ab2a922f7a?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/ffd74f686fc5bfb87fe041ab2a922f7a?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Darrel
-																							Gallagher</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">What an
-																					amazing spot for a romantic weekend getaway. We
-																					spent a lazy weekend here doing nothing but
-																					enjoying the view and the treehouse. 100%
-																					recommend.</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-																			<img
-																			src="https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name"> <span>Ellisha
-																							Sanford</span> <span class="review-rating-wrapper">
-																							<i class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star active"></i> <i
-																							class="zmdi zmdi-star"></i>
-																					</span>
-																				</span>
-																			</span> <span class="comments-message">Nice location
-																					and quick walk to most things. We enjoyed the
-																					space.</span>
-																		</span>
-																	</span></td>
-																</tr>
+															<tbody id="review">
+															
+																
+																
+																
 															</tbody>
 														</table>
 													</div>
@@ -1243,6 +1027,22 @@ $(document).ready(function () {
 		dateType: "text",
 		success: function(data) {
 			$("#screening").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 오늘 상영
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageRecentTenReviewList.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#review").html(data);
 		},
 		complete: function() {
 			console.log("complete")

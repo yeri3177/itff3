@@ -55,6 +55,9 @@ import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -124,6 +127,20 @@ public class AdminManageController {
 		log.debug("count = {}", count);
 		
 		model.addAttribute("count", count);
+	}
+
+	/**
+	 * [메인화면: 최근 리뷰 10개]
+	 */
+	
+	@GetMapping("/adminManageRecentTenReviewList.do")
+	public List<Review> adminManageRecentTenReviewList(Model model) {
+		List<Review> list = adminService.adminManageRecentTenReviewList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
 	}
 	
 	
@@ -1082,8 +1099,8 @@ public class AdminManageController {
 			log.debug("list = {}", list);
 			
 			// 전체 게시물 수
-			int totalContent = adminService.countTotalContent();
-			log.debug("전체 게시물 수 = {}", totalContent);
+			int totalContent = adminService.countTotalNoticeContent();
+			log.debug("totalContent = {}", totalContent);
 						
 			// pagebar
 			String url = request.getRequestURI(); 
@@ -1340,6 +1357,119 @@ public class AdminManageController {
 		log.debug(msg);
 			
 		return "redirect:/admin/adminNoticeList.do";
+	}
+	
+///////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	* [문의사항 목록] 
+	*/
+	
+	@GetMapping("/adminQuestionList.do")
+	public void adminQuestionList(
+				Model model,
+				@RequestParam(defaultValue = "1") int cPage,
+				HttpServletRequest request
+				) {
+	
+		try {
+			log.debug("cPage = {}", cPage); 
+
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+
+			// 전체 게시물 목록
+			List<Question> list = adminService.adminSelectQuestionList(offset, limit);
+			log.debug("list = {}", list);
+
+			// 전체 게시물 수
+			int totalContent = adminService.countTotalQuestionContent();
+			log.debug("totalContent = {}", totalContent);
+
+			// pagebar
+			String url = request.getRequestURI();
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			log.debug("pagebar = {}", pagebar);
+
+			model.addAttribute("list", list);
+			model.addAttribute("totalContent", totalContent);
+			model.addAttribute("pagebar", pagebar);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * [문의사항 상세]
+	 */
+	
+	@GetMapping("/adminQuestionDetail.do")
+	public void adminQuestionDetail(@RequestParam int questionNo, Model model) {
+		log.debug("questionNo = {}", questionNo);
+		
+		Question question = adminService.selectQuestionCollection(questionNo);
+		log.debug("question = {}", question);
+		
+		// 글번호에 달린 댓글 가져오기
+		QuestionComment qc = adminService.selectQuestionComment(questionNo);
+		log.debug("qc = {}", qc);
+		
+		model.addAttribute("question", question);
+		model.addAttribute("qc", qc);
+	}
+	
+	/**
+	 * [문의사항 댓글 작성]
+	 */
+	
+	@PostMapping("/adminQuestionCommentEnroll.do")
+	public String adminQuestionCommentEnroll(
+			@RequestParam String content,
+			@RequestParam String writer,
+			@RequestParam(value = "questionNo", required = false) int questionNo,
+			RedirectAttributes redirectAttr
+			) {
+		
+		log.debug("content = {}", content);
+		log.debug("writer = {}", writer);
+		log.debug("questionNo = {}", questionNo);
+		
+		// map에 담기
+		Map<String, Object> param = new HashMap<>();
+		param.put("content", content);
+		param.put("writer", writer);
+		param.put("questionNo", questionNo);
+		
+		int result = adminService.insertQuestionComment(param);
+		
+		if (result > 0) {
+			// 댓글이 달리면 question_board answer N -> Y로 바꾸기		
+			int result2 = adminService.updateQuestionAnswer(questionNo);
+			String msg = result2 > 0 ? "답변 여부: Y" : "답변 여부: N";
+			log.debug(msg);
+		}
+			
+		return "redirect:/admin/adminQuestionList.do";
+	}
+	
+	/*
+	 * [댓글 삭제]
+	 */
+	
+	@GetMapping("/adminQuestionCommentDelete.do")
+	public String adminQuestionCommentDelete(@RequestParam int commentNo, @RequestParam(value = "questionNo", required = false) int questionNo) {
+		
+		log.debug("commentNo = {}", commentNo);
+		log.debug("questionNo = {}", questionNo);
+		
+		int result = adminService.deleteQuestionComment(commentNo);
+		
+		// 답변 삭제하면 question_board 의 answer -> N으로 바뀜
+		int result2 = adminService.updateQuestionAnswerToN(questionNo);
+		
+		
+		return "redirect:/admin/adminQuestionList.do";
 	}
 	
 }
