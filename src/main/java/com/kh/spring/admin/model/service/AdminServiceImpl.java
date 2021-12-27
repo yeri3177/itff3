@@ -218,14 +218,17 @@ public class AdminServiceImpl implements AdminService {
 
 		try {
 			result = adminDao.insertNotice(notice);
-			log.debug("새로 생성된 notice.noticeNo = {}", notice.getNoticeNo());
+			log.debug("notice.getNoticeNo = {}", notice.getNoticeNo());
 			
 			// attachmenet insert 나눠서 처리
 			List<Attachment> attachments = notice.getAttachments();
+			
 			if(attachments != null) {
+				
 				for(Attachment attach : attachments) {
 					attach.setNoticeNo(notice.getNoticeNo());
 					log.debug("attach? {}", attach);
+					
 					result = adminDao.insertAttachment(attach);
 				}
 			}
@@ -285,6 +288,59 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int deleteGoodsOption(int optionId) {
 		return adminDao.deleteGoodsOption(optionId);
+	}
+
+	@Override
+	public int deleteNoticeAttachment(int attachNo) {
+		return adminDao.deleteNoticeAttachment(attachNo);
+	}
+
+	@Override
+	public int updateNotice(Notice notice) {
+		int result = 0;
+		
+		try {
+			result = adminDao.updateNotice(notice);
+			log.debug("notice.noticeNo= {}", notice.getNoticeNo());
+			
+			List<Attachment> attachments = notice.getAttachments();
+			if(attachments != null) {
+				log.debug("attachments? {}", attachments);
+				log.debug("attachments.get(0).getAttachNo() : {}", attachments.get(0).getAttachNo());
+				
+				for(Attachment attach : attachments) {
+					attach.setNoticeNo(notice.getNoticeNo());
+					log.debug("attach = {}", attach);
+					result = adminDao.insertAttachment(attach);
+					
+				}
+					
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return result;
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByNoticeNo(int noticeNo) {
+		return adminDao.selectAttachmentByNoticeNo(noticeNo);
+	}
+
+	@Override
+	public int deleteNotice(int noticeNo) {
+		return adminDao.deleteNotice(noticeNo);
+	}
+
+	@Override
+	public int adminManageRegisterAweekAgoCount() {
+		return adminDao.adminManageRegisterAweekAgoCount();
+	}
+
+	@Override
+	public int adminManageTodayScreeningCount() {
+		return adminDao.adminManageTodayScreeningCount();
 	}
 
 }

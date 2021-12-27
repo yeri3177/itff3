@@ -21,7 +21,7 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/6vqcF3g/243-EF046532-AFD0501.png);">
+    <li style="background-image: url(https://i.imgur.com/CLIaHyO.jpg);">
     	<!-- 13층 예고편 못찾아서 링크 매트릭스임 -->
 		<button 
 			type="button" 

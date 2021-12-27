@@ -22,7 +22,7 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/JzrLPNM/d20e5626b85e000bca01ddc60d89addfc5b66a8f-s2-n1.jpg);">
+    <li style="background-image: url(https://i.imgur.com/qOLVXPo.jpg);">
     	
 		<button 
 			type="button" 
@@ -33,9 +33,9 @@
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/qJt8r47/AI-inteligenciaartificial-960x623.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/tH0SQ7T/28-21-4744.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/tm6HrsJ/20200709221011-norndxsi.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/knt0GBI.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/1DIaSE5.jpg); "></li>
+    <li style="background-image: url(https://i.imgur.com/s0xynZw.jpg);"></li>
   </ul>
   <p class="pos">
  

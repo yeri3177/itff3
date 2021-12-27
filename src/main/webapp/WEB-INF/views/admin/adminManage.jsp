@@ -39,11 +39,91 @@
 
 										<div class="ba-main-view">
 										
-											<div id="filter-bar">
-												<div class="app-title-wrapper">
-													<h1>ITFF 관리자센터</h1>
-												</div>
-											</div>
+							<section class="py-5">
+							        <div class="container-fluid">
+							          <div class="row">
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+							                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+											  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+											</svg>
+							                <div class="ms-2" id="register">
+
+							                 
+							                </div>
+							              </div>
+							            </div>
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+											  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+											  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+							                <div class="ms-2">
+							                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
+							                  <p class="text-gray-500 small">Last 5 days</p>
+							                  <p class="display-6 mb-0">400</p>
+							                </div>
+							              </div>
+							            </div>
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-perforated" viewBox="0 0 16 16">
+											  <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+											  <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+											</svg>
+							                <div class="ms-2">
+							                  <h3 class="h4 text-dark text-uppercase fw-normal">예매</h3>
+							                  <p class="text-gray-500 small">Today</p>
+							                  <p class="display-6 mb-0">342</p>
+							                </div>
+							              </div>
+							            </div>
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
+											  <path d="M14 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM2.5 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z"/>
+											  <path fill-rule="evenodd" d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1H5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1 2 2 0 0 1-2-2V6Zm2-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+											</svg>
+							                <div class="ms-2" id="screening">
+							                
+							                </div>
+							              </div>
+							            </div>
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-blockquote-left" viewBox="0 0 16 16">
+											  <path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm.79-5.373c.112-.078.26-.17.444-.275L3.524 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282c.024-.203.065-.37.123-.498a1.38 1.38 0 0 1 .252-.37 1.94 1.94 0 0 1 .346-.298zm2.167 0c.113-.078.262-.17.445-.275L5.692 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282a1.75 1.75 0 0 1 .118-.492c.058-.13.144-.254.257-.375a1.94 1.94 0 0 1 .346-.3z"/>
+											</svg>
+							                <div class="ms-2">
+							                  <h3 class="h4 text-dark text-uppercase fw-normal">리뷰</h3>
+							                  <p class="text-gray-500 small">Today</p>
+							                  <p class="display-6 mb-0">92</p>
+							                </div>
+							              </div>
+							            </div>
+							            <!-- Count item widget-->
+							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+							              <div class="d-flex">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+											  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+											  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+											</svg>
+							                <div class="ms-2">
+							                  <h3 class="h4 text-dark text-uppercase fw-normal">문의</h3>
+							                  <p class="text-gray-500 small">Today</p>
+							                  <p class="display-6 mb-0">70</p>
+							                </div>
+							              </div>
+							            </div>
+							          </div>
+							        </div>
+							      </section>
 											
 											<div class="main-table dashboard-content">
 												<div class="row-fluid">
@@ -56,9 +136,10 @@
 																	<div
 																		class="ba-custom-select ba-store-statistic-select">
 
-																		<!-- 날짜 넣기 -->
+																		<!-- 날짜 넣기 
 																		<div id="clock">
 																		</div>
+																		-->
 
 																		<i class="zmdi zmdi-caret-down"></i>
 																	</div>
@@ -67,34 +148,6 @@
 															</div>
 														</div>
 														<div class="ba-store-statistic-body">
-															<div class="row-fluid ba-store-statistic-total-wrapper">
-																<div class="span8">
-																	<div class="ba-store-statistic-count-wrapper"
-																		data-type="orders"
-																		style="-statistic-count-color: #ffc700;">
-																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">신규 가입자 수</span>
-																	</div>
-																	<div class="ba-store-statistic-count-wrapper"
-																		data-type="completed"
-																		style="-statistic-count-color: #34dca2;">
-																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">당일 예매 건수</span>
-																	</div>
-																	<div class="ba-store-statistic-count-wrapper"
-																		data-type="refunded"
-																		style="-statistic-count-color: #35404a;">
-																		<span class="ba-store-statistic-count">0</span> <span
-																			class="ba-store-statistic-text">당일 주문 건수</span>
-																	</div>
-																</div>
-																<div class="span4">
-																	<div class="ba-store-statistic-total-price">
-																		<span class="ba-store-statistic-title">Total</span> <span
-																			class="ba-store-statistic-price">0 ￦</span>
-																	</div>
-																</div>
-															</div>
 															<div class="row-fluid ba-store-statistic-body-wrapper"
 																style="display: flex;">
 																<div class="span8 ba-statistics-chart-wrapper">
@@ -157,7 +210,7 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> 여기 뭐 넣지 </span></th>
+																	<th><span> Screening film </span></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -1149,6 +1202,7 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 
 <script>
 
+// 굿즈 최근 10개
 $(document).ready(function () {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/selectRecentTenGoodsList.do",
@@ -1163,6 +1217,39 @@ $(document).ready(function () {
 		}
 	});
 });
+
+// 최근 일주일 가입
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageRegisterAweekAgoCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#register").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 오늘 상영
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageTodayScreeningCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#screening").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

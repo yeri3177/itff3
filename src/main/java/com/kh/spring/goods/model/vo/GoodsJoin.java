@@ -11,11 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class GoodsJoin implements Serializable  {/**
-	
-	/**
-	 * 
-	 */
+public class GoodsJoin implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	

@@ -92,4 +92,16 @@ public interface AdminDao {
 
 	int deleteGoodsOption(int optionId);
 
+	int deleteNoticeAttachment(int attachNo);
+
+	int updateNotice(Notice notice);
+
+	List<Attachment> selectAttachmentByNoticeNo(int noticeNo);
+
+	int deleteNotice(int noticeNo);
+
+	int adminManageRegisterAweekAgoCount();
+
+	int adminManageTodayScreeningCount();
+
 }

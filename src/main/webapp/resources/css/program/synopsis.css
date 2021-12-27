@@ -55,7 +55,7 @@ ul,li {
    vertical-align:middle;
    width:25px;
    height:25px;
-   border:2px solid #34495e;
+   border:2px solid rgb(43, 63, 107);
    background:#c3c3c3;
    transition:0.3s;
    border-radius:50%;
@@ -73,10 +73,10 @@ ul,li {
 #pos2:checked~ul{margin-left:-100%;}
 #pos3:checked~ul{margin-left:-200%;}
 #pos4:checked~ul{margin-left:-300%;}
-#pos1:checked~.pos>label:nth-child(1){background:#34495e;}
-#pos2:checked~.pos>label:nth-child(2){background:#34495e;}
-#pos3:checked~.pos>label:nth-child(3){background:#34495e;}
-#pos4:checked~.pos>label:nth-child(4){background:#34495e;}
+#pos1:checked~.pos>label:nth-child(1){background:rgb(43, 63, 107);}
+#pos2:checked~.pos>label:nth-child(2){background:rgb(43, 63, 107);}
+#pos3:checked~.pos>label:nth-child(3){background:rgb(43, 63, 107);}
+#pos4:checked~.pos>label:nth-child(4){background:rgb(43, 63, 107);}
   
 
 
@@ -99,7 +99,7 @@ ul,li {
 }
 
 .film_info .director_name {
-    font-size: 60px;
+    font-size: 50px;
     font-weight: bold;
     letter-spacing: -0.5px;
 }
@@ -126,7 +126,7 @@ ul,li {
 }
 .film_info .premiere {
     border: 1px solid #8b9197;
-    color: #546677;
+    color: rgb(43, 63, 107);
     font-size: 14px;
     padding: 2px 6px;
     margin: 0 5px;
@@ -143,9 +143,9 @@ ul,li {
 }
 
 .film_info .synopsis h4, .film_info .pg_note h4 {
-    font-size: 33px;
+    font-size: 30px;
     font-weight: bold;
-    color: #34495e;
+    color: rgb(43, 63, 107);
     margin-bottom: 20px;
     margin-top: 30px;
 }
@@ -216,7 +216,7 @@ ul,li {
 }
 
 .desc_ {
-	font-size: 22px;
+	font-size: 18px;
     line-height: 1.7;
     color: #444;
     letter-spacing: -0.5px;
@@ -255,7 +255,7 @@ ul,li {
 .tbl_schedule2 > tbody > tr > td, .tbl_schedule2 > tbody > tr > th, .tbl_schedule2 > tbody > tr > td {
     padding: 19px 18px;
     line-height: 1.5;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 100;
     border-bottom: 1px solid #ddd;
     vertical-align: top !important;
@@ -312,7 +312,7 @@ ul,li {
     margin-bottom: 30px;
     font-size: 30px;
     font-weight: bold;
-    color: #34495e;
+    color: rgb(43, 63, 107);
     margin-bottom: 40px;
 }
 
@@ -462,14 +462,14 @@ ul,li {
 .credit ul li strong, .credit ul li span {
     display: table-cell;
     padding: 33px 20px;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 160%;
     border-bottom: 1px solid #e0e0e0;
 }
 
 .credit ul li span {
     width: 64%;
-    color: #34495e;
+    color: rgb(43, 63, 107);
     font-weight: bold;
     vertical-align: top;
 }

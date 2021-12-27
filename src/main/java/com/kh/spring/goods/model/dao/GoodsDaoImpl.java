@@ -1,6 +1,7 @@
 package com.kh.spring.goods.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
 @Repository
@@ -40,6 +42,36 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public Goods selectOneGoods(int pid) {
 		return session.selectOne("goods.selectOneGoods", pid);
+	}
+
+	@Override
+	public List<OptionDetail> selectColorByFirstType(int pid) {
+		return session.selectList("goods.selectColorByFirstType", pid);
+	}
+
+	@Override
+	public List<OptionDetail> selectSizeByFirstColor(int pid) {
+		return session.selectList("goods.selectSizeByFirstColor", pid);
+	}
+
+	@Override
+	public List<OptionDetail> selectColorByType(Map<String, Object> map) {
+		return session.selectList("goods.selectColorByType", map);
+	}
+
+	@Override
+	public List<GoodsJoin> selectOneGoodsDetail(int pid) {
+		return session.selectList("goods.selectOneGoodsDetail", pid);
+	}
+
+	@Override
+	public List<OptionDetail> selectSizeByColor(Map<String, Object> map) {
+		return session.selectList("goods.selectSizeByColor", map);
+	}
+
+	@Override
+	public List<OptionDetail> selectOneImg(Map<String, Object> map) {
+		return session.selectList("goods.selectOneImg", map);
 	}
 
 

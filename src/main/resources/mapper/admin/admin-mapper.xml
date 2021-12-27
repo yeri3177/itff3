@@ -76,9 +76,10 @@
 	
 	<insert id="insertAttachment">
 		insert into
-			attachment(attach_no, original_filename, renamed_filename)
+			attachment(attach_no, notice_no, original_filename, renamed_filename)
 		values(
 			seq_attachment_no.nextval,
+			#{noticeNo},
 			#{originalFilename},
 			#{renamedFilename}
 		)		
@@ -526,4 +527,55 @@
 			option_id = #{optionId}
 	</delete>
 	
+	<update id="updateNotice">
+		update 
+			notice_board
+		set
+			notice_title = #{noticeTitle},
+			notice_content = #{noticeContent}
+		where 
+			notice_no = #{noticeNo}
+	</update>
+	
+	<delete id="deleteNoticeAttachment">
+		delete from 
+			attachment
+		where 
+			attach_no = #{attachNo}
+	</delete>
+	
+	<delete id="deleteNotice">
+		delete from 
+			notice_board
+		where 
+			notice_no = #{noticeNo}
+	</delete>
+	
+	<select id="selectAttachmentByNoticeNo" resultType="attachment">
+		select 
+			*
+		from 
+			attachment 
+		where 
+			notice_no = #{noticeNo}
+	</select>
+	
+	<select id="adminManageRegisterAweekAgoCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			member 
+		where 
+			<![CDATA[to_char(reg_date, 'YYYYMMDD') >= to_char(sysdate-7,'YYYYMMDD')]]>
+	</select>
+	
+	<select id="adminManageTodayScreeningCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			movie_schedule 
+		where 
+			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
+	</select>
+
 </mapper>

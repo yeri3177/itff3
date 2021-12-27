@@ -364,8 +364,8 @@ table {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #007bff !important;
-    border-color: #007bff !important;
+    background-color: rgb(73 101 165) !important;
+    border-color: rgb(73 101 165)!important;
 }
 
 #ft {

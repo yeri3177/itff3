@@ -1,0 +1,629 @@
+@charset "UTF-8";
+
+.d3tab_basic {
+    margin: 0 0 50px;
+}
+
+.d3tab_basic ul {
+    text-align: center;
+}
+dl, ul, ol, menu, li {
+    list-style: none;
+}
+
+.d3tab_basic li {
+    padding: 5px 3px;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+/* .d3tab_basic li.on a { */
+/*     color: #fff; */
+/*     background-color: #222; */
+/*     border-color: #222; */
+/* } */
+
+.d3tab_basic li a {
+    display: inline-block;
+    color: #444;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+
+.row:before, .row:after, .container:before, .container:after, .form-horizontal .form-group:before, .form-horizontal .form-group:after, .dl-horizontal dd:before, .dl-horizontal dd:after, .pull-right:before, .pull-right:after, .pull-left:before, .pull-left:after, .inner:before, .inner:after {
+    display: table;
+    content: " ";
+    clear: both;
+}
+
+.page {
+    padding: 1px 0;
+    min-height: 500px;
+    /* padding-bottom: 100px; */
+}
+
+.schedule_hd {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 30px 0;
+    box-shadow: 1px 1px 10px rgb(0 0 0 / 10%);
+    z-index: 30;
+}
+.hide {
+    display: none;
+}
+
+.container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    max-width: 1280px;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.container, .container-sm, .container-md, .container-lg, .container-xl {
+    padding-right: 10rem;
+    padding-left: 10rem;
+}
+
+.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.schedule_hd .sch_1depth, .schedule_hd .sch_2depth {
+    text-align: center;
+}
+
+.list-inline {
+    list-style: none;
+}
+
+.schedule_hd .sch_1depth li.on {
+    background: #bf202c;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+.list-inline>li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.list-inline>li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.schedule_hd .sch_1depth li.on a {
+    color: #fff;
+}
+.schedule_hd .sch_1depth li a {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1.8;
+    cursor: pointer;
+    padding: 6px 30px;
+    color: #222;
+    letter-spacing: -1px;
+}
+
+.list-inline>li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.schedule .grade_info {
+    margin-bottom: 30px;
+    padding: 40px 40px 20px 40px;
+    background: #efefef;
+}
+
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+
+.schedule .grade_info ul li {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -1px;
+    margin-right: 8px;
+    margin-bottom: 2px;
+}
+
+.schedule .grade_info ul li .ico_grade {
+    float: left;
+    margin-right: 5px;
+}
+
+.ico_grade.ico_g {
+    background-image: url(https://i.imgur.com/jccCs9E.png);
+}
+
+.ico_grade.ico_12 {
+    background-image: url(https://i.imgur.com/FGY3ZqM.png);
+}
+
+.ico_grade.ico_15 {
+    background-image: url(https://i.imgur.com/jxj80aB.png);
+}
+
+.ico_grade.ico_19 {
+    background-image: url(https://i.imgur.com/FAvuqa9.png);
+}
+
+.ico_grade.ico_ke {
+    background-image: url(https://i.imgur.com/VGyhPhD.png);
+}
+
+.ico_grade.ico_kn {
+    background-image: url(https://i.imgur.com/l8tVQan.png);
+}
+
+.ico_grade.ico_kk {
+    background-image: url(https://i.imgur.com/HSUdFnm.png);
+}
+
+.ico_grade.ico_no {
+    background-image: url(https://i.imgur.com/y5iPORQ.png);
+}
+
+.ico_grade.ico_blank {
+    background-image: url(https://i.imgur.com/sreO7OH.png);
+}
+
+.ico_grade {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+
+.schedule .grade_info .gvinfo_box {
+    position: relative;
+    margin: 40px 0 0 10px;
+}
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+
+.schedule .grade_info .gvinfo_box .gvtitle {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+
+.schedule .grade_info .gvinfo_box ul {
+    padding: 0 0;
+    margin: 10px 0 30px;
+}
+
+.list_add {
+    padding: 0 0;
+    margin: 15px 0 20px;
+}
+
+.schedule .grade_info .gvinfo_box ul li {
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 5px;
+    padding-left: 15px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+}
+
+.schedule .grade_info ul li {
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -1px;
+    margin-right: 8px;
+    margin-bottom: 2px;
+}
+.list_add li:first-child {
+    margin-top: 0;
+}
+.list_add li {
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 10px;
+    padding-left: 15px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+}
+
+.schedule .grade_info .gvinfo_box ul li:before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 1px;
+    background: #999;
+    position: absolute;
+    top: 10px;
+    left: 3px;
+}
+
+.schedule .grade_info .gvinfo_box .gvtitle {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+
+.schedule .grade_info .gvinfo_box ul {
+    padding: 0 0;
+    margin: 10px 0 30px;
+}
+
+.list_add {
+    padding: 0 0;
+    margin: 15px 0 20px;
+}
+
+.schedule .grade_info .gvinfo_box ul li {
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 5px;
+    padding-left: 15px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+}
+
+.schedule .grade_info .gvinfo_box .btnbox {
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+}
+.schedule .grade_info div {
+    margin-bottom: 10px;
+}
+
+.btn.btn-primary {
+    border: 0px solid #e32e2f;
+    color: #fff;
+    background: linear-gradient(left, #ce1e36, #e32e2f);
+    background: -webkit-linear-gradient(left, #ce1e36, #e32e2f);
+    background: -moz-linear-gradient(left, #ce1e36, #e32e2f);
+    background: -o-linear-gradient(left, #ce1e36, #e32e2f);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce1e36', endColorstr='#e32e2f');
+    box-shadow: 0 0 3px rgb(0 0 0 / 10%);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    background: #ce1e36;
+}
+
+.btn-m, a.btn-m {
+    padding: 0.8em 1.8em;
+    font-size: 1.6rem;
+    font-weight: bold;
+    min-width: 20rem;
+    background-size: auto;
+}
+
+.btn-m {
+    font-size: 16px;
+    line-height: 1.4;
+    padding: 18px 20px;
+    letter-spacing: -1px;
+    font-weight: 500;
+}
+
+.tbl_schedule_top {
+    display: block;
+    position: relative;
+    padding: 30px 0 20px;
+}
+
+.tbl_schedule_top:before, .tbl_schedule_top:after {
+    clear: both;
+    display: block;
+    content: '';
+}
+
+.pull-left {
+    float: left !important;
+}
+
+.tbl_schedule_top h3.tit_schedule {
+    font-size: 28px;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: -1.5px;
+    display: inline-block;
+}
+
+.en {
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0 !important;
+}
+
+.sch_grade_select {
+    float: right;
+    padding-top: 15px;
+}
+
+.sch_grade_select > .it {
+    float: left;
+}
+.custom-sel-fliter {
+    margin-left: 10px;
+}
+
+.select-custom .select {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    margin-right: 4px;
+}
+
+.select-hidden {
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;
+}
+
+.select-custom.custom-sel-fliter .select-styled {
+    padding: 0 25px 0 0;
+    width: auto;
+}
+.select-custom.custom-sel-fliter .select-styled {
+    border: 0;
+    color: #666;
+    font-weight: 500;
+}
+
+.select-custom.custom-sel-fliter .select-list {
+    top: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+
+.select-custom .select-list li {
+    font-size: 14px;
+    margin: 0;
+    padding: 8px 10px;
+    text-indent: 0px;
+    border-bottom: 0px solid #e0e0e0;
+    -moz-transition: all 0.15s ease-in;
+    -o-transition: all 0.15s ease-in;
+    -webkit-transition: all 0.15s ease-in;
+    transition: all 0.15s ease-in;
+    color: #888;
+}
+
+.tbl_schedule .sch_li:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
+.tbl_schedule .sch_li {
+    position: relative;
+    display: block;
+    padding: 20px 0;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.tbl_schedule .sch_li .sch_li_tit {
+    width: 100%;
+    font-size: 18px;
+    color: #111;
+    background: #f5f5f5;
+    font-weight: 500;
+    padding: 15px;
+    letter-spacing: -1px;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+}
+
+.tbl_schedule .sch_li .sch_it.blank_wrap {
+    background: #f8f8f8;
+    /* background: url(http://biff.kr/kor/img/schedule/bg_null.png) no-repeat center center #f5f5f5; */
+    border-top: 1px solid #e0e0e0 !important;
+}
+.tbl_schedule .sch_li .sch_it {
+    position: relative;
+    display: block;
+    float: left;
+    padding: 15px;
+    width: 16.666666%;
+    border: 1px solid #e0e0e0;
+    height: 215px;
+}
+
+.tbl_schedule .sch_li .sch_it .sch_it_blank {
+    display: block;
+    width: 100%;
+    padding: 0;
+}
+
+.caution_box {
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    padding: 20px 30px;
+}
+.mt50 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.row {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+}
+
+.col-md-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+}
+.row > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) / 2);
+    padding-left: calc(var(--bs-gutter-x) / 2);
+    margin-top: var(--bs-gutter-y);
+}
+
+.tit-sec {
+    font-size: 28px;
+    line-height: 1.5;
+    font-weight: bold;
+    letter-spacing: -1.3px;
+    word-break: keep-all;
+    margin-bottom: 10px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+.bold {
+    font-weight: bold !important;
+}
+
+.col-md-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+}
+
+.list_secondary > li:first-child {
+    margin-top: 0;
+}
+.list_secondary > li {
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    margin: 6px 0;
+    padding-left: 10px;
+    letter-spacing: -0.5px;
+    word-break: keep-all;
+    color: #888;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+
+.schedule .grade_info ul li .ico_grade {
+    float: left;
+    margin-right: 5px;
+}
+
+.ico_grade {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.tbl_schedule .sch_li .sch_it .time {
+    font-size: 18px;
+    line-height: 1.5;
+    display: inline-block;
+    margin-top: 0;
+}
+.en {
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0 !important;
+}
+
+.tbl_schedule .sch_li .sch_it .code {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    border: 0px solid #eddfbf;
+    color: #3f538d;
+    background: #eef2ff;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+}
+
+.tbl_schedule .sch_li .sch_it .film_tit {
+    line-height: 1.5;
+    height: 75px;
+    overflow: hidden;
+}
+
+.grade {
+	margin-top: 10px;
+}
+
+.tbl_schedule .sch_li .sch_it .film_tit .film_tit_kor {
+    display: block;
+    font-size: 18px;
+    line-height: 1.45;
+    word-break: keep-all;
+    margin-bottom: 6px;
+}
+
+.tbl_schedule .sch_li .sch_it .film_tit .film_tit_eng {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
