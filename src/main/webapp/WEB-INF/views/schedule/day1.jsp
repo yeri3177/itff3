@@ -206,7 +206,7 @@
 									<p class="time en">15:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/matrix.do"><span
 											class="film_tit_kor">매트릭스</span><span
 											class="film_tit_eng en">The Matrix</span></a>
 											(개막작)
@@ -223,7 +223,7 @@
 									<p class="time en">15:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/iRobot.do"><span
 											class="film_tit_kor">아이, 로봇</span><span
 											class="film_tit_eng en">I, Robot</span></a>
 									</div>
@@ -239,7 +239,7 @@
 									<p class="time en">16:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -268,7 +268,7 @@
 									<p class="time en">18:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/looper.do"><span
 											class="film_tit_kor">루퍼</span><span
 											class="film_tit_eng en">Looper</span></a>
 									</div>
@@ -284,7 +284,7 @@
 									<p class="time en">19:00</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/her.do"><span
 											class="film_tit_kor">그녀</span><span
 											class="film_tit_eng en">Her</span></a>
 									</div>
@@ -300,7 +300,7 @@
 									<p class="time en">19:30</p>
 									<div class="film_tit">
 										<a
-											href="/kor/html/program/prog_view.asp?idx=55909&amp;c_idx=353&amp;sp_idx=509&amp;QueryStep=2"><span
+											href="${pageContext.request.contextPath }/program/synopsis/password.do"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>

@@ -98,4 +98,8 @@ public interface AdminService {
 
 	int deleteNotice(int noticeNo);
 
+	int adminManageRegisterAweekAgoCount();
+
+	int adminManageTodayScreeningCount();
+
 }

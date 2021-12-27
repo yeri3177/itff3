@@ -22,7 +22,7 @@
   
   <ul>
   
-    <li style="background-image: url(https://i.ibb.co/09kxJvR/c6cb79171b0fce570fe72cc1f16160636507f4c1e32268fc3ea810c9ab40f945-V-SX1080.jpg);">
+    <li style="background-image: url(https://i.imgur.com/2wnliaX.jpg);">
     	
 		<button 
 			type="button" 
@@ -33,9 +33,9 @@
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/nr6n3Zn/733514f4d74b46919ae984d11c28174c.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/XyTnrSr/AAAABTYo-IP8-Vtxij3-B6-Gyl0-XMOo-JGt-Gi-Xc320m-JNSt8q-REBl-RMcpu-PWAe-Dj-O6s-Bh-BItp8jr-OAy-Ior-PGT7.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/ys9NNc2/2354-A73657-B8785-B23.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/RHT6wy1.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/q5IWtBd.jpg); "></li>
+    <li style="background-image: url(https://i.imgur.com/KNvWxQN.jpg);"></li>
   </ul>
   <p class="pos">
  

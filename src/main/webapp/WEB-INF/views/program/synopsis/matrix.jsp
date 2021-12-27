@@ -21,7 +21,7 @@
   
   
   <ul>
-    <li style="background-image: url(https://i.ibb.co/QfKXdCb/common.jpg);">
+    <li style="background-image: url(https://i.imgur.com/uhpvEm9.jpg);">
     	
 		<button 
 			type="button" 
@@ -32,9 +32,9 @@
 			▶
 		</button>
 	</li>
-    <li style="background-image: url(https://i.ibb.co/PwG46c8/common-1.jpg);"></li>
-    <li style="background-image: url(https://i.ibb.co/V3PSmJw/the-matrix-wallpaper-preview.jpg); "></li>
-    <li style="background-image: url(https://i.ibb.co/r6dfpCF/1-bdturjt4-Z16-Pev4-Okv-OPXw.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/dHsX70M.jpg);"></li>
+    <li style="background-image: url(https://i.imgur.com/AVwSdUT.jpg); "></li>
+    <li style="background-image: url(https://i.imgur.com/0TBTHgJ.jpg);"></li>
   </ul>
   <p class="pos">
  
