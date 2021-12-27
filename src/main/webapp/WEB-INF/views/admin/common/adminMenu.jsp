@@ -89,6 +89,11 @@
                     </a>
                     
                     
+                    <a href="${pageContext.request.contextPath}/admin/calendar.do" class="nav__link">
+                        <ion-icon name="calendar-clear-outline"></ion-icon>
+                        <span class="nav_name">캘린더</span>
+                    </a>
+
                     <a href="#" class="nav__link">
                         <ion-icon name="pie-chart-outline"></ion-icon>
                         <span class="nav_name">통계</span>
