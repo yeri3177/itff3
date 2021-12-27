@@ -5,9 +5,30 @@
 	line-height: 1.5;
 }
 
+body {
+	background-color: white!important;
+}
+/* 상단 박스 */
+#top-box {
+	display: flex;
+	justify-content: center;
+}
+/* 상단 왼쪽 박스 */
+#top-left-box {
+	width: 55%;
+}
+
+/* 상단 오른쪽 박스 */
+#top-right-box {
+ 	width: 45%;
+	padding-left: 60px;
+	font-size: 20px;
+	
+}
+
 #preview-img-div {
-	width: 550px;
-	height: 550px;
+	width: 100%;
+	height: 650px;
 	line-height: 470px;
 	
 	display: flex!important;
@@ -18,24 +39,12 @@
 }
 
 #preview-img-div img {
-	width: 450px;
+	width: 550px;
 	height: auto;
 	/* background-color: fuchsia; */
 	
 }
 
-/* 상단 박스 */
-#top-box {
-	display: flex;
-	justify-content: center;
-}
-
-/* 상단 오른쪽 박스 */
-#top-right-box {
-	width: 600px;
-	padding-left: 60px;
-	font-size: 20px;
-}
 
 /* 상품명 */
 .goods-name {
@@ -44,7 +53,7 @@
 }
 
 .goods-price {
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 }
 
 .profile-box {
@@ -103,20 +112,25 @@
 }
 
 .size-btn-box label {
-	width: 65px;
+	/* width: 65px; */
 	height: 60px;
-	line-height: 60px;
-	vertical-align: middle;
+	
 	padding: 0;
 	background-color: #ececec;
 	color: black;
 	font-size: 18px;
 	border-radius: 0;
 	border: 0;
+	padding: 10px;
+	
+	line-height: 40px;
+	vertical-align: middle;
 }
 
 .size-btn-box input:checked +label{
 	border: 2px solid black;
+	background-color: #ececec!important;
+	color: black!important;
 }
 
 
@@ -125,7 +139,6 @@
 	border: 2px solid black;
 	color: black;
 }
-
 
 
 
@@ -246,11 +259,10 @@
 /* 탭 전체 스타일 */
 .tabs {
   margin-top: 100px!important;
-  width: 90%;
+  width: 100%;
   padding-bottom: 40px;
   background-color: #fff;
   margin: 0 auto;
-  
 }
 
 /* 탭 스타일 */
@@ -306,20 +318,33 @@ input[name="tab_item"] {
   font-weight: bold;
 }
 
+/*************************** FAQ accordion ******************************/
+.title-text {
+	font-size: 23px;
+}
+
+.accordion-button {
+	padding-left: 0!important;
+	font-size: 20px;
+}
+
+.accordion-header {
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.accordion-button:focus {
+	outline: 0;
+}
+
+.accordion-body {
+	font-size: 15px;
+	border : 0!important;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+.accordion-item {
+	border: 0!important;
+}
 
 
 
