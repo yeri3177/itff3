@@ -66,15 +66,12 @@
 		      		data-toggle="modal"
 					data-target="#adminNoticeUpdate"
 					onclick="notice_update_btn('${notice.noticeNo}');">수정</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		      	<!-- 
 		        <button 
 		        	type="button" 
-		        	class="btn btn-success" 												
+		        	class="btn btn-danger" 												
 		        	data-toggle="modal"
-					data-target="#adminMemberUpdate"
-					onclick="memberUpdate_btn('${member.id}');">회원 정보 수정</button>
-		      	 -->
+					data-target="#adminNoticeDelete"
+					onclick="notice_delete_btn('${notice.noticeNo}');">삭제</button>
 		      </div>
 		      
 <script>
