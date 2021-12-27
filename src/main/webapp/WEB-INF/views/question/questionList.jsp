@@ -104,6 +104,7 @@ $(() => {
 		<table id="tbl-board" class="table table-striped table-hover">
 			<tr style="display: none">
 				<th>제목</th>
+				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 			<c:forEach var="question" items="${qlByAdmin}" varStatus="vs">
@@ -116,8 +117,9 @@ $(() => {
 						</c:if>
 					
 					</td>
-					
+					<td>${question.memberId}</td>
 					<td><fmt:formatDate value="${question.regDate}" pattern="yyyy/MM/dd" /></td>
+					
 				</tr>
 			</c:forEach>
 		</table>
