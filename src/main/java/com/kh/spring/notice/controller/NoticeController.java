@@ -328,25 +328,8 @@ public class NoticeController {
 		
 		
 		// 파일을 서버에서도 삭제
-		if(attach.size() >= 2) {
-			log.debug("첫번째 attach? {}", attach.get(0));
-			log.debug("두번째 attach? {}", attach.get(1));
+		if(notice != null && attach.size() != 0) {
 			
-			for(int i = 0; i < attach.size(); i++) {
-				if(attach.get(i) != null && attach.get(i).getNoticeNo() != 0) {
-					log.debug("첨부파일 있음");
-					
-					String saveDirectory = application.getRealPath("/resources/upload/notice");
-					File targetFile = new File(saveDirectory, attach.get(i).getRenamedFilename());
-					boolean isDelete = targetFile.delete();
-					log.debug("서버에서 파일 삭제 됐니? = {}", isDelete);
-				}
-				
-			}
-		}
-		
-		else if(attach.size() == 1) {
-			log.debug("첫번째 attach? {}", attach.get(0));
 			String saveDirectory = application.getRealPath("/resources/upload/notice");
 			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
 			boolean isDelete = targetFile.delete();
