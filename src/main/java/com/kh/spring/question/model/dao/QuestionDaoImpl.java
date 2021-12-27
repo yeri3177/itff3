@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +63,37 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public int deleteQuestionAttachment(int attachNo1) {
 		return session.delete("question.deleteQuestionAttachment", attachNo1);
+	}
+
+	@Override
+	public QuestionComment selectQuestionComment(int no) {
+		return session.selectOne("question.selectQuestionComment", no);
+	}
+
+	@Override
+	public int insertQuestionComment(Map<String, Object> param) {
+		return session.insert("question.insertQuestionComment", param);
+	}
+
+	@Override
+	public int deleteQuestionComment(int commentNo) {
+		return session.delete("question.deleteQuestionComment", commentNo);
+	}
+
+	@Override
+	public List<Question> selectQuestionListByAdmin(int limit, int offset) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("question.selectQuestionListByAdmin", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalContentByAdmin() {
+		return session.selectOne("question.countTotalContentByAdmin");
+	}
+
+	@Override
+	public int deleteOneQuestion(int questionNo) {
+		return session.delete("question.deleteOneQuestion", questionNo);
 	}
 
 

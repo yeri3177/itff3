@@ -94,11 +94,6 @@
 		where attach_no = #{attachNo}
 	</delete>
 	
-	<delete id="deleteOneQuestion">
-		delete from question_board
-		where question_no = #{no}
-	</delete>
-	
 	<select id="selectAttachmentByQuestionNo" resultType="attachment">
 		select *
 		from attachment 
@@ -116,14 +111,45 @@
 	</update>
 	
 	
+	<select id="selectQuestionComment" resultType="QuestionComment">
+		select *
+		from question_comment
+		where question_no = #{no}
+	</select>
 	
+	<insert id="insertQuestionComment">
+		insert into question_comment(no, question_no, writer, content, reg_date)
+		values (
+			default,
+			#{questionNo},
+			#{writer},
+			#{content},
+			default
+		)
+	</insert>
 	
+	<delete id="deleteQuestionComment">
+		delete from question_comment
+		where no = #{commentNo}
+	</delete>
 	
+	<select id="selectQuestionListByAdmin" resultType="question">
+		select 
+        	b.*,
+        	(select count(*) from attachment where question_no = b.question_no) attach_count
+		from question_board b
+		order by question_no desc
+	</select>
 	
+	<select id="countTotalContentByAdmin" resultType="_int">
+		select count(*)
+		from question_board
+	</select>
 	
-	
-	
-	
+	<delete id="deleteOneQuestion">
+		delete from question_board
+		where question_no = #{questionNo}
+	</delete>
 	
 	
 	

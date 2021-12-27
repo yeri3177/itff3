@@ -44,7 +44,7 @@
 }
 
 
-.brd_li :last-child {
+.brd_li :last-child:not(img) {
 	font-size: 18px;
     margin-top: 2px;
     float: right;

@@ -33,6 +33,7 @@ import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.service.QuestionService;
 import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -124,9 +125,9 @@ public class QuestionController {
 			log.debug("[principal] member = {}", member);
 
 			String id = member.getId();
-			log.debug("아이디 가져와랑 {}", id);
+			log.debug("id {}", id);
 			
-			log.debug("여기서 model {}", model); // 없넹?
+			log.debug("model {}", model); // 없넹?
 			log.debug("cPage = {}", cPage);
 			
 			
@@ -145,15 +146,31 @@ public class QuestionController {
 			log.debug("questionList = {}", questionList);
 			model.addAttribute("questionList",questionList);
 			
-			// 전체 게시물 수 구하기
-			int totalContent = questionService.countTotalContent(id);
-			log.debug("전체 게시물 수 {}", totalContent + "개");
+			// 관리자한테는 다 보이는 게시판
+			List<Question> qlByAdmin = questionService.selectQuestionListByAdmin(limit, offset);
+			log.debug("qlByAdmin = {}", qlByAdmin);
+			model.addAttribute("qlByAdmin", qlByAdmin);
 			
-			// pagebar
+			// 전체 게시물 수 구하기 by id
+			int totalContent = questionService.countTotalContent(id);
+			log.debug("totalContent {}", totalContent + "개");
+			
+			// 관리자용 전체 게시물 수 구하기
+			int totalContentByAdmin = questionService.countTotalContentByAdmin();
+			log.debug("totalContentByAdmin = {}", totalContentByAdmin + "개");
+			
 			String url = request.getRequestURI();
+			
+			// pagebar by user
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 			log.debug("pagebar ?{}", pagebar);
 			model.addAttribute("pagebar", pagebar);
+			
+			// pagebar by admin
+			String pagebarByAdmin = HiSpringUtils.getPagebar(cPage, limit, totalContentByAdmin, url);
+			log.debug("pagebarByAdmin ? {}", pagebarByAdmin);
+			model.addAttribute("pagebarByAdmin",pagebarByAdmin);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -170,7 +187,39 @@ public class QuestionController {
 		log.debug("가져온 question {}", question);
 		model.addAttribute("question", question);
 		
+		// 글번호에 달린 댓글 가져오기
+		QuestionComment qc = questionService.selectQuestionComment(no);
+		log.debug("qc = {}", qc);
+		model.addAttribute("qc", qc);
+		
 	}
+	
+	
+	/*
+	 * 댓글입력 
+	 */
+	@PostMapping("/questionCommentEnroll.do")
+	public String questionCommentEnroll(
+			@RequestParam String content,
+			@RequestParam String writer,
+			@RequestParam int questionNo,
+			RedirectAttributes redirectAttr
+			) {
+		log.debug("content = {}", content);
+		log.debug("writer = {}", writer);
+		log.debug("questionNo = {}", questionNo);
+		
+		// map에 담기
+		Map<String, Object> param = new HashMap<>();
+		param.put("content", content);
+		param.put("writer", writer);
+		param.put("questionNo", questionNo);
+		
+		int result = questionService.insertQuestionComment(param);
+		
+		return "redirect:/question/questionDetail.do?no=" + questionNo;
+	}
+	
 	
 	@GetMapping (
 			value = "/fileDownload.do",
@@ -311,6 +360,43 @@ public class QuestionController {
 		}
 		
 		return "redirect:/question/questionDetail.do?no=" + question.getQuestionNo();
+	}
+	
+	/*
+	 * 댓글 삭제
+	 */
+	@GetMapping("/questionCommentDelete.do")
+	public String questionCommentDelete(@RequestParam int commentNo, @RequestParam int questionNo) {
+		log.debug("commentNo = {}", commentNo);
+		log.debug("questionNo = {}", questionNo);
+		
+		int result = questionService.deleteQuestionComment(commentNo);
+		
+		return "redirect:/question/questionDetail.do?no=" + questionNo;
+	}
+	
+	/*
+	 * 문의글 삭제
+	 */
+	@GetMapping("/questionDelete.do")
+	public String questionDelete(@RequestParam int no) {
+		Attachment attach = questionService.selectOneAttachment(no);
+		log.debug("attach : {}", attach);
+		
+		// 파일을 서버에서도 삭제
+		if(attach != null) {
+			String saveDirectory = application.getRealPath("/resources/upload/question");
+			File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+			boolean isDelete = targetFile.delete();
+			log.debug("isDelete in server? = {}", isDelete);
+		}
+		
+		int result = questionService.deleteOneQuestion(no);
+		String msg = result > 0 ? no + "번 글 삭제됨" : no + "번 글 삭제 실패";
+		log.debug(msg);
+		
+		
+		return "redirect:/question/questionList.do";
 	}
 	
 }

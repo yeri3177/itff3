@@ -26,9 +26,20 @@ pageContext.setAttribute("loginMember", loginMember);
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardDetailCommon.css" />
+	href="${pageContext.request.contextPath }/resources/css/question/questionDetailCommon.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />	
+	
+<script>
+function boardValidate(){
+	   var $content = $("[name=content]");
+	   if(/^(.|\n)+$/.test($content.val()) == false){
+	      alert("내용을 입력하세요");
+	      return false;
+	   }
+	   return true;
+	}
+</script>	
 		
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -101,7 +112,54 @@ pageContext.setAttribute("loginMember", loginMember);
 				class="btn_brd_del btn btn-xs btn-secondary">삭제</a>
 		</div>
 	</c:if>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<a href="javascript:OnBoardRemove();"
+				class="btn_brd_del btn btn-xs btn-secondary">삭제</a>
+	</sec:authorize>
 </div>
+
+
+
+
+<div class="comment-container">
+
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<div class="comment-editor">
+			<form action="${pageContext.request.contextPath }/question/questionCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}" name="boardCommentFrm" method="POST">
+				<textarea name="content" cols="60" rows="3" id="content_"></textarea>
+				<button type="submit" class="btn_brd_edit btn btn-xs btn-secondary thisIs">등록</button> 
+				
+				<!-- <input type="hidden" name="no" value=""> -->
+				<input type="hidden" name="writer" value="${loginMember.id}">
+				<input type="hidden" name="questionNo" value="${question.questionNo}">
+				<!-- <input type="hidden" name="regDate" value="0"> -->
+			</form>
+		</div>
+	</sec:authorize>
+
+	<c:if test="${qc ne null }">
+		<table id="tbl-comment">
+			<tbody>
+				<tr class="level1">
+					<td>
+						<sub class="comment-writer">${qc.writer }</sub>
+						<sub class="comment-date"><fmt:formatDate value="${qc.regDate}" pattern="yyyy.MM.dd"/></sub>
+						<br>
+						${qc.content }
+					</td>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<td>
+							<button name="commentDelete" class="btn-delete" id="commentDelete" value="${qc.no }">삭제</button>
+		
+						</td>
+					</sec:authorize>
+				</tr>
+			</tbody>
+		</table>
+	</c:if>
+</div>
+
+
 		
 <script type="text/javascript">
 
@@ -130,6 +188,25 @@ function OnBoardRemove() {
 	}
 	
 }
+
+$(document.boardCommentFrm).submit((e) => {
+	const $textarea = $("[name=content]", e.target);
+	if(!/^(.|\n)+$/.test($textarea.val())){
+		alert("댓글 내용을 작성해주세요.");
+		$textarea.focus();
+		return false;
+	}
+	return true;
+})
+
+$('.btn-delete').click(function (e){
+	if(confirm("해당 답변을 삭제하시겠습니까?")) {
+		const commentNo = $("[name=commentDelete]").val();
+		const questionNo = $("[name=questionNo]").val();
+		location.href = `${pageContext.request.contextPath}/question/questionCommentDelete.do?commentNo=\${commentNo}&questionNo=\${questionNo}`;
+		
+	}
+})
 
 
 </script>

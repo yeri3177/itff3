@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 public interface QuestionService {
@@ -21,5 +22,17 @@ public interface QuestionService {
 	int updateQuestion(Question question);
 
 	int deleteQuestionAttachment(int attachNo1);
+
+	QuestionComment selectQuestionComment(int no);
+
+	int insertQuestionComment(Map<String, Object> param);
+
+	int deleteQuestionComment(int commentNo);
+
+	List<Question> selectQuestionListByAdmin(int limit, int offset);
+
+	int deleteOneQuestion(int questionNo);
+
+	int countTotalContentByAdmin();
 
 }
