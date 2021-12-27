@@ -4,15 +4,41 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
-	<select id="selectReviewList" resultType="review">
-		select
+	<select id="selectReviewList" resultMap="reviewMap">
+<!-- 	select
 			r.*,
 			(select count(*) from attachment where review_no = r.review_no) attach_count
 		from
 			review_board r
 		order by
-			review_no desc
+			review_no desc -->
+		select
+		    r.*,
+		    m.*,
+		    (select count(*) from attachment where review_no = r.review_no) attach_count,
+		    (select count(*) from review_comment where review_no = r.review_no) rc_count
+		from
+		    review_board r join member m
+		        on r.member_id = m.id
+		order by
+		    review_no desc
 	</select>
+	<resultMap type="review" id="reviewMap">
+		<id column="review_no" property="reviewNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="review_title" property="reviewTitle"/>
+		<result column="review_content" property="reviewContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		<result column="recommend" property="recommend"/>
+		<result column="attach_count" property="attachCount"/>
+		<result column="rc_count" property="reviewCommentCount"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="nickname" property="nickname"/>
+		</association>	
+	</resultMap>
+	
 	
 	<select id="selectReviewTotalCount" resultType="_int">
 		select
@@ -20,5 +46,124 @@
 		from
 		    review_board
 	</select>
+	
+	<insert id="insertReview" parameterType="review">
+		insert into 
+			review_board
+		values(
+			default,
+			#{memberId},
+			#{reviewTitle},
+			#{reviewContent},
+			default,
+			0,
+			0
+		)
+		<selectKey keyProperty="reviewNo" resultType="_int" order="AFTER">
+			select
+				seq_review_board_no.currval
+			from
+				dual
+		</selectKey>
+	</insert>
+	
+	<insert id="insertAttachment">
+		insert into 
+			attachment
+		values(
+			default,
+			null,
+			null,
+			#{reviewNo},
+			#{renamedFilename},
+			#{originalFilename},
+			default,
+			null	
+		)
+	</insert>
+	
+	<select id="selectOneReviewCollection" resultMap="reviewCollectionMap">
+		select
+			r.*,
+			a.*,
+			m.*
+		from
+			review_board r left join attachment a
+				on r.review_no = a.review_no
+			join member m
+				on r.member_id = m.id
+		where
+			r.review_no = #{reivewNo}
+	</select>
+	<resultMap type="review" id="reviewCollectionMap">
+		<id column="review_no" property="reviewNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="review_title" property="reviewTitle"/>
+		<result column="review_content" property="reviewContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		<result column="recommend" property="recommend"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="phone" property="phone"/>
+			<result column="email" property="email"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
+			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
+		</association>	
+		<collection property="attachments" ofType="attachment">
+			<id column="attach_no" property="attachNo" />
+			<result column="review_no" property="reviewNo" />
+			<result column="renamed_filename" property="renamedFilename" />
+			<result column="original_filename" property="originalFilename" />
+			<result column="reg_date" property="regDate" />
+		</collection>
+	</resultMap>
+	
+	<update id="updateReviewBoardReadCount">
+		update
+			review_board
+		set
+			read_count = read_count + 1
+		where	
+			review_no = #{reviewNo}
+	</update>
+	
+	<select id="selectOneAttachment" resultType="attachment">
+		select
+			*
+		from
+			attachment
+		where
+			attach_no = #{attachNo}
+	</select>
+	
+	<delete id="deleteAttachment">
+		delete from
+			attachment
+		where
+			attach_no = #{attachNo}
+	</delete>
+	
+	<update id="updateReview">
+		update
+			review_board
+		set
+			review_title = #{reviewTitle},
+			review_content = #{reviewContent}
+		where
+			review_no = #{reviewNo}
+	</update>
+	
+	<delete id="deleteReview">
+		delete from
+			review_board
+		where
+			review_no = #{reviewNo}
+	</delete>
+	
+	
 	
 </mapper>

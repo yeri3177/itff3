@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.review.model.dao.ReviewDao;
 import com.kh.spring.review.model.vo.Review;
+import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +27,79 @@ public class ReviewServiceImpl implements ReviewService {
 	public int selectReviewTotalCount() {
 		return reviewDao.selectReviewTotalCount();
 	}
+
+	@Override
+	public int insertReview(Review review) {
+		int result = 0;
+		try {
+			// board insert
+			result = reviewDao.insertReview(review);
+			log.debug("review.no = {}", review.getReviewNo());   // 등록한 글의 번호
+			
+			// attachment insert
+			List<Attachment> attachments = review.getAttachments();
+			if(attachments != null) {
+				for(Attachment attach : attachments) {
+					attach.setReviewNo(review.getReviewNo());   // attachment의 boardNo는 fk이므로 반드시 글번호를 세팅해줘야 한다.
+					result = reviewDao.insertAttachment(attach);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();    
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Review selectOneReviewCollection(int reviewNo) {
+		return reviewDao.selectOneReviewCollection(reviewNo);
+	}
+
+	@Override
+	public int updateReviewBoardReadCount(int reviewNo) {
+		return reviewDao.updateReviewBoardReadCount(reviewNo);
+	}
+
+	@Override
+	public Attachment selectOneAttachment(int attachNo) {
+		return reviewDao.selectOneAttachment(attachNo);
+	}
+
+	@Override
+	public int deleteAttachment(int attachNo) {
+		return reviewDao.deleteAttachment(attachNo);
+	}
+
+	@Override
+	public int updateReview(Review review) {
+		int result = 0;
+		try {
+			// board insert
+			result = reviewDao.updateReview(review);
+			log.debug("review.no = {}", review.getReviewNo());   // 등록한 글의 번호
+			
+			// attachment insert
+			List<Attachment> attachments = review.getAttachments();
+			if(attachments != null) {
+				for(Attachment attach : attachments) {
+					result = reviewDao.insertAttachment(attach);
+				}
+			}
+		} catch (Exception e) {
+			// 사용자정의 예외(RuntimeException)로 전환해서 던짐. 컨트롤러에서 알아서 하라고 던짐
+//			throw new BoardException("게시글/첨부파일 등록 오류", e);
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return reviewDao.deleteReview(reviewNo);
+	}
+	
 	
 	
 }
