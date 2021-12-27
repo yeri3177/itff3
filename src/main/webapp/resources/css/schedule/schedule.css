@@ -589,8 +589,12 @@ dl, ul, ol, menu, li {
 
 .tbl_schedule .sch_li .sch_it .film_tit {
     line-height: 1.5;
-    height: 72px;
+    height: 75px;
     overflow: hidden;
+}
+
+.grade {
+	margin-top: 10px;
 }
 
 .tbl_schedule .sch_li .sch_it .film_tit .film_tit_kor {
