@@ -35,4 +35,8 @@ public interface QuestionService {
 
 	int countTotalContentByAdmin();
 
+	int updateQuestionAnswer(int questionNo);
+
+	int updateQuestionAnswerToN(int questionNo);
+
 }

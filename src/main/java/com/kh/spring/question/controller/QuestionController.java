@@ -171,6 +171,10 @@ public class QuestionController {
 			log.debug("pagebarByAdmin ? {}", pagebarByAdmin);
 			model.addAttribute("pagebarByAdmin",pagebarByAdmin);
 			
+			
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -216,6 +220,12 @@ public class QuestionController {
 		param.put("questionNo", questionNo);
 		
 		int result = questionService.insertQuestionComment(param);
+		
+		// 댓글이 달리면 question_board answer N -> Y로 바꾸기
+		int result2 = questionService.updateQuestionAnswer(questionNo);
+		String msg = result2 > 0 ? "답글여부 Y로 바뀜" : "답변여부 안바뀜";
+		log.debug(msg);
+		
 		
 		return "redirect:/question/questionDetail.do?no=" + questionNo;
 	}
@@ -371,6 +381,10 @@ public class QuestionController {
 		log.debug("questionNo = {}", questionNo);
 		
 		int result = questionService.deleteQuestionComment(commentNo);
+		
+		// 답변 삭제하면 question_board 의 answer -> N으로 바뀜
+		int result2 = questionService.updateQuestionAnswerToN(questionNo);
+		
 		
 		return "redirect:/question/questionDetail.do?no=" + questionNo;
 	}
