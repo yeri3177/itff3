@@ -150,34 +150,14 @@
 														<div class="ba-store-statistic-body">
 															<div class="row-fluid ba-store-statistic-body-wrapper"
 																style="display: flex;">
-																<div class="span8 ba-statistics-chart-wrapper">
-																	<span></span>
-																	<div
-																		class="ba-statistics-chart ba-chart-single-point ba-chart-loaded">
-																		<svg style="width: 764px; height: 420px;">
-																	<g>
-																	<text x="45" y="356" text-anchor="end"
-																				alignment-baseline="middle">0</text>
-																	<text x="45" y="281" text-anchor="end"
-																				alignment-baseline="middle">100</text>
-																	<text x="45" y="206" text-anchor="end"
-																				alignment-baseline="middle">200</text>
-																	<text x="45" y="130" text-anchor="end"
-																				alignment-baseline="middle">300</text>
-																	<text x="45" y="55" text-anchor="end"
-																				alignment-baseline="middle">400</text></g>
-																	<g>
-																	<text x="402" y="372" text-anchor="middle"
-																				alignment-baseline="hanging">Dec 16, 2021</text></g>
-																	<path d=""></path>
-																	<g class="ba-chart-points-wrapper">
-																	<circle cx="402.115234375" cy="356"></circle>
-																	<rect x="375.05078125" y="310" width="54.12890625"
-																				height="34"></rect>
-																	<text x="402" y="332" text-anchor="middle"
-																				alignment-baseline="baseline">0 ￦</text></g></svg>
-																	</div>
-																</div>
+															<div class="span8 ba-statistics-chart-wrapper">
+															<H1>Lorem Ipsum</H1>
+															<script src="https://code.highcharts.com/stock/highstock.js"></script>
+															<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+															<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+															
+															<div id="container" style="height: 400px; min-width: 310px"></div>
+															</div>
 																<div class="span4 ba-store-statistic-products-wrapper">
 																	<span class="ba-store-statistic-products-title">Top
 																		10</span>
@@ -1048,6 +1028,77 @@ $(document).ready(function () {
 			console.log("complete")
 		}
 	});
+});
+
+</script>
+
+<script>
+
+Highcharts.setOptions({
+  global: {
+    useUTC: false
+  }
+});
+
+// Create the chart
+Highcharts.stockChart('container', {
+  chart: {
+    events: {
+      load: function () {
+
+        // set up the updating of the chart each second
+        var series = this.series[0];
+        setInterval(function () {
+          var x = (new Date()).getTime(), // current time
+            y = Math.round(Math.random() * 100);
+          series.addPoint([x, y], true, true);
+        }, 1000);
+      }
+    }
+  },
+
+  rangeSelector: {
+    buttons: [{
+      count: 1,
+      type: 'minute',
+      text: '1M'
+    }, {
+      count: 5,
+      type: 'minute',
+      text: '5M'
+    }, {
+      type: 'all',
+      text: 'All'
+    }],
+    inputEnabled: false,
+    selected: 0
+  },
+
+  title: {
+    text: 'Live data'
+  },
+
+  exporting: {
+    enabled: false
+  },
+
+  series: [{
+    name: 'Random data',
+    data: (function () {
+      // generate an array of random data
+      var data = [],
+        time = (new Date()).getTime(),
+        i;
+
+      for (i = -999; i <= 0; i += 1) {
+        data.push([
+          time + i * 1000,
+          Math.round(Math.random() * 100)
+        ]);
+      }
+      return data;
+    }())
+  }]
 });
 
 </script>
