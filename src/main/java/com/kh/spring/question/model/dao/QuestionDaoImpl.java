@@ -96,5 +96,15 @@ public class QuestionDaoImpl implements QuestionDao {
 		return session.delete("question.deleteOneQuestion", questionNo);
 	}
 
+	@Override
+	public int updateQuestionAnswer(int questionNo) {
+		return session.update("question.updateQuestionAnswer", questionNo);
+	}
+
+	@Override
+	public int updateQuestionAnswerToN(int questionNo) {
+		return session.update("question.updateQuestionAnswerToN", questionNo);
+	}
+
 
 }

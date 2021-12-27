@@ -259,6 +259,7 @@ ul,li {
     font-weight: 100;
     border-bottom: 1px solid #ddd;
     vertical-align: top !important;
+    text-align: center;
 }
 
 .tbl_schedule2 > thead > tr > th {

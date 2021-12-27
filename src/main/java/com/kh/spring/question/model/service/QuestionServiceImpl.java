@@ -130,5 +130,15 @@ public class QuestionServiceImpl implements QuestionService {
 	public int deleteOneQuestion(int questionNo) {
 		return questionDao.deleteOneQuestion(questionNo);
 	}
+
+	@Override
+	public int updateQuestionAnswer(int questionNo) {
+		return questionDao.updateQuestionAnswer(questionNo);
+	}
+
+	@Override
+	public int updateQuestionAnswerToN(int questionNo) {
+		return questionDao.updateQuestionAnswerToN(questionNo);
+	}
 	
 }

@@ -151,9 +151,19 @@
 		where question_no = #{questionNo}
 	</delete>
 	
+	<update id="updateQuestionAnswer">
+		update question_board
+		set 
+			answer = 'Y'
+		where question_no = #{questionNo}
+	</update>
 	
-	
-	
+	<update id="updateQuestionAnswerToN">
+		update question_board
+		set
+			answer = default
+		where question_no = #{questionNo}
+	</update>
 	
 	
 	

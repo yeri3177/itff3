@@ -23,8 +23,8 @@ public class Question extends QuestionEntity implements Serializable {
 	private int attachCount;
 	private List<Attachment> attachments;
 	
-	public Question(int questionNo, String memberId, String questionTitle, String questionContent, Date regDate, int attachCount, List<Attachment> attachments) {
-		super(questionNo, memberId, questionTitle, questionContent, regDate);
+	public Question(int questionNo, String memberId, String questionTitle, String questionContent, Date regDate, String answer, int attachCount, List<Attachment> attachments) {
+		super(questionNo, memberId, questionTitle, questionContent, regDate, answer);
 		this.attachCount = attachCount;
 		this.attachments = attachments;
 	}
