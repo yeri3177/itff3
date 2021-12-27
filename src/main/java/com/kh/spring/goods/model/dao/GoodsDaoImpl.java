@@ -74,5 +74,15 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectList("goods.selectOneImg", map);
 	}
 
+	@Override
+	public int selectOneOptionId(Map<String, Object> map) {
+		return session.selectOne("goods.selectOneOptionId", map);
+	}
+
+	@Override
+	public int insertCart(Map<String, Object> param) {
+		return session.insert("goods.insertCart", param);
+	}
+
 
 }
