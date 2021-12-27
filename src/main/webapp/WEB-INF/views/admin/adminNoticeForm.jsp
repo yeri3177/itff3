@@ -38,7 +38,7 @@ pageContext.setAttribute("loginMember", loginMember);
 
 	<div class="row justify-content-center">
 		<div class="col-md-6 text-center mb-4">
-			<h2 class="heading-section">공지사항 작성</h2>
+			<h2 class="heading-section">공지사항</h2>
 		</div>
 	</div>
 
@@ -48,7 +48,8 @@ pageContext.setAttribute("loginMember", loginMember);
 			<div class="container">
 			<form name="boardFrm"
 				action="${pageContext.request.contextPath}/admin/adminNoticeEnroll.do?${_csrf.parameterName}=${_csrf.token}"
-				method="POST" enctype="multipart/form-data"
+				method="POST" 
+				enctype="multipart/form-data"
 				onsubmit="return boardValidate();">
 				
 				<input type="hidden" name="memberId" value="${loginMember.id}" required readonly> 

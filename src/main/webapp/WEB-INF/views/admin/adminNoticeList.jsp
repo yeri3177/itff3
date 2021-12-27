@@ -163,6 +163,22 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 								</div>
 							</div>
 							<!-- 공지사항 수정 끝 -->
+
+						<!-- 공지사항 삭제 -->
+						<div class="modal fade" id="adminNoticeDelete" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content" style="text-align: left;">
+								   	<div class="modal-body" id="modal_ajax3">
+								    		  
+									</div>
+	
+									</div>
+								</div>
+							</div>
+							<!-- 공지사항 삭제 끝 -->
 					
 					</div>
 				</div>
@@ -230,6 +246,31 @@ function notice_update_btn(noticeNo) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax2").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 공지사항 삭제
+function notice_delete_btn(noticeNo) {
+	
+	console.log(noticeNo);
+	var no = noticeNo;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminNoticeDelete.do",
+		data: {noticeNo: no},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax3").html(data);
 		},
 		complete: function() {
 			console.log("complete")

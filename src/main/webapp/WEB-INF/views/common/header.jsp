@@ -153,7 +153,7 @@
 											<li><a href="#" class="" target="_top">티켓 예매</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/movie/booking.do" class="menu_drop">빠른예매</a></li>
-													<li><a href="#" class="menu_drop">상영시간표</a></li>
+													<li><a href="${pageContext.request.contextPath}/schedule/day1.do" class="menu_drop">상영시간표</a></li>
 												</ul>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/guide/openCloseGuide.do" class="" target="_top">행사 가이드</a>

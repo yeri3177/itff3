@@ -28,11 +28,11 @@ pageContext.setAttribute("loginMember", loginMember);
 				<form 
 				name="boardFrm"
 				action="${pageContext.request.contextPath}/admin/adminNoticeUpdate.do?${_csrf.parameterName}=${_csrf.token}"
-				method="POST" enctype="multipart/form-data"
-				onsubmit="return boardValidate();">
+				method="POST" 
+				enctype="multipart/form-data">
 				
 		      <div class="modal-body">
-		      	<input type="hidden" name="no" value="${notice.noticeNo}" id="noticeNo" />
+		      	<input type="hidden" name="noticeNo" value="${notice.noticeNo}" id="noticeNo" />
 		      	<input type="hidden" name="memberId" value="${loginMember.id}" required />
 <!-- 		        <h5 class="detail-modal-title" id="exampleModalLabel">회원정보</h5> -->
 		        <table class="table" id="modal_table">
@@ -49,101 +49,46 @@ pageContext.setAttribute("loginMember", loginMember);
 				      <th scope="row">첨부파일</th>
 				    <td>
 				    
-			<c:choose>
-			<%--첨부파일 두개 일떄 --%>
-			<c:when test="${fn:length(notice.attachments) == 2}">
-				<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
-					<!-- upFile1 -->
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일${vs.count}</span>
+					<!-- 첨부파일 있을 때 -->
+					<c:if test="${notice.attachments[0].attachNo != 0 }">
+						<div class="input-group mb-3" style="padding: 0px;">
+							<div class="input-group-prepend" style="padding: 0px;">
+								<span class="input-group-text">첨부파일</span>
+							</div>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="upFile"
+									id="upFile1" multiple="multiple"> <label
+									class="custom-file-label" for="upFile" id="fname">${notice.attachments[0].originalFilename}</label>
+							</div>
+							<div id="checkbox">
+								<input type="checkbox" name="delFile" id="delFile"
+									value="${notice.attachments[0].attachNo}" /> 
+								<label for="delFile">기존파일삭제</label>
+							</div>
+							
+							<%--기존파일삭제 누르지 않았을 경우 --%>
+							<input type="hidden" name="delFile" value="0" id="delFilePlz"/>
+							
 						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple="multiple"> 
-							<label class="custom-file-label" for="upFile1" id="fname">${attach.originalFilename}</label>
+					</c:if>
+			
+					<!-- 첨부파일 없을 때 -->
+					<c:if test="${notice.attachments[0].attachNo == 0 }">
+						<div class="input-group mb-3" style="padding: 0px;">
+							<div class="input-group-prepend" style="padding: 0px;">
+								<span class="input-group-text">첨부파일</span>
+							</div>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="upFile"
+									id="upFile1" multiple="multiple"> <label
+									class="custom-file-label" for="upFile" id="fname">파일을
+									선택하세요.</label>
+							</div>
+							
+							<input type="hidden" name="delFile" value="0" id="delFilePlz"/>
+							
 						</div>
-						<div id="checkbox">
-							<input type="checkbox" name="delFile${vs.count}" id="delFile" value="${attach.attachNo}" /> 
-							<label for="delFile">기존파일삭제</label>
-						</div>
-						
-						<%--기존파일삭제 누르지 않았을 경우 --%>
-						<input type="hidden" name="delFile${vs.count}" value="0" id="delFilePlz"/>
-					</div>
-				</c:forEach>
-			</c:when>
-
-			<%-- 첨부파일이 없을 떄 --%>
-			<c:when test="${notice.attachments[0].attachNo == 0}">
-				<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
-					<!-- upFile1 -->
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일1</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple="multiple"> 
-							<label sclass="custom-file-label" for="upFile1" id="fname">파일을 선택하세요.</label>
-						</div>
-					</div>
-					<div id="checkbox" style="display: none;">
-						<input type="hidden" name="delFile1" id="delFile" value="0" /> 
-						<label for="delFile">기존파일삭제</label>
-					</div>
-
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일2</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile" id="upFile2"> 
-							<label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
-						</div>
-					</div>
-					<div id="checkbox" style="display: none;">
-						<input type="hidden" name="delFile2" id="delFile" value="0" /> 
-						<label for="delFile">기존파일삭제</label>
-					</div>
-				</c:forEach>
-			</c:when>
-
-			<%-- 첨부파일이 하나 일 때 --%>
-			<c:otherwise>
-				<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일1</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple="multiple"> 
-							<label class="custom-file-label" for="upFile1" id="fname">${attach.originalFilename}</label>
-						</div>
-						<div id="checkbox">
-							<input type="checkbox" name="delFile${vs.count}" id="delFile" value="${attach.attachNo}" /> 
-							<label for="delFile">기존파일삭제</label>
-						</div>
-					</div>
-					
-					<%--기존파일삭제 누르지 않았을 경우 --%>
-					<input type="hidden" name="delFile1" value="0" id="delFilePlz">
-					
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일2</span>
-						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile" id="upFile2"> 
-							<label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
-						</div>
-						
-					</div>
-					<div id="checkbox" style="display: none">
-						<input type="hidden" name="delFile2" id="delFile" value="1" /> 
-						<label for="delFile">기존파일삭제</label>
-					</div>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+					</c:if>
 
 				    </td>				    
 					</tr>
@@ -158,7 +103,7 @@ pageContext.setAttribute("loginMember", loginMember);
 		      </div>
 
 		      <div class="modal-footer">
-		      	<input type="submit" class="btn btn-success" value="저장">
+		      	<input type="submit" class="btn btn-success" value="수정">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		      </div>
 		      </form>
@@ -176,16 +121,6 @@ $(".attach").click((e) => {
 
 <script>
 
-/* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
-function boardValidate(){
-   var $content = $("[name=content]");
-   if(/^(.|\n)+$/.test($content.val()) == false){
-      alert("내용을 입력하세요");
-      return false;
-   }
-   return true;
-}
-
 /* 첨부파일 선택 시 파일명 보이게  */
 $(() => {
    $("[name=upFile]").change((e) => {
@@ -195,13 +130,15 @@ $(() => {
       const filename = file?.name; // ?: optional chaining 객체가 undefined 경우에도 오류가 나지 않음
       
       console.dir(e.target);
-      console.log(filename);
+      console.log("filename : " ,filename);
       
       // 2. label에 설정하기
       const $label = $(e.target).next(); // e.target의 다음 요소
       
       if(file != undefined) {
          $label.html(filename);
+         $(delFile)
+			.prop("checked", true);
       }
       else {
          $label.html("파일을 선택하세요.");

@@ -242,4 +242,24 @@ public class AdminDaoImpl implements AdminDao {
 		return session.delete("admin.deleteGoodsOption", optionId);
 	}
 
+	@Override
+	public int deleteNoticeAttachment(int attachNo) {
+		return session.delete("admin.deleteNoticeAttachment", attachNo);
+	}
+
+	@Override
+	public int updateNotice(Notice notice) {
+		return session.update("admin.updateNotice", notice);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByNoticeNo(int noticeNo) {
+		return session.selectList("admin.selectAttachmentByNoticeNo", noticeNo);
+	}
+
+	@Override
+	public int deleteNotice(int noticeNo) {
+		return session.delete("admin.deleteNotice", noticeNo);
+	}
+
 }
