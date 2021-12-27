@@ -159,9 +159,7 @@ function boardValidate(){
 	</c:if>
 </div>
 
-
-		
-<script type="text/javascript">
+<script>
 
 $(".attach").click((e) => {
 	const no = $(e.target).val();

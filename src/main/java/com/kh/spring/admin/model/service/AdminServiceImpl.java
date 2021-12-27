@@ -22,6 +22,9 @@ import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
 
@@ -208,8 +211,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int countTotalContent() {
-		return adminDao.countTotalContent();
+	public int countTotalNoticeContent() {
+		return adminDao.countTotalNoticeContent();
 	}
 
 	@Override
@@ -341,6 +344,51 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminManageTodayScreeningCount() {
 		return adminDao.adminManageTodayScreeningCount();
+	}
+
+	@Override
+	public List<Review> adminManageRecentTenReviewList() {
+		return adminDao.adminManageRecentTenReviewList();
+	}
+
+	@Override
+	public List<Question> adminSelectQuestionList(int offset, int limit) {
+		return adminDao.adminSelectQuestionList(offset, limit);
+	}
+
+	@Override
+	public int countTotalQuestionContent() {
+		return adminDao.countTotalQuestionContent();
+	}
+
+	@Override
+	public Question selectQuestionCollection(int questionNo) {
+		return adminDao.selectQuestionCollection(questionNo);
+	}
+
+	@Override
+	public QuestionComment selectQuestionComment(int questionNo) {
+		return adminDao.selectQuestionComment(questionNo);
+	}
+
+	@Override
+	public int insertQuestionComment(Map<String, Object> param) {
+		return adminDao.insertQuestionComment(param);
+	}
+
+	@Override
+	public int updateQuestionAnswer(int questionNo) {
+		return adminDao.updateQuestionAnswer(questionNo);
+	}
+
+	@Override
+	public int deleteQuestionComment(int commentNo) {
+		return adminDao.deleteQuestionComment(commentNo);
+	}
+
+	@Override
+	public int updateQuestionAnswerToN(int questionNo) {
+		return adminDao.updateQuestionAnswerToN(questionNo);
 	}
 
 }

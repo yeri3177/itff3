@@ -19,6 +19,9 @@ import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,10 +32,6 @@ public class AdminDaoImpl implements AdminDao {
 	
 	@Autowired
 	private SqlSession session;
-	
-	/**
-	 * [회원]
-	 */
 
 	@Override
 	public List<Member> selectMemberList(int offset, int limit) {
@@ -183,8 +182,8 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int countTotalContent() {
-		return session.selectOne("admin.countTotalContent");
+	public int countTotalNoticeContent() {
+		return session.selectOne("admin.countTotalNoticeContent");
 	}
 
 	@Override
@@ -270,6 +269,52 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int adminManageTodayScreeningCount() {
 		return session.selectOne("admin.adminManageTodayScreeningCount");
+	}
+
+	@Override
+	public List<Review> adminManageRecentTenReviewList() {
+		return session.selectList("admin.adminManageRecentTenReviewList");
+	}
+
+	@Override
+	public List<Question> adminSelectQuestionList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("admin.adminSelectQuestionList", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalQuestionContent() {
+		return session.selectOne("admin.countTotalQuestionContent");
+	}
+
+	@Override
+	public Question selectQuestionCollection(int questionNo) {
+		return session.selectOne("admin.selectQuestionCollection", questionNo);
+	}
+
+	@Override
+	public QuestionComment selectQuestionComment(int questionNo) {
+		return session.selectOne("admin.selectQuestionComment", questionNo);
+	}
+
+	@Override
+	public int insertQuestionComment(Map<String, Object> param) {
+		return session.insert("admin.insertQuestionComment", param);
+	}
+
+	@Override
+	public int updateQuestionAnswer(int questionNo) {
+		return session.update("admin.updateQuestionAnswer", questionNo);
+	}
+
+	@Override
+	public int deleteQuestionComment(int commentNo) {
+		return session.delete("admin.deleteQuestionComment", commentNo);
+	}
+
+	@Override
+	public int updateQuestionAnswerToN(int questionNo) {
+		return session.update("admin.updateQuestionAnswerToN", questionNo);
 	}
 
 }

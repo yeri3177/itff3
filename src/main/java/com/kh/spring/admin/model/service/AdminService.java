@@ -14,6 +14,9 @@ import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 public interface AdminService {
@@ -66,7 +69,7 @@ public interface AdminService {
 
 	List<Notice> adminSelectNoticeList(int offset, int limit);
 
-	int countTotalContent();
+	int countTotalNoticeContent();
 
 	int insertNotice(Notice notice);
 
@@ -101,5 +104,23 @@ public interface AdminService {
 	int adminManageRegisterAweekAgoCount();
 
 	int adminManageTodayScreeningCount();
+
+	List<Review> adminManageRecentTenReviewList();
+
+	List<Question> adminSelectQuestionList(int offset, int limit);
+
+	int countTotalQuestionContent();
+
+	Question selectQuestionCollection(int questionNo);
+
+	QuestionComment selectQuestionComment(int questionNo);
+
+	int insertQuestionComment(Map<String, Object> param);
+
+	int updateQuestionAnswer(int questionNo);
+
+	int deleteQuestionComment(int commentNo);
+
+	int updateQuestionAnswerToN(int questionNo);
 
 }
