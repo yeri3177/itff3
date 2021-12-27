@@ -63,7 +63,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do" class="film_thumb">
-							<img src="https://i.ibb.co/QPP8PBb/The-Thirteenth-Floor.jpg" class="poster" alt="13층">
+							<img src="https://i.imgur.com/NJOvXw0.jpg" class="poster" alt="13층">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">가상현실·딥러닝</span>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do" class="film_thumb">
-							<img src="https://i.ibb.co/CQL4DBt/image.jpg" class="poster" alt="매트릭스" width="100%">
+							<img src="https://i.imgur.com/IAPZHFR.jpg" class="poster" alt="매트릭스" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>

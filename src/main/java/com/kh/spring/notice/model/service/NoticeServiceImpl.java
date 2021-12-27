@@ -78,14 +78,18 @@ public class NoticeServiceImpl implements NoticeService {
 			result = noticeDao.updateNotice(notice);
 			log.debug("notice.noticeNo= {}", notice.getNoticeNo());
 			
-			// attachment insert 나눠서 처리
 			List<Attachment> attachments = notice.getAttachments();
 			if(attachments != null) {
+				log.debug("attachments? {}", attachments);
+				log.debug("attachments.get(0).getAttachNo() : {}", attachments.get(0).getAttachNo());
+				
 				for(Attachment attach : attachments) {
 					attach.setNoticeNo(notice.getNoticeNo());
-					log.debug("attach {}?", attach);
+					log.debug("attach = {}", attach);
 					result = noticeDao.insertAttachment(attach);
+					
 				}
+					
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,6 +113,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<Attachment> selectAttachmentByNoticeNo(int no) {
 		return noticeDao.selectAttachmentByNoticeNo(no);
+	}
+
+	@Override
+	public List<Notice> mainNotice() {
+		return noticeDao.mainNotice();
 	}
 	
 }

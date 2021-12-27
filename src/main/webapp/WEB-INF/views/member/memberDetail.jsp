@@ -10,9 +10,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/guide/guide.css" />
+	href="${pageContext.request.contextPath }/resources/css/member/memberDetail.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -24,26 +22,99 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 해당 페이지 큰 글씨 -->
+<!-- 메인 콘텐츠 섹션 -->
+<section class="main-content">
+
+<!-- 제목 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">마이페이지</h2>
+		<h2 class="tit_sec txt-center txt-white en">마이페이지</h2>
 	</div>
 </div>
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
-<div class="">
-	<p>회원이름 : <sec:authentication property="principal.name"/></p>
-	<p>내 포인트 : <sec:authentication property="principal.point"/></p>
-	<br />
-	<ul>
-		<li><a href="#">예매내역</a></li>
-		<li><a href="#">장바구니</a></li>
-		<li><a href="#">상품 구매내역</a></li>
-		<li><a href="#">포인트 이용 내역</a></li>
-		<li><a href="${pageContext.request.contextPath }/member/memberWrittenBoardList.do">내가 쓴 게시글</a></li>
-		<li><a href="${pageContext.request.contextPath }/member/memberUpdate.do">정보수정</a></li>
-	</ul>
+<div class="mypage">
+	<div class="inner">
+		<div class="user_card shadow-sm p-3 mb-5 bg-white rounded">
+				
+				<div class="row">
+					<div class="col-md-4 col-xs-12">
+						<div class="user">
+							<div class="user_con">
+								<img src="https://i.imgur.com/n1c1fJU.png" alt="member" class="member-con" />
+								<span>
+								<strong class="name"><sec:authentication property="principal.name"/></strong>님
+								</span>
+							</div>
+							<div class="point_con">
+								<span class="point">보유 포인트 <strong class="point_current"><sec:authentication property="principal.point"/></strong></span>
+							</div>						
+						</div>												
+					</div>
+					<div class="col-md-8 col-xs-12">
+						<div class="row">
+						
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/kAFc3Fr.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+									<a href="#" class="btn_reserve">예매내역</a>
+								</div>
+							</div>
+							
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/jAwLZh6.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+								<a href="#" class="btn_cart">장바구니</a>
+								</div>
+							</div>	
+													
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/vVMNP1i.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+								<a href="#" class="btn_buying">상품구매내역</a>
+								</div>
+							</div>	
+													
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/UMUevXB.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+								<a href="#" class="btn_point">포인트이용내역</a>
+								</div>
+							</div>	
+													
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/WWUDHV6.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+								<a href="${pageContext.request.contextPath }/member/memberWrittenBoardList.do" class="btn_board">내가쓴게시글</a>
+								</div>
+							</div>	
+													
+							<div class="col-md-4 col-xs-4 row_container">
+								<div>
+									<img src="https://i.imgur.com/9NSKOme.png" alt="" class="row_icon"/>
+								</div>
+								<div>
+								<a href="${pageContext.request.contextPath }/member/memberUpdate.do" class="btn_edit">정보수정</a>
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+				</div>
+		</div>
+	</div>
 </div>
+
+</section>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

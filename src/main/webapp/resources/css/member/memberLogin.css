@@ -9,6 +9,7 @@
 	font-size: 24px;
 	padding-bottom: 100px;
 }
+
 .sub_title_wrap {
     position: relative;
     padding: 50px 0 50px 0;
@@ -48,7 +49,7 @@
 	text-align: center;
 }
 section#main-content {
-	background-color: #34495E!important;
+	background-color: rgb(43, 63, 107) !important;
 }
 
 #enroll-container{
@@ -118,7 +119,6 @@ section#main-content {
 
 .tit_sec {
     display: block;
-    color: #4d3494;
     font-size: 30px;
     line-height: 40px;
     font-weight: bold;

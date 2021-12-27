@@ -22,7 +22,7 @@
 <!-- 메인 콘텐츠 섹션 -->
 <section class="main-content">
 
-	<!-- 제목 -->
+<!-- 제목 -->
 <div class="sub_title_wrap">
 	<div class="container">
 		<h2 class="tit_sec txt-center txt-white en">LOGIN</h2>

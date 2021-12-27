@@ -93,7 +93,7 @@ public class NoticeController {
 	@PostMapping("/noticeEnroll.do")
 	public String noticeEnroll(
 			// 한 게시물에 여러 첨부파일이라 [] 형식
-	         @RequestParam(value = "upFile", required = false) MultipartFile[] upFiles,
+	         @RequestParam(value = "upFile", required = false) MultipartFile upFile,
 	         @ModelAttribute Notice notice, 
 	         RedirectAttributes redirectAttr
 			 ) throws Exception {
@@ -105,7 +105,6 @@ public class NoticeController {
 			// 첨부파일 List 생성
 			List<Attachment> attachments = new ArrayList<>();
 			
-			for(MultipartFile upFile : upFiles) {
 				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
 					
@@ -132,7 +131,6 @@ public class NoticeController {
 		            log.debug("하이");
 					
 				}
-			}
 			
 			if(!attachments.isEmpty()) {
 				notice.setAttachments(attachments);
@@ -239,8 +237,7 @@ public class NoticeController {
 	public String noticeUpdate(
 			 @RequestParam(value = "upFile", required = false) MultipartFile[] upFiless,
 	         @ModelAttribute Notice notice,
-	         @RequestParam int delFile1,
-	         @RequestParam int delFile2,
+	         @RequestParam int delFile,
 	         RedirectAttributes redirectAttr
 			) {
 		
@@ -278,70 +275,31 @@ public class NoticeController {
 				}
 			}
 			
+
+			log.debug("delFile 몇? {}", delFile);
+			// 첨부파일이 변경되었거나 삭제 체크박스가 체크되면 기존 첨부파일 삭제
+			
+			if(delFile != 0) {
+				int attachNo1 = delFile;
+				Attachment attach = noticeService.selectOneAttachment(attachNo1);
+				
+				// 서버컴퓨터에서 파일삭제
+				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				// db 레코드 삭제
+				result = noticeService.deleteNoticeAttachment(attachNo1);
+				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
+				log.debug("delFile 첨부파일은? {}", yn);
+				
+			}
+			
 			// 게시물 수정 + 새 첨부파일 등록
 			
 			if(!attachments.isEmpty())
 				notice.setAttachments(attachments);
 			
 			result = noticeService.updateNotice(notice);
-
-			log.debug("delFile1 몇? {}", delFile1);
-			log.debug("delFile2 몇? {}", delFile2);
-			// 첨부파일이 변경되었거나 삭제 체크박스가 체크되면 기존 첨부파일 삭제
-			
-			if(delFile1 != 0 && delFile2 != 0) {
-				int attachNo1 = delFile1;
-				Attachment attach = noticeService.selectOneAttachment(attachNo1);
-				
-				// 서버컴퓨터에서 파일삭제
-				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
-				targetFile.delete();
-				
-				// db 레코드 삭제
-				result = noticeService.deleteNoticeAttachment(attachNo1);
-				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
-				log.debug("delFile1 첨부파일은? {}", yn);
-				
-				int attachNo2 = delFile2;
-				attach = noticeService.selectOneAttachment(attachNo2);
-				
-				// 서버컴퓨터에서 파일삭제
-				targetFile = new File(saveDirectory, attach.getRenamedFilename());
-				targetFile.delete();
-				
-				// db 레코드 삭제
-				result = noticeService.deleteNoticeAttachment(attachNo2);
-				yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
-				log.debug("delFile2 첨부파일은? {}", yn);
-				
-			}
-			else if (delFile1 != 0 && delFile2 == 0) {
-				int attachNo1 = delFile1;
-				Attachment attach = noticeService.selectOneAttachment(attachNo1);
-				
-				// 서버컴퓨터에서 파일삭제
-				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
-				targetFile.delete();
-				
-				// db 레코드 삭제
-				result = noticeService.deleteNoticeAttachment(attachNo1);
-				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
-				log.debug("delFile1 첨부파일은? {}", yn);
-			}
-			else if (delFile1 == 0 && delFile2 != 0) {
-				int attachNo2 = delFile2;
-				Attachment attach = noticeService.selectOneAttachment(attachNo2);
-				
-				// 서버컴퓨터에서 파일삭제
-				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
-				targetFile.delete();
-				
-				// db 레코드 삭제
-				result = noticeService.deleteNoticeAttachment(attachNo2);
-				String yn = result > 0 ? "첨부파일 db에서 삭제됨" : "첨부파일 db에서 삭제 안됨";
-				log.debug("delFile2 첨부파일은? {}", yn);
-			}
-			
 			
 			
 		} catch (Exception e) {
@@ -368,25 +326,8 @@ public class NoticeController {
 		
 		
 		// 파일을 서버에서도 삭제
-		if(attach.size() >= 2) {
-			log.debug("첫번째 attach? {}", attach.get(0));
-			log.debug("두번째 attach? {}", attach.get(1));
+		if(attach != null && attach.size() != 0) {
 			
-			for(int i = 0; i < attach.size(); i++) {
-				if(attach.get(i) != null && attach.get(i).getNoticeNo() != 0) {
-					log.debug("첨부파일 있음");
-					
-					String saveDirectory = application.getRealPath("/resources/upload/notice");
-					File targetFile = new File(saveDirectory, attach.get(i).getRenamedFilename());
-					boolean isDelete = targetFile.delete();
-					log.debug("서버에서 파일 삭제 됐니? = {}", isDelete);
-				}
-				
-			}
-		}
-		
-		else if(attach.size() == 1) {
-			log.debug("첫번째 attach? {}", attach.get(0));
 			String saveDirectory = application.getRealPath("/resources/upload/notice");
 			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
 			boolean isDelete = targetFile.delete();
@@ -400,6 +341,20 @@ public class NoticeController {
 		
 		
 		return "redirect:/notice/noticeList.do";
+	}
+	
+	/**
+	 * [메인페이지: 공지 5개]
+	 */
+	
+	@GetMapping("/mainNotice.do")
+	public List<Notice> mainNotice(Model model) {
+		List<Notice> list = noticeService.mainNotice();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
 	}
 	
 	

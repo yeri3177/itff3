@@ -41,14 +41,14 @@ body {
 }
 
 a {
-    color: #333;
+    color: #212121;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
     text-decoration: none !important;
 }
 
 .menu_drop:hover {
-	color: #333;
+	color: #212121;
 	font-weight: bold;
 }
 
@@ -63,8 +63,8 @@ a {
 }
 
 .logo_img {
-	width: 200px;
-	margin-left: 20px;
+	width: 150px;
+	margin-left: 45px;
 }
 
 .hd_bg {
@@ -75,8 +75,8 @@ a {
     margin: 0;
     padding: 0;
     height: 650px;
-    border-color: rgb(52, 73, 94);
-    background: rgb(52, 73, 94);
+    border-color: rgb(43, 63, 107);
+    background: rgb(43, 63, 107);
     z-index: -1;
 }
 
@@ -100,7 +100,7 @@ a {
 }
 
 .container-visual {
-	background-color: rgb(52, 73, 94);
+	background-color: rgb(43, 63, 107);
 }
 
 #hd .util {
@@ -159,7 +159,6 @@ dl, ul, ol, menu, li {
 }
 	
 #menu > ul > li > ul > li:hover {
-	background: rgb(243, 156, 18);
 	transition: ease 1s;
 }
 			
@@ -219,7 +218,7 @@ dl, ul, ol, menu, li {
 
 .gnb nav > .depth1 > li > a {
     display: inline-block;
-    font-size: 18px;
+    font-size: 16px;
     margin: 15px 0;
     line-height: 50px;
     color: #fff;
@@ -285,12 +284,13 @@ header {
 
 .btn-link:hover {
 	color: white;
+	text-decoration: none;
 }
 
 /* header.jsp 끝 */
 
 ::selection {
-    background: rgb(52, 73, 94);
+    background: rgb(43, 63, 107);
     color: #FFF;
     text-shadow: none;
 }

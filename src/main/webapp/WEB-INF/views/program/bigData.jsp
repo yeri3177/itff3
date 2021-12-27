@@ -63,7 +63,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/her.do" class="film_thumb">
-							<img src="https://i.ibb.co/br6rzx0/17-06-43-5cf7781317799-H800.jpg" class="poster" alt="그녀">
+							<img src="https://i.imgur.com/wd08k8i.jpg" class="poster" alt="그녀">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">빅데이터·컴퓨팅</span>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/citizenFour.do" class="film_thumb">
-							<img src="https://i.ibb.co/njnk0PP/20161101-0402.jpg" class="poster" alt="시티즌포">
+							<img src="https://i.imgur.com/wTocWM1.jpg" class="poster" alt="시티즌포">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">빅데이터·컴퓨팅</span>

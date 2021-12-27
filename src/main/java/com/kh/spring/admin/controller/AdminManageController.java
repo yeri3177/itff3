@@ -84,19 +84,7 @@ public class AdminManageController {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * [메인페이지: 공지 5개]
-	 */
-	
-	@GetMapping("/adminMainNotice.do")
-	public List<Notice> adminMainNotice(Model model) {
-		List<Notice> list = adminService.adminMainNotice();
-		log.debug("list = {}", list);
-		
-		model.addAttribute("list", list);
-		
-		return list;
-	}
+
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -636,14 +624,6 @@ public class AdminManageController {
 			
 			// 기존 파일 삭제
     		Goods Oldgoods = adminService.selectOneGoods(pId);
-    		
-    		if(Oldgoods != null) {
-    			String saveDirectory = application.getRealPath("/resources/upload/goods");
-    			String filename = Oldgoods.getPImg();
-    			File delFile = new File(saveDirectory, filename);
-    			boolean result = delFile.delete();
-    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
-    		}
 			
 			// 첨부파일 list생성
 			List<Attachment> attachments = new ArrayList<>();
@@ -655,6 +635,14 @@ public class AdminManageController {
 			for(MultipartFile upFile : upFiles) {
 	
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+		    		if(Oldgoods != null) {
+		    			saveDirectory = application.getRealPath("/resources/upload/goods");
+		    			String filename = Oldgoods.getPImg();
+		    			File delFile = new File(saveDirectory, filename);
+		    			boolean result = delFile.delete();
+		    			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
+		    		}
 					
 					log.debug("upFile = {}", upFile);
 					log.debug("upFile.name = {}", upFile.getOriginalFilename());
@@ -1205,5 +1193,132 @@ public class AdminManageController {
 		return resource;
 		
 	}
+	
+	/**
+	 * [공지사항 수정] 
+	 */
+	
+	@GetMapping("/adminNoticeUpdate.do")
+	public void adminNoticeUpdate(@RequestParam int noticeNo, Model model) {
+		log.debug("noticeNo = {}", noticeNo);
+		
+		Notice notice = adminService.selectOneNoticeCollection(noticeNo);
+		log.debug("notice = {}", notice);
+		
+		model.addAttribute("notice", notice);
+	}
+	
+//	@PostMapping("/adminNoticeUpdate.do")
+//	public String adminNoticeUpdate(
+//			 @RequestParam(value = "upFile", required = false) MultipartFile[] upFiless,
+//	         @ModelAttribute Notice notice,
+//	         @RequestParam int delFile1,
+//	         @RequestParam int delFile2,
+//	         RedirectAttributes redirectAttr
+//			) {
+//		
+//		try {
+//			int result = 0;
+//			String saveDirectory = application.getRealPath("/resources/upload/notice");
+//			log.debug("saveDirectory = {}",saveDirectory);
+//			
+//			List<Attachment> attachments = new ArrayList<>();
+//			
+//			for(MultipartFile upFile : upFiless) {
+//				
+//				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+//					
+//					log.debug("upFile = {}", upFile);
+//			        log.debug("upFile.name = {}", upFile.getOriginalFilename());
+//			        log.debug("upFile.size = {}", upFile.getSize());
+//					
+//			        // 새 이름 부여해서 관리하기
+//			        String originalFilename = upFile.getOriginalFilename();
+//			        String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
+//			        
+//			        File dest = new File(saveDirectory, renamedFilename);
+//			        log.debug("dest = {}", dest);
+//			        upFile.transferTo(dest);
+//			        
+//			        // 파일별로 attachment 테이블에 저장되어야 함.
+//			        // 2. db에 attachment 레코드 등록
+//			        Attachment attach = new Attachment();
+//			        attach.setRenamedFilename(renamedFilename);
+//			        attach.setOriginalFilename(originalFilename);
+//			        
+//			        attachments.add(attach);
+//			        
+//				}
+//			}
+//			
+//			// 게시물 수정 + 새 첨부파일 등록
+//			if(!attachments.isEmpty())
+//				notice.setAttachments(attachments);
+//			
+//			result = adminService.updateNotice(notice);
+//
+//			log.debug("delFile1 = {}", delFile1);
+//			log.debug("delFile2 = {}", delFile2);
+//			// 첨부파일이 변경되었거나 삭제 체크박스가 체크되면 기존 첨부파일 삭제
+//			
+//			if(delFile1 != 0 && delFile2 != 0) {
+//				int attachNo1 = delFile1;
+//				Attachment attach = adminService.selectOneAttachment(attachNo1);
+//				
+//				// 서버컴퓨터에서 파일삭제
+//				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+//				targetFile.delete();
+//				
+//				// db 레코드 삭제
+//				result = adminService.deleteNoticeAttachment(attachNo1);
+//				String yn = result > 0 ? "첨부파일 삭제 완료" : "첨부파일 삭제 실패";
+//				log.debug("yn = {}", yn);
+//				
+//				int attachNo2 = delFile2;
+//				attach = adminService.selectOneAttachment(attachNo2);
+//				
+//				// 서버컴퓨터에서 파일삭제
+//				targetFile = new File(saveDirectory, attach.getRenamedFilename());
+//				targetFile.delete();
+//				
+//				// db 레코드 삭제
+//				result = adminService.deleteNoticeAttachment(attachNo2);
+//				yn = result > 0 ? "첨부파일 삭제 완료" : "첨부파일 삭제 실패";
+//				log.debug("yn = {}", yn);
+//				
+//			}
+//			else if (delFile1 != 0 && delFile2 == 0) {
+//				int attachNo1 = delFile1;
+//				Attachment attach = adminService.selectOneAttachment(attachNo1);
+//				
+//				// 서버컴퓨터에서 파일삭제
+//				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+//				targetFile.delete();
+//				
+//				// db 레코드 삭제
+//				result = adminService.deleteNoticeAttachment(attachNo1);
+//				String yn = result > 0 ? "첨부파일 삭제 완료" : "첨부파일 삭제 실패";
+//				log.debug("yn = {}", yn);
+//			}
+//			else if (delFile1 == 0 && delFile2 != 0) {
+//				int attachNo2 = delFile2;
+//				Attachment attach = adminService.selectOneAttachment(attachNo2);
+//				
+//				// 서버컴퓨터에서 파일삭제
+//				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+//				targetFile.delete();
+//				
+//				// db 레코드 삭제
+//				result = adminService.deleteNoticeAttachment(attachNo2);
+//				String yn = result > 0 ? "첨부파일 삭제 완료" : "첨부파일 삭제 실패";
+//				log.debug("yn = {}", yn);
+//			}
+//				
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}	
+//		
+//		return "redirect:/notice/noticeDetail.do?no=" + notice.getNoticeNo();
+//	}
 	
 }

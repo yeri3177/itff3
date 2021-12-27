@@ -24,12 +24,13 @@ public interface NoticeDao {
 
 	int updateNotice(Notice notice);
 
-	int updateAttachment(Attachment attach);
 
 	int deleteNoticeAttachment(int attachNo);
 
 	int deleteOneNotice(int no);
 
 	List<Attachment> selectAttachmentByNoticeNo(int no);
+
+	List<Notice> mainNotice();
 
 }

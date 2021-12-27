@@ -62,7 +62,7 @@
 				<div class="pgl row">
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do" class="film_thumb">
-							<img src="https://i.ibb.co/wWNqZDf/image.jpg" class="poster" alt="아이로봇">
+							<img src="https://i.imgur.com/O9bD3Tb.jpg" class="poster" alt="아이로봇">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>
@@ -83,7 +83,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do" class="film_thumb">
-							<img src="https://i.ibb.co/f02CNQY/200809300031.jpg" class="poster" alt="이글아이" width="100%">
+							<img src="https://i.imgur.com/yVJ0cgo.jpg" class="poster" alt="이글아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>
@@ -98,13 +98,14 @@
 									<li class="en">2008</li>
 									<li class="en">119min</li>
 								</ul>
+								
 							</div>
 						</div>
 					</div>
 					
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_thumb">
-							<img src="https://i.ibb.co/ZcGwkgn/EKdu-Ylo-Uw-AAS6r-I.jpg" class="poster" alt="에이아이" width="100%">
+							<img src="https://i.imgur.com/cpXNwP2.jpg" class="poster" alt="에이아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">폐막작</span>

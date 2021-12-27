@@ -14,7 +14,7 @@
 	<tr>
 		<td class="title-cell">
 			<a target="_blank" href="index.php?option=com_gridbox&amp;task=gridbox.edit&amp;id=43">
-					<span class="post-intro-image" style="url(${pageContext.request.contextPath}/resources/upload/goods/${list.PImg });"></span>
+					<span class="post-intro-image" style="background: url('${pageContext.request.contextPath}/resources/upload/goods/${list.PImg }'); background-size: cover;"></span>
 					${list.PName }
 			</a>
 		</td>

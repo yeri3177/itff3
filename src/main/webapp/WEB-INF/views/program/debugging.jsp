@@ -63,7 +63,7 @@
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/erin.do" class="film_thumb">
-							<img src="https://i.ibb.co/4MjNVZP/Erin-Brockovich-2000-1080p-Blu-Ray-H264-mp4-20200524-123152-359.jpg" class="poster" alt="에린 브로코비치">
+							<img src="https://i.imgur.com/UKV6fJF.jpg" class="poster" alt="에린 브로코비치">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">사고력·디버깅</span>
@@ -84,7 +84,7 @@
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
 						<a href="${pageContext.request.contextPath}/program/synopsis/looper.do" class="film_thumb">
-							<img src="https://i.ibb.co/1Gy9kx7/171-BBE4950-E6-AFE819.jpg" class="poster" alt="루퍼">
+							<img src="https://i.imgur.com/fzx2KUz.jpg" class="poster" alt="루퍼">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">사고력·디버깅</span>

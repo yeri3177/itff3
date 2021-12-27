@@ -40,7 +40,7 @@ section#main-content {
 						aria-describedby="slick-slide-control00"
 						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; margin: 0px;">
 						<div class="visual_img">
-								<img class="center-block" src="https://i.ibb.co/NKfCNgq/main.png" alt="logo">
+								<img class="center-block" src="https://i.imgur.com/NMHYnrm.jpg" alt="logo">
 						</div>
 
 						<a href="#" tabindex="0">
@@ -48,12 +48,9 @@ section#main-content {
 
 							<div class="visual_txt">
 								<div class="tit-l mt50">
-									<p class="kor">
-										제 1회 <br />정보기술영화제
-									</p>
+									<p class="kor">제1회 <br />정보기술영화제</p>
 								</div>
-
-								<div class="txt">2022. 1. 7(금)-1. 14(금)</div>
+								<div class="txt">2022. 1. 7(금) - 1. 14(금)</div>
 							</div>
 						</a>
 					</div>
@@ -73,7 +70,7 @@ section#main-content {
 
 	<!-- 이 부분 페이지 밀리면 안 없어지는데 추후 수정 예정 -->
 	<div class="container-l">
-		<h2 class="main_tit en">PROGRAM</h2>
+		<h2 class="main_tit en program" style="background-color: #212121;">PROGRAM</h2>
 	</div>
 
 	<div class="container">
@@ -82,12 +79,13 @@ section#main-content {
 		</div>
 
 		<div class="film_list">
-			<div id="filmSlide1"
-				class="film-slide slick-initialized slick-slider">
+			<div id="filmSlide1" class="film-slide slick-initialized slick-slider" style="height: 350px;">
+			<button type="button" class="film-slick-arrow film-slick-prev slick-arrow" style="display: block;">Previous</button>
 
-				<div class="slick-list draggable">
-					<div class="slick-track"
-						style="opacity: 1; width: 1800px; transform: translate3d(0px, 0px, 0px);">
+				<div class="slick-list draggable" id="slider-container">
+				<button type="button" class="film-slick-arrow film-slick-next slick-arrow" style="display: block;">Next</button>
+<!-- 					<div class="slick-track" style="opacity: 1; width: 1800px; transform: translate3d(0px, 0px, 0px);"> -->
+					<div class="slick-track" id="slider-scroller">
 						
 						<!-- 반복 부분 돌리기 -->
 						<!-- 반복 시작 -->
@@ -98,12 +96,12 @@ section#main-content {
 								<a
 									href="#"
 									tabindex="0"><img
-									src="https://i.ibb.co/rkXG1Rc/image.jpg"
+									src="https://i.imgur.com/O9bD3Tb.jpg"
 									alt="still"></a>
 							</div>
 							<div class="txtbox">
-								<p class="tit">에이 아이</p>
-								<p class="dir">스티븐 스필버그</p>
+								<p class="tit">아이, 로봇</p>
+								<p class="dir">알렉스 프로야스</p>
 							</div>
 						</div>
 						<!-- 반복 끝 -->
@@ -114,12 +112,12 @@ section#main-content {
 								<a
 									href="#"
 									tabindex="0"><img
-									src="https://i.ibb.co/rkXG1Rc/image.jpg"
+									src="https://i.imgur.com/yVJ0cgo.jpg"
 									alt="still"></a>
 							</div>
 							<div class="txtbox">
-								<p class="tit">에이 아이</p>
-								<p class="dir">스티븐 스필버그</p>
+								<p class="tit">이글아이</p>
+								<p class="dir">D.J.커루소</p>
 							</div>
 						</div>
 						
@@ -129,7 +127,7 @@ section#main-content {
 								<a
 									href="#"
 									tabindex="0"><img
-									src="https://i.ibb.co/rkXG1Rc/image.jpg"
+									src="https://i.imgur.com/cpXNwP2.jpg"
 									alt="still"></a>
 							</div>
 							<div class="txtbox">
@@ -143,12 +141,138 @@ section#main-content {
 								<a
 									href="#"
 									tabindex="0"><img
-									src="https://i.ibb.co/rkXG1Rc/image.jpg"
+									src="https://i.imgur.com/zrU0uIj.jpg"
 									alt="still"></a>
 							</div>
 							<div class="txtbox">
-								<p class="tit">에이 아이</p>
-								<p class="dir">스티븐 스필버그</p>
+								<p class="tit">패스워드</p>
+								<p class="dir">피터 호윗</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/v1jO7Ag.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">가타카</p>
+								<p class="dir">앤드류 니콜</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/NJOvXw0.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">13층</p>
+								<p class="dir">조세프 루스낵</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/IAPZHFR.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">매트릭스</p>
+								<p class="dir">워쇼스키 형제</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/wd08k8i.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">그녀</p>
+								<p class="dir">스파이크 존즈</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/wTocWM1.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">시티즌포</p>
+								<p class="dir">피터 호윗</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/My5qWd0.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">007:카지노 로얄</p>
+								<p class="dir">마틴 캠벨</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/DAtzvdf.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">미션 임파서블: 고스트 프로토콜</p>
+								<p class="dir">브래드 버드</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/UKV6fJF.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">에린 브로코비치</p>
+								<p class="dir">스티븐 소더버그</p>
+							</div>
+						</div>
+						<div class="film_li slick-slide slick-active" data-slick-index="3"
+							aria-hidden="false" tabindex="0" style="width: 430px;">
+							<div class="thumb">
+								<a
+									href="#"
+									tabindex="0"><img
+									src="https://i.imgur.com/fzx2KUz.jpg"
+									alt="still"></a>
+							</div>
+							<div class="txtbox">
+								<p class="tit">루퍼</p>
+								<p class="dir">라이언 존슨</p>
 							</div>
 						</div>
 					</div>
@@ -164,13 +288,13 @@ section#main-content {
 <div class="banner">
 	<div class="banner-slide slick-initialized slick-slider slick-dotted">
 		<div class="slick-list draggable">
-			<div class="slick-track" style="opacity: 1; width: 2562px;">
+			<div class="slick-track">
 				<div class="bn_inner bn1 slick-slide slick-current slick-active"
-					style="width: 100%; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
+					style="width: 100%; height: 300px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
 					data-slick-index="0" aria-hidden="false" tabindex="0"
 					role="tabpanel" id="slick-slide40"
 					aria-describedby="slick-slide-control40"
-					onclick="location.href='${pageContext.request.contextPath }'"> <!-- 이 부분 굿즈샵 링크 연결 -->
+					onclick="location.href='${pageContext.request.contextPath }/goods/goodsList.do'"> <!-- 이 부분 굿즈샵 링크 연결 -->
 					<div class="container">
 						<a href="#" target="_blank" tabindex="0">
 						</a>
@@ -209,7 +333,7 @@ section#main-content {
 
 $(document).ready(function () {
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminMainNotice.do",
+		url:"${pageContext.request.contextPath}/notice/mainNotice.do",
 		method: "GET",
 		success: function(data) {
 			$("#notice").html(data);
@@ -220,6 +344,23 @@ $(document).ready(function () {
 	});
 });
 
+</script>
+
+<script>
+
+function slideSlider(){
+	  $("#slider-scroller").css({"left":"0%","transition":"all 0s linear"});
+	  $("#slider-scroller").css({"left": String(parseInt($("#slider-scroller").css("left")) - 800) + "px","transition":"all 13s linear"});
+	  setTimeout(function(){moveSliderItem()}, 3435);
+	}
+
+	function moveSliderItem(){
+	  $("#slider-scroller div").first().detach().appendTo($("#slider-scroller"));
+	  slideSlider();
+	}
+
+	slideSlider();
+	
 </script>
 
 <!-- //container -->

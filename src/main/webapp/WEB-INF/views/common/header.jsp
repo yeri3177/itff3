@@ -106,12 +106,12 @@
 			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 			    					</sec:authorize>
-									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';"><sec:authentication property="principal.name"/>님</button></li>
+									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"
 							    		action="${pageContext.request.contextPath}/member/memberLogout.do">
-								    	<button class="btn btn-link" type="submit">Logout</button>
+								    	<button class="btn btn-link" type="submit">LOGOUT</button>
 				 				   </form:form>
 		    					</sec:authorize>
 		
@@ -121,7 +121,7 @@
 
 						<div class="hd_inner">
 							<h1 class="logo" onclick="location.href='${pageContext.request.contextPath }'">
-								<img src="https://i.ibb.co/jJFK12W/Untitled-12.png" alt="logo" class="logo_img"/>
+								<img src="https://i.imgur.com/fFC9orj.png" alt="logo" class="logo_img"/>
 							</h1>
 
 							<div class="f_r">

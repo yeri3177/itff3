@@ -62,10 +62,6 @@ public class NoticeDaoImpl implements NoticeDao {
 		return session.update("notice.updateNotice", notice);
 	}
 
-	@Override
-	public int updateAttachment(Attachment attach) {
-		return session.update("notice.updateAttachment", attach);
-	}
 
 	@Override
 	public int deleteNoticeAttachment(int attachNo) {
@@ -80,6 +76,11 @@ public class NoticeDaoImpl implements NoticeDao {
 	@Override
 	public List<Attachment> selectAttachmentByNoticeNo(int no) {
 		return session.selectList("notice.selectAttachmentByNoticeNo", no);
+	}
+
+	@Override
+	public List<Notice> mainNotice() {
+		return session.selectList("notice.mainNotice");
 	}
 	
 }
