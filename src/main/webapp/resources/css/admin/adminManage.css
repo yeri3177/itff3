@@ -330,9 +330,9 @@ body[data-joomla-version="4"] .row {
     align-items: center;
     background-position: center;
     background-size: cover;
-    border-radius: 3px;
     display: flex;
     height: 50px;
+    border-radius: 30px;
     justify-content: center;
     margin-right: 15px;
     min-width: 50px;
