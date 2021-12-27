@@ -112,9 +112,6 @@
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
-						<a href="javascript:alert('예매 기간이 아닙니다.')">
-							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
-						</a>
 					</td>
 				</tr>				
 
@@ -129,9 +126,6 @@
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
-						<a href="javascript:alert('예매 기간이 아닙니다.')">
-							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
-						</a>
 					</td>
 				</tr>
 				
@@ -145,9 +139,6 @@
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
-						<a href="javascript:alert('예매 기간이 아닙니다.')">
-							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
-						</a>
 					</td>
 				</tr>
 				
@@ -161,9 +152,6 @@
 						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 					</td>
 					<td class="event">
-						<a href="javascript:alert('예매 기간이 아닙니다.')">
-							<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" style="width:40px">
-						</a>
 					</td>
 				</tr>				
 	
