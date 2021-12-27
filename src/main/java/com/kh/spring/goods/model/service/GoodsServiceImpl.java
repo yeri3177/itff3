@@ -72,6 +72,16 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.selectOneImg(map);
 	}
 
+	@Override
+	public int selectOneOptionId(Map<String, Object> map) {
+		return goodsDao.selectOneOptionId(map);
+	}
+
+	@Override
+	public int insertCart(Map<String, Object> param) {
+		return goodsDao.insertCart(param);
+	}
+
 
 	
 	

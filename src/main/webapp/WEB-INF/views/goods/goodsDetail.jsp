@@ -1,4 +1,8 @@
-<%@page import="com.kh.spring.goods.model.vo.GoodsJoin"%>
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
+
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
@@ -11,6 +15,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%	
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	
+	if(!"anonymousUser".equals(authentication.getPrincipal())){
+		Member loginMember = (Member) authentication.getPrincipal();
+		pageContext.setAttribute("loginMember", loginMember);
+	}
+	
 	List<OptionDetail> optionList = (List<OptionDetail>) request.getAttribute("optionDetail");
 	System.out.println(optionList);
 	
@@ -51,11 +63,17 @@
 
 %>
 
+
 <!-- css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsDetail.css" />
+
+<!-- fontawesome icon -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+
 
 <!-- 부트스트랩 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -282,8 +300,17 @@
 				
 		<!-- 상단 > 오른쪽 영역 -->
 		<div id="top-right-box" class="d-inline-block">
+	
+<!-- 장바구니 버튼 제출시 폼 -->			
+<%-- <form 
+	id="goodsOptionFrm" 
+	name="goodsOptionFrm"
+	action="${pageContext.request.contextPath}/goods/cartEnroll.do?${_csrf.parameterName}=${_csrf.token}"
+	method="post"> --%>
 			
-			<form action="">
+			<input type=hidden name="goodsId" id="goodsId" value="${goods.PId}">		
+			<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">		
+			
 			
 			<!-- 상품명 -->
 			<div class="goods-name">${goods.PName}</div>
@@ -292,7 +319,6 @@
 			<div class="goods-price">
 				<fmt:formatNumber value="${goods.PPrice}" pattern="#,### 원" />
 				<input type=hidden name="sell_price" id="sell_price" value="${goods.PPrice}">
-				<input type=hidden name="goods_id" id="goods_id" value="${goods.PId}">
 			</div>
 
 			<!-- 
@@ -438,21 +464,37 @@
 			</div>
 			
 			<!-- 장바구니 버튼 -->
-			<input type="submit" value="장바구니" class="cart-btn"/>
+			<!-- <input type="submit" value="장바구니" class="cart-btn"/> -->
+			<input type="button" value="장바구니" class="cart-btn"/>
 			
-			</form>	
+<!-- </form>	 -->
+
 		</div> <!-- end of 상단 > 오른쪽 영역 -->
 	</div> <!-- end of 상단 영역 -->
+	
+	
+	
 </section>
 
-<%-- <form
-	action="${pageContext.request.contextPath}/goods/selectColorByType.do?${_csrf.parameterName}=${_csrf.token}"
-	method="post"
-	name="colorByTypeFrm">
-	<input type="hidden" name="goodsId">
-	<input type="hidden" name="optionType">	
+<!-- 장바구니 toasts -->
+<div id="cartToasts-div">
+	<div 
+		id="cartToasts" 
+		class="toast align-items-center text-white bg-dark border-0" 
+		role="alert" aria-live="assertive" 
+		aria-atomic="true">
+	  <div class="d-flex">
+	    <div class="toast-body">
+	      <span><i class="fas fa-exclamation-circle"></i></span>
+	      &nbsp;&nbsp;&nbsp;
+	      <!-- 상품을 장바구니에 담았습니다. -->
+	      <span class="cart-msg"></span>
+	    </div>
+	    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+	  </div>
+	</div>
+</div>
 
-</form> --%>
 
 
 <script>
@@ -467,10 +509,18 @@ $(() => {
 	/* 색상 -> 사이즈 */
 	fn_colorToSize();
 	
+	/* 최초로딩시 -> 프리뷰이미지 */
 	fn_searchImg();
 	
+	/* 색상변경시 -> 프리뷰이미지 */
 	fn_colorChange();
-
+	
+	/* 장바구니 버튼 클릭시 */
+	fn_cartBtn();
+	
+	/* const $toast = $("#cartToasts");
+	$toast.show(); */
+	
     // 오른쪽 영역 고정시키기 
     //$("#top-right-box").Scrolling($("#top-left-box").offset().top, $("footer").offset().top);
     
@@ -478,11 +528,67 @@ $(() => {
     //Scrolling2();
 });
 
+/* 장바구니버튼 */
+function fn_cartBtn(){
+	/* $(document.goodsOptionFrm).submit((e) => { */
+	$(".cart-btn").click((e) => {
+		//e.preventDefault();
+		
+		const $toast = $("#cartToasts");
+		
+		// 스크롤 맨위로 이동
+		$('html,body').scrollTop(0);
+		
+		// 토스트 메세지 보이게하기 
+		$toast.show();
+		
+		// 2초후에 토스트 사라지게 하기
+		setTimeout(function(){
+		    $toast.hide();		
+		},2000);
+		
+		// 전달값 
+		const cart = {
+			goodsId : $("[name=goodsId]").val(),
+			optionType : $("select[name='optionType'] option:selected").text(),
+			optionColor : $("input[name=optionColor]:checked").attr('id'),
+			optionSize : $("input[name=optionSize]:checked").attr('id'),
+			memberId : $("[name=memberId]").val(),
+			goodsQty : $("[name=amount]").val()
+		}
+		
+		console.log(cart);
+		
+		//const jsonStr = JSON.stringify(cart);
+		//console.log(jsonStr);
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/goods/InsertCart.do?${_csrf.parameterName}=${_csrf.token}",
+			data: cart,
+			/* data: jsonStr,
+			contentType: "application/json; charset=utf-8", */
+			type : "post",
+            
+            success(data) {
+            	console.log(data); //{msg: '상품을 장바구니에 담았습니다.'}
+            	
+            	var msg = Object.values(data);
+            	
+            	$(".cart-msg").text(msg);
+            	
+            },
+            error: console.log
+        });
+	});
+};
+
+
+/* 프리뷰 이미지 찾기  */
 function fn_searchImg(){
 
 	const optionType = $("select[name='optionType'] option:selected").text();
 	const optionColor = $("input[name=optionColor]:checked").attr('id');
-	const goodsId = $("#goods_id").val();
+	const goodsId = $("#goodsId").val();
 	
 	console.log("기종 = " + optionType);
 	console.log("색상 = " + optionColor);
@@ -496,7 +602,7 @@ function fn_searchImg(){
             console.log(error);
         },
         success : function(result){
-        	console.log(result);
+        	//console.log(result);
         	
         	/* 이미지 넣기 */
         	$("#preview-img-div").html(result);
@@ -504,6 +610,8 @@ function fn_searchImg(){
         }
     });
 };
+
+/* 색상옵션 변경시 프리뷰 이미지찾기 함수 실행 */
 function fn_colorChange(){
 	
 	$(".colorChage input[type='radio']").change((e) => {
@@ -524,14 +632,6 @@ function fn_typeToColor(){
 		
 		console.log(optionType); // 기종
 		console.log(goodsId); // 상품아이디
-		
-		//const $frm = $(document.colorByTypeFrm);
-		//const $frm = $(document.colorByTypeFrm).serialize();
-		
-		//$frm.find("[name=goodsId]").val(goodsId);
-		//$frm.find("[name=optionType]").val(optionType);
-		
-		//const frm = $(document.colorByTypeFrm).serialize();
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/goods/selectColorByType.do?${_csrf.parameterName}=${_csrf.token}",

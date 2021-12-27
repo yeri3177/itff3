@@ -8,6 +8,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,7 +68,7 @@ public class GoodsController {
 	 * 상품 상세 페이지
 	 */
 	@GetMapping("/goodsDetail.do")
-	public void goodsDetail(@RequestParam int pid, Model model, HttpServletRequest request) {
+	public void goodsDetail(@RequestParam int pid, Model model, HttpServletRequest request, Authentication authentication) {
 		// 상품 아이디 확인 
 		log.debug("pid = {}", pid);
 		
@@ -160,6 +163,52 @@ public class GoodsController {
 		model.addAttribute("list", list);
 	
 		return "goods/PreviewImgDiv";
+	}
+	
+	/**
+	 * 장바구니 등록
+	 */
+	@PostMapping("/InsertCart.do")
+	public ResponseEntity<?> InsertCart(@RequestParam Map<String, Object> map) {
+		try {
+			log.debug("map = {}", map);
+			String pId = (String) map.get("goodsId");
+			String memberId = (String) map.get("memberId");
+			String cartQty = (String) map.get("goodsQty");
+			
+			log.debug("pId = {}", pId);
+			log.debug("memberId = {}", memberId);
+			log.debug("cartQty = {}", cartQty);
+			
+			//옵션아이디찾기
+			int optionId = goodsService.selectOneOptionId(map);
+			log.debug("optionId = {}", optionId);
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("optionId", optionId);
+			param.put("pId", pId);
+			param.put("memberId", memberId);
+			param.put("cartQty", cartQty);
+			
+			// goods_cart테이블에 레코드 추가하기 
+			int result = goodsService.insertCart(param);
+			log.debug("result = {}", result);
+			
+			Map<String, Object> msg = new HashMap<>();
+			
+			if(result>0) {
+				msg.put("msg", "상품을 장바구니에 담았습니다.");
+			}
+			
+			return ResponseEntity.ok(msg);
+			
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			return ResponseEntity
+					.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.build();
+		}
+		
 	}
 	
 	/**

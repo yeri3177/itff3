@@ -31,6 +31,10 @@ public interface GoodsDao {
 
 	List<OptionDetail> selectOneImg(Map<String, Object> map);
 
+	int selectOneOptionId(Map<String, Object> map);
+
+	int insertCart(Map<String, Object> param);
+
 
 
 }

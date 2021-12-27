@@ -347,7 +347,12 @@ input[name="tab_item"] {
 }
 
 
-
+/****************** 장바구니 버튼 토스트 ***************************/
+#cartToasts-div {
+	position: absolute;
+	bottom: 40px;
+	left: 43%;
+} 
 
 
 
