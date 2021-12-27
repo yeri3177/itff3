@@ -70,7 +70,7 @@
 							<td class="list_left list_title" style="display: flex;">
 								<div class="article_type">
 									<c:choose>
-										<!-- 첨부파일이 있으면 있는 그림, 없으면 없는 그림 -->
+										<%-- 첨부파일 유무에 따라 다른 이미지 표시 --%>
 										<c:when test="${review.attachCount eq 0}">
 											<span><img src="${pageContext.request.contextPath}/resources/upload/board/첨부파일 없음.png" style="position: relative; top: 3px;" alt="" /></span>
 										</c:when>
