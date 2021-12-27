@@ -93,7 +93,7 @@ public class NoticeController {
 	@PostMapping("/noticeEnroll.do")
 	public String noticeEnroll(
 			// 한 게시물에 여러 첨부파일이라 [] 형식
-	         @RequestParam(value = "upFile", required = false) MultipartFile[] upFiles,
+	         @RequestParam(value = "upFile", required = false) MultipartFile upFile,
 	         @ModelAttribute Notice notice, 
 	         RedirectAttributes redirectAttr
 			 ) throws Exception {
@@ -105,7 +105,6 @@ public class NoticeController {
 			// 첨부파일 List 생성
 			List<Attachment> attachments = new ArrayList<>();
 			
-			for(MultipartFile upFile : upFiles) {
 				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
 					
@@ -132,7 +131,6 @@ public class NoticeController {
 		            log.debug("하이");
 					
 				}
-			}
 			
 			if(!attachments.isEmpty()) {
 				notice.setAttachments(attachments);
@@ -328,7 +326,7 @@ public class NoticeController {
 		
 		
 		// 파일을 서버에서도 삭제
-		if(notice != null && attach.size() != 0) {
+		if(attach != null && attach.size() != 0) {
 			
 			String saveDirectory = application.getRealPath("/resources/upload/notice");
 			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
