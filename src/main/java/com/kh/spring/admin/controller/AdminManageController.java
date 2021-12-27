@@ -143,6 +143,13 @@ public class AdminManageController {
 		return list;
 	}
 	
+	/**
+	 * [일정]
+	 */
+	
+	@GetMapping("/calendar.do")
+	public void calendar() {}
+	
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
