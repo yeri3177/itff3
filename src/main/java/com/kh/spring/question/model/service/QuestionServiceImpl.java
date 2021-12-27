@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.question.model.dao.QuestionDao;
 import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -98,6 +99,36 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public int deleteQuestionAttachment(int attachNo1) {
 		return questionDao.deleteQuestionAttachment(attachNo1);
+	}
+
+	@Override
+	public QuestionComment selectQuestionComment(int no) {
+		return questionDao.selectQuestionComment(no);
+	}
+
+	@Override
+	public int insertQuestionComment(Map<String, Object> param) {
+		return questionDao.insertQuestionComment(param);
+	}
+
+	@Override
+	public int deleteQuestionComment(int commentNo) {
+		return questionDao.deleteQuestionComment(commentNo);
+	}
+
+	@Override
+	public List<Question> selectQuestionListByAdmin(int limit, int offset) {
+		return questionDao.selectQuestionListByAdmin(limit, offset);
+	}
+
+	@Override
+	public int countTotalContentByAdmin() {
+		return questionDao.countTotalContentByAdmin();
+	}
+
+	@Override
+	public int deleteOneQuestion(int questionNo) {
+		return questionDao.deleteOneQuestion(questionNo);
 	}
 	
 }

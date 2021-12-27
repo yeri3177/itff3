@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -73,20 +74,58 @@ $(() => {
 		<input type="button" value="글쓰기" id="btn-add"
 			class="btn btn-outline-success" onclick="goBoardForm();" />
 
-	<table id="tbl-board" class="table table-striped table-hover">
-		<tr style="display: none">
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
-		<c:forEach var="question" items="${questionList}" varStatus="vs">
-			<tr data-no="${question.questionNo}" class="brd_li">
-				<td>${question.questionTitle}</td>
-				<td><fmt:formatDate value="${question.regDate}"
-						pattern="yyyy/MM/dd" /></td>
+		
+		<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
+			<table id="tbl-board" class="table table-striped table-hover">
+				<tr style="display: none">
+					<th>제목</th>
+					<th>작성일</th>
+				</tr>
+				<c:forEach var="question" items="${questionList}" varStatus="vs">
+					<tr data-no="${question.questionNo}" class="brd_li">
+						<td>
+							${question.questionTitle}
+							<c:if test="${question.attachCount != 0}">
+								<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" 
+									style="width:13px; padding:0; padding-top:14px;">
+							</c:if>
+						
+						</td>
+						
+						<td><fmt:formatDate value="${question.regDate}" pattern="yyyy/MM/dd" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+			<div class="pagenation">${pagebar}</div>
+		</sec:authorize>
+	
+	<sec:authorize access="hasRole('ROLE_ADMIN') && hasRole('ROLE_USER')">
+		<table id="tbl-board" class="table table-striped table-hover">
+			<tr style="display: none">
+				<th>제목</th>
+				<th>작성일</th>
 			</tr>
-		</c:forEach>
-	</table>
-	<div class="pagenation">${pagebar}</div>
+			<c:forEach var="question" items="${qlByAdmin}" varStatus="vs">
+				<tr data-no="${question.questionNo}" class="brd_li">
+					<td>
+						${question.questionTitle}
+						<c:if test="${question.attachCount != 0}">
+							<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" 
+								style="width:13px; padding:0; padding-top:14px;">
+						</c:if>
+					
+					</td>
+					
+					<td><fmt:formatDate value="${question.regDate}" pattern="yyyy/MM/dd" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<div class="pagenation">${pagebarByAdmin}</div>
+	</sec:authorize>
+	
+	
 </section>
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

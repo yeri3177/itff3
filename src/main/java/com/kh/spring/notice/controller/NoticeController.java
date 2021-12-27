@@ -316,7 +316,7 @@ public class NoticeController {
 	@GetMapping("/noticeDelete.do")
 	public String noticeDelete(@RequestParam int no, Notice notice) {
 		
-		log.debug("해당 글번호가 왔니? {}", no);
+		log.debug("no? {}", no);
 		log.debug("delete에서의 notice는? {}", notice);
 
 		

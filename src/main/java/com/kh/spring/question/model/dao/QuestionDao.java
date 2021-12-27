@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.question.model.vo.Question;
+import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 public interface QuestionDao {
@@ -23,6 +24,18 @@ public interface QuestionDao {
 	int updateQuestion(Question question);
 
 	int deleteQuestionAttachment(int attachNo1);
+
+	QuestionComment selectQuestionComment(int no);
+
+	int insertQuestionComment(Map<String, Object> param);
+
+	int deleteQuestionComment(int commentNo);
+
+	List<Question> selectQuestionListByAdmin(int limit, int offset);
+
+	int countTotalContentByAdmin();
+
+	int deleteOneQuestion(int questionNo);
 
 
 
