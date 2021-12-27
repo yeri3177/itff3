@@ -391,4 +391,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.updateQuestionAnswerToN(questionNo);
 	}
 
+	@Override
+	public int adminManageTodayReviewCount() {
+		return adminDao.adminManageTodayReviewCount();
+	}
+
+	@Override
+	public int adminManageTodayQuestionCount() {
+		return adminDao.adminManageTodayQuestionCount();
+	}
+
 }
