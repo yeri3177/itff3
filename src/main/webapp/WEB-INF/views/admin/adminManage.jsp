@@ -15,7 +15,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminManage.css" />
 
-		<div class="container-fluid container-main" onload="printClock()">
+		<div class="container-fluid container-main">
 			<button
 				class="navbar-toggler toggler-toolbar toggler-burger collapsed collapse show"
 				type="button" data-bs-toggle="collapse"
@@ -163,49 +163,31 @@
 															<tbody>
 																<tr>
 																<td>
-																<span class="post-intro-image gridbox-app-item-single">
-																	<i class="zmdi zmdi-file"></i>
-																</span> 
 																<span class="recent-apps-title"> Test </span>
 																</td>
 															</tr>
 																<tr>
 																	<td>
-																		<span class="post-intro-image gridbox-app-item-blog">
-																			<i class="zmdi zmdi-format-color-text"></i>
-																		</span> 
 																		<span class="recent-apps-title"> Test </span>
 																	</td>
 																</tr>
 																<tr>
 																	<td>
-																		<span class="post-intro-image gridbox-app-item-blank">
-																			<i class="zmdi zmdi-crop-free"></i>
-																		</span> 
 																		<span class="recent-apps-title"> Test </span>
 																	</td>
 																</tr>
 																<tr>
 																	<td>
-																		<span class="post-intro-image gridbox-app-item-portfolio">
-																			<i class="zmdi zmdi-camera"></i>
-																		</span> 
 																		<span class="recent-apps-title"> Test </span>
 																	</td>
 																</tr>
 																<tr>
 																	<td>
-																		<span class="post-intro-image gridbox-app-item-hotel-rooms">
-																			<i class="zmdi zmdi-hotel"></i>
-																		</span> 
 																		<span class="recent-apps-title"> Test </span>
 																	</td>
 																</tr>
 																<tr>
 																	<td>
-																		<span class="post-intro-image gridbox-app-item-products">
-																			<i class="zmdi zmdi-shopping-basket"></i>
-																		</span> 
 																		<span class="recent-apps-title"> Test </span>
 																	</td>
 																</tr>
@@ -226,73 +208,63 @@
 															</thead>
 															<tbody>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet-portrait/hotel-rooms/hr-4.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-4.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-4.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 18 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet-portrait/hotel-rooms/hr-5.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-5.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-5.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 13 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet-portrait/hotel-rooms/hr-2.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-2.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-2.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 12 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/laptop/hotel-rooms/hr-2.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-2.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-2.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 25 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/laptop/hotel-rooms/hr-4.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-4.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-4.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 38 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/laptop/hotel-rooms/hr-5.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-5.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-5.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 27 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet/hotel-rooms/hr-2.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-2.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-2.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 20 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet/hotel-rooms/hr-5.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-5.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-5.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 21 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/tablet/hotel-rooms/hr-4.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-4.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-4.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 29 KB </span></td>
 																</tr>
 																<tr>
-																	<td class="title-td"><span
-																		class="recent-file-image"
-																		style="background-image: url(https://www.balbooa.com/demo-admin/administrator/index.php?option=com_gridbox&amp;task=uploader.showImage&amp;image=/compressed/phone-portrait/hotel-rooms/hr-2.webp&amp;time=1639639200);"></span>
-																		<span class="file-title"> hr-2.webp </span></td>
+																	<td class="title-td">
+																		<span class="file-title"> hr-2.webp </span>
+																	</td>
 																	<td class="filesize-td"><span> 4 KB </span></td>
 																</tr>
 															</tbody>
@@ -1159,19 +1131,8 @@ function printClock() {
     var clock = document.getElementById("clock"); // 출력할 장소 선택
     var currentDate = new Date(); // 현재시간
     var calendar = currentDate.getFullYear() + ". " + (currentDate.getMonth()+1) + ". " + currentDate.getDate() + " " // 현재 날짜
-    var amPm = 'AM'; // 초기값 AM
-    var currentHours = addZeros(currentDate.getHours(),2); 
-    var currentMinute = addZeros(currentDate.getMinutes() ,2);
-    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
-    
-    if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
-    	amPm = 'PM';
-    	currentHours = addZeros(currentHours - 12,2);
-    }
 
-    clock.innerHTML = calendar+"  "+currentHours+":"+currentMinute+":"+currentSeconds+ amPm+"</span>"; //날짜를 출력해 줌
-    
-    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+    clock.innerHTML = calendar; //날짜를 출력해 줌
 }
 
 function addZeros(num, digit) { // 자릿수 맞춰주기

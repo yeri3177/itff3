@@ -316,7 +316,8 @@ table {
     padding-bottom: 15px;
 }
 .txt-primary {
-    color: #592a80 !important;
+    color: rgb(43, 63, 107) !important;
+    font-weight: bold;
 }
 
 .traffic_list li {

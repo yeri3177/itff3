@@ -6,7 +6,7 @@
     --nav--width: 92px;
 
     /* Colores */
-    --first-color: #0c5df4;
+    --first-color: #f7826c;
     --bg-color: #12192c;
     --sub-color: #b6cefc;
     --white-color: #fff;
@@ -56,9 +56,9 @@ a {
     left: 0;
     width: var(--nav--width);
     height: 100vh;
-    background-color: var(--bg-color);
+    background-color: #374249;
     color: var(--white-color);
-    padding: 2rem 2rem 2rem;
+    padding: 1.9rem 1.9rem 1.9rem;
     transition: .5s;
     z-index: var(--z-fixed);
 }
@@ -106,6 +106,8 @@ a {
 
 .nav__link:hover {
     background-color: var(--first-color);
+    color: white !important;
+	text-decoration: none !important; 
 }
 
 .nav__icon {
@@ -147,12 +149,14 @@ a {
 }
 
 .collapse__sublink {
-    color: var(--sub-color);
+    color: white;
     font-size: var(--small-font-size);
 }
 
 .collapse__sublink:hover {
     color: var(--white-color);
+    font-weight: bold;
+    text-decoration: none;
 }
 
 /* Show collapse */
@@ -168,7 +172,7 @@ a {
 }
 
 ::selection {
-    background: rgb(52, 73, 94);
+    background: rgb(43, 63, 107);
     color: #FFF;
     text-shadow: none;
 }
