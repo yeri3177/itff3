@@ -90,13 +90,12 @@
 			
 		</div><!-- end of 상품 목록 카드 리스트-->
 		
-		<div id="pagebar">
-			${pagebar}
-		</div>
-		
-		
 	</div> <!-- 상품 목록 부분 끝 -->
 	
+	<!-- 페이지바 -->
+	<div id="pagebar">
+		${pagebar}
+	</div>
 	
 	
 </section>
