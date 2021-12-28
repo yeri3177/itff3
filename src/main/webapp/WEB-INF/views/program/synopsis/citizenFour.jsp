@@ -60,7 +60,7 @@
             <li>미국</li>
             <li>2014</li>
             <li>114min</li>
-            <li>15 +</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 

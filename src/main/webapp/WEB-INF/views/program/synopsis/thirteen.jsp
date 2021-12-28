@@ -60,7 +60,7 @@
             <li>미국 독일</li>
             <li>1999</li>
             <li>100min</li>
-            <li>15 +</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 

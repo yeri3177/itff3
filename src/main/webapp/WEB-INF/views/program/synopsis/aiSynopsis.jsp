@@ -61,7 +61,7 @@
             <li>미국</li>
             <li>2001</li>
             <li>146min</li>
-            <li>15 +</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 

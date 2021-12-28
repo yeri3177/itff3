@@ -60,7 +60,7 @@
             <li>미국</li>
             <li>1997</li>
             <li>108min</li>
-            <li>12 +</li>
+            <li>15 +</li>
             <li>color</li>
          </ul>
 
