@@ -17,7 +17,8 @@
 			#{nickname},
 			default,
 			1000,
-			default
+			default,
+			'기본 프로필 이미지.png'
 		)
 	</insert>
 	
