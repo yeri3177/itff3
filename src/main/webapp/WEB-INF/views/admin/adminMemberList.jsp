@@ -217,6 +217,16 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										</div>
 									</div>
 									<!-- 회원 포인트 지급 -->
+									<!--   -->
+									<div class="modal fade" id="adminSaveNotify" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
+										<div id="modal_ajax4" class="modal-dialog" role="document"
+											style="max-width: 500px;" >
+
+											</div>
+										</div>
+										<!--  -->
 						
 						</div>
 					</div>
@@ -339,25 +349,25 @@ function memberPoint_btn(memberId) {
 
 <script>
 
-//Bootstrap multiple modal
-var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+function save_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
 
-$(document).on('show.bs.modal', '.modal', function () {
-    var zIndex = 1040 + (10 * count);
-
-    $(this).css('z-index', zIndex);
-    setTimeout(function() {
-        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-    }, 0);
-
-    count = count + 1
-
-});
-
-// multiple modal Scrollbar fix
-$(document).on('hidden.bs.modal', '.modal', function () {
-    $('.modal:visible').length && $(document.body).addClass('modal-open');
-});
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax4").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
 
 </script>
 

@@ -5,8 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,8 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <!-- 카카오맵 API -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
 
 <!-- bootstrap js: jquery load 이후에 작성할 것.-->
 <script
@@ -48,6 +50,68 @@
 	integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+
+var socket = null;
+
+$(document).ready(function() {
+		sock = new SockJS("<c:url value="/echo-ws"/>");
+		socket = sock;
+		
+		sock.onopen = function() {
+	   		console.log('Info: connection opened.');
+		};
+
+		sock.onmessage = function(event) {
+	   		console.log('Info: connection onmessage.');
+		};
+
+		sock.onclose = function(event) {
+	   		console.log('Info: connection closed');
+		};
+	    
+		sock.onerror = function(err) {
+	   		console.log('Error:', err);
+		};
+
+		console.log(socket);
+
+		// send 클릭시
+		// 		 $("#sendBtn").click(function(){
+		// 			 sendMessage();
+		// 		 })
+	});
+
+// 	function sendMessage(){
+// 		sock.send($("#inputMsg").val());	// 소켓으로 전송
+// 	}
+
+</script>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+</script>
+
 <!-- 
 IE 지원용 babel-standalone
 <script
@@ -61,7 +125,7 @@ IE 지원용: babel-polyfill
 	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  -->
- 
+
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,12 +138,11 @@ IE 지원용: babel-polyfill
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
-<body onload="printClock()">
+<body>
 	<!-- // hd_bg -->
 
-<!-- 	Header -->
-<header id="hd" class="hd"> 
-</header> 
-<!-- 	//header -->
+	<!-- 	Header -->
+	<header id="hd" class="hd"> </header>
+	<!-- 	//header -->
 
 	<section class="ftco-section">

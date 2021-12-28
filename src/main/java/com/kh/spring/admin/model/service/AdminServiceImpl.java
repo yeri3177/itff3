@@ -401,4 +401,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.adminManageTodayQuestionCount();
 	}
 
+	@Override
+	public int insertSaveNotify(Map<String, Object> param) {
+		return adminDao.insertSaveNotify(param);
+	}
+	
 }

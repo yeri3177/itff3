@@ -64,6 +64,113 @@
 	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+toastr.options = {
+		  "closeButton": false,
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": true,
+		  "positionClass": "toast-top-right",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "100",
+		  "hideDuration": "1000",
+		  "timeOut": "3000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		
+$('#error').on('click', function(){
+	toastr.error('error');
+});
+$('#warning').on('click', function(){
+	toastr.warning('warning');
+});
+$('#success').on('click', function(){
+	toastr.success('success');
+});
+$('#info').on('click', function(){
+	toastr.info('info');
+});
+
+</script>
+
+
+<script>
+
+// 전역변수 설정
+var socket  = null;
+
+$(document).ready(function(){
+	
+    // 웹소켓 연결
+    sock = new SockJS("<c:url value="/echo-ws"/>");
+
+    sock.onopen = function() {
+   		console.log('Info: connection opened.');
+	};
+
+	sock.onmessage = function(evt) {
+   		console.log('Info: connection onmessage.');
+   		console.log(evt.data);
+   		
+   		toastr.info('[관리자 메세지]: ' + evt.data);
+	};
+
+	sock.onclose = function(event) {
+   		console.log('Info: connection closed');
+	};
+    
+	sock.onerror = function(err) {
+   		console.log('Error:', err);
+	};
+
+});
+  		
+</script>
+
+<!-- 
+<script>
+
+//전역변수 설정
+var socket  = null;
+
+$(document).ready(function(){
+	
+	sock = new SockJS("<c:url value="/echo-ws"/>");
+
+// 데이터를 전달 받았을때 
+sock.onmessage = onMessage; // toast 생성
+console.log(sock.onmessage);
+});
+
+// 실시간 알림 받았을 시
+ //evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
+	function onMessage(evt){
+		var data = evt.data;
+		// toast
+		let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
+		toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
+		toast += "<small class='text-muted'></small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
+		toast += "<span aria-hidden='true'>&times;</span></button>";
+		toast += "</div> <div class='toast-body'>" + data + "</div></div>";
+		$("#msgStack").append(toast);
+		$(".toast").toast({"animation": true, "autohide": false});
+// 		$(".toast").toast({"animation": true, "autohide": true, "delay": 5000});
+		$('.toast').toast('show');
+	};
+
+</script>
+ -->
+
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

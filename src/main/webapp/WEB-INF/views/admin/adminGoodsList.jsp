@@ -47,7 +47,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					
 					<button 
 					type="button"
-					class="btn btn-dark"
+					class="btn btn-outline-primary"
 					data-toggle="modal"
 					data-target="#adminGoodsInsert"
 					onclick="goods_insert_btn();">상품등록</button>

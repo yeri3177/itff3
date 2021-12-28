@@ -40,6 +40,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
 import com.kh.spring.admin.model.vo.PointHistory;
+import com.kh.spring.admin.model.vo.SaveNotify;
 import com.kh.spring.chat.model.service.ChatService;
 import com.kh.spring.chat.model.vo.ChatLog;
 import com.kh.spring.common.HiSpringUtils;
@@ -173,6 +174,28 @@ public class AdminManageController {
 	
 	@GetMapping("/calendar.do")
 	public void calendar() {}
+
+	@GetMapping("/saveNotify.do")
+	public void saveNotify(@RequestParam String id, Model model) {
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+	}
+	
+	@PostMapping("/saveNotify.do")
+	@ResponseBody
+	public void saveNotify(@RequestParam String target, @RequestParam String content, @RequestParam String type, @RequestParam String url) {
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("target", target);
+		param.put("content", content);
+		param.put("type", type);
+		param.put("url", url);
+		log.debug("param = {}", param);
+		
+		adminService.insertSaveNotify(param);
+	}
 	
 	
 ///////////////////////////////////////////////////////////////////////////////
