@@ -23,7 +23,7 @@
 		        <table class="table" id="modal_table">
 				  <tbody>
 				      <tr>
-				      <th scope="row">지급포인트</th>
+				      <th scope="row">내용</th>
 				      <td>
 				      <input type="hidden" class="modal-body input" name="target" value="${member.id }" />
 				      <textarea name="content" id="content" class="modal-body textarea" cols="30" rows="10"></textarea>
