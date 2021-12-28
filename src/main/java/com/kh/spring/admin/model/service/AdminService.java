@@ -123,4 +123,8 @@ public interface AdminService {
 
 	int updateQuestionAnswerToN(int questionNo);
 
+	int adminManageTodayReviewCount();
+
+	int adminManageTodayQuestionCount();
+
 }

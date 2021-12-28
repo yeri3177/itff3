@@ -125,4 +125,8 @@ public interface AdminDao {
 
 	int updateQuestionAnswerToN(int questionNo);
 
+	int adminManageTodayReviewCount();
+
+	int adminManageTodayQuestionCount();
+
 }

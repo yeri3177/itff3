@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.review.model.vo.Review;
+import com.kh.spring.review.model.vo.ReviewComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 @Repository
@@ -66,6 +67,18 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int deleteReview(int reviewNo) {
 		return session.delete("review.deleteReview", reviewNo);
 	}
+
+	@Override
+	public List<ReviewComment> selectCommentList(int reviewNo) {
+		return session.selectList("review.selectCommentList", reviewNo);
+	}
+
+	@Override
+	public int insertReviewComment(ReviewComment reviewComment) {
+		return session.insert("review.insertReviewComment", reviewComment);
+	}
+	
+	
 	
 	
 }

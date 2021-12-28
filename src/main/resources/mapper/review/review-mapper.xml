@@ -86,6 +86,7 @@
 		select
 			r.*,
 			a.*,
+			(select count(*) from review_comment where review_no = r.review_no) rc_count,
 			m.*
 		from
 			review_board r left join attachment a
@@ -101,6 +102,7 @@
 		<result column="review_title" property="reviewTitle"/>
 		<result column="review_content" property="reviewContent"/>
 		<result column="reg_date" property="regDate"/>
+		<result column="rc_count" property="reviewCommentCount"/>
 		<result column="read_count" property="readCount"/>
 		<result column="recommend" property="recommend"/>
 		<association property="member" javaType="member">
@@ -164,6 +166,33 @@
 			review_no = #{reviewNo}
 	</delete>
 	
+	<select id="selectCommentList" resultType="reviewComment">
+		select
+			*
+		from
+			review_comment
+		where
+			review_no = #{reviewNo}
+	</select>
+	
+	<insert id="insertReviewComment">
+		insert into 
+			review_comment
+		values(
+			default,
+			#{reviewNo},
+			#{writer},
+			#{content},
+			sysdate, 
+			#{commentLevel},
+			<if test="commentRef != 0">
+				#{commentRef}
+			</if>
+			<if test="commentRef == 0">
+				null
+			</if>
+		)
+	</insert>
 	
 	
 </mapper>

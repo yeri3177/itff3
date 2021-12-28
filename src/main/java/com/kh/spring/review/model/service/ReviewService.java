@@ -3,6 +3,7 @@ package com.kh.spring.review.model.service;
 import java.util.List;
 
 import com.kh.spring.review.model.vo.Review;
+import com.kh.spring.review.model.vo.ReviewComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 public interface ReviewService {
@@ -24,5 +25,9 @@ public interface ReviewService {
 	int updateReview(Review review);
 
 	int deleteReview(int reviewNo);
+
+	List<ReviewComment> selectCommentList(int reviewNo);
+
+	int insertReviewComment(ReviewComment reviewComment);
 
 }

@@ -144,6 +144,30 @@ public class AdminManageController {
 	}
 	
 	/**
+	 * [메인화면: 오늘 리뷰 갯수]
+	 */
+	
+	@GetMapping("/adminManageTodayReviewCount.do")
+	public void adminManageTodayReviewCount(Model model) {
+		int count = adminService.adminManageTodayReviewCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+
+	/**
+	 * [메인화면: 오늘 문의 갯수]
+	 */
+	
+	@GetMapping("/adminManageTodayQuestionCount.do")
+	public void adminManageTodayQuestionCount(Model model) {
+		int count = adminService.adminManageTodayQuestionCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+	
+	/**
 	 * [일정]
 	 */
 	

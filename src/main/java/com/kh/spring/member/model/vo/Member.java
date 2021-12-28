@@ -10,13 +10,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -26,7 +24,7 @@ public class Member implements Serializable, UserDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	private String id; 
 	private String password;
 	private String name;
@@ -39,6 +37,7 @@ public class Member implements Serializable, UserDetails {
 	private Date regDate;
 	private int point;
 	private boolean enabled; // 회원활성화 여부
+	private String image;
 	
 	private List<SimpleGrantedAuthority> authorities;
 	

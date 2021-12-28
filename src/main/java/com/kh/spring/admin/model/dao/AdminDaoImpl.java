@@ -317,4 +317,14 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.updateQuestionAnswerToN", questionNo);
 	}
 
+	@Override
+	public int adminManageTodayReviewCount() {
+		return session.selectOne("admin.adminManageTodayReviewCount");
+	}
+
+	@Override
+	public int adminManageTodayQuestionCount() {
+		return session.selectOne("admin.adminManageTodayQuestionCount");
+	}
+
 }
