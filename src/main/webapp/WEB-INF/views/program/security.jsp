@@ -62,13 +62,13 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath}/program/synopsis/password.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/password.do?movieId=004" class="film_thumb">
 							<img src="https://i.imgur.com/zrU0uIj.jpg" class="poster" alt="패스워드">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">보안·암호학</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath}/program/synopsis/password.do" class="film_tit">패스워드</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/password.do?movieId=004" class="film_tit">패스워드</a>
 								<small class="dir">Anti trust</small>
 								<div class="dir">
 									<p class="dir_p">피터 호윗 <span class="en">Peter Howit</span></p>
@@ -83,13 +83,13 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do?movieId=005" class="film_thumb">
 							<img src="https://i.imgur.com/v1jO7Ag.jpg" class="poster" alt="가타카">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">보안·암호학</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do" class="film_tit">가타카</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/gattaca.do?movieId=005" class="film_tit">가타카</a>
 								<small class="dir">Gattaca</small>
 								<div class="dir">
 									<p>앤드루 니콜 <span class="en">Andrew Niccol</span></p>

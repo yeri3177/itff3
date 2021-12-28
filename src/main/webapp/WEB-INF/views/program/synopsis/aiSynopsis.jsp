@@ -97,61 +97,28 @@
 					<th class="en">Theater</th>
 					<th class="en">Grade</th>
 					<th class="en">Event</th>
-				</tr><tr>
-			</tr></thead>
+				</tr>
+			</thead>
 			<tbody>
-				<tr>
-					<td class="code en"><span class="code_wrap">105</span></td>
-					<th class="time en">2022-01-08 | 20:00</th>
-					<td class="theater">KH ITFF 1관</td>
-					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
-					</td>
-					<td class="event">
-					</td>
-				</tr>				
-
-
-				<tr>
-					<td class="code en"><span class="code_wrap">304</span></td>
-					<th class="time en">2022-01-09 | 09:00</th>
-					<td class="theater">KH ITFF 5관</td>
-					
-					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
-					</td>
-					<td class="event">
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="code en"><span class="code_wrap">304</span></td>
-					<th class="time en">2022-01-10 | 10:00</th>
-					<td class="theater">KH ITFF 3관</td>
-					
-					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
-					</td>
-					<td class="event">
-					</td>
-				</tr>
-				
-				<tr>
-					<td class="code en"><span class="code_wrap">304</span></td>
-					<th class="time en">2022-01-10 | 20:00</th>
-					<td class="theater">KH ITFF 5관</td>
-					
-					<td class="film_tit">
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
-						<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
-					</td>
-					<td class="event">
-					</td>
-				</tr>				
-	
+					<c:forEach var="schedule" items="${movieSchedule}" varStatus="vs" >
+					<tr>
+						<td class="code en"><span class="code_wrap">${fn:substring(schedule.movieScheduleId,9,12) }</span></td>
+						<th class="time en">${schedule.startDate} | ${schedule.startTime }</th>
+						<td class="theater">KH ITFF ${schedule.theaterId}관</td>
+						<td class="film_tit">
+							<c:if test="${ageLimit eq '12 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							<c:if test="${ageLimit eq '15 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							<c:if test="${ageLimit eq '19 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_18_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
+						</td>
+					</tr>				
+					</c:forEach>
 			</tbody>
 		</table>
 

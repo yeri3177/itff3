@@ -62,13 +62,13 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do?movieId=010" class="film_thumb">
 							<img src="https://i.imgur.com/My5qWd0.jpg" class="poster" alt="007:카지노로얄">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">플랫폼·사물인터넷</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do" class="film_tit">007:카지노로얄</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do?movieId=010" class="film_tit">007:카지노로얄</a>
 								<small class="dir">007 Casino Royale</small>
 								<div class="dir">
 									<p class="dir_p">마틴 캠벨 <span class="en">Martin Campbell</span></p>
@@ -83,13 +83,13 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath}/program/synopsis/missionImpossible.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath}/program/synopsis/missionImpossible.do?movieId=011" class="film_thumb">
 							<img src="https://i.imgur.com/DAtzvdf.jpg" class="poster" alt="미션임파서블">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">플랫폼·사물인터넷</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath}/program/synopsis/missionImpossible.do" class="film_tit">미션임파서블-고스트프로토콜</a>
+								<a href="${pageContext.request.contextPath}/program/synopsis/missionImpossible.do?movieId=011" class="film_tit">미션임파서블-고스트프로토콜</a>
 								<small class="dir">Mission: Impossible – Ghost Protocol</small>
 								<div class="dir">
 									<p>브래들리 버드 <span class="en">Bradley Bird</span></p>

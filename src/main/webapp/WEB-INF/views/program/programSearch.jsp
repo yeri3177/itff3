@@ -27,31 +27,31 @@
 		const movieCode = $("[name=movieCode]").val();
 		
 		if("movie-001"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/iRobot.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/iRobot.do?movieId=001`;
 		else if("movie-002"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/eagleEye.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/eagleEye.do?movieId=002`;
 		else if("movie-003"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/aiSynopsis.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/aiSynopsis.do?movieId=003`;
 		else if("movie-004"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/password.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/password.do?movieId=004`;
 		else if("movie-005"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/gattaca.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/gattaca.do?movieId=005`;
 		else if("movie-006"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/thirteen.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/thirteen.do?movieId=006`;
 		else if("movie-007"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/matrix.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/matrix.do?movieId=007`;
 		else if("movie-008"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/her.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/her.do?movieId=008`;
 		else if("movie-009"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/citizenFour.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/citizenFour.do?movieId=009`;
 		else if("movie-010"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do?movieId=010`;
 		else if("movie-011"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/missionImpossible.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/missionImpossible.do?movieId=011`;
 		else if("movie-012"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/erin.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/erin.do?movieId=012`;
 		else if("movie-013"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do`;
+			location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do?movieId=013`;
 	}
 </script>
 
