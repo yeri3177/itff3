@@ -101,4 +101,15 @@
 		<websocket:simple-broker prefix="/topic, /foo, /notice, /chat"/>
 	</websocket:message-broker>
 	
+	<!-- 실시간 알람 -->
+	<websocket:handlers>
+	    <websocket:mapping handler="myWebSocketHandler" path="/echo-ws" />
+	    <websocket:handshake-interceptors>
+	        <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+	    </websocket:handshake-interceptors>	
+	    <websocket:sockjs websocket-enabled="true" />
+	</websocket:handlers>
+	
+	<beans:bean id="myWebSocketHandler" class="com.kh.spring.socket.MyWebSocketHandler"></beans:bean>
+	
 </beans:beans>

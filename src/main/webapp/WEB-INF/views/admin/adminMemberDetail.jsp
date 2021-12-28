@@ -80,6 +80,12 @@
 		      </div>
 		      <div class="modal-footer">
 <!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+				<button 
+					type="button" 
+		      		class="btn btn-primary"
+		      		data-toggle="modal"
+					data-target="#adminSaveNotify"
+					onclick="save_btn('${member.id}');">알림전송</button>
 		      	<button 
 		      		type="button" 
 		      		class="btn btn-primary"

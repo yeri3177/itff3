@@ -363,6 +363,7 @@ function slideSlider(){
 	
 </script>
 
+ 
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/common/quickMenu.jsp"></jsp:include>

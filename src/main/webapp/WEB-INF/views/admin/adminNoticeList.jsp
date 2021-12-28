@@ -121,7 +121,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									<td>
 										<button 
 											type="button"
-											class="btn btn-secondary" 
+											class="btn btn-outline-dark" 
 											data-toggle="modal"
 											data-target="#adminNoticeDetail"
 											onclick="notice_detail_btn('${list.noticeNo}');">상세</button>

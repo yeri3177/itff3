@@ -129,4 +129,6 @@ public interface AdminDao {
 
 	int adminManageTodayQuestionCount();
 
+	int insertSaveNotify(Map<String, Object> param);
+
 }

@@ -456,13 +456,15 @@
 	</select>
 	
 	<resultMap type="goods" id="goodsMap">
-		<id column="p_id" property="pId"/>
-		<result column="p_name" property="pName"/>
-		<result column="p_price" property="pPrice"/>
-		<result column="p_info" property="pInfo"/>
-		<result column="p_category" property="pCategory"/>
-		<result column="p_enroll" property="pEnroll"/>
-	</resultMap>
+        <id column="p_id" property="pId"/>
+        <result column="p_name" property="pName"/>
+        <result column="p_price" property="pPrice"/>
+        <result column="p_info" property="pInfo"/>
+        <result column="p_img" property="pImg"/>
+        <result column="p_category" property="pCategory"/>
+        <result column="p_enroll" property="pEnroll"/>
+        <result column="p_subcategory" property="pSubcategory"/>
+    </resultMap>
 
 	<resultMap type="goodsOption" id="goodsOptionMap">
 		<id column="p_id" property="pId"/>
@@ -578,16 +580,36 @@
 			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
 	</select>
 	
-	<select id="adminManageRecentTenReviewList" resultType="review"> 
-		select 
-			* 
-		from 
-			review_board 
+	<select id="adminManageRecentTenReviewList" resultMap="reviewMap"> 
+		select
+			*
+		from
+			member m 
+		left join review_board r
+		on m.id = r.member_id
 		where 
-			<![CDATA[rownum <= 10]]> 
+			<![CDATA[rownum <= 10 and r.reg_date is not null]]>
 		order by 
-			reg_date desc
+			r.reg_date desc
 	</select>
+	
+	<resultMap type="review" id="reviewMap">
+		<id column="review_no" property="reviewNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="review_title" property="reviewTitle"/>
+		<result column="review_content" property="reviewContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		<result column="recommend" property="recommend"/>
+		<result column="attach_count" property="attachCount"/>
+		<result column="rc_count" property="reviewCommentCount"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
+		</association>	
+	</resultMap>
+	
 	
 	<select id="adminSelectQuestionList" resultType="question">
 		select
@@ -683,5 +705,29 @@
 		where 
 			question_no = #{questionNo}
 	</update>
+	
+	<select id="adminManageTodayReviewCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			review_board 
+		where 
+			to_date(reg_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')
+	</select>
+
+	<select id="adminManageTodayQuestionCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			question_board 
+		where 
+			to_date(reg_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')
+	</select>
+	
+	<insert id="insertSaveNotify">
+		insert into
+			save_notify
+		values(#{target}, #{content}, #{type}, #{url})
+	</insert>
 
 </mapper>

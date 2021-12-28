@@ -327,4 +327,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.adminManageTodayQuestionCount");
 	}
 
+	@Override
+	public int insertSaveNotify(Map<String, Object> param) {
+		return session.insert("admin.insertSaveNotify", param);
+	}
+
 }
