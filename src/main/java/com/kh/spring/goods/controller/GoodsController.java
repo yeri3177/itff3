@@ -212,6 +212,16 @@ public class GoodsController {
 	}
 	
 	/**
+	 * 장바구니 페이지 
+	 */
+	@GetMapping("/goodsCart.do")
+	public String goodsCart() {
+		
+		return "goods/goodsCart";
+	}
+	
+	
+	/**
 	 * 판매자정보 페이지 
 	 */
 	@GetMapping("/sellerInfo.do")
