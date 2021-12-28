@@ -23,10 +23,9 @@
 		        <table class="table" id="modal_table">
 				  <tbody>
 				      <tr>
-				      <th scope="row">내용</th>
 				      <td>
 				      <input type="hidden" class="modal-body input" name="target" value="${member.id }" />
-				      <textarea name="content" id="content" class="modal-body textarea" cols="30" rows="10"></textarea>
+				      <textarea class="form-control modal-body textarea" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
 				      </td>
 				    </tr>
 				  </tbody>
@@ -34,7 +33,7 @@
 		      </div>
 		      
 		      <div class="modal-footer">
-		        <button type="submit" id="notifySendBtn" class="btn btn-primary">알림전송</button>
+		        <button type="submit" id="notifySendBtn" class="btn btn-dark">알림 전송</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		      </div>
 			    </form>

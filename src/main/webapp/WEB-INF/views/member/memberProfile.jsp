@@ -19,42 +19,16 @@
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
+<!-- 사용자작성 css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/member/memberProfile.css" />
+
 <!-- \${param.title} -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 해당 페이지 큰 글씨 -->
-<div class="sub_title_wrap">
-	<div class="container">
-		<h2 class="en">프로필 사진 추가/수정/삭제</h2>
-	</div>
-</div>
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-
 <!-- 본문 -->
-
-<style>
-div#demo-container{
-	text-align: center;
-	width:550px;
-}
-.box{
-	width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-    margin : auto;
-}
-.profile{
-	width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-</style>
-
-<div id="demo-container" 
-	 class="border border-secondary mx-auto p-3 rounded">
+<div class="join">
  	
 <%-- 	<!-- 프로필사진 -->
  	<c:choose>
@@ -72,17 +46,29 @@ div#demo-container{
 		</c:otherwise>
 	</c:choose>
  --%>
+ 
 	<!-- 프로필사진 -->
  	<!-- 멤버의 프로필 사진이 있을 때 -->
- 	<div class="box">
- 		<p>before</p>
-	 	<img id="preview-image" class="profile" src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>">
-	</div>
+	<div class="container">
+
+		<h2 class="tit_sec txt-center txt-white">프로필 사진 변경</h2>
+ 	<div class="profile_con">
  	
- 	<div class="box">
- 		<p>after</p>
-	 	<img id="after-image" class="profile" src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>">
-	</div>
+ 	<div class="imgAndP">
+	 	<div class="img_container">
+	 		<p class="img_p">변경 전</p>
+		 	<div class="box">
+			 	<img id="preview-image" class="profile" src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>">
+			</div>
+	 	</div>
+		
+		<div class="img_container">
+	 		<p class="img_p">변경 후</p>
+		 	<div class="box">
+			 	<img id="after-image" class="profile" src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>">
+			</div>
+		</div> 	
+ 	</div>
  	
  	<br />
  	
@@ -90,8 +76,9 @@ div#demo-container{
 		id="devFrm" 
 		method="POST"
 		enctype="multipart/form-data">
+		
 		<div class="form-group row">
-		  <label for="email" class="col-sm-2 col-form-label">사진을 넣어주세요</label>
+		  <label for="email" class="col-sm-2 col-form-label">사진 선택</label>
 		  <div class="col-sm-10">
 		    <input type="file" class="form-control" id="input-image" name="upFile" accept="image/*">
 		  </div>
@@ -106,10 +93,10 @@ div#demo-container{
 	
 	</form>
 </div>
+ 	</div>
+ 	</div>
 
-<br />
-<br />
-<br />
+
 <script>
 function readImage(input) {
     // 인풋 태그에 파일이 있는 경우
