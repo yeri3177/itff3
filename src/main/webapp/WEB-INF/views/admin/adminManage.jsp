@@ -1010,7 +1010,7 @@ $(document).ready(function () {
 	});
 });
 
-// 오늘 상영
+// 리뷰 최근 10개
 $(document).ready(function () {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/adminManageRecentTenReviewList.do",
