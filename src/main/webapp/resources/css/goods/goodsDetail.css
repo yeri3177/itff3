@@ -401,6 +401,12 @@ input[name="tab_item"] {
 	left: 43%;
 } 
 
+.close-btn-div {
+	position: absolute;
+	right: 15px;
+	top: 8px;
+}
+
 
 
 /************** 화면 고정 관련 ***************/

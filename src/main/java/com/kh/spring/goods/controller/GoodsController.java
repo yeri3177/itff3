@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
@@ -167,6 +168,8 @@ public class GoodsController {
 	
 	/**
 	 * 장바구니 등록
+	 * 
+	 * - 수정사항 : (상품아이디), 회원아이디, 옵션아이디 동일시 상품개수만 더하기 처리함 (update)
 	 */
 	@PostMapping("/InsertCart.do")
 	public ResponseEntity<?> InsertCart(@RequestParam Map<String, Object> map) {
@@ -184,20 +187,44 @@ public class GoodsController {
 			int optionId = goodsService.selectOneOptionId(map);
 			log.debug("optionId = {}", optionId);
 			
+			// update, insert에 사용할 매개변수 map 
 			Map<String, Object> param = new HashMap<>();
 			param.put("optionId", optionId);
 			param.put("pId", pId);
 			param.put("memberId", memberId);
 			param.put("cartQty", cartQty);
 			
-			// goods_cart테이블에 레코드 추가하기 
-			int result = goodsService.insertCart(param);
+			
+			// cart_id, option_id, member_id -> 기존 cart 객체 있는지 찾기 
+			//int CartId = goodsService.selectOneCartId(param); // CartId = 41, 널포인터인셉션
+			GoodsCart cart = goodsService.selectOneCart(param);
+			log.debug("cart = {}", cart); 
+			//log.debug("cart.getCartId() = {}", cart.getCartId()); 
+			
+			
+			int result = 0;
+			
+			if(cart != null) {
+				// 찾은 cart 객체가 있으면 update 처리하기 
+				param.put("cartId", cart.getCartId());
+				result = goodsService.updateCartQty(param);
+				
+			} else {
+				// 찾은 cart 객체가 없으면(null) insert 처리하기
+				result = goodsService.insertCart(param);
+			}
+			
 			log.debug("result = {}", result);
 			
+			
+			// 사용자 피드백 메세지 
 			Map<String, Object> msg = new HashMap<>();
 			
 			if(result>0) {
 				msg.put("msg", "상품을 장바구니에 담았습니다.");
+			}
+			else {
+				msg.put("msg", "장바구니 담기 실패");
 			}
 			
 			return ResponseEntity.ok(msg);
@@ -205,10 +232,9 @@ public class GoodsController {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			return ResponseEntity
-					.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.build();
-		}
-		
+				.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.build();
+		}	
 	}
 	
 	/**

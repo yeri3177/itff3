@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
@@ -34,6 +35,10 @@ public interface GoodsDao {
 	int selectOneOptionId(Map<String, Object> map);
 
 	int insertCart(Map<String, Object> param);
+
+	GoodsCart selectOneCart(Map<String, Object> param);
+
+	int updateCartQty(Map<String, Object> param);
 
 
 

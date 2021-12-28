@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
@@ -82,6 +83,16 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public int insertCart(Map<String, Object> param) {
 		return session.insert("goods.insertCart", param);
+	}
+
+	@Override
+	public GoodsCart selectOneCart(Map<String, Object> param) {
+		return session.selectOne("goods.selectOneCart", param);
+	}
+
+	@Override
+	public int updateCartQty(Map<String, Object> param) {
+		return session.update("goods.updateCartQty", param);
 	}
 
 
