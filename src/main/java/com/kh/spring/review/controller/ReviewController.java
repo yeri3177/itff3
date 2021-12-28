@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -24,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.review.model.service.ReviewService;
 import com.kh.spring.review.model.vo.Review;
+import com.kh.spring.review.model.vo.ReviewComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -171,10 +170,16 @@ public class ReviewController {
 //		}
 		
 		// 업무로직
+		// 게시글 가져오기
 		Review review = reviewService.selectOneReviewCollection(reviewNo);   // mapper에서 collection 써서 한번에 조회
 		log.debug("review = {}", review);   
 		
+		// 댓글목록 가져오기
+		List<ReviewComment> commentList = reviewService.selectCommentList(reviewNo);
+		log.debug("commentList = {}", commentList);
+		
 		model.addAttribute("review", review);
+		model.addAttribute("commentList", commentList);
 		
 	}
 	
@@ -297,4 +302,18 @@ public class ReviewController {
 		return "redirect:/review/reviewList.do";
 	}
 	
+	
+	@PostMapping("/reviewCommentEnroll.do")
+	public String reviewCommentEnroll(ReviewComment reviewComment) {
+		log.debug("revieComment = {}", reviewComment);
+		
+		int result = reviewService.insertReviewComment(reviewComment);
+		log.debug("result = {}", result);
+		
+		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewComment.getReviewNo();
+	}
+	
+	
+	
 }
+ 

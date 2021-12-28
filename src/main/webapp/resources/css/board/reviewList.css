@@ -399,7 +399,6 @@ td {
 	display: inline-block;
 	width: 40px;
 	height: 40px;
-	background: url(../images/profile.png) no-repeat center center;
 	background-size: cover;
 	overflow: hidden;
 	vertical-align: middle;
@@ -582,7 +581,9 @@ td {
 	overflow: hidden;
 	vertical-align: middle;
 }
-
+.inkpf.color {
+    background-color: #e5e5e5;
+}
 .ldn td .inkpf+a {
 	display: inline-block;
 	vertical-align: middle;
@@ -1035,4 +1036,29 @@ select {
 .list_wrap .cmt_num {
     margin-left: 3px;
     font-size: 14px;
+}
+.cmt_write_unit {
+    padding: 25px 0 25px 45px;
+    margin: 0 25px;
+}
+.cmt_write_unit {
+    position: relative;
+}
+.cmt_not_permitted {
+    border: 5px solid #f7f7f7;
+}
+.cmt_not_permitted {
+    padding: 15px 0;
+    margin-left: -45px;
+    border-radius: 10px;
+}
+
+.cmt_not_permitted {
+    text-align: center;
+}
+.ink_link2 {
+    border-bottom: 1px solid #41bc99;
+}
+.ink_link, .ink_link2 {
+    color: #41bc99;
 }
