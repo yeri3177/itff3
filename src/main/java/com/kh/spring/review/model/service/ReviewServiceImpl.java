@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.review.model.dao.ReviewDao;
 import com.kh.spring.review.model.vo.Review;
+import com.kh.spring.review.model.vo.ReviewComment;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -98,6 +99,16 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int deleteReview(int reviewNo) {
 		return reviewDao.deleteReview(reviewNo);
+	}
+
+	@Override
+	public List<ReviewComment> selectCommentList(int reviewNo) {
+		return reviewDao.selectCommentList(reviewNo);
+	}
+
+	@Override
+	public int insertReviewComment(ReviewComment reviewComment) {
+		return reviewDao.insertReviewComment(reviewComment);
 	}
 	
 	

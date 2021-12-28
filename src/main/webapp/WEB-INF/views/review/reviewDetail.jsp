@@ -1,3 +1,4 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -53,7 +54,7 @@
 			<div class="atc_info clearfix">
 				<span class="atc_nickname">
 					<span class="inkpf color round small">
-						<img class="inkpf_img" src="" alt="">
+						<img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${review.member.image}" alt="">
 					</span>
 					<a href="#popup_menu_area" class="member_45775485" onclick="return false">
 						<img src="" alt="" title="" class="xe_point_level_icon" style="vertical-align:middle;margin-right:3px;">${review.member.nickname}
@@ -63,7 +64,7 @@
 				<div class="atc_info_right text_en font_grey1">
 					<span class="count_read"><img src="${pageContext.request.contextPath}/resources/upload/board/조회수 아이콘.png" style="position: relative; top: 4px; right: 3px;" alt="" /><i class="fas fa-eye" title="조회 수"></i>${review.readCount}</span>	
 					<span class="count_vote pt_col"><img src="${pageContext.request.contextPath}/resources/upload/board/추천수 아이콘.png" style="position: relative; top: 5px; right: 2px;" alt="" /><i class="fas fa-heart" title="추천 수"></i>${review.recommend}</span>	
-					<span class="count_cmt pt_col2"><img src="${pageContext.request.contextPath}/resources/upload/board/댓글수 아이콘.png" style="position: relative; top: 5px; right: 2px;" alt="" /><i class="fas fa-comment-dots" title="댓글"></i>0 </span>
+					<span class="count_cmt pt_col2"><img src="${pageContext.request.contextPath}/resources/upload/board/댓글수 아이콘.png" style="position: relative; top: 5px; right: 2px;" alt="" /><i class="fas fa-comment-dots" title="댓글"></i>${review.reviewCommentCount}</span>
 				</div>
 			</div>
 		</header>
@@ -193,7 +194,7 @@
 		<div id="comment" class="cmt cmt_bubble">
 			<div class="cmt_title">
 		<h3>
-			댓글 <span class="pt_col text_en cmt_count">10</span>
+			댓글 <span class="pt_col text_en cmt_count">${review.reviewCommentCount}</span>
 		</h3>
 		<span class="ink_bubble_wrap bt_cmt_write">
 			<span class="ink_bubble">댓글 쓰기</span>
@@ -209,6 +210,112 @@
 		
 	<div class="cmt_wrap has_top">
 		<div class="cmt_list">
+			<c:forEach items="${commentList}" var="comment" varStatus="vs">
+				<c:if test="${comment.commentLevel eq 1}">
+					<article class="cmt_unit" id="commentNo${comment.no}">
+						<div class="inkpf_wrap">
+							<span class="inkpf round"></span>
+							<%-- 등수 어떻게 붙일지 고민중. 페이지 로드시 작동하는 함수에다가 cmt_unit 1~3등 찾아서 add class를 해야하나? 
+							<c:choose>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank1">1등</span>
+								</c:when>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank2">2등</span>
+								</c:when>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank3">3등</span>
+								</c:when>
+							</c:choose> --%>				
+						</div>
+						<div class="cmt_header">
+							<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
+								${comment.writer}
+							</a>
+				
+						</div>
+						<div class="cmt_body">
+						<!--BeforeComment(71876047,25365243)-->
+							<div class="comment_71876047_25365243 rhymix_content xe_content" data-pswp-uid="2">
+								${comment.content}
+							</div>
+							<!--AfterComment(71876047,25365243)-->
+							<div class="cmt_buttons">
+								<div class="cmt_vote">
+									<a class="bt bt2" href="javascript:void(0)" onclick="insertWarn('권한이 없습니다.')">
+										댓글
+									</a>
+									<div class="bt_wrap">
+										<button class="text_en bt bt_vote" type="button" onclick="insertWarn('권한이 없습니다.')" title="추천">
+											<i class="fas fa-heart"></i> 
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="cmt_date_wrap text_en font_grey1">
+								<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+							</div>
+						</div>
+					
+					<!-- //cmt_body -->
+					
+					</article>
+				</c:if>
+				
+				<c:if test="${comment.commentLevel eq 2}">
+					<article class="cmt_unit reply" id="commentNo${comment.no}">
+						<div class="inkpf_wrap">
+							<span class="inkpf round"></span>
+							<%-- 등수 어떻게 붙일지 고민중. 페이지 로드시 작동하는 함수에다가 cmt_unit 1~3등 찾아서 add class를 해야하나? 
+							<c:choose>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank1">1등</span>
+								</c:when>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank2">2등</span>
+								</c:when>
+								<c:when test="">
+									<span class="cmt_rank cmt_rank3">3등</span>
+								</c:when>
+							</c:choose> --%>				
+						</div>
+						<div class="cmt_header">
+							<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
+								${comment.writer}
+							</a>
+				
+						</div>
+						<div class="cmt_body">
+						<!--BeforeComment(71876047,25365243)-->
+							<div class="comment_71876047_25365243 rhymix_content xe_content" data-pswp-uid="2">
+								${comment.content}
+							</div>
+							<!--AfterComment(71876047,25365243)-->
+							<div class="cmt_buttons">
+								<div class="cmt_vote">
+									<a class="bt bt2" href="javascript:void(0)" onclick="insertWarn('권한이 없습니다.')">
+										댓글
+									</a>
+									<div class="bt_wrap">
+										<button class="text_en bt bt_vote" type="button" onclick="insertWarn('권한이 없습니다.')" title="추천">
+											<i class="fas fa-heart"></i> 
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="cmt_date_wrap text_en font_grey1">
+								<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+							</div>
+						</div>
+					
+					<!-- //cmt_body -->
+					
+					</article>
+				</c:if>
+			</c:forEach>
+		
+		
+		<%--
 			<article class="cmt_unit" id="comment_71876047">
 				<div class="inkpf_wrap">
 					<span class="inkpf round"></span>
@@ -235,7 +342,6 @@
 							<div class="bt_wrap">
 								<button class="text_en bt bt_vote" type="button" onclick="insertWarn('권한이 없습니다.')" title="추천">
 									<i class="fas fa-heart"></i> 
-									<span class="voted_count">+2</span>
 								</button>
 								<!-- <span class="writer_vote ink_bubble_wrap">
 									<span class="has_bubble">
@@ -291,7 +397,6 @@
 							<div class="bt_wrap">
 								<button class="text_en bt bt_vote" type="button" onclick="insertWarn('권한이 없습니다.')" title="추천">
 									<i class="fas fa-heart"></i>
-									<span class="voted_count">+1</span>
 								</button>																				
 							</div>
 						</div>
@@ -400,34 +505,64 @@
 									</div><!-- //cmt_body -->
 			</article>
 		
-													
+		--%>											
 		</div> <!-- cmt_list -->
-	</div> <!-- cmt_wrap -->
 		
-	<div class="cmt_write cmt_write_unit">
-								<span class="inkpf round"></span>
-				<form action="/" method="post" class="cmt_form" onsubmit="return procFilter(this, insert_comment)" editor_sequence="71875352"><input type="hidden" name="error_return_url" value="/movietalk/71875352"><input type="hidden" name="act" value="dispBoardContent">
-			<input type="hidden" name="mid" value="movietalk">
-			<input type="hidden" name="document_srl" value="71875352">
-			<input type="hidden" name="comment_srl" value="">
-			<input type="hidden" name="content" value="">
-						<div class="cmt_write_input text_ver">
-								<input type="hidden" name="use_html" value="Y">
-				<input type="hidden" id="htm_71875352" value="n">
-				<textarea class="cmt_textarea" id="editor_71875352" cols="50" rows="4" placeholder="댓글 내용을 입력해주세요." style="width: 100%; height: 106px;"></textarea>
-				<script type="text/javascript">
-					editorStartTextarea(71875352, "content", "comment_srl");
-				</script>
-							</div>
-			<div class="cmt_write_option">
-														
-													<span class="write_option"></span>
-				<div class="bt_area bt_right">
-					<button class="ib ib2 ib_color" type="submit">댓글 등록</button>
+		
+	</div> <!-- cmt_wrap -->
+	 	
+				
+	<!-- 로그인 했을 경우 댓글 쓰는 란이 나옴 -->
+<%
+	// principal.image 쓰면 오류나서 스크립틀릿으로 loginMember 꺼내서 했다.
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	if(authentication != null) {
+		Member loginMember = (Member) authentication.getPrincipal();
+	}
+%>
+	<sec:authorize access="isAuthenticated()">
+		<div class="cmt_write cmt_write_unit">
+			<%-- <c:set var="loginMemberImage">
+			    <sec:authentication property="principal.nickname"/> 
+			</c:set> --%>
+			<span class="inkpf round"><img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${loginMember.image}" alt="" /></span>
+			<form:form 
+				action="${pageContext.request.contextPath}/review/reviewCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}"
+				name="reviewCommentFrm" 
+				method="post" 
+				class="cmt_form">
+				<input type="hidden" name="writer" value="${loginMemberId}" />
+				<input type="hidden" name="reviewNo" value="${review.reviewNo}" />
+				<input type="hidden" name="commentLevel" value="1">
+				<input type="hidden" name="commentRef" value="0">
+				<div class="cmt_write_input text_ver">
+					<textarea name="content" class="cmt_textarea" cols="50" rows="4" placeholder="댓글 내용을 입력해주세요." style="width: 100%; height: 106px;"></textarea>
 				</div>
-			</div>
-		<input type="hidden" name="_rx_csrf_token" value="R0lUx30MWkU0XVZh"></form>
+				<div class="cmt_write_option">
+					<span class="write_option"></span>
+					<div class="bt_area bt_right">
+						<button class="ib ib2 ib_color" type="submit">댓글 등록</button>
 					</div>
+				</div>
+			</form:form>
+		</div>
+	</sec:authorize>
+	
+	<script>
+	$(() => {
+	});
+	</script>
+	
+	
+	<!-- 로그인 안 한 경우 -->
+	<sec:authorize access="isAnonymous()">
+		<div class="cmt_write cmt_write_unit no_grant">
+			<div class="cmt_not_permitted" style="font-size: 14px">
+				<img src="${pageContext.request.contextPath}/resources/upload/board/댓글수 아이콘.png" style="position: relative; top: 5px; right: 2px;" alt="" /> 권한이 없습니다. &nbsp;&nbsp;<a class="ink_link2" href="${pageContext.request.contextPath}/member/memberLogin.do" >로그인</a>
+			</div>
+		</div>
+	</sec:authorize>
 
 	<div class="ink_message ink_warn cmt_delete">
 		<div>
@@ -452,6 +587,37 @@
 	
 </section>		
 <script type="text/javascript">
+$(document.reviewCommentFrm).submit((e) => {   <!-- $() 벗기니까 페이지 들어가자마자 바로 제출된다. 이거 차이가 뭐였지? -->
+	// 내용검사
+	// const textarea = $("[name=content]", document.boardCommentFrm);
+	const $textarea = $("[name=content]", e.target); 
+
+	if(!/^(.|\n)+$/.test($textarea.val())) {
+		alert("댓글 내용을 작성해주세요.");
+		$textarea.focus();
+		return false;
+	}
+	
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //<![CDATA[
 function cEvent(){
 	jQuery(function($){
@@ -605,16 +771,9 @@ div#board-container label.custom-file-label{text-align:left;}
     display: inline-block;
     vertical-align: middle;
 }
-.inkpf.color {
-    background-color: #e5e5e5;
-}
 .atc_nickname .inkpf {
     vertical-align: middle;
     margin-right: 5px;
-}
-.inkpf.color {
-    background-color: #edf6f2;
-    background-image: url(../images/profile_color.png);
 }
 .inkpf.small {
     width: 30px;
