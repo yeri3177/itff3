@@ -135,9 +135,9 @@ function onMessage(evt){
     var data = evt.data;
     
     // toast
-    let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' style='position: absolute; width: 500px; right: 0; min-height: 150px;'>";
+    let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' style='position: absolute; width: 500px; right: 10; min-height: 150px;'>";
     toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
-    toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
+    toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close' style='z-index: 999;'>";
     toast += "<span aria-hidden='true'>&times;</span></button>";
     toast += "</div> <div class='toast-body'>" + data + "</div></div>";
     
