@@ -82,9 +82,9 @@
 				<div class="goodsName-div">
 					망고잼빵 아이폰 케이스
 				</div>
-				<!-- 카테고리 -->
+				<!-- 서브 카테고리 -->
 				<div class="goodsCategory-div">
-					아이폰 13 젤리케이스
+					아이폰 젤리 케이스
 				</div>
 				<!-- 가격 -->
 				<div class="goodsPrice-div">

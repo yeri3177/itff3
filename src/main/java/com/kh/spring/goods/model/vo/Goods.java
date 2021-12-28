@@ -26,6 +26,7 @@ public class Goods implements Serializable {
 	private String pImg;
 	private String pCategory;
 	private Date pEnroll;
+	private String pSubcategory; 
 	
 	private int attachCount;
 	private List<Attachment> attachments;

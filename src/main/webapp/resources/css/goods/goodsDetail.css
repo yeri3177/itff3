@@ -52,8 +52,15 @@ body {
 	font-weight: bold;
 }
 
+/* 상품가격 */
 .goods-price {
 	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+/* 서브카테고리 */
+.goods-subcategory {
+	color: gray;
 }
 
 .profile-box {
