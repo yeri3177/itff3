@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardListCommon.css" />
+	href="${pageContext.request.contextPath }/resources/css/question/questionListCommon.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />	
 	
@@ -84,15 +84,16 @@ $(() => {
 				<c:forEach var="question" items="${questionList}" varStatus="vs">
 					<tr data-no="${question.questionNo}" class="brd_li">
 						<td>
+						
 							${question.questionTitle}
+						
 							<c:if test="${question.answer eq 'Y'}">
-							 <span>(1)</span>
+							 (1)
 							</c:if>						
 							
-							<c:if test="${question.attachCount != 0}">
-								<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" 
-									style="width:13px; padding:0; padding-top:14px;">
-							</c:if>
+							<%-- <c:if test="${question.attachCount != 0}">
+								<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image">
+							</c:if> --%>
 						
 						</td>
 						
@@ -114,16 +115,17 @@ $(() => {
 			<c:forEach var="question" items="${qlByAdmin}" varStatus="vs">
 				<tr data-no="${question.questionNo}" class="brd_li">
 					<td>
-					<p>
+					
 						${question.questionTitle}
-					</p>
+					
 						<c:if test="${question.answer eq 'Y'}">
-							 <span style="padding:0; width:35px;">(1)</span>
+							 <!-- <span class="commentCount"> -->
+							 (1)
+							 <!-- </span> -->
 						</c:if>	
-						<c:if test="${question.attachCount != 0}">
-							<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" 
-								style="width:13px; padding:0; padding-top:14px;">
-						</c:if>
+						<%-- <c:if test="${question.attachCount != 0}">
+							<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" >
+						</c:if> --%>
 					
 					</td>
 					<td>${question.memberId}</td>

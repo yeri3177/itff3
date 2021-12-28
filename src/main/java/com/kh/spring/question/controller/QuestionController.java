@@ -221,10 +221,13 @@ public class QuestionController {
 		
 		int result = questionService.insertQuestionComment(param);
 		
-		// 댓글이 달리면 question_board answer N -> Y로 바꾸기
-		int result2 = questionService.updateQuestionAnswer(questionNo);
-		String msg = result2 > 0 ? "답글여부 Y로 바뀜" : "답변여부 안바뀜";
-		log.debug(msg);
+		if (result > 0) {
+			// 댓글이 달리면 question_board answer N -> Y로 바꾸기
+			int result2 = questionService.updateQuestionAnswer(questionNo);
+			String msg = result2 > 0 ? "답글여부 Y로 바뀜" : "답변여부 안바뀜";
+			log.debug(msg);
+			
+		}
 		
 		
 		return "redirect:/question/questionDetail.do?no=" + questionNo;
