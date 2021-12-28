@@ -1,20 +1,23 @@
 package com.kh.spring.member.controller;
 
 import java.beans.PropertyEditor;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
@@ -28,14 +31,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +62,9 @@ public class MemberController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	ServletContext application;
 	
 	@GetMapping("/memberEnroll.do")
 	public void memberEnroll() {}
@@ -116,12 +125,6 @@ public class MemberController {
 		return "member/memberEnrollComplete";
 	}
 		
-//	@GetMapping("/memberMailWaiting.do")
-//	public String memberMailWaiting() {
-//				
-//		
-//		return "/member/memberMailWaiting";
-//	}
 	
 	@PostMapping("/memberMailWaiting")
 	public void memberMailWaiting(Model model, @RequestParam String memberEmail) {
@@ -208,6 +211,7 @@ public class MemberController {
 		
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		log.debug("[authorities] authorities = {}", authorities);
+		
 		
 	}
 	
@@ -307,7 +311,7 @@ public class MemberController {
 			Model model,
 			HttpServletRequest request,
 			Authentication authentication
-			) {
+	) {
 		
 		Member member = (Member) authentication.getPrincipal();
 		
@@ -339,6 +343,107 @@ public class MemberController {
 		return "/member/memberWrittenBoardList";
 	}
 	
+	
+	@GetMapping("/memberProfile.do")
+	public String memberProfile(
+			Model model,
+			HttpServletRequest request,
+			Authentication Authentication
+	) {
+		 
+		Member member = (Member)Authentication.getPrincipal();
+		String image = member.getImage();
+		
+		model.addAttribute("image", image);
+		
+		return "/member/memberProfile";
+	}
+	
+	@RequestMapping(value = "/changeImage.do", method = {RequestMethod.POST})
+	public String changeImg(
+			Member member,
+			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles,
+			Model model,
+			Authentication oldAuthentication
+	) {
+		// 아이디
+//		member = (Member)authentication.getPrincipal();
+//		String id = member.getId();
+		log.debug("member = {}", member);
+		
+		try {
+			
+			// 첨부파일 list생성
+			List<Attachment> attachments = new ArrayList<>();
+			
+			// application객체(ServletContext)
+			String saveDirectory = application.getRealPath("/resources/upload/member");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			member = (Member)oldAuthentication.getPrincipal();
+			String id = member.getId();
+			String originalFilename = "";
+			
+			for(MultipartFile upFile : upFiles) {
+	
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					originalFilename = upFile.getOriginalFilename();
+	
+					// 1. 서버컴퓨터에 저장
+					File dest = new File(saveDirectory, originalFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+					
+				}
+			}
+			
+			log.debug("originalFilename = {}", originalFilename);
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("originalFilename", originalFilename);
+			param.put("id", id);
+			
+			
+			int result = memberService.insertProfileImage(param);
+			
+			Member principal = (Member) oldAuthentication.getPrincipal();
+			principal.setImage(originalFilename);
+			
+		} catch (Exception e) {
+			log.error(e.getMessage(), e); // 로깅
+		}		
+		
+		return "redirect:/member/memberProfile.do";
+	}
+	
+	@RequestMapping(value = "/deleteImage.do", method = {RequestMethod.POST})
+	public String deleteImg(
+			Member member,
+			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles,
+			Model model,
+			Authentication oldAuthentication
+	) {
+		
+		member = (Member)oldAuthentication.getPrincipal();
+		String originalFilename = "기본 프로필 이미지.png";
+		String id = member.getId();
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("originalFilename", originalFilename);
+		param.put("id", id);
+		
+		int result = memberService.insertProfileImage(param);
+		
+		Member principal = (Member) oldAuthentication.getPrincipal();
+		principal.setImage(originalFilename);
+		
+		return "redirect:/member/memberProfile.do";
+	}
 	/**
 	 * jsonView 빈을 이용해서 json응답메시지를 출력
 	 * - model에 data 작성

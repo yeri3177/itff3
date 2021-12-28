@@ -6,10 +6,15 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -75,6 +80,16 @@ public class MemberServiceImpl implements MemberService {
 	public int selectBoardTotalCount() {
 		return memberDao.selectBoardTotalCount();
 	}
+
+
+	@Override
+	public int insertProfileImage(Map<String, Object> param) {
+		return memberDao.insertProfileImage(param);
+	}
+
+
+
+
 	
 	
 	

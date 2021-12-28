@@ -107,5 +107,13 @@
 	  	</where>
 	</select> 
 	
+	<update id="insertProfileImage">
+		update
+			member
+		set
+			image = #{originalFilename}
+		where
+			id = #{id}
+	</update>
 	
 </mapper>
