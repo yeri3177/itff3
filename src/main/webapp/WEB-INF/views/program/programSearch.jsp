@@ -13,6 +13,48 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/programSearch.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
+<script>
+	function programSearch() {
+		const program = $("[name=SearchQuery]").val();
+		if(/^(.|\n)+$/.test(program) == false){
+		      alert("검색어를 입력하세요");
+		      return false;
+      	}
+		location.href = `${pageContext.request.contextPath}/program/programFinder.do?program=\${program}`;
+	}
+	
+	function goSynopsis() {
+		const movieCode = $("[name=movieCode]").val();
+		
+		if("movie-001"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/iRobot.do`;
+		else if("movie-002"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/eagleEye.do`;
+		else if("movie-003"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/aiSynopsis.do`;
+		else if("movie-004"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/password.do`;
+		else if("movie-005"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/gattaca.do`;
+		else if("movie-006"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/thirteen.do`;
+		else if("movie-007"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/matrix.do`;
+		else if("movie-008"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/her.do`;
+		else if("movie-009"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/citizenFour.do`;
+		else if("movie-010"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do`;
+		else if("movie-011"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/missionImpossible.do`;
+		else if("movie-012"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/erin.do`;
+		else if("movie-013"== movieCode)
+			location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do`;
+	}
+</script>
+
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -55,38 +97,82 @@
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <div class="search_wrap">
-	<span class="hide">
-	<select name="SearchField" title="검색방법선택" onchange="onSerch_tb(this)" style="vertical-align: top; padding: 12px 10px;">
-		<option value="m_title">작품명</option>
-		<option value="d_name_kor">감독명</option>
-	</select>
-	</span>
 	<div class="inp_search_wrap" style="display:inline-flex;">
-		<input name="SearchQuery1" id="SearchQuery1" type="text" size="30" value="" class="inp_search text ac_input" title="검색어를 입력하세요" placeholder="상영작, 감독 검색" autocomplete="off" style="display:block;">
-		<input name="SearchQuery2" id="SearchQuery2" type="text" size="30" value="" class="inp_search text ac_input" title="검색어를 입력하세요" placeholder="감독 검색" autocomplete="off" style="display:none;">
+		<input name="SearchQuery" id="SearchQuery" type="text" size="30" value="${program}" class="inp_search text ac_input" placeholder="영화명을 입력하세요." title="검색어를 입력하세요" style="display:block;">
 		
-		<button class="sbtn" onclick="topGoodsSearch()">
+		<button class="sbtn" onclick="programSearch()">
 			<img src="https://www.biff.kr/kor/img/program/btn_search.png" alt="검색" class="wview">
-			<!-- <img src="//kor/img/program/btn_search_m.png" alt="검색" class="mview"> -->
 		</button>
 	</div>
 </div>
-<section id="board-container" class="cont">
-	<table id="tbl-board" class="table table-striped table-hover">
-		<tr style="display: none">
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
-		<c:forEach var="notice" items="${noticeList}" varStatus="vs">
-			<tr data-no="${notice.noticeNo}" class="brd_li">
-				<td>${notice.noticeTitle}</td>
-				<td><fmt:formatDate value="${notice.regDate}"
-						pattern="yyyy/MM/dd" /></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<div class="pagenation">${pagebar}</div>
-</section>
+
+
+<%-- <c:if test="${empty movieList }"> --%>
+
+	<!-- <p id="noMovie">검색하신 
+	작품이 없습니다.
+	<br />
+	 다시 검색해 주세요.</p> -->
+	<br /><br /><br />
+<%-- </c:if> --%>
+
+
+
+<c:if test="${not empty movieList }">
+	<div class="schedule">
+		<div class="container_">
+			<table class=" tbl_schedule2 wid100">
+				<thead>
+					<tr>
+						<th class="en">Title</th>
+						<th class="en">Director</th>
+						<th class="en">Grade</th>
+						<th class="en">Event</th>
+					</tr>
+					<!-- <tr>
+					</tr> -->
+				</thead>
+				<tbody>
+					<c:forEach var="program" items="${movieList }" varStatus="vs">
+					<tr>
+						<th class="time en">${program.titleKor}
+						<br /> <p id="titleEng">${program.titleEng }</p> 
+						</th>
+						<td class="theater">${program.director }</td>
+						<td class="film_tit">
+							<c:if test="${program.ageLimit eq '12 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							<c:if test="${program.ageLimit eq '15 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							<c:if test="${program.ageLimit eq '19 +'}">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_18_x2.png" style="width:40px" alt="관람가"> 
+							</c:if>
+							
+							<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
+						</td>
+						<td class="event">
+							<a href="javascript:goSynopsis()">
+								<input type="hidden" name="movieCode" value="${program.movieId }"/>
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" >
+							</a>
+						</td>
+					</tr>				
+					</c:forEach>
+				</tbody>
+			</table>
+	
+		</div>
+	</div>
+	
+
+		<div class="pagenation">${pagebar}</div>
+</c:if>
+	
+
+
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 	

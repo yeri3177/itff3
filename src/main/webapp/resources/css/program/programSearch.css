@@ -69,6 +69,7 @@ button {
 img {
     max-width: 100%;
     vertical-align: middle;
+    width:40px;
 }
 
 .cont {
@@ -146,4 +147,89 @@ img {
 
 dl, ul, ol, menu, li {
     list-style: none;
+}
+
+.container_ {
+    position: relative;
+    margin: 0 auto;
+    width: 1280px;
+    max-width: 1280px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.wid100 {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tbl_schedule2 {
+    border-top: 2px solid #111;
+    border-left-width: 0;
+    border-right-width: 1px;
+}
+
+.tbl_schedule2 > thead > tr > th {
+    display: none;
+    padding: 15px 18px;
+    line-height: 1.5;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 300;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top !important;
+}
+
+.en {
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0 !important;
+}
+
+
+
+.tbl_schedule2 > tbody > tr > td.theater {
+    text-align: left;
+}
+
+.tbl_schedule2 > tbody > tr > td, .tbl_schedule2 > tbody > tr > td {
+    padding: 19px 18px;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 100;
+    border-bottom: 1px solid #ddd;
+    /* vertical-align: top !important; */
+    text-align: center;
+}
+
+#noMovie {
+	text-align: center;
+    font-size: 28px;
+    padding: 80px;
+    line-height: 47px;
+}
+
+.schedule {
+	padding-bottom: 30px;
+}
+
+.tbl_schedule2 > tbody > tr > th {
+	padding: 19px 18px;
+    line-height: 1.5;
+    font-size: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top !important;
+    text-align: center;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #000;
+    background-color:#34495e3b;
+    border-color: #34495e00;
+}
+
+#titleEng {
+	font-size:16px;
 }
