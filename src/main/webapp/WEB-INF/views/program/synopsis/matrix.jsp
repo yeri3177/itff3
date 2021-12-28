@@ -60,7 +60,7 @@
             <li>미국</li>
             <li>1999</li>
             <li>136min</li>
-            <li>15 +</li>
+            <li>12 +</li>
             <li>color</li>
          </ul>
 

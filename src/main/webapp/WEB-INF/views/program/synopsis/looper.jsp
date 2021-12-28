@@ -60,7 +60,7 @@
             <li>미국</li>
             <li>2012</li>
             <li>118min</li>
-            <li>15 +</li>
+            <li>18 +</li>
             <li>color</li>
          </ul>
 
