@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+:root {
+	--bg-gray : #f3f3f3;
+}
+
+/* 전체 컨테이너 */
+#goodsCart-container {
+	width: 80%;
+	margin: 50px auto;
+	display: flex;
+	
+	/* background-color: aqua; */
+}
+
+/* 왼쪽 컨테이너 */
+#left-container {
+	/* background-color: pink; */
+	
+	height: 100%;
+	width: 60%;
+}
+
+/* 오른쪽 컨테이너 */
+#right-container {
+	/* background-color: gray; */
+	
+	height: 100%;
+	width: 40%;
+	margin-left: 40px;
+}
+
+/*******************************************************************************
+ * 왼쪽 컨테이너
+ ******************************************************************************/
+ .card-custom {
+ 	font-size: 12px;
+ 	margin-bottom: 30px;
+ 	
+ 	/* border-radius: 0.3rem;
+ 	border: 1px solid gray; */
+ }
+ 
+ .card-head {
+ 	display: flex;
+ 	justify-content: space-between;
+ }
+ 
+ .card-body {
+ 	display: flex;
+ 	/* justify-content: space-between; */
+ 	margin: 7px 0;
+ 	padding: 0!important;
+ 	border: 0!important;
+ }
+ 
+  .card-footer {
+ 	display: flex;
+ 	justify-content: space-between;
+ 	padding: 0!important;
+ 	background-color: white!important;
+ 	border: 0!important;
+ }
+ 
+ .card-footer-left {
+ 	display: flex;
+ 	justify-content: space-between;
+ 	background-color: var(--bg-gray);
+ 	width: 100%;
+ 	border-radius: 0.3rem;
+ 	padding: 7px 18px;
+ 	
+ 	align-items: center;
+ }
+ 
+ .card-footer-right button {
+ 	width: 110px;
+ 	margin-left: 10px;
+ 	font-size: 12px!important;
+ 	
+ }
+ 
+ #qtyBtn {
+ 	border-color: #d7d7d7;
+ 	color: #3a3a3a;
+ }
+ 
+  .card-body-right {
+ 	/* background-color: aqua; */
+ 	margin-left: 20px;
+ 	/* width: 100%; */
+ 	position:relative;
+ }
+ 
+ .img-bg-div {
+ 	border-radius: 0.3rem;
+ 	background-color: var(--bg-gray);
+ 	width: 100px!important;
+ 	height: 100px!important;
+ 	
+ }
+ 
+ .cardId-div {
+ 	font-size: 14px;
+ 	color: #b3b3b3;
+ }
+ 
+ .goodsName-div {
+ 	position:relative;
+ 	margin-bottom: 4px;
+ 	font-size: 16px;
+ }
+ 
+ .goodsCategory-div {
+ 	position:relative;
+ 	color: #5f5f5f;
+ 	font-size: 13px;
+ } 
+ 
+  .goodsPrice-div {
+ 	position: absolute;
+ 	bottom: 0;
+ 	font-weight: bold;
+ 	font-size: 14px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /*******************************************************************************
+ * 오른쪽 컨테이너
+ ******************************************************************************/
+ #summaryBody {
+ 	margin: 12px 0;
+ 	/* background: #f8f8f8; */
+ 	background: #f3f3f3;
+ 	border-radius: 0.3rem;
+ 	padding: 15px 25px;
+ }
+ 
+ .summary-row {
+ 	display: flex;
+ 	justify-content: space-between;
+ }
+ 
+ .sum-row {
+ 	margin-top: 10px;
+ 	font-weight: bold;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
