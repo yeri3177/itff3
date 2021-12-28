@@ -28,5 +28,7 @@ public interface MemberService {
 
 	int selectBoardTotalCount();
 
+	int insertProfileImage(Map<String, Object> param);
+
 
 }

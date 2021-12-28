@@ -28,4 +28,8 @@ public interface MemberDao {
 
 	int selectBoardTotalCount();
 
+	int insertGoods(Member member);
+
+	int insertProfileImage(Map<String, Object> param);
+
 }
