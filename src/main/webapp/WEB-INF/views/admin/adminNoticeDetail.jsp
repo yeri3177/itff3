@@ -33,7 +33,7 @@
 					<c:forEach items="${notice.attachments}" var="attach" varStatus="vs">
 						<button 
 							type="button"
-							class="btn btn-outline-success btn-block attach"
+							class="btn btn-outline-info btn-block attach"
 							value="${attach.attachNo}">${attach.originalFilename eq null ? '첨부파일 없음' : attach.originalFilename}
 						</button>
 					</c:forEach>

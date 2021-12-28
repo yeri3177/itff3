@@ -13,12 +13,12 @@
 <c:forEach items="${list }" var="list">
 <tr>
    <td class="name-cell">
-       <span class="comments-text-wrapper">
-           <span class="ba-author-avatar" style="background-image: url(https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50);"></span>
-           <img src="https://www.gravatar.com/avatar/1e6e0982c3fd69a61c3f06091d61858b?d=https://www.balbooa.com/demo-admin/components/com_gridbox/assets/images/default-user.png&amp;s=50" style="display: none !important;" onerror="setGravatarDefault(this);">
+       <span class="comments-text-wrapper" id="image">
+			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.member.image }" alt="memberImage" style="width: 50px; height: 50px; border-radius: 20px; margin-right: 10px;"/>
             <span class="comments-text">
                 <span class="comments-name-wrapper">
                     <span class="comments-name">
+                    	<input type="hidden" name="memberId" value="${list.memberId }" />
                         <span>${list.memberId }</span>
                         <span class="review-rating-wrapper">
                         </span>
