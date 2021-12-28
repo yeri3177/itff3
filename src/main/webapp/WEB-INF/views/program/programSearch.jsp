@@ -123,7 +123,7 @@
 <script>
 //const speech = new webkitSpeechRecognition;
 if(!("webkitSpeechRecognition" in window)) {
-	alert("음성인식 지원이 불가합니다. 크롬에서만 가능합니다.");
+	alert("음성인식 지원은 크롬에서만 가능합니다.");
 	
 } else {
 	const speech = new webkitSpeechRecognition;
