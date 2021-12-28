@@ -81,45 +81,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 <style>
-/* 색상옵션 > 체크 안되어 있을때 */
+/* 색상 옵션 */
 .color-box input[type='radio'] {
-  background-color: #e0e0e0; /* el로 해당옵션 색상 넣어주기 */
+  background-color: #bcbcbc; /* el로 해당옵션 색상 넣어주기 */
   cursor: pointer;
 }
-
-/* 색상옵션 > 체크 되어 있을때 */
-.color-box input[type='radio']:checked {
-  background-color: gray; /* el로 해당옵션 색상 넣어주기 */
-  border: 4px double white;
-}
-
-/* 색상옵션 > 마우스 호버시 */
-.color-box input[type='radio']:hover {
-  border: 4px double white;
-}
-
-/**** 화면 고정 관련 ****/
-.fixed { 
-    position: fixed; 
-	top: 0; 
-	/* left: calc(100%/2); */
-	right: 10%;
-	padding-bottom: 50px;
-	margin-bottom: 50px;
-	height: 100%;
-}
-
-.fixed +goodsDetail-container { 
-    width: 80%;
-    position: relative;
-}
-
-.fixed +top-left-box { 
-    position: relative;
-    left : 100px;
-}
-
-
 
 </style>
 
@@ -131,9 +97,7 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- <body onload="init();"> -->
-
-<!-- 소메뉴 네비게이션 -->
+<!-- 서브메뉴 네비게이션 -->
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
@@ -304,17 +268,32 @@
 	
 <!-- 장바구니 버튼 제출시 폼 -->			
 <%-- <form 
-	id="goodsOptionFrm" 
-	name="goodsOptionFrm"
-	action="${pageContext.request.contextPath}/goods/cartEnroll.do?${_csrf.parameterName}=${_csrf.token}"
-	method="post"> --%>
+		id="goodsOptionFrm" name="goodsOptionFrm" method="post"
+		action="${pageContext.request.contextPath}/goods/cartEnroll.do?${_csrf.parameterName}=${_csrf.token}" > --%>
 			
 			<input type=hidden name="goodsId" id="goodsId" value="${goods.PId}">		
 			<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">		
 			
-			
-			<!-- 상품명 -->
-			<div class="goods-name">${goods.PName}</div>
+			<div class="goodsName-div">
+				<div>
+					<!-- 상품명 -->
+					<div class="goods-name">${goods.PName}</div>
+				</div>
+				
+				<!-- 아이콘 그룹 -->
+				<div class="icon-group">
+					<!-- 주소복사 아이콘 -->
+					<div id="urlCopyBtn" class="iconBg-div" onclick="clip(); return false;">
+						<!-- <i class="far fa-copy fa-4x"></i> -->
+						<i class="far fa-clone"></i>
+					</div>
+					
+					<!-- 찜하기 아이콘 -->
+					<div class="iconBg-div">
+						<i class="far fa-heart"></i>
+					</div>
+				</div>
+			</div>
 			
 			<!-- 서브 카테고리 -->
 			<div class="goods-subcategory">${goods.PSubcategory}</div>
@@ -531,6 +510,21 @@ $(() => {
     // 푸터 해제 함수 실행 
     //Scrolling2();
 });
+
+/* 페이지 URL 복사 */
+function clip(){
+	
+	var url = '';
+	var textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	url = window.document.location.href;
+	textarea.value = url;
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	/* alert("URL이 복사되었습니다.") */
+}
+
 
 /* 장바구니버튼 */
 function fn_cartBtn(){

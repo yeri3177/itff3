@@ -45,6 +45,36 @@ body {
 	
 }
 
+.goodsName-div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.icon-group {
+	display: flex;
+}
+.iconBg-div {
+	width: 45px;
+	height: 45px;
+	margin-left: 10px;
+	background: #f3f3f3;
+	border-radius: 50%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.iconBg-div i {
+	font-size: 23px;
+	width: 30px;
+	color: #c2c2c2;
+	cursor: pointer;
+}
+
+#urlCopyBtn:active .fa-clone {
+	color: gray;
+}
 
 /* 상품명 */
 .goods-name {
@@ -187,6 +217,16 @@ body {
 }
 
 /******************* 색상 옵션 ***************/
+/* 색상옵션 > 체크 되어 있을때 */
+.color-box input[type='radio']:checked {
+  border: 4px double white;
+}
+
+/* 색상옵션 > 마우스 호버시 */
+.color-box input[type='radio']:hover {
+  border: 4px double white;
+}
+
 .option-colors-div {
 	display: flex;
 }
@@ -360,6 +400,30 @@ input[name="tab_item"] {
 	bottom: 40px;
 	left: 43%;
 } 
+
+
+
+/************** 화면 고정 관련 ***************/
+.fixed { 
+    position: fixed; 
+	top: 0; 
+	/* left: calc(100%/2); */
+	right: 10%;
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+	height: 100%;
+}
+
+.fixed +goodsDetail-container { 
+    width: 80%;
+    position: relative;
+}
+
+.fixed +top-left-box { 
+    position: relative;
+    left : 100px;
+}
+
 
 
 

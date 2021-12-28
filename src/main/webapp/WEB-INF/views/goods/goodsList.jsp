@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsList.css" />
 
+<!-- fontawesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
 <!-- 인코딩 설정 -->
 <fmt:requestEncoding value="utf-8"/>
 
@@ -40,47 +43,61 @@
 	
 	<!-- 상품 목록 부분 -->
 	<div id="goods-list-div">
-		<p id="title_text">ITFF 2022</p>
-		
-		<!-- 상품 정렬 리스트 -->
-		<ul id="goods-sort-ul">
-			<li><a href="#">인기도순</a></li>
-			<li><a href="#">낮은가격순</a></li>
-			<li><a href="#">높은가격순</a></li>
-			<li><a href="#">평점높은순</a></li>
-		</ul>
+		<div class="top-text-div">
+			<p id="title_text">ITFF 2022</p>
+			
+			<!-- 상품 정렬 리스트 -->
+			<ul id="goods-sort-ul">
+				<li><a href="#">인기도순</a></li>
+				<li><a href="#">낮은가격순</a></li>
+				<li><a href="#">높은가격순</a></li>
+				<li><a href="#">평점높은순</a></li>
+			</ul>
+		</div>
 		<br /><br /><br />
 		
 		<!-- 상품 목록 카드 리스트-->
-		
 		<div class="card-list">
 			
 			<!-- 개별 상품 카드 -->
 			<c:forEach items="${list}" var="goods">
-				<div class="card" style="width: 18rem;" data-id="${goods.PId}">
-				  <!-- 대표 이미지 -->
-				  <div class="img-div">
-				  	<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}">
-				  </div>
-				  <div class="card-body">
-				   	<!-- 상품명 -->
-				    <p class="card-text">${goods.PName}</p>
-				    
-				    <!--가격 -->
-				    <p class="card-text">
-				    	<fmt:formatNumber value="${goods.PPrice}" pattern="#,###원" />
-				    </p>
-				  </div>
+			<div class="card" style="width: 18rem;" data-id="${goods.PId}">
+				<!-- 대표 이미지 -->
+				<div class="img-div">
+					<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}">
+					
+					<!-- 찜하기버튼 -->
+					<div class="iconBg-div">
+						<i class="far fa-heart"></i>
+					</div>
 				</div>
+				
+				<!-- 상품텍스트 -->
+				<div class="card-body">
+					<!-- 메인 카테고리 -->
+					<div class="card-text top-text">${goods.PCategory}</div>
+				
+					<!-- 상품명 -->
+					<div class="card-text middle-text">${goods.PName}</div>
+					
+					<!--상품가격 -->
+					<div class="card-text bottom-text">
+						<fmt:formatNumber value="${goods.PPrice}" pattern="￦ #,###" />
+					</div>
+				</div> <!-- end of 상품텍스트 -->
+			</div> <!-- end of 개별 상품 카드 -->
 			</c:forEach>
 			
+		</div><!-- end of 상품 목록 카드 리스트-->
+		
+		<div id="pagebar">
+			${pagebar}
 		</div>
+		
+		
 	</div> <!-- 상품 목록 부분 끝 -->
-	<br /><br /><br />
 	
-	<div id="pagebar">
-		${pagebar}
-	</div>
+	
 	
 </section>
 

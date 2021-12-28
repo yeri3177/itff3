@@ -4,10 +4,10 @@
  * 굿즈 파일 공통 
  ***************************************************************/
  .goods-container {
-	height: 1350px;
+	/* height: 1450px; */
 	margin: 0 auto!important;
 	text-align: center;
-	padding-bottom: 80px;
+	/* padding-bottom: 80px; */
 	display: block;
 	font-size: 17px;
  }
@@ -21,9 +21,16 @@
 /***************************************************************
  * goodsList.jsp (상품 목록 페이지)
  ***************************************************************/
+ .top-text-div {
+ 	padding-left: 110px;	
+ }
+ 
  #goods-list-div {
+ 	height: 100%;
  	width: 1400px;
- 	margin: 0 auto;
+ 	margin: 0 auto!important;
+ 	
+ 	/* background-color: aqua; */
  }
  
  #goods-banner-img {
@@ -33,7 +40,7 @@
  
  #goods-sort-ul {
  	float: left;
- 	padding-left: 60px;
+ 	/* padding-left: 60px; */
  }
  
   #goods-sort-ul li {
@@ -48,7 +55,7 @@
   }
   
   #title_text {
-  	padding-left: 60px;
+  	/* padding-left: 60px; */
   	font-size: 30px;
   	font-weight: bold;
   	text-align: left;
@@ -56,16 +63,22 @@
   }
   
   .card {
+  	/* width: 25%!important; */
 	float: left;
-  	margin: 20px;
+  	margin-left: 5px;
   	text-align: center;
   	cursor: pointer;
+  	border: 0!important;
+  	margin-bottom: 50px;
   }
   
  .card-list {
- 	padding-left: 40px;
+ 	width: 100%;
+ 	text-align: center;
+ 	padding: 0 110px;
 	margin: 0 auto!important;
 	text-align: center!important;
+	background-color: pink;
  }
  
  .card-text {
@@ -83,6 +96,7 @@
  	height: 265px;
  	line-height: 265px;
  	background-color: #f6f6f6;
+ 	position: relative;
 
  }
  
@@ -93,13 +107,53 @@
  	vertical-align:middle;
  }
  
+ .card-body {
+ 	padding: 0!important;
+ 	margin-top: 21px;
+ 	
+ }
  
+ .middle-text {
+ 	margin-top: 10px;
+ 	margin-bottom: 20px;
+ 	color: #585858;
+ 	font-size: 20px;
+ }
  
+ .top-text {
+ 	font-size: 14px;
+ 	font-weight: bold;
+ }
  
+ .bottom-text {
+ 	font-size: 20px;
+ }
  
- 
- 
- 
+ .iconBg-div {
+	width: 40px;
+	height: 40px;
+	margin-left: 10px;
+	background: white;
+	opacity: 0.85;
+	border-radius: 50%;
+	text-align: center;
+	display: flex;
+	align-items: center!important;
+	justify-content: center;
+	
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	padding-top: 4px;
+	
+}
+
+.iconBg-div i {
+	font-size: 23px;
+	width: 30px;
+	color: #e5e5e5;
+	cursor: pointer;
+}
  
  
  

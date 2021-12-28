@@ -61,7 +61,7 @@
 			</div>
 			
 			<!-- card-head-right : X버튼 -->
-			<div>
+			<div class="iconBg-div">
 				<button type="button" class="btn-close" aria-label="Close"></button>
 			</div>
 		</div>
