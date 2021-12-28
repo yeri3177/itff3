@@ -34,6 +34,11 @@ pageContext.setAttribute("loginMember", loginMember);
 				      <th scope="row">제목</th>
 				      <td>${question.questionTitle}</td>
 				    </tr>
+
+				    <tr>
+				      <th scope="row">작성자</th>
+				      <td>${question.questionTitle}</td>
+				    </tr>
 				    
 				    <tr>
 				      <th scope="row">작성일시</th>

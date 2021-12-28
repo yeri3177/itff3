@@ -421,8 +421,12 @@ a:hover {
 
 .search-total {
 	text-align: -webkit-right;
-	width: 1600px;
+    width: 1600px;
+    display: flex;
     min-width: 1600px;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
 }
 
 .search-total-total {

@@ -108,7 +108,6 @@ $('#info').on('click', function(){
 
 </script>
 
-
 <script>
 
 // 전역변수 설정
@@ -126,25 +125,8 @@ $(document).ready(function(){
 	sock.onmessage = function(evt) {
    		console.log('Info: connection onmessage.');
    		console.log(evt.data);
-   		toastr.info('[관리자 메세지]: ' + evt.data);
-//    		onMessage(evt);
+   		toastr.info(evt.data);
 	};
-   		
-
-// function onMessage(evt){
-//     var data = evt.data;
-    
-//     // toast
-//     let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
-//     toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
-//     toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
-//     toast += "<span aria-hidden='true'>&times;</span></button>";
-//     toast += "</div> <div class='toast-body'>" + data + "</div></div>";
-    
-//     $("#msgStack").append(toast);   // msgStack div에 생성한 toast 추가
-//     $(".toast").toast({"animation": true, "autohide": false});
-//     $('.toast').toast('show');
-// 		};	
 		
 	sock.onclose = function(event) {
    		console.log('Info: connection closed');
@@ -154,8 +136,7 @@ $(document).ready(function(){
    		console.log('Error:', err);
 	};
 });
-
-  		
+ 		
 </script>
 
 <!-- 폰트 -->
