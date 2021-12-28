@@ -40,7 +40,7 @@
 					<div class="col-md-4 col-xs-12">
 						<div class="user">
 							<div class="user_con">
-								<img src="https://i.imgur.com/n1c1fJU.png" alt="member" class="member-con" />
+								<a href="${pageContext.request.contextPath }/member/memberProfile.do"><img src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>" alt="member" class="member-con" /></a>
 								<span>
 								<strong class="name"><sec:authentication property="principal.name"/></strong>님
 								</span>

@@ -67,6 +67,17 @@ public class MemberDaoImpl implements MemberDao {
 	public int selectBoardTotalCount() {
 		return session.selectOne("member.selectBoardTotalCount");
 	}
+
+	@Override
+	public int insertGoods(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertProfileImage(Map<String, Object> param) {
+		return session.update("member.insertProfileImage", param);
+	}
 	
 	
 	
