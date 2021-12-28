@@ -316,6 +316,9 @@
 			<!-- 상품명 -->
 			<div class="goods-name">${goods.PName}</div>
 			
+			<!-- 서브 카테고리 -->
+			<div class="goods-subcategory">${goods.PSubcategory}</div>
+			
 			<!-- 상품가격 -->
 			<div class="goods-price">
 				<fmt:formatNumber value="${goods.PPrice}" pattern="#,### 원" />
