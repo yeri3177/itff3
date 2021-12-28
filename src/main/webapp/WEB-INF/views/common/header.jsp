@@ -64,14 +64,19 @@
 	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- toastr -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- bootstrap toast -->
+<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 
 <script>
 
 toastr.options = {
-		  "closeButton": false,
 		  "debug": false,
 		  "newestOnTop": false,
 		  "progressBar": true,
@@ -80,7 +85,7 @@ toastr.options = {
 		  "onclick": null,
 		  "showDuration": "100",
 		  "hideDuration": "1000",
-		  "timeOut": "3000",
+		  "timeOut": "5000",
 		  "extendedTimeOut": "1000",
 		  "showEasing": "swing",
 		  "hideEasing": "linear",
@@ -121,10 +126,26 @@ $(document).ready(function(){
 	sock.onmessage = function(evt) {
    		console.log('Info: connection onmessage.');
    		console.log(evt.data);
-   		
-   		toastr.info('[관리자 메세지]: ' + evt.data);
+   		onMessage(evt);
 	};
+   		
+//    		toastr.info('[관리자 메세지]: ' + evt.data);
 
+function onMessage(evt){
+    var data = evt.data;
+    
+    // toast
+    let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' style='position: absolute; width: 500px; right: 10; min-height: 150px;'>";
+    toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
+    toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close' style='z-index: 999;'>";
+    toast += "<span aria-hidden='true'>&times;</span></button>";
+    toast += "</div> <div class='toast-body'>" + data + "</div></div>";
+    
+    $("#msgStack").append(toast);   // msgStack div에 생성한 toast 추가
+    $(".toast").toast({"animation": true, "autohide": false});
+    $('.toast').toast('show');
+		};	
+		
 	sock.onclose = function(event) {
    		console.log('Info: connection closed');
 	};
@@ -132,44 +153,10 @@ $(document).ready(function(){
 	sock.onerror = function(err) {
    		console.log('Error:', err);
 	};
-
 });
+
   		
 </script>
-
-<!-- 
-<script>
-
-//전역변수 설정
-var socket  = null;
-
-$(document).ready(function(){
-	
-	sock = new SockJS("<c:url value="/echo-ws"/>");
-
-// 데이터를 전달 받았을때 
-sock.onmessage = onMessage; // toast 생성
-console.log(sock.onmessage);
-});
-
-// 실시간 알림 받았을 시
- //evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
-	function onMessage(evt){
-		var data = evt.data;
-		// toast
-		let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true'>";
-		toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
-		toast += "<small class='text-muted'></small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>";
-		toast += "<span aria-hidden='true'>&times;</span></button>";
-		toast += "</div> <div class='toast-body'>" + data + "</div></div>";
-		$("#msgStack").append(toast);
-		$(".toast").toast({"animation": true, "autohide": false});
-// 		$(".toast").toast({"animation": true, "autohide": true, "delay": 5000});
-		$('.toast').toast('show');
-	};
-
-</script>
- -->
 
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -296,10 +283,9 @@ console.log(sock.onmessage);
 
 							</div>
 							<!-- // f_r 오른쪽 정렬 -->
-
 						</div>
 						<!-- // hd_inner -->
-
+						
 					</div>
 
 				</header>

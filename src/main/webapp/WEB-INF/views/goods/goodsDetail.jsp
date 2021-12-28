@@ -245,10 +245,10 @@
 				    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
 				      <div class="accordion-body">
 				        주문 제작 오더메이드 상품 특성상 단순변심으로 인한 교환/환불 및 반품이 불가합니다.<br />
-						단, 수령하신 상품이 불량인 경우 “전자상거래등에서의 소비자 보호에 관한 법률"에 따라 교환/환불 및 반품이 가능하오니 <br />
+						단, 수령하신 상품이 불량인 경우 “전자상거래등에서의 소비자 보호에 관한 법률"에 따라 교환/환불 및 반품이 가능하오니
 						잇프굿즈샵 고객센터(1566-5496) 또는 1:1 문의하기를 통해 문의 부탁드립니다.<br />
 						수령하신 상품의 불량 부분이 보이는 사진 2장 이상을 첨부하여 문의해 주시면 빠르게 확인 도와드리겠습니다.<br />
-						주문하셨던 상품이 아닌 다른 상품으로의 교환은 불가하며 세탁 부주의로 인한 상품 변형 및 인쇄 손상에 따른 <br />
+						주문하셨던 상품이 아닌 다른 상품으로의 교환은 불가하며 세탁 부주의로 인한 상품 변형 및 인쇄 손상에 따른
 						교환/환불은 불가하므로 상품 상세 페이지의 세탁 방법을 꼭 확인해 주세요.
 				      </div>
 				    </div>
@@ -473,7 +473,9 @@
 	      <!-- 상품을 장바구니에 담았습니다. -->
 	      <span class="cart-msg"></span>
 	    </div>
-	    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+	    <div class="close-btn-div">
+	    	<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+	    </div>
 	  </div>
 	</div>
 </div>
@@ -501,6 +503,7 @@ $(() => {
 	/* 장바구니 버튼 클릭시 */
 	fn_cartBtn();
 	
+	/* 토스트 확인용 */
 	/* const $toast = $("#cartToasts");
 	$toast.show(); */
 	
@@ -537,9 +540,6 @@ function fn_cartBtn(){
 		// 스크롤 맨위로 이동
 		$('html,body').scrollTop(0);
 		
-		// 토스트 메세지 보이게하기 
-		$toast.show();
-		
 		// 2초후에 토스트 사라지게 하기
 		setTimeout(function(){
 		    $toast.hide();		
@@ -555,7 +555,7 @@ function fn_cartBtn(){
 			goodsQty : $("[name=amount]").val()
 		}
 		
-		console.log(cart);
+		console.log("cart = " + cart);
 		
 		//const jsonStr = JSON.stringify(cart);
 		//console.log(jsonStr);
@@ -573,6 +573,9 @@ function fn_cartBtn(){
             	var msg = Object.values(data);
             	
             	$(".cart-msg").text(msg);
+            	
+            	// 토스트 메세지 보이게하기 
+        		$toast.show();
             	
             },
             error: console.log
