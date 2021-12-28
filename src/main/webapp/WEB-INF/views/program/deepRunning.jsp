@@ -62,13 +62,13 @@
 				<div class="pgl row">
 					<!-- col-md-4  col-lg-3 -->			
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006" class="film_thumb">
 							<img src="https://i.imgur.com/NJOvXw0.jpg" class="poster" alt="13층">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">가상현실·딥러닝</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do" class="film_tit">13층</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006" class="film_tit">13층</a>
 								<small class="dir">The thirteenth floor</small>
 								<div class="dir">
 									<p class="dir_p">조세프 루스넥 <span class="en">Joseph Rosnec</span></p>
@@ -83,14 +83,14 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do?movieId=007" class="film_thumb">
 							<img src="https://i.imgur.com/IAPZHFR.jpg" class="poster" alt="매트릭스" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">개막작</span>
 							<span class="sectionName mt20" style="margin-left: 2px">가상현실·딥러닝</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do" class="film_tit">매트릭스</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/matrix.do?movieId=007" class="film_tit">매트릭스</a>
 								<small class="dir">The Matrix</small>
 								<div class="dir">
 									<p class="dir_p">라나 워쇼스키, 릴리 워쇼스키</p>

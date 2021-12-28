@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.program.model.dao.ProgramDao;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,11 @@ public class ProgramServiceImpl implements ProgramService {
 	@Override
 	public int searchProgramTotalContent(String searchKeyword) {
 		return programDao.searchProgramTotalContent(searchKeyword);
+	}
+
+	@Override
+	public List<MovieJoin> selectMovieSchedule(String newMovieId) {
+		return programDao.selectMovieSchedule(newMovieId);
 	}
 	
 }

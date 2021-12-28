@@ -61,13 +61,13 @@
 			<div id="pg_wrap">
 				<div class="pgl row">
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do?movieId=001" class="film_thumb">
 							<img src="https://i.imgur.com/O9bD3Tb.jpg" class="poster" alt="아이로봇">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do" class="film_tit">아이, 로봇</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/iRobot.do?movieId=001" class="film_tit">아이, 로봇</a>
 								<small class="dir">I, robot</small>
 								<div class="dir">
 									<p class="dir_p">알렉스 프로야스 <span class="en">Alex Proyas</span></p>
@@ -82,13 +82,13 @@
 					</div>					
 
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002" class="film_thumb">
 							<img src="https://i.imgur.com/yVJ0cgo.jpg" class="poster" alt="이글아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">인공지능</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do" class="film_tit">이글아이</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002" class="film_tit">이글아이</a>
 								<small class="dir">Eagle Eye</small>
 								<div class="dir">
 									<p>D.J.카루소 <span class="en">D.J.Caruso</span></p>
@@ -104,14 +104,14 @@
 					</div>
 					
 					<div class="pg_li col-md-4  col-lg-3 col-xs-12" style="padding: 0">
-						<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_thumb">
+						<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003" class="film_thumb">
 							<img src="https://i.imgur.com/cpXNwP2.jpg" class="poster" alt="에이아이" width="100%">
 						</a>
 						<div class="fighting">
 							<span class="sectionName mt20">폐막작</span>
 							<span class="sectionName mt20" style="margin-left: 2px">인공지능</span>
 							<div class="txtbox">
-								<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do" class="film_tit">에이 아이</a>
+								<a href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003" class="film_tit">에이 아이</a>
 								<small class="dir">A.I.</small>
 								<div class="dir">
 									<p>스티븐 스필버그 <span class="en">Steven Allan Spielberg</span></p>

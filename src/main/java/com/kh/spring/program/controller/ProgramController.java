@@ -1,5 +1,6 @@
 package com.kh.spring.program.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.movie.model.vo.Movie;
+import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.program.model.service.ProgramService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -59,45 +62,439 @@ public class ProgramController {
 	/////////////////////////////////////
 	
 	@GetMapping("/synopsis/matrix.do")
-	public void matrix() {}
-	
-	
+	public void matrix(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/aiSynopsis.do")
-	public void aiSynopsis() {}
+	public void aiSynopsis(
+			Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/iRobot.do")
-	public void iRobot() {}
+	public void iRobot(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/eagleEye.do")
-	public void eagleEye() {}
+	public void eagleEye(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/password.do")
-	public void password() {}
+	public void password(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/gattaca.do")
-	public void gattaca() {}
+	public void gattaca(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/thirteen.do")
-	public void thirteen() {}
+	public void thirteen(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/her.do")
-	public void her() {}
+	public void her(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/citizenFour.do")
-	public void citizenFour() {}
+	public void citizenFour(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/casinoRoyale.do")
-	public void casinoRoyale() {}
+	public void casinoRoyale(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/missionImpossible.do")
-	public void missionImpossible() {}
+	public void missionImpossible(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/erin.do")
-	public void erin() {}
+	public void erin(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
 	
 	@GetMapping("/synopsis/looper.do")
-	public void looper() {}
+	public void looper(Model model,
+			@RequestParam String movieId
+			) {
+		
+		String newMovieId = "movie-" + movieId;
+		log.debug("newMovieId = {}", newMovieId);
+		
+		List<MovieJoin> list = programService.selectMovieSchedule(newMovieId);
+		log.debug("list = {}", list);
+		
+		List<MovieSchedule> movieSchedule = new ArrayList<MovieSchedule>();
+		List<Movie> movie = new ArrayList<Movie>();
+		Movie movies = new Movie();
+		String ageLimit = null;
+		
+		for(int i = 0; i < list.size(); i++ ) {
+			MovieSchedule movieSchedules = new MovieSchedule();
+			movieSchedules = list.get(i).getMovieSchedule();
+			
+			movies = list.get(i).getMovie();
+			
+			movieSchedule.add(movieSchedules);
+			movie.add(movies);
+			
+			ageLimit = list.get(i).getMovie().getAgeLimit();
+		}
+		
+		model.addAttribute("movieSchedule", movieSchedule);
+		model.addAttribute("ageLimit",ageLimit);
+		
+	}
+	
+	
+	///////////////////////////////////////////////
+	
+	
 	
 	@GetMapping("/programFinder.do")
 	public String programFinder(
