@@ -233,3 +233,8 @@ dl, ul, ol, menu, li {
 #titleEng {
 	font-size:16px;
 }
+
+/*아이콘 크기*/
+ion-icon {
+  font-size: 40px;
+}

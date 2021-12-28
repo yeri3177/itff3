@@ -53,6 +53,9 @@
 		else if("movie-013"== movieCode)
 			location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do?movieId=013`;
 	}
+	
+	
+	
 </script>
 
 
@@ -96,26 +99,57 @@
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
 <div class="search_wrap">
 	<div class="inp_search_wrap" style="display:inline-flex;">
-		<input name="SearchQuery" id="SearchQuery" type="text" size="30" value="${program}" class="inp_search text ac_input" placeholder="영화명을 입력하세요." title="검색어를 입력하세요" style="display:block;">
+		<input name="SearchQuery" id="SearchQuery" type="text" size="30" value="${program }" class="inp_search text ac_input" placeholder="영화명을 입력하세요." title="검색어를 입력하세요" style="display:block;">
 		
 		<button class="sbtn" onclick="programSearch()">
 			<img src="https://www.biff.kr/kor/img/program/btn_search.png" alt="검색" class="wview">
 		</button>
+		<!-- 음성인식 구현 -->
+		<button id="start">
+			<ion-icon name="mic"></ion-icon>
+		</button>
 	</div>
 </div>
 
+<script>
+//const speech = new webkitSpeechRecognition;
+if(!("webkitSpeechRecognition" in window)) {
+	alert("음성인식 지원이 불가합니다. 크롬에서만 가능합니다.");
+	
+} else {
+	const speech = new webkitSpeechRecognition;
+	
+	document.getElementById("start").addEventListener("click", () => {
+		speech.start();
+	})
+	
+	/* document.getElementById("stop").addEventListener("click", () => {
+		speech.stop();
+	}) */
+	
+	speech.addEventListener("result", (event) => {
+		console.log(event);
+		const {transcript} = event["results"][0][0]
+		console.log(transcript);
+		//document.getElementById("transcript").innerHTML = transcript;
+		$('#SearchQuery').val(transcript);
+	})
+	
+}
+</script>
 
-<%-- <c:if test="${empty movieList }"> --%>
 
-	<!-- <p id="noMovie">검색하신 
-	작품이 없습니다.
-	<br />
-	 다시 검색해 주세요.</p> -->
+
 	<br /><br /><br />
-<%-- </c:if> --%>
-
 
 
 <c:if test="${not empty movieList }">
