@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.goods.model.dao.GoodsDao;
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
@@ -80,6 +81,16 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public int insertCart(Map<String, Object> param) {
 		return goodsDao.insertCart(param);
+	}
+
+	@Override
+	public GoodsCart selectOneCart(Map<String, Object> param) {
+		return goodsDao.selectOneCart(param);
+	}
+
+	@Override
+	public int updateCartQty(Map<String, Object> param) {
+		return goodsDao.updateCartQty(param);
 	}
 
 

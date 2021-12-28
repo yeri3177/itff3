@@ -205,8 +205,27 @@
 		)
 	</insert>
 	
+	<select id="selectOneCart" resultType="goodsCart">
+		select
+			*
+		from
+			goods_cart
+		where
+			p_id = #{pId}
+			and option_id = #{optionId}
+			and member_id = #{memberId}
+
+	</select>
 	
+	<update id="updateCartQty">
+		update
+			goods_cart
+		set
+			cart_quantity = cart_quantity + #{cartQty}
+		where
+			cart_id = #{cartId}
 	
+	</update>
 	
 	
 	

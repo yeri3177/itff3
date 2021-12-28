@@ -60,7 +60,7 @@
 				No. 323232
 			</div>
 			
-			<!-- card-head-right : X버튼 -->
+			<!-- card-head-right : X버튼 (버튼 클릭시 해당 goods_cart 레코드 삭제(GET) -->
 			<div class="iconBg-div">
 				<button type="button" class="btn-close" aria-label="Close"></button>
 			</div>
@@ -86,7 +86,7 @@
 				<div class="goodsCategory-div">
 					아이폰 젤리 케이스
 				</div>
-				<!-- 가격 -->
+				<!-- 상품 가격 -->
 				<div class="goodsPrice-div">
 					16,300원
 				</div>
