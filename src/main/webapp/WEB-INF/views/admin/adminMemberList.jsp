@@ -46,6 +46,14 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					<div class="table-wrap">
 					
 					<div class="search-total">
+					
+					<button 
+					type="button" 
+		      		class="btn btn-info"
+		      		data-toggle="modal"
+					data-target="#adminTotalMsg"
+					onclick="tt_msg_btn();">전체 메세지</button>
+					
 						<div class="input-group rounded">
 					        <select 
 					        	id="searchType" 
@@ -59,7 +67,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="id"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="ID를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 아이디를 입력하세요." value="${'id' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -68,7 +76,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="name"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="이름을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 이름을 입력하세요." value="${'name' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -172,61 +180,99 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 						</table>
 						</div>
 
-						<!-- 회원 상세 -->
-						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
+					<!-- 회원 상세 -->
+					<div class="modal fade" id="adminMemberDetail" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document"
+							style="max-width: 800px;">
+							<div class="modal-content" style="text-align: left;">
+							   	<div class="modal-body" id="modal_ajax1">
+							    		  
+								</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 회원 상세 끝 -->
+						<!-- 회원 정보 수정 -->
+						<div class="modal fade" id="adminMemberUpdate" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
+								style="max-width: 1000px;">
 								<div class="modal-content" style="text-align: left;">
-								   	<div class="modal-body" id="modal_ajax1">
+								   	<div class="modal-body" id="modal_ajax2">
 								    		  
 									</div>
 	
 									</div>
 								</div>
 							</div>
-							<!-- 회원 상세 끝 -->
-							<!-- 회원 정보 수정 -->
-							<div class="modal fade" id="adminMemberUpdate" tabindex="-1"
+							<!-- 회원 정보 수정 끝 -->
+							<!-- 회원 포인트 지급 -->
+							<div class="modal fade" id="adminMemberPoint" tabindex="-1"
 								role="dialog" aria-labelledby="exampleModalLabel"
 								aria-hidden="true">
 								<div class="modal-dialog" role="document"
-									style="max-width: 1000px;">
+									style="max-width: 500px;">
 									<div class="modal-content" style="text-align: left;">
-									   	<div class="modal-body" id="modal_ajax2">
+									   	<div class="modal-body" id="modal_ajax3">
 									    		  
 										</div>
 		
 										</div>
 									</div>
 								</div>
-								<!-- 회원 정보 수정 끝 -->
 								<!-- 회원 포인트 지급 -->
-								<div class="modal fade" id="adminMemberPoint" tabindex="-1"
+								<!-- 전체 메세지 -->
+								<div class="modal fade" id="adminTotalMsg" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
 									aria-hidden="true">
 									<div class="modal-dialog" role="document"
-										style="max-width: 500px;">
-										<div class="modal-content" style="text-align: left;">
-										   	<div class="modal-body" id="modal_ajax3">
-										    		  
-											</div>
-			
-											</div>
-										</div>
+										style="max-width: 500px;" >
+									<div class="modal-content tt_msg_content" style="text-align: left;">
+								   	<div class="modal-body">				    		  									
+									      <div class="modal-header">
+									        <h4 class="modal-title" id="exampleModalLabel">전체 메세지</h4>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+							  				<form name="total_msg_frm">
+									      <div class="modal-body">
+									        <table class="table" id="modal_table">
+											  <tbody>
+											    <tr>
+											      <td>
+											      <textarea class="form-control modal-body textarea tt_msg_text" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
+											      </td>
+											    </tr>
+											  </tbody>
+											</table>
+									      </div>
+									      
+									      <div class="modal-footer">
+									        <button type="submit" id="totalNotifySendBtn" class="btn btn-dark">알림 전송</button>
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									      </div>
+										    </form>
+										</div>			
+									</div>	
+									
 									</div>
-									<!-- 회원 포인트 지급 -->
-									<!--   -->
-									<div class="modal fade" id="adminSaveNotify" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalLabel"
-										aria-hidden="true">
-										<div id="modal_ajax4" class="modal-dialog" role="document"
-											style="max-width: 500px;" >
-
-											</div>
-										</div>
-										<!--  -->
+								</div>
+								
+								<!-- 전체 메세지 끝  -->
+								<!--  개별 메세지 -->
+								<div class="modal fade" id="adminSaveNotify" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div id="modal_ajax4" class="modal-dialog" role="document"
+										style="max-width: 500px;" >
+									</div>
+								</div>
+								<!-- 개별 메세지 끝 -->
 						
 						</div>
 					</div>
@@ -349,6 +395,7 @@ function memberPoint_btn(memberId) {
 
 <script>
 
+// 개별 메세지
 function save_btn(memberId) {
 	
 	console.log(memberId);
@@ -368,6 +415,42 @@ function save_btn(memberId) {
 		}
 	});
 }
+
+</script>
+
+<script>
+
+// 전체 메세지
+
+$('#totalNotifySendBtn').click(function(e){
+    let modal = $('.tt_msg_content').has(e.target);
+    let target = 'all';
+    let type = '70';
+    let content = modal.find('.tt_msg_text').val();
+    let url = '${contextPath}/admin/saveNotify.do';
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send(content)
+    });
+    modal.find('.modal-body textarea').val('');	// textarea 초기화
+});
 
 </script>
 
