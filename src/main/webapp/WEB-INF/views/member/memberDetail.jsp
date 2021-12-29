@@ -67,7 +67,7 @@
 									<img src="https://i.imgur.com/jAwLZh6.png" alt="" class="row_icon"/>
 								</div>
 								<div>
-								<a href="#" class="btn_cart">장바구니</a>
+								<a href="${pageContext.request.contextPath }/goods/goodsCart.do" class="btn_cart">장바구니</a>
 								</div>
 							</div>	
 													
@@ -94,7 +94,7 @@
 									<img src="https://i.imgur.com/WWUDHV6.png" alt="" class="row_icon"/>
 								</div>
 								<div>
-								<a href="${pageContext.request.contextPath }/member/memberWrittenBoardList.do" class="btn_board">내가쓴게시글</a>
+								<a href="${pageContext.request.contextPath }/member/memberWrittenReviewList.do" class="btn_board">내가쓴게시글</a>
 								</div>
 							</div>	
 													

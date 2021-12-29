@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Board;
 
 @Repository
@@ -77,6 +78,17 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int insertProfileImage(Map<String, Object> param) {
 		return session.update("member.insertProfileImage", param);
+	}
+
+	@Override
+	public List<Review> selectReviewListByMemberId(int offset, int limit, String id) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("member.selectReviewListByMemberId", id, rowBounds);
+	}
+
+	@Override
+	public int selectReviewTotalCount() {
+		return session.selectOne("member.selectReviewTotalCount");
 	}
 	
 	
