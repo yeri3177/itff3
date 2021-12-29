@@ -210,11 +210,18 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * 이벤트 룰렛: 포인트 지급
+	 * [이벤트 룰렛: 포인트 지급]
 	 */
 	
 	@PostMapping("/eventRoulette.do")
-	public void eventRoulette(@RequestParam String id, @RequestParam int point, @RequestParam int change, Model model, RedirectAttributes redirectAttr){
+	public void eventRoulette(
+			@RequestParam String id, 
+			@RequestParam int point, 
+			@RequestParam int change, 
+			Model model, 
+			RedirectAttributes redirectAttr,
+			Authentication oldAuthentication
+			){
 		
 		String reason = "룰렛 이벤트 포인트 당첨";
 		
@@ -244,6 +251,9 @@ public class AdminManageController {
 		// 포인트 내역
 		int result1 = adminService.updateMemberPoint(param);
 		int result2 = adminService.insertPointHistory(param);
+		
+		Member principal = (Member) oldAuthentication.getPrincipal();
+		principal.setPoint(newPoint);
 		
 		redirectAttr.addFlashAttribute("msg", "포인트 지급 성공");
 	}
