@@ -9,10 +9,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
-	SecurityContext securityContext = SecurityContextHolder.getContext();
+	/* SecurityContext securityContext = SecurityContextHolder.getContext();
 	Authentication authentication = securityContext.getAuthentication();
 	Member loginMember = (Member) authentication.getPrincipal();
-	pageContext.setAttribute("loginMember", loginMember);
+	pageContext.setAttribute("loginMember", loginMember); */
 
 %>
 
@@ -54,15 +54,17 @@
 <!-- 페이지 전체 컨테이너 -->
 <section class="goods-container" id="goodsCart-container">
 
+
+ <c:if test="${not empty list}">
+
 <!-- 왼쪽 컨테이너 -->
 <div id="left-container">
 	<!-- 텍스트 -->
 	<div class="titleText">
 		<i class="fas fa-store"></i> 
-		ITFF 굿즈마켓
+		ITFF 굿즈마켓 
 	</div>
 	<br />
-	
 	
 	
 	<!-- card 낱개 반복 -->
@@ -168,6 +170,18 @@
 		주문서 작성
 	</button>
 </div> <!-- end of 오른쪽 컨테이너 -->
+</c:if>
+ 
+ <c:if test="${empty list}">
+ <div class="empryList-div">
+ 	<!-- <i class="fas fa-shopping-basket"></i> -->
+ 	<i class="fas fa-shopping-cart"></i>
+ 	<br />
+ 	비어있는 장바구니를 채워주세요!
+ </div>
+ </c:if>
+
+
 
 </section> <!-- end of 페이지 전체 컨테이너 -->
 
