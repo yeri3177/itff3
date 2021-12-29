@@ -49,7 +49,7 @@ $(() => {
 			<li class="on_"><a
 				href="${pageContext.request.contextPath }/notice/noticeList.do"
 				target="_top">공지사항</a></li>
-			<li class="on_"><a href="#" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/review/reviewList.do" target="_top">네티즌리뷰</a></li>
 			<li class="on_"><a
 				href="${pageContext.request.contextPath}/sharing/boardList.do"
 				target="_top">티켓나눔터</a></li>
