@@ -24,7 +24,7 @@
                         </span>
                     </span>
                 </span>
-                <span class="comments-message">${list.reviewContent }</span>
+                <span class="comments-message">${list.reviewTitle }</span>
             </span>
         </span>
     </td>

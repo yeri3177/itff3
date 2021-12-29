@@ -69,10 +69,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- bootstrap toast -->
-<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+<!-- <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css"> -->
+<!-- <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script> -->
+<!-- <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script> -->
+<!-- <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script> -->
 
 <script>
 
@@ -108,7 +108,6 @@ $('#info').on('click', function(){
 
 </script>
 
-
 <script>
 
 // 전역변수 설정
@@ -126,25 +125,8 @@ $(document).ready(function(){
 	sock.onmessage = function(evt) {
    		console.log('Info: connection onmessage.');
    		console.log(evt.data);
-   		onMessage(evt);
+   		toastr.info(evt.data);
 	};
-   		
-//    		toastr.info('[관리자 메세지]: ' + evt.data);
-
-function onMessage(evt){
-    var data = evt.data;
-    
-    // toast
-    let toast = "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' style='position: absolute; width: 500px; right: 10; min-height: 150px;'>";
-    toast += "<div class='toast-header'><i class='fas fa-bell mr-2'></i><strong class='mr-auto'>알림</strong>";
-    toast += "<small class='text-muted'>just now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close' style='z-index: 999;'>";
-    toast += "<span aria-hidden='true'>&times;</span></button>";
-    toast += "</div> <div class='toast-body'>" + data + "</div></div>";
-    
-    $("#msgStack").append(toast);   // msgStack div에 생성한 toast 추가
-    $(".toast").toast({"animation": true, "autohide": false});
-    $('.toast').toast('show');
-		};	
 		
 	sock.onclose = function(event) {
    		console.log('Info: connection closed');
@@ -154,8 +136,7 @@ function onMessage(evt){
    		console.log('Error:', err);
 	};
 });
-
-  		
+ 		
 </script>
 
 <!-- 폰트 -->
