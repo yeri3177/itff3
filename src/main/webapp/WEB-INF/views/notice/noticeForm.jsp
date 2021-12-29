@@ -27,7 +27,7 @@ pageContext.setAttribute("loginMember", loginMember);
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardFormCommon.css" />
+	href="${pageContext.request.contextPath }/resources/css/board/noticeForm.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
