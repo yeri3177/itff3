@@ -7,7 +7,7 @@
 <div class="option-colors-div">
 <c:forEach items="${searchColorList}" var="color" varStatus="vs">
 	<div class="color-box radio-wrap colorChage">
-		<input type="radio" id="${color.optionColor}" data-goods-id="${goods.PId}" name="optionColor" ${vs.first ? 'checked' : ''}><br />
+		<input type="radio" id="${color.optionColor}" class="colorRadio" name="optionColor" ${vs.first ? 'checked' : ''}><br />
 		<label for="${color.optionColor}">${color.optionColor}</label>
 	</div>
 </c:forEach>
@@ -16,11 +16,11 @@
 <script>
 $(() => {
 	fn_searchImg();
-	fn_colorChange();
+	/* fn_colorChange(); */
 	
-	/* $(".colorChage input[type='radio']").change((e) => {
+	$(".colorRadio").change((e) => {
 		fn_searchImg();
-	}); */
+	});
 });
 
 </script>

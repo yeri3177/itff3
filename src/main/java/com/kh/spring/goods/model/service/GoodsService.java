@@ -3,6 +3,7 @@ package com.kh.spring.goods.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
@@ -30,7 +31,7 @@ public interface GoodsService {
 
 	List<OptionDetail> selectSizeByColor(Map<String, Object> map);
 
-	List<OptionDetail> selectOneImg(Map<String, Object> map);
+	OptionDetail selectOneOptionDetail(Map<String, Object> map);
 
 	int selectOneOptionId(Map<String, Object> map);
 
@@ -39,6 +40,10 @@ public interface GoodsService {
 	GoodsCart selectOneCart(Map<String, Object> param);
 
 	int updateCartQty(Map<String, Object> param);
+
+	List<CartJoin> selectGoodsCartList(String memberId);
+
+	int deleteCart(String cartId);
 
 
 }

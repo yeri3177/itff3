@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
@@ -71,8 +72,8 @@ public class GoodsDaoImpl implements GoodsDao {
 	}
 
 	@Override
-	public List<OptionDetail> selectOneImg(Map<String, Object> map) {
-		return session.selectList("goods.selectOneImg", map);
+	public OptionDetail selectOneOptionDetail(Map<String, Object> map) {
+		return session.selectOne("goods.selectOneOptionDetail", map);
 	}
 
 	@Override
@@ -93,6 +94,16 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public int updateCartQty(Map<String, Object> param) {
 		return session.update("goods.updateCartQty", param);
+	}
+
+	@Override
+	public List<CartJoin> selectGoodsCartList(String memberId) {
+		return session.selectList("goods.selectGoodsCartList", memberId);
+	}
+
+	@Override
+	public int deleteCart(String cartId) {
+		return session.delete("goods.deleteCart", cartId);
 	}
 
 

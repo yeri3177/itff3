@@ -86,7 +86,6 @@
   background-color: #bcbcbc; /* el로 해당옵션 색상 넣어주기 */
   cursor: pointer;
 }
-
 </style>
 
 <!-- 인코딩 설정 -->
@@ -348,8 +347,8 @@
 					
 					<!-- 개별 색상 박스 -->
 					<c:forEach items="${colorList}" var="color" varStatus="vs">
-					<div class="color-box radio-wrap colorChage">
-						<input type="radio" id="${color.optionColor}" data-goods-id="${goods.PId}" name="optionColor" ${vs.first ? 'checked' : ''}><br />
+					<div class="color-box radio-wrap colorChange">
+						<input type="radio" id="${color.optionColor}" class="colorRadio" name="optionColor" ${vs.first ? 'checked' : ''}><br />
 						<label for="${color.optionColor}">${color.optionColor}</label>
 					</div>
 					</c:forEach>
@@ -371,7 +370,7 @@
 					<!-- 개별 색상 박스 -->
 					<c:forEach items="${optionColorList}" var="color" varStatus="vs">
 					<div class="color-box radio-wrap" id="selectColorDiv">
-						<input type="radio" id="${color}" name="optionColor" data-goods-id="${goods.PId}" data-option-color="${color}" data-goods-id="${goods.PId}" ${vs.first ? 'checked' : ''}><br />
+						<input type="radio" id="${color}" name="optionColor" class="colorRadio" data-option-color="${color}" data-goods-id="${goods.PId}" ${vs.first ? 'checked' : ''}><br />
 						<label for="${color}">${color}</label>
 					</div>
 					</c:forEach>
@@ -388,14 +387,14 @@
 			-->
 			<!-- (1) (색상, 사이즈)인 경우 > 최초 옵션 리스트 -->
 			<c:if test="${optionDetail.get(0).optionType == null && optionDetail.get(0).optionColor != null}">
-			<div class="option-div" id="initSizeDiv">
+			<div class="option-div sizeChange" id="initSizeDiv">
 				<div>사이즈</div>
 				<div class="size-box">
 					<!-- 개별 사이즈 박스 -->
 					<c:forEach items="${sizeList}" var="size" varStatus="vs">
 					<div class="size-btn-box">
-						<input type="radio" class="btn-check" name="optionSize" id="${size.optionSize}" autocomplete="off" ${vs.first ? 'checked' : ''}>
-						<label class="btn btn-secondary" for="${size.optionSize}">${size.optionSize}</label>
+						<input type="radio" class="btn-check" name="optionSize" id="${size.optionSize}" ${vs.first ? 'checked' : ''}>
+						<label class="btn btn-secondarysizeLabel " for="${size.optionSize}">${size.optionSize}</label>
 					</div>
 					</c:forEach>
 				</div>
@@ -403,12 +402,12 @@
 			</c:if>
 			
 			<!-- (2) (색상, 사이즈)인 경우 > 색상 선택시의 사이즈 옵션 -->
-			<div class="option-div" id="selectSizeDiv"></div>
+			<div class="option-div sizeChange" id="selectSizeDiv"></div>
 			
 			
 			<!-- (3) (사이즈)인 경우 -->
 			<c:if test="${optionDetail.get(0).optionType == null && optionDetail.get(0).optionColor == null}">
-			<div class="option-div">
+			<div class="option-div sizeChange">
 				<div>사이즈</div>
 				<div class="size-box">
 
@@ -416,7 +415,7 @@
 					<c:forEach items="${optionSizeList}" var="size" varStatus="vs">
 					<div class="size-btn-box">
 						<input type="radio" class="btn-check" name="optionSize" id="${size}" autocomplete="off" ${vs.first ? 'checked' : ''}>
-						<label class="btn btn-secondary" for="${size}">${size }</label>
+						<label class="btn btn-secondary sizeLabel" for="${size}">${size }</label>
 					</div>
 					</c:forEach>
 				</div>
@@ -503,6 +502,8 @@ $(() => {
 	/* 장바구니 버튼 클릭시 */
 	fn_cartBtn();
 	
+	/* fn_sizeChange(); */
+	
 	/* 토스트 확인용 */
 	/* const $toast = $("#cartToasts");
 	$toast.show(); */
@@ -555,7 +556,7 @@ function fn_cartBtn(){
 			goodsQty : $("[name=amount]").val()
 		}
 		
-		console.log("cart = " + cart);
+		console.log(cart);
 		
 		//const jsonStr = JSON.stringify(cart);
 		//console.log(jsonStr);
@@ -587,17 +588,19 @@ function fn_cartBtn(){
 /* 프리뷰 이미지 찾기  */
 function fn_searchImg(){
 
-	const optionType = $("select[name='optionType'] option:selected").text();
-	const optionColor = $("input[name=optionColor]:checked").attr('id');
-	const goodsId = $("#goodsId").val();
+	const options = {
+			optionType : $("select[name='optionType'] option:selected").text(),
+			optionColor : $("input[name=optionColor]:checked").attr('id'),
+			optionSize : $("input[name=optionSize]:checked").attr('id'),
+			goodsId : $("#goodsId").val()
+	}
 	
-	console.log("기종 = " + optionType);
-	console.log("색상 = " + optionColor);
-	console.log("상품아이디 = " + goodsId);
+	console.log(options);
+	
 	
 	$.ajax({
 		url : "${pageContext.request.contextPath}/goods/selectOneImg.do?${_csrf.parameterName}=${_csrf.token}",
-		data : {goodsId : goodsId, optionType : optionType, optionColor : optionColor},
+		data : options,
 		type : "post",
         error: function(xhr, status, error){
             console.log(error);
@@ -615,10 +618,18 @@ function fn_searchImg(){
 /* 색상옵션 변경시 프리뷰 이미지찾기 함수 실행 */
 function fn_colorChange(){
 	
-	$(".colorChage input[type='radio']").change((e) => {
+	$(".colorRadio").change((e) => {
 		fn_searchImg();
 	});
 }
+
+/* 사이즈 옵션 변경시 */
+/* function fn_sizeChange(){
+	
+	$(".sizeChange input[type='radio']").change((e) => {
+		fn_searchImg();
+	});
+} */
 
 /* [기종] 옵션 선택시 [색상] 옵션 나오게하기 */
 function fn_typeToColor(){

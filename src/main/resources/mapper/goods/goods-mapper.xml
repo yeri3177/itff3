@@ -148,7 +148,7 @@
 		and option_color = #{optionColor}
 	</select>
 	
-	<select id="selectOneImg" resultType="optionDetail">
+	<select id="selectOneOptionDetail" resultType="optionDetail">
 		select * 
 		from option_detail
 		left join goods_option
@@ -164,6 +164,10 @@
 			
 			<if test="optionColor != null and optionColor != ''">
 				and option_color = #{optionColor}
+			</if>
+			
+			<if test="optionSize != null and optionSize != ''">
+				and option_size = #{optionSize}
 			</if>
 		</where>
 	</select>
@@ -227,11 +231,42 @@
 	
 	</update>
 	
+	<!-- <select id="selectGoodsCartList" resultType="goodsCart">
+		select *
+		from goods_cart
+		where member_id = #{memeberId}
+		order by cart_id desc
+	</select> -->
 	
+	<select id="selectGoodsCartList" resultMap="cartJoinMap">
+		select * 
+		from goods_cart 
+		left join goods
+		using (p_id)
+		left join option_detail
+		using (option_id)
+		where member_id = #{memeberId}
+		order by cart_id desc
+	</select>
 	
+	<resultMap id="cartJoinMap" type="cartJoin">
+        <collection property="goods" resultMap="goodsMap" />
+        <collection property="goodsCart" resultMap="goodsCartMap" />
+        <collection property="optionDetail" resultMap="optionDetailMap" />
+    </resultMap>
 	
+	<resultMap type="goodsCart" id="goodsCartMap">
+        <id column="cart_id" property="cartId"/>
+        <result column="p_id" property="pId"/>
+        <result column="option_id" property="optionId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="cart_quantity" property="cartQuantity"/>
+    </resultMap>
 	
+	<delete id="deleteCart">
+		delete from goods_cart
+		where cart_id = #{cartId}
 	
-	
+	</delete>
 	
 </mapper>
