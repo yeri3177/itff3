@@ -1,9 +1,20 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+Member loginMember = (Member) authentication.getPrincipal();
+pageContext.setAttribute("loginMember", loginMember);
+%>
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
@@ -46,7 +57,7 @@
 		<div class="col-md-12 col-xs-12 evt_flex">
 			<div class="col-md-6 col-xs-12 ">
 				<div class="border_box2_out">
-				<div class="border_box2" onclick="location.href='${pageContext.request.contextPath}/event/eventRoulette.do';">			
+				<div class="border_box2" onclick="location.href='${pageContext.request.contextPath}/event/eventRoulette.do?id=${loginMember.id }';">			
 				<div class="evt-imgbox">
 					<img src="https://i.imgur.com/eowfADG.jpg">	
 				</div>
@@ -80,12 +91,9 @@
 			</div>
 		</div>
 
-
 		</div>
 
-
 	</div>
-</div>
-
+	
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

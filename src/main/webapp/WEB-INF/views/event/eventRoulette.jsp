@@ -1,9 +1,20 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+Member loginMember = (Member) authentication.getPrincipal();
+pageContext.setAttribute("loginMember", loginMember);
+%>
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
@@ -65,68 +76,106 @@
 			<div class="btnbbs">
 				<a class="btn medium" onclick="location.href='${pageContext.request.contextPath}/event/eventMenu.do';">목록보기</a>
 			</div>
+			
+			<form action="" class="point_frm">
+				<input type="hidden" class="id" name="id" value="${member.id }" />
+				<input type="hidden" class="point"  name="point" value="${member.point }" />
+			</form>
 
 		</div>
 		</div>
 
 <script>
+
 var _btnStart;
 var _roll_bg;
 var _items;
 var _mTime;
-function init()
-{
+
+function init() {
 create();
 addEvent();
 }
 
-function create()
-{
+function create() {
 _btnStart = $( ".btn_start" );
 _roll_bg = $( ".roll_bg" );
-_items = [ "포인트 100P", "포인트 10P", "포인트 50P", "포인트 5,000P", "포인트 30P", "포인트 1,000P", "포인트 500P", "포인트 300P" ];
+_items = [ "100", "10", "50", "5000", "30", "1000", "500", "300" ];
 _mTime = 1;
 }
 
-function addEvent()
-{
+function addEvent() {
 _btnStart.on( "click", btnStartClick );
 }
 
-function btnStartClick( $e )
-{
+function btnStartClick( $e ) {
 spinMotion();
 }
 
 var _count = 0;
+
 //움직이는 모션
-function spinMotion()
-{
+function spinMotion() {
 TweenMax.to( _roll_bg, _mTime, { rotation:360, ease:Power0.easeInOut, onComplete:function(){
 TweenMax.set( _roll_bg, { rotation:0 });
 _count ++;
+
 if( _count > 0 ){
 randomValue();
 return;
 }
+
 spinMotion();
 }});
 }
+
 //결과값 추출
 function randomValue(){
+	
 var ran = parseInt( Math.random() * _items.length );
+
 angleCount( ran );
 }
+
 //결과값 맞게 움직이는 모션
-function angleCount( $ran )
-{
+function angleCount( $ran ){
 TweenMax.killTweensOf( _roll_bg );
 TweenMax.set( _roll_bg, { rotation:0 });
 
 var angle = 360 / _items.length;
-TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut, onComplete:function(){
-alert( _items[ $ran ] + " 당첨 되었습니다" );
-}});
+
+TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut, 
+	onComplete:function(){
+		alert( _items[ $ran ] + "P에 당첨되었습니다." );
+		
+		let form = $('.point_frm');
+	    let id = form.find('.id').val();
+	    let point = form.find('.point').val();
+	    let change = _items[ $ran ];
+	    
+	    console.log(id);
+	    console.log(point);
+	    console.log(change);
+	    
+	    // 전송한 정보를 db에 저장	
+	    $.ajax({
+	        type: "post",
+	        url:"${pageContext.request.contextPath}/admin/eventRoulette.do",
+	        dataType: "text",
+	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	        data: {
+	            id: id,
+	            point: point,
+	            change: change
+	        },
+	        beforeSend : function(xhr) {   
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	        },
+	        success: console.log('success')
+	    });
+	
+	}
+});
 }
 
 $( document ).ready( function(){
