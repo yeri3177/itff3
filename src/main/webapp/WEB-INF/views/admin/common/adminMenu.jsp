@@ -94,7 +94,7 @@
                         <span class="nav_name">캘린더</span>
                     </a>
 
-                    <a href="#" class="nav__link">
+                    <a href="${pageContext.request.contextPath}/admin/chart.do" class="nav__link">
                         <ion-icon name="pie-chart-outline"></ion-icon>
                         <span class="nav_name">통계</span>
                     </a>
