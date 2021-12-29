@@ -30,7 +30,7 @@ pageContext.setAttribute("loginMember", loginMember);
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardListCommon.css" />
+	href="${pageContext.request.contextPath }/resources/css/board/noticeList.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 

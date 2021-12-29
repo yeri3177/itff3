@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.d3tab_basic {
+    margin: 0 0 50px;
+}
+.d3tab_basic ul {
+    text-align: center;
+}
+dl, ul, ol, menu, li {
+    list-style: none;
+}
+.d3tab_basic li {
+    padding: 5px 3px;
+    display: inline-block;
+    margin: 0 5px;
+    color: #444;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px 18px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50px;
+}
+
+.d3tab_basic li:hover {
+	cursor: pointer;
+	}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgb(0 0 0 / 0%);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.btn-link {
+    display: block !important;
+    padding: 10px 3px !important;
+    color: #000 !important;
+    font-size: 20px !important;
+    margin: 0 !important;
+}
+
+.arccordion {
+	margin: 0 200px;
+    padding-bottom: 60px;
+}
+
+.btn-link:hover {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+    line-height: 32px;
+}
+
+.btn-link span {
+	float: left;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 22px;
+    color: #fff;
+    background: #333;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 55px;
+    box-sizing: border-box;
+}
+
+.btn-link p {
+	float: left;
+    width: calc(100% - 55px);
+    line-height: 53px;
+    height: auto;
+    border-left: none;
+    box-sizing: border-box;
+    padding-left: 29px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ico_sec span {
+	display: inline-block;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 33px;
+    background: #bf202c;
+    color: #fff;
+    margin-left: 20px;
+    float: left;
+}
+.text_sec {
+	padding: 0 0 0 70px;
+	font-size: 17px;
+}
