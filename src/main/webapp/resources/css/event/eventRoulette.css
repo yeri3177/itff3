@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+.title-area {
+    padding-top: 16px;
+}
+.inner {
+    position: relative;
+    margin: 0 auto;
+    width: 1140px;
+}
+
+.title-area h2 {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 93px;
+    color: #221e1f;
+    border-bottom: 1px solid #a9a9a9;
+}
+.hidden {
+    position: absolute;
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 0px !important;
+    height: 0px !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+}
+
+.title-area h3 {
+    margin-top: 0;
+    padding: 25px 200px 27px 0;
+    line-height: 33px;
+    color: #221e1f;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.title-area .btns {
+    position: absolute;
+    top: 41px;
+    right: 0;
+    -webkit-box-align: top;
+    -ms-flex-align: top;
+    align-items: top;
+    margin-top: 0;
+}
+.btns {
+    margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    font-size: 0;
+}
+
+#roulette_wrap {
+	position: absolute;
+    top: 441px;
+    left: 255px;
+}
+
+.roulette_total_con {
+	padding: 50px 0 50px 0;
+}
+
+.service.detail .title-area .btns .txt-date {
+    line-height: 34px;
+}
+
+.service.detail .title-area .btns .txt-date {
+    line-height: 34px;
+}
+.txt-date {
+	margin-top: 15px;
+    font-size: 14px;
+    line-height: 14px;
+    position: relative;
+    display: inline-block;
+    color: #a9a9a9;
+}
+
+.inner {
+    position: relative;
+    margin: 0 auto;
+    width: 1140px;
+}
+
+.service.event.detail .bbs-detail .roulette {
+    margin: 0 auto;
+    width: 1140px;
+}
+
+.service.event.detail .bbs-detail .roulette .roulette-inner {
+    position: relative;
+}
+
+.service.event.detail .bbs-detail .roulette .roulette-inner {
+    position: relative;
+}
+
+.service.event.detail .bbs-detail .roulette .roulette-inner .roulette-bg {
+    position: relative;
+    text-align: center;
+}
+
+.service.event.detail .bbs-detail .roulette .roulette-inner .roulette-con {
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width: 640px;
+    -webkit-box-shadow: 1px 1px 25px 0px rgb(108 73 76 / 33%);
+    box-shadow: 1px 1px 25px 0px rgb(108 73 76 / 33%);
+    border-radius: 50%;
+}
+
+/* 룰렛 */
+main {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+main .roulette_area {
+  display: table;
+  text-align: center;
+  width: 100%;
+}
+main .roulette_area .roulette_box {
+  display: table-cell;
+  vertical-align: middle;
+}
+main .roulette_area .roulette_box .roulette_center {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  margin: pImg(100, 720) 0 0 pImg(30, 720);
+}
+main .roulette_area .roulette_box .roulette_center .btn_start {
+  display: block;
+  width: pImg(290, 720);
+  margin: pImg(180, 720) 0 0 pImg(180, 720);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+main .roulette_area .roulette_box .roulette_center .roll_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: pImg(640, 720);
+}
+
+.roulette_btn {
+	margin-left: 160px;
+    margin-top: 165px;
+}
+
+/* 목록 */
+
+.btnbbs {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #efefef;
+    text-align: center;
+}
+
+.btn.medium {
+    padding: 0 10px;
+    height: 48px;
+    line-height: 46px;
+    font-size: 16px;
+    border: 1px solid #464646;
+    border-radius: 0;
+}
+.btnbbs .btn {
+    margin: 0 4px;
+    width: 240px;
+}
