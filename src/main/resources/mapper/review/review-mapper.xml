@@ -36,6 +36,7 @@
 		<association property="member" javaType="member">
 			<id column="id" property="id"/>
 			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
 		</association>	
 	</resultMap>
 	
@@ -87,6 +88,7 @@
 			r.*,
 			a.*,
 			(select count(*) from review_comment where review_no = r.review_no) rc_count,
+			
 			m.*
 		from
 			review_board r left join attachment a
@@ -166,14 +168,48 @@
 			review_no = #{reviewNo}
 	</delete>
 	
-	<select id="selectCommentList" resultType="reviewComment">
+<!-- 	<select id="selectCommentList" resultType="reviewComment">
 		select
 			*
 		from
 			review_comment
 		where
 			review_no = #{reviewNo}
+	</select> -->
+	
+	
+	<select id="selectCommentList" resultMap="reviewCommentCollectionMap">
+		select 
+		    rc.*,
+		    m.*,
+		    (select m.nickname from review_comment rc1 join member m on rc1.writer = m.id where rc1.no = rc.comment_ref) upper_comment_writer
+		from 
+		    review_comment rc join member m
+		        on rc.writer = m.id
+		where 
+		    rc.review_no = #{reviewNo} start with rc.comment_level = 1 connect by prior no = rc.comment_ref order siblings by rc.reg_date asc
 	</select>
+	<resultMap type="reviewComment" id="reviewCommentCollectionMap">
+		<id column="no" property="no"/>
+		<result column="review_no" property="reviewNo"/>
+		<result column="writer" property="writer"/>
+		<result column="content" property="content"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="comment_level" property="commentLevel"/>
+		<result column="comment_ref" property="commentRef"/>
+		<result column="upper_comment_writer" property="upperCommentWriter"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="phone" property="phone"/>
+			<result column="email" property="email"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
+			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
+		</association>	
+	</resultMap>
+	
 	
 	<insert id="insertReviewComment">
 		insert into 
@@ -194,5 +230,46 @@
 		)
 	</insert>
 	
+	<delete id="deleteReviewComment">
+		delete from 
+			review_comment
+		where
+			no = #{no}
+	</delete>
+	
+	<select id="getReviewLike" resultType="_int">
+		select
+			count(review_like_no) 
+		from
+			review_like 
+		where
+			review_no = #{reviewNo} and member_id = #{memberId}
+	</select>
+	
+	<insert id="insertReviewLike">
+		insert into 
+			review_like
+		values(
+			default,
+			#{memberId},
+			#{reviewNo}
+		)
+	</insert>	
+	
+	<delete id="deleteReviewLike">
+		delete from
+			review_like
+		where
+			member_id = #{memberId} and review_no = #{reviewNo}
+	</delete>
+	
+	<update id="updateReviewLike">
+		update
+			review_board
+		set 
+			recommend = (select count(*) from review_like where review_no = #{reviewNo})
+		where  
+			review_no = #{reviewNo}
+	</update>
 	
 </mapper>

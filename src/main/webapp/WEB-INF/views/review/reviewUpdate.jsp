@@ -10,7 +10,7 @@
 <%@page	import="org.springframework.security.core.context.SecurityContext"%>
 <fmt:requestEncoding value="utf-8" />	<!-- 이거 없으면 이 밑에 jsp: -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="영화 리뷰" name="title"/>   
+	<jsp:param value="네티즌 리뷰" name="title"/>   
 </jsp:include>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
@@ -38,7 +38,7 @@
 	<div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
-			<a href="${pageContext.request.contextPath}/review/reviewList.do">영화리뷰</a>
+			<a href="${pageContext.request.contextPath}/review/reviewList.do">네티즌 리뷰</a>
 		</h2>
 	</div>
 	<div class="list_wrap">

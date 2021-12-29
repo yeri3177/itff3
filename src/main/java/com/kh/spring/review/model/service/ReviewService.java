@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.review.model.vo.ReviewComment;
+import com.kh.spring.review.model.vo.ReviewLike;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 public interface ReviewService {
@@ -29,5 +30,13 @@ public interface ReviewService {
 	List<ReviewComment> selectCommentList(int reviewNo);
 
 	int insertReviewComment(ReviewComment reviewComment);
+
+	int deleteReviewComment(int no);
+
+	int getReviewLike(ReviewLike reviewLike);
+
+	int deleteReviewLike(ReviewLike reviewLike);
+
+	int insertReviewLike(ReviewLike reviewLike);
 
 }
