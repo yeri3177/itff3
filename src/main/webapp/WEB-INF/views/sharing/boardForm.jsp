@@ -70,6 +70,7 @@ $(() => {
 		method="post" 
 		enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
+		<input type="text" class="form-control" name="memberId" value="               ${loginMember.id}님 티켓나눔에 함께하세요! " readonly required>
 		<div class="input-group mb-3">
 		  <div class="input-group-prepend">
 		    <label class="input-group-text" for="inputGroupSelect01">종류</label>
@@ -82,10 +83,10 @@ $(() => {
 		  </select>
 		</div>	
 		<input type="text" class="form-control" placeholder="제목" name="title" id="title" required>
-		<input type="text" class="form-control" name="memberId" value="${loginMember.id}" readonly required>
+		
 <%-- 		<p type="text" class="form-control" name="memberId"><sec:authentication property="principal.id"/></p> --%>
 		<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
-		<br />
+
 		<div class="input-group mb-3" style="padding:0px;">
 		  <div class="input-group-prepend" style="padding:0px;">
 		    <span class="input-group-text">첨부파일1</span>
@@ -105,7 +106,7 @@ $(() => {
 		  </div>
 		</div>
 		
-	    <textarea class="form-control" name="content" placeholder="내용" required></textarea>
+	    <textarea class="form-control" name="content" placeholder="내용" rows="8" cols="50" required></textarea>
 		<br />
 		<input type="submit" class="btn btn-outline-success" value="저장" >
 	</form>

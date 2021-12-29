@@ -90,5 +90,22 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.selectOneAttachment(no);
 	}
 
+	@Override
+	public int deleteBoardAttachment(int attachNo) {
+		return boardDao.deleteBoardAttachment(attachNo);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByBoardNo(int no) {
+		return boardDao.selectAttachmentByBoardNo(no);
+	}
+
+	@Override
+	public int deleteOneBoard(int no) {
+		return boardDao.deleteOneBoard(no);
+	}
+
+	
+
 	
 }

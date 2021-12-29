@@ -3,6 +3,7 @@ package com.kh.spring.sharing.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -159,6 +161,104 @@ public class BoardController {
 		Board board = boardService.selectOneBoardCollection(no);
 		log.debug("board = {}", board);
 		model.addAttribute("board", board);
+	}
+	
+	@GetMapping("/boardUpdate.do")
+	public void boardUpdate(@RequestParam int no, Model model) {
+		log.debug("boardNo = {}", no);
+		Board board = boardService.selectOneBoardCollection(no);
+		log.debug("board = {}", board);
+		model.addAttribute("board", board);
+	}
+	
+	@PostMapping("/boardUpdate.do")
+	public String boardUpdate(
+			@RequestParam(value = "upFile", required = false) MultipartFile[] upFiles,
+			@ModelAttribute Board board,
+			@RequestParam int delFile,
+			RedirectAttributes redirectAttr
+			) {
+		
+		try {
+			int result = 0;
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			List<Attachment> attachments = new ArrayList<>();
+			
+			for(MultipartFile upFile : upFiles) {
+				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					log.debug("upFile = {}", upFile);
+					log.debug("upFile.name = {}", upFile.getOriginalFilename());
+					log.debug("upFile.size = {}", upFile.getSize());
+					
+					String originalFilename = upFile.getOriginalFilename();
+					String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
+					
+					File dest = new File(saveDirectory, renamedFilename);
+					log.debug("dest = {}", dest);
+					upFile.transferTo(dest);
+					
+					Attachment attach = new Attachment();
+					attach.setRenamedFilename(renamedFilename);
+					attach.setOriginalFilename(originalFilename);
+					
+					attachments.add(attach);
+					log.debug("첨부파일 수정 완료 = {}", attachments);
+				}
+			}
+			
+			if(delFile != 0) {
+				int attachNo = delFile;
+				Attachment attach = boardService.selectOneAttachment(attachNo);
+				
+				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+				targetFile.delete();
+				
+				result = boardService.deleteBoardAttachment(attachNo);
+				String yn = result > 0 ? "첨부파일이 성공적으로 삭제되었습니다" : "삭제 오류";
+				
+				
+			}
+			
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}
+		
+		return "redirect:/sharing/boardDetail.do?no=" + board.getNo();
+	}
+	
+	@GetMapping("/boardDelete.do")
+	public String deleteBoard(@RequestParam int no) {
+		
+		try {
+			log.debug("no = {}", no);
+
+			//첨부파일 삭제
+			Board board = boardService.selectOneBoardCollection(no);
+			List<Attachment> attach = board.getAttachments();
+			log.debug("attach = {}", attach);
+			
+			if(attach != null && attach.size() != 0) {
+				String saveDirectory = application.getRealPath("/resources/upload/board");
+				File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
+				boolean delete = targetFile.delete();
+				log.debug("파일 삭제 여부 = {}", delete);
+			}
+			
+			int result = boardService.deleteOneBoard(no);
+			String msg = result > 0 ? no + "게시글이 삭제 성공" : no + "게시글 삭제 실패";
+			log.debug(msg);
+
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			//redirectAttr.addFlashAttribute("msg", e.getMessage());
+		} catch (Exception e) {
+			log.error("게시글 삭제 오류!", e);
+			throw e;
+		}
+		
+		return "redirect:/sharing/boardList.do";
 	}
 	
 	/**

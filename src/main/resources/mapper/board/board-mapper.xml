@@ -95,6 +95,7 @@
 	<result column="content" property="content"/>
 	<result column="reg_date" property="regDate"/>
 	<result column="read_count" property="readCount"/>
+	<result column="category" property="category"/>
 	<!-- association 은 1:1 관계를 표현 -->
 	<!-- collection 은 1:n 관계를 표현하는데 적합 -->
 	<collection property="attachments" ofType="attachment">
@@ -114,5 +115,24 @@
 	where
 		attach_no = #{no}
 </select>
+
+<update id="updateBoard">
+	update ticket_sharing_board
+	set
+		category = #{category},
+		title = #{title},
+		content = #{content}
+	where no = #{no}
+</update>
+
+<delete id="deleteBoardAttachment">
+	delete from attachment
+	where attach_no = #{attachNo}
+</delete>
+
+<delete id="deleteOneBoard">
+	delete from ticket_sharing_board
+	where no = #{no}
+</delete>
 
 </mapper>

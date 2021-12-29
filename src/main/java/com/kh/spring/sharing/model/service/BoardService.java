@@ -19,4 +19,10 @@ public interface BoardService {
 
 	Attachment selectOneAttachment(int no);
 
+	int deleteBoardAttachment(int attachNo);
+
+	List<Attachment> selectAttachmentByBoardNo(int no);
+
+	int deleteOneBoard(int no);
+
 }
