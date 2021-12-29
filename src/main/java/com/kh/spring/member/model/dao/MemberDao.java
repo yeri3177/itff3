@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Board;
 
 public interface MemberDao {
@@ -31,5 +32,9 @@ public interface MemberDao {
 	int insertGoods(Member member);
 
 	int insertProfileImage(Map<String, Object> param);
+
+	List<Review> selectReviewListByMemberId(int offset, int limit, String id);
+
+	int selectReviewTotalCount();
 
 }

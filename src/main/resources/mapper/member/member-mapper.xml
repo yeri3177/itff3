@@ -79,7 +79,7 @@
 	<select id="selectBoardListByMemberId" resultType="board">
 		select
     		b.*,
-			(select count(*) from attachment where board_no = b.no) attach_count 
+			(select count(*) from attachment where market_no = b.no) attach_count 
 		from
 			ticket_sharing_board b
 		where
@@ -94,6 +94,47 @@
 		from
 			ticket_sharing_board
 	</select>
+	
+	
+	<select  id="selectReviewListByMemberId" resultType="review">
+		select
+		    r.*,
+		    m.*,
+		    (select count(*) from attachment where review_no = r.review_no) attach_count,
+		    (select count(*) from review_comment where review_no = r.review_no) rc_count
+		from
+		    review_board r join member m
+		        on r.member_id = m.id
+		where
+			member_id = #{id}
+		order by
+		    review_no desc
+	</select>
+	
+	<resultMap type="review" id="reviewMap">
+		<id column="review_no" property="reviewNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="review_title" property="reviewTitle"/>
+		<result column="review_content" property="reviewContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="read_count" property="readCount"/>
+		<result column="recommend" property="recommend"/>
+		<result column="attach_count" property="attachCount"/>
+		<result column="rc_count" property="reviewCommentCount"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
+		</association>	
+	</resultMap>
+	
+	<select id="selectReviewTotalCount" resultType="_int">
+		select
+		    count(*)
+		from
+		    review_board
+	</select>
+	
 	
  	<select id="selectMemberList" resultType="member">
 	  	select

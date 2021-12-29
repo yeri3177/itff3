@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
@@ -41,6 +42,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
 
@@ -65,6 +67,9 @@ public class MemberController {
 	
 	@Autowired
 	ServletContext application;
+	
+	@Autowired
+	ResourceLoader resourceLoader;
 	
 	@GetMapping("/memberEnroll.do")
 	public void memberEnroll() {}
@@ -313,8 +318,8 @@ public class MemberController {
 			Authentication authentication
 	) {
 		
+		//접속된 아이디 가져오기
 		Member member = (Member) authentication.getPrincipal();
-		
 		String id = member.getId();
 		
 		log.debug("cPage = {}", cPage);
@@ -343,6 +348,48 @@ public class MemberController {
 		return "/member/memberWrittenBoardList";
 	}
 	
+	@GetMapping("/memberWrittenReviewList.do")
+	public String memberWrittenReviewList(
+			@RequestParam(defaultValue = "1") int cPage,
+			Model model,
+			HttpServletRequest request,
+			Authentication authentication) {
+		
+		//선택된 라디오 값 가져오기
+		String searchBoard = request.getParameter("searchBoard");
+		log.debug("searchBoard = {}", searchBoard);
+		model.addAttribute("searchBoard", searchBoard);
+		
+		//접속된 아이디 가져오기
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		
+		log.debug("id = {}", id);
+		
+		log.debug("cPage = {}", cPage);
+
+		int limit = 20;
+		int offset = (cPage - 1) * limit;
+	
+		// 1. 전체 게시물 목록 가져오기(첨부파일 갯수 포함)
+		List<Review> list = memberService.selectReviewListByMemberId(offset, limit, id);
+		log.debug("ReviewList = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 총 게시물 수 가져오기
+		int totalContent = memberService.selectReviewTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI();   // /spring/board/boardList.do
+		String pagebar = HiSpringUtils.getReviewPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "/member/memberWrittenReviewList";
+		
+	}
 	
 	@GetMapping("/memberProfile.do")
 	public String memberProfile(
