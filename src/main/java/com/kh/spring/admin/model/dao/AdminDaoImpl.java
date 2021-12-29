@@ -332,4 +332,36 @@ public class AdminDaoImpl implements AdminDao {
 		return session.insert("admin.insertSaveNotify", param);
 	}
 
+	@Override
+	public List<Notice> searchNotice(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchNotice", param, rowBounds);
+	}
+
+	@Override
+	public int searchNoticeCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchNoticeCount", param);
+	}
+
+	@Override
+	public List<Question> searchQuestion(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchQuestion", param, rowBounds);
+	}
+
+	@Override
+	public int searchQuestionCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchQuestionCount", param);
+	}
+
 }

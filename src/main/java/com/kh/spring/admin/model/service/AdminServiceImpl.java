@@ -405,5 +405,25 @@ public class AdminServiceImpl implements AdminService {
 	public int insertSaveNotify(Map<String, Object> param) {
 		return adminDao.insertSaveNotify(param);
 	}
+
+	@Override
+	public List<Notice> searchNotice(Map<String, Object> param) {
+		return adminDao.searchNotice(param);
+	}
+
+	@Override
+	public int searchNoticeCount(Map<String, Object> param) {
+		return adminDao.searchNoticeCount(param);
+	}
+
+	@Override
+	public List<Question> searchQuestion(Map<String, Object> param) {
+		return adminDao.searchQuestion(param);
+	}
+
+	@Override
+	public int searchQuestionCount(Map<String, Object> param) {
+		return adminDao.searchQuestionCount(param);
+	}
 	
 }
