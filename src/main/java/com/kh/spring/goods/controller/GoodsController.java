@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
+import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -69,7 +72,7 @@ public class GoodsController {
 	 * 상품 상세 페이지
 	 */
 	@GetMapping("/goodsDetail.do")
-	public void goodsDetail(@RequestParam int pid, Model model, HttpServletRequest request, Authentication authentication) {
+	public void goodsDetail(@RequestParam int pid, Model model, HttpServletRequest request) {
 		// 상품 아이디 확인 
 		log.debug("pid = {}", pid);
 		
@@ -146,22 +149,13 @@ public class GoodsController {
 	 * 상품상세 이미지 찾기 
 	 */
 	@PostMapping("/selectOneImg.do")
-	public String selectOneImg(@RequestParam String goodsId, @RequestParam String optionType, @RequestParam String optionColor, Model model) {
-		log.debug("goodsId = {}", goodsId);
-		log.debug("optionType = {}", optionType);
-		log.debug("optionColor = {}", optionColor);
-		//log.debug("optionSize = {}", optionSize);
+	public String selectOneImg(@RequestParam Map<String, Object> map, Model model) {
+		log.debug("map = {}", map);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("optionType", optionType);
-		map.put("optionColor", optionColor);
-		map.put("goodsId", goodsId);
-		//map.put("optionSize", optionSize);
+		OptionDetail optionDetail = goodsService.selectOneOptionDetail(map);
+		log.debug("프리뷰 이미지 찾기 = {}", optionDetail);
 		
-		List<OptionDetail> list = goodsService.selectOneImg(map);
-		log.debug("프리뷰 이미지 찾기 = {}", list);
-		
-		model.addAttribute("list", list);
+		model.addAttribute("optionDetail", optionDetail);
 	
 		return "goods/PreviewImgDiv";
 	}
@@ -169,7 +163,7 @@ public class GoodsController {
 	/**
 	 * 장바구니 등록
 	 * 
-	 * - 수정사항 : (상품아이디), 회원아이디, 옵션아이디 동일시 상품개수만 더하기 처리함 (update)
+	 * - 상품아이디, 회원아이디, 옵션아이디 동일시 상품개수만 더하기 처리함 (update)
 	 */
 	@PostMapping("/InsertCart.do")
 	public ResponseEntity<?> InsertCart(@RequestParam Map<String, Object> map) {
@@ -241,9 +235,35 @@ public class GoodsController {
 	 * 장바구니 페이지 
 	 */
 	@GetMapping("/goodsCart.do")
-	public String goodsCart() {
+	public String goodsCart(Authentication authentication, Model model) {
+		
+		log.debug("authentication = {}", authentication);
+		
+		Member member = (Member) authentication.getPrincipal();
+		log.debug("[principal] member = {}", member);
+		
+		// 장바구니 DB 조회
+		List<CartJoin> list = goodsService.selectGoodsCartList(member.getId());
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);	
 		
 		return "goods/goodsCart";
+	}
+	
+	/**
+	 * 장바구니 레코드 삭제 
+	 */
+	@PostMapping("/deleteCart.do")
+	public String deleteCart(@RequestParam String cartId, RedirectAttributes redirectAttr) {
+		log.debug("cartId = {}", cartId);
+		
+		int result = goodsService.deleteCart(cartId);
+		log.debug("장바구니 삭제 result = {}", result);
+		
+		redirectAttr.addFlashAttribute("msg", "장바구니 삭제 성공!");
+		
+		return "redirect:/goods/goodsCart.do";
 	}
 	
 	

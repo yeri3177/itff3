@@ -124,9 +124,20 @@
  	font-size: 14px;
  }
  
+ .img-bg-div img {
+ 	width:85px; 
+ 	height: 85px;
+ 	/* display: flex;
+  	justify-content: center;
+  	align-items: center; */
+ }
  
- 
- 
+  .img-bg-div {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	padding: 0;
+  }
  
  
  

@@ -164,8 +164,15 @@ body {
 	vertical-align: middle;
 }
 
-.size-btn-box input:checked +label{
-	border: 2px solid black;
+/* 색상옵션 선택시 라벨애 css 주기 */
+.btn-check:checked + .sizeLabel {
+	border: 2px solid black!important;
+	background-color: #ececec!important;
+	color: black!important;
+}
+
+.btn-check:checked  {
+	border: 2px solid black!important;
 	background-color: #ececec!important;
 	color: black!important;
 }

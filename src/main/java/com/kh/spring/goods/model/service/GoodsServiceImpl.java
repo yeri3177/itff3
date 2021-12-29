@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.goods.model.dao.GoodsDao;
+import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
@@ -69,8 +70,8 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public List<OptionDetail> selectOneImg(Map<String, Object> map) {
-		return goodsDao.selectOneImg(map);
+	public OptionDetail selectOneOptionDetail(Map<String, Object> map) {
+		return goodsDao.selectOneOptionDetail(map);
 	}
 
 	@Override
@@ -91,6 +92,16 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public int updateCartQty(Map<String, Object> param) {
 		return goodsDao.updateCartQty(param);
+	}
+
+	@Override
+	public List<CartJoin> selectGoodsCartList(String memberId) {
+		return goodsDao.selectGoodsCartList(memberId);
+	}
+
+	@Override
+	public int deleteCart(String cartId) {
+		return goodsDao.deleteCart(cartId);
 	}
 
 

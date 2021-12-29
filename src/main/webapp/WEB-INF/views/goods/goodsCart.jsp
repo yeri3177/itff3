@@ -1,7 +1,20 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	Member loginMember = (Member) authentication.getPrincipal();
+	pageContext.setAttribute("loginMember", loginMember);
+
+%>
 
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header.css" />
@@ -26,7 +39,7 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 소메뉴 네비게이션 -->
+<!-- 서브메뉴 네비게이션 -->
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
@@ -38,7 +51,7 @@
 	</div>
 </div>
 
-<!-- 메인 콘텐츠 섹션 -->
+<!-- 페이지 전체 컨테이너 -->
 <section class="goods-container" id="goodsCart-container">
 
 <!-- 왼쪽 컨테이너 -->
@@ -51,18 +64,21 @@
 	<br />
 	
 	
+	
 	<!-- card 낱개 반복 -->
+	<c:forEach items="${list}" var="cart" varStatus="vs">
 	<div class="card-custom">
 		<!-- card-head -->
 		<div class="card-head">
 			<!-- card-head-left : cart-id -->
 			<div class="cardId-div">
-				No. 323232
+				<%-- No. ${cart.cartId} --%>
+				No. ${cart.goodsCart.cartId }
 			</div>
 			
 			<!-- card-head-right : X버튼 (버튼 클릭시 해당 goods_cart 레코드 삭제(GET) -->
 			<div class="iconBg-div">
-				<button type="button" class="btn-close" aria-label="Close"></button>
+				<button type="button" data-cart-id="${cart.goodsCart.cartId }" class="btn-close" aria-label="Close"></button>
 			</div>
 		</div>
 		
@@ -70,28 +86,24 @@
 		<div class="card-body">
 			<!-- 이미지 배경 -->
 			<div class="img-bg-div">
-				<!-- 이미지db 불러오기 -->
-				<div>
-				
-				</div>
+				<!-- 상품 옵션 이미지 -->
+				<img src="${pageContext.request.contextPath}/resources/upload/goods/${cart.optionDetail.optionImg }">
 			</div>
 			
 			<!-- 텍스트 -->
 			<div class="card-body-right">
 				<!-- 상품명 -->
 				<div class="goodsName-div">
-					망고잼빵 아이폰 케이스
+					${cart.goods.PName }
 				</div>
 				<!-- 서브 카테고리 -->
 				<div class="goodsCategory-div">
-					아이폰 젤리 케이스
+					${cart.goods.PSubcategory }
 				</div>
-				<!-- 상품 가격 -->
+				<!-- 상품 가격 (상품낱개가격*장바구니수량) -->
 				<div class="goodsPrice-div">
-					16,300원
+					<fmt:formatNumber value="${cart.goods.PPrice*cart.goodsCart.cartQuantity}" pattern="#,###원" />
 				</div>
-			
-			
 			</div>
 		</div>
 		
@@ -100,10 +112,15 @@
 			<!-- card-footer-left -->
 			<div class="card-footer-left">
 				<!-- 옵션명 -->
-				<div>아이폰 13</div>
+				<div>
+					${cart.optionDetail.optionType }
+					${cart.optionDetail.optionColor }
+					${cart.optionDetail.optionSize }
+				
+				</div>
 				
 				<!-- 개수 -->
-				<div>1개</div>
+				<div>${cart.goodsCart.cartQuantity }개</div>
 			</div>
 			<!-- card-footer-right -->
 			<div class="card-footer-right">
@@ -112,7 +129,7 @@
 		</div>
 	
 	</div><!-- end of card 낱개 반복 -->
-	
+	</c:forEach>
 
 </div> <!-- end of 왼쪽 컨테이너 -->
 
@@ -138,7 +155,7 @@
 		
 		<div class="summary-row">
 			<div>배송비</div>
-			<div>11111</div>
+			<div>2,500원</div>
 		</div>
 		
 		<div class="summary-row sum-row">
@@ -152,16 +169,29 @@
 	</button>
 </div> <!-- end of 오른쪽 컨테이너 -->
 
+</section> <!-- end of 페이지 전체 컨테이너 -->
 
-
-
-
-
+ 
+<!-- 장바구니 삭제폼 -->
+<form
+	action="${pageContext.request.contextPath}/goods/deleteCart.do?${_csrf.parameterName}=${_csrf.token}"
+	method="POST" 
+	name="deleteCartFrm">
 	
-</section>
+	<input type="hidden" name="cartId" />
+</form>
 
 <script>
-
+$(".btn-close").click((e) => {
+	const $this = $(e.target);
+	const cartId = $this.data("cartId");
+	
+	console.log("cartId = "+cartId);
+	
+	const $frm = $(document.deleteCartFrm);
+	$frm.find("[name=cartId]").val(cartId);
+	$frm.submit();
+});
 
 </script>
 
