@@ -171,10 +171,26 @@
  
  
  
+  /*******************************************************************************
+ * 장바구니 비어있을때 
+ ******************************************************************************/
+ .empryList-div {
+ 	/* background-color: aqua; */
+ 	margin: 0 auto;
+ 	height: 300px;
+ 	text-align: center;
+ 	
+ 	font-size: 30px;
+ 	font-weight: bold;
+ 	padding-top: 170px;
+ 	
+ }
  
- 
- 
- 
+ .empryList-div i {
+ 	font-size: 80px;
+ 	color: #cdcdcd;
+ 	margin-bottom: 10px;
+ }
  
  
  
