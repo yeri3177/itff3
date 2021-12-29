@@ -141,6 +141,7 @@ public class ReviewController {
 	@GetMapping("/reviewDetail.do")
 	public String reviewDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam int reviewNo, Model model, @RequestParam(required = false) String memberId) {
 		log.debug("reviewNo = {}", reviewNo);    // 값이 잘 전달되고 있는지 체크하는게 좋다.
+		log.debug("memberId = {}", memberId);
 		
 		// 읽음 여부 확인(cookie)
 		Cookie[] cookies = request.getCookies();
@@ -151,11 +152,8 @@ public class ReviewController {
 		System.out.println(cookies == null ? "null" : "not null");
 		if(cookies != null) {
 			for(Cookie c : cookies) {
-				log.debug("c = {}", c);
 				String name = c.getName();
-				log.debug("name = {}", name);
 				String value = c.getValue();
-				log.debug("value = {}", value);
 				System.out.println(name + " : " + value);
 				
 				if("review".equals(name)) {
@@ -201,8 +199,10 @@ public class ReviewController {
 		}
 		
 		//로그인 하지 않은 경우 heartCheck에 -1(그냥 0 1 외 아무숫자)를 담아 보낸다. 아예 안 주니까 jsp에서 에러남
-		int heartCheck = -1;
-		model.addAttribute("heartCheck", heartCheck);
+		else {
+			int heartCheck = -1;
+			model.addAttribute("heartCheck", heartCheck);
+		}
 		
 		model.addAttribute("review", review);
 		model.addAttribute("commentList", commentList);
@@ -257,6 +257,7 @@ public class ReviewController {
 	@PostMapping("/reviewUpdate.do")
 	public String reviewUpdate(
 			Review review, 
+			@RequestParam String memberId,
 			@RequestParam(value="upFile", required=false) MultipartFile[] upFiles, 
 			@RequestParam(required=false) int[] delFile,
 			RedirectAttributes redirectAttr
@@ -264,6 +265,7 @@ public class ReviewController {
 		
 		try {
 			log.debug("review = {}", review);
+			log.debug("memberId = {}", memberId);
 			log.debug("delFile = {}", delFile);
 					
 			// 첨부파일 list 생성
@@ -329,7 +331,7 @@ public class ReviewController {
 			throw e;   // spring container에게 던짐
 		}
 		
-		return "redirect:/review/reviewDetail.do?reviewNo=" + review.getReviewNo();
+		return "redirect:/review/reviewDetail.do?reviewNo=" + review.getReviewNo() + "&memberId=" + memberId;
 	}
 	
 	@PostMapping("reviewDelete.do")
