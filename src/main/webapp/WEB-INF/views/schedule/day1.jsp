@@ -4,6 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- \${param.title} -->
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="ITFF" name="title" />
+</jsp:include>
+
+<!-- 한글 깨지지 않게 하는 설정-->
+<fmt:requestEncoding value="utf-8" />
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
@@ -15,13 +22,21 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
-<!-- 한글 깨지지 않게 하는 설정-->
-<fmt:requestEncoding value="utf-8" />
 
-<!-- \${param.title} -->
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="ITFF" name="title" />
-</jsp:include>
+<!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
+<div id="snb">
+	<div class="container-xl">
+		<ul class="list-inline snb_ul" id="snbul1">
+			<li class="on_">
+				<a href="#" target="_top">빠른예매</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath }/schedule/day1.do" target="_top" style="font-weight: bold;">상영시간표</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 여기까지 nav 입니다. -->
 
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
@@ -206,7 +221,7 @@
 									<p class="time en">15:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/matrix.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/matrix.do?movieId=007"><span
 											class="film_tit_kor">매트릭스</span><span
 											class="film_tit_eng en">The Matrix</span></a>
 											(개막작)
@@ -223,7 +238,7 @@
 									<p class="time en">15:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/iRobot.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/iRobot.do?movieId=001"><span
 											class="film_tit_kor">아이, 로봇</span><span
 											class="film_tit_eng en">I, Robot</span></a>
 									</div>
@@ -239,7 +254,7 @@
 									<p class="time en">16:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -268,7 +283,7 @@
 									<p class="time en">18:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/looper.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/looper.do?movieId=013"><span
 											class="film_tit_kor">루퍼</span><span
 											class="film_tit_eng en">Looper</span></a>
 									</div>
@@ -284,7 +299,7 @@
 									<p class="time en">19:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/her.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/her.do?movieId=008"><span
 											class="film_tit_kor">그녀</span><span
 											class="film_tit_eng en">Her</span></a>
 									</div>
@@ -300,7 +315,7 @@
 									<p class="time en">19:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/password.do"><span
+											href="${pageContext.request.contextPath }/program/synopsis/password.do?movieId=004"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>

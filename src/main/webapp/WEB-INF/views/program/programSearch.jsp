@@ -23,36 +23,8 @@
 		location.href = `${pageContext.request.contextPath}/program/programFinder.do?program=\${program}`;
 	}
 	
-	function goSynopsis() {
-		const movieCode = $("[name=movieCode]").val();
-		
-		if("movie-001"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/iRobot.do?movieId=001`;
-		else if("movie-002"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/eagleEye.do?movieId=002`;
-		else if("movie-003"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/aiSynopsis.do?movieId=003`;
-		else if("movie-004"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/password.do?movieId=004`;
-		else if("movie-005"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/gattaca.do?movieId=005`;
-		else if("movie-006"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/thirteen.do?movieId=006`;
-		else if("movie-007"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/matrix.do?movieId=007`;
-		else if("movie-008"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/her.do?movieId=008`;
-		else if("movie-009"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/citizenFour.do?movieId=009`;
-		else if("movie-010"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do?movieId=010`;
-		else if("movie-011"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/missionImpossible.do?movieId=011`;
-		else if("movie-012"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/erin.do?movieId=012`;
-		else if("movie-013"== movieCode)
-			location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do?movieId=013`;
-	}
+	
+	
 </script>
 
 
@@ -96,26 +68,57 @@
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
+
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
 <div class="search_wrap">
 	<div class="inp_search_wrap" style="display:inline-flex;">
-		<input name="SearchQuery" id="SearchQuery" type="text" size="30" value="${program}" class="inp_search text ac_input" placeholder="영화명을 입력하세요." title="검색어를 입력하세요" style="display:block;">
+		<input name="SearchQuery" id="SearchQuery" type="text" size="30" value="${program }" class="inp_search text ac_input" placeholder="영화명을 입력하세요." title="검색어를 입력하세요" style="display:block;">
 		
 		<button class="sbtn" onclick="programSearch()">
 			<img src="https://www.biff.kr/kor/img/program/btn_search.png" alt="검색" class="wview">
 		</button>
+		<!-- 음성인식 구현 -->
+		<button id="start">
+			<ion-icon name="mic"></ion-icon>
+		</button>
 	</div>
 </div>
 
+<script>
+//const speech = new webkitSpeechRecognition;
+if(!("webkitSpeechRecognition" in window)) {
+	alert("음성인식 지원은 크롬에서만 가능합니다.");
+	
+} else {
+	const speech = new webkitSpeechRecognition;
+	
+	document.getElementById("start").addEventListener("click", () => {
+		speech.start();
+	})
+	
+	/* document.getElementById("stop").addEventListener("click", () => {
+		speech.stop();
+	}) */
+	
+	speech.addEventListener("result", (event) => {
+		console.log(event);
+		const {transcript} = event["results"][0][0]
+		console.log(transcript);
+		//document.getElementById("transcript").innerHTML = transcript;
+		$('#SearchQuery').val(transcript);
+	})
+	
+}
+</script>
 
-<%-- <c:if test="${empty movieList }"> --%>
 
-	<!-- <p id="noMovie">검색하신 
-	작품이 없습니다.
-	<br />
-	 다시 검색해 주세요.</p> -->
+
 	<br /><br /><br />
-<%-- </c:if> --%>
-
 
 
 <c:if test="${not empty movieList }">
@@ -153,10 +156,9 @@
 							<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
 						</td>
 						<td class="event">
-							<a href="javascript:goSynopsis()">
-								<input type="hidden" name="movieCode" value="${program.movieId }"/>
+							<button type="button" name="${program.movieId }">
 								<img src="https://siwff.or.kr/kor/img/cont/schedule/gogogo_x2.png" >
-							</a>
+							</button>
 						</td>
 					</tr>				
 					</c:forEach>
@@ -170,8 +172,50 @@
 		<div class="pagenation">${pagebar}</div>
 </c:if>
 	
+<script>
+	$("[name=movie-001]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/iRobot.do?movieId=001`;
+	})
+	$("[name=movie-002]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/eagleEye.do?movieId=002`;
+	})
+	$("[name=movie-003]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/aiSynopsis.do?movieId=003`;
+	})
+	$("[name=movie-004]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/password.do?movieId=004`;
+	})
+	$("[name=movie-005]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/gattaca.do?movieId=005`;
+	})
+	$("[name=movie-006]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/thirteen.do?movieId=006`;
+	})
+	$("[name=movie-007]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/matrix.do?movieId=007`;
+	})
+	$("[name=movie-008]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/her.do?movieId=008`;
+	})
+	$("[name=movie-009]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/citizenFour.do?movieId=009`;
+	})
+	$("[name=movie-010]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/casinoRoyale.do?movieId=010`;
+	})
+	$("[name=movie-011]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/missionImpossible.do?movieId=011`;
+	})
+	$("[name=movie-012]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/erin.do?movieId=012`;
+	})
+	$("[name=movie-013]").click((e) => {
+		location.href = `${pageContext.request.contextPath}/program/synopsis/looper.do?movieId=013`;
+	})
 
-
+	
+	
+</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 

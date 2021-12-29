@@ -53,11 +53,11 @@ import lombok.extern.slf4j.Slf4j;
 		String senderId = session.getPrincipal().getName();
 		
 		//모든 유저에게 보낸다 - 브로드 캐스팅
-		log(senderId+":"+ message.getPayload());
-		
-		for (WebSocketSession sess : sessions) {
-			sess.sendMessage(new TextMessage(message.getPayload()));
-		}
+//		log(senderId+":"+ message.getPayload());
+//		
+//		for (WebSocketSession sess : sessions) {
+//			sess.sendMessage(new TextMessage(message.getPayload()));
+//		}
 		
 		// 특정 유저에게 보내기
 		String msg = message.getPayload();
@@ -80,17 +80,27 @@ import lombok.extern.slf4j.Slf4j;
 				// 실시간 접속시
 				// 어드민 메시지 받을 때 (분기처리 필요할 경우)
 //				if("adminMsg".equals(cmd) && targetSession!=null) {
-				if(targetSession!=null) {
-					// ex: [&분의일] 신청이 들어왔습니다.
+				
+				// 개별 메세지
+				if(targetSession != null) {
 					TextMessage tmpMsg = new TextMessage("<a target='_blank' href='"+ url +"'>[<b>" + type + "</b>] " + content + "</a>" );
 					targetSession.sendMessage(tmpMsg);
+				}
+				
+				// 전체 메세지
+				if ("all".equals(target)) {
+					log(senderId+":"+ message.getPayload());
+					
+					for (WebSocketSession sess : sessions) {
+						TextMessage tmpMsg = new TextMessage("<a target='_blank' href='"+ url +"'>[<b>" + type + "</b>] " + content + "</a>" );
+						sess.sendMessage(tmpMsg);
+					}
 				}
 			}
 		}
 		
 	}
 		
-	
 	// 연결 해제될 때
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
