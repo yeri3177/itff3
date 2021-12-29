@@ -25,8 +25,8 @@
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/sharingDetail.css" />
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath }/resources/css/board/sharingDetail.css" media="(min-width:380px) and (max-width:500px)"/> --%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -90,12 +90,10 @@
 		<input type="hidden" name="no" value="${board.no}"
 			id="boardNo" />
 		<div class="sharingDetail">
-			
-			<input type="text" class="form-control" placeholder="제목" name="title"
-				id="title" value="${board.title}" readonly required>
-			<input
-				type="text" class="form-control" name="regDate"
-				value='<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>' readonly required>
+		
+			<input type="input" class="form-control" placeholder="제목" name="title" style = "text-align:center;"
+				id="title" value="${board.title}                                                                                <fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>" readonly required>
+<%-- 			<input type="text" class="form-control" name="regDate" value='<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>' readonly required> --%>
 				
 <!-- 			<div class="buttons"> -->
 <%-- 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs"> --%>
@@ -112,9 +110,11 @@
 				<p>${board.content} </p>
 				<br /><br />
 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
-					<img
-						src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}"
-						alt="" />
+					<div class="image-box">
+						<img class="image-thumbnail"
+							src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}"
+							alt="" />					
+					</div>
 				</c:forEach>
 				<br /> 
 				
@@ -127,40 +127,51 @@
 <% 	if(editable){ %>	
 
 			<%-- 작성자만 수정/삭제버튼이 보일수 있게 할 것 --%>
-			<input type="button" value="수정하기" id="btn-add" class="btn btn-outline-success" onclick="updateBoard()">
-			<input type="button" value="삭제하기" id="btn-add" class="btn btn-outline-success" onclick="deleteBoard()">	
-			
+			<a href="javascript:goUpdateBoard();" 
+					class="btn btn-outline-success">수정하기</a>&nbsp&nbsp&nbsp&nbsp
+			<a href="javascript:goDeleteBoard();" 
+					class="btn btn-outline-success">삭제하기</a>&nbsp&nbsp&nbsp&nbsp
+					
 <% 	} %>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<input type="button" value="수정하기" onclick="updateBoard()" class="btn_brd_edit btn btn-xs btn-secondary">
-					<input type="button" value="삭제하기" onclick="deleteBoard()" class="btn_brd_del btn btn-xs btn-secondary">	
+				<a href="javascript:goUpdateBoard();" 
+					class="btn_brd_edit btn btn-xs btn-secondary">수정하기</a>&nbsp&nbsp&nbsp&nbsp
+				<a href="javascript:goDeleteBoard();" 
+					class="btn_brd_del btn btn-xs btn-secondary">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
 			</sec:authorize>
 </sec:authorize>
 			<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
 			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 		</div>
+		<br />
 	</div>
 </div>
 
-<script>
-
-// $(".attach").click((e) => {
-// 	const no = $(e.target).val();
-// 	console.log(no);
-// 	location.href =`${pageContext.request.contextPath}/board/fileDownload.do?no=\${no}`;
-// });
+<script type="text/javascript">
 
 function goBoardList() {
 	location.href = `${pageContext.request.contextPath}/sharing/boardList.do`;
 };
 
-function OnBoardUpdate() {
+
+function goUpdateBoard() {
 	const boardNo = $("[name=no]").val();
 	console.log("boardNo = ", boardNo);
 	location.href = `${pageContext.request.contextPath}/sharing/boardUpdate.do?no=\${boardNo}`;
 }
 
-
+function goDeleteBoard() {
+	var delBoard = confirm("게시글을 삭제하시겠습니까?");
+	if(delBoard) {
+		const boardNo = $("[name=no]").val();
+		console.log("boardNo = ", boardNo);
+		location.href = `${pageContext.request.contextPath}/sharing/boardDelete.do?no=\${boardNo}`;
+	}
+}
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

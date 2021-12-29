@@ -23,4 +23,10 @@ public interface BoardDao {
 
 	Attachment selectOneAttachment(int no);
 
+	int deleteBoardAttachment(int attachNo);
+
+	List<Attachment> selectAttachmentByBoardNo(int no);
+
+	int deleteOneBoard(int no);
+
 }
