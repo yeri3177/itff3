@@ -414,7 +414,7 @@ $(nickname).keyup((e) => {
 	const $ok1 = $(".guide1.ok1");
 	const $nicknameValid = $(nicknameValid);
 	
- 	if($nickname.val().length < 4) {
+ 	if($nickname.val().length < 2) {
 		$(".guide1").hide();
 		$nicknameValid.val(0);
 		return;

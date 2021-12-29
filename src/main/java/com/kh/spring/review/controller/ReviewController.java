@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +26,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.review.model.service.ReviewService;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.review.model.vo.ReviewComment;
+import com.kh.spring.review.model.vo.ReviewLike;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +68,7 @@ public class ReviewController {
 		
 		// 3. pagebar
 		String url = request.getRequestURI();   // /spring/board/boardList.do
-		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		String pagebar = HiSpringUtils.getReviewPagebar(cPage, limit, totalContent, url);
 		log.debug("pagebar = {}", pagebar);
 		model.addAttribute("pagebar", pagebar);
 		
@@ -131,43 +135,52 @@ public class ReviewController {
 	}	
 	
 	
+	/**
+	 * HttpServletRequest request, HttpServletResponse response 이거 넣으니까 뷰가 안 나와서 public void를 public String으로 변경하니까 됐다.
+	 */
 	@GetMapping("/reviewDetail.do")
-	public void reviewDetail(@RequestParam int reviewNo, Model model) {
+	public String reviewDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam int reviewNo, Model model, @RequestParam(required = false) String memberId) {
 		log.debug("reviewNo = {}", reviewNo);    // 값이 잘 전달되고 있는지 체크하는게 좋다.
 		
-//		// 읽은 여부 확인(cookie)
-//		Cookie[] cookies = request.getCookies();
-//		boolean hasRead = false;
-//		String reviewBoardValue = "";
-//		
-//		if(cookies != null) {
-//			for(Cookie c : cookies) {
-//				String name = c.getName();
-//				String value = c.getValue();
-//				System.out.println(name + " : " + value);
-//				
-//				if("review".equals(name)) {
-//					reviewBoardValue = value;
-//					if(value.contains("|"+ reviewNo + "|")) {
-//					hasRead = true;
-//					}
-//					break;
-//				}
-//			}
-//		}
-//		
-//		// 게시글을 처음 읽는 경우
-//		int result = 0;
-//		if(!hasRead) {
-//			// 게시글 Cookie
-//			Cookie cookie = new Cookie("review", reviewBoardValue + "|" + reviewNo + "|" );
-//			cookie.setMaxAge(365 * 24 *60 *60);
-//			cookie.setPath(request.getContextPath() + "/board/reviewBoardView");
-//			response.addCookie(cookie);
-//			
-//			// 조회수 증가
-//			result = reviewService.updateReviewBoardReadCount(reviewNo);		
-//		}
+		// 읽음 여부 확인(cookie)
+		Cookie[] cookies = request.getCookies();
+		log.debug("cookies = {}", cookies);
+		boolean hasRead = false;
+		String reviewBoardValue = "";
+		
+		System.out.println(cookies == null ? "null" : "not null");
+		if(cookies != null) {
+			for(Cookie c : cookies) {
+				log.debug("c = {}", c);
+				String name = c.getName();
+				log.debug("name = {}", name);
+				String value = c.getValue();
+				log.debug("value = {}", value);
+				System.out.println(name + " : " + value);
+				
+				if("review".equals(name)) {
+					reviewBoardValue = value;
+					if(value.contains("|"+ reviewNo + "|")) {
+					hasRead = true;
+					}
+					break;
+				}
+			}
+		}
+		
+		// 게시글을 처음 읽는 경우
+		int result = 0;
+		if(!hasRead) {
+			// 게시글 Cookie
+			Cookie cookie = new Cookie("review", reviewBoardValue + "|" + reviewNo + "|" );
+			cookie.setMaxAge(365 * 24 *60 *60);
+			cookie.setPath(request.getContextPath() + "/review/reviewDetail.do");  // 해당 요청시에만 이 cookie를 전송하겠다는 뜻. 처음에 /review/reviewDetail 이라고 적었더니 쿠키가 안 나왔다. .do 까지 적어서 진짜 주소창에 보이는 걸로 써야 나오는거였다.
+			System.out.println("new cookie" + cookie.getName() + " : " + cookie.getValue());
+			response.addCookie(cookie);
+			
+			// 조회수 증가
+			result = reviewService.updateReviewBoardReadCount(reviewNo);		
+		}
 		
 		// 업무로직
 		// 게시글 가져오기
@@ -178,10 +191,55 @@ public class ReviewController {
 		List<ReviewComment> commentList = reviewService.selectCommentList(reviewNo);
 		log.debug("commentList = {}", commentList);
 		
+		if(memberId != null) {
+		// 좋아요 수 가져오기
+		ReviewLike reviewLike = new ReviewLike(0, memberId, reviewNo); 
+		int heartCheck = reviewService.getReviewLike(reviewLike);
+		log.debug("heartCheck = {}", heartCheck);
+		
+		model.addAttribute("heartCheck", heartCheck);
+		}
+		
+		//로그인 하지 않은 경우 heartCheck에 -1(그냥 0 1 외 아무숫자)를 담아 보낸다. 아예 안 주니까 jsp에서 에러남
+		int heartCheck = -1;
+		model.addAttribute("heartCheck", heartCheck);
+		
 		model.addAttribute("review", review);
 		model.addAttribute("commentList", commentList);
 		
+//		public String이면 리턴을 이렇게 써야하는 줄 알았는데 이게 아니고 그냥 jsp 경로를 적는거라고 한다.
+//		if(memberId != null)
+//			return "/review/reviewDetail.do?reviewNo=" + reviewNo + "&memberId=" + memberId;
+//		else
+//			return "/review/reviewDetail.do?reviewNo=" + reviewNo;
+		return "review/reviewDetail";
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/heartButton.do")
+	public int heart(ReviewLike reviewLike, HttpServletRequest httpRequest) throws Exception {
+
+        log.debug("reviewLike = {}", reviewLike);
+        
+        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
+        log.debug("heart = {}", heart);
+		
+		if(heart >= 1) { 
+			int deleteResult = reviewService.deleteReviewLike(reviewLike);
+			log.debug("deleteResult = {}", deleteResult);
+			heart = 0; 
+		} 
+		else {
+			int insertResult = reviewService.insertReviewLike(reviewLike);
+			log.debug("insertResult = {}", insertResult);
+			heart = 1; 
+		}
+
+        return heart;
+	}
+	
+	
 	
 	
 	@GetMapping("/reviewUpdate.do")
@@ -313,6 +371,16 @@ public class ReviewController {
 		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewComment.getReviewNo();
 	}
 	
+	
+	@PostMapping("/reviewCommentDelete.do")
+	public String reviewCommentDelete(@RequestParam int no, @RequestParam int reviewNo) {
+		log.debug("no = {}", no);
+		
+		int result = reviewService.deleteReviewComment(no);
+		log.debug("result = {}", result);
+		
+		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewNo;
+	}
 	
 	
 }

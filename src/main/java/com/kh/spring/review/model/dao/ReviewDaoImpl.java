@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.review.model.vo.ReviewComment;
+import com.kh.spring.review.model.vo.ReviewLike;
 import com.kh.spring.sharing.model.vo.Attachment;
 
 @Repository
@@ -77,8 +78,31 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int insertReviewComment(ReviewComment reviewComment) {
 		return session.insert("review.insertReviewComment", reviewComment);
 	}
-	
-	
+
+	@Override
+	public int deleteReviewComment(int no) {
+		return session.delete("review.deleteReviewComment", no);
+	}
+
+	@Override
+	public int getReviewLike(ReviewLike reviewLike) {
+		return session.selectOne("review.getReviewLike", reviewLike);
+	}
+
+	@Override
+	public int deleteReviewLike(ReviewLike reviewLike) {
+		return session.delete("review.deleteReviewLike", reviewLike);
+	}
+
+	@Override
+	public int insertReviewLike(ReviewLike reviewLike) {
+		return session.insert("review.insertReviewLike", reviewLike);
+	}
+
+	@Override
+	public int updateReviewLike(int reviewNo) {
+		return session.update("review.updateReviewLike", reviewNo);
+	}
 	
 	
 }
