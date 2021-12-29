@@ -729,5 +729,97 @@
 			save_notify
 		values(#{target}, #{content}, #{type}, #{url})
 	</insert>
+	
+	<select id="searchQuestion" resultType="question">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					q.* 
+				from 
+					question_board q)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('questionNo')">
+				where 
+					question_no like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('questionTitle')">
+				where 
+					question_title like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+				where 
+					member_id like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+
+	<select id="searchQuestionCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('questionNo')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				question_no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('questionTitle')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				question_title like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				member_id like #{searchKeyword}
+		</if>
+	</select>
+	
+	<select id="searchNotice" resultType="notice">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					n.* 
+				from 
+					notice_board n)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('noticeNo')">
+				where 
+					notice_no like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('noticeTitle')">
+				where 
+					notice_title like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+
+	<select id="searchNoticeCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('noticeNo')">
+			select 
+				count(*) 
+			from 
+				notice_board
+			where 
+				notice_no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('noticeTitle')">
+			select 
+				count(*) 
+			from 
+				notice_board
+			where 
+				notice_title like #{searchKeyword}
+		</if>
+	</select>
 
 </mapper>

@@ -174,6 +174,17 @@ public class AdminManageController {
 	
 	@GetMapping("/calendar.do")
 	public void calendar() {}
+	
+	/**
+	 * [통계]
+	 */
+	
+	@GetMapping("/chart.do")
+	public void chart() {}
+	
+	/**
+	 * [알람]
+	 */
 
 	@GetMapping("/saveNotify.do")
 	public void saveNotify(@RequestParam String id, Model model) {
@@ -1376,6 +1387,10 @@ public class AdminManageController {
 		return "redirect:/admin/adminNoticeList.do";
 	}
 	
+	/**
+	 * [공지사항 삭제]
+	 */
+	
 	@GetMapping("/adminNoticeDelete.do")
 	public void adminNoticeDelete(@RequestParam int noticeNo, Model model) {
 		
@@ -1411,6 +1426,55 @@ public class AdminManageController {
 		log.debug(msg);
 			
 		return "redirect:/admin/adminNoticeList.do";
+	}
+	
+	/**
+	 * [공지사항 검색]
+	 */
+	
+	@GetMapping("/adminNoticeFinder.do")
+	public String adminNoticeFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Notice> list = adminService.searchNotice(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchNoticeCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminNoticeList";
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////
@@ -1524,6 +1588,55 @@ public class AdminManageController {
 		
 		
 		return "redirect:/admin/adminQuestionList.do";
+	}
+	
+	/**
+	 * [문의사항 검색]
+	 */
+	
+	@GetMapping("/adminQuestionFinder.do")
+	public String adminQuestionFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Question> list = adminService.searchQuestion(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchQuestionCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminQuestionList";
 	}
 	
 }

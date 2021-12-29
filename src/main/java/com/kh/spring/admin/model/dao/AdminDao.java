@@ -131,4 +131,12 @@ public interface AdminDao {
 
 	int insertSaveNotify(Map<String, Object> param);
 
+	List<Notice> searchNotice(Map<String, Object> param);
+
+	int searchNoticeCount(Map<String, Object> param);
+
+	List<Question> searchQuestion(Map<String, Object> param);
+
+	int searchQuestionCount(Map<String, Object> param);
+
 }
