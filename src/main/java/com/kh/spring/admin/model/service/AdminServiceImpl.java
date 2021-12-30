@@ -456,5 +456,15 @@ public class AdminServiceImpl implements AdminService {
 	public int countTotalNewQuestionContent() {
 		return adminDao.countTotalNewQuestionContent();
 	}
+
+	@Override
+	public List<Question> searchNewQuestion(Map<String, Object> param) {
+		return adminDao.searchNewQuestion(param);
+	}
+
+	@Override
+	public int searchNewQuestionCount(Map<String, Object> param) {
+		return adminDao.searchNewQuestionCount(param);
+	}
 	
 }

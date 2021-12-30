@@ -1516,6 +1516,55 @@ public class AdminManageController {
 		}
 	}
 	
+	/**
+	 * [신규 문의 검색]
+	 */
+	
+	@GetMapping("/adminNewQuestionFinder.do")
+	public String adminNewQuestionFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Question> list = adminService.searchNewQuestion(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchNewQuestionCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminNewQuestion";
+	}
+	
 	
 	/**
 	* [문의사항 목록] 

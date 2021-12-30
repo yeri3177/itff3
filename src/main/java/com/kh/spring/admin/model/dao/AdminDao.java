@@ -152,4 +152,8 @@ public interface AdminDao {
 
 	int countTotalNewQuestionContent();
 
+	List<Question> searchNewQuestion(Map<String, Object> param);
+
+	int searchNewQuestionCount(Map<String, Object> param);
+
 }
