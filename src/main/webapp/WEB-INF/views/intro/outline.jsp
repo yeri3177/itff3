@@ -60,7 +60,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-xs-12">
-						<img alt="1회포스터" src="https://i.imgur.com/uoBSWV3.png"
+						<img alt="1회포스터" src="https://i.imgur.com/UlfKf3B.jpg"
 							style="border: 1px solid #e3e3e3;">
 					</div>
 					<!-- // col-md-4 col-xs-12 -->

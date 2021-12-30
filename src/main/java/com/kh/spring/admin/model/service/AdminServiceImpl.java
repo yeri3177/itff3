@@ -446,5 +446,15 @@ public class AdminServiceImpl implements AdminService {
 	public int updateRouletteEvent(Map<String, Object> param) {
 		return adminDao.updateRouletteEvent(param);
 	}
+
+	@Override
+	public List<Question> adminSelectNewQuestion(int offset, int limit) {
+		return adminDao.adminSelectNewQuestion(offset, limit);
+	}
+
+	@Override
+	public int countTotalNewQuestionContent() {
+		return adminDao.countTotalNewQuestionContent();
+	}
 	
 }

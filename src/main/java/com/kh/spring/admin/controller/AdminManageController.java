@@ -1478,6 +1478,46 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
+	* [신규 문의] 
+	*/
+	
+	@GetMapping("/adminNewQuestion.do")
+	public void adminNewQuestion(
+				Model model,
+				@RequestParam(defaultValue = "1") int cPage,
+				HttpServletRequest request
+				) {
+	
+		try {
+			log.debug("cPage = {}", cPage); 
+
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+
+			// 전체 게시물 목록
+			List<Question> list = adminService.adminSelectNewQuestion(offset, limit);
+			log.debug("list = {}", list);
+
+			// 전체 게시물 수
+			int totalContent = adminService.countTotalNewQuestionContent();
+			log.debug("totalContent = {}", totalContent);
+
+			// pagebar
+			String url = request.getRequestURI();
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			log.debug("pagebar = {}", pagebar);
+
+			model.addAttribute("list", list);
+			model.addAttribute("totalContent", totalContent);
+			model.addAttribute("pagebar", pagebar);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
 	* [문의사항 목록] 
 	*/
 	

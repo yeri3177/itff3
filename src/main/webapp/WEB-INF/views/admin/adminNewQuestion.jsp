@@ -16,16 +16,19 @@
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminList.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminNewQuestion.css" />
 
 <jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
  
+ <!-- 
 <style>
-div#search-questionNo {display: ${searchType} == '' || ${searchType} == null || "questionNo".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-questionTitle {display: "questionTitle".equals(${searchType}) ? "inline-block" : "none";}
-div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" : "none";}
+div#search-questionNo {display: ${searchType} == '' || ${searchType} == null || "questionNo".equals(${searchType}) ? "inline-block" : "none"; } */
+div#search-questionTitle {display: "questionTitle".equals(${searchType}) ? "inline-block" : "none";} */
+div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" : "none";} */
 </style>
+  -->
 
 <!-- 문의사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminQuestionNavBar.jsp"></jsp:include>
@@ -37,7 +40,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 		
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">문의 리스트</h2>
+					<h2 class="heading-section">신규 문의</h2>
 				</div>
 			</div>
 			
@@ -86,79 +89,43 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					    </div>
 					</div>
 					    
-					<table class="table">
-						<thead class="thead-primary">
-							<tr>
-								<th>&nbsp;</th>
-								<th>글번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>답변여부</th>
-								<th>&nbsp;</th>
-							</tr>
-						</thead>
-						<tbody>
-						
-							<c:forEach items="${list}" var="list" varStatus="status">
-								<tr class="alert" role="alert">
+					<form name="theForm" method="post">
 
-									<td></td>
 
-									<!-- 글번호 -->
-									<td>
-										<div class="email" data-id="${list.questionNo }">
-											<span>${list.questionNo }</span> 
-											<input type="hidden" name="questionNo" value="${questionNo }" />
-										</div>
-									</td>
+					<div class="brd_card_wrap">
+					<ul class="brd_card_list">
+					
+					<c:forEach items="${list }" var="list">
+					<li class="card_li">
+						<a 
+							class="card_box" 
+							data-toggle="modal"
+							data-target="#adminQuestionDetail"
+							onclick="question_detail_btn('${list.questionNo}');" 
+							target="_blank">
+							<span class="press">${list.memberId }</span>
+							<span class="txt_box">
+								<p class="tit">[신규] ${list.questionTitle }</p>
+								<p class="desc ellipsis-multiline">
+									${list.questionContent }
+								</p>
+							</span>
+							<p class="date"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </p><i class="fas fa-link ico_link"></i>
+						</a>
 
-									<!-- 제목 -->
-									<td>
-										<div class="email">
-											<span>
-											${list.questionTitle }
-											<c:if test="${list.attachCount != 0}">
-												<img src="http://img.echosting.cafe24.com/design/skin/admin/ko_KR/ico_attach2.gif" alt="파일첨부" class="ec-common-rwd-image" 
-													style="width: 13px; height: 13px; padding:0;">
-											</c:if>
-											</span>
-										</div>
-									</td>
+					</li>
+					</c:forEach>
 
-									<!-- 작성자 -->
-									<td>
-										<div class="email">
-											<span>${list.memberId }</span>
-										</div>
-									</td>
+					</ul>
+					</div>
+					
+					<div class="btnRight ">
+										
+					<!---->
+					
+					</div>
 
-									<!-- 작성일 -->
-									<td>
-										<div class="email">
-											<span><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd" /></span>
-										</div>
-									</td>
-
-									<!-- 답변여부 -->
-									<td>
-										<div class="email">
-											<span>${list.answer eq 'Y' ? '답변완료' : '미답변' }</span>
-										</div>
-									</td>
-
-									<td>
-										<button 
-											type="button"
-											class="btn btn-outline-dark" 
-											data-toggle="modal"
-											data-target="#adminQuestionDetail"
-											onclick="question_detail_btn('${list.questionNo}');">확인</button>
-									</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+							</form>
 					</div>
 
 					<!-- 문의사항 상세 -->
