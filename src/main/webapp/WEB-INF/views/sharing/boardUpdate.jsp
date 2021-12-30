@@ -41,12 +41,14 @@ div#board-container label.custom-file-label{text-align:left;}
 			<li class="on_"><a
 				href="${pageContext.request.contextPath }/notice/noticeList.do"
 				target="_top">공지사항</a></li>
-			<li class="on_"><a href="#" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a 
+				href="${pageContext.request.contextPath }/review/reviewList.do" 
+				target="_top">네티즌리뷰</a></li>
 			<li class="on_"><a
 				href="${pageContext.request.contextPath}/sharing/boardList.do"
 				target="_top">티켓나눔터</a></li>
-			<li class="on_"><a href="#" target="_top">자주찾는 질문</a></li>
-			<li class="on_"><a href="#" target="_top">1:1 문의</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/question/faq.do" target="_top">자주찾는 질문</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/question/questionList.do" target="_top">1:1 문의</a></li>
 		</ul>
 	</div>
 </div>
@@ -62,32 +64,51 @@ function boardValidate(){
    return true;
 }
 
-
 $(() => {
-   $("[name=upFile]").change((e) => {
-      
-      // 1. 파일명 가져오기
-      const file = $(e.target).prop("files")[0];
-      const filename = file?.name; 
-      
-      console.dir(e.target);
-      console.log("filename : ", filename);
-      
-      // 2. label에 설정하기
-      const $label = $(e.target).next(); 
-      
-      if(file != undefined) {
-         $label.html(filename);
-         $(delFile)
-         	.prop("check", true);
-      }
-      else {
-         $label.html("파일을 선택하세요.");
-      }
-   })
+	$("[name=upFile]").change((e) => {
+		// 1. 파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name;   
+		console.log(e.target);
+		console.log(filename);
+		
+		// 2. label에 설정하기
+		const $label = $(e.target).next();  
+		if(file != undefined)
+			$label.html(filename);
+		else
+			$label.html("파일을 선택하세요.");
+	
+
+		const $file = $(e.target);
+		const no = $file.data("no");
+		if($file.val() != "") {
+			// 파일을 새로 선택한 경우
+			console.log($(`#delFile\${no}`));
+			$(`#delFile\${no}`)
+				.prop("checked", true)
+				.hide()
+				.next()
+				.hide();
+		}
+		else {
+			// 파일선택을 취소한 경우
+			console.log($(`#delFile\${no}`));
+			$(`#delFile\${no}`)
+				.prop("checked", false)
+				.show()
+				.next()
+				.show();
+		}	
+
+	});	
 });
 
+function formSubmit() {
+	document.reviewUpdateFrm.submit();
+}
 </script>
+
 <br />
 <br />
 <br />
@@ -95,7 +116,8 @@ $(() => {
 <br />
 <br />
 <br />
-	
+
+<div class="ink_list ldn" style="background-color: #FFFFFF">
 <div id="board-container">
 	<form 
 		name="boardFrm"
@@ -103,7 +125,8 @@ $(() => {
 		method="POST" 
 		enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
-		<input type="text" class="form-control" name="memberId" value="               ${loginMember.id}님 티켓나눔에 함께하세요! " readonly required>
+		<input type="hidden" class="form-control" name="no" value="${board.no}">
+		<input type="text" class="form-control" name="memberId" value="${loginMember.id}" readonly required>
 		<div class="input-group mb-3">
 		  <div class="input-group-prepend">
 		    <label class="input-group-text" for="inputGroupSelect01">종류</label>
@@ -118,24 +141,23 @@ $(() => {
 		</div>	
 		<input type="text" class="form-control" placeholder="제목" name="title" id="title" value="${board.title}" required>
 		
-		
-		<c:if test="${board.attachments[0].attachNo != 0 }">
-		<div class="input-group mb-3" style="padding:0px;">
-		  <div class="input-group-prepend" style="padding:0px;">
-		    <span class="input-group-text">첨부파일1</span>
-		  </div>
-		  <div class="custom-file">
-		    <input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple>
-		    <label class="custom-file-label" for="upFile1">${board.attachments[0].originalFilename}</label>
-		  </div>
-		</div>
-		<div id="checkbox">
-					<input type="checkbox" name="delFile" id="delFile" value="${board.attachments[0].attachNo}" />
-					<label for="delFile">기존파일삭제</label>
-					<%--기존파일삭제 누르지 않았을 경우 --%>
-					<input type="hidden" name="delFile" value="0" id="delFilePlz"/>
+		<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
+			<c:if test="${attach.attachNo ne 0 }">
+			<div class="input-group mb-3" style="padding:0px;">
+				<div class="input-group-prepend" style="padding:0px;">
+				  <span class="input-group-text">첨부파일</span>
 				</div>
-		</c:if>
+				<div class="custom-file">
+				  <input type="file" class="custom-file-input" name="upFile" id="upFile" multiple>
+				  <label class="custom-file-label" for="upFile1">${board.attachments[0].originalFilename}</label>
+				</div>
+		   		<div class="delFileArea" style="margin-left: 12px;">
+				  <input type="checkbox" name="delFile" id="delFile${vs.count}" value="${attach.attachNo}" style="position: relative; top: 11px;"/>
+				  <label for="delFile" style="position: relative; top: 11px;">기존파일삭제</label>
+			    </div>
+				</div>
+			</c:if>
+		</c:forEach>
 		
 		<c:if test="${board.attachments[0].attachNo == 0}">
 			<div class="input-group mb-3" style="padding:0px;">
@@ -146,7 +168,6 @@ $(() => {
 			    <input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple>
 			    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
 			  </div>
-				
 			</div>
 		</c:if>
 		
@@ -163,12 +184,8 @@ $(() => {
 	<br />
 	<br />
 </div>
+</div>
 
-<script>
-
-
-
-</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 

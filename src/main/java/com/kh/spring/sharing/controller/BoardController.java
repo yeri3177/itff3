@@ -173,21 +173,29 @@ public class BoardController {
 	
 	@PostMapping("/boardUpdate.do")
 	public String boardUpdate(
+			Board board,
+			@RequestParam String memberId,
 			@RequestParam(value = "upFile", required = false) MultipartFile[] upFiles,
-			@ModelAttribute Board board,
-			@RequestParam int delFile,
-			RedirectAttributes redirectAttr
-			) {
+			@RequestParam(required=false) int[] delFile,
+			RedirectAttributes redirectAttr	
+		) throws IllegalStateException, IOException {
 		
 		try {
-			int result = 0;
+			log.debug("board = {}", board);
+			log.debug("memberId = {}", memberId);
+			log.debug("delFile = {}", delFile);
+			
+			// 첨부파일 list 생성
+			List<Attachment> attachments = new ArrayList<>();
+			
+			// application 객체(ServletContext 타입)
 			String saveDirectory = application.getRealPath("/resources/upload/board");
 			log.debug("saveDirectory = {}", saveDirectory);
 			
-			List<Attachment> attachments = new ArrayList<>();
-			
 			for(MultipartFile upFile : upFiles) {
+				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
+					
 					log.debug("upFile = {}", upFile);
 					log.debug("upFile.name = {}", upFile.getOriginalFilename());
 					log.debug("upFile.size = {}", upFile.getSize());
@@ -195,37 +203,48 @@ public class BoardController {
 					String originalFilename = upFile.getOriginalFilename();
 					String renamedFilename = HiSpringUtils.getRenamedFilename(originalFilename);
 					
+					// 1. 서버컴퓨터에 저장
 					File dest = new File(saveDirectory, renamedFilename);
 					log.debug("dest = {}", dest);
 					upFile.transferTo(dest);
 					
+					// 2. DB attachment 레코드 등록
 					Attachment attach = new Attachment();
 					attach.setRenamedFilename(renamedFilename);
 					attach.setOriginalFilename(originalFilename);
-					
 					attachments.add(attach);
 					log.debug("첨부파일 수정 완료 = {}", attachments);
 				}
 			}
 			
-			if(delFile != 0) {
-				int attachNo = delFile;
-				Attachment attach = boardService.selectOneAttachment(attachNo);
-				
-				File targetFile = new File(saveDirectory, attach.getRenamedFilename());
-				targetFile.delete();
-				
-				result = boardService.deleteBoardAttachment(attachNo);
-				String yn = result > 0 ? "첨부파일이 성공적으로 삭제되었습니다" : "삭제 오류";
-				
-				
+			// 업무로직
+			int result = 0;
+			
+			if(delFile != null) {
+				for(int i = 0; i < delFile.length; i++) {
+					
+					Attachment attach = boardService.selectOneAttachment(delFile[i]);
+					log.debug("attach = {}", attach);
+					File targetFile = new File(saveDirectory, attach.getRenamedFilename());
+					targetFile.delete();
+					result = boardService.deleteAttachment(delFile[i]);
+					log.debug("result = {}", result);
+				}
 			}
+			
+			if(!attachments.isEmpty())
+				board.setAttachments(attachments);
+			
+			result = boardService.insertBoard(board);
+//			String msg = result > 0 ? "게시글 업로드 성공!" : "게시글 업로드 실패!";
+//			redirectAttr.addFlashAttribute("msg", msg);
 			
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			throw e;
 		}
 		
-		return "redirect:/sharing/boardDetail.do?no=" + board.getNo();
+		return "redirect:/sharing/boardDetail.do?no="+board.getNo();
 	}
 	
 	@GetMapping("/boardDelete.do")
@@ -247,7 +266,7 @@ public class BoardController {
 			}
 			
 			int result = boardService.deleteOneBoard(no);
-			String msg = result > 0 ? no + "게시글이 삭제 성공" : no + "게시글 삭제 실패";
+			String msg = result > 0 ? no + "게시글 삭제 성공" : no + "게시글 삭제 실패";
 			log.debug(msg);
 
 		} catch (InvalidParameterException e) {
