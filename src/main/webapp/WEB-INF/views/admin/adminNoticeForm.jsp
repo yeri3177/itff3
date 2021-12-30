@@ -27,8 +27,6 @@ pageContext.setAttribute("loginMember", loginMember);
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminFrm.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardFormCommon.css" />
 
 <!-- 공지사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminNoticeNavBar.jsp"></jsp:include>
@@ -80,8 +78,8 @@ pageContext.setAttribute("loginMember", loginMember);
 				<textarea class="form-control" name="noticeContent" placeholder="내용" required></textarea>
 				<br /> 
 				<div style="text-align: center;">
-					<input type="button" class="cancelBtn" value="취소" onclick="history.go(-1);" style="margin: 0;"/>
-					<input type="submit" class="btn btn-outline-success"value="저장">
+					<input type="button" class="btn btn-secondary" value="취소" onclick="history.go(-1);" style="margin: 0;"/>
+					<input type="submit" class="btn btn-primary" value="저장">
 				</div>
 			</form>
 			</div>

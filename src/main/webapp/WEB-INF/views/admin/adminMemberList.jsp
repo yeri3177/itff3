@@ -87,6 +87,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 							<thead class="thead-primary">
 								<tr>
 									<th>&nbsp;</th>
+									<th>&nbsp;</th>
 									<th>아이디</th>
 									<th>닉네임</th>
 									<th>이름</th>
@@ -107,11 +108,18 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 
 										<td></td>
 
+										<!-- 프로필 사진 -->
+										<td>
+											<div class="email">
+												<img class="profile_img" src="${pageContext.request.contextPath}/resources/upload/member/${list.image}" alt="" />
+											</div>
+										</td>
+
 										<!-- 아이디 -->
 										<td>
 											<div class="email" data-id="${list.id }">
-												<span>${list.id }</span> <input type="hidden"
-													name=id${status.index} value="${list.id }" />
+												<span>${list.id }</span> 
+												<input type="hidden" name=id${status.index} value="${list.id }" />
 											</div>
 										</td>
 
