@@ -1,3 +1,4 @@
+<%@page import="com.kh.spring.goods.model.vo.OptionColor"%>
 <%@page import="com.kh.spring.member.model.vo.Member"%>
 <%@page import="org.springframework.security.core.Authentication"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
@@ -137,10 +138,10 @@
 			<!-- 하단 탭메뉴 영역 : 리뷰, 상품정보, 구매안내, FAQ -->
 			<div class="tabs">
 			    <input id="tab-btn-1" type="radio" name="tab_item" checked>
-			    <label class="tab_item" for="tab-btn-1">리뷰</label>
+			    <label class="tab_item" for="tab-btn-1">상품 정보</label>
 			    
 			    <input id="tab-btn-2" type="radio" name="tab_item">
-			    <label class="tab_item" for="tab-btn-2">상품 정보</label>
+			    <label class="tab_item" for="tab-btn-2">리뷰</label>
 			    
 			    <input id="tab-btn-3" type="radio" name="tab_item">
 			    <label class="tab_item" for="tab-btn-3">구매 안내</label>
@@ -148,22 +149,103 @@
 			    <input id="tab-btn-4" type="radio" name="tab_item">
 			    <label class="tab_item" for="tab-btn-4">FAQ</label>
 			    
+			    <!-- 상품정보탭 내용 -->
 			    <div class="tab_content" id="tab1_content">
-			        1111111111
+			        <textarea readonly>${goods.PInfo }</textarea>
+			        
+			        
 			    </div>
 			    
+			    <!-- 리뷰탭 내용 -->
 			    <div class="tab_content" id="tab2_content">
 			        22222222222
 				</div>
 			    
+			    <!-- 구매안내탭 내용 -->
 			    <div class="tab_content" id="tab3_content">
-			        333333333
+			        
+			        <div class="title-text">배송 안내</div>
+			        <div>
+				        모든 상품은 고객님의 주문에 맞춰 새 상품으로 제작하여 배송됩니다. <br />
+						지금 주문하시면 7일후부터 제작 프로세스가 시작되어 14일후 이전에 출고될 예정입니다.
+					</div>
+			        
+			        <hr style="background-color: #c3c3c3;border-top: 0px solid rgba(0,0,0,.1); margin: 25px 0;"/>
+			        
+			        <table>
+			        	<tr>
+			        		<th>배송방법</th>
+			        		<td>일반 택배 (CJ 대한통운)</td>
+			        	</tr>
+			        	
+			        	<tr>
+			        		<th>배송지역</th>
+			        		<td>전국</td>
+			        	</tr>
+			        	
+			        	<tr>
+			        		<th>배송비</th>
+			        		<td>2,500원</td>
+			        	</tr>
+			        	
+			        	<tr>
+			        		<th>배송기간</th>
+			        		<td>상품 출고 후 영업일 기준 1~3일 이내 수령이 가능하며 도서 산간 지역이거나 택배사의 물량이 많은 경우 기간이 조금 더 소요될 수 있습니다.</td>
+			        	</tr>
+			        </table>
+			        
+			        <div class="circle-btn-div">
+			        	<button class="circleBtn">배송 FAQ 보러가기</button>
+			        </div>
+			        
+			        <br />
+			        
+
+			        <div class="title-text">교환/환불 안내</div>
+			        
+			        <div>
+			        	모든 상품은 주문 제작 방식으로 제작되어 단순 변심으로 인한 교환/환불이 불가합니다. <br />
+
+						단, 수령하신 상품이 불량이거나 오배송된 경우에는 7일 이내 고객센터 또는 이메일, 1:1 문의하기로 연락주시면 교환 및 반품 환불이 가능합니다.
+			        </div>
+			        
+			        <hr style="background-color: #c3c3c3;border-top: 0px solid rgba(0,0,0,.1); margin: 25px 0;"/>
+			        
+			        
+			        <table>
+			        	<tr>
+			        		<th>고객센터</th>
+			        		<td>1566-8282</td>
+			        	</tr>
+			        	
+			        	<tr>
+			        		<th>이메일</th>
+			        		<td>itff_market@itff.com</td>
+			        	</tr>
+
+			        </table>
+			        
+			        <div class="circle-btn-div">
+			        	<button class="circleBtn">1:1 문의하기</button>
+			        	<button class="circleBtn">교환/환불 FAQ 보러가기</button>
+			        </div>
+			        
+			        <hr style="background-color: #c3c3c3;border-top: 0px solid rgba(0,0,0,.1); margin: 25px 0;"/>
+			        
+			        <div>
+			        	<i class="fas fa-ban"></i>  <a href="#">청약 철회 제한 요건 안내</a>
+			        </div>
+			        
+			        <div>
+			        	<i class="far fa-check-circle"></i>  <a href="#">품질 보증 기준 안내</a>
+			        </div>
+			        
 				</div>
 				
-				<!-- FAQ -->
+				<!-- FAQ탭 내용 -->
 				<div class="tab_content" id="tab4_content">
 		
-					<span class="title-text">주문/배송</span>
+					<div class="title-text">주문/배송</div>
 		
 					<div class="accordion accordion-flush" id="accordionFlushExample">
 					  <div class="accordion-item">
@@ -218,7 +300,7 @@
 					
 					<br /><br />
 					
-					<span class="title-text">교환/환불</span>
+					<div class="title-text">교환/환불</div>
 			        <div class="accordion" id="accordionPanelsStayOpenExample">
 								  
 					  <div class="accordion-item">
@@ -370,7 +452,10 @@
 					<!-- 개별 색상 박스 -->
 					<c:forEach items="${optionColorList}" var="color" varStatus="vs">
 					<div class="color-box radio-wrap" id="selectColorDiv">
-						<input type="radio" id="${color}" name="optionColor" class="colorRadio" data-option-color="${color}" data-goods-id="${goods.PId}" ${vs.first ? 'checked' : ''}><br />
+						<input type="radio" id="${color}" name="optionColor" class="colorRadio" 
+							data-option-color="${color}" data-goods-id="${goods.PId}" ${vs.first ? 'checked' : ''}
+							style="background-color: <%= OptionColor. 그린 .getRgbValue() %>"
+						><br />
 						<label for="${color}">${color}</label>
 					</div>
 					</c:forEach>
@@ -440,8 +525,8 @@
 				<div class="cnt-box1">
 					<span class="cnt"></span>개 상품 금액</div>
 				<div class="cnt-box2">
-					<!-- 숫자 패턴 적용하기 -->
-					<input type="text" name="sum" id="sum" size="8" pattern="[0-9]{3},[0-9]{3}" readonly> 원
+					<!-- 총합 가격 -->
+					<input type="text" name="sum" id="sum" size="8" readonly> 원
 				</div>
 			</div>
 			
@@ -458,7 +543,7 @@
 	
 </section>
 
-<!-- 장바구니 toasts -->
+<!-- toasts -->
 <div id="cartToasts-div">
 	<div 
 		id="cartToasts" 
@@ -467,9 +552,9 @@
 		aria-atomic="true">
 	  <div class="d-flex">
 	    <div class="toast-body">
-	      <span><i class="fas fa-exclamation-circle"></i></span>
-	      &nbsp;&nbsp;&nbsp;
-	      <!-- 상품을 장바구니에 담았습니다. -->
+	      <span>
+	      	<i class="fas fa-exclamation-circle" style="margin-right: 5px;"></i></span>
+	      	<!-- 메세지 내용 -->
 	      <span class="cart-msg"></span>
 	    </div>
 	    <div class="close-btn-div">
@@ -482,6 +567,8 @@
 
 
 <script>
+
+const $toast = $("#cartToasts");
 
 $(() => {
 	/* 상품 개수, 총합 */
@@ -505,14 +592,14 @@ $(() => {
 	/* fn_sizeChange(); */
 	
 	/* 토스트 확인용 */
-	/* const $toast = $("#cartToasts");
-	$toast.show(); */
+	//fn_toast("URL 복사 되었습니다.");
 	
     // 오른쪽 영역 고정시키기 
     //$("#top-right-box").Scrolling($("#top-left-box").offset().top, $("footer").offset().top);
     
     // 푸터 해제 함수 실행 
     //Scrolling2();
+    
 });
 
 /* 페이지 URL 복사 */
@@ -526,25 +613,37 @@ function clip(){
 	textarea.select();
 	document.execCommand("copy");
 	document.body.removeChild(textarea);
-	/* alert("URL이 복사되었습니다.") */
+	
+	fn_toast("URL이 복사 되었습니다.");
+}
+
+$(".btn-close").click((e) => {
+	$toast.hide();
+})
+
+/* 토스트에 메세지 넣는 함수 */
+function fn_toast(msg) {
+	
+	// 토스트 메세지 넣기
+	$(".cart-msg").text(msg);
+	
+	// 스크롤 맨위로 이동 
+	$('html,body').scrollTop(0);
+	
+	// 토스트 메세지 보이게하기 
+	$toast.show();
+	
+	// 2초후에 토스트 사라지게 하기
+	setTimeout(function(){
+	    $toast.hide();		
+	},2000);
 }
 
 
 /* 장바구니버튼 */
 function fn_cartBtn(){
-	/* $(document.goodsOptionFrm).submit((e) => { */
 	$(".cart-btn").click((e) => {
-		//e.preventDefault();
-		
-		const $toast = $("#cartToasts");
-		
-		// 스크롤 맨위로 이동
-		$('html,body').scrollTop(0);
-		
-		// 2초후에 토스트 사라지게 하기
-		setTimeout(function(){
-		    $toast.hide();		
-		},2000);
+
 		
 		// 전달값 
 		const cart = {
@@ -573,10 +672,7 @@ function fn_cartBtn(){
             	
             	var msg = Object.values(data);
             	
-            	$(".cart-msg").text(msg);
-            	
-            	// 토스트 메세지 보이게하기 
-        		$toast.show();
+            	fn_toast(msg);
             	
             },
             error: console.log

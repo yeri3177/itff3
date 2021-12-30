@@ -235,7 +235,7 @@ public class GoodsController {
 	 * 장바구니 페이지 
 	 */
 	@GetMapping("/goodsCart.do")
-	public String goodsCart(Authentication authentication, Model model) {
+	public String goodsCart(Authentication authentication, Model model, HttpServletRequest request) {
 		
 		log.debug("authentication = {}", authentication);
 		
@@ -246,7 +246,8 @@ public class GoodsController {
 		List<CartJoin> list = goodsService.selectGoodsCartList(member.getId());
 		log.debug("list = {}", list);
 		
-		model.addAttribute("list", list);	
+		model.addAttribute("list", list);
+		request.setAttribute("list", list);
 		
 		return "goods/goodsCart";
 	}

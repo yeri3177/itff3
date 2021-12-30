@@ -30,6 +30,10 @@
 	margin-left: 40px;
 }
 
+a:hover {
+	color: black!important;
+}
+
 /*******************************************************************************
  * 왼쪽 컨테이너
  ******************************************************************************/
@@ -60,6 +64,8 @@
  	padding: 0!important;
  	background-color: white!important;
  	border: 0!important;
+ 	height: 45px;
+ 	margin-top: 11px;
  }
  
  .card-footer-left {
@@ -74,10 +80,14 @@
  }
  
  .card-footer-right button {
- 	width: 110px;
+ 	width: 130px;
  	margin-left: 10px;
- 	font-size: 12px!important;
- 	
+ 	font-size: 13px!important;
+ 	height: 45px;
+ }
+ 
+ .card-footer-right button:hover {
+ 	background-color: white!important;
  }
  
  #qtyBtn {
@@ -193,21 +203,144 @@
  }
  
  
+ /*******************************************************************************
+  * 수량 변경 모달
+  ******************************************************************************/
+ .modal {
+ 	padding-top: 100px;
+ 	font-size: 15px!important;
+ }
  
  
+ .modal-header,.modal-footer {
+ 	border: 0!important;
+ 	
+ 	padding-top: 0!important;
+ 	padding-bottom: 0!important;
+ }
  
+ .modal-footer {
+ 	padding: 0 6px!important;
+ 	margin-top: 15px;
+ }
+ .modal-content {
+ 	padding: 30px;
+ }
  
+ .modal-title {
+ 	font-size: 20px;
+ }
  
+ .modal-close-btn {
+ 	width: 18px;
+ 	position: relative;
+ 	top: 10px;
+ 	
+ }
  
+.modal-body-top {
+	display: flex;
+}
+
+.modal-body-top-right {
+	margin-left: 18px;
+	position: relative;
+}
+
+ .modal-body-bottom {
+ 	display: flex;
+ 	justify-content: space-between;
+ 	align-items: center!important;
+ }
  
+ .modal-body-middel {
+ 	margin: 30px 0;
+ 	display: flex;
+ 	justify-content: space-between;
+ 	align-content: center;
+ 	
+ 	/* background-color: aqua; */
+ }
  
+ .pname-div {
+ 	font-size: 18px;
+ }
  
+ .pcategory-div {
+ 	margin-top: 5px;
+ }
  
+ .pprice-div {
+ 	font-weight: bold;
+ 	position: absolute;
+ 	bottom: 0;
+ }
  
+ .sumcnt-div {
+ 	color: gray;
+ }
  
+ .sumprice-div {
+ 	font-size: 22px;
+ 	font-weight: bold;
+ }
  
+ .optiongroup-div {
+ 	background-color: var(--bg-gray);
+ 	padding: 14px;
+ }
  
+ .qtyChange-div {
+ 	display: flex;
+ 	align-items: center;
+ }
  
- 
- 
- 
+#amount input:focus { 
+	outline: none; 
+}
+
+#amount {
+	width: 40px;
+	text-align: center;
+	border: 0;
+}
+
+.qtyChange-div input[type='button'] {
+	border: 0;
+	color: gray;
+	width: 25px;
+	height: 25px;
+	background-color: #f7f7f7;
+}
+
+.sumprice-div input {
+	border: 0;
+	text-align: right;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

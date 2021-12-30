@@ -349,7 +349,7 @@ input[name="tab_item"] {
 /* 탭 컨텐츠 스타일 */
 .tab_content {
   display: none;
-  padding: 40px 40px 0;
+  padding: 40px 0;
   clear: both;
   overflow: hidden;
 }
@@ -372,9 +372,14 @@ input[name="tab_item"] {
   font-weight: bold;
 }
 
+.tab_content {
+	font-size: 14px;
+}
+
 /*************************** FAQ accordion ******************************/
 .title-text {
 	font-size: 23px;
+	margin-bottom: 15px;
 }
 
 .accordion-button {
@@ -400,18 +405,82 @@ input[name="tab_item"] {
 	border: 0!important;
 }
 
+/******************* 구매 안내 *********************/
+
+
+.circleBtn {
+    /* flex: .5; */
+    padding: 11px 10px;
+    font-size: 13px;
+    line-height: 1.38;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+   	background-color: white;
+   	width: 250px!important;
+   	
+   	display: flex;
+   	justify-content: center;
+   	margin: 5px;
+}
+
+.circle-btn-div {
+	display: flex;
+   	justify-content: center;
+	margin: 30px 0;
+}
+
+#tab3_content td {
+    padding-left: 18px;
+}
+
+#tab3_content th {
+	color: #626262;
+	width: 55px;
+}
+
+#tab3_content tr {
+    height: 21px;
+}
+
+#tab3_content a {
+	text-decoration: underline!important;
+	color: #4e4e4e;
+}
+
+
+/* 상품정보 */
+textarea {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	box-sizing: content-box;
+	padding-bottom: 400px;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+
+
 
 /****************** 장바구니 버튼 토스트 ***************************/
 #cartToasts-div {
 	position: absolute;
 	bottom: 40px;
 	left: 43%;
+	
 } 
+
+div#cartToasts {
+    padding: 3px 16px;
+}
 
 .close-btn-div {
 	position: absolute;
-	right: 15px;
-	top: 8px;
+	right: 25px;
+	top: 12px;
 }
 
 
