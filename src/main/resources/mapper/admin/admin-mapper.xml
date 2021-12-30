@@ -853,5 +853,80 @@
 		where 
 			member_id = #{id}
 	</update>
+	
+	<select id="adminSelectNewQuestion" resultType="question">
+		select
+			b.*,
+			(select count(*) from attachment where question_no = b.question_no) attach_count
+		from 
+			question_board b left join member a
+                    on b.member_id = a.id
+        where 
+        	answer = 'N'
+		order by 
+			question_no desc
+	</select>
+	
+		<select id="countTotalNewQuestionContent" resultType="_int">
+		select 
+			count(*)
+		from 
+			question_board a left join member b
+		        on a.member_id = b.id
+		where 
+			answer = 'N'
+	</select>
+	
+		<select id="searchNewQuestion" resultType="question">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					q.* 
+				from 
+					question_board q)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('questionNo')">
+				where 
+					answer = 'N' and question_no like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('questionTitle')">
+				where 
+					answer = 'N' and question_title like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+				where 
+					answer = 'N' and member_id like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+
+	<select id="searchNewQuestionCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('questionNo')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				answer = 'N' and question_no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('questionTitle')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				answer = 'N' and question_title like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+			select 
+				count(*) 
+			from 
+				question_board
+			where 
+				answer = 'N' and member_id like #{searchKeyword}
+		</if>
+	</select>
 
 </mapper>

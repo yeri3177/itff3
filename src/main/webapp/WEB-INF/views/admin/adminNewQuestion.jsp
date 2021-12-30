@@ -22,13 +22,11 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
  
- <!-- 
 <style>
 div#search-questionNo {display: ${searchType} == '' || ${searchType} == null || "questionNo".equals(${searchType}) ? "inline-block" : "none"; } */
 div#search-questionTitle {display: "questionTitle".equals(${searchType}) ? "inline-block" : "none";} */
 div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" : "none";} */
 </style>
-  -->
 
 <!-- 문의사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminQuestionNavBar.jsp"></jsp:include>
@@ -60,7 +58,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            <option value="memberId" ${"memberId".equals(searchType) ? "selected" : ""}>작성자</option>
 					        </select>
 					        <div id="search-questionNo" class="search-type" style="width: 500px !important;">
-					            <form action="${pageContext.request.contextPath}/admin/adminQuestionFinder.do">
+					            <form action="${pageContext.request.contextPath}/admin/adminNewQuestionFinder.do">
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="questionNo"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
@@ -69,7 +67,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            </form>	
 					        </div>
 					        <div id="search-questionTitle" class="search-type" style="display: none;">
-					            <form action="${pageContext.request.contextPath}/admin/adminQuestionFinder.do">
+					            <form action="${pageContext.request.contextPath}/admin/adminNewQuestionFinder.do">
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="questionTitle"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글제목을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionTitle' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
@@ -78,7 +76,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            </form>	
 					        </div>
 					        <div id="search-memberId" class="search-type" style="display: none;">
-					            <form action="${pageContext.request.contextPath}/admin/adminQuestionFinder.do">
+					            <form action="${pageContext.request.contextPath}/admin/adminNewQuestionFinder.do">
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="memberId"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="작성자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionTitle' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>

@@ -394,4 +394,20 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.countTotalNewQuestionContent");
 	}
 
+	@Override
+	public List<Question> searchNewQuestion(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchNewQuestion", param, rowBounds);
+	}
+
+	@Override
+	public int searchNewQuestionCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchNewQuestionCount", param);
+	}
+
 }
