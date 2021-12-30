@@ -156,4 +156,6 @@ public interface AdminDao {
 
 	int searchNewQuestionCount(Map<String, Object> param);
 
+	List<Question> adminManageRecentTenQuestionList();
+
 }

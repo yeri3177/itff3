@@ -3,6 +3,8 @@ package com.kh.spring.question.model.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.kh.spring.member.model.vo.Member;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +26,6 @@ public class QuestionComment implements Serializable {
 	private String writer;
 	private String content;
 	private Date regDate;
-
+	
+	private Member member;
 }

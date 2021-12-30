@@ -133,6 +133,20 @@ public class AdminManageController {
 	 * [메인화면: 최근 리뷰 10개]
 	 */
 	
+	@GetMapping("/adminManageRecentTenQuestionList.do")
+	public List<Question> adminManageRecentTenQuestionList(Model model) {
+		List<Question> list = adminService.adminManageRecentTenQuestionList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
+
+	/**
+	 * [메인화면: 최근 리뷰 10개]
+	 */
+	
 	@GetMapping("/adminManageRecentTenReviewList.do")
 	public List<Review> adminManageRecentTenReviewList(Model model) {
 		List<Review> list = adminService.adminManageRecentTenReviewList();

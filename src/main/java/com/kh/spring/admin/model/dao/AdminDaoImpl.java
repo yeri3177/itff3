@@ -410,4 +410,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.searchNewQuestionCount", param);
 	}
 
+	@Override
+	public List<Question> adminManageRecentTenQuestionList() {
+		return session.selectList("admin.adminManageRecentTenQuestionList");
+	}
+
 }

@@ -12,7 +12,6 @@ import lombok.ToString;
 @Data // Equivalent to @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode. 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
 public class QuestionEntity implements Serializable {
 
 	/**

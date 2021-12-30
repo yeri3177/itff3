@@ -928,5 +928,37 @@
 				answer = 'N' and member_id like #{searchKeyword}
 		</if>
 	</select>
+	
+	<select id="adminManageRecentTenQuestionList" resultMap="questionMap">
+		select
+			*
+		from
+			member m 
+		left join question_board q
+		on m.id = q.member_id
+		where 
+			<![CDATA[rownum <= 10 and q.reg_date is not null]]>
+		order by 
+			q.reg_date desc
+	</select>
+	
+	<resultMap type="question" id="questionMap">
+		<id column="question_no" property="questionNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="question_title" property="questionTitle"/>
+		<result column="question_content" property="questionContent"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="answer" property="answer"/>
+		<association property="member" javaType="member">
+			<id column="id" property="id"/>
+			<result column="name" property="name"/>
+			<result column="phone" property="phone"/>
+			<result column="email" property="email"/>
+			<result column="birthday" property="birthday"/>
+			<result column="address" property="address"/>
+			<result column="nickname" property="nickname"/>
+			<result column="image" property="image"/>
+		</association>	
+	</resultMap>
 
 </mapper>
