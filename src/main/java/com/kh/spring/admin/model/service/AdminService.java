@@ -153,5 +153,7 @@ public interface AdminService {
 	List<Question> searchNewQuestion(Map<String, Object> param);
 
 	int searchNewQuestionCount(Map<String, Object> param);
+
+	List<Question> adminManageRecentTenQuestionList();
 	
 }

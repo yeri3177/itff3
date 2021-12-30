@@ -304,46 +304,11 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recent Comments </span></th>
+																	<th><span> Recent Questions </span></th>
 																</tr>
 															</thead>
-															<tbody>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/c5.jpg);"></span>
-																			<img
-																			src="https://www.balbooa.com/demo-admin/images/demo-admin/c5.jpg"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name">Tommy Mullins</span> <span
-																					class="comments-date">2019-05-30</span>
-																			</span> <span class="comments-message">My 32 year
-																					old son rates this colour palette very alluring 😍</span>
-																		</span>
-																	</span></td>
-																</tr>
-																<tr>
-																	<td class="name-cell"><span
-																		class="comments-text-wrapper"> <span
-																			class="ba-author-avatar"
-																			style="background-image: url(https://www.balbooa.com/demo-admin/images/demo-admin/c4.jpg);"></span>
-																			<img
-																			src="https://www.balbooa.com/demo-admin/images/demo-admin/c4.jpg"
-																			style="display: none !important;"
-																			onerror="setGravatarDefault(this);"> <span
-																			class="comments-text"> <span
-																				class="comments-name-wrapper"> <span
-																					class="comments-name">Sebastien Whittaker</span> <span
-																					class="comments-date">2019-05-30</span>
-																			</span> <span class="comments-message">Elegant dude
-																					I love the use of avatar and layout!</span>
-																		</span>
-																	</span></td>
-																</tr>
+															<tbody id="question">
+
 															</tbody>
 														</table>
 
@@ -1003,6 +968,22 @@ $(document).ready(function () {
 		dateType: "text",
 		success: function(data) {
 			$("#screening").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 문의 최근 10개
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageRecentTenQuestionList.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#question").html(data);
 		},
 		complete: function() {
 			console.log("complete")

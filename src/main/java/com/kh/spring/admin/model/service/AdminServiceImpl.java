@@ -466,5 +466,10 @@ public class AdminServiceImpl implements AdminService {
 	public int searchNewQuestionCount(Map<String, Object> param) {
 		return adminDao.searchNewQuestionCount(param);
 	}
+
+	@Override
+	public List<Question> adminManageRecentTenQuestionList() {
+		return adminDao.adminManageRecentTenQuestionList();
+	}
 	
 }
