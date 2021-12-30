@@ -77,6 +77,12 @@ pageContext.setAttribute("loginMember", loginMember);
 				<a class="btn medium" onclick="location.href='${pageContext.request.contextPath}/event/eventMenu.do';">목록보기</a>
 			</div>
 			
+			<div class="dateCheck">
+				<c:if test="${roulette ne null }">
+				<input type="hidden" name="participateDate" class="participateDate" value="<fmt:formatDate value="${roulette.participateDate }" pattern="yyyy-MM-dd" />" />
+				</c:if>
+			</div>
+			
 			<form action="" class="point_frm">
 				<input type="hidden" class="id" name="id" value="${member.id }" />
 				<input type="hidden" class="point"  name="point" value="${member.point }" />
@@ -92,11 +98,13 @@ var _roll_bg;
 var _items;
 var _mTime;
 
+
 function init() {
 create();
 addEvent();
 }
 
+// 값 지정
 function create() {
 _btnStart = $( ".btn_start" );
 _roll_bg = $( ".roll_bg" );
@@ -104,12 +112,25 @@ _items = [ "100", "10", "50", "5000", "30", "1000", "500", "300" ];
 _mTime = 1;
 }
 
+// 버튼 클릭시 이벤트
 function addEvent() {
 _btnStart.on( "click", btnStartClick );
 }
 
+// 클릭하면 움직이는 모션
 function btnStartClick( $e ) {
-spinMotion();
+	
+	let date = $('.dateCheck');
+	let participateDate = date.find('.participateDate').val();
+	var today = new Date().toISOString().substring(0,10);
+	
+	if(participateDate > today || participateDate == today) {
+		alert('이미 참여하셨습니다. 내일 다시 참여해주세요.');
+		return false;
+	}
+	else {
+		spinMotion();
+	}
 }
 
 var _count = 0;
@@ -150,6 +171,7 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 		
 		let form = $('.point_frm');
 	    let id = form.find('.id').val();
+	    let $id = form.find('.id').val();
 	    let point = form.find('.point').val();
 	    let change = _items[ $ran ];
 	    
@@ -160,7 +182,7 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 	    // 전송한 정보를 db에 저장	
 	    $.ajax({
 	        type: "post",
-	        url:"${pageContext.request.contextPath}/admin/eventRoulette.do",
+	        url:"${pageContext.request.contextPath}/event/eventRoulette.do",
 	        dataType: "text",
 	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	        data: {
@@ -171,7 +193,8 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 	        beforeSend : function(xhr) {   
 	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 	        },
-	        success: console.log('success')
+	        success: 
+	        	window.location.href = "${pageContext.request.contextPath}/event/eventMenu.do?id=" + id
 	    });
 	
 	}

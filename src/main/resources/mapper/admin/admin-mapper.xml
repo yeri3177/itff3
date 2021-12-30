@@ -821,5 +821,37 @@
 				notice_title like #{searchKeyword}
 		</if>
 	</select>
+	
+	<insert id="insertRouletteEvent">
+		insert into
+			roulette_event
+		values (#{id}, #{oldChange}, default)
+	</insert>
+	
+	<select id="selectRouletteEvent" resultType="rouletteEvent">
+		select
+			*
+		from
+			roulette_event
+		where
+			member_id = #{memberId}
+	</select>
+	
+	<select id="selectRouletteEventParticipateCnt" resultType="_int"> 
+		select 
+			count(*) 
+		from 
+			roulette_event 
+		where member_id = #{id}
+	</select>
+	
+	<update id="updateRouletteEvent">
+		update 
+			roulette_event
+		set 
+			point = #{oldChange}, participate_date = default 	
+		where 
+			member_id = #{id}
+	</update>
 
 </mapper>

@@ -210,57 +210,6 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * [이벤트 룰렛: 포인트 지급]
-	 */
-	
-	@PostMapping("/eventRoulette.do")
-	public void eventRoulette(
-			@RequestParam String id, 
-			@RequestParam int point, 
-			@RequestParam int change, 
-			Model model, 
-			RedirectAttributes redirectAttr,
-			Authentication oldAuthentication
-			){
-		
-		String reason = "룰렛 이벤트 포인트 당첨";
-		
-		log.debug("id = {}", id);
-		log.debug("reason = {}", reason); // 지급사유
-		log.debug("change = {}", change); // +-
-		log.debug("point = {}", point); // 계산하고 된 포인트
-		
-		// change는 관리자가 입력하는 것 앞에 "+"가 붙어야 한다.
-		String newChange = "+"+change;
-		log.debug("newChange = {}", newChange);
-		
-		// 회원 포인트
-		// 회원의 포인트는 변동 + 기존 포인트로 다시 업데이트 되어야 한다.
-		int newPoint = change + point;
-		log.debug("newPoint = {}", newPoint);
-		
-		// map에 담아서 보내자
-		Map<String, Object> param = new HashMap<>();
-		param.put("id", id);
-		param.put("reason", reason);
-		param.put("change", newChange);
-		param.put("point", newPoint);
-		
-		log.debug("param = {}", param);
-		
-		// 포인트 내역
-		int result1 = adminService.updateMemberPoint(param);
-		int result2 = adminService.insertPointHistory(param);
-		
-		Member principal = (Member) oldAuthentication.getPrincipal();
-		principal.setPoint(newPoint);
-		
-		redirectAttr.addFlashAttribute("msg", "포인트 지급 성공");
-	}
-	
-///////////////////////////////////////////////////////////////////////////////
-	
-	/**
 	 * [회원 목록]
 	 */
 	

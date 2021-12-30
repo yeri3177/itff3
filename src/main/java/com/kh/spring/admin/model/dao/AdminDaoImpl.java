@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.admin.model.vo.PointHistory;
+import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
@@ -362,6 +363,26 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int searchQuestionCount(Map<String, Object> param) {
 		return session.selectOne("admin.searchQuestionCount", param);
+	}
+
+	@Override
+	public int insertRouletteEvent(Map<String, Object> param) {
+		return session.insert("admin.insertRouletteEvent", param);
+	}
+
+	@Override
+	public RouletteEvent selectRouletteEvent(String id) {
+		return session.selectOne("admin.selectRouletteEvent", id);
+	}
+
+	@Override
+	public int selectRouletteEventParticipateCnt(String id) {
+		return session.selectOne("admin.selectRouletteEventParticipateCnt", id);
+	}
+
+	@Override
+	public int updateRouletteEvent(Map<String, Object> param) {
+		return session.update("admin.updateRouletteEvent", param);
 	}
 
 }
