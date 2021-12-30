@@ -59,7 +59,7 @@ div#search-noticeTitle {display: "noticeTitle".equals(${searchType}) ? "inline-b
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="noticeNo"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'noticeNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -68,7 +68,7 @@ div#search-noticeTitle {display: "noticeTitle".equals(${searchType}) ? "inline-b
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="noticeTitle"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="제목을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'noticeTitle' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
 					        </div>

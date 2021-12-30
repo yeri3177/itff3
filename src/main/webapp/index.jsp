@@ -13,6 +13,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
+<jsp:include page="/WEB-INF/views/common/popup.jsp"></jsp:include>
+
 <style>
 section#main-content {
 	background-color: #212121 !important;

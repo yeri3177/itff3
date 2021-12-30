@@ -27,6 +27,7 @@
 		<result column="reg_date" property="regDate" />
 		<result column="point" property="point" />
 		<result column="enabled" property="enabled" />
+		<result column="image" property="image" />
 		
 		<collection 
 			property="authorities" 
