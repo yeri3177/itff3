@@ -157,4 +157,22 @@
 			id = #{id}
 	</update>
 	
+	<select id="selectPointListByMemberId" resultType="point">
+		select
+			*
+		from
+			point_history
+		where
+			member_id = #{id}
+		order by
+			history_no desc
+	</select>
+	
+	<select id="selectPointTotalCount" resultType="_int">
+		select
+		    count(*)
+		from
+		    point_history
+	</select>
+	
 </mapper>

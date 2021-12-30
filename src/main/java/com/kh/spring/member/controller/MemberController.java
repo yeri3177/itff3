@@ -42,6 +42,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
@@ -310,6 +311,42 @@ public class MemberController {
 		return "redirect:/member/memberDetail.do";
 	}
 	
+	@GetMapping("/memberPoint.do")
+	public void memberPoint(
+			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
+			Model model,
+			HttpServletRequest request,
+			Authentication authentication
+	) {
+		
+		//접속된 아이디 가져오기
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		log.debug("id = {}", id);
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit; 
+		
+		// 1.전체 게시글 목록 가져오기
+		List<Point> list = memberService.selectPointListByMemberId(offset, limit, id);
+		log.debug("PointList = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 총 게시물 수 가져오기
+		int totalContent = memberService.selectPointTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+	}
+	
 	@GetMapping("/memberWrittenBoardList.do")
 	public String memberWrittenBoard(
 			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
@@ -321,7 +358,7 @@ public class MemberController {
 		//접속된 아이디 가져오기
 		Member member = (Member) authentication.getPrincipal();
 		String id = member.getId();
-		
+		log.debug("id = {}", id);
 		log.debug("cPage = {}", cPage);
 		
 		int limit = 10;

@@ -85,7 +85,7 @@
 									<img src="https://i.imgur.com/UMUevXB.png" alt="" class="row_icon"/>
 								</div>
 								<div>
-								<a href="#" class="btn_point">포인트이용내역</a>
+								<a href="${pageContext.request.contextPath }/member/memberPoint.do" class="btn_point">포인트이용내역</a>
 								</div>
 							</div>	
 													

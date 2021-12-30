@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Board;
 
@@ -89,6 +90,17 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int selectReviewTotalCount() {
 		return session.selectOne("member.selectReviewTotalCount");
+	}
+
+	@Override
+	public List<Point> selectPointListByMemberId(int offset, int limit, String id) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("member.selectPointListByMemberId", id, rowBounds);
+	}
+
+	@Override
+	public int selectPointTotalCount() {
+		return session.selectOne("member.selectPointTotalCount");
 	}
 	
 	

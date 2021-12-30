@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
@@ -98,6 +99,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int selectReviewTotalCount() {
 		return memberDao.selectReviewTotalCount();
+	}
+
+
+	@Override
+	public List<Point> selectPointListByMemberId(int offset, int limit, String id) {
+		return memberDao.selectPointListByMemberId(offset, limit, id);
+	}
+
+
+	@Override
+	public int selectPointTotalCount() {
+		return memberDao.selectPointTotalCount();
 	}
 
 
