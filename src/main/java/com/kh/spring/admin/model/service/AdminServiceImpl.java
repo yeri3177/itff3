@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.admin.model.dao.AdminDao;
 import com.kh.spring.admin.model.vo.PointHistory;
+import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
@@ -424,6 +425,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int searchQuestionCount(Map<String, Object> param) {
 		return adminDao.searchQuestionCount(param);
+	}
+
+	@Override
+	public int insertRouletteEvent(Map<String, Object> param) {
+		return adminDao.insertRouletteEvent(param);
+	}
+
+	@Override
+	public RouletteEvent selectRouletteEvent(String id) {
+		return adminDao.selectRouletteEvent(id);
+	}
+
+	@Override
+	public int selectRouletteEventParticipateCnt(String id) {
+		return adminDao.selectRouletteEventParticipateCnt(id);
+	}
+
+	@Override
+	public int updateRouletteEvent(Map<String, Object> param) {
+		return adminDao.updateRouletteEvent(param);
 	}
 	
 }

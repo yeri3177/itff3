@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.spring.admin.model.vo.PointHistory;
+import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
@@ -138,5 +139,13 @@ public interface AdminDao {
 	List<Question> searchQuestion(Map<String, Object> param);
 
 	int searchQuestionCount(Map<String, Object> param);
+
+	int insertRouletteEvent(Map<String, Object> param);
+
+	RouletteEvent selectRouletteEvent(String id);
+
+	int selectRouletteEventParticipateCnt(String id);
+
+	int updateRouletteEvent(Map<String, Object> param);
 
 }
