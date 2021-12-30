@@ -66,7 +66,7 @@ pageContext.setAttribute("loginMember", loginMember);
 					<div class="evt-txtbox">
 						<p class="evt-tit">[JUST ENJOY!]</p>
 						<p class="evt-loc">하루에 단 한번만 즐길 수 있는 룰렛이벤트!</p>
-						<span class="txt-date">2021.12.29 ~ 2022.01.14</span>
+						<span class="txt-date">2021.12.29 ~ 2022.1.14</span>
 					</div>
 				</div>
 				</div>
@@ -75,15 +75,16 @@ pageContext.setAttribute("loginMember", loginMember);
 
 			<div class="col-md-6 col-xs-12 ">
 				<div class="border_box2_out">
-				<div class="border_box2">			
+				<div class="border_box2" onclick="location.href='${pageContext.request.contextPath}/event/eventOffline.do';">			
 				<div class="evt-imgbox">
-					<img src="https://i.imgur.com/V9hIf6l.jpg">	
+					<img src="https://i.imgur.com/7NMBjZ6.jpg">	
 				</div>
 
 				<div class="col-md-12 col-xs-12">
 					<div class="evt-txtbox">
-						<p class="evt-tit">10.8(금) 13:00 오픈토크 [행복의 나라로] </p>
-						<p class="evt-loc">영화의전당 BIFFXGENESIS 야외무대</p>
+						<p class="evt-tit">[관객이벤트] </p>
+						<p class="evt-loc">SF 키워드로 컨셉친(concept+親)하라!</p>
+						<span class="txt-date">2022.1.7 ~ 2022.1.14</span>
 					</div>
 				</div>
 				</div>

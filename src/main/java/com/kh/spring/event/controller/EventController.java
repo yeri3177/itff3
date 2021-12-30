@@ -109,5 +109,8 @@ public class EventController {
 		
 		return "redirect:/event/eventMenu.do";
 	}
+	
+	@GetMapping("/eventOffline")
+	public void eventOffline() {}
 
 }
