@@ -25,10 +25,9 @@
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<!-- <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath }/resources/css/board/sharingDetail.css" media="(min-width:380px) and (max-width:500px)"/> --%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+
 
 
 <!-- // 	boolean editable = false; -->
@@ -69,12 +68,14 @@
 			<li class="on_"><a
 				href="${pageContext.request.contextPath }/notice/noticeList.do"
 				target="_top">공지사항</a></li>
-			<li class="on_"><a href="#" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a 
+				href="${pageContext.request.contextPath }/review/reviewList.do" 
+				target="_top">네티즌리뷰</a></li>
 			<li class="on_"><a
 				href="${pageContext.request.contextPath}/sharing/boardList.do"
 				target="_top">티켓나눔터</a></li>
-			<li class="on_"><a href="#" target="_top">자주찾는 질문</a></li>
-			<li class="on_"><a href="#" target="_top">1:1 문의</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/question/faq.do" target="_top">자주찾는 질문</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath }/question/questionList.do" target="_top">1:1 문의</a></li>
 		</ul>
 	</div>
 </div>
@@ -92,16 +93,8 @@
 		<div class="sharingDetail">
 		
 			<input type="input" class="form-control" placeholder="제목" name="title" style = "text-align:center;"
-				id="title" value="${board.title}                                                                                <fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>" readonly required>
-<%-- 			<input type="text" class="form-control" name="regDate" value='<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>' readonly required> --%>
-				
-<!-- 			<div class="buttons"> -->
-<%-- 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs"> --%>
-<!-- 					<button type="button" -->
-<!-- 						class="btn btn-outline-success btn-block attach" -->
-<%-- 						value="${attach.attachNo}">${attach.originalFilename}</button> --%>
-<%-- 				</c:forEach> --%>
-<!-- 			</div> -->
+				id="title" value="${board.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatDate value="${board.regDate}" pattern="yyyy.MM.dd"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${board.readCount}" readonly required>
+
 
 				
 			<div class="form-control" name="content" placeholder="내용" required>
@@ -117,12 +110,8 @@
 					</div>
 				</c:forEach>
 				<br /> 
-				
-
-
 			</div>
 			<br />
-
 <sec:authorize access="isAuthenticated()">
 <% 	if(editable){ %>	
 
@@ -139,7 +128,7 @@
 				<a href="javascript:goDeleteBoard();" 
 					class="btn_brd_del btn btn-xs btn-secondary">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
 			</sec:authorize>
-</sec:authorize>
+
 			<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
 			<br />
 			<br />
@@ -150,6 +139,53 @@
 		<br />
 	</div>
 </div>
+
+ <!-- Comments form-->
+                    <div class="card my-4">
+
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group"><textarea class="form-control" rows="3" style="background-color:#F2F2F2">댓글을 남겨주세요..</textarea></div>
+                                <button class="btn btn-primary float-right"  type="submit">댓글등록</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Single comment-->
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+                        <div class="media-body" style="background-color:#F2F2F2">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+ <!-- Comment with nested comments-->
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+                        <div class="media-body">
+                            <h5 class="mt-0">Commenter Name</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <div class="media mt-4">
+                                <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+                                <div class="media-body">
+                                    <h5 class="mt-0">Commenter Name</h5>
+                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                </div>
+                            </div>
+                            <div class="media mt-4">
+                                <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+                                <div class="media-body">
+                                    <h5 class="mt-0">Commenter Name</h5>
+                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<br />
+<br />
+<br />
+<br />
+<br />	
+</sec:authorize>
 
 <script type="text/javascript">
 

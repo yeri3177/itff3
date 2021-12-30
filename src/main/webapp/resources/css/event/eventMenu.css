@@ -20,7 +20,7 @@
     margin-left: 0;
 }
 .tab-menu.red.line a.active, .tab-menu.red.line button.active {
-    border-bottom: 3px solid #ec1b3b;
+    border-bottom: 3px solid #29b1bf !important;
 }
 .tab-menu.red.line a, .tab-menu.red.line button {
     margin: 0 25px;
@@ -29,7 +29,7 @@
     z-index: 1;
 }
 .tab-menu.red a.active, .tab-menu.red button.active {
-    color: #ec1b3b;
+    color: #29b1bf !important;
 }
 .tab-menu.red a, .tab-menu.red button {
     color: #a9a9a9;
@@ -152,9 +152,11 @@ fieldset, img, abbr, acronym {
 
 .evt-txtbox {
     padding: 13px;
+    padding-top: 0;
 }
 
 .evt-txtbox .evt-tit, .evt-txtbox .evt-loc {
+	margin-bottom: 4px;
     font-size: 16px;
     font-weight: bold;
 }

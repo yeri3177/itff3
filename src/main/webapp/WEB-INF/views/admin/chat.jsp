@@ -93,7 +93,7 @@ $("tr[id]").click((e) => {
 	// 팝업요청
 	const url = `${pageContext.request.contextPath}/admin/\${chatId}/\${memberId}/chat.do`;
 	const name = chatId; // 팝업창 Window객체의 name.
-	const spec = "width=450px, height=690px";
+	const spec = "width=510px, height=780px";
 	open(url, name, spec);
 });
 
