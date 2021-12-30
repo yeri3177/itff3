@@ -16,8 +16,6 @@ import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
-import com.kh.spring.movie.model.vo.MovieSchedule;
-import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -383,6 +381,17 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int updateRouletteEvent(Map<String, Object> param) {
 		return session.update("admin.updateRouletteEvent", param);
+	}
+
+	@Override
+	public List<Question> adminSelectNewQuestion(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("admin.adminSelectNewQuestion", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalNewQuestionContent() {
+		return session.selectOne("admin.countTotalNewQuestionContent");
 	}
 
 }

@@ -148,4 +148,8 @@ public interface AdminDao {
 
 	int updateRouletteEvent(Map<String, Object> param);
 
+	List<Question> adminSelectNewQuestion(int offset, int limit);
+
+	int countTotalNewQuestionContent();
+
 }
