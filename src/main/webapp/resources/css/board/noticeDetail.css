@@ -99,8 +99,9 @@ div#board-container label.custom-file-label{text-align:left;}
     height: auto;
 }
 img, video {
-    max-width: none;
-    max-height: 600px;
+    /* max-width: none;
+    max-height: 600px; */
+    width: auto;
 }
 a, button, input[type=button] {
     transition-property: color, background-color, border-color;
@@ -136,7 +137,7 @@ a {
     line-height: 1;
 }
 .pt_col, .c_module, .c_module a {
-    color: #ec5e5e !important;
+    color: #ec7b65 !important;
 }
 .pt_col2, .c_module2, .c_module2 a {
     color: #222 !important;
@@ -260,7 +261,7 @@ button {
     font-weight: normal;
 }
 .pt_col, .c_module, .c_module a {
-    color: #ec5e5e !important;
+    color: #ec7b65 !important;
 }
 .cmt_notice {
     margin: 25px 25px 0;
@@ -527,7 +528,7 @@ input, button, textarea, table {
     vertical-align: middle;
 }
 .ib_color {
-    background-color: #ec5e5e;
+    background-color: #ec7b65 !important;
 }
 .ib2 {
     height: 32px;

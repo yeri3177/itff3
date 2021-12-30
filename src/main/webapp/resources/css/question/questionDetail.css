@@ -47,7 +47,7 @@ div#board-container label.custom-file-label{text-align:left;}
 }
 
 [name=content] img {
-	width: 100px;
+	width: auto;
 }
 
 [name=regDate] {

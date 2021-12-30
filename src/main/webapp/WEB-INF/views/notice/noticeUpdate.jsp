@@ -40,7 +40,7 @@
 	<div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
-			<a href="${pageContext.request.contextPath}/notice/noticeList.do">네티즌 리뷰</a>
+			<a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a>
 		</h2>
 	</div>
 	<div class="list_wrap">
