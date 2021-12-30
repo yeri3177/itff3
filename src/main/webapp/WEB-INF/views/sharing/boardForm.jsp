@@ -70,7 +70,7 @@ $(() => {
 		method="post" 
 		enctype="multipart/form-data"
 		onsubmit="return boardValidate();">
-		<input type="text" class="form-control" name="memberId" value="               ${loginMember.id}님 티켓나눔에 함께하세요! " readonly required>
+		<input type="text" class="form-control" name="memberId" value="${loginMember.id}" readonly required>
 		<div class="input-group mb-3">
 		  <div class="input-group-prepend">
 		    <label class="input-group-text" for="inputGroupSelect01">종류</label>
@@ -89,22 +89,14 @@ $(() => {
 
 		<div class="input-group mb-3" style="padding:0px;">
 		  <div class="input-group-prepend" style="padding:0px;">
-		    <span class="input-group-text">첨부파일1</span>
+		    <span class="input-group-text">첨부파일</span>
 		  </div>
 		  <div class="custom-file">
 		    <input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple>
 		    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
 		  </div>
 		</div>
-		<div class="input-group mb-3" style="padding:0px;">
-		  <div class="input-group-prepend" style="padding:0px;">
-		    <span class="input-group-text">첨부파일2</span>
-		  </div>
-		  <div class="custom-file">
-		    <input type="file" class="custom-file-input" name="upFile" id="upFile2" >
-		    <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
-		  </div>
-		</div>
+
 		
 	    <textarea class="form-control" name="content" placeholder="내용" rows="8" cols="50" required></textarea>
 		<br />

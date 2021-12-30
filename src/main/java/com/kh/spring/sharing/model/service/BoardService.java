@@ -25,4 +25,6 @@ public interface BoardService {
 
 	int deleteOneBoard(int no);
 
+	int deleteAttachment(int i);
+
 }
