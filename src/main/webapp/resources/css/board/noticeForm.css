@@ -1,8 +1,49 @@
 @charset "UTF-8";
 
-div#board-container{width:800px; margin:0 auto; text-align:center;}
+section#main-content {
+    background-color: #E6E6E6;
+    height: auto;
+}
+div#board-container{
+	width:800px; 
+	margin:0 auto; 
+	text-align:center;
+	padding-top: 40px;	
+}
+textarea.form-control {
+	height: 300px;
+}
 div#board-container input{margin-bottom:15px;}
-/* 부트스트랩: 파일라벨명 정렬 */
+/* 부트스트랩 : 파일라벨명 정렬*/
+div#board-container label.custom-file-label{text-align:left;}
+.ib {
+    height: 42px;
+    line-height: 42px;
+    padding: 0 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    z-index: 1;
+    border: none;
+    color: white;
+}
+.ib_mono {
+    color: #555;
+    background-color: #EEE;
+}
+.bt_right .ib {
+    margin-left: 3px;
+    vertical-align: middle;
+}
+.bt_area {
+	padding-bottom: 20px; 
+}
+
+
+/* div#board-container{width:800px; margin:0 auto; text-align:center;}
+div#board-container input{margin-bottom:15px;}
+부트스트랩: 파일라벨명 정렬
 div#board-container label.custom-file-label{text-align:left;}
 
 textarea.form-control {
@@ -51,4 +92,4 @@ textarea.form-control {
     white-space: nowrap;
     vertical-align: middle;
     font-family: 'Noto Sans KR';
-}
+} */

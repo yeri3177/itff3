@@ -36,12 +36,16 @@
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
+
+<section class="ink_board guest_mode">
+
+
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
 		<h2 class="en">자주 찾는 질문</h2>
 	</div>
-</div>
+</div> 
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 
@@ -741,7 +745,7 @@
   
 </div><!-- 기타 accordion4 end -->
 
-
+</section>
 <script>
 var style = {
 		'color': 'white',
