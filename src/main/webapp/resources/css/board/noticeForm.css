@@ -40,6 +40,9 @@ div#board-container label.custom-file-label{text-align:left;}
 	padding-bottom: 20px; 
 }
 
+.ib_color {
+	background-color: #ec7b65 !important;
+}
 
 /* div#board-container{width:800px; margin:0 auto; text-align:center;}
 div#board-container input{margin-bottom:15px;}
