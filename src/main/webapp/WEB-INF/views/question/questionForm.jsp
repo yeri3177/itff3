@@ -38,11 +38,11 @@
 </div>
 <!-- 여기까지 nav 입니다. -->
 <!-- 해당 페이지 큰 글씨 -->
-<div class="sub_title_wrap">
+<!-- <div class="sub_title_wrap">
 	<div class="container">
 		<h2 class="en">1:1 문의 </h2>
 	</div>
-</div>
+</div> -->
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <script>
@@ -87,90 +87,98 @@ $(() => {
 
 <div class="container_">
 
+	<div class="bd_header">
+		<h2 class="bd_title">
+			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
+			<a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a>
+		</h2>
+	</div>
+
 	<div class="cont">
 		<div class="container_">
-	
-		<form 
-			name="boardFrm" 
-			method="post" 
-			action="${pageContext.request.contextPath}/question/questionEnroll.do?${_csrf.parameterName}=${_csrf.token}"
-			enctype="multipart/form-data"
-			onsubmit="return boardValidate();">
-			<input type="hidden" name="memberId" value="<sec:authentication property="principal.id"/>">
-			<!-- <input type="hidden" name="strBoardBg" value="">
-			<input type="hidden" name="bitHtmlBr" value="0">
-			<input type="hidden" name="strSessionID" value="503737302">	
-			<input name="strHomepage" type="hidden" id="strHomepage" value="" size="40" maxlength="64">
-			<input name="bitCook" type="hidden" class="no_Line" id="bitCook" value="1"> -->
-	
-			<div class="wz_write">
-	
-				<!-- <div class="chk_box">
-					<div class="chk-primary">
-						<input name="bitSecret" type="checkbox" id="bitSecret" value="1" title="비밀글" data-null="not">
-						<label for="bitSecret">
-						<span></span>비밀글</label>
-					</div>
-				</div> -->
-	
-				<div class="write_top">
-					<div class="inp_tit_wrap">
-						<input name="questionTitle" type="text" id="strSubject" class="inp_tit" maxlength="64" placeholder="제목을 입력해 주세요.">
-					</div>
-				</div>
-	
-				<dl class="info_question">
-					<dt>
-						<label class="lab_info" for="email">
-							이름
-						</label>
-					</dt>
-					<dd>
-						<div class="wrap_item wrap_id click_event">
-							<input type="text" class="inp_txt" name="strName" id="strName" value="<sec:authentication property="principal.name"/>" size="40" maxlength="64" readonly>
-						</div>
-					</dd>
-				</dl>
-				<dl class="info_question">
-					<dt>
-						<label class="lab_info" for="email">
-							이메일 주소
-						</label>
-					</dt>
-					<dd>
-						<div class="wrap_item wrap_id click_event">
-							<input type="text" class="inp_txt" name="strEmail" id="strEmail" value="<sec:authentication property="principal.email"/>" size="40" maxlength="64" readonly>
-						</div>
-					</dd>
-				</dl>
 		
-				<div class="write_bd" style="min-height:300px;margin-top:10px">
-					<textarea name="questionContent" cols="70" rows="16" id="strContent" style="display:block; width:100%"></textarea>
-				</div>
-	
-				<div class="file_wrap">
-					<div class="desc bold mb10">파일 선택</div>
-	
-					<!-- 파일 선택 폼 -->
-					<div class="input-group mb-3" style="padding: 0px;">
-						<div class="input-group-prepend" style="padding: 0px;">
-							<span class="input-group-text">첨부파일1</span>
+			<form 
+				name="boardFrm" 
+				method="post" 
+				action="${pageContext.request.contextPath}/question/questionEnroll.do?${_csrf.parameterName}=${_csrf.token}"
+				enctype="multipart/form-data"
+				onsubmit="return boardValidate();">
+				<input type="hidden" name="memberId" value="<sec:authentication property="principal.id"/>">
+				<!-- <input type="hidden" name="strBoardBg" value="">
+				<input type="hidden" name="bitHtmlBr" value="0">
+				<input type="hidden" name="strSessionID" value="503737302">	
+				<input name="strHomepage" type="hidden" id="strHomepage" value="" size="40" maxlength="64">
+				<input name="bitCook" type="hidden" class="no_Line" id="bitCook" value="1"> -->
+		
+				<div class="wz_write">
+		
+					<!-- <div class="chk_box">
+						<div class="chk-primary">
+							<input name="bitSecret" type="checkbox" id="bitSecret" value="1" title="비밀글" data-null="not">
+							<label for="bitSecret">
+							<span></span>비밀글</label>
 						</div>
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="upFile"
-								id="upFile1" multiple="multiple"> <label
-								class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+					</div> -->
+		
+					<div class="write_top">
+						<div class="inp_tit_wrap">
+							<input name="questionTitle" type="text" id="strSubject" class="inp_tit" maxlength="64" placeholder="제목을 입력해 주세요.">
 						</div>
 					</div>
-					<!-- //파일 선택 폼 -->
+		
+					<dl class="info_question">
+						<dt>
+							<label class="lab_info" for="email">
+								이름
+							</label>
+						</dt>
+						<dd>
+							<div class="wrap_item wrap_id click_event">
+								<input type="text" class="inp_txt" name="strName" id="strName" value="<sec:authentication property="principal.name"/>" size="40" maxlength="64" readonly>
+							</div>
+						</dd>
+					</dl>
+					<dl class="info_question">
+						<dt>
+							<label class="lab_info" for="email">
+								이메일 주소
+							</label>
+						</dt>
+						<dd>
+							<div class="wrap_item wrap_id click_event">
+								<input type="text" class="inp_txt" name="strEmail" id="strEmail" value="<sec:authentication property="principal.email"/>" size="40" maxlength="64" readonly>
+							</div>
+						</dd>
+					</dl>
+			
+					<div class="write_bd" style="min-height:300px;margin-top:10px">
+						<textarea name="questionContent" cols="70" rows="16" id="strContent" style="display:block; width:100%"></textarea>
+					</div>
+		
+					<div class="file_wrap">
+						<div class="desc bold mb10">파일 선택</div>
+		
+						<!-- 파일 선택 폼 -->
+						<div class="input-group mb-3" style="padding: 0px;">
+							<div class="input-group-prepend" style="padding: 0px;">
+								<span class="input-group-text">첨부파일1</span>
+							</div>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="upFile"
+									id="upFile1" multiple="multiple"> <label
+									class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+							</div>
+						</div>
+						<!-- //파일 선택 폼 -->
+					</div>
+		
+					<div class="txt-center" id="writeButton">
+						<input type="submit" class="btn btn-m btn-primary" value="저장"> &nbsp;&nbsp;
+						<a href="javascript:history.go(-1);" class="btn btn-m btn-secondary">취소</a>
+					</div>
 				</div>
-	
-				<div class="txt-center" id="writeButton">
-					<input type="submit" class="btn btn-m btn-primary" value="저장"> &nbsp;&nbsp;
-					<a href="javascript:history.go(-1);" class="btn btn-m btn-secondary">취소</a>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>
 		

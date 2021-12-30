@@ -1,5 +1,24 @@
 @charset "UTF-8";
 
+.bd_header {
+    margin-bottom: -7px;
+    padding-top: 40px;
+    padding-left: 332px;
+    font-size: 18px;
+}
+
+.bd_title {
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+
+.bd_header img {
+    position: relative;
+    top: 2px;
+}
+
 section#main-content {
     background-color: #E6E6E6;
     height: auto;
@@ -42,9 +61,11 @@ div#board-container label.custom-file-label{text-align:left;}
 
 
 
-/* div#board-container{width:800px; margin:0 auto; text-align:center;}
+div#board-container{width:800px; margin:0 auto; text-align:center; padding: 27px 30px;
+    background-color: #e6e6e6;
+    border-radius: 5%;}
 
-부트스트랩: 파일라벨명 정렬
+
 div#board-container label.custom-file-label{text-align:left;}
 
 textarea.form-control {
@@ -56,6 +77,8 @@ textarea.form-control {
     background-color: transparent;
     background-image: none;
     border-color: #34495e;
+    position: relative;
+    top: -8px;
 }
 
 .btn-outline-success:hover {
@@ -107,4 +130,4 @@ textarea.form-control {
 	margin-left: 10px;
     position: relative;
     top: 12px;
-} */
+}

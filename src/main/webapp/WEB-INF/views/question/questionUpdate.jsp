@@ -28,7 +28,7 @@ pageContext.setAttribute("loginMember", loginMember);
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/board/boardUpdateCommon.css" />
+	href="${pageContext.request.contextPath }/resources/css/question/questionUpdate.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -49,13 +49,7 @@ pageContext.setAttribute("loginMember", loginMember);
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-<!-- 해당 페이지 큰 글씨 -->
-<div class="sub_title_wrap">
-	<div class="container">
-		<h2 class="en">1:1 문의</h2>
-	</div>
-</div>
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
+
 
 <script>
 
@@ -99,8 +93,17 @@ $(() => {
 
 
 </script>
+	<div class="bd_header">
+		<h2 class="bd_title">
+			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
+			<a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a>
+		</h2>
+	</div>
 
 <div id="board-container">
+	
+	<div id="boardboardboard">
+
 	<form name="boardFrm"
 		action="${pageContext.request.contextPath}/question/questionUpdate.do?${_csrf.parameterName}=${_csrf.token}"
 		method="POST" enctype="multipart/form-data"
@@ -161,6 +164,7 @@ $(() => {
 		<input type="button" value="취소" onclick="history.go(-1);"class="cancelBtn" /> 
 		<input type="submit" class="btn btn-outline-success" value="저장">
 	</form>
+	</div>
 </div>
 
 <script>
