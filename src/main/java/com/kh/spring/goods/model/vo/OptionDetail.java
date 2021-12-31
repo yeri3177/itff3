@@ -28,6 +28,7 @@ public class OptionDetail implements Serializable {
 	private String optionSize;
 	private int optionStock;
 	private String optionImg;
+	private String optionRgb;
 	
 	private int attachCount;
 	private List<Attachment> attachments;

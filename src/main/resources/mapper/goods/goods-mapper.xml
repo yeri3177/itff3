@@ -109,6 +109,7 @@
         <result column="option_size" property="optionSize"/>
         <result column="option_stock" property="optionStock"/>
         <result column="option_img" property="optionImg"/>
+        <result column="option_rgb" property="optionRgb"/>
     </resultMap>
 
     <resultMap type="goodsJoin" id="goodsJoinMap">
