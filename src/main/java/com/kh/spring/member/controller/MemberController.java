@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
@@ -197,6 +198,8 @@ public class MemberController {
 	@GetMapping("/memberLogin.do")
 	public void memberLogin() {}
 	
+	@GetMapping("/test.do")
+	public void test() {}
 
 	@GetMapping("memberDetail.do")
 	public void memberDetail(Authentication authentication) {
@@ -528,6 +531,34 @@ public class MemberController {
 		
 		return "redirect:/member/memberProfile.do";
 	}
+	
+	@GetMapping("/dailyCheck.do")
+	public void dailyCheck() {}
+	
+	@ResponseBody
+	@PostMapping("/dailyCheckInsert.do")
+	public void dailyCheckInsert(
+			Authentication authentication
+	) {
+		
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		
+		log.debug("id = {}", id);
+		
+		int result = memberService.dailyCheckInsert(id);
+		
+//		Map<String, Object> map = new HashMap<>();
+//		
+//		Member member = memberService.selectOneMember(id);
+//		map.put("available", member == null);
+//		map.put("abc", 123);
+//		map.put("today", new Date());
+		
+//		return map;
+	}
+
+	
 	/**
 	 * jsonView 빈을 이용해서 json응답메시지를 출력
 	 * - model에 data 작성

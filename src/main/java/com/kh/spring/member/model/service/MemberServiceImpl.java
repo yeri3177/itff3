@@ -114,6 +114,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int dailyCheckInsert(String id) {
+		return memberDao.dailyCheckInsert(id);
+	}
+
+
 
 
 	

@@ -102,6 +102,11 @@ public class MemberDaoImpl implements MemberDao {
 	public int selectPointTotalCount() {
 		return session.selectOne("member.selectPointTotalCount");
 	}
+
+	@Override
+	public int dailyCheckInsert(String id) {
+		return session.insert("member.dailyCheckInsert", id);
+	}
 	
 	
 	

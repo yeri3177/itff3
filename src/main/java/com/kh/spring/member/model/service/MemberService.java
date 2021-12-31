@@ -40,5 +40,7 @@ public interface MemberService {
 
 	int selectPointTotalCount();
 
+	int dailyCheckInsert(String id);
+
 
 }

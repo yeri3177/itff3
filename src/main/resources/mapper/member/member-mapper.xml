@@ -175,4 +175,11 @@
 		    point_history
 	</select>
 	
+	<select id="dailyCheckInsert">
+		insert into 
+			dailyCalendar 
+		values
+			(seq_dailyCalendar_no.nextval, #{id}, 'Y', default)
+	</select>
+	
 </mapper>
