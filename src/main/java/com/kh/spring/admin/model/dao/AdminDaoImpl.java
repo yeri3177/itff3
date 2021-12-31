@@ -415,4 +415,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectList("admin.adminManageRecentTenQuestionList");
 	}
 
+	@Override
+	public int insertGoodsAttachment(Attachment attach) {
+		return session.insert("admin.insertGoodsAttachment", attach);
+	}
+
 }

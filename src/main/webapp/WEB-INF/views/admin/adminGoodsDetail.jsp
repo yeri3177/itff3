@@ -41,8 +41,12 @@
 						     <td>${goods.PInfo }</td>
 						   </tr>
 						   <tr>
-						     <th scope="row" style="width: 100px;">분류</th>
+						     <th scope="row" style="width: 100px;">카테고리</th>
 						     <td>${goods.PCategory }</td>
+						   </tr>
+						   <tr>
+						     <th scope="row" style="width: 120px;">세부 카테고리</th>
+						     <td>${goods.PSubcategory }</td>
 						   </tr>
 						   <tr>
 						     <th scope="row" style="width: 100px;">등록일자</th>
