@@ -34,6 +34,7 @@
 				</div>
 			</section>
 		</div><!-- /container -->
+		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.calendario.js"></script>
 		<script type="text/javascript" src="js/data.js"></script>
@@ -107,10 +108,6 @@
 		</script>
 	</body>
 </html>
-
-
-
-
 
 <script>
 var codropsEvents = {
@@ -634,15 +631,4 @@ var codropsEvents = {
 	
 </script>
 
-
-
-
-
-
-
-
-
-
-
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>
-

@@ -35,13 +35,22 @@
 			<li class="quick_check"><a href="#">예매권 확인</a></li>
 			<li class="quick_tica"><a href="#" target="_blank">티켓카탈로그</a></li>
 			<li class="quick_faq"><a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a></li>
-			<li class="quick_chant"><a onclick="window.open('${pageContext.request.contextPath}/common/chat.do','ITFF Chat','width=510,height=780,top=100,location=no,status=no,scrollbars=yes');">챗봇</a></li>
+			<li class="quick_chat">
+				<a 
+					data-toggle="modal"
+					data-target="#chat"
+					onclick="chat_btn();">
+					챗봇
+				</a>
+				</li>
 			<li class="quick_kakao"><a href="#" target="_blank">카카오톡</a></li>
 		</ul>
 		<a href="#" target="_blank"></a>
 	</div>
 	<a href="#" target="_blank"></a>
 	</div>
+	
+					
 
 <script>
 	
@@ -54,4 +63,23 @@ $(document).ready(function() {
 	});
 });
 
+</script>
+
+<script>
+
+function chat_btn() {
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/common/chat.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
 </script>

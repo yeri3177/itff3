@@ -97,7 +97,12 @@ $("tr[id]").click((e) => {
 	open(url, name, spec);
 });
 
-window.setTimeout('window.location.reload()', 10000);
+</script>
+
+<script>
+
+const $messages = $('#messages');
+$messages.scrollTop($messages[0].scrollHeight);
 
 </script>
 

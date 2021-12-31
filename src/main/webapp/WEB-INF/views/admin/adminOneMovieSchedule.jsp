@@ -17,18 +17,20 @@
 		        </button>
 		      </div>
 		      
-    		  <div class="modal-body" style="display: flex; align-content: space-around; justify-content: space-evenly;">
+    		  <div class="modal-body" style="width: 970px;">
 	    		  <div>
+	    		  <div style="display: flex; justify-content: space-between;">
 		    		  <c:forEach items="${date }" var="date">
 		    		  	<input type="hidden" value="${movieId }" />
 		    		  	<button 
 		    		  		type="button" 
 		    		  		class="btn btn-outline-dark"
-		    		  		style="border-radius: 0; margin-right: 20px;"
+		    		  		style="border-radius: 0;"
 		    		  		onclick="one_movie_schedule_date_btn('${date}', '${movieId }');">
 		    		  		${date }
 		    		  	</button>
 		    		  </c:forEach>
+	    		  </div>
 		    		  <div id="modal_ajax3" class="list-group">
 		    		  
 		    		  </div>

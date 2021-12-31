@@ -111,9 +111,9 @@
 <footer>
 <div class="input_wrap">
 	<div class="input-group mb-3">
-	  <input type="text" id="message" class="form-control" placeholder="Message...">
+	  <input type="text" id="message" class="form-control" placeholder="메세지를 입력하세요.">
 	  <div class="input-group-append" style="padding: 0px;">
-	    <button id="sendBtn" class="btn btn-outline-secondary" type="button">Send</button>
+	    <button id="sendBtn" class="btn btn-outline-secondary" type="button">전송</button>
 	  </div>
 	</div>
 </div>
@@ -133,8 +133,10 @@ stompClient.connect({}, (frame) => {
 	// 3.구독요청
 	stompClient.subscribe("/chat/admin", (message) => {
 		console.log("message : ", message);
+		
 		const obj = JSON.parse(message.body);
 		console.log(obj);
+		
 		const {memberId, msg} = obj;
 		$(data).append(`<li class="list-group-item">\${memberId} : \${msg}</li>`);
 	});
@@ -150,6 +152,7 @@ $(sendBtn).click((e) => {
 		type: "MESSAGE"
 	};
 	console.log(obj);
+	
 	stompClient.send("/app/chat/${chatId}", {}, JSON.stringify(obj));
 	$(message).val(''); // #message 초기화
 });
@@ -164,10 +167,8 @@ $(message).keyup((e) => {
 </script>
 
 <script>
-$('#messages')
-.stop()
-.animate({ scrollTop: $('#messages')[0].scrollHeight }, 1000);
 
-window.setTimeout('window.location.reload()', 10000);
+const $messages = $('#messages');
+$messages.scrollTop($messages[0].scrollHeight);
 
 </script>
