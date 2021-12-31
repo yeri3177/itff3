@@ -42,4 +42,6 @@ public interface MemberDao {
 
 	int selectPointTotalCount();
 
+	int dailyCheckInsert(String id);
+
 }
