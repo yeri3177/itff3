@@ -11,7 +11,7 @@
 </jsp:include>
 
 <c:forEach items="${oneDateSchedule }" var="ods">
-  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="width: 695px;">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" style="width: 940px;">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">${ods.theaterId }관</h5>
     </div>

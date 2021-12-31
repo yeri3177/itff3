@@ -68,12 +68,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!-- bootstrap toast -->
-<!-- <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css"> -->
-<!-- <script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script> -->
-<!-- <script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script> -->
-<!-- <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script> -->
-
 <script>
 
 toastr.options = {
@@ -150,12 +144,6 @@ $(document).ready(function(){
 <body>
 	<div id="container">
 		<header>
-
-			<!-- 20210616183643 -->
-
-			<div id="siwffIndex">
-				<a href="#cont"> 본문 바로가기 </a> <a href="#gnb"> 메뉴 바로가기 </a>
-			</div>
 
 			<div id="wrap">
 				<div class="hd_bg"></div>

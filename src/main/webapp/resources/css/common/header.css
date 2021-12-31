@@ -101,6 +101,7 @@ a {
 
 .container-visual {
 	background: url("https://i.imgur.com/X4yWJbJ.jpg");
+	display: flow-root;
 }
 
 #hd .util {
@@ -116,10 +117,6 @@ a {
     font-size: 13px;
 }
 
-.list-inline {
-    list-style: none;
-}
-
 dl, ul, ol, menu, li {
     list-style: none;
 }
@@ -128,6 +125,12 @@ dl, ul, ol, menu, li {
     display: inline-block;
     padding-right: 5px;
     padding-left: 5px;
+}
+
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0 !important;
 }
 
 #menu {
@@ -285,6 +288,10 @@ header {
 .btn-link:hover {
 	color: white !important;
 	text-decoration: none !important;
+}
+
+.hd {
+	display: flow-root;
 }
 
 /* header.jsp 끝 */

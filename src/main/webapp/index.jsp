@@ -337,6 +337,21 @@ section#main-content {
 </div>
 </div>
 
+		<!-- chat modal -->
+		<div class="modal fade" id="chat" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document"
+				style="max-width: 500px;">
+				<div class="modal-content" style="text-align: left;">
+				   	<div class="modal-body" id="modal_ajax1">
+				    		  
+					</div>
+
+					</div>
+				</div>
+			</div>
+
 <script>
 
 $(document).ready(function () {
