@@ -62,6 +62,10 @@
 						     <td>${od.optionColor }</td>
 						   </tr>
 						   <tr>
+						     <th scope="row">색상코드</th>
+						     <td>${od.optionRgb }</td>
+						   </tr>
+						   <tr>
 						     <th scope="row">크기</th>
 						     <td>${od.optionSize }</td>
 						   </tr>

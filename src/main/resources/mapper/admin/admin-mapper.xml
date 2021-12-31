@@ -64,7 +64,8 @@
 			#{pInfo},
 			#{pImg},
 			#{pCategory},
-			default
+			default,
+			#{pSubcategory}
 		)
 		
 		<selectKey keyProperty="pId" resultType="_int" order="AFTER">
@@ -81,6 +82,16 @@
 		values(
 			seq_attachment_no.nextval,
 			#{noticeNo},
+			#{originalFilename},
+			#{renamedFilename}
+		)		
+	</insert>
+
+	<insert id="insertGoodsAttachment">
+		insert into
+			attachment(attach_no, original_filename, renamed_filename)
+		values(
+			seq_attachment_no.nextval,
 			#{originalFilename},
 			#{renamedFilename}
 		)		
@@ -479,6 +490,7 @@
 		<result column="option_size" property="optionSize"/>
 		<result column="option_stock" property="optionStock"/>
 		<result column="option_img" property="optionImg"/>
+		<result column="option_rgb" property="optionRgb"/>
 	</resultMap>
 	
 	<resultMap type="goodsJoin" id="goodsJoinMap">
@@ -500,14 +512,14 @@
 		update
 			option_detail
 		set
-			option_type = #{optionType}, option_color = #{optionColor}, option_size = #{optionSize}, option_stock = #{optionStock}, option_img = #{optionImg}
+			option_type = #{optionType}, option_color = #{optionColor}, option_size = #{optionSize}, option_stock = #{optionStock}, option_img = #{optionImg}, option_rgb = #{optionRgb}
 		where option_id = #{optionId}
 	</update>
 	
 	<insert id="insertOptionDetail">
 		insert into
 			option_detail
-		values (#{optionId}, #{optionDetail.optionType}, #{optionDetail.optionColor}, #{optionDetail.optionSize}, #{optionDetail.optionStock}, #{optionDetail.optionImg})
+		values (#{optionId}, #{optionDetail.optionType}, #{optionDetail.optionColor}, #{optionDetail.optionSize}, #{optionDetail.optionStock}, #{optionDetail.optionImg}, #{optionDetail.optionRgb})
 	</insert>
 	
 	<select id="selectOptionId" resultType="int">

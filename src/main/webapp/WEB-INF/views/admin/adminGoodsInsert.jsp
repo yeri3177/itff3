@@ -63,13 +63,8 @@
 							</div>
 							
 						  <div class="form-group">
-						    <label for="exampleFormControlSelect1">카테고리</label>
-							    <select class="form-control" name="pCategory" id="exampleFormControlSelect1">
-							      <option value="" selected>선택</option>
-							      <option value="홈데코/리빙">홈데코/리빙</option>
-							      <option value="폰케이스/테크">폰케이스/테크</option>
-							      <option value="의류">의류</option>
-							    </select>
+						    <label for="exampleFormControlSelect1"> 세부 카테고리</label>
+							 <input type="text" name="pSubcategory" class="form-control" id="exampleFormControlInput1">
 						  </div>
 						</div>
 

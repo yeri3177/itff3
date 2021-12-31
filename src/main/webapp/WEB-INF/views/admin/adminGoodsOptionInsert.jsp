@@ -48,6 +48,11 @@
 						    <label for="exampleFormControlInput1">색상</label>
 						    <input type="text" name="optionColor" class="form-control" id="exampleFormControlInput1">
 						  </div>
+
+						  <div class="form-group">
+						    <label for="exampleFormControlInput1">색상코드</label>
+						    <input type="color" name="optionRgb" class="form-control" id="exampleFormControlInput1">
+						  </div>
 						  
 						  <div class="form-group">
 						    <label for="exampleFormControlTextarea1">사이즈</label>

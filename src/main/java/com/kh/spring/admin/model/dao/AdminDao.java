@@ -158,4 +158,6 @@ public interface AdminDao {
 
 	List<Question> adminManageRecentTenQuestionList();
 
+	int insertGoodsAttachment(Attachment attach);
+
 }

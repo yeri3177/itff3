@@ -61,7 +61,7 @@ pageContext.setAttribute("loginMember", loginMember);
 					</tr>
 					<tr>
 						<th scope="row">내용</th>
-						<td><c:forEach items="${question.attachments}" var="attach"
+						<td style="display: inline-grid;"><c:forEach items="${question.attachments}" var="attach"
 								varStatus="vs">
 								<img
 									src="${pageContext.request.contextPath}/resources/upload/question/${attach.renamedFilename}"

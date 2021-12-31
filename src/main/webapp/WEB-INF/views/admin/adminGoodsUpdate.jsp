@@ -47,6 +47,10 @@
 				    </select>
 				  </div>
 				  
+           		  <div class="form-group">
+				    <input type="text" name="pPrice" class="form-control" id="exampleFormControlInput1" value="${goods.PSubcategory }" required>
+				  </div>
+				  
 				  <div class="input-group">
 					  <div class="custom-file">
 					  	<input type="hidden" name="pImg" value="${goods.PImg }" />

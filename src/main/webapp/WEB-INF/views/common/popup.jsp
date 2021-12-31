@@ -99,7 +99,7 @@ font-family: SF Pro KR, SF Pro Display, SF Pro Icons, AOS Icons, Apple Gothic,
         <h4 class="title">ITFF 공지사항</h4>
         <div class="cont">
             <p>
-<img src="https://i.imgur.com/dIat5sB.jpg" width=450 height=650 usemap="#popup" alt="event page">
+<img src="https://i.imgur.com/dIat5sB.jpg" width=450 height=700 usemap="#popup" alt="event page">
             </p>
         </div>
           <form name="pop_form">

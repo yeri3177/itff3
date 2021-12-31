@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <!-- taglib는 사용 시 jsp마다 넣어야 함 -->
@@ -1115,3 +1115,4 @@ Highcharts.stockChart('container', {
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>
+    

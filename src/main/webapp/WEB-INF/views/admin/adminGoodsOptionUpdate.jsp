@@ -47,6 +47,11 @@
 						    <label for="exampleFormControlInput1">색상</label>
 						    <input type="text" name="optionColor" class="form-control" id="exampleFormControlInput1" value="${optionDetail.optionColor != '' ? optionDetail.optionColor : 'null'}">
 						  </div>
+
+						  <div class="form-group">
+						    <label for="exampleFormControlInput1">색상코드</label>
+						    <input type="color" name="optionRgb" class="form-control" id="exampleFormControlInput1" value="${optionDetail.optionRgb != '' ? optionDetail.optionRgb : 'null'}">
+						  </div>
 						  
 						  <div class="form-group">
 						    <label for="exampleFormControlTextarea1">사이즈</label>
@@ -74,7 +79,7 @@
 		    	  </div>
 				      
 		      <div class="modal-footer">
-		      	<button type="submit" class="btn btn-primary">등록</button>
+		      	<button type="submit" class="btn btn-success">수정</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		      </div>
 		      

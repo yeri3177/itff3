@@ -34,7 +34,7 @@
 			<li class="quick_online"><a href="#" target="_blank">온라인상영안내</a></li> 
 			<li class="quick_check"><a href="#">예매권 확인</a></li>
 			<li class="quick_tica"><a href="#" target="_blank">티켓카탈로그</a></li>
-			<li class="quick_faq"><a href="#">1:1 문의</a></li>
+			<li class="quick_faq"><a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a></li>
 			<li class="quick_chant"><a onclick="window.open('${pageContext.request.contextPath}/common/chat.do','ITFF Chat','width=510,height=780,top=100,location=no,status=no,scrollbars=yes');">챗봇</a></li>
 			<li class="quick_kakao"><a href="#" target="_blank">카카오톡</a></li>
 		</ul>
