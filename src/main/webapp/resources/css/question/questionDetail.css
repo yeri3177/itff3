@@ -3,6 +3,7 @@
 div#board-container {
 	padding-left: 100px;
 	padding-right: 100px;
+	padding-bottom: 60px;
 
 }
 
@@ -11,7 +12,7 @@ div#board-container {
 	border-top: 0px;
     border-bottom: 1px solid #e0e0e0;
     display: block;
-    font-size: 45px;
+    font-size: 30px;
     line-height: 160%;
     font-weight: 500;
     letter-spacing: -1.5px;
@@ -19,7 +20,18 @@ div#board-container {
     border-right: 0px;
 }
 input, button, [name=content] {margin-bottom:15px;}
-button { overflow: hidden; }
+button { 
+	overflow: hidden; 
+	position: relative;
+    top: 19px; 
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 8px 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation
+}
 /* 부트스트랩 : 파일라벨명 정렬*/
 div#board-container label.custom-file-label{text-align:left;}
 
@@ -35,7 +47,7 @@ div#board-container label.custom-file-label{text-align:left;}
 }
 
 [name=content] img {
-	width: 100px;
+	width: auto;
 }
 
 [name=regDate] {
@@ -86,6 +98,7 @@ div#board-container label.custom-file-label{text-align:left;}
     background: #fff;
     padding: 30px 40px;
     box-shadow: 0 0 6px rgb(0 0 0 / 8%);
+    border-radius: 5%;
 }
 
 .noticeDetail2 {
@@ -139,6 +152,7 @@ div#board-container label.custom-file-label{text-align:left;}
     padding: 30px 0 30px 0;
     text-align: right;
     padding-right: 100px;
+    background-color: #ffffff;
 }
 
 .btn-secondary {
@@ -162,6 +176,7 @@ div#board-container label.custom-file-label{text-align:left;}
 .comment-container, .comment-editor {
 	padding: 10px;
 	text-align: center;
+	background-color: #E6E6E6;
 }
 
 
@@ -174,9 +189,9 @@ table#tbl-comment {
 
 #content_ {
 	resize: none;
-	width: 1140px;
+	width: 1100px;
     border: 1px solid #a6a6a6;
-    height: 75px;
+    height: auto;
 }
 
 .thisIs {
@@ -185,16 +200,19 @@ table#tbl-comment {
 }
 
 table#tbl-comment {
-    width: 1209px;
+    width: 1110px;
     margin: 0 auto;
     border-collapse: collapse;
-    height: 56px;
+    height: auto;
     margin-bottom: 30px;
 }
 
-table#tbl-comment tr td:first-of-type {
+/* table#tbl-comment tr td:first-of-type {
     padding: 5px 5px 5px 50px;
-}
+        color: #dfdfdf;
+       font-size: 20px;
+    line-height: 33.5px;
+} */
 
 table#tbl-comment tr td {
     border-bottom: 1px solid;
@@ -202,11 +220,19 @@ table#tbl-comment tr td {
     padding: 5px;
     text-align: left;
     line-height: 120%;
+    padding: 5px 5px 5px 50px;
+        color: #dfdfdf;
+       font-size: 20px;
+    line-height: 33.5px;
+}
+
+table#tbl-comment tr td p {
+	color: black;
 }
 
 table#tbl-comment sub.comment-writer {
     color: navy;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 table#tbl-comment sub.comment-date {
@@ -217,7 +243,37 @@ table#tbl-comment sub.comment-date {
 table#tbl-comment tr td:last-of-type {
     text-align: left;
     width: 100px;
-    font-size: 23px;
+    font-size: 21px;
+    color: #000000;
+    background-color: white;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
 }
 
+.sub_title_wrap {
+	background-color: #E6E6E6;
+}
+
+.noticeDetail2 {
+	background-color: #E6E6E6;
+}
+
+.bd_header {
+    margin-bottom: 25px;
+    text-align: left;
+    padding-left: 53px;
+    padding-top: 53px;
+}
+
+.bd_title {
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+
+.bd_header img {
+    position: relative;
+    top: 2px;
+}
 

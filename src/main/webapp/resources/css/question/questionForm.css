@@ -4,6 +4,27 @@
 	/* padding-right: 10rem;
     padding-left: 10rem; */
     padding-bottom: 32px;
+    background-color: #e6e6e6;
+}
+
+.bd_header {
+    margin-bottom: 25px;
+    padding-top: 40px;
+    padding-left: 227px;
+    font-size: 18px;
+}
+
+
+.bd_title {
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+
+.bd_header img {
+    position: relative;
+    top: 2px;
 }
 
 .cont {
@@ -25,6 +46,7 @@ input, select, textarea, button {
     border: 1px solid #e8e8e8;
     width: 100%;
     padding: 50px 60px;
+        border-radius: 20px
 }
 
 .wz_write .write_top {
