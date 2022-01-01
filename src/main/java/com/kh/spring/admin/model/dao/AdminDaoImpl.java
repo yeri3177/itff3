@@ -493,4 +493,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.delete("admin.deleteSharing", no);
 	}
 
+	@Override
+	public int adminMemberCut(String id) {
+		return session.update("admin.adminMemberCut", id);
+	}
+
 }

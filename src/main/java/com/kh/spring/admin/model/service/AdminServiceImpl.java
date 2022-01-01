@@ -540,5 +540,10 @@ public class AdminServiceImpl implements AdminService {
 	public int deleteSharing(int no) {
 		return adminDao.deleteSharing(no);
 	}
+
+	@Override
+	public int adminMemberCut(String id) {
+		return adminDao.adminMemberCut(id);
+	}
 	
 }

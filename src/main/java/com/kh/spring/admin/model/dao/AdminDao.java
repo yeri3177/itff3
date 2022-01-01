@@ -189,4 +189,6 @@ public interface AdminDao {
 
 	int deleteSharing(int no);
 
+	int adminMemberCut(String id);
+
 }

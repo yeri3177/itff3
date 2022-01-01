@@ -98,4 +98,10 @@
 		        	data-toggle="modal"
 					data-target="#adminMemberUpdate"
 					onclick="memberUpdate_btn('${member.id}');">회원 정보 수정</button>
+		        <button 
+		        	type="button" 
+		        	class="btn btn-danger" 												
+		        	data-toggle="modal"
+					data-target="#adminMemberCut"
+					onclick="member_cut_btn('${member.id}');">차단</button>
 		      </div>

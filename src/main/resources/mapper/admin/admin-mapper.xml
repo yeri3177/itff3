@@ -148,6 +148,8 @@
 			point_history
 		where
 			member_id = #{id}
+		order by 
+			reg_date desc
 	</select>
 	
 	<update id="updateMember">
@@ -1157,5 +1159,15 @@
 		where 
 			market_no = #{no}
 	</select>
+	
+	<update id="adminMemberCut">
+		update 
+			member
+		set 
+			enabled = 0
+		where
+			id = #{id}
+		
+	</update>
 	
 </mapper>
