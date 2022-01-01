@@ -7,7 +7,9 @@
 <div class="option-colors-div">
 <c:forEach items="${searchColorList}" var="color" varStatus="vs">
 	<div class="color-box radio-wrap colorChage">
-		<input type="radio" id="${color.optionColor}" class="colorRadio" name="optionColor" ${vs.first ? 'checked' : ''}><br />
+		<input type="radio" id="${color.optionColor}" class="colorRadio" name="optionColor" 
+			style="background-color: ${color.optionRgb}"
+			${vs.first ? 'checked' : ''}><br />
 		<label for="${color.optionColor}">${color.optionColor}</label>
 	</div>
 </c:forEach>
