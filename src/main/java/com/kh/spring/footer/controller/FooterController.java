@@ -16,4 +16,7 @@ public class FooterController {
 	@GetMapping("/termsOfUse.do")
 	public void termsOfUse() {}
 	
+	@GetMapping("/personalInformation.do")
+	public void personalInformation() {}
+	
 }
