@@ -19,6 +19,16 @@ body .container-main {
     padding-left: 0;
 }
 
+body {
+	background-color: #f4f7fa;
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 5.7rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+}
+
 .container-main, .system-debug {
     padding-bottom: 50px;
 }
@@ -980,11 +990,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 .row-fluid .span12 {
-    width: 100%;
-}
-
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
+    width: 100% !important;
 }
 
 .ba-store-statistic {
@@ -993,13 +999,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 
 .ba-store-statistic {
     margin-bottom: 25px;
-}
-
-.ba-store-statistic, .recent-gridbox-apps, .recent-gridbox-reviews, .recent-gridbox-comments, .recent-gridbox-files, .main-table.dashboard-content .last-edit-pages {
-    background: #fff;
-    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 6%);
-    border-radius: 3px;
-    overflow: hidden;
 }
 
 #app-group-modal .modal-header, .sorting-grid-handle-item.apps-list .gridbox-app-item-header, .apps-list-wrapper .gridbox-app-item .gridbox-app-item-header, .ba-store-statistic-header {
@@ -1119,10 +1118,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 65.81196581196582%;
 }
 
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
-}
-
 .ba-store-statistic-total-wrapper > div:first-child > div {
     align-items: center;
     border-right: 1px solid #f3f3f3;
@@ -1171,10 +1166,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 
 .row-fluid .span4 {
     width: 31.623931623931625%;
-}
-
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
 }
 
 .ba-store-statistic-total-price {
@@ -1254,10 +1245,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 65.81196581196582%;
 }
 
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
-}
-
 .ba-store-statistic-body-wrapper > div:first-child:before {
     top: 205px;
 }
@@ -1290,6 +1277,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 
 img, svg {
     vertical-align: middle;
+    color: #45a7b9 !important
 }
 
 .ba-statistics-chart text {
@@ -1339,10 +1327,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 31.623931623931625%;
 }
 
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
-}
-
 .ba-store-statistic-products-wrapper {
     padding: 25px 25px 25px 0;
 }
@@ -1385,13 +1369,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     float: left;
 }
 
-.ba-store-statistic, .recent-gridbox-apps, .recent-gridbox-reviews, .recent-gridbox-comments, .recent-gridbox-files, .main-table.dashboard-content .last-edit-pages {
-    background: #fff;
-    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 6%);
-    border-radius: 3px;
-    overflow: hidden;
-}
-
 .dashboard-content.main-table table {
     margin: 0;
 }
@@ -1419,13 +1396,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     border-color: #dee2e6;
 }
 
-.dashboard-content.main-table thead, .dashboard-content.main-table tbody tr {
-    border-collapse: initial;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
-
 .group-apps-list-item.sorting-grid-handle-item.group-apps-list a, .com_gridbox .container-main {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -1434,8 +1404,13 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 100%;
 }
 
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: white;
+}
+
 .table>thead {
     vertical-align: bottom;
+    border-bottom: 1px solid #f4f7fa !important;
 }
 
 tbody, td, tfoot, th, thead, tr {
@@ -1604,12 +1579,9 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 31.623931623931625%;
 }
 
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
-}
 .ba-store-statistic, .recent-gridbox-apps, .recent-gridbox-reviews, .recent-gridbox-comments, .recent-gridbox-files, .main-table.dashboard-content .last-edit-pages {
     background: #fff;
-    box-shadow: 0px 0px 6px 2px rgb(0 0 0 / 6%);
+	box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
     border-radius: 3px;
     overflow: hidden;
 }
@@ -1622,13 +1594,6 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     background-color: transparent;
     border-collapse: collapse;
     border-spacing: 0;
-}
-
-.dashboard-content.main-table thead, .dashboard-content.main-table tbody tr {
-    border-collapse: initial;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
 }
 
 .ba-sidebar .sidebar-title {
@@ -1654,12 +1619,8 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
     width: 31.623931623931625%;
 }
 
-.row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
-}
-
 #app-group-modal .group-apps-list-item:not(:last-child), .main-table .table-striped tbody > tr:not(:last-child) > td {
-/*     border-bottom: 1px solid #f3f3f3; */
+    border-bottom: 1px solid #f4f7fa;
     box-shadow: none !important;
 }
 
@@ -1676,8 +1637,8 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 .py-5 {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
-    background-color: #45a7b9;
-    color: white;
+/*     background-color: #45a7b9; */
+    color: #212121;
 }
 
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
@@ -1826,7 +1787,7 @@ small, .small {
     font-size: 2.5rem;
 }
 .display-6 {
-    font-size: calc(1.375rem + 1.5vw);
+    font-size: 2.5rem;
     font-weight: 300;
     line-height: 1.2;
 }
@@ -1842,8 +1803,29 @@ small, .small {
   padding-top: 140px;
 }
 
+tbody::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+}
 
+tbody::-webkit-scrollbar-thumb {
+    border-radius: 3.5px;
+    background-color: #ced4da;
+}
 
+tbody::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+/* 새로 추가 */
+
+.flex-container {
+	display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
 
 

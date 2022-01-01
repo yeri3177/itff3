@@ -156,6 +156,23 @@ i {
 
 .input_wrap {
 	margin-top: 20px;
+	padding-top: 30px;
+    border-top: 1px solid whitesmoke;
+}
+
+#messages::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    border-radius: 3.5px;
+    background-color: #ced4da;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #ffffff;
 }
 
 
