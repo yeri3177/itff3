@@ -38,6 +38,7 @@
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/chat.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/userChat.css">
 
 <!-- sock.js 추가 -->
 <script
@@ -103,7 +104,24 @@
 		<div class="chat_container" id="messages">
 		<ul class="list-group list-group-flush" id="data">
 			<c:forEach items="${list}" var="chatLog">
-				<li class="list-group-item">${chatLog.memberId} : ${chatLog.msg}</li>
+			
+		<c:if test="${chatLog.memberId ne 'admin' }">
+			<div class="message-data" id="align-right">
+				<span class="message-data-name" id="${chatLog.memberId eq 'admin' ? 'name_admin' : 'name_user'}">
+					${chatLog.memberId ne 'admin' ? chatLog.memberId : 'ITFF'}
+				</span>
+	        </div>
+		</c:if>
+		
+		<c:if test="${chatLog.memberId eq 'admin' }">
+			<div class="message-data" id="align-left" >
+				<span class="message-data-name" id="${chatLog.memberId eq 'admin' ? 'name_admin' : 'name_user'}">
+					${chatLog.memberId ne 'admin' ? chatLog.memberId : 'ITFF'}
+				</span>
+			</div>
+		</c:if>
+			
+				<li class="list-group-item" id="${chatLog.memberId ne 'admin' ? 'admin' : 'user'}">${chatLog.msg}</li>
 			</c:forEach>
 		</ul>
 	</div>
@@ -138,7 +156,18 @@ stompClient.connect({}, (frame) => {
 		console.log(obj);
 		
 		const {memberId, msg} = obj;
-		$(data).append(`<li class="list-group-item">\${memberId} : \${msg}</li>`);
+		$(data).append(
+				`
+				<div class="message-data" id=\${memberId != "admin" ? "align-right" : "align-left"}>
+				<span class="message-data-name" id=\${memberId != "admin" ? "name_admin" : "name_user"}>
+				\${memberId != 'admin' ? memberId : 'ITFF'}
+				</span>
+				</div>
+				<li class="list-group-item" id=\${memberId != "admin" ? "admin" : "user"}>
+				\${msg}
+				</li>
+				`
+				);
 	});
 	
 });
@@ -168,7 +197,8 @@ $(message).keyup((e) => {
 
 <script>
 
-const $messages = $('#messages');
-$messages.scrollTop($messages[0].scrollHeight);
+$(document).ready(function() {
+	$("#messages").scrollTop($("#messages")[0].scrollHeight);
+});
 
 </script>

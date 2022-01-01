@@ -41,7 +41,7 @@
 
 						<div data-v-994dabf8="">
 							<div data-v-994dabf8="" class="text-xs-center toolbar-title"
-								style="color: rgb(75, 75, 75);">
+								style="color: rgb(75, 75, 75); font-family: 'Noto Sans KR';">
 								<div data-v-994dabf8="" class="online"></div>
 								실시간 채팅 문의
 							</div>
@@ -57,11 +57,29 @@
 				style="display: block;"></div>
 		</div>
 </div>
+ 
 <div>
 		<div class="chat_container" id="messages">
 		<ul class="list-group list-group-flush" id="data">
 		<c:forEach items="${list}" var="chatLog">
-				<li class="list-group-item">${chatLog.memberId eq "admin" ? "관리자" : chatLog.memberId} : ${chatLog.msg}</li>
+		
+		<c:if test="${chatLog.memberId eq 'admin' }">
+			<div class="message-data" id="align-right">
+				<span class="message-data-name" id="${chatLog.memberId eq 'admin' ? 'name_admin' : 'name_user'}">
+					${chatLog.memberId eq 'admin' ? 'ITFF' : chatLog.memberId}
+				</span>
+	        </div>
+		</c:if>
+		
+		<c:if test="${chatLog.memberId ne 'admin' }">
+			<div class="message-data" id="align-left" >
+				<span class="message-data-name" id="${chatLog.memberId eq 'admin' ? 'name_admin' : 'name_user'}">
+					${chatLog.memberId eq 'admin' ? 'ITFF' : chatLog.memberId}
+				</span>
+			</div>
+		</c:if>
+		
+				<li class="list-group-item" id="${chatLog.memberId eq 'admin' ? 'admin' : 'user'}">${chatLog.msg}</li>
 		</c:forEach>
 
 		</ul>
@@ -70,9 +88,9 @@
 <footer>
 <div class="input_wrap">
 	<div class="input-group mb-3">
-	  <input type="text" id="message" class="form-control" placeholder="Message...">
+	  <input type="text" id="message" class="form-control" placeholder="메세지를 입력하세요.">
 	  <div class="input-group-append" style="padding: 0px;">
-	    <button id="sendBtn" class="btn btn-outline-secondary" type="button">Send</button>
+	    <button id="sendBtn" class="btn btn-outline-secondary" type="button">전송</button>
 	  </div>
 	</div>
 </div>
@@ -93,8 +111,22 @@ stompClient.connect({}, (frame) => {
 	// 구독신청 및 핸들러 등록
 	stompClient.subscribe("/chat/${chatId}", (message) => {
 		console.log("message : ", message);
+		
 		const {memberId, msg} = JSON.parse(message.body);
-		$(data).append(`<li class="list-group-item">\${memberId} : \${msg} </li>`);
+		
+		//$(data).append(`<div class="message-data align-left"><span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>\${memberId}</span></div>`);
+		$(data).append(
+				`
+				<div class="message-data" id=\${memberId == "admin" ? "align-right" : "align-left"}>
+				<span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>
+				\${memberId == "admin" ? "ITFF" : memberId}
+				</span>
+				</div>
+				<li class="list-group-item" id=\${memberId == "admin" ? "admin" : "user"}>
+				\${msg}
+				</li>
+				`
+				);
 	});	
 
 	// 팝업생성, stompClient가 연결되면 chat_member.last_check컬럼을 update한다.
@@ -154,9 +186,9 @@ const lastCheck = () => {
  
 <script>
 
-$('#messages')
-.stop()
-.animate({ scrollTop: $('#messages')[0].scrollHeight }, 500);
+$(document).ready(function() {
+	$("#messages").scrollTop($("#messages")[0].scrollHeight);
+});
 
 </script>
 

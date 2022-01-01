@@ -7,11 +7,12 @@
 
 .chat_container {
 	width: 470px;
-	height: 570px;
-	overflow-y: scroll;
-	flex-direction:column_reverse;
-	white-space: nowrap;
-	padding-right: 5px;
+    height: 570px;
+    overflow-y: scroll;
+    flex-direction: column-reverse;
+    white-space: nowrap;
+    padding-right: 5px;
+    display: flex;
 }
 
 .layout {
@@ -156,3 +157,6 @@ i {
 .input_wrap {
 	margin-top: 20px;
 }
+
+
+
