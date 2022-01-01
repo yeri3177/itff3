@@ -31,7 +31,7 @@ section#main-content {
 
 <div class="container-l">
 	<div class="container-visual">
-						<div id="msgStack"></div>
+	<div id="msgStack"></div>
 	<div id="visual">
 		<div class="visual-slider slick-initialized slick-slider slick-dotted">
 
@@ -42,25 +42,6 @@ section#main-content {
 						role="tabpanel" id="slick-slide00"
 						aria-describedby="slick-slide-control00"
 						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; margin: 0px;">
-						
-						<!-- 
-						<div class="visual_img">
-								<img class="center-block" src="https://i.imgur.com/NMHYnrm.jpg" alt="logo">
-						</div>
-
-						<a href="#" tabindex="0">
-						 -->
-
-							
-							<!-- 
-							<div class="visual_txt">
-								<div class="tit-l mt50">
-									<p class="kor">제1회 <br />정보기술영화제</p>
-								</div>
-								<div class="txt">2022. 1. 7(금) - 1. 14(금)</div>
-							</div>
-						</a>
-							 -->
 					</div>
 				</div>
 			</div>
