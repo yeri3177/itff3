@@ -8,6 +8,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/chat.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminChat.css">
+
 <!DOCTYPE html>
 
 <style>

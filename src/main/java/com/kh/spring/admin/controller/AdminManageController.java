@@ -1142,6 +1142,7 @@ public class AdminManageController {
 	public String chat(@PathVariable String chatId, @PathVariable String memberId, Model model) {
 		
 		List<ChatLog> list = chatService.findChatLogByChatId(chatId);
+
 		log.debug("list = {}", list);
 		log.debug("memberId = {}", memberId);
 	
