@@ -285,5 +285,22 @@ public class GoodsController {
 		
 		return "goods/goodsQna";
 	}
+	
+	/**
+	 * 장바구니 [수량 변경] 모달  
+	 */
+	@GetMapping("/goodsCartQtyModal.do")
+	public String goodsCartQtyModal(@RequestParam String id, Model model) {
+		log.debug("id = {}", id);
+		
+		// 장바구니 DB 조회
+		CartJoin cart = goodsService.selectGoodsCartQtyModal(id);
+		log.debug("cart = {}", cart);
+		
+		model.addAttribute("cart", cart);
+		
+		
+		return "goods/goodsCartQtyModal";
+	}
 
 }

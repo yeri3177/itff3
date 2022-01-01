@@ -69,8 +69,10 @@ body {
 }
 
 #preview-img-div img {
-	width: 550px;
+	/* width: 550px; */
+	width: 82%;
 	height: auto;
+	
 	/* background-color: fuchsia; */
 	
 }
@@ -201,11 +203,11 @@ body {
 	color: black!important;
 }
 
-.btn-check:checked  {
-	border: 2px solid black!important;
+/* .btn-check:checked  {
+	border: 2px solid red!important;
 	background-color: #ececec!important;
 	color: black!important;
-}
+} */
 
 
 .size-btn-box label:hover {
@@ -507,9 +509,10 @@ textarea:focus {
 /****************** 장바구니 버튼 토스트 ***************************/
 #cartToasts-div {
 	position: absolute;
-	bottom: 40px;
+	top: 35%;
 	left: 43%;
 	
+	opacity: 0.83;
 } 
 
 div#cartToasts {
@@ -544,8 +547,3 @@ div#cartToasts {
     position: relative;
     left : 100px;
 }
-
-
-
-
-

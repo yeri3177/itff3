@@ -95,7 +95,6 @@
 		<div class="card-head">
 			<!-- card-head-left : cart-id -->
 			<div class="cardId-div">
-				<%-- No. ${cart.cartId} --%>
 				No. ${cart.goodsCart.cartId }
 			</div>
 			
@@ -147,94 +146,13 @@
 			</div>
 			<!-- card-footer-right -->
 			<div class="card-footer-right">
-				<button type="button" id="qtyBtn" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#QtyChangeModal${vs.index }">
+				<button type="button" id="qtyBtn" class="btn btn-outline-secondary" 
+					data-bs-toggle="modal" data-bs-target="#QtyChangeModal"
+					onclick="qtyChange_btn('${cart.goodsCart.cartId}');">
 					수량 변경
 				</button>
 			</div>
 		</div>
-		
-		
-		
-		
-		<!-- [수량변경] 버튼 Modal -->
-		<div class="modal fade" id="QtyChangeModal${vs.index }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-				
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">수량을 선택해 주세요.</h5>
-					
-					<!-- x 버튼 -->
-					<button type="button" class="btn-close modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					
-					<div class="modal-body">
-						
-						<!-- 상단 (이미지,상품명,서브카테고리,낱개가격) -->
-						<div class="modal-body-top">
-							<!-- 상단 왼쪽  -->
-							<div class="img-bg-div"><!-- 이미지 배경 -->
-								<img src="${pageContext.request.contextPath}/resources/upload/goods/${cart.optionDetail.optionImg }">
-							</div>
-							<!-- 상단 오른쪽 -->							
-							<div class="modal-body-top-right">
-								<!-- 상품명 -->
-								<div class="pname-div">${cart.goods.PName}</div>
-								<!-- 서브카테고리 -->
-								<div class="pcategory-div">${cart.goods.PSubcategory}</div>
-								<!-- 낱개가격 -->
-								<div class="pprice-div">
-									<fmt:formatNumber value="${cart.goods.PPrice}" pattern="#,###원" />
-									<input type="hidden" id="sell_price" value="${cart.goods.PPrice}"/>
-								</div>
-							</div>
-						
-						</div>
-						
-						<!-- 중간 (옵션명, 개수+-버튼) -->
-						<div class="modal-body-middel">
-							<!-- 옵션명 -->
-							<div class="optiongroup-div">
-								${cart.optionDetail.optionType }
-								${cart.optionDetail.optionColor }
-								${cart.optionDetail.optionSize }
-							</div>
-							
-							<!-- 개수+-버튼 -->
-							<div class="qtyChange-div">
-								<!-- + 버튼 -->
-								<input type="button" value="-" class="cnt-bnt" onclick="del();">
-								<!-- 상품 개수 -->
-								<input type="text" name="amount" id="amount" value="${cart.goodsCart.cartQuantity }" readonly onchange="change();">
-								<!-- - 버튼 -->
-								<input type="button" value="+" class="cnt-bnt" onclick="add();">
-							
-							</div>
-						</div>
-						
-						<!-- 하단 (총 수량, 총 가격) -->
-						<div class="modal-body-bottom">
-							<!-- 총수량 -->
-							<div class="sumcnt-div">총 수량: <span class="cnt"></span></div>
-							<!-- 총가격 -->
-							<div class="sumprice-div">
-								<input type="text" name="sum" size="8" id="sum" value="${cart.goods.PPrice*cart.goodsCart.cartQuantity}" readonly>원
-							</div>
-						</div>
-					
-					</div>
-					<div class="modal-footer">
-						<button class="goodsBtn">확인</button>
-					</div>
-				</div>
-			</div>
-		</div> <!-- end of modal -->
-		
-		
-		
-		
-		
-		
 	
 	</div><!-- end of card 낱개 반복 -->
 	</c:forEach>
@@ -242,6 +160,17 @@
 </div> <!-- end of 왼쪽 컨테이너 -->
 
 
+<!-- [수량변경] 버튼 Modal -->
+<div class="modal fade" id="QtyChangeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+			<!-- ajax result -->
+		
+					
+		</div>
+	</div>
+</div> <!-- end of modal -->
 
 
 
@@ -291,11 +220,6 @@
 
 </section> <!-- end of 페이지 전체 컨테이너 -->
 
-
-
-
-
-
  
 <!-- 장바구니 삭제폼 -->
 <form
@@ -306,75 +230,50 @@
 	<input type="hidden" name="cartId" />
 </form>
 
+
+
+
+
 <script>
-$(() => {
-	init();
+
+/* [수량 변경] 버튼 클릭시 */
+function qtyChange_btn(cartId) {
 	
+	console.log(cartId);
+	var id = cartId;
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/goods/goodsCartQtyModal.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$(".modal-content").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+	
+}
+
+
+
+/* 오른쪽 컨테이너 fixed 하는 함수 */ 
+$(function() {
+    $.fn.Scrolling = function(obj, tar) {
+        var _this = this;
+        $(window).scroll(function(e) {
+            var end = obj + tar;
+            $(window).scrollTop() >= obj ? _this.addClass("fixed") : _this.removeClass("fixed");
+            if($(window).scrollTop() >= end) _this.removeClass("fixed");
+        });
+    };
+    
+    $("#right-container").Scrolling($("#right-container").offset().top, ($("#goodsCart-container").height()+$("header").height() ));
+
 });
-
-
-/* 상품개수 나오는 span 태그 */
-const $cnt = $(".cnt");
-
-/* +-버튼 가운데 상품 수량 태그 */
-var hm = document.getElementById('amount');
-
-/* 상품 총합 가격 태그 */
-var sum = document.getElementById('sum');
-
-/* 상품 단일 가격 값*/
-var sell_price = document.getElementById('sell_price').value;
-
-/* 상품 수량 값*/
-var amount = hm.value;
-
-/* +,- 버튼 클릭 이벤트 > 수량span값 바뀌기 */
-$(".cnt-bnt").click((e) => {
-	$cnt.text($("#amount").val());
-	
-});
-
-/* 초기화 함수 */
-function init() {
-	//$cnt.text('1');
-	$cnt.text(amount);
-	sum.value = sell_price;
-	change();
-	
-}
-
-/* 더하기 함수 */
-function add (vs) {
-	
-	console.log("vs = " + vs);
-	
-	hm.value++ ;
-	sum.value = comma(parseInt(hm.value) * sell_price);
-}
-
-/* 빼기 함수 */
-function del () {
-
-	if (hm.value > 1) {
-		hm.value--;
-		sum.value = comma(parseInt(hm.value) * sell_price);
-	}
-}
-/* 더하기, 빼기 버튼 사이에 개수 바뀌는 함수 */
-function change () {
-
-	if (hm.value < 0) {
-		hm.value = 0;
-	}
-	sum.value = comma(parseInt(hm.value) * sell_price);
-}
-
-
-/* 숫자형식에 콤마 붙여주는 함수 */
-function comma(str) {
-    str = String(str);
-    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-}
 
 
 $(".btn-close").click((e) => {
