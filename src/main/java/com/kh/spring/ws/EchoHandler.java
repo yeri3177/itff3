@@ -3,11 +3,16 @@ package com.kh.spring.ws;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.kh.spring.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +29,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
+		
 		log.debug("[현재 세션 수 {}] {} 연결!", sessionList.size(), session.getId());
 	}
 

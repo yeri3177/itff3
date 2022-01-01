@@ -57,7 +57,7 @@ body .container-main {
 
 body[data-joomla-version="4"] .subhead {
     background: #f5f5f5;
-    border-bottom: 1px solid #e3e3e3;
+/*     border-bottom: 1px solid #e3e3e3; */
     box-shadow: none !important;
     margin: 0 0 0 60px !important;
     min-height: 50px;
@@ -1483,10 +1483,6 @@ tbody, td, tfoot, th, thead, tr {
     width: 1%;
 }
 
-#app-group-modal .modal-header, .sorting-grid-handle-item.apps-list .gridbox-app-item-header, .apps-list-wrapper .gridbox-app-item .gridbox-app-item-header, .ba-store-statistic-header, .main-table thead th {
-    border-bottom: 1px solid #f3f3f3 !important;
-}
-
 #app-group-modal .modal-header .app-group-modal-title, .sorting-grid-handle-item.apps-list .gridbox-app-item-header span, .apps-list-wrapper .gridbox-app-item .gridbox-app-item-header span, .ba-store-statistic-products-title, .ba-store-statistic-header .ba-store-statistic-header-title, .main-table.dashboard-content .last-edit-pages thead th:first-child span, .main-table.dashboard-content .recent-gridbox-apps thead th:first-child, .main-table.dashboard-content .last-edit-pages thead th:first-child *, .main-table.dashboard-content .recent-gridbox-reviews thead th:first-child *, .main-table.dashboard-content .recent-gridbox-comments thead th:first-child *, .main-table.dashboard-content .recent-gridbox-files thead th:first-child * {
     color: #1a1a1a;
     font-size: 16px;
@@ -1562,11 +1558,6 @@ tbody, td, tfoot, th, thead, tr {
 .main-table.dashboard-content table tbody:not(.order-list-sorting) tr td {
     cursor: default;
     text-align: center;
-}
-
-#app-group-modal .group-apps-list-item:not(:last-child), .main-table .table-striped tbody > tr:not(:last-child) > td {
-    border-bottom: 1px solid #f3f3f3;
-    box-shadow: none !important;
 }
 
 .ba-hide-checkbox, .main-table .table thead th:nth-last-child(2), .main-table .table thead th:last-child, .main-table .table-striped tbody > tr > td.hits-cell, .main-table .table-striped tbody > tr > td:last-child {
@@ -1668,7 +1659,7 @@ body[data-joomla-version="4"] .row-fluid [class*="span"] {
 }
 
 #app-group-modal .group-apps-list-item:not(:last-child), .main-table .table-striped tbody > tr:not(:last-child) > td {
-    border-bottom: 1px solid #f3f3f3;
+/*     border-bottom: 1px solid #f3f3f3; */
     box-shadow: none !important;
 }
 
