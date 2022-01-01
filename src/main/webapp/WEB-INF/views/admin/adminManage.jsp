@@ -121,48 +121,44 @@
 							        </div>
 							      </section>
 											
-											<div class="main-table dashboard-content">
-												<div class="row-fluid">
-													<div class="span12 ba-store-statistic">
-														<div class="ba-store-statistic-header">
+										<div class="row-fluid">
+											<div class="span12 ba-store-statistic" style="box-shadow: none;">
+												<div class="ba-store-statistic-header">
 
-															<div class="ba-store-statistic-header-filter-wrapper">
+													<div class="ba-store-statistic-header-filter-wrapper">
 
-																<div class="ba-store-statistic-select-wrapper">
-																	<div
-																		class="ba-custom-select ba-store-statistic-select">
+														<div class="ba-store-statistic-select-wrapper">
+															<div
+																class="ba-custom-select ba-store-statistic-select">
 
-																		<!-- 날짜 넣기 
-																		<div id="clock">
-																		</div>
-																		-->
-
-																		<i class="zmdi zmdi-caret-down"></i>
-																	</div>
-																</div>
-
+																<i class="zmdi zmdi-caret-down"></i>
 															</div>
 														</div>
-														<div class="ba-store-statistic-body">
-															<div class="row-fluid ba-store-statistic-body-wrapper"
-																style="display: flex;">
-															<div class="span8 ba-statistics-chart-wrapper">
-															<H1>Lorem Ipsum</H1>
-															<script src="https://code.highcharts.com/stock/highstock.js"></script>
-															<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-															<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-															
-															<div id="container" style="height: 400px; min-width: 310px"></div>
-															</div>
-																<div class="span4 ba-store-statistic-products-wrapper">
-																	<span class="ba-store-statistic-products-title">Top
-																		10</span>
-																	<div class="ba-store-statistic-products"></div>
-																</div>
-															</div>
-														</div>
+
 													</div>
 												</div>
+												<div class="ba-store-statistic-body">
+													<div class="row-fluid ba-store-statistic-body-wrapper"">
+
+														<div class="header">
+														</div>
+														<div class="five">
+														  <div class="flex-container">
+														    <div class="flex__third h56 row1">
+														      <div class="high chart1"></div>
+														    </div>
+														    <div class="flex__one h56 row1">
+														      <div class="high chart2"></div>
+														    </div>
+														    
+														  </div>
+														</div>
+
+													</div>
+												</div>
+											</div>
+										</div>
+											<div class="main-table dashboard-content">
 												
 												<div class="row-fluid"
 													style="display: flex; flex-direction: row;">
@@ -1041,76 +1037,146 @@ $(document).ready(function () {
 
 </script>
 
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
 <script>
 
-// 차트
+$( ".getfive" ).on( "click", function() {
+	  $( ".five" ).show();
+	  $( ".four" ).hide();
+	});
+	$( ".getfour" ).on( "click", function() {
+	  $( ".four" ).show();
+	  $( ".five" ).hide();
+	});
+	
+	$(function () {
+	    $('.chart1').highcharts({
+	    chart: {
+	      zoomType: 'xy'
+	    },
+	    credits: {
+	      enabled: false
+	    },
+	    title: {
+	      text: '날짜별 현황',
+	      align: 'left',
+	      margin: 50
+	    },
+	    subtitle: {
+	      text: '',
+	      align: 'left',
+	      y: 50
+	    },
+	    xAxis: [{
+	      categories: ['1/7', '1/8', '1/9', '1/10', '1/11', '1/12',
+	        '1/13', '1/14'
+	      ],
+	      crosshair: true
+	    }],
+	    yAxis: [{ // Primary yAxis
+	      labels: {
+	        format: '{value}',
+	        style: {
+	          color: Highcharts.getOptions().colors[1]
+	        }
+	      },
+	      title: {
+	        text: '',
+	        style: {
+	          color: Highcharts.getOptions().colors[1]
+	        }
+	      }
+	    }, { // Secondary yAxis
+	      title: {
+	        text: '',
+	        style: {
+	          color: Highcharts.getOptions().colors[0]
+	        }
+	      },
+	      labels: {
+	        format: '{value}',
+	        style: {
+	          color: Highcharts.getOptions().colors[0]
+	        }
+	      },
+	      opposite: true
+	    }],
+	    tooltip: {
+	      shared: true
+	    },
+	    legend: {
+	      layout: 'horizontal',
+	      align: 'left',
+	      x: 0,
+	      verticalAlign: 'top',
+	      y: 25,
+	      floating: true,
+	      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+	    },
+	    series: [{
+	      name: '상영작예매',
+	      type: 'column',
+	      yAxis: 1,
+	      data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5]
 
-Highcharts.setOptions({
-  global: {
-    useUTC: false
-  }
-});
-
-// Create the chart
-Highcharts.stockChart('container', {
-  chart: {
-    events: {
-      load: function () {
-
-        // set up the updating of the chart each second
-        var series = this.series[0];
-        setInterval(function () {
-          var x = (new Date()).getTime(), // current time
-            y = Math.round(Math.random() * 100);
-          series.addPoint([x, y], true, true);
-        }, 1000);
-      }
-    }
-  },
-
-  rangeSelector: {
-    buttons: [{
-      count: 1,
-      type: 'minute',
-      text: '1M'
-    }, {
-      count: 5,
-      type: 'minute',
-      text: '5M'
-    }, {
-      type: 'all',
-      text: 'All'
-    }],
-    inputEnabled: false,
-    selected: 0
-  },
-
-  title: {
-    text: 'Live data'
-  },
-
-  exporting: {
-    enabled: false
-  },
-
-  series: [{
-    name: 'Random data',
-    data: (function () {
-      // generate an array of random data
-      var data = [],
-        time = (new Date()).getTime(),
-        i;
-
-      for (i = -999; i <= 0; i += 1) {
-        data.push([
-          time + i * 1000,
-          Math.round(Math.random() * 100)
-        ]);
-      }
-      return data;
-    }())
-  }]
-});
+	    }, {
+	      name: '굿즈판매',
+	      type: 'spline',
+	      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5]
+	    }]
+	  });
+	});
+	
+	$(function() {
+	  $('.chart2').highcharts({
+	    chart: {
+	      type: 'bar'
+	    },
+	    credits: {
+	      enabled: false
+	    },
+	    title: {
+	      text: 'Lorem ipsum',
+	      align: 'left',
+	      margin: 50
+	    },
+	    xAxis: {
+	      categories: ['아이, 로봇', '이글아이', '에이 아이', '패스워드', '가타카', '13층', '매트릭스', '그녀', '시티즌포', '007: 카지노 로얄', '미션 임파서블', '에린 브로코비치', '루퍼']
+	    },
+	    yAxis: {
+	      min: 0,
+	      title: {
+	        text: ''
+	      }
+	    },
+	    legend: {
+	      layout: 'horizontal',
+	      align: 'left',
+	      x: 0,
+	      verticalAlign: 'top',
+	      y: 25,
+	      floating: true,
+	      backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+	    },
+	    plotOptions: {
+	      series: {
+	        stacking: 'normal'
+	      }
+	    },
+	    series: [{
+	      name: 'John',
+	      data: [5, 3, 4, 7, 2, 5, 6, 7, 2, 4, 1, 3, 5]
+	    }, {
+	      name: 'Jane',
+	      data: [2, 2, 3, 2, 1, 2, 4, 5, 7, 2, 4, 2, 3]
+	    }, {
+	      name: 'Joe',
+	      data: [3, 4, 4, 2, 5, 4, 6, 8, 2, 4, 6, 2, 2]
+	    }]
+	  });
+	});
 
 </script>
 
