@@ -280,4 +280,16 @@
 		where cart_id = #{id}
 	</select>
 	
+	
+	<update id="updateCart">
+		update
+			goods_cart
+		set
+			cart_quantity = #{qty}
+		where
+			cart_id = #{cartId}
+	
+	</update>
+	
+	
 </mapper>

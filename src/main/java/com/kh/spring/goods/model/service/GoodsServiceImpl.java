@@ -109,6 +109,11 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.selectGoodsCartQtyModal(id);
 	}
 
+	@Override
+	public int updateCart(Map<String, Object> map) {
+		return goodsDao.updateCart(map);
+	}
+
 
 	
 	

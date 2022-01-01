@@ -111,5 +111,10 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectOne("goods.selectGoodsCartQtyModal", id);
 	}
 
+	@Override
+	public int updateCart(Map<String, Object> map) {
+		return session.update("goods.updateCart", map);
+	}
+
 
 }

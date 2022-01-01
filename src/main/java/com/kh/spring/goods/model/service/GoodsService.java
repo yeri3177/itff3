@@ -47,5 +47,7 @@ public interface GoodsService {
 
 	CartJoin selectGoodsCartQtyModal(String id);
 
+	int updateCart(Map<String, Object> map);
+
 
 }

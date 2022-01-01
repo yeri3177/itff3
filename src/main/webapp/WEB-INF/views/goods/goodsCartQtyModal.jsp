@@ -98,23 +98,20 @@ $(".goodsBtn").click((e) => {
 	console.log("cartId = " + cartId);
 	
 	$.ajax({
-		url : "${pageContext.request.contextPath}/goods/updateCartQty.do?${_csrf.parameterName}=${_csrf.token}",
+		url : "${pageContext.request.contextPath}/goods/updateCart.do?${_csrf.parameterName}=${_csrf.token}",
 		data: {cartId : cartId, qty : qty},
 		type : "get",
         
         success(data) {
-        	console.log(data);
-        	
+        	//console.log(data);
+        	console.log("장바구니 수량 변경 성공");
+        	location.reload();
         	
         },
         error: console.log
     });
-	
 });
  
-
-
-
 
 
 /* 상품개수 나오는 span 태그 */
@@ -122,14 +119,13 @@ const $cnt = $(".cnt");
 
 /* +-버튼 가운데 상품 수량 태그 */
 var hm = document.getElementById('amount');
-console.log(hm);
 
 /* 상품 총합 가격 태그 */
 var sum = document.getElementById('sum');
-console.log(sum);
+
 /* 상품 단일 가격 값*/
 var sell_price = document.getElementById('sell_price').value;
-console.log(sell_price);
+
 /* 상품 수량 값*/
 var amount = hm.value;
 

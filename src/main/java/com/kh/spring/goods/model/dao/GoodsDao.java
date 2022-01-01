@@ -47,6 +47,8 @@ public interface GoodsDao {
 
 	CartJoin selectGoodsCartQtyModal(String id);
 
+	int updateCart(Map<String, Object> map);
+
 
 
 }
