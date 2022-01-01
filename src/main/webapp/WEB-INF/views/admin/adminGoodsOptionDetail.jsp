@@ -101,7 +101,7 @@
 		      <div class="modal-footer">
 		      	<button 
 		      		type="button" 
-		      		class="btn btn-primary"
+		      		class="btn btn-info"
 		      		data-toggle="modal"
 					data-target="#adminGoodsOptionInsert"
 					onclick="goods_option_insert_btn('${goods.PId }');">옵션등록</button>

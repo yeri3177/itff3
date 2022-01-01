@@ -58,7 +58,20 @@
                      </div> 
 
                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="reader-outline"></ion-icon>
+                        <ion-icon name="list-outline"></ion-icon>
+                        <span class="nav_name">게시판관리</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="${pageContext.request.contextPath}/admin/adminReviewList.do" class="collapse__sublink">리뷰게시판</a><br />
+                             <a href="${pageContext.request.contextPath}/admin/adminSharingList.do" class="collapse__sublink">티켓나눔터</a><br />
+                             <a href="#" class="collapse__sublink">Members</a>
+                         </ul> 
+                     </div> 
+
+                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="alert-outline"></ion-icon>
                         <span class="nav_name">공지사항</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
@@ -94,16 +107,6 @@
                         <span class="nav_name">캘린더</span>
                     </a>
 
-                    <a href="${pageContext.request.contextPath}/admin/chart.do" class="nav__link">
-                        <ion-icon name="pie-chart-outline"></ion-icon>
-                        <span class="nav_name">통계</span>
-                    </a>
-
-
-                    <a href="#" class="nav__link">
-                      	<ion-icon name="settings-outline"></ion-icon>
-                        <span class="nav_name">설정</span>
-                    </a>
                 </div>
                 <a href="${pageContext.request.contextPath }" class="nav__link">
                     <ion-icon name="exit-outline"></ion-icon>

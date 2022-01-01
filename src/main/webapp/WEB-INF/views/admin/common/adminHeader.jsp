@@ -18,6 +18,9 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
 <!-- 카카오맵 API -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
