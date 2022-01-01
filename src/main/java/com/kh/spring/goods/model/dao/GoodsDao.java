@@ -45,6 +45,8 @@ public interface GoodsDao {
 
 	int deleteCart(String cartId);
 
+	CartJoin selectGoodsCartQtyModal(String id);
+
 
 
 }

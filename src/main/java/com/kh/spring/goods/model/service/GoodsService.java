@@ -45,5 +45,7 @@ public interface GoodsService {
 
 	int deleteCart(String cartId);
 
+	CartJoin selectGoodsCartQtyModal(String id);
+
 
 }

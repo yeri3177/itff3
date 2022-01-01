@@ -270,4 +270,14 @@
 	
 	</delete>
 	
+	<select id="selectGoodsCartQtyModal" resultMap="cartJoinMap">
+		select * 
+		from goods_cart 
+		left join goods
+		using (p_id)
+		left join option_detail
+		using (option_id)
+		where cart_id = #{id}
+	</select>
+	
 </mapper>
