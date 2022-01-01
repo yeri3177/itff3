@@ -184,5 +184,7 @@ public interface AdminService {
 	List<Attachment> selectAttachmentBySharingNo(int no);
 
 	int deleteSharing(int no);
+
+	int adminMemberCut(String id);
 	
 }
