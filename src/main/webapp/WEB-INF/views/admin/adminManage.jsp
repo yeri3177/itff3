@@ -14,6 +14,8 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminManage.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/admin/adminTodo.css" />
 
 		<div class="container-fluid container-main">
 			<button
@@ -39,10 +41,11 @@
 
 										<div class="ba-main-view">
 										
-							<section class="py-5">
+								<section class="py-5">
 							        <div class="container-fluid">
 							          <div class="row">
-							            <!-- Count item widget-->
+							          
+							            <!-- register -->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
 							                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -54,6 +57,7 @@
 							                </div>
 							              </div>
 							            </div>
+							            
 							            <!-- Count item widget-->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
@@ -68,6 +72,7 @@
 							                </div>
 							              </div>
 							            </div>
+							            
 							            <!-- Count item widget-->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
@@ -82,7 +87,8 @@
 							                </div>
 							              </div>
 							            </div>
-							            <!-- Count item widget-->
+							            
+							            <!-- screening-->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
@@ -94,7 +100,8 @@
 							                </div>
 							              </div>
 							            </div>
-							            <!-- Count item widget-->
+							            
+							            <!-- review-->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-blockquote-left" viewBox="0 0 16 16">
@@ -105,7 +112,8 @@
 							                </div>
 							              </div>
 							            </div>
-							            <!-- Count item widget-->
+							            
+							            <!-- question-->
 							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 							              <div class="d-flex">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
@@ -122,28 +130,62 @@
 							      </section>
 											
 										<div class="row-fluid">
-											<div class="span12 ba-store-statistic" style="box-shadow: none;">
-												<div class="ba-store-statistic-header">
+											<div class="span12 ba-store-statistic" style="box-shadow: none; padding: 30px 0 30px 0;">
 
-													<div class="ba-store-statistic-header-filter-wrapper">
 
-														<div class="ba-store-statistic-select-wrapper">
-															<div
-																class="ba-custom-select ba-store-statistic-select">
-
-																<i class="zmdi zmdi-caret-down"></i>
-															</div>
-														</div>
-
-													</div>
-												</div>
 												<div class="ba-store-statistic-body">
 													<div class="row-fluid ba-store-statistic-body-wrapper"">
 
 														<div class="header">
 														</div>
 														<div class="five">
+
 														  <div class="flex-container">
+														  
+														  <!-- todo -->
+														  <div class="app" id="app">
+														  <form class="form" v-on:submit="addTodo">
+														    <input class="input form__input" v-model="inputVal"/>
+														    <button class="btn form__submit-btn" type="submit">Add</button>
+														  </form>
+														  <transition-group tag="ol" name="list" class="todo-list">
+														    <li
+														      class="todo-list__item"
+														      v-bind:class="{ complete: todo.complete }"
+														      v-bind:key="index"
+														      v-for="(todo, index) in filteredTodos">
+														      <button
+														        class="todo-list__item-content"
+														        v-on:click="toggleTodo(todo)">
+														        {{ todo.text }}
+														      </button>
+														      <button
+														        class="btn todo-list__item-remove"
+														        v-on:click="deleteTodo(index)">
+														        <i class="fa" v-bind:class="[todo.complete ? 'fa-check' : 'fa-times']"></i>
+														      </button>
+														    </li>
+														  </transition-group>
+														  <div class="filters">
+														    <button 
+														      class="btn filters__btn filters__btn--all" 
+														      v-on:click="filterTodos('all')">
+														      All
+														    </button>
+														    <button 
+														      class="btn filters__btn filters__btn--complete" 
+														      v-on:click="filterTodos('complete')">
+														      Complete
+														    </button>
+														    <button 
+														      class="btn filters__btn filters__btn--incomplete" 
+														      v-on:click="filterTodos('incomplete')">
+														      Incomplete
+														    </button>
+														  </div>
+														</div>
+														  
+														  	<!-- 차트 -->
 														    <div class="flex__third h56 row1">
 														      <div class="high chart1"></div>
 														    </div>
@@ -900,29 +942,6 @@
 
 <script>
 
-function printClock() {
-    
-    var clock = document.getElementById("clock"); // 출력할 장소 선택
-    var currentDate = new Date(); // 현재시간
-    var calendar = currentDate.getFullYear() + ". " + (currentDate.getMonth()+1) + ". " + currentDate.getDate() + " " // 현재 날짜
-
-    clock.innerHTML = calendar; //날짜를 출력해 줌
-}
-
-function addZeros(num, digit) { // 자릿수 맞춰주기
-	  var zero = '';
-	  num = num.toString();
-	  if (num.length < digit) {
-	    for (i = 0; i < digit - num.length; i++) {
-	      zero += '0';
-	    }
-	  }
-	  return zero + num;
-}
-</script>
-
-<script>
-
 // 굿즈 최근 10개
 $(document).ready(function () {
 	$.ajax({
@@ -1053,7 +1072,7 @@ $( ".getfive" ).on( "click", function() {
 	
 	$(function () {
 	    $('.chart1').highcharts({
-	    colors: ['#ec7b65', '#333333'],
+	    colors: ['#29b1bf', '#ec7b65'],
 	    chart: {
 	      zoomType: 'xy'
 	    },
@@ -1190,6 +1209,80 @@ $( ".getfive" ).on( "click", function() {
 	  });
 	});
 
+</script>
+
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+<script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+
+<script>
+var filters = {
+		  all: function(todos) {
+		    return todos;
+		  },
+		  complete: function(todos) {
+		    return todos.filter(function(todo) {
+		      return todo.complete;
+		    });
+		  },
+		  incomplete: function(todos) {
+		    return todos.filter(function(todo) {
+		      return !todo.complete;
+		    });
+		  }
+		}
+
+		var STORAGE_KEY = 'vue-js-todo-P7oZi9sL'
+		var todoStorage = {
+		  fetch: function () {
+		    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+		    return todos;
+		  },
+		  save: function (todos) {
+		    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+		  }
+		}
+
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    inputVal: '',
+		    todos: todoStorage.fetch(),
+		    visibility: 'all'
+		  },
+		  watch: {
+		    todos: {
+		      handler: function(todos) {
+		        todoStorage.save(todos);
+		      }
+		    }
+		  },
+		  computed: {
+		    filteredTodos: function () {
+		      return filters[this.visibility](this.todos);
+		    }
+		  },
+		  methods: {
+		    addTodo: function(e) {
+		      e.preventDefault();
+		      if (this.inputVal) {
+		        this.todos.push({
+		          text: this.inputVal,
+		          complete: false
+		        });
+		      }
+		      this.inputVal = '';
+		    },
+		    toggleTodo: function(todo) {
+		      todo.complete = !todo.complete;
+		    },
+		    filterTodos: function(filter) {
+		      this.visibility = filter;
+		    },
+		    deleteTodo: function(index) {
+		      this.todos.splice(index, 1);
+		    }
+		  }
+		});
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>
