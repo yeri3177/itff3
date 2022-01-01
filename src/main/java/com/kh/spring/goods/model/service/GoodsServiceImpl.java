@@ -104,6 +104,16 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.deleteCart(cartId);
 	}
 
+	@Override
+	public CartJoin selectGoodsCartQtyModal(String id) {
+		return goodsDao.selectGoodsCartQtyModal(id);
+	}
+
+	@Override
+	public int updateCart(Map<String, Object> map) {
+		return goodsDao.updateCart(map);
+	}
+
 
 	
 	

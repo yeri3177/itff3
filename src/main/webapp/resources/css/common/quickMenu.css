@@ -106,12 +106,17 @@ button {
 
 dl, ul, ol, menu, li {
     list-style: none;
+    margin-bottom: 0 !important;
 }
 
 #quickmenu > li {
     background-color: #212121;
     padding: 3px 15px;
     border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+#quickmenu > li:hover {
+	cursor: pointer;
 }
 
 #quickmenu > li.quick_online:before {

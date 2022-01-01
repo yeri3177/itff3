@@ -223,7 +223,7 @@
 												</div>
 												
 												<div class="row-fluid"
-													style="display: flex; flex-direction: row; margin-top: 30px;">
+													style="display: flex; flex-direction: row; margin-top: 30px; justify-content: space-around;">
 													<div class="span4 recent-gridbox-files">
 														<table class="table table-striped">
 															<thead>
@@ -1053,6 +1053,7 @@ $( ".getfive" ).on( "click", function() {
 	
 	$(function () {
 	    $('.chart1').highcharts({
+	    colors: ['#ec7b65', '#333333'],
 	    chart: {
 	      zoomType: 'xy'
 	    },
@@ -1078,9 +1079,7 @@ $( ".getfive" ).on( "click", function() {
 	    yAxis: [{ // Primary yAxis
 	      labels: {
 	        format: '{value}',
-	        style: {
 	          color: Highcharts.getOptions().colors[1]
-	        }
 	      },
 	      title: {
 	        text: '',
@@ -1131,6 +1130,7 @@ $( ".getfive" ).on( "click", function() {
 	
 	$(function() {
 	  $('.chart2').highcharts({
+		colors: ['#29b1bf', '#333333', 'rgb(144, 237, 125)', '#ec7b65', 'rgb(128, 133, 233)', 'rgb(241, 92, 128)', 'rgb(228, 211, 84)'],
 	    chart: {
 	      type: 'bar'
 	    },
@@ -1138,7 +1138,7 @@ $( ".getfive" ).on( "click", function() {
 	      enabled: false
 	    },
 	    title: {
-	      text: 'Lorem ipsum',
+	      text: '연령별 예매 현황',
 	      align: 'left',
 	      margin: 50
 	    },

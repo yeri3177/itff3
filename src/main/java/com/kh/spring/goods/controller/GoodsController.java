@@ -285,5 +285,46 @@ public class GoodsController {
 		
 		return "goods/goodsQna";
 	}
+	
+	/**
+	 * 장바구니 [수량 변경] 모달  
+	 */
+	@GetMapping("/goodsCartQtyModal.do")
+	public String goodsCartQtyModal(@RequestParam String id, Model model) {
+		log.debug("id = {}", id);
+		
+		// 장바구니 DB 조회
+		CartJoin cart = goodsService.selectGoodsCartQtyModal(id);
+		log.debug("cart = {}", cart);
+		
+		model.addAttribute("cart", cart);
+		
+		
+		return "goods/goodsCartQtyModal";
+	}
+	
+	
+	/**
+	 * 장바구니 모달 [확인] 버튼 (장바구니 수량 변경)  
+	 * {cartId : cartId, qty : qty}
+	 */
+	@GetMapping("/updateCart.do")
+	public String updateCart(@RequestParam String cartId, @RequestParam String qty) {
+		log.debug("cartId = {}", cartId);
+		log.debug("qty = {}", qty);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("cartId", cartId);
+		map.put("qty", qty);
+		
+		
+		// 장바구니 수량 변경
+		int result = goodsService.updateCart(map);
+		log.debug("장바구니 수량 변경 result = {}", result);
+		
+		
+		return "redirect:/goods/goodsCart.do";
+	}
+		
 
 }

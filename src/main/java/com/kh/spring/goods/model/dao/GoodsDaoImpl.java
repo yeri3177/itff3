@@ -106,5 +106,15 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.delete("goods.deleteCart", cartId);
 	}
 
+	@Override
+	public CartJoin selectGoodsCartQtyModal(String id) {
+		return session.selectOne("goods.selectGoodsCartQtyModal", id);
+	}
+
+	@Override
+	public int updateCart(Map<String, Object> map) {
+		return session.update("goods.updateCart", map);
+	}
+
 
 }
