@@ -575,8 +575,7 @@ $(() => {
 	
 	/* 장바구니 버튼 클릭시 */
 	fn_cartBtn();
-	
-	/* fn_sizeChange(); */
+
 	
 	/* 토스트 확인용 */
 	//fn_toast("URL 복사 되었습니다.");
@@ -642,7 +641,6 @@ function fn_toast(msg) {
 function fn_cartBtn(){
 	$(".cart-btn").click((e) => {
 
-		
 		// 전달값 
 		const cart = {
 			goodsId : $("[name=goodsId]").val(),
@@ -717,20 +715,10 @@ function fn_colorChange(){
 	});
 }
 
-/* 사이즈 옵션 변경시 */
-/* function fn_sizeChange(){
-	
-	$(".sizeChange input[type='radio']").change((e) => {
-		fn_searchImg();
-	});
-} */
-
 /* [기종] 옵션 선택시 [색상] 옵션 나오게하기 */
 function fn_typeToColor(){
 	
 	$("#optionType").change((e) => {
-		
-		fn_searchImg();
 		
 		const $this = $(e.target);
 		const optionType = $this.val();
@@ -756,6 +744,10 @@ function fn_typeToColor(){
             	$("#initColorDiv").hide();
             }
         });
+		
+		
+		/* 프리뷰 이미지 찾기 */
+		fn_searchImg();
 	});
 };
 
@@ -766,7 +758,7 @@ function fn_colorToSize(){
 	
 	$("#selectColorDiv [name=optionColor]").change((e) => {
 		
-		fn_searchImg();
+		
 		
 		const $this = $(e.target);
 		const optionColor = $this.data("optionColor");
@@ -792,6 +784,9 @@ function fn_colorToSize(){
             	$("#initSizeDiv").hide();
             }
         });
+		
+		/* 프리뷰 이미지 찾기 */
+		fn_searchImg();
 	});
 };
 

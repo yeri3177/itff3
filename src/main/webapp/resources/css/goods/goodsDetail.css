@@ -12,7 +12,7 @@
 	padding:0!important;
 	margin: 0 auto;
 	
-	width: 90%;
+	width: 80%;
 	/* height: 100%; */
 	
 	/* text-align: left!important; */
@@ -52,8 +52,8 @@ body {
 .fixed { 
     position: fixed; 
     top:0px; 
-    left:54.4%; 
-    width: 40.6%!important;
+    left:54.1%; 
+    width: 36%!important;
 }
 
 #preview-img-div {
