@@ -41,14 +41,33 @@ table.table th, table.table td {text-align: center;}
 	  	</c:forEach>
 	  </tbody>
 	</table>
+	
+		<!-- chat modal -->
+		<div class="modal fade" id="chat" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document"
+				style="max-width: 500px;">
+				<div class="modal-content" style="text-align: left;">
+				   	<div class="modal-body" id="modal_ajax1">
+				    		  
+					</div>
+
+					</div>
+				</div>
+			</div>
 
 <script>
+
 // websocket 연결(SockJS)
 const ws = new SockJS(`http://\${location.host}${pageContext.request.contextPath}/stomp`);
+
 // StompClient객체 생성
 const stompClient = Stomp.over(ws);
+
 // connect
 stompClient.connect({}, (frame) => {
+	
 	// 구독신청 및 핸들러 등록
 	stompClient.subscribe("/chat/admin", (message) => {
 		console.log("message : ", message);
@@ -56,28 +75,32 @@ stompClient.connect({}, (frame) => {
 		// type속성으로  MESSAGE(chatLog), LAST_CHECK을 구분한다.
 		const obj = JSON.parse(message.body);
 		console.log(obj);
+		
 		const {chatId, memberId, msg, type} = obj;
 		
 		const $tr = $(`#\${chatId}`);
 		const $unreadCountSpan = $tr.find("span.unread-count");
 		
 		switch(type){
-		case "LAST_CHECK" : 
-			$unreadCountSpan.text(0).addClass("d-none");
-			break;
-		case "MESSAGE" : 
-			const $msgTd = $tr.children(".msg");
-			$msgTd.text(msg); // td.msg 갱신
-			// 1.관리자메세지 : 처리없음
-			// 2.사용자메세지 : 안읽음메세지 +1 
-			if(memberId != 'admin'){
-				const unreadCountVal = Number($unreadCountSpan.text()) + 1;
-				$unreadCountSpan.text(unreadCountVal).removeClass("d-none");
-			}
-			
-			$tr.prependTo($("#chatList tbody")); // 첫번째 자식요소로 추가(이동)
-			
-			break;
+		
+			case "LAST_CHECK" : 
+				$unreadCountSpan.text(0).addClass("d-none");
+				break;
+				
+			case "MESSAGE" : 
+				const $msgTd = $tr.children(".msg");
+				$msgTd.text(msg); // td.msg 갱신
+				// 1.관리자메세지 : 처리없음
+				// 2.사용자메세지 : 안읽음메세지 +1 
+				
+				if(memberId != 'admin'){
+					const unreadCountVal = Number($unreadCountSpan.text()) + 1;
+					$unreadCountSpan.text(unreadCountVal).removeClass("d-none");
+				}
+				
+				$tr.prependTo($("#chatList tbody")); // 첫번째 자식요소로 추가(이동)
+				
+				break;
 		}
 		
 	});	
@@ -89,12 +112,21 @@ $("tr[id]").click((e) => {
 	const memberId = $tr.data("memberId"); // getter camelcasing으로 참조하기
 	console.log(chatId, memberId);
 	
-	
-	// 팝업요청
-	const url = `${pageContext.request.contextPath}/admin/\${chatId}/\${memberId}/chat.do`;
-	const name = chatId; // 팝업창 Window객체의 name.
-	const spec = "width=510px, height=780px";
-	open(url, name, spec);
+		$.ajax({
+			url:"${pageContext.request.contextPath}/admin/"+chatId+"/"+memberId+"/chat.do",
+			method: "get",
+			contentType: "application/json",
+			dateType: "text",
+			success: function(data) {
+				$("#modal_ajax1").html(data);
+			},
+			complete: function() {
+				console.log("complete")
+			}
+		});
+
+	$('#chat').modal() 
+
 });
 
 </script>

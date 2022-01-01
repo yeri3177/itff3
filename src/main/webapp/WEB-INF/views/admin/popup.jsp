@@ -125,10 +125,7 @@ $(sendBtn).click((e) => {
 	// publishUrl, headers, msg(json)
 	stompClient.send("/app/chat/${chatId}", {}, JSON.stringify(obj));
 	
-	$(message).val('').focus; // 초기화
-	
-	window.setTimeout('window.location.reload()', 10000);
-		
+	$(message).val('').focus; // 초기화		
 });
 
 	// 엔터키 쳐도 전송되게 하기
