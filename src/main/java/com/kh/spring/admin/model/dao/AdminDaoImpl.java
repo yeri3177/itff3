@@ -22,6 +22,7 @@ import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
+import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -196,8 +197,8 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Member> selectOneloginMember(int no) {
-		return session.selectList("admin.selectOneloginMember", no);
+	public List<Member> selectNoticeOneloginMember(int no) {
+		return session.selectList("admin.selectNoticeOneloginMember", no);
 	}
 
 	@Override
@@ -418,6 +419,78 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int insertGoodsAttachment(Attachment attach) {
 		return session.insert("admin.insertGoodsAttachment", attach);
+	}
+
+	@Override
+	public List<Review> adminSelectReviewList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("admin.adminSelectReviewList", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalReviewContent() {
+		return session.selectOne("admin.countTotalReviewContent");
+	}
+
+	@Override
+	public Review selectOneReviewCollection(int reviewNo) {
+		return session.selectOne("admin.selectOneReviewCollection", reviewNo);
+	}
+
+	@Override
+	public List<Member> selectReviewOneloginMember(int reviewNo) {
+		return session.selectList("admin.selectReviewOneloginMember", reviewNo);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByReviewNo(int reviewNo) {
+		return session.selectList("admin.selectAttachmentByReviewNo", reviewNo);
+	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return session.delete("admin.deleteReview", reviewNo);
+	}
+
+	@Override
+	public int deleteReviewComment(int reviewNo) {
+		return session.delete("admin.deleteReviewComment", reviewNo);
+	}
+
+	@Override
+	public int deleteReviewLike(int reviewNo) {
+		return session.delete("admin.deleteReviewLike", reviewNo);
+	}
+
+	@Override
+	public List<Board> adminSelectSharingList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("admin.adminSelectSharingList", null, rowBounds);
+	}
+
+	@Override
+	public int countTotalSharingContent() {
+		return session.selectOne("admin.countTotalSharingContent");
+	}
+
+	@Override
+	public Board selectOneSharingCollection(int no) {
+		return session.selectOne("admin.selectOneSharingCollection", no);
+	}
+
+	@Override
+	public List<Member> selectSharingOneloginMember(int no) {
+		return session.selectList("admin.selectSharingOneloginMember", no);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentBySharingNo(int no) {
+		return session.selectList("admin.selectAttachmentBySharingNo", no);
+	}
+
+	@Override
+	public int deleteSharing(int no) {
+		return session.delete("admin.deleteSharing", no);
 	}
 
 }

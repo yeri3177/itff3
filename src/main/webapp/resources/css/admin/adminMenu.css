@@ -20,6 +20,10 @@
     --z-fixed: 100;
 }
 
+.btn {
+	font-size: 14px !important;
+}
+
 /* BASE */
 *, ::before, ::after {
     box-sizing: border-box;
@@ -95,7 +99,7 @@ a {
 }
 
 .nav__link:hover {
-    background-color: #ec7b65;
+    background-color: #29b1bf !important;
     color: white !important;
 	text-decoration: none !important; 
 }
@@ -120,7 +124,8 @@ a {
 
 /* Active links menu */
 .active {
-    background-color: #ec7b65;
+/*     background-color: #ec7b65; */
+    background-color: #29b1bf;
 }
 
 /* COLLAPSE */
