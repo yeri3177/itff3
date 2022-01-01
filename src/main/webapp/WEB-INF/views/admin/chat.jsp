@@ -8,6 +8,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/chat.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminChat.css">
+
 <!DOCTYPE html>
 
 <style>
@@ -119,22 +122,46 @@ $("tr[id]").click((e) => {
 			dateType: "text",
 			success: function(data) {
 				$("#modal_ajax1").html(data);
+				$('#chat').modal('show');
 			},
 			complete: function() {
 				console.log("complete")
 			}
 		});
 
-	$('#chat').modal() 
 
 });
-
+	
 </script>
 
 <script>
 
 const $messages = $('#messages');
 $messages.scrollTop($messages[0].scrollHeight);
+
+</script>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
 
 </script>
 
