@@ -17,7 +17,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/footer/termsOfUse.css" />
+	href="${pageContext.request.contextPath }/resources/css/footer/footerMenuCommon.css" />
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -27,10 +27,10 @@
 				<a href="${pageContext.request.contextPath }/footer/termsOfUse.do" target="_top">이용약관</a>
 			</li>
 			<li class="on_">
-				<a href="#" target="_top">개인정보취급방침</a>
+				<a href="${pageContext.request.contextPath }/footer/personalInformation.do" target="_top">개인정보취급방침</a>
 			</li>
 			<li class="on_">
-				<a href="#" target="_top">이메일무단수집거부</a>
+				<a href="javascript:alert('게시된 이메일 주소가 무단 수집되는 것을 거부합니다.\n 이를 위반 시 [정보통신망 이용촉진 및 정보보호 등에 관한 법률] 등에 의해 처벌 받을 수 있습니다.\n')">이메일무단수집거부</a>
 			</li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/guide/trafficGuide.do" target="_top">사무국 오시는 길</a></li>
 		</ul>
