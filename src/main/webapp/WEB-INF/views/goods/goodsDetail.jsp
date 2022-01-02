@@ -602,32 +602,17 @@ function fn_selectGoodsLike(){
 		data: like,
 		type : "post",
 		success : function(result){
-        	//console.log(result);
-        	
-        	/* 이미지 넣기 */
         	$("#goodsLike-btn").html(result);
-
         },
         error: console.log
     });
-	
 };
 
 
 
 /* 좋아요 버튼 클릭시 좋아요 추가/삭제 */
 $("#goodsLike-btn").click((e) => {
-	
-	/*
-	빈하트이면
-	{goodsId: '69', memberId: '', likeYn: 'far fa-heart'}
-	likeYn: "far fa-heart"
-	
-	빨강하트이면
-	{goodsId: '69', memberId: 'abcde', likeYn: 'fas fa-heart'}
-	likeYn: "fas fa-heart"
-	*/
-	
+
 	const like = {
 		goodsId : $("[name=goodsId]").val(),
 		memberId : $("[name=memberId]").val(),
@@ -643,8 +628,7 @@ $("#goodsLike-btn").click((e) => {
 		type : "post",
         
 		success : function(result){
-        	
-        	/* 이미지 넣기 */
+
         	$("#goodsLike-btn").html(result);
         	
         	if(result.includes("far")){
