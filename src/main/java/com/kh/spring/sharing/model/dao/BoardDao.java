@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
+import com.kh.spring.sharing.model.vo.BoardComment;
 
 public interface BoardDao {
 
@@ -28,5 +29,7 @@ public interface BoardDao {
 	List<Attachment> selectAttachmentByBoardNo(int no);
 
 	int deleteOneBoard(int no);
+
+	List<BoardComment> selectCommentList(int boardNo);
 
 }

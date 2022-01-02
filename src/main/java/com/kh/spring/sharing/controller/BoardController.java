@@ -30,6 +30,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.sharing.model.service.BoardService;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
+import com.kh.spring.sharing.model.vo.BoardComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -153,14 +154,20 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardDetail.do")
-	public void boardDetail(@RequestParam int no, Model model) {
+	public void boardDetail(@RequestParam int no, @RequestParam(required = false) String memberId, Model model) {
 		log.debug("no = {}", no);
 		
 		// 업무로직
 		//Board board = boardService.selectOneBoard(no);
+		// 게시글 가져오기
 		Board board = boardService.selectOneBoardCollection(no);
 		log.debug("board = {}", board);
+		// 댓글목록 가져오기
+		List<BoardComment> commentList = boardService.selectCommentList(no);
+		log.debug("CommentList = {}", commentList);
+		
 		model.addAttribute("board", board);
+		model.addAttribute("commentList", commentList);
 	}
 	
 	@GetMapping("/boardUpdate.do")

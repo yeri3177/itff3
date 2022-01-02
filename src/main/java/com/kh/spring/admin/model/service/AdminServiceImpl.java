@@ -19,8 +19,6 @@ import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
-import com.kh.spring.movie.model.vo.MovieSchedule;
-import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -28,6 +26,7 @@ import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
+import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -250,8 +249,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Member> selectOneloginMember(int no) {
-		return adminDao.selectOneloginMember(no);
+	public List<Member> selectNoticeOneloginMember(int no) {
+		return adminDao.selectNoticeOneloginMember(no);
 	}
 
 	@Override
@@ -470,6 +469,86 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Question> adminManageRecentTenQuestionList() {
 		return adminDao.adminManageRecentTenQuestionList();
+	}
+
+	@Override
+	public List<Review> adminSelectReviewList(int offset, int limit) {
+		return adminDao.adminSelectReviewList(offset, limit);
+	}
+
+	@Override
+	public int countTotalReviewContent() {
+		return adminDao.countTotalReviewContent();
+	}
+
+	@Override
+	public Review selectOneReviewCollection(int reviewNo) {
+		return adminDao.selectOneReviewCollection(reviewNo);
+	}
+
+	@Override
+	public List<Member> selectReviewOneloginMember(int reviewNo) {
+		return adminDao.selectReviewOneloginMember(reviewNo);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentByReviewNo(int reviewNo) {
+		return adminDao.selectAttachmentByReviewNo(reviewNo);
+	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return adminDao.deleteReview(reviewNo);
+	}
+
+	@Override
+	public int deleteReviewComment(int reviewNo) {
+		return adminDao.deleteReviewComment(reviewNo);
+	}
+
+	@Override
+	public int deleteReviewLike(int reviewNo) {
+		return adminDao.deleteReviewLike(reviewNo);
+	}
+
+	@Override
+	public List<Board> adminSelectSharingList(int offset, int limit) {
+		return adminDao.adminSelectSharingList(offset, limit);
+	}
+
+	@Override
+	public int countTotalSharingContent() {
+		return adminDao.countTotalSharingContent();
+	}
+
+	@Override
+	public Board selectOneSharingCollection(int no) {
+		return adminDao.selectOneSharingCollection(no);
+	}
+
+	@Override
+	public List<Member> selectSharingOneloginMember(int no) {
+		return adminDao.selectSharingOneloginMember(no);
+	}
+
+	@Override
+	public List<Attachment> selectAttachmentBySharingNo(int no) {
+		return adminDao.selectAttachmentBySharingNo(no);
+	}
+
+	@Override
+	public int deleteSharing(int no) {
+		return adminDao.deleteSharing(no);
+	}
+
+	@Override
+	public int adminMemberCut(String id) {
+		return adminDao.adminMemberCut(id);
+	}
+
+	@Override
+	public int adminMemberUnblock(String id) {
+		return adminDao.adminMemberUnblock(id);
 	}
 	
 }

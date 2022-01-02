@@ -19,6 +19,7 @@ import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
+import com.kh.spring.sharing.model.vo.Board;
 
 public interface AdminDao {
 
@@ -78,7 +79,7 @@ public interface AdminDao {
 
 	Notice selectOneNoticeCollection(int no);
 
-	List<Member> selectOneloginMember(int no);
+	List<Member> selectNoticeOneloginMember(int no);
 
 	Attachment selectOneAttachment(int no);
 
@@ -159,5 +160,37 @@ public interface AdminDao {
 	List<Question> adminManageRecentTenQuestionList();
 
 	int insertGoodsAttachment(Attachment attach);
+
+	List<Review> adminSelectReviewList(int offset, int limit);
+
+	int countTotalReviewContent();
+
+	Review selectOneReviewCollection(int reviewNo);
+
+	List<Member> selectReviewOneloginMember(int reviewNo);
+
+	List<Attachment> selectAttachmentByReviewNo(int reviewNo);
+
+	int deleteReview(int reviewNo);
+
+	int deleteReviewComment(int reviewNo);
+
+	int deleteReviewLike(int reviewNo);
+
+	List<Board> adminSelectSharingList(int offset, int limit);
+
+	int countTotalSharingContent();
+
+	Board selectOneSharingCollection(int no);
+
+	List<Member> selectSharingOneloginMember(int no);
+
+	List<Attachment> selectAttachmentBySharingNo(int no);
+
+	int deleteSharing(int no);
+
+	int adminMemberCut(String id);
+
+	int adminMemberUnblock(String id);
 
 }

@@ -27,6 +27,7 @@
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
+			<li class="on_"><a href="${pageContext.request.contextPath }/guide/covid.do" target="_top">코로나19 예방 수칙</a></li>
 			<li class="on_"><a
 				href="${pageContext.request.contextPath }/guide/openCloseGuide.do"
 				target="_top">개·폐막식 안내</a></li>

@@ -113,7 +113,7 @@
 	<select id="mainNotice" resultType="notice">
 	<![CDATA[
 		select 
-			* 
+			notice_title, reg_date
 		from 
 			notice_board 
 		where 

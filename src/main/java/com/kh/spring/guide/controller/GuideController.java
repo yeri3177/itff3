@@ -11,6 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/guide")
 public class GuideController {
 	
+	@GetMapping("/covid.do")
+	public void covid() {}
+
 	@GetMapping("/openCloseGuide.do")
 	public void openCloseGuide() {}
 	

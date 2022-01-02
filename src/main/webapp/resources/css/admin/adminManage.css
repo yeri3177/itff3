@@ -1824,10 +1824,14 @@ tbody::-webkit-scrollbar-track {
 	display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
-
+.high {
+	box-shadow: 0 0 5px rgb(25 25 25 / 25%);
+    border-radius: 1em;
+    padding: 20px;
+}
 
 
 

@@ -100,7 +100,7 @@ a {
 }
 
 .container-visual {
-	background: url("https://i.imgur.com/X4yWJbJ.jpg");
+	background: url("https://i.imgur.com/hDHfnOK.jpg");
 	display: flow-root;
 }
 
@@ -292,6 +292,21 @@ header {
 
 .hd {
 	display: flow-root;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff !important;
+    background-color: rgb(43, 63, 107) !important;
+    border-color: rgb(43, 63, 107) !important;
+}
+
+.page-link {
+    color: #212121 !important;
+}
+
+.page-link:hover {
+    color: #212121 !important;
 }
 
 /* header.jsp 끝 */

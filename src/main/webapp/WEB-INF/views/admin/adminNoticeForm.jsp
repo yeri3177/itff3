@@ -79,7 +79,7 @@ pageContext.setAttribute("loginMember", loginMember);
 				<br /> 
 				<div style="text-align: center;">
 					<input type="button" class="btn btn-secondary" value="취소" onclick="history.go(-1);" style="margin: 0;"/>
-					<input type="submit" class="btn btn-primary" value="저장">
+					<input type="submit" class="btn btn-info" value="저장">
 				</div>
 			</form>
 			</div>

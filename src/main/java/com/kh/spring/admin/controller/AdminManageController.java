@@ -60,6 +60,7 @@ import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
+import com.kh.spring.sharing.model.vo.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -411,6 +412,79 @@ public class AdminManageController {
 		return "redirect:/admin/adminMemberList.do";
 	}
 	
+	/**
+	 * [회원 차단]
+	 */
+	
+	@GetMapping("/adminMemberCut.do")
+	public Member adminMemberCut(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberCut.do")
+	public String adminMemberCut(@RequestParam(value = "id", required = false) String id, RedirectAttributes redirectAttr) {
+		log.debug("id = {}", id);
+		
+    	try { 		
+			int result = adminService.adminMemberCut(id);
+			redirectAttr.addFlashAttribute("msg", "회원 차단 성공");
+			
+    	} catch (InvalidParameterException e) {
+    		log.error(e.getMessage(), e);
+    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+    		
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+			
+		return "redirect:/admin/adminMemberList.do";
+	}
+	
+	
+	/**
+	 * [회원 차단 해제]
+	 */
+	
+	@GetMapping("/adminMemberUnblock.do")
+	public Member adminMemberUnblock(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberUnblock.do")
+	public String adminMemberUnblock(@RequestParam(value = "id", required = false) String id, RedirectAttributes redirectAttr) {
+		log.debug("id = {}", id);
+		
+		try { 		
+			int result = adminService.adminMemberUnblock(id);
+			redirectAttr.addFlashAttribute("msg", "회원 차단 해제 성공");
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			redirectAttr.addFlashAttribute("msg", e.getMessage());
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminMemberList.do";
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
@@ -424,7 +498,6 @@ public class AdminManageController {
 		
 		model.addAttribute("list", list);
 	}
-
 	
 	/**
 	 * [작품정보]
@@ -841,8 +914,7 @@ public class AdminManageController {
 			log.error("다시 시도해주세요.", e);
 			throw e;
 		}
-		
-		
+			
 		return "redirect:/admin/adminGoodsList.do";
 	}
 	
@@ -1154,6 +1226,247 @@ public class AdminManageController {
 	}
 
 ///////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * [리뷰 목록] 
+	 */
+	
+	@GetMapping("/adminReviewList.do")
+	public void adminReviewList(
+			Model model,
+			@RequestParam(defaultValue = "1") int cPage,
+			HttpServletRequest request
+			) {
+		
+		try {	
+			log.debug("cPage = {}", cPage); // defaultValue = "1" 로 해둬서 cPage 값이 없으면 1이 나온다.
+			
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			
+			// 전체 게시물 목록
+			List<Review> list = adminService.adminSelectReviewList(offset, limit);
+			log.debug("list = {}", list);
+			
+			// 전체 게시물 수
+			int totalContent = adminService.countTotalReviewContent();
+			log.debug("totalContent = {}", totalContent);
+						
+			// pagebar
+			String url = request.getRequestURI(); 
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			log.debug("pagebar = {}", pagebar);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("totalContent", totalContent);
+			model.addAttribute("pagebar", pagebar);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * [리뷰 상세] 
+	 */
+	
+	@GetMapping("/adminReviewDetail.do")
+	public void adminReviewDetail(@RequestParam int reviewNo, Model model) {
+		log.debug("reviewNo = {}", reviewNo);
+		
+		Review review = adminService.selectOneReviewCollection(reviewNo);
+		log.debug("review = {}", review);
+				
+		List<Member> list = adminService.selectReviewOneloginMember(reviewNo);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("review", review);
+	}
+	
+	@GetMapping (
+			value = "/fileDownload.do",
+			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
+	)
+	@ResponseBody
+	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
+		
+		// resource 객체 생성
+		Resource resource = null;
+		try {
+			// db attachment 행 조회하기
+			Attachment attach = adminService.selectOneAttachment(no);
+			log.debug("attach = {}", attach);
+			
+			// 실제 다운로드 할 파일경로 가져오기
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			log.debug("saveDirectory = {}", saveDirectory);
+			
+			File downFile = new File(saveDirectory, attach.getRenamedFilename());
+			
+			resource = resourceLoader.getResource("file:" + downFile);
+			log.debug("downFile = {}", downFile);
+			
+			// 헤더값 설정
+			String filename = new String(attach.getOriginalFilename().getBytes("utf-8"), "iso-8859-1");
+			response.addHeader("Content-Disposition", "attachment; filename=" + filename);
+			
+			
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resource;
+		
+	}
+	
+	/**
+	 * [리뷰 삭제]
+	 */
+	
+	@GetMapping("/adminReviewDelete.do")
+	public void adminReviewDelete(@RequestParam int reviewNo, Model model) {
+		
+		log.debug("reviewNo = {}", reviewNo);
+		
+		Review review = adminService.selectOneReviewCollection(reviewNo);
+		log.debug("review = {}", review);
+		
+		model.addAttribute("review", review);
+	}
+	
+	@PostMapping("/adminReviewDelete.do")
+	public String reviewDelete(@RequestParam int reviewNo) {
+		
+		log.debug("reviewNo = {}", reviewNo);
+		
+		// 여기서 no 는 notice_board의 글번호
+		List<Attachment> attach = adminService.selectAttachmentByReviewNo(reviewNo);
+		log.debug("attach = {}", attach);
+		
+		// 파일을 서버에서도 삭제
+		if(attach != null && attach.size() != 0) {
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
+			boolean isDelete = targetFile.delete();
+			
+			log.debug("isDelete = {}", isDelete);
+		}
+		
+		int result = 0;
+		
+		result = adminService.deleteReviewLike(reviewNo);
+		result = adminService.deleteReviewComment(reviewNo);
+		result = adminService.deleteReview(reviewNo);
+		String msg = result > 0 ? "삭제 완료" : "삭제 실패";
+		log.debug(msg);
+			
+		return "redirect:/admin/adminReviewList.do";
+	}
+	
+///////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * [티켓나눔터 목록] 
+	 */
+	
+	@GetMapping("/adminSharingList.do")
+	public void adminSharingList(
+			Model model,
+			@RequestParam(defaultValue = "1") int cPage,
+			HttpServletRequest request
+			) {
+		
+		try {	
+			log.debug("cPage = {}", cPage); // defaultValue = "1" 로 해둬서 cPage 값이 없으면 1이 나온다.
+			
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			
+			// 전체 게시물 목록
+			List<Board> list = adminService.adminSelectSharingList(offset, limit);
+			log.debug("list = {}", list);
+			
+			// 전체 게시물 수
+			int totalContent = adminService.countTotalSharingContent();
+			log.debug("totalContent = {}", totalContent);
+						
+			// pagebar
+			String url = request.getRequestURI(); 
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			log.debug("pagebar = {}", pagebar);
+			
+			model.addAttribute("list", list);
+			model.addAttribute("totalContent", totalContent);
+			model.addAttribute("pagebar", pagebar);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * [티켓나눔터 상세] 
+	 */
+	
+	@GetMapping("/adminSharingDetail.do")
+	public void adminShaingDetail(@RequestParam int no, Model model) {
+		log.debug("no = {}", no);
+		
+		Board sharing = adminService.selectOneSharingCollection(no);
+		log.debug("sharing = {}", sharing);
+				
+		List<Member> list = adminService.selectSharingOneloginMember(no);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("sharing", sharing);
+	}
+	
+	
+	/**
+	 * [리뷰 삭제]
+	 */
+	
+	@GetMapping("/adminSharingDelete.do")
+	public void adminSharingDelete(@RequestParam int no, Model model) {
+		
+		log.debug("no = {}", no);
+		
+		Board sharing = adminService.selectOneSharingCollection(no);
+		log.debug("sharing = {}", sharing);
+		
+		model.addAttribute("sharing", sharing);
+	}
+	
+	@PostMapping("/adminSharingDelete.do")
+	public String SharingDelete(@RequestParam int no) {
+		
+		log.debug("no = {}", no);
+		
+		// 여기서 no 는 notice_board의 글번호
+		List<Attachment> attach = adminService.selectAttachmentBySharingNo(no);
+		log.debug("attach = {}", attach);
+		
+		// 파일을 서버에서도 삭제
+		if(attach != null && attach.size() != 0) {
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
+			boolean isDelete = targetFile.delete();
+			
+			log.debug("isDelete = {}", isDelete);
+		}
+		
+		int result = 0;
+
+//		result = adminService.deleteSharingComment(reviewNo);
+		result = adminService.deleteSharing(no);
+		String msg = result > 0 ? "삭제 완료" : "삭제 실패";
+		log.debug(msg);
+			
+		return "redirect:/admin/adminSharingList.do";
+	}
+	
+	
+///////////////////////////////////////////////////////////////////////////////
 	
 	/**
 	 * [공지사항 목록] 
@@ -1270,46 +1583,10 @@ public class AdminManageController {
 		Notice notice = adminService.selectOneNoticeCollection(noticeNo);
 		log.debug("notice = {}", notice);
 		
-		model.addAttribute("notice", notice);
-		
-		List<Member> list = adminService.selectOneloginMember(noticeNo);
+		List<Member> list = adminService.selectNoticeOneloginMember(noticeNo);
 		log.debug("list = {}", list);
-		
-	}
-	
-	@GetMapping (
-			value = "/fileDownload.do",
-			produces = MediaType.APPLICATION_OCTET_STREAM_VALUE
-	)
-	@ResponseBody
-	public Resource fileDownload(@RequestParam int no, HttpServletResponse response) {
-		
-		// resource 객체 생성
-		Resource resource = null;
-		
-		try {
-			// db attachment 행 조회하기
-			Attachment attach = adminService.selectOneAttachment(no);
-			log.debug("attach = {}", attach);
-			
-			// 실제 다운로드 할 파일경로 가져오기
-			String saveDirectory = application.getRealPath("/resources/upload/notice");
-			log.debug("saveDirectory = {}", saveDirectory);
-			
-			File downFile = new File(saveDirectory, attach.getRenamedFilename());
-			
-			resource = resourceLoader.getResource("file:" + downFile);
-			log.debug("file : {}", downFile);
-			
-			// 헤더값 설정
-			String filename = new String(attach.getOriginalFilename().getBytes("utf-8"), "iso-8859-1");
-			response.addHeader("Content-Disposition", "attachment; filename=" + filename);
-			
-			
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return resource;
+
+		model.addAttribute("notice", notice);
 		
 	}
 	
