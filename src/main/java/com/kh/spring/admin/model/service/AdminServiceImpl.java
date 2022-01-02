@@ -545,5 +545,10 @@ public class AdminServiceImpl implements AdminService {
 	public int adminMemberCut(String id) {
 		return adminDao.adminMemberCut(id);
 	}
+
+	@Override
+	public int adminMemberUnblock(String id) {
+		return adminDao.adminMemberUnblock(id);
+	}
 	
 }

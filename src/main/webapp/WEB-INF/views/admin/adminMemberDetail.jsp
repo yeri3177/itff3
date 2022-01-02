@@ -98,10 +98,21 @@
 		        	data-toggle="modal"
 					data-target="#adminMemberUpdate"
 					onclick="memberUpdate_btn('${member.id}');">회원 정보 수정</button>
+		       <c:if test="${member.enabled eq true }">
 		        <button 
 		        	type="button" 
 		        	class="btn btn-danger" 												
 		        	data-toggle="modal"
 					data-target="#adminMemberCut"
 					onclick="member_cut_btn('${member.id}');">차단</button>
+		       </c:if>
+		       <c:if test="${member.enabled eq false }">
+		        <button 
+		        	type="button" 
+		        	class="btn btn-danger" 												
+		        	data-toggle="modal"
+					data-target="#adminMemberUnblock"
+					onclick="member_unblock_btn('${member.id}');">차단해제</button>
+		       </c:if>
+					
 		      </div>

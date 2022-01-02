@@ -412,7 +412,6 @@ public class AdminManageController {
 		return "redirect:/admin/adminMemberList.do";
 	}
 	
-	
 	/**
 	 * [회원 차단]
 	 */
@@ -446,6 +445,43 @@ public class AdminManageController {
 			throw e;
 		}
 			
+		return "redirect:/admin/adminMemberList.do";
+	}
+	
+	
+	/**
+	 * [회원 차단 해제]
+	 */
+	
+	@GetMapping("/adminMemberUnblock.do")
+	public Member adminMemberUnblock(@RequestParam(value = "id", required = false) String id, Model model) {
+		log.debug("id = {}", id);
+		
+		Member member = adminService.selectOneMember(id);
+		log.debug("member = {}", member);
+		
+		model.addAttribute("member", member);
+		
+		return member;
+	}
+	
+	@PostMapping("/adminMemberUnblock.do")
+	public String adminMemberUnblock(@RequestParam(value = "id", required = false) String id, RedirectAttributes redirectAttr) {
+		log.debug("id = {}", id);
+		
+		try { 		
+			int result = adminService.adminMemberUnblock(id);
+			redirectAttr.addFlashAttribute("msg", "회원 차단 해제 성공");
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			redirectAttr.addFlashAttribute("msg", e.getMessage());
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
 		return "redirect:/admin/adminMemberList.do";
 	}
 	

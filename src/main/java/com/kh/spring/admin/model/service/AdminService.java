@@ -186,5 +186,7 @@ public interface AdminService {
 	int deleteSharing(int no);
 
 	int adminMemberCut(String id);
+
+	int adminMemberUnblock(String id);
 	
 }

@@ -236,7 +236,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										</div>
 									</div>
 								</div>
-								<!-- 회원 포인트 지급 -->
+								<!-- 회원 포인트 지급 끝 -->
 								<!-- 회원 차단 -->
 								<div class="modal fade" id="adminMemberCut" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
@@ -251,7 +251,22 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 											</div>
 										</div>
 									</div>
-								<!-- 회원 포인트 지급 -->
+								<!-- 회원 차단 끝 -->
+								<!-- 회원 차단 해제 -->
+								<div class="modal fade" id="adminMemberUnblock" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax6">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+								<!-- 회원 차단 해제 끝 -->
 								<!-- 전체 메세지 -->
 								<div class="modal fade" id="adminTotalMsg" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
@@ -436,6 +451,31 @@ function member_cut_btn(memberId) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax5").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 회원 차단 해제
+function member_unblock_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberUnblock.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax6").html(data);
 		},
 		complete: function() {
 			console.log("complete")

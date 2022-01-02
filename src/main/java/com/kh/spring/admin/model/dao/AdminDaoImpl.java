@@ -498,4 +498,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.adminMemberCut", id);
 	}
 
+	@Override
+	public int adminMemberUnblock(String id) {
+		return session.update("admin.adminMemberUnblock", id);
+	}
+
 }

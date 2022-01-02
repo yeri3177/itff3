@@ -1167,7 +1167,15 @@
 			enabled = 0
 		where
 			id = #{id}
-		
+	</update>
+	
+	<update id="adminMemberUnblock">
+		update 
+			member
+		set 
+			enabled = 1
+		where
+			id = #{id}
 	</update>
 	
 </mapper>
