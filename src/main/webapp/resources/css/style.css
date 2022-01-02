@@ -1,4 +1,4 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
 html {
     overflow-y: visible;
@@ -27,7 +27,6 @@ body {
     font-size: 0.75em;
     background: #212121;
 }
-
 
 /* index.jsp 시작 */
 
@@ -428,7 +427,7 @@ section#main-content {
 
 .banner .bn_inner {
     padding: 60px 0 80px;
-    background: url(https://i.imgur.com/jXcBmgg.jpg);
+    background: url(https://i.imgur.com/1WlQ4wr.jpg);
 }
 
 .banner .bn_inner:hover {
