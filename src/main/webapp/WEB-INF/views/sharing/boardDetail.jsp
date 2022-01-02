@@ -146,6 +146,14 @@
 </div>
 
 
+<div class="card my-4">
+   <div class="card-body">
+    <form>
+        <div class="form-group"><textarea class="form-control" rows="3" style="background-color:#F2F2F2">댓글을 남겨주세요..</textarea></div>
+        <button class="btn btn-primary float-right"  type="submit">댓글등록</button>
+    </form>
+   </div>
+</div>
 <div class="cmt_wrap has_top">
 	<div class="cmt_list">
 		<c:set var="cnt" value="0"/>  
@@ -170,6 +178,14 @@
 					</div>
 					<!--AfterComment(71876047,25365243)-->
 					
+					<div class="media mb-4">
+				       <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+				       <div class="media-body" style="background-color:#F2F2F2">
+				           <h5 class="mt-0">${comment.member.nickname}</h5>
+						   ${comment.content}
+				       </div>
+				   	</div>
+					
 					<div class="cmt_buttons">
 						<div class="cmt_vote">
 							<sec:authorize access="isAuthenticated()">
@@ -193,13 +209,34 @@
 						<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
 					</div>
 				</div>
+				
+				<!-- 대댓글(2단계) -->
+				<c:if test="${comment.commentLevel eq 2}">
+					<article >
+					 <div class="media mt-4">
+		               <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
+		               <div class="media-body">
+		                   <h5 class="mt-0">${comment.member.nickname}</h5>
+		                   ${comment.content}
+		               </div>
+					</article>
+				</c:if>
+				
 			</article>
-		
 		</c:if>
-		
 		</c:forEach>
+		
+		<!-- 댓글 삭제용 폼 -->
+		<form:form 
+			action="${pageContext.request.contextPath}/sharing/boardCommentDelete.do?${_csrf.parameterName}=${_csrf.token}" 
+			name="reviewCommentDelFrm"
+			method="POST">
+			<input type="hidden" name="no" />
+			<input type="hidden" name="reviewNo" value="${review.reviewNo}" />
+		</form:form>	
 	</div>
 </div>
+
 
 <%-- <hr style="margin-top:30px"/>
 
