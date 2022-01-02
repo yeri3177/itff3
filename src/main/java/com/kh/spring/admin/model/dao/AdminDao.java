@@ -191,4 +191,6 @@ public interface AdminDao {
 
 	int adminMemberCut(String id);
 
+	int adminMemberUnblock(String id);
+
 }

@@ -1215,6 +1215,8 @@ $( ".getfive" ).on( "click", function() {
 <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
 
 <script>
+
+// todo
 var filters = {
 		  all: function(todos) {
 		    return todos;
@@ -1283,6 +1285,7 @@ var filters = {
 		    }
 		  }
 		});
+		
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>
