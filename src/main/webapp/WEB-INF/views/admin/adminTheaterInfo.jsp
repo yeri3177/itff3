@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		
-		<div class="shadow-lg p-3 mb-5 rounded">
+		<div class="shadow-lg p-3 mb-5 rounded" style="margin-left: 480px;">
 		<div class="container">
 		  <div class="row">
 		  <c:forEach items="${list}" var="list">  	
@@ -41,6 +41,7 @@
 		  </div>
 		</div>
 		</div>
+
 
 		<!-- 상품 상세 -->
 		<div class="modal fade" id="adminTheaterDetail" tabindex="-1"

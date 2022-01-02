@@ -188,5 +188,13 @@ public interface AdminService {
 	int adminMemberCut(String id);
 
 	int adminMemberUnblock(String id);
+
+	List<Review> searchReview(Map<String, Object> param);
+
+	int searchReviewCount(Map<String, Object> param);
+
+	List<Board> searchSharing(Map<String, Object> param);
+
+	int searchSharingCount(Map<String, Object> param);
 	
 }

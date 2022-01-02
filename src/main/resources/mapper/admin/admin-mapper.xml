@@ -1178,4 +1178,108 @@
 			id = #{id}
 	</update>
 	
+	<select id="searchReview" resultType="review">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					r.* 
+				from 
+					review_board r)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('reviewNo')">
+				where 
+					review_no like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('reviewTitle')">
+				where 
+					review_title like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+				where 
+					member_id like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+
+	<select id="searchReviewCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('reviewNo')">
+			select 
+				count(*) 
+			from 
+				review_board
+			where 
+				review_no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('reviewTitle')">
+			select 
+				count(*) 
+			from 
+				review_board
+			where 
+				review_title like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+			select 
+				count(*) 
+			from 
+				review_board
+			where 
+				member_id like #{searchKeyword}
+		</if>
+	</select>
+	
+	<select id="searchSharing" resultType="board">
+			select 
+				*
+			from (
+				select 
+					row_number() over(order by reg_date desc) rnum, 
+					t.* 
+				from 
+					ticket_sharing_board t)
+			<choose>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('no')">
+				where 
+					no like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('title')">
+				where 
+					title like #{searchKeyword}
+			</when>
+			<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+				where 
+					member_id like #{searchKeyword}
+			</when>
+			</choose>
+	</select>
+
+	<select id="searchSharingCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('no')">
+			select 
+				count(*) 
+			from 
+				ticket_sharing_board
+			where 
+				no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('title')">
+			select 
+				count(*) 
+			from 
+				ticket_sharing_board
+			where 
+				title like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+			select 
+				count(*) 
+			from 
+				ticket_sharing_board
+			where 
+				member_id like #{searchKeyword}
+		</if>
+	</select>
+	
 </mapper>

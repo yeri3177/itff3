@@ -239,7 +239,6 @@ public class AdminServiceImpl implements AdminService {
 			throw new BoardException("공지사항 글/첨부파일 등록 오류", e);
 		}
 		
-		
 		return result;
 	}
 
@@ -314,10 +313,8 @@ public class AdminServiceImpl implements AdminService {
 				for(Attachment attach : attachments) {
 					attach.setNoticeNo(notice.getNoticeNo());
 					log.debug("attach = {}", attach);
-					result = adminDao.insertAttachment(attach);
-					
+					result = adminDao.insertAttachment(attach);				
 				}
-					
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -549,6 +546,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminMemberUnblock(String id) {
 		return adminDao.adminMemberUnblock(id);
+	}
+
+	@Override
+	public List<Review> searchReview(Map<String, Object> param) {
+		return adminDao.searchReview(param);
+	}
+
+	@Override
+	public int searchReviewCount(Map<String, Object> param) {
+		return adminDao.searchReviewCount(param);
+	}
+
+	@Override
+	public List<Board> searchSharing(Map<String, Object> param) {
+		return adminDao.searchSharing(param);
+	}
+
+	@Override
+	public int searchSharingCount(Map<String, Object> param) {
+		return adminDao.searchSharingCount(param);
 	}
 	
 }
