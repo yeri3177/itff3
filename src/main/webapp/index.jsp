@@ -296,8 +296,6 @@ section#main-content {
 </div>
 <!-- 굿즈샵 배너 끝 -->
 
-<!-- //contents -->
-
 <!-- 공지사항 -->
 <div class="sec news">
 	<div class="container">
@@ -317,6 +315,54 @@ section#main-content {
 	</div>
 </div>
 </div>
+
+<!-- 이메일 구독 -->
+<div class="newsletter-sns" id="newsletter">
+  <div class="container">
+    <div class="main-sns col-md-6">
+      <h2>newsletter</h2>
+	<h5>정보기술영화제의 최근 소식과 다양한 정보들을<br>빠르고 간편하게 만나보세요</h5>	
+    </div>
+	  <div class="main-newsletter col-md-6">
+       <!-- RD Mailform-->
+       <form action="">
+      <div class="form-wrap">
+        <label>Your e-mail...</label>
+        <input class="form-input form-control-has-validation form-control-last-child" id="email" type="email" name="email" placeholder="e-mail" data-constraints="@Email @Required">
+        <button class="btn btn-sm btn-secondary" onclick="gosave();">구독신청</button>
+      </div>
+       </form>
+    </div>
+    
+  </div>
+</div>
+
+<!-- 제작 지원 -->
+<div class="wrapper">
+	<div class="photobanner">
+  <img class="first" src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
+</div>
+</div>
+
 
 		<!-- chat modal -->
 		<div class="modal fade" id="chat" tabindex="-1"
@@ -367,6 +413,14 @@ function slideSlider(){
 	
 </script>
 
+<script>
+
+// 메일 구독
+function gosave() {
+	alert('구독이 완료되었습니다.');
+}
+
+</script>
  
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
