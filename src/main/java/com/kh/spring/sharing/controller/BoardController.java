@@ -166,8 +166,8 @@ public class BoardController {
 		List<BoardComment> commentList = boardService.selectCommentList(no);
 		log.debug("CommentList = {}", commentList);
 		
-		
 		model.addAttribute("board", board);
+		model.addAttribute("commentList", commentList);
 	}
 	
 	@GetMapping("/boardUpdate.do")
