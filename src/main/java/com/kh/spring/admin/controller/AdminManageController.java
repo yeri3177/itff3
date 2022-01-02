@@ -14,6 +14,7 @@ import java.io.File;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -255,7 +256,7 @@ public class AdminManageController {
 		// 3. pagebar
 		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		
@@ -302,9 +303,9 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		
@@ -650,7 +651,8 @@ public class AdminManageController {
 		// 3. pagebar
 		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
+		
 		model.addAttribute("pagebar", pagebar);
 		
 		return "admin/adminGoodsList";
@@ -696,9 +698,9 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		
@@ -937,17 +939,20 @@ public class AdminManageController {
 		// 1.
 		List<Goods> list = adminService.selectGoodsList(offset, limit);
 		log.debug("list = {}", list);
+		
 		model.addAttribute("list", list);
 		
 		// 2. totalContent
 		int totalContent = goodsService.selectGoodsTotalCount();
 		log.debug("totalContent = {}", totalContent);
+		
 		model.addAttribute("totalContent", totalContent);
 		
 		// 3. pagebar
 		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
+		
 		model.addAttribute("pagebar", pagebar);
 		
 		return "admin/adminGoodsOptionList";
@@ -1255,7 +1260,7 @@ public class AdminManageController {
 			// pagebar
 			String url = request.getRequestURI(); 
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar = {}", pagebar);
+//			log.debug("pagebar = {}", pagebar);
 			
 			model.addAttribute("list", list);
 			model.addAttribute("totalContent", totalContent);
@@ -1363,6 +1368,58 @@ public class AdminManageController {
 		return "redirect:/admin/adminReviewList.do";
 	}
 	
+	/**
+	 * [리뷰 검색]
+	 */
+	
+	@GetMapping("/adminReviewFinder.do")
+	public String adminReviewFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request,
+			HttpSession session
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Review> list = adminService.searchReview(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchReviewCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword; 
+		log.debug("url = {}", url);
+		
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminReviewList";
+	}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
@@ -1393,7 +1450,7 @@ public class AdminManageController {
 			// pagebar
 			String url = request.getRequestURI(); 
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar = {}", pagebar);
+//			log.debug("pagebar = {}", pagebar);
 			
 			model.addAttribute("list", list);
 			model.addAttribute("totalContent", totalContent);
@@ -1423,7 +1480,7 @@ public class AdminManageController {
 	
 	
 	/**
-	 * [리뷰 삭제]
+	 * [티켓나눔터 삭제]
 	 */
 	
 	@GetMapping("/adminSharingDelete.do")
@@ -1465,6 +1522,56 @@ public class AdminManageController {
 		return "redirect:/admin/adminSharingList.do";
 	}
 	
+
+
+	/**
+	 * [티켓나눔터 검색]
+	 */
+	
+	@GetMapping("/adminSharingFinder.do")
+	public String adminSharingFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam(value="searchType", required=false) String searchType,
+			@RequestParam(value="searchKeyword", required=false) String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<Board> list = adminService.searchSharing(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchSharingCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminSharingList";
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -1496,7 +1603,7 @@ public class AdminManageController {
 			// pagebar
 			String url = request.getRequestURI(); 
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar = {}", pagebar);
+//			log.debug("pagebar = {}", pagebar);
 			
 			model.addAttribute("list", list);
 			model.addAttribute("totalContent", totalContent);
@@ -1758,9 +1865,9 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword; 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		
@@ -1797,7 +1904,7 @@ public class AdminManageController {
 			// pagebar
 			String url = request.getRequestURI();
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar = {}", pagebar);
+//			log.debug("pagebar = {}", pagebar);
 
 			model.addAttribute("list", list);
 			model.addAttribute("totalContent", totalContent);
@@ -1848,9 +1955,9 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		
@@ -1886,7 +1993,7 @@ public class AdminManageController {
 			// pagebar
 			String url = request.getRequestURI();
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar = {}", pagebar);
+//			log.debug("pagebar = {}", pagebar);
 
 			model.addAttribute("list", list);
 			model.addAttribute("totalContent", totalContent);
@@ -2009,9 +2116,9 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
 		

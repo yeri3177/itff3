@@ -21,12 +21,11 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 
 <style>
-div#search-reviewNo {display: ${searchType} == '' || ${searchType} == null || "reviewNo".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-reviewTitle {display: "reviewTitle".equals(${searchType}) ? "inline-block" : "none";}
+div#search-no {display: ${searchType} == '' || ${searchType} == null || "no".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-title {display: "title".equals(${searchType}) ? "inline-block" : "none";}
+div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" : "none";}
 </style>
- -->
 
 <!-- 게시판 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminBoardNavBar.jsp"></jsp:include>
@@ -55,9 +54,10 @@ div#search-reviewTitle {display: "reviewTitle".equals(${searchType}) ? "inline-b
 					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
 					            <option value="no" ${"no".equals(searchType) ? "selected" : ""}>글번호</option>		
 					            <option value="title" ${"title".equals(searchType) ? "selected" : ""}>글제목</option>
+					            <option value="memberId" ${"memberId".equals(searchType) ? "selected" : ""}>작성자</option>
 					        </select>
 					        <div id="search-no" class="search-type" style="width: 500px !important;">
-					            <form action="${pageContext.request.contextPath}/admin/adminsharingFinder.do">
+					            <form action="${pageContext.request.contextPath}/admin/adminSharingFinder.do">
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="no"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'no' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
@@ -66,10 +66,19 @@ div#search-reviewTitle {display: "reviewTitle".equals(${searchType}) ? "inline-b
 					            </form>	
 					        </div>
 					        <div id="search-title" class="search-type" style="display: none;">
-					            <form action="${pageContext.request.contextPath}/admin/adminsharingFinder.do">
+					            <form action="${pageContext.request.contextPath}/admin/adminSharingFinder.do">
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="title"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="제목을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'title' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					            </div>
+					            </form>	
+					        </div>
+					        <div id="search-memberId" class="search-type" style="display: none;">
+					            <form action="${pageContext.request.contextPath}/admin/adminSharingFinder.do">
+					            <div style="display: flex;">
+					                <input type="hidden" name="searchType" value="memberId"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="작성자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'memberId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
 					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
