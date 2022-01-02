@@ -1,3 +1,5 @@
+<%@page import="com.kh.spring.sharing.model.vo.BoardComment"%>
+<%@page import="java.util.List"%>
 <%@page import="org.springframework.web.context.request.RequestContextListener"%>
 <%@page import="com.kh.spring.member.model.vo.Member"%>
 <%@page import="com.kh.spring.sharing.model.vo.Board"%>
@@ -51,6 +53,7 @@
 	Authentication authentication = securityContext.getAuthentication();
 	System.out.println(authentication.getPrincipal());
 	
+	
 	if(authentication.getPrincipal() != "anonymousUser"){
 		Member loginMember = (Member) authentication.getPrincipal();
 		pageContext.setAttribute("loginMember", loginMember);
@@ -58,6 +61,8 @@
 		editable = loginMember != null && (
 				loginMember.getId().equals(board.getMemberId())
 				);
+		
+	List<BoardComment> commentList = (List<BoardComment>) request.getAttribute("commentList");
 }
 %>
 
@@ -140,7 +145,86 @@
 	</div>
 </div>
 
- <!-- Comments form-->
+
+<div class="cmt_wrap has_top">
+	<div class="cmt_list">
+		<c:set var="cnt" value="0"/>  
+		<c:forEach items="${commentList}" var="comment" varStatus="vs">
+		
+		<!-- 댓글 1단계 -->
+		<c:if test="${comment.commentLevel eq 1}">
+			<article class="cmt_unit" id="commentNo${comment.no}">
+				<div class="cmt_header">
+					<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
+						${comment.member.nickname}
+					</a>
+					<!-- 글 작성자의 댓글이면 작성자 표시 -->
+					<c:if test="${board.memberId eq comment.writer}">
+						<span class="writer pt_bg2">작성자</span>
+					</c:if>
+				</div>
+				<div class="cmt_body">
+				<!--BeforeComment(71876047,25365243)-->
+					<div class="comment_71876047_25365243 rhymix_content xe_content" data-pswp-uid="2">
+						${comment.content}
+					</div>
+					<!--AfterComment(71876047,25365243)-->
+					
+					<div class="cmt_buttons">
+						<div class="cmt_vote">
+							<sec:authorize access="isAuthenticated()">
+								<a class="bt bt2 reply" href="javascript:void(0)" data-no="${comment.no}" data-image="${loginMemberImage}" data-id="${loginMemberId}" data-reviewno="${review.reviewNo}" style=" border-radius: 5px;">
+									댓글
+								</a>
+								<c:if test="${loginMemberId eq comment.writer}">
+									<a class="bt bt2 deleteComment" href="javascript:void(0)" data-no="${comment.no}" style="border-radius: 5px;">
+										삭제
+									</a>
+								</c:if>
+							</sec:authorize>
+							<sec:authorize access="isAnonymous()">
+							<a class="bt bt2 anonymous" href="javascript:void(0)">
+								댓글
+							</a>
+							</sec:authorize>
+						</div>
+					</div>
+					<div class="cmt_date_wrap text_en font_grey1">
+						<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+					</div>
+				</div>
+			</article>
+		
+		</c:if>
+		
+		</c:forEach>
+	</div>
+</div>
+
+<%-- <hr style="margin-top:30px"/>
+
+<div class="comment-container">
+	<div class="comment-editor">
+		<form 
+			action="<%= request.getContextPath() %>/sharing/boardCommentEnroll"
+			name="boardCommentFrm"
+			method="POST">
+			<textarea name="content" id="" cols="60" rows="3"></textarea>
+			<button id="btn-insert">등록</button>
+			
+			<input type="hidden" name="commentLevel" value="1" />
+			<input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+			<input type="hidden" name="boardNo" value="<%= board.getNo() %>" />
+			<input type="hidden" name="commentRef" value="0" />
+		</form>
+	</div>
+</div> --%>
+
+<!-- Comments form-->
+<!-- Single comment-->
+<!-- Comment with nested comments-->
+<!--  
+ 
                     <div class="card my-4">
 
                         <div class="card-body">
@@ -150,7 +234,7 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Single comment-->
+                    
                     <div class="media mb-4">
                         <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
                         <div class="media-body" style="background-color:#F2F2F2">
@@ -158,7 +242,7 @@
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                         </div>
                     </div>
- <!-- Comment with nested comments-->
+
                     <div class="media mb-4">
                         <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
                         <div class="media-body">
@@ -180,6 +264,7 @@
                             </div>
                         </div>
                     </div>
+-->
 <br />
 <br />
 <br />

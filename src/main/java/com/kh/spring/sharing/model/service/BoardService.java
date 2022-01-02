@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
+import com.kh.spring.sharing.model.vo.BoardComment;
 
 public interface BoardService {
 
@@ -26,5 +27,7 @@ public interface BoardService {
 	int deleteOneBoard(int no);
 
 	int deleteAttachment(int i);
+
+	List<BoardComment> selectCommentList(int boardNo);
 
 }
