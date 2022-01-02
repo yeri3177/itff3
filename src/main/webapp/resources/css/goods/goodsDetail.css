@@ -82,6 +82,7 @@ body {
 	justify-content: space-between;
 }
 
+
 .icon-group {
 	display: flex;
 }
@@ -509,7 +510,7 @@ textarea:focus {
 /****************** 장바구니 버튼 토스트 ***************************/
 #cartToasts-div {
 	position: absolute;
-	top: 35%;
+	top: 34%;
 	left: 43%;
 	
 	opacity: 0.83;

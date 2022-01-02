@@ -292,4 +292,29 @@
 	</update>
 	
 	
+	<select id="selectOneGoodsLike" resultType="goodsLike">
+		select * 
+		from goods_like 
+		where p_id = #{pId}
+		and user_id = #{userId}
+	</select>
+	
+	
+	<insert id="insertGoodsLike">
+		insert into
+			goods_like
+		values(
+			default,
+			#{pId},
+			#{userId}
+		)
+	</insert>
+	
+	<delete id="deleteGoodsLike">
+		delete from goods_like
+		where user_id = #{userId}
+		and p_id = #{pId}
+	
+	</delete>
+	
 </mapper>

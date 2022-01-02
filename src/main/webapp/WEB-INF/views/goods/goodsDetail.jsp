@@ -360,8 +360,8 @@
 				</div>
 				
 				<!-- 찜하기 아이콘 -->
-				<div class="iconBg-div">
-					<i class="far fa-heart"></i>
+				<div class="iconBg-div" id="goodsLike-btn">
+					<!-- <i class="far fa-heart"></i> -->
 				</div>
 			</div>
 		</div>
@@ -581,10 +581,88 @@ $(() => {
 	/* 토스트 확인용 */
 	//fn_toast("URL 복사 되었습니다.");
 	
+	/* 좋아요 버튼 눌렀는지 찾기 */
+	fn_selectGoodsLike();
+	
+	
+	
     
 });
 
-/* 왼쪽 컨테이너 fixed 하는 함수 */ 
+/* 페이지 로드시 좋아요 버튼 눌렀는지 찾기 */
+function fn_selectGoodsLike(){
+	const like = {
+		goodsId : $("[name=goodsId]").val(),
+		memberId : $("[name=memberId]").val()
+	}
+	
+	// ajax로 goods_like 레코드 있는지 조회
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/selectGoodsLike.do?${_csrf.parameterName}=${_csrf.token}",
+		data: like,
+		type : "post",
+		success : function(result){
+        	//console.log(result);
+        	
+        	/* 이미지 넣기 */
+        	$("#goodsLike-btn").html(result);
+
+        },
+        error: console.log
+    });
+	
+};
+
+
+
+/* 좋아요 버튼 클릭시 좋아요 추가/삭제 */
+$("#goodsLike-btn").click((e) => {
+	
+	/*
+	빈하트이면
+	{goodsId: '69', memberId: '', likeYn: 'far fa-heart'}
+	likeYn: "far fa-heart"
+	
+	빨강하트이면
+	{goodsId: '69', memberId: 'abcde', likeYn: 'fas fa-heart'}
+	likeYn: "fas fa-heart"
+	*/
+	
+	const like = {
+		goodsId : $("[name=goodsId]").val(),
+		memberId : $("[name=memberId]").val(),
+		heartClass : $("#goodsLike-btn i").attr('class')
+	}
+	
+	console.log(like);
+	
+	// ajax로 goods_like 레코드 삽입 또는 삭제 처리 
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/updateGoodsLike.do?${_csrf.parameterName}=${_csrf.token}",
+		data: like,
+		type : "post",
+        
+		success : function(result){
+        	
+        	/* 이미지 넣기 */
+        	$("#goodsLike-btn").html(result);
+        	
+        	if(result.includes("far")){
+        		fn_toast("상품을 좋아요 목록에 삭제 하였습니다.")
+        	}
+        	else if(result.includes("fas")){
+        		fn_toast("상품을 좋아요 목록에 추가 하였습니다.")
+        	}
+
+        },
+        error: console.log
+    });
+	
+});
+	
+
+
+/* 오른쪽 컨테이너 fixed 하는 함수 */ 
 $(function() {
     $.fn.Scrolling = function(obj, tar) {
         var _this = this;
@@ -615,6 +693,7 @@ function clip(){
 	fn_toast("URL이 복사 되었습니다.");
 }
 
+/* 토스트 x버튼 클릭시 */
 $(".btn-close").click((e) => {
 	$toast.hide();
 })

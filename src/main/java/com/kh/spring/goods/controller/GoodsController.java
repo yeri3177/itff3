@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 
@@ -102,7 +104,7 @@ public class GoodsController {
 		// [색상 -> 사이즈] 최초 옵션리스트
 		List<OptionDetail> sizeList = goodsService.selectSizeByFirstColor(pid);
 		request.setAttribute("sizeList", sizeList);
-
+		
 	}
 	
 	/**
@@ -326,5 +328,96 @@ public class GoodsController {
 		return "redirect:/goods/goodsCart.do";
 	}
 		
+	/**
+	 * 상품상세페이지 로드시 좋아요 버튼 데이터 찾기 
+	 */
+	@PostMapping("/selectGoodsLike.do")
+	public String selectGoodsLike(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model) {
+		log.debug("map = {}", map); // map = {_csrf=5961090e-f0ea-48b2-bcab-3fd08a4fc787, goodsId=69, memberId=abcde}
+		
+		String goodsId = (String) map.get("goodsId");	
+		String memberId = (String) map.get("memberId");
+
+		//log.debug("goodsId = {}", goodsId); // goodsId = 69
+		//log.debug("memberId = {}", memberId); // memberId = abcde 또는 "" 
+		
+		HttpSession session = request.getSession();
+		String sessionId = session.getId();
+		log.debug("세션아이디 = {}", sessionId);
+		
+		// 회원 아이디 
+		String userId ="";
+		
+		if(memberId == "") {
+			userId = sessionId;
+		}else {
+			userId = memberId;
+		}
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("pId", goodsId);
+		param.put("userId", userId);
+		
+		
+		// 로그인 안하면 -> {pid=69, userId=06B7864EDD3E6299CC717E3B757ECF48}
+		// 로그인 하면 -> {pid=69, userId=abcde}
+		log.debug("selectGoodsLike의 param = {}", param); 
+		
+		// 업무로직 
+		GoodsLike like = goodsService.selectOneGoodsLike(param);
+		log.debug("like = {}", like); // GoodsLike(goodsLikeId=21, pId=69, userId=abcde) 또는 null 
+		
+		if(like != null) {
+			model.addAttribute("like", 1);
+		} else {
+			model.addAttribute("like", 0);
+		}
+		log.debug("model 데이터 ???? = {}", model.toString()); 
+		
+		return "goods/goodsLikeDiv";
+	}
+	
+	
+	
+	/**
+	 * 좋아요 버튼 클릭시 update 처리 
+	 * 빈하트는 far / 풀하트는 fas 
+	 */
+	@PostMapping("/updateGoodsLike.do")
+	public String updateGoodsLike(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model) {
+		log.debug("map = {}", map); // map = {_csrf=a5ce0b62-0ce7-4a8b-bc91-7a6b40548fe5, goodsId=69, memberId=, heartClass=far fa-heart}
+		
+		// 업무로직 매개변수로 사용할 map 
+		Map<String, Object> param = new HashMap<>();
+		param.put("pId", map.get("goodsId"));
+		
+		HttpSession session = request.getSession();
+		
+		//memberId값 없으면 세션아이디값 넣기 
+		if(map.get("memberId") == "") {
+			param.put("userId", session.getId());
+		}else {
+			param.put("userId", map.get("memberId"));
+		}
+		
+		log.debug("param = {}", param); // 로그인 안할시 {pId=69, userId=0717050127A1036754544481EB973D99}
+		
+		int result = 0;
+		String heartClass = (String) map.get("heartClass");
+		//빈하트이면 레코드 추가하고 like 1로 하기 
+		if(heartClass.contains("far")) {
+			result = goodsService.insertGoodsLike(param);
+			model.addAttribute("like", 1);
+		}
+		
+		
+		//풀하트이면 레코드 삭제하고 like 0으로 하기 
+		if(heartClass.contains("fas")) {
+			result = goodsService.deleteGoodsLike(param);
+			model.addAttribute("like", 0);
+		}
+		
+		return "goods/goodsLikeDiv";
+	}
 
 }
