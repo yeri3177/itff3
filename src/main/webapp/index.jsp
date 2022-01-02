@@ -337,7 +337,7 @@ section#main-content {
   </div>
 </div>
 
-<!-- 제작 지원 -->
+<!-- 제작 지원 
 <div class="wrapper">
 	<div class="photobanner">
   <img class="first" src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
@@ -362,7 +362,7 @@ section#main-content {
   <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
 </div>
 </div>
-
+-->
 
 		<!-- chat modal -->
 		<div class="modal fade" id="chat" tabindex="-1"
