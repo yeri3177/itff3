@@ -7,6 +7,7 @@ import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
 public interface GoodsService {
@@ -48,6 +49,12 @@ public interface GoodsService {
 	CartJoin selectGoodsCartQtyModal(String id);
 
 	int updateCart(Map<String, Object> map);
+
+	GoodsLike selectOneGoodsLike(Map<String, Object> param);
+
+	int insertGoodsLike(Map<String, Object> param);
+
+	int deleteGoodsLike(Map<String, Object> param);
 
 
 }
