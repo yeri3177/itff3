@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
+import com.kh.spring.sharing.model.vo.BoardComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -74,6 +75,11 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int deleteOneBoard(int no) {
 		return session.delete("board.deleteOneBoard", no);
+	}
+
+	@Override
+	public List<BoardComment> selectCommentList(int boardNo) {
+		return session.selectList("board.selectCommentList", boardNo);
 	}
 
 	

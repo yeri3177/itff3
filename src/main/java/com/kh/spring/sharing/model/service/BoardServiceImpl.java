@@ -12,6 +12,7 @@ import com.kh.spring.sharing.model.dao.BoardDao;
 import com.kh.spring.sharing.model.exception.BoardException;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
+import com.kh.spring.sharing.model.vo.BoardComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -108,6 +109,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteAttachment(int attachNo) {
 		return boardDao.deleteBoardAttachment(attachNo);
+	}
+
+	@Override
+	public List<BoardComment> selectCommentList(int boardNo) {
+		return boardDao.selectCommentList(boardNo);
 	}
 
 	

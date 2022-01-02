@@ -135,4 +135,34 @@
 	where no = #{no}
 </delete>
 
+<select id="selectCommentList" resultMap="boardCommentCollectionMap">
+	select
+		tc.*,
+		m.*
+	from
+		ticket_sharing_comment tc join member m
+		on tc.writer = m.id
+	where
+		tc.board_no = #{boardNo} start with tc.comment_level = 1 connect by prior no = tc.comment_ref order siblings by tc.reg_date asc
+</select>
+<resultMap type="boardComment" id="boardCommentCollectionMap">
+	<id column="no" property="no"/>
+	<result column="board_no" property="boardNo"/>
+	<result column="writer" property="writer"/>
+	<result column="content" property="content"/>
+	<result column="reg_date" property="regDate"/>
+	<result column="comment_level" property="commentLevel"/>
+	<result column="comment_ref" property="commentRef"/>
+	<association property="member" javaType="member">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="birthday" property="birthday"/>
+		<result column="address" property="address"/>
+		<result column="nickname" property="nickname"/>
+		<result column="image" property="image"/>	
+	</association>
+</resultMap>
+
 </mapper>
