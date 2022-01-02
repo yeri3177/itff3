@@ -1,9 +1,24 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%
+	SecurityContext securityContext = SecurityContextHolder.getContext();
+	Authentication authentication = securityContext.getAuthentication();
+	
+	if(!"anonymousUser".equals(authentication.getPrincipal())){
+		Member loginMember = (Member) authentication.getPrincipal();
+		pageContext.setAttribute("loginMember", loginMember);
+	}
+
+%>
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
@@ -60,49 +75,68 @@
 		<div class="card-list">
 			
 			<!-- 개별 상품 카드 -->
-			<c:forEach items="${list}" var="goods">
-			<div class="card" style="width: 18rem;" data-id="${goods.PId}">
+			<c:forEach items="${list}" var="goods" varStatus="vs">
+			<div class="card" style="width: 18rem;" data-id="${goods.goods.PId}">
+				<!-- 로그인 아이디 -->
+				<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">
 				<!-- 대표 이미지 -->
 				<div class="img-div">
-					<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg}">
-					
+					<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.goods.PImg}">
 					<!-- 찜하기버튼 -->
-					<div class="iconBg-div">
-						<i class="far fa-heart"></i>
+					<div class="iconBg-div" id="goodsLike-btn${vs.count }">
+						<c:if test="${goods.goodsLike.goodsLikeId eq 0 }">
+							<i class="far fa-heart" data-goods-id="${goods.goods.PId}"></i>
+						</c:if>
+						<c:if test="${goods.goodsLike.goodsLikeId ne 0 }">
+							<i class="fas fa-heart" id="full-heart" data-goods-id="${goods.goods.PId}"></i>
+						</c:if>
 					</div>
 				</div>
-				
 				<!-- 상품텍스트 -->
 				<div class="card-body">
 					<!-- 메인 카테고리 -->
-					<div class="card-text top-text">${goods.PCategory}</div>
-				
+					<div class="card-text top-text">${goods.goods.PCategory}</div>
 					<!-- 상품명 -->
-					<div class="card-text middle-text">${goods.PName}</div>
-					
+					<div class="card-text middle-text">${goods.goods.PName}</div>
 					<!--상품가격 -->
 					<div class="card-text bottom-text">
-						<fmt:formatNumber value="${goods.PPrice}" pattern="￦ #,###" />
+						<fmt:formatNumber value="${goods.goods.PPrice}" pattern="￦ #,###" />
 					</div>
 				</div> <!-- end of 상품텍스트 -->
 			</div> <!-- end of 개별 상품 카드 -->
-			</c:forEach>
-			
+			</c:forEach>	
 		</div><!-- end of 상품 목록 카드 리스트-->
-		
 	</div> <!-- 상품 목록 부분 끝 -->
-	
 	<!-- 페이지바 -->
 	<div id="pagebar">
 		${pagebar}
 	</div>
-	
-	
 </section>
 
 <script>
 
 $(() => {
+	
+	fn_selectGoodsLike();
+	
+	/* 하트 아이콘 클릭시 이벤트 발생 */
+	$("[id^=goodsLike-btn").click((e) => {
+		// 카드 클릭 이벤트 막기 
+		e.stopPropagation();
+		
+		const $this = $(e.target);
+		const goodsId = $this.data("goodsId");
+		
+		console.log("goodsId = " + goodsId);
+		
+		
+		
+		
+
+		
+	});
+	
+	 /* card div 클릭시 상품 상세 페이지 이동함 */
 	$(".card").click((e) => {
 		//console.log(e.target);
 		
@@ -113,10 +147,33 @@ $(() => {
 		location.href = `${pageContext.request.contextPath}/goods/goodsDetail.do?pid=\${pid}`;
 		
 	});
-	
+
 });
 
+/* 페이지 로드시 좋아요 버튼 눌렀는지 찾기 */
+function fn_selectGoodsLike(){
+	const like = {
+		goodsId : $("[name=goodsId]").val(),
+		memberId : $("[name=memberId]").val()
+	}
+	
+	console.log(like);
+	
+	// ajax로 goods_like 레코드 있는지 조회
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/selectGoodsLike.do?${_csrf.parameterName}=${_csrf.token}",
+		data: like,
+		type : "post",
+		success : function(result){
 
+        	$("#goodsLike-btn").html(result);
+
+        },
+        error: console.log
+    });
+};
+
+	
 
 </script>
 

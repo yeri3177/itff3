@@ -13,6 +13,7 @@ import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
+import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
 @Repository
@@ -130,6 +131,13 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public int deleteGoodsLike(Map<String, Object> param) {
 		return session.delete("goods.deleteGoodsLike", param);
+	}
+
+	@Override
+	public List<GoodsLikeJoin> selectGoodsList(Map<String, Object> param) {
+		//RowBounds rowBounds = new RowBounds(offset, limit);
+		RowBounds rowBounds = new RowBounds((int)param.get("offset"), (int)param.get("limit"));
+		return session.selectList("goods.selectGoodsList", param, rowBounds);
 	}
 
 

@@ -27,6 +27,7 @@ import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
+import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 
@@ -44,7 +45,25 @@ public class GoodsController {
 	 * 상품 목록 페이지
 	 */
 	@GetMapping("/goodsList.do")
-	public String goodsList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request) {
+	public String goodsList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, Authentication authentication) {
+
+		HttpSession session = request.getSession();
+		
+		Map<String, Object> param = new HashMap<>();
+		
+		
+		if(authentication != null) {
+			// 로그인 되어 있을시 로그인한 아이디 넣기
+			param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
+		} else {
+			// 로그인 안되어 있을시 세션 아이디 넣기 
+			param.put("loginId", session.getId());
+		}
+		
+		// 로그인X -> param = {loginId=441129F1C9D26CF52CF5155665EEFBC3}
+		// 로그인O -> param = {loginId=abcde}
+		log.debug("param = {}", param); 
+		
 		// 현재 페이지 번호 
 		log.debug("cPage = {}", cPage);
 		
@@ -52,9 +71,13 @@ public class GoodsController {
 		// offset : 건너뛰어야 할 게시글 수
 		int limit = 8;
 		int offset = (cPage - 1) * limit;
+		param.put("limit", limit);
+		param.put("offset", offset);
+		
 		
 		// 1. 상품 리스트 
-		List<Goods> list = goodsService.selectGoodsList(offset, limit);
+		//List<Goods> list = goodsService.selectGoodsList(offset, limit);
+		List<GoodsLikeJoin> list = goodsService.selectGoodsList(param);
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
 		
