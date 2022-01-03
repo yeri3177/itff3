@@ -14,7 +14,7 @@
 }
 
 #admin {
-	background-color: #94C2ED;
+	background-color:  rgb(43, 63, 107);
 	margin-left: 150px;
 }
 
@@ -26,7 +26,7 @@
 	width: 0;
 	height: 0;
 	border: 7px solid transparent;
-	border-bottom-color: #94C2ED;
+	border-bottom-color: rgb(43, 63, 107);
 	border-top: 0;
 	margin-left: -7px;
 	margin-top: -7px;
@@ -45,7 +45,7 @@
 }
 
 #user {
-	background-color: #86BB71;
+	background-color:  rgb(179, 179, 179);
 }
 
 #user::after {
@@ -56,18 +56,18 @@
 	width: 0;
 	height: 0;
 	border: 7px solid transparent;
-	border-bottom-color: #86BB71;
+	border-bottom-color: rgb(179, 179, 179);
 	border-top: 0;
 	margin-left: -7px;
 	margin-top: -7px;
 }
 
 .me {
-    color: #94C2ED;
+    color: rgb(43, 63, 107);
 }
 
 .online {
-    color: #86BB71;
+    color: rgb(179, 179, 179);
 }
 
 .online, .offline, .me {
