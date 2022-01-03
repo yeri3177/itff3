@@ -69,11 +69,7 @@ section#main-content {
 
 		<div class="film_list">
 			<div id="filmSlide1" class="film-slide slick-initialized slick-slider" style="height: 350px;">
-			<button type="button" class="film-slick-arrow film-slick-prev slick-arrow" style="display: block;">Previous</button>
-
 				<div class="slick-list draggable" id="slider-container">
-				<button type="button" class="film-slick-arrow film-slick-next slick-arrow" style="display: block;">Next</button>
-<!-- 					<div class="slick-track" style="opacity: 1; width: 1800px; transform: translate3d(0px, 0px, 0px);"> -->
 					<div class="slick-track" id="slider-scroller">
 						
 						<!-- 반복 부분 돌리기 -->
@@ -337,33 +333,6 @@ section#main-content {
   </div>
 </div>
 
-<!-- 제작 지원 
-<div class="wrapper">
-	<div class="photobanner">
-  <img class="first" src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;" />
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-  <img src="https://i.imgur.com/NmlS9jo.png" alt="" style="width: 200px; height: 50px;"/>
-</div>
-</div>
--->
-
 		<!-- chat modal -->
 		<div class="modal fade" id="chat" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalLabel"
@@ -394,23 +363,6 @@ $(document).ready(function () {
 	});
 });
 
-</script>
-
-<script>
-
-function slideSlider(){
-	  $("#slider-scroller").css({"left":"0%","transition":"all 0s linear"});
-	  $("#slider-scroller").css({"left": String(parseInt($("#slider-scroller").css("left")) - 800) + "px","transition":"all 13s linear"});
-	  setTimeout(function(){moveSliderItem()}, 3435);
-	}
-
-	function moveSliderItem(){
-	  $("#slider-scroller div").first().detach().appendTo($("#slider-scroller"));
-	  slideSlider();
-	}
-
-	slideSlider();
-	
 </script>
 
 <script>
