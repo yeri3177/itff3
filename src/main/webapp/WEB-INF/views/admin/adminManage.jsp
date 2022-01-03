@@ -208,7 +208,7 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recently Opened </span></th>
+																	<th><span> Recently Reservation </span></th>
 																	<th><span> ID </span></th>
 																	<th><span> Enroll Date </span></th>
 																</tr>
@@ -220,11 +220,11 @@
 													</div>
 													
 													<!-- Recently registered -->
-													<div class="span4 recent-gridbox-apps">
+													<div class="span4 recent-gridbox-apps" style="width: 750px;">
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Screening film </span></th>
+																	<th><span> Recently Order </span></th>
 																</tr>
 															</thead>
 															<tbody>
@@ -270,70 +270,11 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th colspan="2"><span> Recent Files </span></th>
+																	<th colspan="2"><span> Recent Registers </span></th>
 																</tr>
 															</thead>
-															<tbody>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-4.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 18 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-5.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 13 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-2.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 12 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-2.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 25 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-4.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 38 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-5.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 27 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-2.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 20 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-5.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 21 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-4.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 29 KB </span></td>
-																</tr>
-																<tr>
-																	<td class="title-td">
-																		<span class="file-title"> hr-2.webp </span>
-																	</td>
-																	<td class="filesize-td"><span> 4 KB </span></td>
-																</tr>
+															<tbody id="recent_registers">
+
 															</tbody>
 														</table>
 
@@ -942,6 +883,8 @@
 
 <script>
 
+/**
+ * 
 // 굿즈 최근 10개
 $(document).ready(function () {
 	$.ajax({
@@ -957,6 +900,7 @@ $(document).ready(function () {
 		}
 	});
 });
+ */
 
 // 최근 일주일 가입
 $(document).ready(function () {
@@ -983,6 +927,22 @@ $(document).ready(function () {
 		dateType: "text",
 		success: function(data) {
 			$("#screening").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 최근 가입 10명
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageRecentTenRegisterList.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#recent_registers").html(data);
 		},
 		complete: function() {
 			console.log("complete")

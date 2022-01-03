@@ -12,6 +12,7 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -117,11 +118,6 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int updateGoods(Goods goods) {
 		return session.update("admin.updateGoods", goods);
-	}
-
-	@Override
-	public List<Goods> selectRecentTenGoodsList() {
-		return session.selectList("admin.selectRecentTenGoodsList");
 	}
 
 	@Override
@@ -533,6 +529,21 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int searchSharingCount(Map<String, Object> param) {
 		return session.selectOne("admin.searchSharingCount", param);
+	}
+
+	@Override
+	public List<Member> adminManageRecentTenRegisterList() {
+		return session.selectList("admin.adminManageRecentTenRegisterList");
+	}
+
+	@Override
+	public int deleteGoodsLike(int pId) {
+		return session.delete("admin.deleteGoodsLike", pId);
+	}
+
+	@Override
+	public List<GoodsOption> selectOneGoodsOptionId(int pId) {
+		return session.selectList("admin.selectOneGoodsOptionId", pId);
 	}
 
 }

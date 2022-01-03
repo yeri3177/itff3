@@ -43,7 +43,7 @@
 					챗봇
 				</a>
 				</li>
-			<li class="quick_kakao"><a href="#" target="_blank">카카오톡</a></li>
+			<li class="quick_kakao"><a id="channel-add-button" href="#" target="_blank" onclick="addChannel();">카카오톡</a></li>
 		</ul>
 		<a href="#" target="_blank"></a>
 	</div>

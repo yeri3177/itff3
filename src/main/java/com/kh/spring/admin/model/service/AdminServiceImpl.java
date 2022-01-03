@@ -15,6 +15,7 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -123,11 +124,6 @@ public class AdminServiceImpl implements AdminService {
 			throw new AdminException("상품/첨부파일 등록 오류", e);
 		}
 		return result;
-	}
-
-	@Override
-	public List<Goods> selectRecentTenGoodsList() {
-		return adminDao.selectRecentTenGoodsList(); 
 	}
 
 	@Override
@@ -566,6 +562,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int searchSharingCount(Map<String, Object> param) {
 		return adminDao.searchSharingCount(param);
+	}
+
+	@Override
+	public List<Member> adminManageRecentTenRegisterList() {
+		return adminDao.adminManageRecentTenRegisterList();
+	}
+
+	@Override
+	public int deleteGoodsLike(int pId) {
+		return adminDao.deleteGoodsLike(pId);
+	}
+
+	@Override
+	public List<GoodsOption> selectOneGoodsOptionId(int pId) {
+		return adminDao.selectOneGoodsOptionId(pId);
 	}
 	
 }
