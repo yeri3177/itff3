@@ -16,15 +16,15 @@
 <span class="btn_tica">
 			
 	<a data-toggle="modal" data-target="#chat" onclick="chat_btn();" class="wviewT">
-	<img src="https://i.imgur.com/P57FUS8.png" title="챗봇" class="quick_img">
+	<img src="https://i.imgur.com/DmuXppF.png" title="챗봇" class="quick_img">
 	</a>
 	
 	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
-	<img src="https://i.imgur.com/XK9HG4g.png" title="티켓 예매 바로가기" class="quick_img">
+	<img src="https://i.imgur.com/nM5ACcZ.png" title="티켓 예매 바로가기" class="quick_img">
 	</a>
 	
 	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
-	<img src="https://i.imgur.com/PQzlfS8.png" title="예매내역 확인하기" class="quick_img">
+	<img src="https://i.imgur.com/QhnGPsj.png" title="예매내역 확인하기" class="quick_img">
 	</a>
 
 </span>
