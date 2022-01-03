@@ -69,15 +69,6 @@ section#main-content {
     padding: 0;
 }
 
-.slick-track {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .slick-initialized .slick-slide {
     margin: 0 10px;
 }
@@ -305,14 +296,6 @@ section#main-content {
     padding: 0;
 }
 
-.slick-slider .slick-track, .slick-slider .slick-list {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
 .pg .slick-list {
     margin: 0 auto;
     width: 1800px;
@@ -392,14 +375,6 @@ section#main-content {
     margin-bottom: 50px;
 }
 
-.slick-slider .slick-track, .slick-slider .slick-list {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
 .slick-list {
     position: relative;
     display: block;
@@ -407,6 +382,7 @@ section#main-content {
     margin: 0;
     padding: 0;
 }
+
 .slick-slide, .slick-list, .slick-track, .visual-slider {
     position: relative;
     height: 100%;
@@ -423,6 +399,10 @@ section#main-content {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    width: 6000px; 
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: nowrap;
 }
 
 .banner .bn_inner {
@@ -707,38 +687,16 @@ label {
     border-bottom-right-radius: 30px;
 }
 
-/* 제작지원 */
+#slider-scroller {
+  animation: bannermove 60s linear infinite alternate;
+}
 
-/* .wrapper { */
-/* width: 100%; */
-/* overflow: hidden; */
-/* background-color: white; */
-/* } */
-
-/* .photobanner { */
-/* 	position: relative; */
-/* 	height: 130px; */
-/* 	display: flex; */
-/* 	width: 100%; */
-/* 	align-items: center; */
-/* } */
-
-/* .photobanner img { */
-/*   margin: 0px 25px; */
-/* } */
-
-/* .photobanner { */
-/*   animation: bannermove 50s linear infinite alternate-reverse; */
-/* } */
-
-/* @keyframes bannermove { */
-/*   from { */
-/*     left: 0px; */
-/*   } */
-/*   to { */
-/*     left: -2700px; */
-/*   } */
-/* } */
-
-
+@keyframes bannermove {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -4200px;
+  }
+}
 
