@@ -14,7 +14,7 @@
 <tr>
 	<td class="name-cell">
  		<span class="comments-text-wrapper" id="image">
-			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.member.image }" alt="memberImage" style="width: 50px; height: 50px; border-radius: 30px; margin-right: 10px;"/>
+			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.member.image }" alt="memberImage" style="width: 40px; height: 40px; border-radius: 30px; margin-right: 10px;"/>
 			<span class="comments-text"> 
 			<span class="comments-name-wrapper"> 
 			<span class="comments-name">

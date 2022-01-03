@@ -122,16 +122,6 @@
 			p_id = #{pId}
 	</update>
 	
-	<select id="selectRecentTenGoodsList" resultType="goods">
-		select 
-			* 
-		from 
-			goods 
-			<![CDATA[where rownum <= 10]]>
-		order by 
-			p_enroll desc
-	</select>
-	
 	<select id="selectOneMember" resultType="member">
 		select
 			*
@@ -597,7 +587,7 @@
 	
 	<select id="adminManageRecentTenReviewList" resultMap="reviewMap"> 
 		select
-			*
+			m.image, r.member_id, r.reg_date, r.review_title
 		from
 			member m 
 		left join review_board r
@@ -946,7 +936,7 @@
 	
 	<select id="adminManageRecentTenQuestionList" resultMap="questionMap">
 		select
-			*
+			m.image, q.member_id, q.question_title, q.reg_date
 		from
 			member m 
 		left join question_board q
@@ -1280,6 +1270,32 @@
 			where 
 				member_id like #{searchKeyword}
 		</if>
+	</select>
+	
+	<select id="adminManageRecentTenRegisterList" resultType="member">
+		select 
+			id, reg_date, image
+		from 
+			member
+			<![CDATA[where rownum <= 10]]>
+		order by 
+			reg_date desc
+	</select>
+	
+	<delete id="deleteGoodsLike">
+		delete from
+			goods_like
+		where
+			p_id = #{pId}
+	</delete>
+	
+	<select id="selectOneGoodsOptionId" resultType="_int">
+		select
+			option_id
+		from
+			goods_option
+		where
+			p_id = #{pId}
 	</select>
 	
 </mapper>

@@ -12,13 +12,10 @@
 
 <c:forEach items="${list }" var="list">
 	<tr>
-		<td class="title-cell">
-			<a target="_blank" href="${pageContext.request.contextPath}/admin/adminGoodsList.do">
-					<span class="post-intro-image" style="background: url('${pageContext.request.contextPath}/resources/upload/goods/${list.PImg }'); background-size: cover;"></span>
-					${list.PName }
-			</a>
+		<td class="title-td" style="width: 200px; text-align: left;">
+			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.image }" alt="memberImage" style="width: 40px; height: 40px; border-radius: 30px; margin-right: 10px;"/>
+			<span class="file-title"> ${list.id } </span>
 		</td>
-		<td class="second-cell">${list.PId }</td>
-		<td class="hits-cell"><fmt:formatDate value="${list.PEnroll }" pattern="yyyy-MM-dd"/></td>
+		<td class="filesize-td"><span><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span></td>
 	</tr>
 </c:forEach>

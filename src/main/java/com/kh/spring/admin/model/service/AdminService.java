@@ -7,12 +7,11 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
-import com.kh.spring.movie.model.vo.MovieSchedule;
-import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -36,8 +35,6 @@ public interface AdminService {
 	Goods selectOneGoods(int pId);
 
 	int updateGoods(Goods goods);
-
-	List<Goods> selectRecentTenGoodsList();
 
 	Member selectOneMember(String id);
 
@@ -196,5 +193,11 @@ public interface AdminService {
 	List<Board> searchSharing(Map<String, Object> param);
 
 	int searchSharingCount(Map<String, Object> param);
+
+	List<Member> adminManageRecentTenRegisterList();
+
+	int deleteGoodsLike(int pId);
+
+	List<GoodsOption> selectOneGoodsOptionId(int pId);
 	
 }

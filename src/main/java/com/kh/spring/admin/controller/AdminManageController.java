@@ -40,6 +40,7 @@ import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -83,20 +84,6 @@ public class AdminManageController {
 
 	
 ///////////////////////////////////////////////////////////////////////////////
-	
-	/**
-	 * [메인화면: 최근 상품 10개]
-	 */
-	
-	@GetMapping("/selectRecentTenGoodsList.do")
-	public List<Goods> selectRecentTenGoodsList(Model model) {
-		List<Goods> list = adminService.selectRecentTenGoodsList();
-		log.debug("list = {}", list);
-		
-		model.addAttribute("list", list);
-		
-		return list;
-	}
 
 	/**
 	 * [메인화면: 일주일 가입]
@@ -121,9 +108,23 @@ public class AdminManageController {
 		
 		model.addAttribute("count", count);
 	}
+	
+	/**
+	 * [메인화면: 최근 회원가입 10명]
+	 */
+	
+	@GetMapping("/adminManageRecentTenRegisterList.do")
+	public List<Member> adminManageRecentTenRegisterList(Model model) {
+		List<Member> list = adminService.adminManageRecentTenRegisterList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		return list;
+	}
 
 	/**
-	 * [메인화면: 최근 리뷰 10개]
+	 * [메인화면: 최근 문의 10개]
 	 */
 	
 	@GetMapping("/adminManageRecentTenQuestionList.do")
@@ -895,8 +896,10 @@ public class AdminManageController {
     			boolean result = delFile.delete();
     			log.debug("첨부파일{} 삭제 여부: {}", filename, result);
     		}
-    		
-			int result = adminService.deleteGoods(pId);
+
+    		adminService.deleteGoodsLike(pId);
+    		adminService.deleteGoods(pId);
+			
 			redirectAttr.addFlashAttribute("msg", "상품 삭제 성공");
 			
     	} catch (InvalidParameterException e) {
@@ -1308,7 +1311,6 @@ public class AdminManageController {
 			
 			
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resource;

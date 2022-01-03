@@ -7,6 +7,7 @@ import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
+import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -38,8 +39,6 @@ public interface AdminDao {
 	Goods selectOneGoods(int pId);
 
 	int updateGoods(Goods goods);
-
-	List<Goods> selectRecentTenGoodsList();
 
 	Member selectOneMember(String id);
 
@@ -200,5 +199,11 @@ public interface AdminDao {
 	List<Board> searchSharing(Map<String, Object> param);
 
 	int searchSharingCount(Map<String, Object> param);
+
+	List<Member> adminManageRecentTenRegisterList();
+
+	int deleteGoodsLike(int pId);
+
+	List<GoodsOption> selectOneGoodsOptionId(int pId);
 
 }
