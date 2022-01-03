@@ -190,6 +190,22 @@
 								</div>
 								
 								<div class="sch_it sch_it2">
+									<span class="code en">012</span>
+									<p class="time en">09:00</p>
+									<div class="film_tit">
+										<a
+											href="${pageContext.request.contextPath }/program/synopsis/erin.do?movieId=012"><span
+											class="film_tit_kor">에린 브로코비치</span><span
+											class="film_tit_eng en">Erin Brockovich</span></a>
+									</div>
+									<div class="grade">
+										<span class="ico_grade ico_15" title="15세 이상 관람가"></span>
+										<span class="ico_grade ico_ke" title="한글자막+영어자막/대사"></span>
+										<span class="ico_grade ico_kk" title="시·청각장애인을 위한 배리어프리자막상영"></span>
+									</div>
+								</div>
+								
+								<div class="sch_it sch_it3">
 									<span class="code en">008</span>
 									<p class="time en">10:00</p>
 									<div class="film_tit">
@@ -205,7 +221,7 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it3">
+								<div class="sch_it sch_it4">
 									<span class="code en">001</span>
 									<p class="time en">10:00</p>
 									<div class="film_tit">
@@ -221,7 +237,7 @@
 									</div>
 								</div>
 								
-								<div class="sch_it sch_it4">
+								<div class="sch_it sch_it5">
 									<span class="code en">007</span>
 									<p class="time en">11:00</p>
 									<div class="film_tit">
@@ -237,14 +253,30 @@
 									</div>
 								</div>
 								
-								<div class="sch_it sch_it5">
+								<div class="sch_it sch_it6">
+									<span class="code en">010</span>
+									<p class="time en">12:30</p>
+									<div class="film_tit">
+										<a
+											href="${pageContext.request.contextPath }/program/synopsis/casinoRouale.do?movieId=010"><span
+											class="film_tit_kor">007 카지노 로얄</span><span
+											class="film_tit_eng en">Casino Royale</span></a>
+									</div>
+									<div class="grade">
+										<span class="ico_grade ico_15" title="15세 이상 관람가"></span>
+										<span class="ico_grade ico_ke" title="한글자막+영어자막/대사"></span>
+										<span class="ico_grade ico_kk" title="시·청각장애인을 위한 배리어프리자막상영"></span>
+									</div>
+								</div>
+								
+								<div class="sch_it sch_it7">
 									<span class="code en">006</span>
 									<p class="time en">12:30</p>
 									<div class="film_tit">
 										<a
 											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
 											class="film_tit_kor">13층</span><span
-											class="film_tit_eng en">the</span></a>
+											class="film_tit_eng en">The thirteenth floor</span></a>
 									</div>
 									<div class="grade">
 										<span class="ico_grade ico_12" title="12세 이상 관람가"></span>
@@ -253,7 +285,7 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it6">
+								<div class="sch_it sch_it8">
 									<span class="code en">013</span>
 									<p class="time en">13:30</p>
 									<div class="film_tit">
@@ -269,7 +301,7 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it7">
+								<div class="sch_it sch_it9">
 									<span class="code en">005</span>
 									<p class="time en">13:30</p>
 									<div class="film_tit">
@@ -285,7 +317,7 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it8">
+								<%-- <div class="sch_it sch_it10">
 									<span class="code en">009</span>
 									<p class="time en">13:30</p>
 									<div class="film_tit">
@@ -299,9 +331,9 @@
 										<span class="ico_grade ico_ke" title="한글자막+영어자막/대사"></span>
 										<span class="ico_grade ico_kk" title="시·청각장애인을 위한 배리어프리자막상영"></span>
 									</div>									
-								</div>
+								</div> --%>
 
-								<div class="sch_it sch_it9">									
+								<div class="sch_it sch_it10">									
 									<span class="code en">001</span>
 									<p class="time en">14:30</p>
 									<div class="film_tit">
@@ -317,11 +349,11 @@
 									</div>									
 								</div>
 
-								<div class="sch_it sch_it10 blank_wrap">
+								<div class="sch_it sch_it11 blank_wrap">
 								<span class="sch_it_blank"></span>
 								</div>
 
-								<div class="sch_it sch_it11">
+								<div class="sch_it sch_it12">
 									<span class="code en">002</span>
 									<p class="time en">16:00</p>
 									<div class="film_tit">
@@ -338,7 +370,7 @@
 								</div>
 								
 
-								<div class="sch_it sch_it12">
+								<div class="sch_it sch_it13">
 									<span class="code en">001</span>
 									<p class="time en">16:00</p>
 									<div class="film_tit">
@@ -355,7 +387,7 @@
 								</div>
 
 
-								<div class="sch_it sch_it13">
+								<div class="sch_it sch_it14">
 									<span class="code en">011</span>
 									<p class="time en">17:00</p>
 									<div class="film_tit">
@@ -371,14 +403,14 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it14">
+								<div class="sch_it sch_it15">
 									<span class="code en">006</span>
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
 											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
 											class="film_tit_kor">13층</span><span
-											class="film_tit_eng en">the</span></a>
+											class="film_tit_eng en">The thirteenth floor</span></a>
 									</div>
 									<div class="grade">
 										<span class="ico_grade ico_12" title="12세 이상 관람가"></span>
@@ -387,7 +419,7 @@
 									</div>
 								</div>
 
-								<div class="sch_it sch_it15">
+								<div class="sch_it sch_it16">
 									<span class="code en">010</span>
 									<p class="time en">18:00</p>
 									<div class="film_tit">
@@ -403,9 +435,9 @@
 									</div>
 								</div>
 								
-								<div class="sch_it sch_it16 blank_wrap">
+								<!-- <div class="sch_it sch_it16 blank_wrap">
 								<span class="sch_it_blank"></span>
-								</div>
+								</div> -->
 								
 								<div class="sch_it sch_it17 blank_wrap">
 								<span class="sch_it_blank"></span>
