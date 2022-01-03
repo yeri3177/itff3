@@ -41,174 +41,168 @@
 
 										<div class="ba-main-view">
 										
-								<section class="py-5">
-							        <div class="container-fluid">
-							          <div class="row">
-							          
-							            <!-- register -->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-							                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-											  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-											</svg>
-							                <div class="ms-2" id="register">
-
-							                 
-							                </div>
-							              </div>
-							            </div>
-							            
-							            <!-- Count item widget-->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
-											  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-											  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-											</svg>
-							                <div class="ms-2">
-							                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
-							                  <p class="text-gray-500 small">Last 5 days</p>
-							                  <p class="display-6 mb-0">400</p>
-							                </div>
-							              </div>
-							            </div>
-							            
-							            <!-- Count item widget-->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-perforated" viewBox="0 0 16 16">
-											  <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
-											  <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
-											</svg>
-							                <div class="ms-2">
-							                  <h3 class="h4 text-dark text-uppercase fw-normal">예매</h3>
-							                  <p class="text-gray-500 small">Today</p>
-							                  <p class="display-6 mb-0">342</p>
-							                </div>
-							              </div>
-							            </div>
-							            
-							            <!-- screening-->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
-											  <path d="M14 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM2.5 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z"/>
-											  <path fill-rule="evenodd" d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1H5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1 2 2 0 0 1-2-2V6Zm2-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
-											</svg>
-							                <div class="ms-2" id="screening">
-							                
-							                </div>
-							              </div>
-							            </div>
-							            
-							            <!-- review-->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-blockquote-left" viewBox="0 0 16 16">
-											  <path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm.79-5.373c.112-.078.26-.17.444-.275L3.524 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282c.024-.203.065-.37.123-.498a1.38 1.38 0 0 1 .252-.37 1.94 1.94 0 0 1 .346-.298zm2.167 0c.113-.078.262-.17.445-.275L5.692 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282a1.75 1.75 0 0 1 .118-.492c.058-.13.144-.254.257-.375a1.94 1.94 0 0 1 .346-.3z"/>
-											</svg>
-							                <div class="ms-2" id="review_count">
-
-							                </div>
-							              </div>
-							            </div>
-							            
-							            <!-- question-->
-							            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-							              <div class="d-flex">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-											  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-											  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-											</svg>
-							                <div class="ms-2" id="qa">
-
-							                </div>
-							              </div>
-							            </div>
-							          </div>
-							        </div>
-							      </section>
+										<!-- 카운트 부분 -->
+										<section class="py-5">
+									        <div class="container-fluid">
+									          <div class="row">
+									          
+									            <!-- register -->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+									                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+													  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+													</svg>
+									                <div class="ms-2" id="register">
+		
+									                 
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- Count item widget-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+													  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+													  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+													</svg>
+									                <div class="ms-2">
+									                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
+									                  <p class="text-gray-500 small">Last 5 days</p>
+									                  <p class="display-6 mb-0">400</p>
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- Count item widget-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-perforated" viewBox="0 0 16 16">
+													  <path d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z"/>
+													  <path d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z"/>
+													</svg>
+									                <div class="ms-2">
+									                  <h3 class="h4 text-dark text-uppercase fw-normal">예매</h3>
+									                  <p class="text-gray-500 small">Today</p>
+									                  <p class="display-6 mb-0">342</p>
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- screening-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
+													  <path d="M14 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM2.5 6a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Zm0 2a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4Z"/>
+													  <path fill-rule="evenodd" d="M0 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1H5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1 2 2 0 0 1-2-2V6Zm2-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
+													</svg>
+									                <div class="ms-2" id="screening">
+									                
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- review-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-blockquote-left" viewBox="0 0 16 16">
+													  <path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm.79-5.373c.112-.078.26-.17.444-.275L3.524 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282c.024-.203.065-.37.123-.498a1.38 1.38 0 0 1 .252-.37 1.94 1.94 0 0 1 .346-.298zm2.167 0c.113-.078.262-.17.445-.275L5.692 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282a1.75 1.75 0 0 1 .118-.492c.058-.13.144-.254.257-.375a1.94 1.94 0 0 1 .346-.3z"/>
+													</svg>
+									                <div class="ms-2" id="review_count">
+		
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- question-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+													  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+													  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+													</svg>
+									                <div class="ms-2" id="qa">
+		
+									                </div>
+									              </div>
+									            </div>
+									          </div>
+									        </div>
+									      </section>
+										<!-- 카운트 부분 끝 -->
 											
 										<div class="row-fluid">
 											<div class="span12 ba-store-statistic" style="box-shadow: none; padding: 30px 0 30px 0;">
 
 
-												<div class="ba-store-statistic-body">
-													<div class="row-fluid ba-store-statistic-body-wrapper"">
+											<div class="ba-store-statistic-body">
+												<div class="row-fluid ba-store-statistic-body-wrapper"">
 
-														<div class="header">
-														</div>
-														<div class="five">
-
-														  <div class="flex-container">
-														  
-														  <!-- todo -->
-														  <div class="app" id="app">
-														  <form class="form" v-on:submit="addTodo">
-														    <input class="input form__input" v-model="inputVal"/>
-														    <button class="btn form__submit-btn" type="submit">Add</button>
-														  </form>
-														  <transition-group tag="ol" name="list" class="todo-list">
-														    <li
-														      class="todo-list__item"
-														      v-bind:class="{ complete: todo.complete }"
-														      v-bind:key="index"
-														      v-for="(todo, index) in filteredTodos">
-														      <button
-														        class="todo-list__item-content"
-														        v-on:click="toggleTodo(todo)">
-														        {{ todo.text }}
-														      </button>
-														      <button
-														        class="btn todo-list__item-remove"
-														        v-on:click="deleteTodo(index)">
-														        <i class="fa" v-bind:class="[todo.complete ? 'fa-check' : 'fa-times']"></i>
-														      </button>
-														    </li>
-														  </transition-group>
-														  <div class="filters">
-														    <button 
-														      class="btn filters__btn filters__btn--all" 
-														      v-on:click="filterTodos('all')">
-														      All
-														    </button>
-														    <button 
-														      class="btn filters__btn filters__btn--complete" 
-														      v-on:click="filterTodos('complete')">
-														      Complete
-														    </button>
-														    <button 
-														      class="btn filters__btn filters__btn--incomplete" 
-														      v-on:click="filterTodos('incomplete')">
-														      Incomplete
-														    </button>
-														  </div>
-														</div>
-														  
-														  	<!-- 차트 -->
-														    <div class="flex__third h56 row1">
-														      <div class="high chart1"></div>
-														    </div>
-														    <div class="flex__one h56 row1">
-														      <div class="high chart2"></div>
-														    </div>
-														    
-														  </div>
-														</div>
-
+													<div class="header">
 													</div>
+													<div class="five">
+
+													  <div class="flex-container">
+													  
+													  <!-- todo -->
+														<div class="app" id="app">
+															<form class="form" v-on:submit="addTodo">
+																<input class="input form__input" v-model="inputVal" />
+																<button class="btn form__submit-btn" type="submit">Add</button>
+															</form>
+															<transition-group tag="ol" name="list" class="todo-list">
+															<li class="todo-list__item"
+																v-bind:class="{ complete: todo.complete }"
+																v-bind:key="index"
+																v-for="(todo, index) in filteredTodos">
+																<button class="todo-list__item-content"
+																	v-on:click="toggleTodo(todo)">{{ todo.text }}
+																</button>
+																<button class="btn todo-list__item-remove"
+																	v-on:click="deleteTodo(index)">
+																	<i class="fa"
+																		v-bind:class="[todo.complete ? 'fa-check' : 'fa-times']"></i>
+																</button>
+															</li>
+															</transition-group>
+															<div class="filters">
+																<button class="btn filters__btn filters__btn--all"
+																	v-on:click="filterTodos('all')">All</button>
+																<button class="btn filters__btn filters__btn--complete"
+																	v-on:click="filterTodos('complete')">
+																	Complete</button>
+																<button
+																	class="btn filters__btn filters__btn--incomplete"
+																	v-on:click="filterTodos('incomplete')">
+																	Incomplete</button>
+															</div>
+														</div>
+
+														<!-- 차트 -->
+													    <div class="flex__third h56 row1">
+													      <div class="high chart1"></div>
+													    </div>
+													    <div class="flex__one h56 row1">
+													      <div class="high chart2"></div>
+													    </div>
+													    <!-- 차트 끝 -->
+													    
+													  </div>
+													</div>
+
 												</div>
 											</div>
+											</div>
 										</div>
-											<div class="main-table dashboard-content">
-												
+										
+											<div class="main-table dashboard-content">		
 												<div class="row-fluid"
 													style="display: flex; flex-direction: row;">
 													<div class="span8 last-edit-pages">
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recently Reservation </span></th>
+																	<th style="width: 380px;"><span> Recently Reservation </span></th>
 																	<th><span> ID </span></th>
 																	<th><span> Enroll Date </span></th>
 																</tr>
@@ -220,11 +214,13 @@
 													</div>
 													
 													<!-- Recently registered -->
-													<div class="span4 recent-gridbox-apps" style="width: 750px;">
+													<div class="span4 recent-gridbox-apps" style="width: 770px;">
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recently Order </span></th>
+																	<th style="width: 380px;"><span> Recently Order </span></th>
+																	<th><span> ID </span></th>
+																	<th><span> Enroll Date </span></th>
 																</tr>
 															</thead>
 															<tbody>

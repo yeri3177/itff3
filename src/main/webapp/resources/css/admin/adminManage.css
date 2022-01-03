@@ -863,6 +863,7 @@ iframe {
     overflow: hidden;
     transition: all .3s ease-in-out;
     width: calc(100%);
+    font-family: 'Montserrat', sans-serif;
 }
 
 #filter-bar {
@@ -1428,7 +1429,7 @@ tbody, td, tfoot, th, thead, tr {
 }
 
 .recent-gridbox-files .title-td, .dashboard-content.main-table .title-cell, .dashboard-content.main-table thead th:first-child {
-    padding-left: 35px !important;
+    padding-left: 24px !important;
     white-space: initial !important;
     width: 75%;
 }

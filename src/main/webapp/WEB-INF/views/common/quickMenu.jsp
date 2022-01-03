@@ -12,45 +12,35 @@
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
-<div class="quickmenu_wrap">
-
-	<div class="btn_floating active">
-		<button class="quickmenu_control_txt"><span class="ir_pm">QUICK Menu</span></button>
-		<button class="quickmenu_control_icon"><span>x</span></button>
-	</div>
-
-	<div class="btn_floating">
-	<img src="https://i.imgur.com/jZ8at6D.png" alt="" style="width: 30px;" />
-		<button class="quickmenu_control_txt"><span class="ir_pm">QUICK Menu</span></button>
-		<button class="quickmenu_control_icon"><span>x</span></button>
-	</div>
-	
-
-	<div id="quickmenu_box" class="quickmenu_box">
-		<ul id="quickmenu" class="quickmenu">
-		
+<div>
+<span class="btn_tica">
 			
-			<!-- 퀵메뉴 어떤거 넣을지는 나중에 생각해보자 -->
-			<li class="quick_online"><a href="#" target="_blank">온라인상영안내</a></li> 
-			<li class="quick_check"><a href="#">예매권 확인</a></li>
-			<li class="quick_tica"><a href="#" target="_blank">티켓카탈로그</a></li>
-			<li class="quick_faq"><a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a></li>
-			<li class="quick_chat">
-				<a 
-					data-toggle="modal"
-					data-target="#chat"
-					onclick="chat_btn();">
-					챗봇
-				</a>
-				</li>
-			<li class="quick_kakao"><a id="channel-add-button" href="#" target="_blank" onclick="addChannel();">카카오톡</a></li>
-		</ul>
-		<a href="#" target="_blank"></a>
-	</div>
-	<a href="#" target="_blank"></a>
-	</div>
+	<a data-toggle="modal" data-target="#chat" onclick="chat_btn();" class="wviewT">
+	<img src="https://i.imgur.com/P57FUS8.png" title="챗봇" class="quick_img">
+	</a>
 	
-					
+	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
+	<img src="https://i.imgur.com/XK9HG4g.png" title="티켓 예매 바로가기" class="quick_img">
+	</a>
+	
+	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
+	<img src="https://i.imgur.com/PQzlfS8.png" title="예매내역 확인하기" class="quick_img">
+	</a>
+
+</span>
+<span>
+	<a href="#" class="btn_top" onclick="scroll_top();"></a>
+</span>
+</div>
+
+<script>
+
+function scroll_top() {
+	$('html, body').animate({scrollTop : 0},800);
+}
+
+
+</script>
 
 <script>
 	
