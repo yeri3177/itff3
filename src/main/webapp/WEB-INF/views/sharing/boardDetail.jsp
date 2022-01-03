@@ -14,8 +14,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authorize access="isAnonymous() || isAuthenticated()">
+
+
 
 <!-- 한글 깨지지 않게 처리 -->
 <fmt:requestEncoding value="utf-8" />
@@ -29,6 +32,8 @@
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+<link rel="stylesheet" 
+	href="${pageContext.request.contextPath }/resources/css/board/boardDetail.css" />
 
 
 
@@ -53,11 +58,11 @@
 	Authentication authentication = securityContext.getAuthentication();
 	System.out.println(authentication.getPrincipal());
 	
+	Board board = (Board) request.getAttribute("board");
 	
 	if(authentication.getPrincipal() != "anonymousUser"){
 		Member loginMember = (Member) authentication.getPrincipal();
 		pageContext.setAttribute("loginMember", loginMember);
-		Board board = (Board) request.getAttribute("board");
 		editable = loginMember != null && (
 				loginMember.getId().equals(board.getMemberId())
 				);
@@ -109,13 +114,14 @@
 				<br /><br />
 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
 					<div class="image-box">
-						<img class="image-thumbnail"
+						<img class=""
 							src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}"
 							alt="" />					
 					</div>
 				</c:forEach>
 				<br /> 
 			</div>
+			<br />
 			<br />
 <sec:authorize access="isAuthenticated()">
 <% 	if(editable){ %>	
@@ -136,24 +142,45 @@
 
 			<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
 			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+
+			
 		</div>
 		<br />
 	</div>
 </div>
 
+<sec:authorize access="isAuthenticated()">
+	<c:set var="loginMemberImage">
+	   	<sec:authentication property="principal.image"/> 
+	</c:set>	
+	<c:set var="loginMemberId">
+	    <sec:authentication property="principal.id"/>
+	</c:set>	
+</sec:authorize>
 
+<!-- 로그인 했을 경우 댓글 쓰는 란이 나옴 -->
+<sec:authorize access="isAuthenticated()">
 <div class="card my-4">
-   <div class="card-body">
-    <form>
-        <div class="form-group"><textarea class="form-control" rows="3" style="background-color:#F2F2F2">댓글을 남겨주세요..</textarea></div>
-        <button class="btn btn-primary float-right"  type="submit">댓글등록</button>
-    </form>
-   </div>
+	<div class="card-body">
+		<form:form 
+			action="${pageContext.request.contextPath}/sharing/boardCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}"
+			name="boardCommentFrm" 
+			method="post" 
+			class="cmt_form">
+			<input type="hidden" name="writer" value="${loginMemberId}" />
+			<input type="hidden" name="reviewNo" value="${board.no}" />
+			<input type="hidden" name="commentLevel" value="1">
+			<input type="hidden" name="commentRef" value="0">
+			<div class="form-group">
+				<textarea name="content" class="form-control" cols="50" rows="3" placeholder="댓글을 남겨 주세요." style="width: 100%; height: 106px; background-color:#F2F2F2;"></textarea>
+			</div>
+			<span class="inkpf round"><img class="inkpf_img float-left" src="${pageContext.request.contextPath}/resources/upload/member/${loginMemberImage}" alt="" /></span>
+			&nbsp<button class="btn btn-Secondary float" type="submit">댓글등록</button>
+		</form:form>
+	</div>
 </div>
+</sec:authorize>
+	
 <div class="cmt_wrap has_top">
 	<div class="cmt_list">
 		<c:set var="cnt" value="0"/>  
@@ -161,69 +188,67 @@
 		
 		<!-- 댓글 1단계 -->
 		<c:if test="${comment.commentLevel eq 1}">
-			<article class="cmt_unit" id="commentNo${comment.no}">
-				<div class="cmt_header">
-					<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
-						${comment.member.nickname}
-					</a>
-					<!-- 글 작성자의 댓글이면 작성자 표시 -->
-					<c:if test="${board.memberId eq comment.writer}">
-						<span class="writer pt_bg2">작성자</span>
-					</c:if>
-				</div>
-				<div class="cmt_body">
-				<!--BeforeComment(71876047,25365243)-->
-					<div class="comment_71876047_25365243 rhymix_content xe_content" data-pswp-uid="2">
-						${comment.content}
-					</div>
-					<!--AfterComment(71876047,25365243)-->
-					
-					<div class="media mb-4">
-				       <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
-				       <div class="media-body" style="background-color:#F2F2F2">
+			<article class="cmt_unit level1" id="commentNo${comment.no}">
+				<div class="cmt_body">	
+				   <div class="media mb-4">
+				       <span class="inkpf round"><img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${comment.member.image}" alt="" /></span>
+				        <div class="media-body" style="background-color:#F2F2F2">
 				           <h5 class="mt-0">${comment.member.nickname}</h5>
+				           <br />
 						   ${comment.content}
-				       </div>
-				   	</div>
-					
-					<div class="cmt_buttons">
-						<div class="cmt_vote">
-							<sec:authorize access="isAuthenticated()">
-								<a class="bt bt2 reply" href="javascript:void(0)" data-no="${comment.no}" data-image="${loginMemberImage}" data-id="${loginMemberId}" data-reviewno="${review.reviewNo}" style=" border-radius: 5px;">
-									댓글
-								</a>
-								<c:if test="${loginMemberId eq comment.writer}">
-									<a class="bt bt2 deleteComment" href="javascript:void(0)" data-no="${comment.no}" style="border-radius: 5px;">
-										삭제
-									</a>
-								</c:if>
-							</sec:authorize>
-							<sec:authorize access="isAnonymous()">
-							<a class="bt bt2 anonymous" href="javascript:void(0)">
-								댓글
-							</a>
-							</sec:authorize>
-						</div>
-					</div>
-					<div class="cmt_date_wrap text_en font_grey1">
-						<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+			       		</div>
+					  	
+				<div class="cmt_buttons">
+					<div class="cmt_vote">
+						<sec:authorize access="isAuthenticated()">
+							<div class="cmt_write_option">
+								<div class="bt_area bt_right">
+									<button class="ib_button" type="submit">댓글</button>
+								  <c:if test="${loginMemberId eq comment.writer}">
+									<button class="ib_button" type="submit">삭제</button>
+							      </c:if>
+								</div>
+							</div>
+						</sec:authorize>
 					</div>
 				</div>
-				
-				<!-- 대댓글(2단계) -->
-				<c:if test="${comment.commentLevel eq 2}">
-					<article >
-					 <div class="media mt-4">
-		               <img class="d-flex mr-3 rounded-circle" src="https://via.placeholder.com/50x50" alt="..." />
-		               <div class="media-body">
-		                   <h5 class="mt-0">${comment.member.nickname}</h5>
-		                   ${comment.content}
-		               </div>
-					</article>
-				</c:if>
-				
+				</div>
+				<div class="cmt_date_wrap text_en font_grey1">
+					<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+				</div>
+				</div>
+			</article>			
+		</c:if>
+		<!-- 대댓글(2단계) -->
+		<c:if test="${comment.commentLevel eq 2}">
+			<article class="cmt_unit level2" id="commentNo${comment.no}">
+			<div class="cmt_body">
+			<div class="media mb-4">	
+				 <span class="inkpf round"><img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${comment.member.image}" alt="" /></span>
+				 <div class="media-body" style="background-color:#F2F2F2">
+		           <h5 class="mt-0">${comment.member.nickname}</h5>
+		           <br />
+				   ${comment.content}
+				 </div>
+				 <div class="cmt_level2_delete">
+					<div class="bt_area bt_right">
+					  <c:if test="${loginMemberId eq comment.writer}">
+						<button class="ib_button" type="submit">삭제</button>
+				      </c:if>
+					</div>
+				</div>
+			</div>
+			<div class="cmt_date_wrap text_en font_grey1">
+				<span class="cmt_time"><fmt:formatDate value="${comment.regDate}" pattern="yyyy.MM.dd HH:mm"></fmt:formatDate></span>
+			</div>
+					
+			</div>
+			
+			
+			<!-- //cmt_body -->
 			</article>
 		</c:if>
+	
 		</c:forEach>
 		
 		<!-- 댓글 삭제용 폼 -->
@@ -232,10 +257,82 @@
 			name="reviewCommentDelFrm"
 			method="POST">
 			<input type="hidden" name="no" />
-			<input type="hidden" name="reviewNo" value="${review.reviewNo}" />
+			<input type="hidden" name="boardNo" value="${board.no}" />
 		</form:form>	
 	</div>
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />	
+</sec:authorize>
+
+<script type="text/javascript">
+$(".anonymous").click((e) => {
+	alert("로그인 후 이용가능합니다.");
+});
+
+//댓글 버튼 클릭하면 댓글입력창 뜸
+$(".reply").click((e) => {
+	
+	const commentRef = $(e.target).data("no");
+	const image = $(e.target).data("image");
+	const id = $(e.target).data("id");
+	const reviewNo = $(e.target).data("no");   <%-- data 속성에 대문자를 넣으면 안되는거같다. data-reviewNo 로 했더니 undefined 떴다. --%>
+	console.log(commentRef);
+	console.log(image);
+	console.log(id);
+	console.log(no);
+	
+
+	// 댓글 하나의 가장 바깥 영역인 article
+	const $commentArticle = $(e.target).parent().parent().parent().parent();
+	// console.log($commentArticle);
+
+	// 댓글버튼 누른 댓글 다음에 입력창 추가하고 focus. 내용검사는 왜인지 안먹힌다.
+	$(div)
+		.insertAfter($commentArticle)
+		.find("form")
+		.submit((e) => {
+			// 내용검사
+			const $textarea = $("[name=content]", e.target); 
+
+			if(!/^(.|\n)+$/.test($textarea.val())) {
+				alert("댓글 내용을 작성해주세요.");
+				$textarea.focus();
+				return false;
+			}	
+		})
+		.find("[name=content]")
+		.focus();
+
+});
+
+function goBoardList() {
+	location.href = `${pageContext.request.contextPath}/sharing/boardList.do`;
+};
+
+
+function goUpdateBoard() {
+	const boardNo = $("[name=no]").val();
+	console.log("boardNo = ", boardNo);
+	location.href = `${pageContext.request.contextPath}/sharing/boardUpdate.do?no=\${boardNo}`;
+}
+
+function goDeleteBoard() {
+	var delBoard = confirm("게시글을 삭제하시겠습니까?");
+	if(delBoard) {
+		const boardNo = $("[name=no]").val();
+		console.log("boardNo = ", boardNo);
+		location.href = `${pageContext.request.contextPath}/sharing/boardDelete.do?no=\${boardNo}`;
+	}
+}
+</script>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+</sec:authorize>
+
 
 
 <%-- <hr style="margin-top:30px"/>
@@ -302,35 +399,4 @@
                         </div>
                     </div>
 -->
-<br />
-<br />
-<br />
-<br />
-<br />	
-</sec:authorize>
 
-<script type="text/javascript">
-
-function goBoardList() {
-	location.href = `${pageContext.request.contextPath}/sharing/boardList.do`;
-};
-
-
-function goUpdateBoard() {
-	const boardNo = $("[name=no]").val();
-	console.log("boardNo = ", boardNo);
-	location.href = `${pageContext.request.contextPath}/sharing/boardUpdate.do?no=\${boardNo}`;
-}
-
-function goDeleteBoard() {
-	var delBoard = confirm("게시글을 삭제하시겠습니까?");
-	if(delBoard) {
-		const boardNo = $("[name=no]").val();
-		console.log("boardNo = ", boardNo);
-		location.href = `${pageContext.request.contextPath}/sharing/boardDelete.do?no=\${boardNo}`;
-	}
-}
-</script>
-
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-</sec:authorize>

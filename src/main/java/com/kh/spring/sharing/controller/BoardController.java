@@ -170,6 +170,26 @@ public class BoardController {
 		model.addAttribute("commentList", commentList);
 	}
 	
+	@PostMapping("/boardCommentEnroll.do")
+	public String boardCommentEnroll(BoardComment boardComment) {
+		log.debug("boardComment = {}", boardComment);
+		
+		int result = boardService.insertBoardComment(boardComment);
+		log.debug("result = {}", result);
+		
+		return "redirect:/sharing/boardDetail.do?boardNo=" + boardComment.getBoardNo();
+	}
+	
+	@PostMapping("/boardCommentDelete.do")
+	public String boardCommentDelete(@RequestParam int no, @RequestParam int boardNo) {
+		log.debug("no = {}", no);
+		
+		int result = boardService.deleteBoardComment(no);
+		log.debug("result = {}", result);
+		
+		return "redirect:/sharing/boardDetail.do?boardNo=" + boardNo;
+	}
+	
 	@GetMapping("/boardUpdate.do")
 	public void boardUpdate(@RequestParam int no, Model model) {
 		log.debug("boardNo = {}", no);

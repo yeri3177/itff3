@@ -139,6 +139,7 @@
 	select
 		tc.*,
 		m.*
+		
 	from
 		ticket_sharing_comment tc join member m
 		on tc.writer = m.id
@@ -161,8 +162,35 @@
 		<result column="birthday" property="birthday"/>
 		<result column="address" property="address"/>
 		<result column="nickname" property="nickname"/>
-		<result column="image" property="image"/>	
+		<result column="image" property="image"/>
+		
 	</association>
 </resultMap>
+
+<select id="insertBoardComment">
+	insert into
+		ticket_sharing_comment
+	values(
+		default,
+		#{boardNo},
+		#{writer},
+		#{content},
+		#{commentLevel},
+		<if test="commentRef != 0">
+			#{commentRef},
+		</if>
+		<if test="commentRef == 0">
+			null
+		</if>
+		sysdate
+	)
+</select>
+
+<delete id="deleteBoardComment">
+	delete from
+		ticket_sharing_board
+	where
+		no = #{no}
+</delete>
 
 </mapper>

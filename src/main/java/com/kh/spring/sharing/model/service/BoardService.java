@@ -30,4 +30,8 @@ public interface BoardService {
 
 	List<BoardComment> selectCommentList(int boardNo);
 
+	int insertBoardComment(BoardComment boardComment);
+
+	int deleteBoardComment(int no);
+
 }
