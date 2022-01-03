@@ -28,6 +28,8 @@
 		<intercept-url pattern="/sharing/boardUpdate.do" access="isAuthenticated()"/>
 		<intercept-url pattern="/question/questionForm.do" access="isAuthenticated()"/>
 		<intercept-url pattern="/question/questionList.do" access="isAuthenticated()"/>
+		<intercept-url pattern="/goods/goodsCart.do" access="isAuthenticated()"/>
+		<intercept-url pattern="/goods/goodsOrder.do" access="isAuthenticated()"/>
 		
 <!-- 		<intercept-url pattern="/**" access="isAuthenticated()"/>   모든 주소에 대하여 인증된 사람만 접근 가능하도록 -->
 		
