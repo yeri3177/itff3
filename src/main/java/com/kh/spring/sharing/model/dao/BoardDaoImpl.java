@@ -82,5 +82,15 @@ public class BoardDaoImpl implements BoardDao {
 		return session.selectList("board.selectCommentList", boardNo);
 	}
 
+	@Override
+	public int insertBoardComment(BoardComment boardComment) {
+		return session.insert("board.insertBoardComment", boardComment);
+	}
+
+	@Override
+	public int deleteBoardComment(int no) {
+		return session.delete("board.deleteBoardComment",no);
+	}
+
 	
 }
