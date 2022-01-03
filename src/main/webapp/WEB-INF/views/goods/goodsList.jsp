@@ -12,12 +12,23 @@
 <%
 	SecurityContext securityContext = SecurityContextHolder.getContext();
 	Authentication authentication = securityContext.getAuthentication();
+	HttpSession sess = request.getSession();
 	
+	String userId = "";
 	if(!"anonymousUser".equals(authentication.getPrincipal())){
 		Member loginMember = (Member) authentication.getPrincipal();
 		pageContext.setAttribute("loginMember", loginMember);
+		
+		userId = loginMember.getId();
 	}
-
+	else{
+		userId = sess.getId();
+	}
+	
+	System.out.println("야호 33333 = " + userId); // 90FD2F422433064696FE114356D7BD99
+	pageContext.setAttribute("userId", userId);
+	
+	
 %>
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
@@ -90,10 +101,12 @@
 					<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.goods.PImg}">
 					<!-- 찜하기버튼 -->
 					<div class="iconBg-div" id="goodsLike-btn${vs.count }" data-goods-id="${goods.goods.PId}">
-						<c:if test="${goods.goodsLike.goodsLikeId eq 0 }">
+						<!-- 좋아요 X -->
+						<c:if test="${goods.goodsLike.userId != userId or goods.goodsLike.userId == null }">
 							<i class="far fa-heart"></i>
 						</c:if>
-						<c:if test="${goods.goodsLike.goodsLikeId ne 0 }">
+						<!-- 좋아요 O -->
+						<c:if test="${goods.goodsLike.userId eq userId and goods.goodsLike.userId != null }">
 							<i class="fas fa-heart" id="full-heart"></i>
 						</c:if>
 					</div>
