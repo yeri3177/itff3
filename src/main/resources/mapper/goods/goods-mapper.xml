@@ -13,7 +13,7 @@
 			p_id desc
 	</select> -->
 	
-	<select id="selectGoodsList" resultMap="goodsLikeJoinMap">
+	<!-- <select id="selectGoodsList" resultMap="goodsLikeJoinMap">
 		select *
 		from goods
 		left join goods_like
@@ -21,6 +21,154 @@
 		where user_id = #{loginId}
 		or user_id is null
 		order by p_id desc
+	</select> -->
+	
+	<!-- <select id="selectGoodsList" resultMap="goodsLikeJoinMap">
+		select e.* from (
+		(select *
+		    from goods
+		    left join goods_like
+		    using (p_id)
+		    where user_id != #{loginId}
+		    and p_id not in 
+		        (select p_id
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where user_id is null
+		        union
+		        select p_id
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where user_id = #{loginId})
+		)
+		union
+		(select *
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where user_id is null
+		    union
+		        select *
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where user_id = #{loginId})
+		) e
+		order by p_id desc
+	</select> -->
+	
+	<!-- <select id="selectGoodsList" resultMap="goodsLikeJoinMap">
+		select * from (
+		select * FROM goods_like 
+		WHERE  ROWID IN (SELECT MAX(ROWID) FROM goods_like GROUP BY p_id)
+		order by p_id
+		)
+		right join goods
+		using (p_id)
+		order by p_id desc
+	</select> -->
+	
+	<select id="selectGoodsList" resultMap="goodsLikeJoinMap">
+		select * from (
+	        (
+	        select * from (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            GROUP by p_id 
+	            HAVING COUNT(p_id) > 1
+	            )
+	        and user_id != #{loginId}
+	        and p_id not in 
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            where p_id in
+	                (
+	                SELECT p_id
+	                from goods
+	                left join goods_like
+	                using (p_id)
+	                GROUP by p_id 
+	                HAVING COUNT(p_id) > 1
+	                )
+	            and user_id = #{loginId}
+	            )
+	        )
+	        where rowid in (select max(rowid) from (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            GROUP by p_id 
+	            HAVING COUNT(p_id) > 1
+	            )
+	        and user_id != #{loginId}
+	        and p_id not in 
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            where p_id in
+	                (
+	                SELECT p_id
+	                from goods
+	                left join goods_like
+	                using (p_id)
+	                GROUP by p_id 
+	                HAVING COUNT(p_id) > 1
+	                )
+	            and user_id = #{loginId}
+	            )) group by p_id)
+	        )
+		union
+	        (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	        (
+	        SELECT p_id
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        GROUP by p_id 
+	        HAVING COUNT(p_id) > 1
+	        )
+	        and user_id = #{loginId}
+	        )
+		union
+	        (select *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id not in 
+	        (
+	        SELECT p_id
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        GROUP by p_id 
+	        HAVING COUNT(p_id) > 1)
+		) 
+	) order by p_id desc
+		
 	</select>
 	
 	<resultMap id="goodsLikeJoinMap" type="goodsLikeJoin">
