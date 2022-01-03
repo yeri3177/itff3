@@ -100,7 +100,7 @@ a {
 }
 
 .container-visual {
-	background: url("https://i.imgur.com/hDHfnOK.jpg");
+	background: url("https://i.imgur.com/ab73xHH.jpg");
 	display: flow-root;
 }
 
@@ -285,6 +285,7 @@ header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 12px !important;
+    text-decoration: none;
 }
 
 .btn-link:hover {
