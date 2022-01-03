@@ -61,3 +61,19 @@ dd {
 	font-size: 15px;
 }
 
+
+.rules_box::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+}
+
+.rules_box::-webkit-scrollbar-thumb {
+    border-radius: 3.5px;
+    background-color: #ced4da;
+}
+
+.rules_box::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+

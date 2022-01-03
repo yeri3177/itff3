@@ -223,13 +223,13 @@
 								</div>
 								
 								<div class="sch_it sch_it4">
-									<span class="code en">006</span>
-									<p class="time en">11:00</p>
+									<span class="code en">011</span>
+									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
-											class="film_tit_kor">13층</span><span
-											class="film_tit_eng en">the</span></a>
+											href="${pageContext.request.contextPath }/program/synopsis/missionImpossible.do?movieId=011"><span
+											class="film_tit_kor">미션임파서블: 고스트 프로토콜</span><span
+											class="film_tit_eng en">Mission: Impossible - Ghost Protocol</span></a>
 									</div>
 									<div class="grade">
 										<span class="ico_grade ico_12" title="12세 이상 관람가"></span>

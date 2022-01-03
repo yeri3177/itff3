@@ -180,7 +180,7 @@
 										<a
 											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
 											class="film_tit_kor">13층</span><span
-											class="film_tit_eng en">the</span>
+											class="film_tit_eng en">The thirteenth floor</span>
 										</a>
 									</div>
 									<div class="grade">
