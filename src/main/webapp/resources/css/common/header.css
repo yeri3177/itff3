@@ -278,11 +278,13 @@ header {
 }
 
 .btn-link {
-	display: block !important;
-	padding: 10px 3px !important;
-	color: #fff !important;
-	font-size: 13px !important;
-	margin: 0 !important;
+    display: block !important;
+    padding: 10px 3px !important;
+    color: #fff !important;
+    margin: 0 !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px !important;
 }
 
 .btn-link:hover {

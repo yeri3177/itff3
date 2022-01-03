@@ -37,7 +37,7 @@
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품조회</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품관리</a><br />
 <!--                             <a href="#" class="collapse__sublink">상품등록</a><br /> -->
 <%--                              <a href="#" class="collapse__sublink">상품별 옵션관리</a><br />  --%>
                              <a href="#" class="collapse__sublink">Members</a> 

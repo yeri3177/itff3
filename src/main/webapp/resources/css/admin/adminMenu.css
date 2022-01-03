@@ -55,6 +55,7 @@ a {
     padding: 1.9rem 1.9rem 1.9rem;
     transition: .5s;
     z-index: var(--z-fixed);
+    font-family: 'Noto Sans KR';
 }
 
 /* NAV */

@@ -30,6 +30,11 @@
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
 
+<!-- Montserrat -->	
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
 <!-- bootstrap css -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -156,7 +161,7 @@ $(document).ready(function(){
 					<div class="container-l">
 
 						<div class="util">
-							<ul class="list-inline" style="display: flex; justify-content: flex-end;">
+							<ul class="list-inline" style="display: flex; justify-content: flex-end; margin-right: 10px;">
 								
 								<%-- 로그인하지 않았을 때 --%>
 								<sec:authorize access="isAnonymous()">
