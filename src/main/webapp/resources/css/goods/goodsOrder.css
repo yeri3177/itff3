@@ -6,26 +6,26 @@
 	margin: 0 auto;
 	display: flex;
 	
-	background-color: aqua;
+	/* background-color: aqua; */
 }
 
 /* 왼쪽 컨테이너 */
 #left-container {
-	background-color: pink;
+	/* background-color: pink; */
 	
-	margin-top: 50px;
+	padding-top: 30px;
 	height: 100%;
-	width: 60%;
+	width: 55%;
 	padding-bottom: 60px;
 }
 
 /* 오른쪽 컨테이너 */
 #right-container {
-	background-color: gray;
+	background-color: #fff7b4;
 	
-	margin-top: 50px;
+	padding-top: 30px;
 	height: 100%;
-	width: 40%;
+	width: 45%;
 	margin-left: 45px;
 }
 /* 컨테이너 고정 */
@@ -35,3 +35,161 @@
     left:55.4%; 
     width: 26.7%!important;
 }
+
+input::placeholder {
+	color: #d7d7d7!important;
+}
+
+.form-control {
+	height: 53px!important;
+	margin-bottom: 5px;
+}
+/*****************************************/
+.title-text {
+	font-size: 27px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.title-text2 {
+	font-size: 27px;
+	font-weight: bold;
+	/* margin-bottom: 20px; */
+}
+
+.sml-tex {
+	font-size: 12px;
+	color: #585858;
+}
+.input-div {
+	/* background-color: gray; */
+	margin-bottom: 18px;
+}
+
+.form-control {
+	padding: 13px 18px!important;
+}
+
+.d-flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.del-tex {
+	margin-left : 22px;
+	margin-bottom: 13px;
+}
+
+input[type="checkbox"] {
+	margin-right: 7px;
+	
+}
+
+.goodsBtn {
+	margin-top: 25px;
+	margin-bottom: 45px;
+	height: 52px;
+	font-size: 18px!important;
+}
+
+.circleBtn2 {
+    flex: .5;
+    padding: 11px 15px;
+    font-size: 16px;
+    line-height: 1.38;
+    text-align: center;
+    border-radius: 30px;
+    border: 0;
+   	background-color: black;
+   	color: white;
+   	width: 203px;
+   	height: 54px;
+   	margin-bottom: 50px;
+}
+
+/* 
+input[type="checkbox"] + label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #bcbcbc;
+	cursor: pointer;
+	
+	
+}
+input[type="checkbox"]:checked + label {
+	background-color: #666666;
+	background: black;
+	color: white;
+}
+input[type="checkbox"] {
+	display: none;
+}
+ */
+
+/* 배송지정보 div */
+.del-chk-group {
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+	top: -20px;
+}
+
+.zipcode-input {
+	width: 67%!important;	
+	display: inline-block!important;
+}
+
+.zip-code-btn {
+	height: 53px;
+	width: 31.5%;
+	margin-left:4px;
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+}
+
+.form-select {
+	height: 53px;
+	margin-bottom: 5px;
+}
+
+.point-input {
+	width: 67%!important;	
+	display: inline-block!important;
+}
+
+.point-btn {
+	height: 53px;
+	width: 31.5%;
+	margin-left:4px;
+	background-color: #f1f1f1;
+	color: #4c4c4c;
+	border-radius: 3px;
+	border: 0;
+}
+
+table td {
+	padding-left: 30px;
+}
+
+table th {
+	color: #464646;
+	font-weight: 500;
+}
+
+table tr {
+	height: 24px;
+}
+
+label {
+	font-weight: lighter!important;
+}
+
+
+
+
+
+
+
+
