@@ -28,6 +28,7 @@ import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.member.model.vo.Member;
 
@@ -443,4 +444,76 @@ public class GoodsController {
 		return "goods/goodsLikeDiv";
 	}
 
+	/**
+	 * 주문, 주문상세 데이터 추가  
+	 */
+	@GetMapping("/insertOrder.do")
+	public String insertOrder(Authentication authentication, Model model) {
+
+
+		// 1. 주문 테이블에 레코드 1행 추가하기 
+		// 회원아이디 : memberId
+		Member member = (Member) authentication.getPrincipal();
+		String memberId = member.getId();
+		log.debug("memberId = {}", memberId);
+		
+		// 총주문금액 
+		List<CartJoin> list = goodsService.selectGoodsCartList(memberId);
+		log.debug("list = {}", list);
+		
+		int totalPrice = 0;
+		int price = 0;
+		int cnt = 0;
+		
+		for(int i=0; i < list.size(); i++ ) {
+			price = list.get(i).getGoods().getPPrice();
+			cnt = list.get(i).getGoodsCart().getCartQuantity();
+					
+			totalPrice += (price*cnt);
+		}
+		log.debug("totalPrice = {}", totalPrice); // totalPrice = 321100 (배송비 포함X)
+		
+		// 매개변수
+		Map<String, Object> param = new HashMap<>();
+		param.put("memberId", memberId);
+		param.put("totalPrice", totalPrice);
+		
+		// param -> goods_order 테이블에 1행 삽입
+		int result = goodsService.insertGoodsOrder(param);
+		log.debug("goods_order 삽입 result = {}", result); // goods_order 삽입 result = 1
+		
+		////////////////////////////////////////////
+		
+		// 2. 주문상세 테이블에 레코드 n행 추가하기 
+		
+		// 주문번호 찾기 
+		String orderNo = goodsService.selectOneOrderNo(param);
+		log.debug("orderNo = {}", orderNo); // order = order-0004
+		param.put("orderNo", orderNo);
+		
+		// 주문상세 테이블의 레코드 추가 
+		result = goodsService.insertOrderDetail(param);
+		log.debug("order_detail 삽입 result = {}", result); // order_detail 삽입 result = 6
+		
+		
+		return "redirect:/goods/goodsCart.do";
+	}
+	
+	/**
+	 * 주문서 페이지
+	 */
+	@GetMapping("/goodsOrder.do")
+	public String goodsOrder() {
+		
+		
+		
+		
+		
+		
+		
+		return "goods/goodsOrder";
+	}
+	
+	
+	
 }

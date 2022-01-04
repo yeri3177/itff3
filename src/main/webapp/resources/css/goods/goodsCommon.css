@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
+:root {
+	--bg-gray : #f3f3f3;
+}
+
 .goods-container {
 	font-size: 15px!important;
 	line-height: 1.5;
-	
 	min-height: 600px;
 }
 

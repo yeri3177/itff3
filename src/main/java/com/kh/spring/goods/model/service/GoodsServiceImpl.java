@@ -13,6 +13,7 @@ import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
 @Service
@@ -134,6 +135,21 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<GoodsLikeJoin> selectGoodsList(Map<String, Object> param) {
 		return goodsDao.selectGoodsList(param);
+	}
+
+	@Override
+	public int insertGoodsOrder(Map<String, Object> param) {
+		return goodsDao.insertGoodsOrder(param);
+	}
+
+	@Override
+	public String selectOneOrderNo(Map<String, Object> param) {
+		return goodsDao.selectOneOrderNo(param);
+	}
+
+	@Override
+	public int insertOrderDetail(Map<String, Object> param) {
+		return goodsDao.insertOrderDetail(param);
 	}
 
 

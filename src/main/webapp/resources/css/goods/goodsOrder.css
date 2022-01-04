@@ -1,1 +1,37 @@
 @charset "UTF-8";
+
+/* 전체 컨테이너 */
+#goodsOrder-container {
+	width: 85%;
+	margin: 0 auto;
+	display: flex;
+	
+	background-color: aqua;
+}
+
+/* 왼쪽 컨테이너 */
+#left-container {
+	background-color: pink;
+	
+	margin-top: 50px;
+	height: 100%;
+	width: 60%;
+	padding-bottom: 60px;
+}
+
+/* 오른쪽 컨테이너 */
+#right-container {
+	background-color: gray;
+	
+	margin-top: 50px;
+	height: 100%;
+	width: 40%;
+	margin-left: 45px;
+}
+/* 컨테이너 고정 */
+.fixed { 
+    position: fixed; 
+    top:0px; 
+    left:55.4%; 
+    width: 26.7%!important;
+}

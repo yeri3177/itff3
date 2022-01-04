@@ -487,4 +487,34 @@
 	
 	</delete>
 	
+	<insert id="insertGoodsOrder">
+		insert into
+			goods_order
+		values(
+			default,
+			#{memberId},
+			#{totalPrice}
+		)
+	</insert>
+	
+	<select id="selectOneOrderNo" resultType="string">
+		select *
+		from goods_order
+		where member_id = #{memberId}
+		and total_price = #{totalPrice}
+	</select>
+	
+	
+	<insert id="insertOrderDetail">
+		insert into order_detail
+		select seq_order_detail_no.nextval as order_detail_no, 
+		#{orderNo} as order_no, 
+		e.p_id, 
+		e.option_id, 
+		e.cart_quantity as quantity 
+		from goods_cart e 
+		where member_id = #{memberId}
+	</insert>
+	
+	
 </mapper>
