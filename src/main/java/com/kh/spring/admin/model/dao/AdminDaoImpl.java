@@ -567,8 +567,8 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public GoodsPaymentJoin selectOnePayment(String memberId) {
-		return session.selectOne("admin.selectOnePayment", memberId);
+	public GoodsPaymentJoin selectOnePayment(Map<String, Object> param) {
+		return session.selectOne("admin.selectOnePayment", param);
 	}
 	
 	@Override

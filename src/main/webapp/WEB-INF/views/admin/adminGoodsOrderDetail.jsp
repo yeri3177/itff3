@@ -27,8 +27,19 @@
 						  <!-- 주문 정보 -->
 						  
 						  <tr>
-							  <th class="title_tr">주문 정보</th>
-							  <td></td>
+						  	<th class="title_tr">주문 정보</th>
+						  	<td class="receiver" style="justify-content: flex-start;">	
+							  	<button 
+					      		type="button" 
+					      		class="btn btn-outline-secondary orderUpdateBtn"
+								onclick="order_receiver_change_btn('${payment.payment.memberId }');">회원상세정보보기
+								</button>	
+							  	<button 
+					      		type="button" 
+					      		class="btn btn-outline-secondary orderUpdateBtn"
+								onclick="order_receiver_change_btn('${orderNo}, ${payment.payment.receiver }');">주문자정보수정
+								</button>	
+							</td>
 						  </tr>
 						  
 						  <tr>
@@ -41,20 +52,10 @@
 							  	<th class="title_th">주문자</th>
 								<td class="receiver">
 									${payment.payment.receiver }
-							      	<button 
-						      		type="button" 
-						      		class="btn btn-outline-secondary orderUpdateBtn"
-									onclick="order_receiver_change_btn('${orderNo}, ${payment.payment.receiver }');">변경
-									</button>
 								</td>
 								<th class="title_th">연락처</th>
 								<td class="receiver">
-									${payment.payment.phone }
-							      	<button 
-						      		type="button" 
-						      		class="btn btn-outline-secondary orderUpdateBtn"
-									onclick="order_phone_change_btn('${orderNo}, ${payment.payment.receiver }');">변경
-									</button>						
+									${payment.payment.phone }					
 								</td>
 						  	</tr>
 													
@@ -62,20 +63,10 @@
 								<th class="title_th">배송주소</th>
 								<td class="receiver">
 									${payment.payment.address }
-						      		<button 
-						      		type="button" 
-						      		class="btn btn-outline-secondary orderUpdateBtn"
-									onclick="order_phone_change_btn('${orderNo}, ${payment.payment.receiver }');">변경
-									</button>	
 								</td>
 								<th class="title_th">주문메모</th>
 								<td class="receiver">
-									${payment.payment.orderComment }
-									<button 
-						      		type="button" 
-						      		class="btn btn-outline-secondary orderUpdateBtn"
-									onclick="order_phone_change_btn('${orderNo}, ${payment.payment.receiver }');">변경
-									</button>	
+									${payment.payment.orderComment }	
 								</td>
 							</tr>	
 

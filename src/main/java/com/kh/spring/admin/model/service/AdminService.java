@@ -212,7 +212,7 @@ public interface AdminService {
 
 	String selectOneGoodsOrderMember(String orderNo);
 
-	GoodsPaymentJoin selectOnePayment(String memberId);
+	GoodsPaymentJoin selectOnePayment(Map<String, Object> param);
 
 	
 }

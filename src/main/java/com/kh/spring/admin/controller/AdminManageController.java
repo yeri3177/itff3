@@ -1198,7 +1198,7 @@ public class AdminManageController {
 	
 
 	/**
-	 * [굿즈 목록]
+	 * [굿즈 주문 목록]
 	 */
 	
 	@GetMapping("/adminGoodsOrderList.do")
@@ -1248,7 +1248,11 @@ public class AdminManageController {
 		String memberId = adminService.selectOneGoodsOrderMember(orderNo);
 		log.debug("memberId = {}", memberId);
 		
-		GoodsPaymentJoin payment = adminService.selectOnePayment(memberId);
+		Map<String, Object> param = new HashMap<>();
+		param.put("memberId", memberId);
+		param.put("orderNo", orderNo);
+		
+		GoodsPaymentJoin payment = adminService.selectOnePayment(param);
 		log.debug("payment = {}", payment);
 		
 		model.addAttribute("list", list);

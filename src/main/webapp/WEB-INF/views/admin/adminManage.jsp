@@ -12,6 +12,7 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<!-- 사용자 설정 css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminManage.css" />
 <link rel="stylesheet"
@@ -145,7 +146,7 @@
 													  <div class="flex-container">
 													  
 													  <!-- todo -->
-														<div class="app" id="app">
+														<div class="app" id="app" style="display: none;">
 															<form class="form" v-on:submit="addTodo">
 																<input class="input form__input" v-model="inputVal" />
 																<button class="btn form__submit-btn" type="submit">Add</button>
@@ -218,41 +219,126 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th style="width: 380px;"><span> Recently Order </span></th>
-																	<th><span> ID </span></th>
-																	<th><span> Enroll Date </span></th>
+																	<th style="width: 380px;"><span> 주문/클레임 </span></th>
 																</tr>
 															</thead>
 															<tbody>
 																<tr>
 																<td>
-																<span class="recent-apps-title"> Test </span>
-																</td>
-															</tr>
-																<tr>
-																	<td>
-																		<span class="recent-apps-title"> Test </span>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<span class="recent-apps-title"> Test </span>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<span class="recent-apps-title"> Test </span>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<span class="recent-apps-title"> Test </span>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		<span class="recent-apps-title"> Test </span>
-																	</td>
+																<div ui-view="" name="naverpay-salesinfo"
+																	class="panel-wrap flex-col-6 flex-col-xs-12 order-md-3 order-xs-1">
+																	<div class="panel panel-dashboard">
+
+																	<div class="panel-body flex flex-wrap">
+																		<div
+																			class="list-wrap deposit-list flex-col-6 flex-col-md-12">
+																			<!---->
+																			<div
+																				ng-if="vm.saleStats &amp;&amp; vm.saleStats.$resolved"
+																				class="" style="">
+																				<div class="panel-icon-area">
+																					<span class="square-ico-area"><i
+																						class="seller-icon icon-order" aria-hidden="true"></i></span>
+																				</div>
+																				<ul class="panel-list">
+																					<li><span class="info-title">결제대기</span> <span
+																						class="number-area"> <!----> <a
+																							ng-if="::vm.isDesktop"
+																							ui-sref="main.naverpay_sale_unpayment"
+																							class="text-number"
+																							ng-bind="::vm.saleStats.paymentWaitCases"
+																							data-nclicks-code="orddel.paymentwait"
+																							href="#/naverpay/sale/unpayment">0</a> <!----> <!---->
+																							<span>건</span>
+																					</span></li>
+																					<li><div class="clearfix">
+																							<span class="info-title">
+																							<em
+																								class="pull-left">신규주문</em> 
+																								<a href="#" role="button" class="font-icon-button" uib-popover-html="'<ul class=&quot;seller-ul-list&quot;><li><strong>&amp;apos;선물 수락대기&amp;apos; 상태의 주문 건은 포함되지 않습니다.</strong></li><li><a href=&quot;https://help.sell.smartstore.naver.com/faq/content.help?faqId=3355&quot; target=&quot;_blank&quot; role=&quot;button&quot; class=&quot;btn-link text-primary&quot;>
+																								<span>그럼 선물 주문은 어디서 확인하나요?<i class=&quot;fn-shopping
+																										fn-shopping-forward2&quot; aria-hidden=&quot;true&quot;></i><span></span></li>
+																				</ul>
+																				<i
+																					class="fn fn-info1" aria-hidden="true"></i><span
+																					class="sr-only">툴팁</span> </a></span><span
+																					class="number-area">
+																					<!---->
+																					<a ng-if="::vm.isDesktop"
+																					ui-sref="main.naverpay_sale_delivery"
+																					class="text-number"
+																					ng-bind="::vm.saleStats.newOrderCases"
+																					data-nclicks-code="orddel.new"
+																					href="#/naverpay/sale/delivery">0</a>
+																				<!----> <!---->
+																					<span>건</span>
+																				</span>
+																			</div>
+
+																		</div>
+																		<!---->
+																		<!---->
+																	</div>
+																	
+																</div>
+																<!---->
+																<!---->
+															</div>
+
+															<div class="panel-body flex flex-wrap">
+																<div
+																	class="list-wrap return-list flex-col-6 flex-col-md-12">
+																	<!---->
+																	<div ng-if="vm.claim &amp;&amp; vm.claim.$resolved"
+																		class="" style="">
+																		<div class="panel-icon-area">
+																			<span class="square-ico-area"><i
+																				class="seller-icon icon-return" aria-hidden="true"></i></span>
+																		</div>
+																		<ul class="panel-list">
+																			<li><span class="info-title">취소요청</span> <span
+																				class="number-area">
+																					<!---->
+																					<a ng-if="::vm.isDesktop"
+																					ui-sref="main.naverpay_claim_cancel({summaryInfoType : 'CANCEL_REQUEST'})"
+																					class="text-number"
+																					ng-bind="::vm.claim.cancelClaimCases"
+																					data-nclicks-code="claimset.cancel"
+																					href="#/naverpay/claim/cancel?summaryInfoType=CANCEL_REQUEST">0</a>
+																				<!----> <!---->
+																					<span>건</span>
+																			</span></li>
+																			<li><span class="info-title">반품요청</span> <span
+																				class="number-area">
+																					<!---->
+																					<a ng-if="::vm.isDesktop"
+																					ui-sref="main.naverpay_claim_return({summaryInfoType : 'RETURN_REQUEST'})"
+																					class="text-number"
+																					ng-bind="::vm.claim.returnClaimCases"
+																					data-nclicks-code="claimset.return"
+																					href="#/naverpay/claim/return?summaryInfoType=RETURN_REQUEST">0</a>
+																				<!----> <!---->
+																					<span>건</span>
+																			</span></li>
+																			<li><span class="info-title">교환요청</span> <span
+																				class="number-area">
+																					<!---->
+																					<a ng-if="::vm.isDesktop"
+																					ui-sref="main.naverpay_claim_exchange({summaryInfoType : 'EXCHANGE_REQUEST'})"
+																					class="text-number"
+																					ng-bind="::vm.claim.exchangeClaimCases"
+																					data-nclicks-code="claimset.exchange"
+																					href="#/naverpay/claim/exchange?summaryInfoType=EXCHANGE_REQUEST">0</a>
+																				<!----> <!---->
+																					<span>건</span>
+																			</span></li>
+																		</ul>
+																	</div>
+																	<!---->
+																	<!---->
+																</div>
+
+															</td>
 																</tr>
 															</tbody>
 														</table>
@@ -279,7 +365,12 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recent Questions </span></th>
+																	<th>
+																	<span>미답변 문의</span>
+																	</th>
+																	<th>
+																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
+																	</th>
 																</tr>
 															</thead>
 															<tbody id="question">
@@ -292,7 +383,13 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th><span> Recent Reviews </span></th>
+																	<th>
+																	<span>리뷰</span>
+																	<span class="text-muted sub-text">최근 1주일 기준</span>
+																	</th>
+																	<th>
+																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
+																	</th>
 																</tr>
 															</thead>
 															<tbody id="review">
@@ -311,569 +408,7 @@
 								</div>
 							</div>
 
-						<div id="deactivate-dialog" class="ba-modal-sm modal hide"
-							style="display: none">
-							<div class="modal-body">
-								<h3>License Deactivation</h3>
-								<p class="modal-text can-delete">Are you sure you want to
-									deactivate the license? The site will no longer receive
-									updates.</p>
-							</div>
-							<div class="modal-footer">
-								<a href="#" class="ba-btn" data-dismiss="modal"> Cancel </a> <a
-									href="#" class="ba-btn-primary red-btn" id="apply-deactivate">
-									Apply </a>
-							</div>
-						</div>
-						<template class="ba-store-statistic-product-template">
-							<div class="ba-store-statistic-product">
-								<div class="ba-store-statistic-product-image"></div>
-								<div class="ba-store-statistic-product-content">
-									<span class="ba-store-statistic-product-title-wrapper">
-										<span class="ba-store-statistic-product-title"></span> <span
-										class="ba-store-statistic-product-description"> <span
-											class="ba-store-statistic-product-info"> </span>
-									</span>
-									</span> <span class="ba-store-statistic-product-sales-wrapper">
-										<span class="ba-store-statistic-product-sales"> <span
-											class="ba-store-statistic-product-sales-count"></span> <span
-											class="ba-store-statistic-product-sales-text">Sales</span>
-									</span> <span class="ba-store-statistic-price"></span>
-									</span>
-								</div>
-								<a href="" target="_blank"></a>
-							</div>
-						</template>
-
-						<div class="ba-context-menu options-context-menu"
-							data-source="gridbox-options"
-							style="left: 347px; - -context-top: 586px; display: none;">
-							<span class="export-gridbox"> <i
-								class="zmdi zmdi-download "></i> <span
-								class="ba-context-menu-title"> Export </span>
-							</span> <span class="import-gridbox"> <i
-								class="zmdi zmdi-upload"></i> <span
-								class="ba-context-menu-title"> Import </span>
-							</span> <span class="import-joomla-content"> <i
-								class="zmdi zmdi-inbox"></i> <span
-								class="ba-context-menu-title"> Import Joomla Content </span>
-							</span> <span class="context-menu-item-link ba-group-element"> <a
-								href="index.php?option=com_config&amp;view=component&amp;component=com_gridbox&amp;path="
-								class="default-action"> <i class="zmdi zmdi-accounts"></i>
-									<span class="ba-context-menu-title"> Permissions </span>
-							</a>
-							</span>
-						</div>
-						<div class="ba-context-menu store-context-menu"
-							data-source="gridbox-store"
-							style="left: 347px; - -context-top: 249px; display: none;">
-							<span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=orders"
-								class="default-action"> <i class="zmdi zmdi-shopping-cart"></i>
-									<span class="ba-context-menu-title"> Orders </span>
-
-							</a>
-							</span> <span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=paymentmethods"
-								class="default-action"> <i class="zmdi zmdi-card"></i> <span
-									class="ba-context-menu-title"> Payment Methods </span>
-							</a>
-							</span> <span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=shipping"
-								class="default-action"> <i class="zmdi zmdi-truck"></i> <span
-									class="ba-context-menu-title"> Shipping </span>
-							</a>
-							</span> <span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=promocodes"
-								class="default-action"> <i class="zmdi zmdi-card-giftcard"></i>
-									<span class="ba-context-menu-title"> Promo Codes </span>
-							</a>
-							</span> <span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=sales"
-								class="default-action"> <i class="zmdi zmdi-bookmark"></i>
-									<span class="ba-context-menu-title"> Discounts </span>
-							</a>
-							</span> <span class="context-menu-item-link"> <a
-								href="index.php?option=com_gridbox&amp;view=productoptions"
-								class="default-action"> <i class="zmdi zmdi-invert-colors"></i>
-									<span class="ba-context-menu-title"> Product Options </span>
-							</a>
-							</span> <span class="context-menu-item-link ba-group-element"> <a
-								href="index.php?option=com_gridbox&amp;view=storesettings"
-								class="default-action"> <i class="zmdi zmdi-settings"></i>
-									<span class="ba-context-menu-title"> Settings </span>
-							</a>
-							</span>
-						</div>
-						<div id="languages-dialog" class="ba-modal-sm modal hide"
-							style="display: none">
-							<div class="modal-body">
-								<div class="languages-wrapper">
-
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/ca-ES.svg"></span><span
-											class="language-title" data-key="0">Catalan</span><span
-											class="language-code">ca-ES</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/zh-CN.svg"></span><span
-											class="language-title" data-key="1">Chinese
-											Simplified</span><span class="language-code">zh-CN</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/cs-CZ.svg"></span><span
-											class="language-title" data-key="2">Czech</span><span
-											class="language-code">cs-CZ</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/nl-NL.svg"></span><span
-											class="language-title" data-key="3">Dutch</span><span
-											class="language-code">nl-NL</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/fr-FR.svg"></span><span
-											class="language-title" data-key="4">French</span><span
-											class="language-code">fr-FR</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/de-DE.svg"></span><span
-											class="language-title" data-key="5">German</span><span
-											class="language-code">de-DE</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/hu-HU.svg"></span><span
-											class="language-title" data-key="6">Hungarian</span><span
-											class="language-code">hu-HU</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/it-IT.svg"></span><span
-											class="language-title" data-key="7">Italian</span><span
-											class="language-code">it-IT</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/pl-PL.svg"></span><span
-											class="language-title" data-key="8">Polish</span><span
-											class="language-code">pl-PL</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/pt-BR.svg"></span><span
-											class="language-title" data-key="9">Portuguese Brazil</span><span
-											class="language-code">pt-BR</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/ru-RU.svg"></span><span
-											class="language-title" data-key="10">Russian</span><span
-											class="language-code">ru-RU</span>
-									</div>
-									<div class="language-line">
-										<span class="language-img"><img
-											src="https://www.balbooa.com/updates/gridbox/language/flags/es-ES.svg"></span><span
-											class="language-title" data-key="11">Spanish</span><span
-											class="language-code">es-ES</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="import-joomla-content-modal"
-							class="ba-modal-md modal hide" style="display: none">
-							<div class="modal-body">
-								<div class="ba-modal-header">
-									<h3>Select an app to import articles</h3>
-									<i data-dismiss="modal" class="zmdi zmdi-close"></i>
-								</div>
-								<div class="availible-folders">
-									<ul class="root-list">
-
-									</ul>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<a href="#" class="ba-btn" data-dismiss="modal"> Cancel </a>
-
-							</div>
-						</div>
-						<div id="import-dialog" class="ba-modal-sm modal hide"
-							style="display: none">
-							<div class="modal-header">
-								<h3>Import</h3>
-								<label class="ba-help-icon"> <i class="zmdi zmdi-help"></i>
-									<span class="ba-tooltip ba-help ba-hide-element">
-										Import a previously exported Gridbox Pages and Themes. Select
-										.xml file to import. </span>
-								</label>
-							</div>
-							<div class="modal-body">
-								<div class="ba-input-lg">
-									<input id="theme-import-trigger" class="theme-import-trigger"
-										readonly="" type="text" placeholder="Select"> <i
-										class="zmdi zmdi-attachment-alt theme-import-trigger"></i>
-
-								</div>
-							</div>
-							<div class="modal-footer">
-								<a href="#" class="ba-btn" data-dismiss="modal"> Cancel </a> <a
-									href="#" class="ba-btn-primary apply-import"> Install </a>
-							</div>
-						</div>
-						<input type="hidden" id="installing-const"
-							value="Installing. Please wait...">
-						<div id="photo-editor-dialog" class="ba-modal-lg modal hide"
-							style="display: none">
-							<div class="modal-header">
-								<span class="ba-dialog-title">Photo Editor</span>
-								<div class="modal-header-icon">
-									<i class="zmdi zmdi-close" data-dismiss="modal"></i>
-								</div>
-							</div>
-							<div class="modal-body">
-								<div class="general-tabs">
-									<ul class="nav nav-tabs uploader-nav">
-										<li class="active"><a href="#resize-image-options"
-											data-toggle="tab"> <i class="zmdi zmdi-wallpaper"></i> <span
-												class="ba-tooltip ba-bottom">Resize</span>
-										</a></li>
-										<li><a href="#crop-image-options" data-toggle="tab">
-												<i class="zmdi zmdi-crop"></i> <span
-												class="ba-tooltip ba-bottom">Crop</span>
-										</a></li>
-										<li><a href="#filter-effects-image-options"
-											data-toggle="tab"> <i class="zmdi zmdi-invert-colors"></i>
-												<span class="ba-tooltip ba-bottom">Filter and
-													Effects</span>
-										</a></li>
-										<li><a href="#adjust-image-options" data-toggle="tab">
-												<i class="zmdi zmdi-tune"></i> <span
-												class="ba-tooltip ba-bottom">Adjust</span>
-										</a></li>
-										<li><a href="#flip-rotate-image-options"
-											data-toggle="tab"> <i class="zmdi zmdi-flip"></i> <span
-												class="ba-tooltip ba-bottom">Flip and Rotate</span>
-										</a></li>
-										<span class="photo-editor-save-image"
-											data-context="save-image-context-menu"> <span>Save</span>
-											<i class="zmdi zmdi-caret-down"></i>
-										</span>
-									</ul>
-									<div class="tabs-underline" style="left: 0px; right: 1914px;"></div>
-									<div class="resize-image-wrapper">
-										<div>
-											<canvas id="photo-editor"></canvas>
-										</div>
-										<div class="ba-crop-overlay" style="opacity: 0;">
-											<canvas id="ba-overlay-canvas"></canvas>
-											<span class="ba-crop-overlay-resize-handle"
-												data-resize="top-left"></span> <span
-												class="ba-crop-overlay-resize-handle"
-												data-resize="top-right"></span> <span
-												class="ba-crop-overlay-resize-handle"
-												data-resize="bottom-left"></span> <span
-												class="ba-crop-overlay-resize-handle"
-												data-resize="bottom-right"></span>
-										</div>
-									</div>
-									<span class="show-photo-media-editor"> <i
-										class="zmdi zmdi-camera"></i> <span class="ba-tooltip ba-top">SELECT_PICTURE_TO_START_EDIT</span>
-									</span>
-									<div class="tab-content">
-										<div id="resize-image-options"
-											class="row-fluid tab-pane active">
-											<div class="ba-settings-group">
-												<div class="ba-settings-toolbar">
-													<div>
-														<span>Width</span> <input type="number"
-															class="resize-width" data-callback="emptyCallback">
-													</div>
-													<div>
-														<span>Height</span> <input type="number"
-															class="resize-height" data-callback="emptyCallback">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Quality</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="100"> <input
-															type="number" class="photo-editor-quality"
-															data-callback="photoEditorQuality">
-													</div>
-												</div>
-											</div>
-											<div class="photo-editor-footer">
-												<a href="#" class="reset-image">Reset</a> <a href="#"
-													class="resize-action">Apply</a>
-											</div>
-										</div>
-										<div id="crop-image-options" class="row-fluid tab-pane">
-											<div class="ba-settings-group">
-												<div class="ba-settings-toolbar">
-													<div>
-														<span>Width</span> <input type="number"
-															class="crop-width" data-callback="emptyCallback">
-													</div>
-													<div>
-														<span>Height</span> <input type="number"
-															class="crop-height" data-callback="emptyCallback">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Keep Proportions</span> <label class="ba-checkbox">
-														<input type="checkbox" class="keep-proportions">
-														<span></span>
-													</label>
-												</div>
-												<div class="ba-settings-item">
-													<span>Aspect Ratio</span>
-													<div class="ba-custom-select aspect-ratio-select">
-														<input readonly="" onfocus="this.blur()" type="text"
-															value=""> <input type="hidden" value="3">
-														<i class="zmdi zmdi-caret-down"></i>
-														<ul>
-															<li data-value="original">Original</li>
-															<li data-value="1:1">1:1</li>
-															<li data-value="3:2">3:2</li>
-															<li data-value="3:4">3:4</li>
-															<li data-value="16:9">16:9</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="photo-editor-footer">
-												<a href="#" class="reset-image">Reset</a> <a href="#"
-													class="crop-action">Apply</a>
-											</div>
-										</div>
-										<div id="filter-effects-image-options"
-											class="row-fluid tab-pane">
-											<div class="ba-settings-group">
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="original"></canvas>
-													<span>original</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="1977"></canvas>
-													<span>1977</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="aden"></canvas>
-													<span>Aden</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="amaro"></canvas>
-													<span>Amaro</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="brannan"></canvas>
-													<span>Brannan</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="brooklyn"></canvas>
-													<span>Brooklyn</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="clarendon"></canvas>
-													<span>Clarendon</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="earlybird"></canvas>
-													<span>Earlybird</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="gingham"></canvas>
-													<span>Gingham</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="hudson"></canvas>
-													<span>Hudson</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="inkwell"></canvas>
-													<span>Inkwell</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="lofi"></canvas>
-													<span>Lofi</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="maven"></canvas>
-													<span>Maven</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="perpetua"></canvas>
-													<span>Perpetua</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="reyes"></canvas>
-													<span>Reyes</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="stinson"></canvas>
-													<span>Stinson</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="toaster"></canvas>
-													<span>Toaster</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="walden"></canvas>
-													<span>Walden</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="valencia"></canvas>
-													<span>Valencia</span>
-												</div>
-												<div class="filter-effects-thumbnail">
-													<canvas class="filter-effect-canvas" data-key="xpro2"></canvas>
-													<span>Xpro2</span>
-												</div>
-											</div>
-											<div class="photo-editor-footer">
-												<a href="#" class="reset-image">Reset</a> <a href="#"
-													class="filter-effects-action">Apply</a>
-											</div>
-										</div>
-										<div id="adjust-image-options" class="row-fluid tab-pane">
-											<div class="ba-settings-group">
-												<div class="ba-settings-item">
-													<span>Contrast</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="200" step="1"> <input
-															type="number" data-filter="contrast"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Brightness</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="200" step="1"> <input
-															type="number" data-filter="brightness"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Saturate</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="200" step="1"> <input
-															type="number" data-filter="saturate"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Sepia</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="100" step="1"> <input
-															type="number" data-filter="sepia"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Grayscale</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="100" step="1"> <input
-															type="number" data-filter="grayscale"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-												<div class="ba-settings-item">
-													<span>Blur</span>
-													<div class="ba-range-wrapper">
-														<span class="ba-range-liner"></span> <input type="range"
-															class="ba-range" min="0" max="10" step="1"> <input
-															type="number" data-filter="blur"
-															data-callback="photoEditorFilters">
-													</div>
-												</div>
-											</div>
-											<div class="photo-editor-footer">
-												<a href="#" class="reset-image">Reset</a> <a href="#"
-													class="adjust-action">Apply</a>
-											</div>
-										</div>
-										<div id="flip-rotate-image-options"
-											class="row-fluid tab-pane">
-											<span> <i class="zmdi zmdi-rotate-left rotate-action"
-												data-rotate="-90"></i> <span class="ba-tooltip ba-bottom">Rotate
-													Left</span>
-											</span> <span> <i
-												class="zmdi zmdi-rotate-right rotate-action"
-												data-rotate="90"></i> <span class="ba-tooltip ba-bottom">Rotate
-													Right</span>
-											</span> <span> <i class="zmdi zmdi-flip flip-action"
-												data-flip="horizontal"></i> <span
-												class="ba-tooltip ba-bottom">Flip Horizontal</span>
-											</span> <span> <i class="zmdi zmdi-flip flip-action"
-												data-flip="vertical"></i> <span
-												class="ba-tooltip ba-bottom">Flip Vertical</span>
-											</span>
-											<div class="photo-editor-footer">
-												<a href="#" class="reset-image">Reset</a> <a href="#"
-													class="flip-rotate-action">Apply</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div id="save-copy-dialog" class="ba-modal-sm modal hide">
-							<div class="modal-body">
-								<h3 class="ba-modal-title">Save as Copy</h3>
-								<div class="ba-input-lg">
-									<input type="text"
-										class="photo-editor-file-title reset-input-margin"
-										placeholder="Enter file name"> <span
-										class="focus-underline"></span>
-								</div>
-								<div class="ba-checkbox-parent">
-									<label class="ba-checkbox ba-hide-checkbox"> <input
-										type="checkbox" class="save-as-webp"> <span></span>
-									</label> <label>Save as WebP</label>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<a href="#" class="ba-btn" data-dismiss="modal"> Cancel </a> <a
-									href="#" class="ba-btn-primary disable-button"
-									id="apply-save-copy"> Save </a>
-							</div>
-						</div>
-						<div id="save-copy-notice-dialog" class="ba-modal-sm modal hide">
-							<div class="modal-body">
-								<h3 class="ba-modal-title">Save as Copy</h3>
-								<p class="modal-text">The file already exists. Do you want
-									to overwrite it?</p>
-							</div>
-							<div class="modal-footer">
-								<a href="#" class="ba-btn" data-dismiss="modal"> Cancel </a> <a
-									href="#" class="ba-btn-primary red-btn"
-									id="apply-overwrite-copy"> Save </a>
-							</div>
-						</div>
-						<div class="ba-context-menu save-image-context-menu"
-							style="display: none;">
-							<span class="photo-editor-save-copy"> <span>Save
-									as Copy</span>
-							</span> <span class="save-photo-editor-image"> <span>Save</span>
-							</span>
-						</div>
-					</main>
-				</div>
-			</div>
-		</section>
-	</div>
+						
 
 		<!-- //container -->
 
@@ -1036,7 +571,7 @@ $( ".getfive" ).on( "click", function() {
 	      enabled: false
 	    },
 	    title: {
-	      text: '날짜별 현황',
+	      text: '날짜별 통계',
 	      align: 'left',
 	      margin: 50
 	    },
@@ -1113,7 +648,7 @@ $( ".getfive" ).on( "click", function() {
 	      enabled: false
 	    },
 	    title: {
-	      text: '연령별 예매 현황',
+	      text: '연령별 예매 통계',
 	      align: 'left',
 	      margin: 50
 	    },
@@ -1242,6 +777,12 @@ var filters = {
 		  }
 		});
 		
+</script>
+
+<script>
+function refreshPage(){
+    window.location.reload();
+} 
 </script>
 
 <jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

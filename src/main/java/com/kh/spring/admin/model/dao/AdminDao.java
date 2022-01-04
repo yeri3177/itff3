@@ -216,7 +216,7 @@ public interface AdminDao {
 
 	List<GoodsOrderDetailJoin> selectOneGoodsOrderDetail(String orderNo);
 
-	GoodsPaymentJoin selectOnePayment(String memberId);
+	GoodsPaymentJoin selectOnePayment(Map<String, Object> param);
 
 	String selectOneGoodsOrderMember(String orderNo);
 

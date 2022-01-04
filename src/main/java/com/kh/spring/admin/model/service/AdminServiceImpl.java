@@ -599,8 +599,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public GoodsPaymentJoin selectOnePayment(String memberId) {
-		return adminDao.selectOnePayment(memberId);
+	public GoodsPaymentJoin selectOnePayment(Map<String, Object> param) {
+		return adminDao.selectOnePayment(param);
 	}
 
 	@Override

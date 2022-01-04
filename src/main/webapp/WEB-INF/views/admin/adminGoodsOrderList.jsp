@@ -79,7 +79,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 								<tr>
 									<th>&nbsp;</th>
 									<th>주문번호</th>
-									<th>아이디</th>
+									<th>주문자</th>
 									<th>주문금액</th>
 									<th>&nbsp;</th>
 									<th>&nbsp;</th>
