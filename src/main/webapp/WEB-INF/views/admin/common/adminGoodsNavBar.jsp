@@ -14,7 +14,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsList.do">상품관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">상품</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do">주문관리</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">상품</a>

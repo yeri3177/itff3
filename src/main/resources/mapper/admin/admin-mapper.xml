@@ -28,7 +28,6 @@
 		<result column="point" property="point" />
 		<result column="enabled" property="enabled" />
 		<result column="image" property="image" />
-		
 		<collection 
 			property="authorities" 
 			ofType="org.springframework.security.core.authority.SimpleGrantedAuthority">
@@ -171,21 +170,6 @@
 			</when>
 			</choose>
 	</select>
-	
-<!-- 	<resultMap type="member" id="searchMemberMap"> -->
-<!-- 		<id column="rnum" property="rnum"/> -->
-<!-- 		<result column="id" property="id"/> -->
-<!-- 		<result column="password" property="password"/> -->
-<!-- 		<result column="name" property="name"/> -->
-<!-- 		<result column="phone" property="phone"/> -->
-<!-- 		<result column="email" property="email"/> -->
-<!-- 		<result column="birthday" property="birthday"/> -->
-<!-- 		<result column="address" property="address"/> -->
-<!-- 		<result column="nickname" property="nickname"/> -->
-<!-- 		<result column="reg_date" property="regDate"/> -->
-<!-- 		<result column="point" property="point"/> -->
-<!-- 		<result column="enabled" property="enabled"/> -->
-<!-- 	</resultMap> -->
 
 	<select id="searchMemberCount" resultType="int" parameterType="java.util.HashMap">
 		<if test="searchType != null and !searchType.equals('') and searchType.equals('id')">
@@ -422,7 +406,6 @@
 			<result column="original_filename" property="originalFilename"/>
 			<result column="renamed_filename" property="renamedFilename"/>
 			<result column="reg_date" property="regDate"/>
-			
 		</collection>
 		
 	</resultMap>
@@ -483,6 +466,26 @@
 		<result column="option_stock" property="optionStock"/>
 		<result column="option_img" property="optionImg"/>
 		<result column="option_rgb" property="optionRgb"/>
+	</resultMap>
+	
+	<resultMap type="orderDetail" id="orderDetailMap">
+		<id column="order_detail_no" property="orderDetailNo"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="p_id" property="pId"/>
+		<result column="option_id" property="optionId"/>
+		<result column="quantity" property="quantity"/>
+	</resultMap>
+	
+	<resultMap type="payment" id="paymentMap">
+		<id column="payment_no" property="paymentNo"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="receiver" property="receiver"/>
+		<result column="address" property="address"/>
+		<result column="phone" property="phone"/>
+		<result column="order_comment" property="orderComment"/>
+		<result column="total_price" property="totalPrice"/>
+		<result column="payment_date" property="paymentDate"/>
 	</resultMap>
 	
 	<resultMap type="goodsJoin" id="goodsJoinMap">
@@ -1296,6 +1299,86 @@
 			goods_option
 		where
 			p_id = #{pId}
+	</select>
+	
+	<select id="selectGoodsOrderList" resultType="goodsOrder">
+		select
+			*
+		from
+			goods_order
+		order by
+			order_no desc
+	</select>
+	
+	<select id="selectGoodsOrderTotalCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			goods_order
+	</select>
+	
+	<resultMap type="member" id="memberMap2">
+		<id column="id" property="id"/>
+		<result column="password" property="password" />
+		<result column="name" property="name" />
+		<result column="phone" property="phone" />
+		<result column="gender" property="gender" />
+		<result column="email" property="email" />
+		<result column="birthday" property="birthday" />
+		<result column="address" property="address" />
+		<result column="nickname" property="nickname" />
+		<result column="reg_date" property="regDate" />
+		<result column="point" property="point" />
+		<result column="enabled" property="enabled" />
+		<result column="image" property="image" />
+ 	</resultMap>
+	
+	<resultMap type="GoodsPaymentJoin" id="GoodsPaymentJoinMap">
+		<collection property="member" resultMap="memberMap2" />
+		<collection property="payment" resultMap="paymentMap" />
+	</resultMap>
+	
+	<select id="selectOnePayment" resultMap="GoodsPaymentJoinMap">
+		select
+			*
+		from
+			payment p
+		right join member m
+		on p.member_id = m.id
+		where 
+			m.id = #{memberId}
+	</select>
+	
+	<resultMap type="GoodsOrderDetailJoin" id="goodsOrderDetailJoinMap">
+		<collection property="goods" resultMap="goodsMap" />
+		<collection property="optionDetail" resultMap="optionDetailMap" />
+		<collection property="orderDetail" resultMap="orderDetailMap" />
+	</resultMap>
+	
+	<select id="selectOneGoodsOrderDetail" resultMap="goodsOrderDetailJoinMap">
+		select
+			o.order_no, o.p_img, o.p_name, o.p_price, o.option_type, o.option_color, o.option_size, o.quantity
+		from
+			(select
+			*
+			from
+			order_detail o
+			left join goods g
+			on o.p_id = g.p_id
+			left join option_detail d
+			on o.option_id = d.option_id
+			) o
+		where 
+			o.order_no = #{orderNo}
+	</select>
+	
+	<select id="selectOneGoodsOrderMember" resultType="string">
+		select
+			member_id
+		from
+			goods_order
+		where
+			order_no = #{orderNo}
 	</select>
 	
 </mapper>

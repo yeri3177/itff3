@@ -1,0 +1,514 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!-- taglib는 사용 시 jsp마다 넣어야 함 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<!DOCTYPE html>
+
+<!-- 사용자작성 css -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminGoodsOrderList.css" />
+
+<jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
+	<jsp:param value="ITFF" name="title" />
+</jsp:include>
+
+<style>
+div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
+</style>
+
+<!-- 굿즈 nav -->
+<jsp:include page="/WEB-INF/views/admin/common/adminGoodsNavBar.jsp"></jsp:include>
+
+<!-- 관리자 공통 메뉴 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
+
+
+		<div class="container">
+			
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-4">
+					<h2 class="heading-section">주문관리</h2>
+				</div>
+			</div>
+			
+			<div class="search-total-total">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+					
+					
+					<div class="search-total insert" style="justify-content: flex-end;">
+					
+					   <div class="input-group rounded">
+					        <select 
+					        	id="searchType" 
+					        	class="custom-select"
+					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
+					            <option value="pId" ${"pId".equals(searchType) ? "selected" : ""}>상품코드</option>		
+					            <option value="pName" ${"pName".equals(searchType) ? "selected" : ""}>상품명</option>
+					        </select>
+					        <div id="search-pId" class="search-type" style="width: 500px !important;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					            	<div style="display: flex;">
+					                <input type="hidden" name="searchType" value="pId"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					            	</div>
+					            </form>	
+					        </div>
+					        <div id="search-pName" class="search-type" style="display: none;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					            <div style="display: flex;">
+					                <input type="hidden" name="searchType" value="pName"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					            </div>
+					            </form>	
+					        </div>
+					    </div>
+					  </div>
+					
+						<table class="table">
+							<thead class="thead-primary">
+								<tr>
+									<th>&nbsp;</th>
+									<th>주문번호</th>
+									<th>아이디</th>
+									<th>주문금액</th>
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${list}" var="list" varStatus="vs">
+								<tr class="alert" role="alert">
+									<!-- 체크박스 -->
+									<td><label class="checkbox-wrap checkbox-primary">
+
+									</label>
+									</td>
+
+									<!-- 주문번호 -->
+									<td>
+										<div class="email">
+											<span>${list.orderNo }</span> 
+										</div>
+									</td>
+
+									<!-- 아이디 -->
+									<td>
+										<div class="email">
+												<span>${list.memberId }</span> 
+										</div>
+									</td>
+									
+									<!-- 금액 -->
+									<td><fmt:formatNumber value="${list.totalPrice }" pattern="#,###" /></td>
+
+									<td>
+										<button 
+										id="${list.orderNo }" 
+										type="button"
+										class="btn btn-outline-dark"
+										data-toggle="modal"
+										data-target="#adminGoodsOrderDetail"
+										onclick="goods_order_detail_btn('${list.orderNo}');"
+										>주문상세</button>
+									</td>
+
+								</tr>
+								</c:forEach>
+								
+							</tbody>
+						</table>
+						</div>
+						
+						<!-- 주문 상세 -->
+						<div class="modal fade" id="adminGoodsOrderDetail" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 700px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax1">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 주문 상세 끝 -->
+						<!-- 주문 정보 수정 -->
+						<div class="modal fade" id="adminGoodsUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax2">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 주문 상세 끝 -->
+						<!-- 주문 삭제 -->
+						<div class="modal fade" id="adminGoodsDelete" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content"
+									style="text-align: left;" id="modal_ajax3">
+									<div class="modal-body" id="modal_ajax3">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 주문 삭제 -->
+						<!-- 옵션 상세 
+						<div class="modal fade" id="adminGoodsOptionDetail" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 1200px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax4">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						-->
+						<!-- 옵션 상세 끝 -->
+						<!-- 옵션 추가 
+						<div class="modal fade" id="adminGoodsOptionInsert" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax7">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						-->
+						<!-- 옵션 추가 끝 -->
+						<!-- 옵션 수정 
+						<div class="modal fade" id="adminGoodsOptionUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax6">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						-->
+						<!-- 옵션 수정 끝 -->
+						<!-- 옵션 삭제 
+						<div class="modal fade" id="adminGoodsOptionDelete" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 800px;">
+								<div class="modal-content"
+									style="text-align: left;">
+									<div class="modal-body" id="modal_ajax8">
+									   		 
+									        
+									</div>
+								</div>
+							</div>
+						</div>
+						-->
+						<!-- 옵션 삭제 끝 -->
+					</div>
+				</div>	
+			</div>
+		</div>
+
+${pagebar}
+	
+<script>
+$("#searchType").change((e) => {
+	// e.target 이벤트발생객체 -> #searchType
+	const type = $(e.target).val();
+	
+	// 1. .search-type 감추기
+	$(".search-type").hide();
+	
+	// 2. #search-${type} 보여주기(display:inline-block)
+	$(`#search-\${type}`).css("display", "inline-block");
+});
+</script>
+
+
+<script>
+
+// 주문 상세
+function goods_order_detail_btn(orderNo) {
+	
+	console.log(orderNo);
+	var id = orderNo;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderDetail.do",
+		data: {orderNo: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 주문 정보 수정
+function goodsUpdate_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsUpdate.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax2").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 주문 삭제
+function goodsDelete_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsDelete.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax3").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 옵션 상세
+function goods_option_detail_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDetail.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax4").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 굿즈 추가
+function goods_insert_btn() {
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsInsert.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax5").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 수정
+function goods_option_update_btn(optionId) {
+	
+	console.log(optionId);
+	var id = optionId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionUpdate.do",
+		data: {optionId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax6").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 추가
+function goods_option_insert_btn(pId) {
+	
+	console.log(pId);
+	var id = pId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionInsert.do",
+		data: {pId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax7").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+//옵션 삭제
+function goods_option_delete_btn(optionId) {
+	
+	console.log(optionId);
+	var id = optionId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDelete.do",
+		data: {optionId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax8").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 파일명 바꾸기 & 이미지 이름
+$(() => {
+	$("[name=upFile]").change((e) => {
+		
+		// 1.파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
+		console.dir(e.target);
+		console.log(file);
+		console.log(filename);
+		
+		// 2.label에 설정하기
+		const $label = $(e.target).next();
+		console.log($label);
+		
+		if(file != undefined) {
+			$label.html(filename);
+			$("[name=pImg]").val(filename);			
+		}
+	});	
+});
+
+</script>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+</script>
+
+	<!-- //container -->
+
+<jsp:include page="/WEB-INF/views/admin/common/adminFooter.jsp"></jsp:include>

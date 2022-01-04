@@ -3,12 +3,16 @@ package com.kh.spring.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.spring.admin.model.vo.GoodsOrderDetailJoin;
+import com.kh.spring.admin.model.vo.GoodsPaymentJoin;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -199,5 +203,16 @@ public interface AdminService {
 	int deleteGoodsLike(int pId);
 
 	List<GoodsOption> selectOneGoodsOptionId(int pId);
+
+	List<GoodsOrder> selectGoodsOrderList(int offset, int limit);
+
+	int selectGoodsOrderTotalCount();
+
+	List<GoodsOrderDetailJoin> selectOneGoodsOrderDetail(String orderNo);
+
+	String selectOneGoodsOrderMember(String orderNo);
+
+	GoodsPaymentJoin selectOnePayment(String memberId);
+
 	
 }
