@@ -2,38 +2,36 @@
 
 /* 전체 컨테이너 */
 #goodsOrder-container {
-	width: 85%;
+	width: 75%;
 	margin: 0 auto;
 	display: flex;
 	
 	/* background-color: aqua; */
+
 }
 
 /* 왼쪽 컨테이너 */
-#left-container {
+#order-left-container {
 	/* background-color: pink; */
-	
 	padding-top: 30px;
 	height: 100%;
 	width: 55%;
 	padding-bottom: 60px;
+
 }
 
 /* 오른쪽 컨테이너 */
-#right-container {
-	background-color: #fff7b4;
-	
+#order-right-container {
+	/* background-color: #fff7b4; */
 	padding-top: 30px;
 	height: 100%;
 	width: 45%;
-	margin-left: 45px;
-}
-/* 컨테이너 고정 */
-.fixed { 
-    position: fixed; 
-    top:0px; 
-    left:55.4%; 
-    width: 26.7%!important;
+	margin-left: 60px;
+	position: sticky!important;
+    top: 0px;
+    padding-bottom: 60px;
+    
+    /* height: 900px; */
 }
 
 input::placeholder {
@@ -44,21 +42,37 @@ input::placeholder {
 	height: 53px!important;
 	margin-bottom: 5px;
 }
-/*****************************************/
+
+.top-container {
+	height: 70px;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    font-weight: 599;
+    font-size: 18px;
+}
+
+.top-content-div {
+	width: 75%; 
+	margin: 0 auto;
+}
+
+.top-content-div i {
+	margin: 0 7px;
+}
+/**********************************************************/
+.col-gry {
+	color: #9b9b9b;
+}
+
+
 .title-text {
-	font-size: 27px;
-	font-weight: bold;
+	font-size: 24px;
+	font-weight: 599;
 	margin-bottom: 20px;
 }
-
-.title-text2 {
-	font-size: 27px;
-	font-weight: bold;
-	/* margin-bottom: 20px; */
-}
-
 .sml-tex {
-	font-size: 12px;
+	font-size: 13px;
 	color: #585858;
 }
 .input-div {
@@ -76,20 +90,15 @@ input::placeholder {
 }
 
 .del-tex {
-	margin-left : 22px;
+	margin-left : 33px;
 	margin-bottom: 13px;
 }
 
-input[type="checkbox"] {
-	margin-right: 7px;
-	
-}
-
 .goodsBtn {
-	margin-top: 25px;
-	margin-bottom: 45px;
-	height: 52px;
-	font-size: 18px!important;
+	margin-top: 55px;
+	margin-bottom: 10px;
+	height: 58px;
+	font-size: 19px!important;
 }
 
 .circleBtn2 {
@@ -107,42 +116,21 @@ input[type="checkbox"] {
    	margin-bottom: 50px;
 }
 
-/* 
-input[type="checkbox"] + label {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	border: 2px solid #bcbcbc;
-	cursor: pointer;
-	
-	
-}
-input[type="checkbox"]:checked + label {
-	background-color: #666666;
-	background: black;
-	color: white;
-}
-input[type="checkbox"] {
-	display: none;
-}
- */
-
-/* 배송지정보 div */
 .del-chk-group {
 	display: flex;
 	justify-content: flex-end;
 	position: relative;
-	top: -20px;
+	top: -18px;
 }
 
 .zipcode-input {
-	width: 67%!important;	
+	width: 66.5%!important;	
 	display: inline-block!important;
 }
 
 .zip-code-btn {
 	height: 53px;
-	width: 31.5%;
+	width: 31.6%;
 	margin-left:4px;
 	background-color: black;
 	color: white;
@@ -160,7 +148,7 @@ input[type="checkbox"] {
 }
 
 .point-btn {
-	height: 53px;
+	height: 55px;
 	width: 31.5%;
 	margin-left:4px;
 	background-color: #f1f1f1;
@@ -179,17 +167,126 @@ table th {
 }
 
 table tr {
-	height: 24px;
+	height: 26px;
 }
 
+/* 체크박스에 있는 label에 bold 효과 없애기 */
 label {
 	font-weight: lighter!important;
 }
 
+.aaa {
+	font-weight: bold;
+}
+
+/******************체크박스 관련 ****************/
+
+.chk input[type="checkbox"] {
+	position: absolute; 
+    width: 20px; 
+    height: 20px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden;
+    border: 0!important;
+    top: 3px;
+    
+    display:none;
+} 
+.chk input[type="checkbox"] + label { 
+	display: inline-block; 
+    position: relative; 
+    cursor: pointer; 
+
+    
+} 
+.chk input[type="checkbox"] + label:before { 
+	content: ' '; 
+    display: inline-block; 
+    width: 20px;
+    height: 20px;
+    line-height: 15px;
+    text-align: center; 
+    vertical-align: middle;
+    border: 1px solid #bfbfbf; 
+
+    margin-right: 13px;
+    position: relative;
+    top:-2px;
+ } 
+.chk input[type="checkbox"]:checked + label:before { 
+	content: '\2714';
+    font-size: 14px;
+    background: black;
+    color: white;
+}
+
+#same-order-chk + label:before, #save-adr-chk + label:before {
+	margin-right: 9px!important;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #f8f8f8!important;
+    border: 1px solid #dadada!important;
+}
+
+/******************** 모달 관련 *********************/
+.modal-btn {
+	text-decoration: underline;
+	cursor: pointer;
+	color: #5c5c5c;
+}
+
+.con-header {
+	display: flex;
+	justify-content: space-between;
+	font-size: 21px;
+	font-weight: 500;
+}
+
+.con-body {
+	overflow: scroll; 
+	overflow-x: hidden; 
+	border: 1px solid #e1e1e1;
+	margin: 30px 0;
+	height: 370px;
+}
+
+.confirm-btn {
+	margin:0!important;
+}
+
+.modal-content {
+	padding: 30px;
+	width: 150%!important;
+	left: -23%;
+	top: 70px;
+}
 
 
 
 
+/*******************************************************************/
+
+#daum-api-iframe {
+    display: block;
+    border: 4px solid black!important;
+    width: 100%!important;
+    height: 466px;
+    margin: 5px 0px;
+    position: relative;
+    margin-bottom: 30px!important;
+}
+
+
+
+
+
+/********************** 오른쪽 컨테이너 ************************/
+.shopname {
+	margin-bottom: 15px;
+	font-size: 17px;
+}
 
 
 

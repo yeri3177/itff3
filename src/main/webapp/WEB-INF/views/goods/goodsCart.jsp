@@ -154,8 +154,8 @@
 			</div>
 		</div>
 	
-	</div><!-- end of card 낱개 반복 -->
-	</c:forEach>
+	</div> 
+	</c:forEach> <!-- end of card 낱개 반복 -->
 
 </div> <!-- end of 왼쪽 컨테이너 -->
 
