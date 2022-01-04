@@ -37,7 +37,7 @@
 		<div class="user_card shadow-sm p-3 mb-5 bg-white rounded">
 				
 				<div class="row">
-					<div class="col-md-4 col-xs-12">
+					<div class="col-md-4 col-xs-12" style="border: 0;">
 						<div class="user">
 							<div class="user_con">
 								<a href="${pageContext.request.contextPath }/member/memberProfile.do"><img src="${pageContext.request.contextPath }/resources/upload/member/<sec:authentication property="principal.image"/>" alt="member" class="member-con" /></a>
