@@ -15,6 +15,9 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 관리자 공통 메뉴 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 

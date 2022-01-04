@@ -26,7 +26,10 @@ div#search-id {display: ${searchType} == '' || ${searchType} == null || "id".equ
 div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
-<!-- 굿즈 nav -->
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
+<!-- 회원 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMemberNavBar.jsp"></jsp:include>
 
 <!-- 관리자 공통 메뉴 -->

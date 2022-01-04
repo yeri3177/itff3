@@ -17,6 +17,9 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 영화 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMovieNavBar.jsp"></jsp:include>
 

@@ -27,6 +27,9 @@ div#search-questionTitle {display: "questionTitle".equals(${searchType}) ? "inli
 div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 문의사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminQuestionNavBar.jsp"></jsp:include>
 

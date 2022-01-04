@@ -22,6 +22,9 @@ div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".e
 div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 굿즈 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminGoodsNavBar.jsp"></jsp:include>
 
