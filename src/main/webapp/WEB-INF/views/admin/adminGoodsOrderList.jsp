@@ -134,7 +134,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 700px;">
+								style="max-width: 900px;">
 								<div class="modal-content"
 									style="text-align: left;">
 								  	<div class="modal-body" id="modal_ajax1">

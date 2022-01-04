@@ -87,7 +87,7 @@
 										<button 
 										id="${list.movieId }" 
 										type="button"
-										class="btn btn-outline-dark" 
+										class="btn btn-outline-secondary"
 										data-toggle="modal"
 										data-target="#adminMovieInfo"
 										onclick="movieInfo_btn('${list.movieId}');"
@@ -98,7 +98,7 @@
 										<button 
 										id="${list.movieId }" 
 										type="button"
-										class="btn btn-outline-dark" 
+										class="btn btn-outline-secondary" 
 										data-toggle="modal"
 										data-target="#adminOneMovieSchedule"
 										onclick="one_movie_schedule_btn('${list.movieId}');"

@@ -65,7 +65,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="pId"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -74,7 +74,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="pName"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -136,7 +136,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										<button 
 										id="${list.PId }" 
 										type="button"
-										class="btn btn-outline-dark"
+										class="btn btn-outline-secondary"
 										data-toggle="modal"
 										data-target="#adminGoodsDetail"
 										onclick="goodsDetail_btn('${list.PId}');"
@@ -147,7 +147,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 										<button 
 										id="${list.PId }" 
 										type="button"
-										class="btn btn-outline-dark"
+										class="btn btn-outline-secondary"
 										data-toggle="modal"
 										data-target="#adminGoodsOptionDetail"
 										onclick="goods_option_detail_btn('${list.PId}');"

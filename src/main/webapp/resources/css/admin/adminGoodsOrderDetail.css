@@ -14,6 +14,7 @@
 	font-size: 14px !important;
     color: #9f9f9f;
     font-weight: 700;
+    width: 110px;
 }
 
 .price {
@@ -101,5 +102,32 @@
 
 .receiver {
 	text-align: left;
+	width: 300px;
 	padding-left: 30px !important;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.orderUpdateBtn {
+    height: 27px;
+    display: flex !important;
+    align-items: center;
+    border-radius: 0 !important;
+    font-size: 12px !important;
+    border: 1px solid lightgray !important;
+}
+
+.table {
+	border: 1px solid whitesmoke;
+	-webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.form-select {
+	border: 1px solid whitesmoke;
+    padding: 5px;
+    width: 300px;
+}
+	

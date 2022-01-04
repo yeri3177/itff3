@@ -76,7 +76,7 @@
 		      <div class="modal-footer">
 		        <button 
 		        	type="button" 
-		        	class="btn btn-danger" 												
+		        	class="btn btn-outline-secondary"											
 		        	data-toggle="modal"
 					data-target="#adminSharingDelete"
 					onclick="sharing_delete_btn('${sharing.no}');">삭제</button>

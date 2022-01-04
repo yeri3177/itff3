@@ -61,7 +61,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="questionNo"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -70,7 +70,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="questionTitle"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="글제목을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionTitle' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -79,7 +79,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="memberId"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="작성자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'questionTitle' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-primary">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -150,7 +150,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 									<td>
 										<button 
 											type="button"
-											class="btn btn-outline-dark" 
+											class="btn btn-outline-secondary"
 											data-toggle="modal"
 											data-target="#adminQuestionDetail"
 											onclick="question_detail_btn('${list.questionNo}');">확인</button>

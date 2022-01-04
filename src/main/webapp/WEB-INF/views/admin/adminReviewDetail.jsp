@@ -61,7 +61,7 @@
 		      <div class="modal-footer">
 		        <button 
 		        	type="button" 
-		        	class="btn btn-danger" 												
+		        	class="btn btn-outline-secondary"												
 		        	data-toggle="modal"
 					data-target="#adminreviewDelete"
 					onclick="review_delete_btn('${review.reviewNo}');">삭제</button>
