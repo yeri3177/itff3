@@ -266,7 +266,7 @@
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
 									<div class="grade">
-										<span class="ico_grade ico_12" title="12세 이상 관람가"></span>
+										<span class="ico_grade ico_g" title="전체 관람가"></span>
 										<span class="ico_grade ico_ke" title="한글자막+영어자막/대사"></span>
 										<span class="ico_grade ico_kk" title="시·청각장애인을 위한 배리어프리자막상영"></span>
 									</div>
