@@ -61,7 +61,7 @@
             <li>미국</li>
             <li>2001</li>
             <li>146min</li>
-            <li>12 +</li>
+            <li>전체</li>
             <li>color</li>
          </ul>
 
@@ -72,7 +72,7 @@
       <div class="synopsis">
          <h4>SYNOPSIS</h4>
          <div class="desc_">
-         인간의 기억마저 AI에 의해 입력되고 삭제 되는 세상.진짜보다 더 진짜 같은 가상 현실 ‘매트릭스’ 그 속에서 진정한 현실을 인식할 수 없게 재배되는 인간들. 그 ‘매트릭스’를 빠져 나오면서 AI에게 가장 위험한 인물이 된 '모피어스’는 자신과 함께 인류를 구할 마지막 영웅 ‘그’를 찾아 헤맨다. 마침내 ‘모피어스’는 낮에는 평범한 회사원으로, 밤에는 해커로 활동하는 청년 ‘네오’를 ‘그’로 지목하는데… 꿈에서 깨어난 자들, 이제 그들이 만드는 새로운 세상이 열린다. 
+         과학문명은 천문학적 속도로 발전하고 있지만 극지방의 해빙으로 도시들은 물에 잠기고 천연자원은 고갈되어 가던 미래의 지구. 모든 생활을 감시받고, 먹는 음식조차 통제되는 그 세계에서 인간들은 인공지능 (Artificial Intelligence)을 가진 인조인간들의 봉사를 받으며 살아간다. 정원가꾸기, 집안 일, 말 동무등 로봇이 인간을 위해 해줄수 있는 일은 무한하다. 단 한가지 '사랑'만 빼고... 
          </div>
       </div>
 
@@ -106,6 +106,9 @@
 						<th class="time en">${schedule.startDate} | ${schedule.startTime }</th>
 						<td class="theater">KH ITFF ${schedule.theaterId}관</td>
 						<td class="film_tit">
+							<c:if test="${ageLimit eq 'all' }">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_G_x2.png" style="width:40px" alt="관람가">
+							</c:if>
 							<c:if test="${ageLimit eq '12 +'}">
 								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 							</c:if>

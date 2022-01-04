@@ -111,6 +111,7 @@ ul,li {
 .film_info .list_film_info {
     margin-top: 15px;
     margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .film_info .list_film_info li {

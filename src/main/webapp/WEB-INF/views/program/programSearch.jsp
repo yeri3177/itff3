@@ -143,6 +143,9 @@ if(!("webkitSpeechRecognition" in window)) {
 						</th>
 						<td class="theater">${program.director }</td>
 						<td class="film_tit">
+							<c:if test="${ageLimit eq 'all' }">
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_G_x2.png" style="width:40px" alt="관람가">
+							</c:if>
 							<c:if test="${program.ageLimit eq '12 +'}">
 								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
 							</c:if>
