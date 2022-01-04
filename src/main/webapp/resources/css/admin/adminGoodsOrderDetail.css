@@ -116,6 +116,7 @@
     border-radius: 0 !important;
     font-size: 12px !important;
     border: 1px solid lightgray !important;
+    margin-right: 10px;
 }
 
 .table {

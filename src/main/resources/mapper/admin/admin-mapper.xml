@@ -596,7 +596,7 @@
 		left join review_board r
 		on m.id = r.member_id
 		where 
-			<![CDATA[rownum <= 10 and r.reg_date is not null]]>
+			<![CDATA[rownum <= 10 and to_char(r.reg_date) >= to_char(sysdate-7,'yyyymmdd')]]>
 		order by 
 			r.reg_date desc
 	</select>
@@ -939,15 +939,14 @@
 	
 	<select id="adminManageRecentTenQuestionList" resultMap="questionMap">
 		select
-			m.image, q.member_id, q.question_title, q.reg_date
-		from
-			member m 
-		left join question_board q
-		on m.id = q.member_id
-		where 
-			<![CDATA[rownum <= 10 and q.reg_date is not null]]>
+			b.member_id, b.question_title, b.reg_date, a.image
+		from 
+			question_board b left join member a
+                    on b.member_id = a.id
+        where 
+        	answer = 'N'
 		order by 
-			q.reg_date desc
+			question_no desc
 	</select>
 	
 	<resultMap type="question" id="questionMap">
@@ -1343,10 +1342,10 @@
 			*
 		from
 			payment p
-		right join member m
+		left join member m
 		on p.member_id = m.id
 		where 
-			m.id = #{memberId}
+			m.id = #{memberId} and order_no = #{orderNo}
 	</select>
 	
 	<resultMap type="GoodsOrderDetailJoin" id="goodsOrderDetailJoinMap">

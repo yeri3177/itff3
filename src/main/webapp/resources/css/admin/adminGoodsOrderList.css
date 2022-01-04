@@ -143,11 +143,6 @@ table {
     font-weight: bold;
 }
 
-*, *::before, *::after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 .table thead th {
     border: none;
 /*     padding: 30px; */
@@ -188,7 +183,7 @@ th {
 /*     padding: 30px; */
     font-size: 14px;
     background: #fff;
-    border-bottom: 4px solid #f8f9fd;
+/*     border-bottom: 4px solid #f8f9fd; */
     vertical-align: middle;
 }
 

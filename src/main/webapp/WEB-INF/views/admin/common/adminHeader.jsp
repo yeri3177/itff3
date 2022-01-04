@@ -6,8 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,6 +19,9 @@
 
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/admin/adminHeader.css"/>
 
 <!-- 카카오맵 API -->
 <script type="text/javascript"
@@ -115,20 +117,6 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 
 </script>
 
-<!-- 
-IE 지원용 babel-standalone
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"
-	integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-IE 지원용: babel-polyfill
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
-	integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- -->
-
 <!-- 폰트 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -145,7 +133,28 @@ IE 지원용: babel-polyfill
 	<!-- // hd_bg -->
 
 	<!-- 	Header -->
-	<header id="hd" class="hd"> </header>
+	<header id="hd" class="hd">
+		<div>
+			<img src="https://i.imgur.com/b12DKk5.png" alt="logo" class="adminLogo" />
+		</div>
+
+		<ul class="nav navbar-nav nav-pull-right" group-state-code="layout" action-id="gnb.account">
+			<!---->
+			<li ng-if="vm.loginInfo">
+				<a href="#/seller/member">
+				<span class="my-info">MYPAGE</span>
+				</a>
+			</li>
+
+			<li ng-if="vm.loginInfo">
+				<a href="/#/logout" data-action-location-id="logout">
+				<span class="my-info">LOGOUT</span>
+				</a>
+			</li>
+		</ul>
+
+	</header>
+
 	<!-- 	//header -->
 
 	<section class="ftco-section">
