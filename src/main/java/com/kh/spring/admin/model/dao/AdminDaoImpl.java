@@ -8,12 +8,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.admin.model.vo.GoodsOrderDetailJoin;
+import com.kh.spring.admin.model.vo.GoodsPaymentJoin;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.event.model.vo.RouletteEvent;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -544,6 +548,32 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<GoodsOption> selectOneGoodsOptionId(int pId) {
 		return session.selectList("admin.selectOneGoodsOptionId", pId);
+	}
+
+	@Override
+	public List<GoodsOrder> selectGoodsOrderList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		return session.selectList("admin.selectGoodsOrderList", null, rowBounds);
+	}
+
+	@Override
+	public int selectGoodsOrderTotalCount() {
+		return session.selectOne("admin.selectGoodsOrderTotalCount");
+	}
+
+	@Override
+	public List<GoodsOrderDetailJoin> selectOneGoodsOrderDetail(String orderNo) {
+		return session.selectList("admin.selectOneGoodsOrderDetail", orderNo);
+	}
+
+	@Override
+	public GoodsPaymentJoin selectOnePayment(String memberId) {
+		return session.selectOne("admin.selectOnePayment", memberId);
+	}
+	
+	@Override
+	public String selectOneGoodsOrderMember(String orderNo) {
+		return session.selectOne("admin.selectOneGoodsOrderMember", orderNo);
 	}
 
 }

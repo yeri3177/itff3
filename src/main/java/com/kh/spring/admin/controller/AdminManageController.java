@@ -33,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.admin.model.service.AdminService;
+import com.kh.spring.admin.model.vo.GoodsOrderDetailJoin;
+import com.kh.spring.admin.model.vo.GoodsPaymentJoin;
 import com.kh.spring.admin.model.vo.PointHistory;
 import com.kh.spring.chat.model.service.ChatService;
 import com.kh.spring.chat.model.vo.ChatLog;
@@ -41,7 +43,9 @@ import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
@@ -1191,7 +1195,66 @@ public class AdminManageController {
 		
 		return "redirect:/admin/adminGoodsList.do";
 	}
+	
 
+	/**
+	 * [굿즈 목록]
+	 */
+	
+	@GetMapping("/adminGoodsOrderList.do")
+	public String adminGoodsOrderList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<GoodsOrder> list = adminService.selectGoodsOrderList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectGoodsOrderTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsOrderList";
+	}
+	
+	/**
+	 * [굿즈 주문 상세]
+	 */
+	
+	@GetMapping("/adminGoodsOrderDetail.do")
+	public void adminGoodsOrderDetail(@RequestParam("orderNo") String orderNo, Model model) {
+		log.debug("orderNo = {}", orderNo);
+		
+		List<GoodsOrderDetailJoin> list = adminService.selectOneGoodsOrderDetail(orderNo);
+		log.debug("list = {}", list);
+		
+		// 주문번호에 맞는 memberId 불러오기
+		String memberId = adminService.selectOneGoodsOrderMember(orderNo);
+		log.debug("memberId = {}", memberId);
+		
+		GoodsPaymentJoin payment = adminService.selectOnePayment(memberId);
+		log.debug("payment = {}", payment);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("payment", payment);
+		model.addAttribute("orderNo", orderNo);
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	

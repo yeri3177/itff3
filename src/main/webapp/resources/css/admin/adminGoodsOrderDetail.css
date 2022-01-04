@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.detail_content_td {
+	display: flex !important;
+    align-items: center !important;
+}
+
+.title_tr {
+	width: 110px;
+	font-size: 17px !important;
+}
+
+.title_th {
+	font-size: 14px !important;
+    color: #9f9f9f;
+    font-weight: 700;
+}
+
+.price {
+	font-weight: bold;
+}
+
+.table tbody th, .table tbody td {
+	border: 0;
+}
+
+.order_no_th {
+    width: 204px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
+
+.order_no_th, .order_no_td {
+	border-bottom: 10px solid #f8f9fd;
+}
+
+.option_content_div {
+	width: 600px;
+}
+
+.order_img {
+	width: 80px;
+	height: 80px; 
+	margin: 0 20px 0 0;
+	background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    background-position: center center;
+}
+
+.optionSpan {
+	margin-right: 5px;
+    font-size: 12px;
+    color: #545454;
+}
+
+.quantity {
+	color: #a3a3a3 !important;
+}
+
+.goods_order_info {
+	text-align: left;
+    width: 185px;
+    margin: 0 auto;
+}
+
+.pay {
+	font-size: 14px !important;
+}
+
+.pd {
+	font-size: 14px !important;
+}
+
+.total {
+	font-size: 14px !important;
+}
+
+.pay_td {
+	font-size: 19px !important;
+	text-align: right;
+}
+
+.pd_td {
+	font-size: 14px !important;
+	text-align: right;
+}
+
+.total_td {
+	text-align: right;
+	font-size: 19px !important;
+	color: #ec7b65 !important;
+	font-weight: bold;
+}
+
+.trash {
+	padding: 0;
+    width: 1px;
+}
+
+.receiver {
+	text-align: left;
+	padding-left: 30px !important;
+}
