@@ -39,27 +39,233 @@
 
 <!-- 왼쪽 컨테이너 -->
 <div id="left-container">
-	<div>주문자 정보</div>
+	<div class="title-text">주문자 정보</div>
 
-	<div>
+	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">Example label</label>
+			<label for="memberName" class="form-label bold-text">이름</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
 			<input type="text" class="form-control" id="memberName" placeholder="이름을 입력해 주세요.">
 		</div>
-		
-  
-		
 	</div>
-</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">연락처</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="text" class="form-control" id="memberName" placeholder="- 없이 01012345678">
+		</div>
+	</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">이메일</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="text" class="form-control" id="memberName" placeholder="abc@google.com">
+			<div class="sml-tex">
+				위 이메일로 주문 내역 메일이 전송됩니다. 사용 가능한 메일인지 확인해 주세요.
+			</div>
+		</div>
+	</div>
+	
+	<br /><br />
+	
+	<div class="title-text2">배송지 정보</div>
+	
+	<div class="del-chk-group">
+		<div>
+			<input type="checkbox" id="delinfo-chk1"/>
+			<label for="delinfo-chk1">주문자와 동일</label>
+		</div>
+		&nbsp;&nbsp;&nbsp;
+		<div>
+			<input type="checkbox" id="delinfo-chk2"/>
+			<label for="delinfo-chk2">배송지 저장</label>
+		</div>
+	</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">수령인</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="text" class="form-control" id="memberName" placeholder="이름을 입력해 주세요.">
+		</div>
+	</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">연락처</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="text" class="form-control" id="memberName" placeholder="- 없이 01012345678">
+		</div>
+	</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">배송지</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="text" class="form-control zipcode-input" placeholder="우편번호">
+			<button class="zip-code-btn">우편번호 검색</button>
+			<input type="text" class="form-control" id="memberName" placeholder="주소">
+			<input type="text" class="form-control" id="memberName" placeholder="상세 주소를 입력해 주세요.">
+		</div>
+	</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">배송 메모</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<select class="form-select" aria-label="Default select example">
+			  <option selected>배송 메모를 선택해 주세요.</option>
+			  <option value="1">배송 전에 미리 연락 바랍니다.</option>
+			  <option value="2">부재시 경비실에 맡겨주세요.</option>
+			  <option value="3">부재시 전화 주시거나 문자 남겨주세요.</option>
+			</select>
+			
+			<input type="text" class="form-control">
+		</div>
+	</div>
+	
+	<br /><br />
+	
+	<div class="title-text">포인트 사용</div>
+	
+	<div class="input-div">
+		<!-- 라벨 -->
+		<div>
+			<label for="memberName" class="form-label">포인트</label>
+		</div>
+		<!-- input 태그 -->
+		<div>
+			<input type="number" class="form-control point-input" id="memberName">
+			
+			<button class="point-btn">전액 적용</button>
+			
+			<div class="sml-tex">
+				보유 포인트: 0 (1,000 포인트부터 사용 가능합니다.)
+			</div>
+			
+		</div>
+	</div>
+	
+	<br /><br />
+	
+	<div class="title-text">결제방법</div>
+	
+	<button class="circleBtn2">신용카드</button>
+	
+	
+	<br />
+	
+	<div class="title-text">배송 정보 안내</div>
+	
+	<div>
+		주문 폭주, 재고 부족으로 인한 발송 지연 시에는 별도 안내드립니다. 공휴일과 주말 주문 건은 배송사 휴무로 인해 월요일부터 적용됩니다. 연휴 기간 택배사 휴무, 천재지변 등으로 발송 지연 시 공지로 안내드립니다.
+	</div>
+	
+	<br /><br />
+	
+	<table>
+		<tr>
+			<th>택배사</th>
+			<td>CJ대한통운</td>
+		</tr>
+		<tr>
+			<th>배송지역</th>
+			<td>전국</td>
+		</tr>
+		<tr>
+			<th>배송비</th>
+			<td>주문 건당 2,500원</td>
+		</tr>
+		<tr>
+			<th>택배상담</th>
+			<td>
+				1588-1255 <br />
+				평일 오전 9시~오후 6시 <br />
+				토요일 오전 9시~오후 1시 <br />
+			</td>
+		</tr>
+	</table>
+	
+	<br />
+	
+	<div class="title-text">결제 및 배송 동의</div>
+	
+	<!-- check div -->
+	<div>
+		<input type="checkbox" id="chk1">
+		<label for="chk1">아래 내용을 확인하였으며, 모두 동의합니다.</label>
+	</div>
+	
+	<div>
+		<input type="checkbox" id="chk2">
+		<label for="chk2">구매 동의</label>
+		
+		<div class="del-tex">
+			단순 변심에 의한 취소/교환/반품이 불가하며 결제 전 주문 내용을 꼭 확인해 주시기 바랍니다. 주문할 상품, 배송 정보를 확인하였으며, 구매에 동의하시겠습니까? (전자상거래법 제 8조 2항)
+		</div>
+	</div>
+	
+	<div>
+		<input type="checkbox" id="chk3">
+		<label for="chk3">배송 일정 확인 및 동의</label>
+		
+		<div class="del-tex">
+			단순 변심에 의한 취소/교환/반품이 불가하며 결제 전 주문 내용을 꼭 확인해 주시기 바랍니다. 주문할 상품, 배송 정보를 확인하였으며, 구매에 동의하시겠습니까? (전자상거래법 제 8조 2항)
+		</div>
+	</div>
+	
+	<div class="d-flex">
+		<div>
+			<input type="checkbox" id="chk4">
+			<label for="chk4">이용약관 동의</label>
+		</div>
+		<div>
+			보기
+		</div>
+	</div>
+	
+	<div class="d-flex">
+		<div>
+			<input type="checkbox" id="chk5">
+			<label for="chk5">개인 정보 수집 및 이용 동의</label>
+		</div>
+		<div>
+			보기
+		</div>
+	</div>
+	
+	<button class="goodsBtn">결제하기</button>
+	
+	
+</div> <!-- end of 왼쪽 컨테이너 -->
 
 <div id="right-container">
 3333333333
 
-</div>
+</div> <!-- end of 오른쪽 컨테이너 -->
 
 </section>
 <script>
