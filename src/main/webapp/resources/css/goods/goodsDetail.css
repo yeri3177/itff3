@@ -69,8 +69,8 @@ body {
 }
 
 #preview-img-div img {
-	/* width: 550px; */
-	width: 82%;
+	width: 550px;
+	/* width: 82%!important; */
 	height: auto;
 	
 	/* background-color: fuchsia; */

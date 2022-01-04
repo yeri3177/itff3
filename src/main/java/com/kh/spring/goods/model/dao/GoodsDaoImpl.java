@@ -14,6 +14,7 @@ import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 
 @Repository
@@ -138,6 +139,21 @@ public class GoodsDaoImpl implements GoodsDao {
 		//RowBounds rowBounds = new RowBounds(offset, limit);
 		RowBounds rowBounds = new RowBounds((int)param.get("offset"), (int)param.get("limit"));
 		return session.selectList("goods.selectGoodsList", param, rowBounds);
+	}
+
+	@Override
+	public int insertGoodsOrder(Map<String, Object> param) {
+		return session.insert("goods.insertGoodsOrder", param);
+	}
+
+	@Override
+	public String selectOneOrderNo(Map<String, Object> param) {
+		return session.selectOne("goods.selectOneOrderNo", param);
+	}
+
+	@Override
+	public int insertOrderDetail(Map<String, Object> param) {
+		return session.insert("goods.insertOrderDetail", param);
 	}
 
 
