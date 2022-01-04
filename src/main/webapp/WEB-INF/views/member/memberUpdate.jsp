@@ -37,7 +37,7 @@
 </div>
 <!-- 여기까지 nav 입니다. -->
 
-<div class="join">
+<div class="join" style="padding-top: 100px; margin: 0;">
 	<div class="container">
 
 		<h2 class="tit_sec txt-center txt-white">내 정보 변경</h2>

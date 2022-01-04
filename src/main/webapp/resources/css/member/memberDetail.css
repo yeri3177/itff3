@@ -114,6 +114,7 @@ section#main-content {
     line-height: 90px;
     background-color: whitesmoke;
     padding-bottom: 15px;
+    padding-top: 25px;
 }
 
 .user_card .user span {

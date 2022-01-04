@@ -102,6 +102,7 @@ a {
 .container-visual {
 	background: url("https://i.imgur.com/ab73xHH.jpg");
 	display: flow-root;
+	background-repeat: round;
 }
 
 #hd .util {

@@ -45,7 +45,7 @@
 
 
 <!-- 본문 -->
-<div class="join">
+<div class="join" style="padding-top: 100px; margin: 0;">
  	
 <%-- 	<!-- 프로필사진 -->
  	<c:choose>
