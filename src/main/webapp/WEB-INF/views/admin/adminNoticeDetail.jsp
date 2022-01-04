@@ -62,13 +62,13 @@
 		      <div class="modal-footer">
 		      	<button 
 		      		type="button" 
-		      		class="btn btn-success"
+		      		class="btn btn-outline-secondary"
 		      		data-toggle="modal"
 					data-target="#adminNoticeUpdate"
 					onclick="notice_update_btn('${notice.noticeNo}');">수정</button>
 		        <button 
 		        	type="button" 
-		        	class="btn btn-danger" 												
+		        	class="btn btn-outline-secondary"											
 		        	data-toggle="modal"
 					data-target="#adminNoticeDelete"
 					onclick="notice_delete_btn('${notice.noticeNo}');">삭제</button>

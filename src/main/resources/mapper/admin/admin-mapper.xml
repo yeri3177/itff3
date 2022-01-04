@@ -1357,7 +1357,7 @@
 	
 	<select id="selectOneGoodsOrderDetail" resultMap="goodsOrderDetailJoinMap">
 		select
-			o.order_no, o.p_img, o.p_name, o.p_price, o.option_type, o.option_color, o.option_size, o.quantity
+			*
 		from
 			(select
 			*

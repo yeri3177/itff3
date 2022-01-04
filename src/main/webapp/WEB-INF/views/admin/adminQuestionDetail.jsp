@@ -94,7 +94,7 @@ pageContext.setAttribute("loginMember", loginMember);
 						</tbody>
 					</table>
 					<div>
-						<button name="commentDelete" class="btn btn-outline-danger btn-delete" id="commentDelete" value="${qc.no }" style="font-size: 13px; background-color: white;">답변삭제</button>
+						<button name="commentDelete" class="btn btn-outline-secondary btn-delete" id="commentDelete" value="${qc.no }" style="font-size: 13px; background-color: white;">답변삭제</button>
 					</div>
 				</c:if>
 
@@ -111,7 +111,7 @@ pageContext.setAttribute("loginMember", loginMember);
 							<input type="hidden" name="writer" value="${loginMember.id}">
 							<input type="hidden" name="questionNo" value="${question.questionNo}">
 							<!-- <input type="hidden" name="regDate" value="0"> -->
-							<button type="submit" id="question_btn" class="btn btn-outline-dark" style="font-size: 14px; background-color: white;">등록</button> 							
+							<button type="submit" id="question_btn" class="btn btn-outline-secondary" style="font-size: 14px; background-color: white;">등록</button> 							
 						</form>
 					</div>
 				</c:if>

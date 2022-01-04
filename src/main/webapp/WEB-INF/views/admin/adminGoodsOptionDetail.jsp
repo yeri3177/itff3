@@ -79,14 +79,14 @@
 					   <button
 				      		id="option_update_select_btn" 
 				      		type="button" 
-				      		class="btn btn-success"
+				      		class="btn btn-outline-secondary"
 				      		data-toggle="modal"
 							data-target="#adminGoodsOptionUpdate"
 							onclick="goods_option_update_btn('${od.optionId}');"
 							style="font-size: 12px;">수정</button>
 						<button 
 				        	type="button" 
-				        	class="btn btn-danger"
+				        	class="btn btn-outline-secondary"
 		  			      	data-toggle="modal"
 							data-target="#adminGoodsOptionDelete"
 							onclick="goods_option_delete_btn('${od.optionId}');"
