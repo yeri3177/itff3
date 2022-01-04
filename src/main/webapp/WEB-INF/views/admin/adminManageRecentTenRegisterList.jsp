@@ -16,6 +16,6 @@
 			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.image }" alt="memberImage" style="width: 40px; height: 40px; border-radius: 30px; margin-right: 10px;"/>
 			<span class="file-title"> ${list.id } </span>
 		</td>
-		<td class="filesize-td"><span><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span></td>
+		<td class="filesize-td" style="font-size: 13px;"><span><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span></td>
 	</tr>
 </c:forEach>

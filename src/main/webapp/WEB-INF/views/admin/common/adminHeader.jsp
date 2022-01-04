@@ -20,9 +20,6 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/admin/adminHeader.css"/>
-
 <!-- 카카오맵 API -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f83d8937bb78b8df31e1796445fc8213&libraries=services,clusterer"></script>
@@ -129,29 +126,12 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
 
-<body>
+<body style="padding: 0 0 0 5.7rem;">
 	<!-- // hd_bg -->
 
 	<!-- 	Header -->
-	<header id="hd" class="hd">
-		<div>
-			<img src="https://i.imgur.com/b12DKk5.png" alt="logo" class="adminLogo" />
-		</div>
+	<header>
 
-		<ul class="nav navbar-nav nav-pull-right" group-state-code="layout" action-id="gnb.account">
-			<!---->
-			<li ng-if="vm.loginInfo">
-				<a href="#/seller/member">
-				<span class="my-info">MYPAGE</span>
-				</a>
-			</li>
-
-			<li ng-if="vm.loginInfo">
-				<a href="/#/logout" data-action-location-id="logout">
-				<span class="my-info">LOGOUT</span>
-				</a>
-			</li>
-		</ul>
 
 	</header>
 

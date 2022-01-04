@@ -26,6 +26,9 @@ div#search-noticeNo {display: ${searchType} == '' || ${searchType} == null || "n
 div#search-noticeTitle {display: "noticeTitle".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 공지사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminNoticeNavBar.jsp"></jsp:include>
 

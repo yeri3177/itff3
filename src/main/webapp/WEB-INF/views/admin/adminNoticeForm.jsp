@@ -28,6 +28,9 @@ pageContext.setAttribute("loginMember", loginMember);
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminFrm.css" />
 
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
 <!-- 공지사항 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminNoticeNavBar.jsp"></jsp:include>
 	

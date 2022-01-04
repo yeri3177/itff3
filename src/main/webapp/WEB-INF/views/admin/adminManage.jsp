@@ -19,16 +19,11 @@
 	href="${pageContext.request.contextPath }/resources/css/admin/adminTodo.css" />
 
 		<div class="container-fluid container-main">
-			<button
-				class="navbar-toggler toggler-toolbar toggler-burger collapsed collapse show"
-				type="button" data-bs-toggle="collapse"
-				data-bs-target="#subhead-container"
-				aria-controls="subhead-container" aria-expanded="false"
-				aria-label="Toolbar" style="">
-				<span class="toggler-toolbar-icon"></span>
-			</button>
 
 			<section id="content" class="content">
+			
+			<!-- 관리자 공통 메뉴 -->
+			<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
 
 				<div class="row">
 					<div class="col-md-12">
@@ -45,35 +40,7 @@
 										<!-- 카운트 부분 -->
 										<section class="py-5">
 									        <div class="container-fluid">
-									          <div class="row">
-									          
-									            <!-- register -->
-									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-									              <div class="d-flex">
-									                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-													  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-													</svg>
-									                <div class="ms-2" id="register">
-		
-									                 
-									                </div>
-									              </div>
-									            </div>
-									            
-									            <!-- Count item widget-->
-									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-									              <div class="d-flex">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
-													  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-													  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-													</svg>
-									                <div class="ms-2">
-									                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
-									                  <p class="text-gray-500 small">Last 5 days</p>
-									                  <p class="display-6 mb-0">400</p>
-									                </div>
-									              </div>
-									            </div>
+									          <div class="row">									        
 									            
 									            <!-- Count item widget-->
 									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
@@ -90,7 +57,7 @@
 									              </div>
 									            </div>
 									            
-									            <!-- screening-->
+        									    <!-- screening-->
 									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 									              <div class="d-flex">
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-projector" viewBox="0 0 16 16">
@@ -99,6 +66,47 @@
 													</svg>
 									                <div class="ms-2" id="screening">
 									                
+									                </div>
+									              </div>
+									            </div>
+									            
+									            <!-- Count item widget-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+													  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+													  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+													</svg>
+									                <div class="ms-2">
+									                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
+									                  <p class="text-gray-500 small">Today</p>
+									                  <p class="display-6 mb-0">400</p>
+									                </div>
+									              </div>
+									            </div>	
+									            
+									            <!-- register -->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+									                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+													  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+													</svg>
+									                <div class="ms-2" id="register">
+		
+									                 
+									                </div>
+									              </div>
+									            </div>								         									           
+									            
+									            <!-- question-->
+									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
+									              <div class="d-flex">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+													  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+													  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+													</svg>
+									                <div class="ms-2" id="qa">
+		
 									                </div>
 									              </div>
 									            </div>
@@ -115,18 +123,6 @@
 									              </div>
 									            </div>
 									            
-									            <!-- question-->
-									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
-									              <div class="d-flex">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-													  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-													  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-													</svg>
-									                <div class="ms-2" id="qa">
-		
-									                </div>
-									              </div>
-									            </div>
 									          </div>
 									        </div>
 									      </section>
@@ -203,9 +199,7 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th style="width: 380px;"><span> Recently Reservation </span></th>
-																	<th><span> ID </span></th>
-																	<th><span> Enroll Date </span></th>
+																	<th style="width: 380px;"><span> 예매 </span></th>
 																</tr>
 															</thead>
 															<tbody id="goods_list">
@@ -214,129 +208,20 @@
 														</table>
 													</div>
 													
-													<!-- Recently registered -->
-													<div class="span4 recent-gridbox-apps" style="width: 770px;">
-														<table class="table table-striped">
-															<thead>
-																<tr>
-																	<th style="width: 380px;"><span> 주문/클레임 </span></th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																<td>
-																<div ui-view="" name="naverpay-salesinfo"
-																	class="panel-wrap flex-col-6 flex-col-xs-12 order-md-3 order-xs-1">
-																	<div class="panel panel-dashboard">
+												<!-- Recently registered -->
+												<div class="span4 recent-gridbox-apps" style="width: 856px;">
+													<table class="table table-striped">
+														<thead>
+															<tr>
+																<th style="width: 380px;"><span> 주문/클레임 </span></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+															<td>
+																
 
-																	<div class="panel-body flex flex-wrap">
-																		<div
-																			class="list-wrap deposit-list flex-col-6 flex-col-md-12">
-																			<!---->
-																			<div
-																				ng-if="vm.saleStats &amp;&amp; vm.saleStats.$resolved"
-																				class="" style="">
-																				<div class="panel-icon-area">
-																					<span class="square-ico-area"><i
-																						class="seller-icon icon-order" aria-hidden="true"></i></span>
-																				</div>
-																				<ul class="panel-list">
-																					<li><span class="info-title">결제대기</span> <span
-																						class="number-area"> <!----> <a
-																							ng-if="::vm.isDesktop"
-																							ui-sref="main.naverpay_sale_unpayment"
-																							class="text-number"
-																							ng-bind="::vm.saleStats.paymentWaitCases"
-																							data-nclicks-code="orddel.paymentwait"
-																							href="#/naverpay/sale/unpayment">0</a> <!----> <!---->
-																							<span>건</span>
-																					</span></li>
-																					<li><div class="clearfix">
-																							<span class="info-title">
-																							<em
-																								class="pull-left">신규주문</em> 
-																								<a href="#" role="button" class="font-icon-button" uib-popover-html="'<ul class=&quot;seller-ul-list&quot;><li><strong>&amp;apos;선물 수락대기&amp;apos; 상태의 주문 건은 포함되지 않습니다.</strong></li><li><a href=&quot;https://help.sell.smartstore.naver.com/faq/content.help?faqId=3355&quot; target=&quot;_blank&quot; role=&quot;button&quot; class=&quot;btn-link text-primary&quot;>
-																								<span>그럼 선물 주문은 어디서 확인하나요?<i class=&quot;fn-shopping
-																										fn-shopping-forward2&quot; aria-hidden=&quot;true&quot;></i><span></span></li>
-																				</ul>
-																				<i
-																					class="fn fn-info1" aria-hidden="true"></i><span
-																					class="sr-only">툴팁</span> </a></span><span
-																					class="number-area">
-																					<!---->
-																					<a ng-if="::vm.isDesktop"
-																					ui-sref="main.naverpay_sale_delivery"
-																					class="text-number"
-																					ng-bind="::vm.saleStats.newOrderCases"
-																					data-nclicks-code="orddel.new"
-																					href="#/naverpay/sale/delivery">0</a>
-																				<!----> <!---->
-																					<span>건</span>
-																				</span>
-																			</div>
-
-																		</div>
-																		<!---->
-																		<!---->
-																	</div>
-																	
-																</div>
-																<!---->
-																<!---->
-															</div>
-
-															<div class="panel-body flex flex-wrap">
-																<div
-																	class="list-wrap return-list flex-col-6 flex-col-md-12">
-																	<!---->
-																	<div ng-if="vm.claim &amp;&amp; vm.claim.$resolved"
-																		class="" style="">
-																		<div class="panel-icon-area">
-																			<span class="square-ico-area"><i
-																				class="seller-icon icon-return" aria-hidden="true"></i></span>
-																		</div>
-																		<ul class="panel-list">
-																			<li><span class="info-title">취소요청</span> <span
-																				class="number-area">
-																					<!---->
-																					<a ng-if="::vm.isDesktop"
-																					ui-sref="main.naverpay_claim_cancel({summaryInfoType : 'CANCEL_REQUEST'})"
-																					class="text-number"
-																					ng-bind="::vm.claim.cancelClaimCases"
-																					data-nclicks-code="claimset.cancel"
-																					href="#/naverpay/claim/cancel?summaryInfoType=CANCEL_REQUEST">0</a>
-																				<!----> <!---->
-																					<span>건</span>
-																			</span></li>
-																			<li><span class="info-title">반품요청</span> <span
-																				class="number-area">
-																					<!---->
-																					<a ng-if="::vm.isDesktop"
-																					ui-sref="main.naverpay_claim_return({summaryInfoType : 'RETURN_REQUEST'})"
-																					class="text-number"
-																					ng-bind="::vm.claim.returnClaimCases"
-																					data-nclicks-code="claimset.return"
-																					href="#/naverpay/claim/return?summaryInfoType=RETURN_REQUEST">0</a>
-																				<!----> <!---->
-																					<span>건</span>
-																			</span></li>
-																			<li><span class="info-title">교환요청</span> <span
-																				class="number-area">
-																					<!---->
-																					<a ng-if="::vm.isDesktop"
-																					ui-sref="main.naverpay_claim_exchange({summaryInfoType : 'EXCHANGE_REQUEST'})"
-																					class="text-number"
-																					ng-bind="::vm.claim.exchangeClaimCases"
-																					data-nclicks-code="claimset.exchange"
-																					href="#/naverpay/claim/exchange?summaryInfoType=EXCHANGE_REQUEST">0</a>
-																				<!----> <!---->
-																					<span>건</span>
-																			</span></li>
-																		</ul>
-																	</div>
-																	<!---->
-																	<!---->
-																</div>
+															
 
 															</td>
 																</tr>
@@ -352,7 +237,13 @@
 														<table class="table table-striped">
 															<thead>
 																<tr>
-																	<th colspan="2"><span> Recent Registers </span></th>
+																	<th colspan="2">
+																	<span> 가입 현황 </span>
+																	<span class="text-muted sub-text">최근 1주일 기준</span>
+																	</th>
+																	<th>
+																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
+																	</th>
 																</tr>
 															</thead>
 															<tbody id="recent_registers">

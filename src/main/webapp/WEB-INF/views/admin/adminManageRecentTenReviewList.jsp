@@ -23,7 +23,7 @@
                         <span class="review-rating-wrapper">
                         </span>
                     </span>
-                    <span class="comments-date"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span>
+                    <span class="comments-date" style="font-size: 13px;"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span>
                 </span>
                 <span class="comments-message">${list.reviewTitle }</span>
             </span>

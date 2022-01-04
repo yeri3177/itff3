@@ -17,7 +17,10 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 굿즈 nav -->
+<!-- 관리자 헤더 -->
+<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
+
+<!-- 영화 nav -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMovieNavBar.jsp"></jsp:include>
 
 <!-- 관리자 공통 메뉴 -->

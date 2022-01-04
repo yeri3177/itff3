@@ -1279,7 +1279,10 @@
 			id, reg_date, image
 		from 
 			member
-			<![CDATA[where rownum <= 10]]>
+		<![CDATA[
+		where 
+			rownum <= 10 and to_char(reg_date, 'YYYYMMDD') >= to_char(sysdate-7,'YYYYMMDD')
+		]]>
 		order by 
 			reg_date desc
 	</select>
