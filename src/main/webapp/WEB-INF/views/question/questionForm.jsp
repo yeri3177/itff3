@@ -49,10 +49,15 @@
 
 /* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function boardValidate(){
-   var $content = $("[name=content]");
+   var $content = $("[name=questionContent]");
+   var $title = $("[name=questionTitle]");
    if(/^(.|\n)+$/.test($content.val()) == false){
       alert("내용을 입력하세요");
       return false;
+   }
+   else if(/^(.|\n)+$/.test($title.val()) == false) {
+	   alert("제목을 입력하세요.");
+	   return false;
    }
    return true;
 }

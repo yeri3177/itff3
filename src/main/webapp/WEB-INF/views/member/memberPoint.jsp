@@ -1,22 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page
+	import="org.springframework.security.core.context.SecurityContext"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="" name="title"/>
-</jsp:include>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<!-- 사용자작성 css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/guide/guide.css" />
+	href="${pageContext.request.contextPath }/resources/css/member/memberPointNew.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+<fmt:requestEncoding value="utf-8" />
+<!-- 이거 없으면 이 밑에 jsp: -->
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param value="포인트 내역" name="title" />
+</jsp:include>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -37,58 +49,56 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">포인트이용내역</h2>
+		<h2 class="en">포인트 내역</h2>
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-<style>
-/*글쓰기버튼*/
-input#btn-add{float:right; margin: 0 0 15px;}
-</style>
-<script>
-function goBoardForm(){
-	location.href = "${pageContext.request.contextPath}/board/boardForm.do";
-}
+<div class="totalPoint">
+<ion-icon name="diamond-outline"></ion-icon> <span class="totalPoint_title">보유포인트</span> <br /> <br /> <span class="totalPoint_point">${totalPoint }</span>
+</div>
 
-$(() => {
-	/**
-	 *	event bubbling 기반 핸들링
-	 *	tr 핸들링 > td발생 및 전파
-	 */
-	 
-/* 	$("tr[data-no]").click((e) => {
-		//console.log(e.target);
-		//console.log($(e.target).data("no"));
-		const $tr = $(e.target).parents("tr");
-		const no = $tr.data("no");
-		location.href = `${pageContext.request.contextPath}/board/boardDetail.do?no=\${no}`;
-	});
- */});
-</script>
-<section id="board-container" class="container">
-	<table id="tbl-board" class="table table-striped table-hover">
-		<tr class="text-center">
-			<th>번호</th>
-			<th>이유</th>
-			<th>증감</th>
-			<th>보유액</th>
-			<th>적립일</th>
-		</tr>
-		<c:forEach items="${list}" var="point">
-			<tr class="text-center" data-no="${point.historyNo}">
-				<td>${point.historyNo}</td>
-				<td>${point.reason}</td>
-				<td>${point.change}</td>
-				<td>${point.point}</td>
-				<td><fmt:formatDate value="${point.regDate}" pattern="MM-dd"/> </td>
-			</tr>
-		</c:forEach>
-	</table>
+<div class="sub_sc">
+<div id="_listContentArea">
+
+    <ul class="list_area  ">
+
+
+
+<c:forEach items="${list }" var="point">
+	<li class="list_item">
+	    <div class="item sub _interlockNo1641303452434239cf9ca3T">
+	        <a href="#" class="item_content">
+	            <!-- <div class="state_space point">
+	                <span class="state _statusName">사용</span>
+	            </div> -->
+	            <div class="info_space"> <!--N=a:pnt.detail-->
+	                <span class="date"><fmt:formatDate value="${point.regDate}" pattern="yyyy.MM.dd"/> </span>
+	                <strong class="title click _titleName">${point.reason }</strong>
+	            </div>
+	        </a>
 	
-	${pagebar }
+	        <div class="amount_space">
+	            <div class="amount_inner">
+	                <span class="point">${point.change }</span>
+	            </div>
+	        </div>
+	    </div>
+	</li>
+</c:forEach>
+
+
+
+
+
+    </ul>
+
+
+<div class="pagebar_footer">
+	${pagebar}
 	
-	<br />
-</section> 
+</div>
+
+
 
 <script>
 const submitProcess = (name) => {
@@ -99,6 +109,8 @@ const submitProcess = (name) => {
 </script>
 
 
+<!-- </body> -->
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-		
