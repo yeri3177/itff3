@@ -508,6 +508,7 @@ public class GoodsController {
 		Member member = (Member) authentication.getPrincipal();
 		String memberId = member.getId();
 		model.addAttribute("member", member);
+		log.debug("member 회원정보 ~!!! = {}", member);
 		
 		// cart -> 주문정보
 		List<CartJoin> cartList = goodsService.selectGoodsCartList(memberId);

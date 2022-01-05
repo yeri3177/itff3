@@ -21,7 +21,9 @@
 		<result column="gender" property="gender" />
 		<result column="email" property="email" />
 		<result column="birthday" property="birthday" />
+		<result column="post_code" property="postCode" />
 		<result column="address" property="address" />
+		<result column="detail_address" property="detailAddress" />
 		<result column="nickname" property="nickname" />
 		<result column="reg_date" property="regDate" />
 		<result column="point" property="point" />

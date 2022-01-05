@@ -546,9 +546,7 @@
 		ITFF 굿즈마켓 
 	</div>
 	
-	
-	
-	
+
 	<!-- card 낱개 반복 -->
 	<c:forEach items="${cartList}" var="cart" varStatus="vs">
 	<div class="card-custom" style="margin-bottom: 40px;">
@@ -615,8 +613,6 @@
 	</c:forEach> <!-- end of card 낱개 반복 -->
 	
 	
-	
-
 	<div id="summaryBody">
 		<div class="summary-row">
 			<div>총 수량</div>
@@ -645,48 +641,56 @@
 </section>
 
 <!-- 주소값 -->
+<input type="hidden" id="memberPostCode" value="${member.postCode }" />
 <input type="hidden" id="memberAddress" value="${member.address }" />
+<input type="hidden" id="memberDetailAddress" value="${member.detailAddress }" />
 
 <script>
+// 로그인 회원 이름, 연락처
 const $memberName = $("#memberName");
 const $memberPhone = $("#phone");
+
+// 수령인 이름, 연락처 
 const $receiver = $("#receiver");
 const $receiverPhone = $("#receiverPhone");
+
+// 로그인 회원 주소값
+const $memberPostCode = $("#memberPostCode");
 const $memberAddress = $("#memberAddress");
+const $memberDetailAddress = $("#memberDetailAddress");
+
+// 배송지 주소값
+const $sample3_postcode = $("#sample3_postcode");
+const $sample3_address = $("#sample3_address");
 const $sample3_detailAddress = $("#sample3_detailAddress");
 
 
 /* 주문자와 동일 체크박스 클릭시 */
 $("#receiverSame-chk").change((e) => {	
 	
-	
 	if($("#receiverSame-chk").is(":checked")){
 		
 		$receiver.val($memberName.val());
 		$receiverPhone.val($memberPhone.val());
-		$sample3_detailAddress.val($memberAddress.val());
 		
-		
+		$sample3_postcode.val($memberPostCode.val());
+		$sample3_address.val($memberAddress.val());
+		$sample3_detailAddress.val($memberDetailAddress.val());
 		
 	}else{
-		
 		$receiver.val('');
 		$receiverPhone.val('');
+		
+		$sample3_postcode.val('');
+		$sample3_address.val('');
 		$sample3_detailAddress.val('');
-		
-		
 	}
-	
-	
-	
 })
 
 
 
 /* 배송메모 select 클릭시 */
 $(".form-select").change((e) => {
-
-	console.log($(".form-select").val());
 	
 	var selectedOption = $(".form-select").val();
 	
@@ -704,7 +708,6 @@ $(".point-btn").click((e) => {
 	if(holdingPoints>1000){
 		$(".point-input").val(holdingPoints);
 	} else{
-		console.log("1111");
 		$(".point-input").val("포인트가 부족합니다.");
 	}
 })
