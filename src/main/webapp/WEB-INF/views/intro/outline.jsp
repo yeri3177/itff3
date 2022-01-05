@@ -102,7 +102,7 @@
 
 									<div class="subbox">
 										<div>
-											<p class="desc">공식 선정작 12편</p>
+											<p class="desc">공식 선정작 13편</p>
 										</div>
 									</div>
 								</div>
