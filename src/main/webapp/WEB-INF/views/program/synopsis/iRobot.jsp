@@ -13,6 +13,39 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/program/synopsis.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
+<!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
+<div id="snb">
+	<div class="container-xl">
+		<ul class="list-inline snb_ul" id="snbul1">
+			<li class="on_">
+				<a href="${pageContext.request.contextPath }/program/openClose.do" target="_top" style="font-weight: bold;">개·폐막작</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath }/program/ai.do" target="_top">인공지능</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/security.do">보안·암호학</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/deepRunning.do" target="_top">가상현실·딥 러닝</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/bigData.do" target="_top">빅 데이터·컴퓨팅</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/flatform.do" target="_top">플랫폼·사물 인터넷</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/debugging.do" target="_top">사고력·디버깅</a>
+			</li>
+			<li class="on_">
+				<a href="${pageContext.request.contextPath}/program/programSearch.do" target="_top">#작품검색</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- 여기까지 nav 입니다. -->
+
 <div id="slide">
   <input type="radio" name="pos" id="pos1" checked>
   <input type="radio" name="pos" id="pos2">
