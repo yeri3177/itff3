@@ -20,38 +20,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/noticeList.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/noticeDetail.css" />
 
-<style>
-.btn-outline-success {
-    color: #000000;
-    background-color: transparent;
-    background-image: none;
-    border-color: #00000000;
-    float: right;
-}
-
-.btn-block {
-    display: inline;
-    width: auto;
-}
-
-.btn-outline-success:hover {
-    color: #000;
-    background-color: #f7f7f7;
-    border-color: #f7f7f7;
-}
-
-.btn-outline-success.focus, .btn-outline-success:focus {
-    box-shadow: 0 0 0 0.2rem rgb(247 247 247);
-}
-
-.btn-outline-success:not(:disabled):not(.disabled):active {
-	color: #000;
-    background-color: #f7f7f7;
-    border-color: #f7f7f7;
-}
-
-
-</style>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
@@ -71,13 +39,23 @@
 </div>
 <!-- 여기까지 nav 입니다. -->
 
+
 <section class="ink_board guest_mode">
-	<div class="bd_header">
+
+<!-- 해당 페이지 큰 글씨 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">공지사항</h2>
+	</div>
+</div> 
+<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
+
+	<%-- <div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			<a href="${pageContext.request.contextPath}/notice/noticeList.do">공지사항</a>
 		</h2>
-	</div>
+	</div> --%>
 	<div class="list_wrap">
 		<div class="ink_list ldn" style="background-color: #FFFFFF">
 	<article class="ink_atc round20 has_list">

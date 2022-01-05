@@ -109,7 +109,7 @@ section#main-content {
 }
 
 .ink_board {
-    padding-top: 40px;
+    padding-top: 0px;
     padding-bottom: 50px;
 } 
 .ink_board li {
@@ -122,6 +122,7 @@ section#main-content {
 	margin: auto;
 	position: relative;
 	background-color: #E6E6E6;
+	height: 820px;
 }
 
 .bd_header {

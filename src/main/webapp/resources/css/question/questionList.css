@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-section#main-content {
-    background-color: #E6E6E6;
-    height: auto;
-}
 .ink_wrap {
 	padding-bottom: 200px;
 }
@@ -108,7 +104,7 @@ section#main-content {
 }
 
 .ink_board {
-    padding-top: 40px;
+    padding-top: 0px;
     padding-bottom: 20px;
 } 
 .ink_board li {
@@ -121,6 +117,7 @@ section#main-content {
 	margin: auto;
 	position: relative;
 	background-color: #E6E6E6;
+	height: 820px;
 }
 
 .bd_header {
@@ -1052,6 +1049,7 @@ button:focus {
 }
 #main-content {
 	background-color: #E6E6E6 !important;
+	padding-bottom: 75px;
 }
 #myBtn {
 	opacity: 0; /* Hidden by default */

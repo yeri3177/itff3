@@ -93,12 +93,22 @@ $(() => {
 
 
 </script>
-	<div class="bd_header">
+
+<!-- 해당 페이지 큰 글씨 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">1:1 문의</h2>
+	</div>
+</div> 
+<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
+
+	<%-- <div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			<a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a>
 		</h2>
-	</div>
+	</div> --%>
+
 
 <div id="board-container">
 	
@@ -166,7 +176,6 @@ $(() => {
 	</form>
 	</div>
 </div>
-
 <script>
 
 /* $("[name=upFile]").change(e => {
