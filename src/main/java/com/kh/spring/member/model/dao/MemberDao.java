@@ -40,7 +40,7 @@ public interface MemberDao {
 
 	List<Point> selectPointListByMemberId(int offset, int limit, String id);
 
-	int selectPointTotalCount();
+	int selectPointTotalCount(String id);
 
 	int dailyCheckInsert(String id);
 

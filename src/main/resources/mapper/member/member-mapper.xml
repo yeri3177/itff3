@@ -175,6 +175,7 @@
 		    count(*)
 		from
 		    point_history
+		where member_id = #{id}
 	</select>
 	
 	<select id="dailyCheckInsert">
