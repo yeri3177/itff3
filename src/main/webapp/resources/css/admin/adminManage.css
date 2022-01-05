@@ -1851,14 +1851,71 @@ tbody::-webkit-scrollbar-track {
 	cursor: pointer;
 }
 
+/* 상품 */
 
+.panel-dashboard .border-list-wrap {
+    padding-left: 25px;
+    padding-right: 25px;
+}
 
+.col-md-6 {
+    width: 300px;
+    flex: 0 !important;
+    max-width: 100%;
+    
+}
 
+.panel-dashboard .panel-border-list>li {
+    line-height: 40px;
+    border-bottom: 1px solid rgba(234,236,237,.6);
+}
 
+.info-title {
+    float: left;
+    color: #767a83;
+    vertical-align: middle;
+}
 
+.number-area {
+    float: right;
+    display: flex;
+}
 
+.number-area, .text-number {
+    font-size: 18px;
+    color: #303236;
+}
 
+.text-number {
+    font-family: tahoma, HelveticaNeue, Helvetica, Arial, 나눔고딕, NanumGothic, 맑은고딕, "malgun gothic", 돋움, dotum, sans-serif;
+}
 
+.number-area span {
+    position: relative;
+    top: 1px;
+    padding-left: 10px;
+    color: #767a83;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.goods_table_tr {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent_goods_count {
+	padding: 0 0 0 15px;
+    color: #45a7b9 !important;
+}
+
+.refresh_th {
+	width: 635px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid whitesmoke !important;
+}
 
 
 

@@ -11,7 +11,7 @@
 
 
 <c:forEach items="${list }" var="list">
-	<tr>
+	<tr style="width: 600px;">
 		<td class="title-cell">
 			<a target="_blank" href="${pageContext.request.contextPath}/admin/adminGoodsList.do">
 					<span class="post-intro-image" style="background: url('${pageContext.request.contextPath}/resources/upload/goods/${list.PImg }'); background-size: cover;"></span>

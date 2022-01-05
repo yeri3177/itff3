@@ -90,6 +90,18 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * [메인화면: 판매중 상품 목록]
+	 */
+	
+	@GetMapping("/selectRecentTenGoodsList.do")
+	public void selectRecentTenGoodsList(Model model) {
+		List<Goods> list = adminService.selectRecentTenGoodsList();
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
+
+	/**
 	 * [메인화면: 일주일 가입]
 	 */
 	
