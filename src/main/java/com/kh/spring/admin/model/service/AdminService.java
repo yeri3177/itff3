@@ -218,5 +218,9 @@ public interface AdminService {
 
 	int adminSaleGoodsCount();
 
+	GoodsOrder selectOneGoodsOrder(String orderNo);
+
+	int adminManageTodayOrderCount();
+
 	
 }

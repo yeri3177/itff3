@@ -70,17 +70,15 @@
 									              </div>
 									            </div>
 									            
-									            <!-- Count item widget-->
+									            <!-- 주문 -->
 									            <div class="col-xl-2 col-md-4 col-6 gy-4 gy-xl-0">
 									              <div class="d-flex">
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
 													  <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
 													  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
 													</svg>
-									                <div class="ms-2">
-									                  <h3 class="h4 text-dark text-uppercase fw-normal">주문</h3>
-									                  <p class="text-gray-500 small">Today</p>
-									                  <p class="display-6 mb-0">400</p>
+									                <div class="ms-2" id="order">
+
 									                </div>
 									              </div>
 									            </div>	
@@ -259,7 +257,10 @@
 															<thead>
 																<tr>
 																	<th>
-																	<span>미답변 문의</span>
+																		<div class="alarm">
+																			<span>미답변 문의</span>
+																			<p class="text-number">0</p>
+																		</div>
 																	</th>
 																	<th>
 																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
@@ -332,6 +333,22 @@ $(document).ready(function () {
 		dateType: "text",
 		success: function(data) {
 			$("#goods_list").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 오늘 주문
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageTodayOrderCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#order").html(data);
 		},
 		complete: function() {
 			console.log("complete")

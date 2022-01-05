@@ -472,6 +472,7 @@
 		<id column="order_no" property="orderNo"/>
 		<result column="member_id" property="memberId"/>
 		<result column="total_price" property="totalPrice"/>
+		<result column="order_date" property="orderDate"/>
 	</resultMap>
 
 	<resultMap type="orderDetail" id="orderDetailMap">
@@ -1409,6 +1410,24 @@
 			count(*) 
 		from 
 			goods
+	</select>
+	
+	<select id="selectOneGoodsOrder" resultType="goodsOrder">
+		select
+			*
+		from
+			goods_order
+		where
+			order_no = #{orderNo}
+	</select>
+	
+	<select id="adminManageTodayOrderCount" resultType="_int">
+		select
+			count(*)
+		from
+			goods_order
+		where
+			to_char(order_date,'YYYYMMDD') = to_char(SYSDATE,'YYYYMMDD')
 	</select>
 
 </mapper>

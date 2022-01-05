@@ -48,7 +48,7 @@
 						  	<th class="title_th">주문번호</th>
 						    <td class="receiver">${orderNo }</td>
 						  	<th class="title_th">주문일자</th>
-						    <td class="receiver"><fmt:formatDate value="${payment.payment.paymentDate }" pattern="yy-MM-dd"/></td>
+						    <td class="receiver"><fmt:formatDate value="${goodsOrder.orderDate }" pattern="yy-MM-dd"/></td>
 						  </tr>
 						  
 					  		<tr>
@@ -115,8 +115,13 @@
 						  </tr>
 						  
 						  <tr>
-						  	<th class="title_th pay">주문금액</th>
-							<td class="pay_td"><fmt:formatNumber value="${payment.payment.totalPrice }" pattern="#,###" /></td>
+						  	<th class="title_th pay">결제날짜</th>
+							<td class="pay_td" style="font-size: 14px !important;"><fmt:formatDate value="${payment.payment.paymentDate }" pattern="yy-MM-dd"/></td>						  
+						  </tr>
+						  
+						  <tr>
+						  	<th class="title_th pay">결제금액</th>
+							<td class="pay_td" style="font-weight: 700;"><fmt:formatNumber value="${payment.payment.totalPrice }" pattern="#,###" /></td>
 						  </tr>
 						  
 						</tbody>

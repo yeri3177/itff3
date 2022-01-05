@@ -617,5 +617,15 @@ public class AdminServiceImpl implements AdminService {
 	public int adminSaleGoodsCount() {
 		return adminDao.adminSaleGoodsCount();
 	}
+
+	@Override
+	public GoodsOrder selectOneGoodsOrder(String orderNo) {
+		return adminDao.selectOneGoodsOrder(orderNo);
+	}
+
+	@Override
+	public int adminManageTodayOrderCount() {
+		return adminDao.adminManageTodayOrderCount();
+	}
 	
 }

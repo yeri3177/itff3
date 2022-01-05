@@ -84,6 +84,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<th>주문번호</th>
 									<th>주문자</th>
 									<th>주문금액</th>
+									<th>주문날짜</th>
 									<th>결제상태</th>
 									<th>&nbsp;</th>
 									<th>&nbsp;</th>
@@ -114,6 +115,13 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									
 									<!-- 금액 -->
 									<td><fmt:formatNumber value="${list.goodsOrder.totalPrice }" pattern="#,###" /></td>
+
+									<!-- 주문날짜-->
+									<td>
+										<div class="email">
+												<span><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yyyy-MM-dd"/></span> 
+										</div>
+									</td>
 
 									<!-- 결제상태 -->
 									<td>
