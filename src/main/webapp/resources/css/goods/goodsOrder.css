@@ -59,6 +59,7 @@ input::placeholder {
 
 .top-content-div i {
 	margin: 0 7px;
+	color: #656565;
 }
 /**********************************************************/
 .col-gry {
@@ -163,7 +164,7 @@ table td {
 
 table th {
 	color: #464646;
-	font-weight: 500;
+	font-weight: 555;
 }
 
 table tr {
@@ -180,6 +181,10 @@ label {
 }
 
 /******************체크박스 관련 ****************/
+.chkall-span {
+	font-weight: bold; 
+	font-size: 18px;
+}
 
 .chk input[type="checkbox"] {
 	position: absolute; 
@@ -257,13 +262,15 @@ label {
 }
 
 .modal-content {
-	padding: 30px;
+	padding: 20px;
 	width: 150%!important;
-	left: -23%;
-	top: 70px;
+	left: -27%;
+	top: -60px;
 }
 
-
+.modal-header-text {
+	font-weight: bold;
+}
 
 
 /*******************************************************************/
@@ -286,6 +293,7 @@ label {
 .shopname {
 	margin-bottom: 15px;
 	font-size: 17px;
+	font-weight: 555;
 }
 
 

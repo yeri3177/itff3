@@ -246,7 +246,7 @@
 	<div>
 		<span class="chk"> 
 	        <input type="checkbox" id="chk-all"> 
-	        <label for="chk-all"><span style="font-weight: 500; font-size: 18px;">아래 내용을 확인하였으며, 모두 동의합니다.</span></label> 
+	        <label for="chk-all"><span class="chkall-span">아래 내용을 확인하였으며, 모두 동의합니다.</span></label> 
 	    </span>
 	</div>
 	
@@ -316,7 +316,7 @@
 			<div class="modal-body">
 				<!-- 헤더 -->
 				<div class="con-header">
-					<div>서비스 이용 약관</div>
+					<div class="modal-header-text">서비스 이용 약관</div>
 					<div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
 				</div>
 				
@@ -408,7 +408,7 @@
 			<div class="modal-body">
 				<!-- 헤더 -->
 				<div class="con-header">
-					<div>개인정보 수집 • 이용 동의</div>
+					<div class="modal-header-text">개인정보 수집 • 이용 동의</div>
 					<div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
 				</div>
 				
@@ -477,16 +477,16 @@
 					2. 대금결제 및 재화 등의 공급에 관한 기록 : 5년<br />
 					3. 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br />
 					4. 웹사이트 방문기록 : 3개월<br />
-					③ 이용자의 동의를 받아 보유하고 있는 거래정보 등을 이용자께서 열람을 요구하는 경우 회사는 지체없이 열람, 확인할 수 있도록 조치합니다.
-					제7조 장기 미사용 고객의 휴면 정책
+					③ 이용자의 동의를 받아 보유하고 있는 거래정보 등을 이용자께서 열람을 요구하는 경우 회사는 지체없이 열람, 확인할 수 있도록 조치합니다.<br />
+					제7조 장기 미사용 고객의 휴면 정책<br />
 					1. 마플샵을 최종 이용 후 1년 동안 이용 기록이 없는 고객(장기미이용회원)의 개인정보는 별도로 분리하여 안전하게 관리하게 되며, 대상자에게는 분리 보관 처리일을 기준으로 하여 최소 30일 이전에 이메일 주소를 통해 안내합니다. 분리 보관된 개인정보는 5년간 보관 후 지체없이 파기합니다. 단,통신비밀보호법, 전자상거래 등에서의 소비자보호에 관한 법률 등의 관계법령의 규정에 의하여 보존할 필요가 있는 경우 규정된 기간 동안 고객의 개인정보를 보관합니다.<br />
 					2. 휴면계정으로 전환을 원하지 않으시는 경우, 휴면계정 전환 전 서비스 내 로그인 하시면 됩니다. 또한, 휴면 계정으로 전환되었더라도 로그인할 경우 이용자의 동의에 따라 휴면계정을 복원하여 정상적인 서비스를 이용할 수 있습니다<br />
-					
-					&lt;부칙&gt;
-					본 약관은 2021년 7월 28일부터 시행됩니다.
-					2015년 4월 15일부터 시행해 온 약관은 본 약관으로 대체됩니다.
-					
-					- 이전 개인정보보호 취급방침 보기
+					<br />
+					&lt;부칙&gt;<br />
+					본 약관은 2021년 7월 28일부터 시행됩니다.<br />
+					2015년 4월 15일부터 시행해 온 약관은 본 약관으로 대체됩니다.<br />
+					<br />
+					- 이전 개인정보보호 취급방침 보기<br />
 				</div> <!-- end of 바디 -->
 				
 				<!-- 푸터 -->
@@ -515,6 +515,9 @@
 		ITFF 굿즈마켓 
 	</div>
 	
+	
+	
+	
 	<!-- card 낱개 반복 -->
 	<%-- <c:forEach items="${list}" var="cart" varStatus="vs"> --%>
 	<div class="card-custom" style="margin-bottom: 40px;">
@@ -525,11 +528,6 @@
 				<%-- No. ${cart.goodsCart.cartId } --%>
 				No.1111111
 			</div>
-			
-			<!-- card-head-right : X버튼 (버튼 클릭시 해당 goods_cart 레코드 삭제(GET) -->
-			<!-- <div class="iconBg-div">
-				<button type="button" data-cart-id="" class="btn-close" aria-label="Close"></button>
-			</div> -->
 		</div>
 		
 		<!-- card-body -->
@@ -578,14 +576,6 @@
 					3개
 				</div>
 			</div>
-			<!-- card-footer-right -->
-			<!-- <div class="card-footer-right">
-				<button type="button" id="qtyBtn" class="btn btn-outline-secondary" 
-					data-bs-toggle="modal" data-bs-target="#QtyChangeModal"
-					onclick="">
-					수량 변경
-				</button>
-			</div> -->
 		</div>
 	
 	</div>
@@ -593,8 +583,7 @@
 	
 	
 	
-	
-	
+
 	<div id="summaryBody">
 		<div class="summary-row">
 			<div>총 수량</div>
@@ -615,7 +604,7 @@
 			<div>최종 결제 금액</div>
 			<div><fmt:formatNumber value="323232312" pattern="#,###원" /></div>
 		</div>
-	</div>
+	</div> <!-- end of summaryBody -->
 	
 	
 </div> <!-- end of 오른쪽 컨테이너 -->
