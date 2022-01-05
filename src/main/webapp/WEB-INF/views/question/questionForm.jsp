@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <!-- taglib은 공유되지 않으니 jsp마다 작성할 것 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<!-- 한글 깨지지 않게 처리 -->
-
-<fmt:requestEncoding value="utf-8"/>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page	import="org.springframework.security.core.context.SecurityContext"%>
+<fmt:requestEncoding value="utf-8" />	<!-- 이거 없으면 이 밑에 jsp: -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="1:1 문의" name="title"/>
+	<jsp:param value="1:1문의" name="title"/>   
 </jsp:include>
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/question/questionForm.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/noticeForm.css" />
+<!-- reviewList.css도 이용했기 때문에 필요함 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/reviewList.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -28,7 +29,7 @@
 			<li class="on_"><a
 				href="${pageContext.request.contextPath }/notice/noticeList.do"
 				target="_top">공지사항</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath }/review/reviewList.do" target="_top">네티즌리뷰</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/review/reviewList.do" target="_top">네티즌리뷰</a></li>
 			<li class="on_"><a
 				href="${pageContext.request.contextPath}/sharing/boardList.do"
 				target="_top">티켓나눔터</a></li>
@@ -38,160 +39,91 @@
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-<!-- 해당 페이지 큰 글씨 -->
-<!-- <div class="sub_title_wrap">
-	<div class="container">
-		<h2 class="en">1:1 문의 </h2>
-	</div>
-</div> -->
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-
-<sec:authorize access="isAuthenticated()">
 
 
-<div class="container_">
-
+<section class="ink_board guest_mode">
 	<div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			<a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a>
 		</h2>
 	</div>
-
-	<div class="cont">
-		<div class="container_">
-		
-			<form 
-				name="boardFrm" 
-				id="boardFrm"
-				class="boardFrm"
-				method="post" 
-				action="${pageContext.request.contextPath}/question/questionEnroll.do?${_csrf.parameterName}=${_csrf.token}"
-				enctype="multipart/form-data"
-				onsubmit="return boardValidate();">
-				<input type="hidden" name="memberId" value="<sec:authentication property="principal.id"/>">
-				<!-- <input type="hidden" name="strBoardBg" value="">
-				<input type="hidden" name="bitHtmlBr" value="0">
-				<input type="hidden" name="strSessionID" value="503737302">	
-				<input name="strHomepage" type="hidden" id="strHomepage" value="" size="40" maxlength="64">
-				<input name="bitCook" type="hidden" class="no_Line" id="bitCook" value="1"> -->
-		
-				<div class="wz_write">
-		
-					<!-- <div class="chk_box">
-						<div class="chk-primary">
-							<input name="bitSecret" type="checkbox" id="bitSecret" value="1" title="비밀글" data-null="not">
-							<label for="bitSecret">
-							<span></span>비밀글</label>
-						</div>
-					</div> -->
-		
-					<div class="write_top">
-						<div class="inp_tit_wrap">
-							<input name="questionTitle" type="text" id="strSubject" class="inp_tit" maxlength="64" placeholder="제목을 입력해 주세요.">
-							<input type="hidden" name="admin" class="admin" value="admin" />
-						</div>
+	<div class="list_wrap">
+		<div class="ink_list ldn" style="background-color: #FFFFFF">
+			<div id="board-container">
+				<form:form 
+					name="boardFrm" 
+					action="${pageContext.request.contextPath}/question/questionEnroll.do?${_csrf.parameterName}=${_csrf.token}" 
+					method="post" 
+					enctype="multipart/form-data"
+					onsubmit="return boardValidate();">
+					<input type="text" class="form-control" placeholder="제목" name="questionTitle" id="title" required>
+					<input type="hidden" name="admin" class="admin" value="admin" />
+					<input type="hidden" class="form-control" name="memberId" value="<sec:authentication property="principal.id"/>" readonly required>
+					<textarea class="form-control" name="questionContent" placeholder="내용" required></textarea>
+					<br />
+					<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
+					<div class="input-group mb-3" style="padding:0px;">
+					  <div class="input-group-prepend" style="padding:0px;">
+					    <span class="input-group-text">첨부파일</span>
+					  </div>
+					  <div class="custom-file">
+					    <input type="file" class="custom-file-input" name="upFile" id="upFile1" multiple>
+					    <label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+					  </div>
 					</div>
-		
-					<dl class="info_question">
-						<dt>
-							<label class="lab_info" for="email">
-								이름
-							</label>
-						</dt>
-						<dd>
-							<div class="wrap_item wrap_id click_event">
-								<input type="text" class="inp_txt" name="strName" id="strName" value="<sec:authentication property="principal.name"/>" size="40" maxlength="64" readonly>
-							</div>
-						</dd>
-					</dl>
-					<dl class="info_question">
-						<dt>
-							<label class="lab_info" for="email">
-								이메일 주소
-							</label>
-						</dt>
-						<dd>
-							<div class="wrap_item wrap_id click_event">
-								<input type="text" class="inp_txt" name="strEmail" id="strEmail" value="<sec:authentication property="principal.email"/>" size="40" maxlength="64" readonly>
-							</div>
-						</dd>
-					</dl>
-			
-					<div class="write_bd" style="min-height:300px;margin-top:10px">
-						<textarea name="questionContent" cols="70" rows="16" id="strContent" style="display:block; width:100%"></textarea>
+					
+					<br />
+					<div class="bt_area bt_right">
+						<button class="ib ib_mono" onclick="window.history.back();return false;" type="button">취소</button>
+						<button class="ib ib_color" type="submit" id="qa">등록</button>
 					</div>
-		
-					<div class="file_wrap">
-						<div class="desc bold mb10">파일 선택</div>
-		
-						<!-- 파일 선택 폼 -->
-						<div class="input-group mb-3" style="padding: 0px;">
-							<div class="input-group-prepend" style="padding: 0px;">
-								<span class="input-group-text">첨부파일1</span>
-							</div>
-							<div class="custom-file">
-								<input type="file" class="custom-file-input" name="upFile"
-									id="upFile1" multiple="multiple"> <label
-									class="custom-file-label" for="upFile1">파일을 선택하세요</label>
-							</div>
-						</div>
-						<!-- //파일 선택 폼 -->
-					</div>
-		
-					<div class="txt-center" id="writeButton">
-						<input type="submit" id="qa" class="btn btn-m btn-primary" value="저장"> &nbsp;&nbsp;
-						<a href="javascript:history.go(-1);" class="btn btn-m btn-secondary">취소</a>
-					</div>
-				</div>
-			</form>
+				</form:form>
+			</div>
 		</div>
 	</div>
-</div>
-</sec:authorize>	
+</section>		
 		
-
 <script>
 
-	$('#qa').click(function(e){
-	    let type = '70';
-	    let target = $('.admin').val();
-	    let content = '새로운 문의사항이 등록되었습니다.'
-	    let url = '${contextPath}/question/saveNotify.do';
-	    	    
-	    console.log(type);
-	    console.log(target);
-	    console.log(content);
-	    console.log(url);
-	    
-	    // 전송한 정보를 db에 저장	
-	    $.ajax({
-	        type: "post",
-	        url:"${pageContext.request.contextPath}/question/saveNotify.do",
-	        dataType: "text",
-	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-	        data: {
-	            target: target,
-	            content: content,
-	            type: type,
-	            url: url
-	        },
-	        beforeSend : function(xhr) {   
-	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	        },
-	        success:    // db전송 성공시 실시간 알림 전송
-	            // 소켓에 전달되는 메시지
-	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
-	        	socket.send("관리자,"+target+","+content+","+url)
-// 			console.log("관리자,"+target+","+content+","+url)
+$('#qa').click(function(e){
+    let type = '70';
+    let target = $('.admin').val();
+    let content = '새로운 문의사항이 등록되었습니다.'
+    let url = '${contextPath}/question/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/question/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("관리자,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
 
-	    });
-	});
+    });
+});
 
 </script>
 
 <script>
-
 /* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function boardValidate(){
    var $content = $("[name=questionContent]");
@@ -231,5 +163,4 @@ $(() => {
 });
 
 </script>
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
