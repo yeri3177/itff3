@@ -88,14 +88,11 @@ public class MemberController {
 								@RequestParam String birthday1, 
 								@RequestParam String birthday2, 
 								@RequestParam String birthday3, 
-								@RequestParam String address1, 
-								@RequestParam String address2, 
 								@RequestParam String phone1, 
 								@RequestParam String phone2, 
 								@RequestParam String phone3,
 								Model model,
 								RedirectAttributes redirectAttr) {
-		log.debug("member = {}", member);
 		
 		// 생일 연월일 합쳐서 Date 타입으로 형변환
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -109,11 +106,6 @@ public class MemberController {
 		log.debug("birthday = {}", birthday);
 		member.setBirthday(birthday);
 		
-		// 주소
-		String address = address1 + " " + address2;
-		log.debug("address = {}", address);
-		member.setAddress(address);
-
 		// 전화번호
 		String phone = phone1 + phone2 + phone3;
 		log.debug("phone = {}", phone);
@@ -125,6 +117,8 @@ public class MemberController {
 		String encryptedPassword = passwordEncoder.encode(rawPassword);
 		member.setPassword(encryptedPassword);
 		log.info("{} -> {}", rawPassword, encryptedPassword);
+		
+		log.debug("member = {}", member);
 		
 		// 1. 업무로직
 		int result = memberService.insertMember(member);
