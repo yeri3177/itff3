@@ -493,7 +493,8 @@
 		values(
 			default,
 			#{memberId},
-			#{totalPrice}
+			#{totalPrice},
+			default
 		)
 	</insert>
 	

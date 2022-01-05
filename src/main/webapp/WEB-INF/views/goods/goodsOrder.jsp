@@ -640,7 +640,7 @@
 
 </section>
 
-<!-- 주소값 -->
+<!-- 로그인 회원 주소값 -->
 <input type="hidden" id="memberPostCode" value="${member.postCode }" />
 <input type="hidden" id="memberAddress" value="${member.address }" />
 <input type="hidden" id="memberDetailAddress" value="${member.detailAddress }" />
@@ -665,7 +665,7 @@ const $sample3_address = $("#sample3_address");
 const $sample3_detailAddress = $("#sample3_detailAddress");
 
 
-/* 주문자와 동일 체크박스 클릭시 */
+/* [주문자와 동일] 체크박스 클릭시 */
 $("#receiverSame-chk").change((e) => {	
 	
 	if($("#receiverSame-chk").is(":checked")){
