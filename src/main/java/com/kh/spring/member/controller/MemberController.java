@@ -337,8 +337,8 @@ public class MemberController {
 		log.debug("PointList = {}", list);
 		model.addAttribute("list", list);
 		
-		// 2. 총 게시물 수 가져오기
-		int totalContent = memberService.selectPointTotalCount();
+		// 2. 아이디별 포인트 총 게시물 수 가져오기
+		int totalContent = memberService.selectPointTotalCount(id);
 		log.debug("totalContent = {}", totalContent);
 		model.addAttribute("totalContent", totalContent);
 		
@@ -372,8 +372,8 @@ public class MemberController {
 		log.debug("BoardList = {}", list);
 		model.addAttribute("list", list);
 		
-		// 2. 총 게시물 수 가져오기
-		int totalContent = memberService.selectBoardTotalCount();
+		// 2. 아이디별 총 게시물 수 가져오기
+		int totalContent = memberService.selectBoardTotalCount(id);
 		log.debug("totalContent = {}", totalContent);
 		model.addAttribute("totalContent", totalContent);
 		
@@ -416,8 +416,8 @@ public class MemberController {
 		log.debug("ReviewList = {}", list);
 		model.addAttribute("list", list);
 		
-		// 2. 총 게시물 수 가져오기
-		int totalContent = memberService.selectReviewTotalCount();
+		// 2. 접속된 아이디 별 총 게시물 수 가져오기
+		int totalContent = memberService.selectReviewTotalCount(id);
 		log.debug("totalContent = {}", totalContent);
 		model.addAttribute("totalContent", totalContent);
 		

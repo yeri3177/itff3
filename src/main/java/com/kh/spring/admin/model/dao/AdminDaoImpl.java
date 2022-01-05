@@ -576,4 +576,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.selectOneGoodsOrderMember", orderNo);
 	}
 
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return session.selectList("admin.selectRecentTenGoodsList");
+	}
+
 }

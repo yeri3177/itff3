@@ -66,8 +66,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectBoardTotalCount() {
-		return session.selectOne("member.selectBoardTotalCount");
+	public int selectBoardTotalCount(String id) {
+		return session.selectOne("member.selectBoardTotalCount", id);
 	}
 
 	@Override
@@ -88,8 +88,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectReviewTotalCount() {
-		return session.selectOne("member.selectReviewTotalCount");
+	public int selectReviewTotalCount(String id) {
+		return session.selectOne("member.selectReviewTotalCount", id);
 	}
 
 	@Override
@@ -99,8 +99,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectPointTotalCount() {
-		return session.selectOne("member.selectPointTotalCount");
+	public int selectPointTotalCount(String id) {
+		return session.selectOne("member.selectPointTotalCount", id);
 	}
 
 	@Override

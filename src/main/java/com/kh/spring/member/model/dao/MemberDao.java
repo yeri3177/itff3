@@ -28,7 +28,7 @@ public interface MemberDao {
 
 	List<Board> selectBoardListByMemberId(int offset, int limit, String id);
 
-	int selectBoardTotalCount();
+	int selectBoardTotalCount(String id);
 
 	int insertGoods(Member member);
 
@@ -36,11 +36,11 @@ public interface MemberDao {
 
 	List<Review> selectReviewListByMemberId(int offset, int limit, String id);
 
-	int selectReviewTotalCount();
+	int selectReviewTotalCount(String id);
 
 	List<Point> selectPointListByMemberId(int offset, int limit, String id);
 
-	int selectPointTotalCount();
+	int selectPointTotalCount(String id);
 
 	int dailyCheckInsert(String id);
 

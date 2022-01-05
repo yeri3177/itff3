@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+.sub_sc {
+    position: relative;
+    z-index: 10;
+    padding: 0 0 30px;
+    background-color: #fff;
+    width: 54%;
+    margin: auto;
+}
+
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: '나눔고딕',NanumGothic,'맑은고딕',MalgunGothic,'돋움',Dotum,Helvetica,sans-serif;
+    
+}
+
+.col-one-point {
+	width: 250px;
+    height: 78px;
+    margin-left: 30px;
+    padding-left: 30px;
+    border-left: 1px solid #e1e1e1;
+        margin: 0 307px;
+}
+
+.col-one-point h3 {
+	width: 216px;
+    background-position: 9px -27px;
+    font-size: 25px;
+}
+
+.col-one-point> ul > li {
+	width: 246px;
+    margin-top: 13px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e1e1e1;
+    line-height: 16px;
+}
+
+.txt-maroon {
+	font-size: 20px;
+}
+
+.biggerPoint {
+	padding-bottom: 35px;
+}
+
+.item {
+    position: relative;
+    padding: 46px 0;
+}
+
+.item_content {
+    display: block;
+    position: relative;
+    color: #000;
+    text-decoration: none !important;
+}
+
+.state_space {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 113px;
+    margin-top: -41px;
+    padding-left: 13px;
+}
+
+.info_space {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+
+#content .date {
+    position: relative;
+    margin: 0 10px;
+    color: #808080;
+}
+
+.info_space .date {
+    display: block;
+    margin: 0 0 6px !important;
+    font-size: 14px;
+    color: #a5a5a5 !important;
+}
+
+.info_space .title {
+    display: block;
+    overflow: hidden;
+    max-width: 100%;
+    font-weight: normal;
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.info_space .subtext {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #a5a5a5;
+}
+
+.amount_space {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 120px;
+    font-size: 14px;
+    line-height: 74px;
+    text-align: right;
+    z-index: 10;
+}
+
+.amount_space .amount_inner {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 24px;
+}
+
+.item.sub .point {
+    color: #676767;
+    font-size: 18px;
+}
+
+.list_area li {
+	border-bottom: 1px solid #e1e1e1;
+}

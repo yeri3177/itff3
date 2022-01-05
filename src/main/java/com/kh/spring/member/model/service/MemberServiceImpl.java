@@ -79,8 +79,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int selectBoardTotalCount() {
-		return memberDao.selectBoardTotalCount();
+	public int selectBoardTotalCount(String id) {
+		return memberDao.selectBoardTotalCount(id);
 	}
 
 
@@ -97,8 +97,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int selectReviewTotalCount() {
-		return memberDao.selectReviewTotalCount();
+	public int selectReviewTotalCount(String id) {
+		return memberDao.selectReviewTotalCount(id);
 	}
 
 
@@ -109,8 +109,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int selectPointTotalCount() {
-		return memberDao.selectPointTotalCount();
+	public int selectPointTotalCount(String id) {
+		return memberDao.selectPointTotalCount(id);
 	}
 
 

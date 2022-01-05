@@ -28,17 +28,17 @@ public interface MemberService {
 
 	List<Board> selectBoardListByMemberId(int offset, int limit, String id);
 
-	int selectBoardTotalCount();
+	int selectBoardTotalCount(String id);
 
 	int insertProfileImage(Map<String, Object> param);
 
 	List<Review> selectReviewListByMemberId(int offset, int limit, String id);
 
-	int selectReviewTotalCount();
+	int selectReviewTotalCount(String id);
 
 	List<Point> selectPointListByMemberId(int offset, int limit, String id);
 
-	int selectPointTotalCount();
+	int selectPointTotalCount(String id);
 
 	int dailyCheckInsert(String id);
 

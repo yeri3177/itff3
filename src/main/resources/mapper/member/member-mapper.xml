@@ -93,6 +93,7 @@
 			count(*)
 		from
 			ticket_sharing_board
+		where member_id = #{id}
 	</select>
 	
 	
@@ -133,6 +134,7 @@
 		    count(*)
 		from
 		    review_board
+		where member_id = #{id}
 	</select>
 	
 	
@@ -173,6 +175,7 @@
 		    count(*)
 		from
 		    point_history
+		where member_id = #{id}
 	</select>
 	
 	<select id="dailyCheckInsert">

@@ -607,5 +607,10 @@ public class AdminServiceImpl implements AdminService {
 	public String selectOneGoodsOrderMember(String orderNo) {
 		return adminDao.selectOneGoodsOrderMember(orderNo);
 	}
+
+	@Override
+	public List<Goods> selectRecentTenGoodsList() {
+		return adminDao.selectRecentTenGoodsList();
+	}
 	
 }
