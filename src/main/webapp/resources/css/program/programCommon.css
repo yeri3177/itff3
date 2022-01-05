@@ -124,6 +124,7 @@
 .pgl .pg_li .txtbox {
     height: 160px;
     margin: 5px 0 20px 25px;
+        line-height: 20px;
 }
 
 .pgl .pg_li .txtbox .film_tit {
