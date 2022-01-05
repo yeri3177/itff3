@@ -220,4 +220,6 @@ public interface AdminDao {
 
 	String selectOneGoodsOrderMember(String orderNo);
 
+	List<Goods> selectRecentTenGoodsList();
+
 }

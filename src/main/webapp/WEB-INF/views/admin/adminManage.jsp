@@ -202,7 +202,7 @@
 																	<th style="width: 380px;"><span> 예매 </span></th>
 																</tr>
 															</thead>
-															<tbody id="goods_list">
+															<tbody>
 																
 															</tbody>
 														</table>
@@ -212,20 +212,24 @@
 												<div class="span4 recent-gridbox-apps" style="width: 856px;">
 													<table class="table table-striped">
 														<thead>
-															<tr>
-																<th style="width: 380px;"><span> 주문/클레임 </span></th>
+															<tr class="goods_table_tr">
+																<th class="refresh_th">
+																	<span> 주문/클레임 </span>
+																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
+																</th>
+																<th style="padding: 15px 0 15px 9px;">
+																	<div class="border-list-wrap col-md-6 col-sm-6 col-xs-12">
+																		<span class="info-title" id="goods_count">판매중 상품</span> 
+																			<a href="" class="recent_goods_count">0</a>
+																		 <span>건</span>
+																	</div>
+																</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-															<td>
-																
-
+														<tbody class="half_table" id="goods_list">
 															
 
-															</td>
-																</tr>
-															</tbody>
+														</tbody>
 														</table>
 
 													</div>
@@ -305,8 +309,6 @@
 
 <script>
 
-/**
- * 
 // 굿즈 최근 10개
 $(document).ready(function () {
 	$.ajax({
@@ -322,7 +324,6 @@ $(document).ready(function () {
 		}
 	});
 });
- */
 
 // 최근 일주일 가입
 $(document).ready(function () {

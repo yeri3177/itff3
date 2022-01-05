@@ -1383,4 +1383,14 @@
 			order_no = #{orderNo}
 	</select>
 	
+	<select id="selectRecentTenGoodsList" resultType="goods"> 
+		select 
+			* 
+		from 
+			goods 
+		where 
+			<![CDATA[rownum <= 10]]>
+		order by p_enroll desc
+	</select>
+
 </mapper>
