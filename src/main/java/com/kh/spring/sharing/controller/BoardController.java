@@ -177,7 +177,7 @@ public class BoardController {
 		int result = boardService.insertBoardComment(boardComment);
 		log.debug("result = {}", result);
 		
-		return "redirect:/sharing/boardDetail.do?boardNo=" + boardComment.getBoardNo();
+		return "redirect:/sharing/boardDetail.do?no=" + boardComment.getBoardNo();
 	}
 	
 	@PostMapping("/boardCommentDelete.do")
@@ -187,7 +187,7 @@ public class BoardController {
 		int result = boardService.deleteBoardComment(no);
 		log.debug("result = {}", result);
 		
-		return "redirect:/sharing/boardDetail.do?boardNo=" + boardNo;
+		return "redirect:/sharing/boardDetail.do?no=" + boardNo;
 	}
 	
 	@GetMapping("/boardUpdate.do")

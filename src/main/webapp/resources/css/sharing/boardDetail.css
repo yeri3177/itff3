@@ -1,0 +1,377 @@
+@charset "UTF-8";
+
+
+.reply{
+	color: #FFF;
+    background-color: #686868;
+    transform: scale(0.9);
+}
+.reply:hover {
+	color: black; 
+	background-color: #9ececc;
+}
+.deleteComment {
+	color: black;
+	background-color: white;
+	transform: scale(0.9);
+}
+.deleteComment:hover {
+	color: black; 
+	background-color: #9ececc;
+}
+
+.btn {
+	color: #FFF;
+    background-color: #686868;
+    transform: scale(0.9);
+}
+
+.ib_color {
+	color: #FFF;
+    background-color: #686868;
+    transform: scale(0.8);
+}
+.ib_color:hover {color: black; background-color: #9ececc;}
+
+.bt_close {
+	color: #FFF;
+    background-color: #686868;
+	transform: scale(0.8);
+}
+.bt_close:hover {color: black; background-color: #9ececc; }
+
+.cmt_buttons{ text-align: right;}
+.font_grey1{ margin: 10px 0px 0px 0px; text-align: right;}
+
+/* 수정 목록 버튼 중앙정렬*/
+.btn_wrapper{
+	text-align:center;
+}
+
+/* 제목 디자인 */
+button {
+	border: none;
+}
+section#main-content {
+    background-color: #E6E6E6;
+    height: auto;
+}
+div#board-container{
+	width:800px; 
+	margin:0 auto; 
+	text-align:center;
+	padding-top: 40px;	
+}
+textarea.form-control {
+	height: 300px;
+}
+div#board-container input{margin-bottom:15px;}
+/* 부트스트랩 : 파일라벨명 정렬*/
+div#board-container label.custom-file-label{text-align:left;}
+.ib {
+    height: 42px;
+    line-height: 42px;
+    padding: 0 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    z-index: 1;
+    border: none;
+    color: white;
+}
+.ib_mono {
+    color: #555;
+    background-color: #EEE;
+}
+.bt_right .ib {
+    margin-left: 3px;
+    vertical-align: middle;
+}
+.cmt_write_option {
+    position: relative;
+    margin-top: 10px;
+    height: 30px;
+}
+.containerN .atc_header p {
+    padding: 20px 25px;
+}
+.atc_header p {
+    padding: 20px 25px;
+    font-size: 18px;
+    line-height: 160%;
+    margin: 0;
+    font-weight: normal;
+}
+.atc_info {
+    padding: 0 25px;
+    line-height: 44px;
+    font-size: 13px;
+    background-color: #f7f7f7;
+}
+.atc_info_right {
+    float: right;
+}
+.atc_info>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.atc_nickname .inkpf {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.inkpf.small {
+    width: 30px;
+    height: 30px;
+}
+.inkpf.round {
+    border-radius: 50%;
+}
+.bg_grey1, .inkpf, .ib_mono3, .ii.ii2, .ink_dropdown .bt, .ink_message>div>h3, .ink_message .bt_area {
+    background-color: #f7f7f7;
+}
+.inkpf {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: #f7f7f7;
+}
+.inkpf_img {
+    width: 100%;
+    height: auto;
+}
+img, video {
+    max-width: none;
+    max-height: 600px;
+}
+a, button, input[type=button] {
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.3s;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    color: #000;
+}
+.font_grey1, .font_grey1 a, .ib_mono3, .ib i.only {
+    color: #777;
+}
+.atc_date, .atc_ip {
+    margin-left: 15px;
+}
+.atc_info_right>span {
+    margin-left: 10px;
+}
+.fa, .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.pt_col, .c_module, .c_module a {
+    color: #ec5e5e !important;
+}
+.pt_col2, .c_module2, .c_module2 a {
+    color: #222 !important;
+}
+.atc_info_right .count_cmt, .atc_info_right .count_file {
+    cursor: pointer;
+}
+.atc_font {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+}
+.atc_body {
+    padding: 25px;
+}
+.atc_body .xe_content {
+    padding: 30px 40px 35px 40px;
+}
+body, table, input, button, .ink_wrap .xe_content, .text_en {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-weight: 400;
+}
+.atc_body .xe_content {
+    padding: 25px;
+}
+.atc_body .xe_content {
+    font-size: 16px;
+    line-height: 180%;
+}
+.atc_body .xe_content p, .atc_body .xe_content div, .atc_body .xe_content span {
+    line-height: 180%;
+}
+.atc_buttons_etc .ink_bubble_wrap {
+    display: inline-block;
+    margin-left: 5px;
+}
+.ink_bubble_wrap {
+    position: relative;
+    display: inline-block;
+}
+.cmt_bubble .cmt_buttons .bt2 {
+    font-size: 12px;
+}
+.cmt_bubble .cmt_buttons .bt2 {
+    display: inline-block;
+    padding: 0 8px;
+    margin-right: 3px;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+
+/* 수정 목록 버튼들 div margin */
+input, button, textarea, table {
+    outline: none;
+}
+body, table, input, textarea, select, button {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+button {
+    appearance: auto;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    /* border-style: outset; */
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+.cmt_title {
+    padding: 15px 25px;
+    background-color: #f7f7f7;
+    position: relative;
+}
+.cmt_title h3 {
+    font-size: 14px;
+    display: inline-block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+}
+.pt_col, .c_module, .c_module a {
+    color: #ec5e5e !important;
+}
+.cmt_notice {
+    margin: 25px 25px 0;
+    padding: 15px 15px 15px 45px;
+    border-radius: 20px;
+    line-height: 160%;
+       position: relative;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+.cmt_notice i {
+    left: 18px;
+    top: 15px;
+    position: absolute;
+    font-size: 18px;
+}
+.cmt_bubble .cmt_wrap {
+    padding: 25px 25px 0;
+}
+.cmt_bubble .cmt_unit:first-of-type {
+    margin-top: 0;
+}
+.cmt_bubble .cmt_unit {
+    padding-left: 45px;
+    margin-top: 25px;
+}
+.cmt_unit {
+    position: relative;
+}
+.cmt_bubble .inkpf_wrap {
+    width: 40px;
+}
+.cmt_bubble .inkpf_wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+}
+
+/* 댓글창 시간 */
+.paging .bt_page, .list_wrap .extra_table th, .ldw .list_unit, .ink_gallery .list_thumb, .atc_history .history_date, .atc_ex th, .ink_memo .list_wrap .inkpf, .memo_form_dummy .bt_write_memo, .cmt_title, .cmt_notice, .cmt_bubble .cmt_body, .cmt .page_line, .cmt_basic .cmt_buttons .bt, .cmt_write_input textarea, .stk_display {
+    background-color: #f7f7f7;
+}
+
+/* 댓글창 radious*/
+.cmt_bubble .cmt_body {
+    min-width: 249px;
+    max-width: calc(100% - 10px);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+/* 댓글창 길이 */
+.cmt_bubble .cmt_body {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+/*     box-sizing: border-box; */
+    box-sizing: content-box;
+	width: 70%;
+	padding: 10px;
+}
+
+/* 댓글 폰트, 글씨 크기*/
+.xe_content, .rhymix_content {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    font-size: 14px;
+    line-height: 130%;
+    word-break: normal;
+    word-wrap: break-word;
+}
+
+/* 댓글 삭제 버튼 크기 마진*/
+.cmt_buttons {
+/*     position: relative; */
+    height: 24px;
+    margin-top: 10px;
+}
+
+.cmt_bubble .cmt_unit.level2 {
+    margin-left: 80px;
+}
+.cmt_unit {
+    position: relative;
+}
+.cmt_write_input textarea {
+    padding: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    border-radius: 10px;
+}
