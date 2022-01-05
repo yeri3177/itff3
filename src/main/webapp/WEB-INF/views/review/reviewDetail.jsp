@@ -623,7 +623,7 @@ $(document.reviewCommentEnrollFrm).submit((e) => {
 	
 });
 
-
+ 
 // 좋아요 누른 아이디면 좋아요버튼 호버했을때처럼 보이게 함
 $(document).ready(function () {
 	 var heartval = ${heartCheck};
