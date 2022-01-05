@@ -109,6 +109,7 @@ $(() => {
 		</h2>
 	</div> --%>
 
+<div id="board-container-out">
 
 <div id="board-container">
 	
@@ -176,6 +177,9 @@ $(() => {
 	</form>
 	</div>
 </div>
+
+</div>
+
 <script>
 
 /* $("[name=upFile]").change(e => {

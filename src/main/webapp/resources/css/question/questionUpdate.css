@@ -54,7 +54,9 @@ div#board-container label.custom-file-label{text-align:left;}
 	padding-bottom: 20px; 
 }
 
-
+#board-container-out {
+	padding-bottom: 50px;
+}
 
 div#board-container{width:800px; margin:0 auto; text-align:center; padding: 27px 30px;
     background-color: #ffffff;
