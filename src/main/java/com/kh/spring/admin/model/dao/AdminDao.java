@@ -210,7 +210,7 @@ public interface AdminDao {
 
 	List<GoodsOption> selectOneGoodsOptionId(int pId);
 
-	List<GoodsOrder> selectGoodsOrderList(int offset, int limit);
+	List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit);
 
 	int selectGoodsOrderTotalCount();
 
@@ -221,5 +221,11 @@ public interface AdminDao {
 	String selectOneGoodsOrderMember(String orderNo);
 
 	List<Goods> selectRecentTenGoodsList();
+
+	int adminSaleGoodsCount();
+
+	GoodsOrder selectOneGoodsOrder(String orderNo);
+
+	int adminManageTodayOrderCount();
 
 }

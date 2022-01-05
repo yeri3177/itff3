@@ -493,15 +493,26 @@
 		values(
 			default,
 			#{memberId},
-			#{totalPrice}
+			#{totalPrice},
+			default
 		)
 	</insert>
 	
-	<select id="selectOneOrderNo" resultType="string">
+	<!-- <select id="selectOneOrderNo" resultType="string">
 		select *
 		from goods_order
 		where member_id = #{memberId}
 		and total_price = #{totalPrice}
+	</select> -->
+	
+	<select id="selectOneOrderNo" resultType="string">
+		select * from (
+			select order_no
+			from goods_order
+			where member_id = #{memberId}
+			and total_price = #{totalPrice}
+			order by order_date desc
+		) where rownum = 1
 	</select>
 	
 	

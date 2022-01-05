@@ -107,6 +107,23 @@ public class MemberDaoImpl implements MemberDao {
 	public int dailyCheckInsert(String id) {
 		return session.insert("member.dailyCheckInsert", id);
 	}
+
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return session.insert("member.insertPointHistory", param);
+	}
+
+	@Override
+	public List<Point> selectPointListByDate(int offset, int limit, Map<String, Object> param) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("member.selectPointListByDate", param, rowBounds);
+	}
+
+	@Override
+	public int selectPointTotalCountByDate(Map<String, Object> param) {
+		return session.selectOne("member.selectPointTotalCountByDate", param);
+	}
+
 	
 	
 	

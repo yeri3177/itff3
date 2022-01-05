@@ -187,4 +187,36 @@
 			(seq_dailyCalendar_no.nextval, #{id}, 'Y', default)
 	</select>
 	
+	<insert id="insertPointHistory">
+		insert into
+			point_history
+		values 
+			(seq_history_no.nextval, #{id}, #{reason}, #{change}, #{point}, default)
+	</insert>
+	
+	<select id="selectPointListByDate" resultType="point">
+		select
+			*
+		from
+			point_history
+		where
+			member_id = #{id}
+				and
+			reg_date
+				between to_date(#{startDate}, 'yyyy-mm-dd') and to_date(#{endDate}, 'yyyy-mm-dd')+1
+		order by
+			history_no desc	
+	</select>
+	
+	<select id="selectPointTotalCountByDate" resultType="_int" >
+		select
+		    count(*)
+		from
+		    point_history
+		where
+			member_id = #{id}
+				and
+			reg_date
+				between to_date(#{startDate}, 'yyyy-mm-dd') and to_date(#{endDate}, 'yyyy-mm-dd')+1
+	</select>
 </mapper>

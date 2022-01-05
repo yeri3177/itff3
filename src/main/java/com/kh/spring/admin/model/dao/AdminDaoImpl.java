@@ -551,7 +551,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<GoodsOrder> selectGoodsOrderList(int offset, int limit) {
+	public List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit) {
 		RowBounds rowBounds = new RowBounds(offset, limit); 
 		return session.selectList("admin.selectGoodsOrderList", null, rowBounds);
 	}
@@ -579,6 +579,21 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Goods> selectRecentTenGoodsList() {
 		return session.selectList("admin.selectRecentTenGoodsList");
+	}
+
+	@Override
+	public int adminSaleGoodsCount() {
+		return session.selectOne("admin.adminSaleGoodsCount");
+	}
+
+	@Override
+	public GoodsOrder selectOneGoodsOrder(String orderNo) {
+		return session.selectOne("admin.selectOneGoodsOrder", orderNo);
+	}
+
+	@Override
+	public int adminManageTodayOrderCount() {
+		return session.selectOne("admin.adminManageTodayOrderCount");
 	}
 
 }

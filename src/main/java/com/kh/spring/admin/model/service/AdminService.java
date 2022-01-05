@@ -204,7 +204,7 @@ public interface AdminService {
 
 	List<GoodsOption> selectOneGoodsOptionId(int pId);
 
-	List<GoodsOrder> selectGoodsOrderList(int offset, int limit);
+	List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit);
 
 	int selectGoodsOrderTotalCount();
 
@@ -215,6 +215,12 @@ public interface AdminService {
 	GoodsPaymentJoin selectOnePayment(Map<String, Object> param);
 
 	List<Goods> selectRecentTenGoodsList();
+
+	int adminSaleGoodsCount();
+
+	GoodsOrder selectOneGoodsOrder(String orderNo);
+
+	int adminManageTodayOrderCount();
 
 	
 }

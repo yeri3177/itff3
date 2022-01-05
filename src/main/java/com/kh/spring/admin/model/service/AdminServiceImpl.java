@@ -584,7 +584,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<GoodsOrder> selectGoodsOrderList(int offset, int limit) {
+	public List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit) {
 		return adminDao.selectGoodsOrderList(offset, limit);
 	}
 
@@ -611,6 +611,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Goods> selectRecentTenGoodsList() {
 		return adminDao.selectRecentTenGoodsList();
+	}
+
+	@Override
+	public int adminSaleGoodsCount() {
+		return adminDao.adminSaleGoodsCount();
+	}
+
+	@Override
+	public GoodsOrder selectOneGoodsOrder(String orderNo) {
+		return adminDao.selectOneGoodsOrder(orderNo);
+	}
+
+	@Override
+	public int adminManageTodayOrderCount() {
+		return adminDao.adminManageTodayOrderCount();
 	}
 	
 }

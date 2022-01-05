@@ -83,12 +83,21 @@ public class AdminManageController {
 	
 	@GetMapping("/adminManage.do")
 	public void adminManage() {}
-
-
-
 	
 ///////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * [메인화면: 판매중 상품 수]
+	 */
+	
+	@GetMapping("/adminSaleGoodsCount.do")
+	public void adminSaleGoodsCount(Model model) {
+		int count = adminService.adminSaleGoodsCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+	
 	/**
 	 * [메인화면: 판매중 상품 목록]
 	 */
@@ -96,9 +105,21 @@ public class AdminManageController {
 	@GetMapping("/selectRecentTenGoodsList.do")
 	public void selectRecentTenGoodsList(Model model) {
 		List<Goods> list = adminService.selectRecentTenGoodsList();
-		log.debug("list = {}", list);
+//		log.debug("list = {}", list);
 		
 		model.addAttribute("list", list);
+	}
+
+	/**
+	 * [메인화면: 오늘 주문]
+	 */
+	
+	@GetMapping("/adminManageTodayOrderCount.do")
+	public void adminManageTodayOrderCount(Model model) {
+		int count = adminService.adminManageTodayOrderCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
 	}
 
 	/**
@@ -1226,7 +1247,7 @@ public class AdminManageController {
 		int offset = (cPage - 1) * limit;
 		
 		// 1.
-		List<GoodsOrder> list = adminService.selectGoodsOrderList(offset, limit);
+		List<GoodsPaymentJoin> list = adminService.selectGoodsOrderList(offset, limit);
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
 		
@@ -1253,6 +1274,9 @@ public class AdminManageController {
 	public void adminGoodsOrderDetail(@RequestParam("orderNo") String orderNo, Model model) {
 		log.debug("orderNo = {}", orderNo);
 		
+		GoodsOrder goodsOrder = adminService.selectOneGoodsOrder(orderNo);
+		log.debug("goodsOrder = {}", goodsOrder);
+		
 		List<GoodsOrderDetailJoin> list = adminService.selectOneGoodsOrderDetail(orderNo);
 		log.debug("list = {}", list);
 		
@@ -1268,6 +1292,7 @@ public class AdminManageController {
 		log.debug("payment = {}", payment);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("goodsOrder", goodsOrder);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
 	}

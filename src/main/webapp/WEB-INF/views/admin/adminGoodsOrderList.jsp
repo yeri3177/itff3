@@ -84,6 +84,8 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<th>주문번호</th>
 									<th>주문자</th>
 									<th>주문금액</th>
+									<th>주문날짜</th>
+									<th>결제상태</th>
 									<th>&nbsp;</th>
 									<th>&nbsp;</th>
 								</tr>
@@ -100,28 +102,47 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<!-- 주문번호 -->
 									<td>
 										<div class="email">
-											<span>${list.orderNo }</span> 
+											<span>${list.goodsOrder.orderNo}</span> 
 										</div>
 									</td>
 
 									<!-- 아이디 -->
 									<td>
 										<div class="email">
-												<span>${list.memberId }</span> 
+												<span>${list.goodsOrder.memberId }</span> 
 										</div>
 									</td>
 									
 									<!-- 금액 -->
-									<td><fmt:formatNumber value="${list.totalPrice }" pattern="#,###" /></td>
+									<td><fmt:formatNumber value="${list.goodsOrder.totalPrice }" pattern="#,###" /></td>
+
+									<!-- 주문날짜-->
+									<td>
+										<div class="email">
+												<span><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yyyy-MM-dd"/></span> 
+										</div>
+									</td>
+
+									<!-- 결제상태 -->
+									<td>
+										<div class="email">
+											<c:if test="${list.payment.paymentNo eq '' }">
+												<span style="color: #45a7b9; font-weight: bold;">결제대기</span>
+											</c:if>
+											<c:if test="${list.payment.paymentNo ne '' }">
+												<span style="color: #ec7b65; font-weight: bold;">결제완료</span>
+											</c:if>
+										</div>
+									</td>
 
 									<td>
 										<button 
-										id="${list.orderNo }" 
+										id="${list.goodsOrder.orderNo }" 
 										type="button"
 										class="btn btn-outline-dark"
 										data-toggle="modal"
 										data-target="#adminGoodsOrderDetail"
-										onclick="goods_order_detail_btn('${list.orderNo}');"
+										onclick="goods_order_detail_btn('${list.goodsOrder.orderNo}');"
 										>주문상세</button>
 									</td>
 
@@ -178,73 +199,91 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 주문 삭제 -->
-						<!-- 옵션 상세 
-						<div class="modal fade" id="adminGoodsOptionDetail" tabindex="-1"
+						<!-- 회원 상세 -->
+						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document"
+							style="max-width: 800px;">
+							<div class="modal-content" style="text-align: left;">
+							   	<div class="modal-body" id="modal_ajax4">
+							    		  
+								</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 회원 상세 끝 -->
+						<!-- 회원 정보 수정 -->
+						<div class="modal fade" id="adminMemberUpdate" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 1200px;">
-								<div class="modal-content"
-									style="text-align: left;">
-								  	<div class="modal-body" id="modal_ajax4">
+								style="max-width: 1000px;">
+								<div class="modal-content" style="text-align: left;">
+								   	<div class="modal-body" id="modal_ajax5">
 								    		  
 									</div>
-								</div>
-							</div>
-						</div>
-						-->
-						<!-- 옵션 상세 끝 -->
-						<!-- 옵션 추가 
-						<div class="modal fade" id="adminGoodsOptionInsert" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
-								<div class="modal-content"
-									style="text-align: left;">
-									<div class="modal-body" id="modal_ajax7">
-									   		 
-									        
+	
 									</div>
 								</div>
 							</div>
-						</div>
-						-->
-						<!-- 옵션 추가 끝 -->
-						<!-- 옵션 수정 
-						<div class="modal fade" id="adminGoodsOptionUpdate" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
-								<div class="modal-content"
-									style="text-align: left;">
-									<div class="modal-body" id="modal_ajax6">
-									   		 
-									        
+							<!-- 회원 정보 수정 끝 -->
+							<!-- 회원 포인트 지급 -->
+							<div class="modal fade" id="adminMemberPoint" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document"
+									style="max-width: 500px;">
+									<div class="modal-content" style="text-align: left;">
+									   	<div class="modal-body" id="modal_ajax6">
+									    		  
+										</div>
+		
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						-->
-						<!-- 옵션 수정 끝 -->
-						<!-- 옵션 삭제 
-						<div class="modal fade" id="adminGoodsOptionDelete" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
-								<div class="modal-content"
-									style="text-align: left;">
-									<div class="modal-body" id="modal_ajax8">
-									   		 
-									        
+								<!-- 회원 포인트 지급 끝 -->
+								<!-- 회원 차단 -->
+								<div class="modal fade" id="adminMemberCut" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax7">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+								<!-- 회원 차단 끝 -->
+								<!-- 회원 차단 해제 -->
+								<div class="modal fade" id="adminMemberUnblock" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax8">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+								<!-- 회원 차단 해제 끝 -->
+								<!--  개별 메세지 -->
+								<div class="modal fade" id="adminSaveNotify" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div id="modal_ajax9" class="modal-dialog" role="document"
+										style="max-width: 500px;" >
 									</div>
 								</div>
-							</div>
-						</div>
-						-->
-						<!-- 옵션 삭제 끝 -->
+								<!-- 개별 메세지 끝 -->
+						
 					</div>
 				</div>	
 			</div>
@@ -343,15 +382,15 @@ function goodsDelete_btn(pId) {
 
 <script>
 
-// 옵션 상세
-function goods_option_detail_btn(pId) {
+// 회원 상세
+function order_receiver_change_btn(memberId) {
 	
-	console.log(pId);
-	var id = pId;
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDetail.do",
-		data: {pId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMemberDetail.do",
+		data: {id: id},
 		method: "get",
 		contentType: "application/json",
 		dateType: "text",
@@ -363,18 +402,20 @@ function goods_option_detail_btn(pId) {
 		}
 	});
 }
-
 </script>
 
 <script>
-
-// 굿즈 추가
-function goods_insert_btn() {
+// 회원 정보 수정
+function memberUpdate_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsInsert.do",
+		url:"${pageContext.request.contextPath}/admin/adminMemberUpdate.do",
+		data: {id: id},
 		method: "get",
-		contentType: "application/json",
+		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax5").html(data);
@@ -389,17 +430,17 @@ function goods_insert_btn() {
 
 <script>
 
-//옵션 수정
-function goods_option_update_btn(optionId) {
+// 포인트 지급
+function memberPoint_btn(memberId) {
 	
-	console.log(optionId);
-	var id = optionId;
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionUpdate.do",
-		data: {optionId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMemberPoint.do",
+		data: {id: id},
 		method: "get",
-		contentType: "application/json",
+		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax6").html(data);
@@ -414,17 +455,17 @@ function goods_option_update_btn(optionId) {
 
 <script>
 
-//옵션 추가
-function goods_option_insert_btn(pId) {
+// 회원 차단
+function member_cut_btn(memberId) {
 	
-	console.log(pId);
-	var id = pId;
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionInsert.do",
-		data: {pId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMemberCut.do",
+		data: {id: id},
 		method: "get",
-		contentType: "application/json",
+		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax7").html(data);
@@ -439,20 +480,45 @@ function goods_option_insert_btn(pId) {
 
 <script>
 
-//옵션 삭제
-function goods_option_delete_btn(optionId) {
+// 회원 차단 해제
+function member_unblock_btn(memberId) {
 	
-	console.log(optionId);
-	var id = optionId;
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionDelete.do",
-		data: {optionId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMemberUnblock.do",
+		data: {id: id},
 		method: "get",
-		contentType: "application/json",
+		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax8").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 개별 메세지
+function save_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax9").html(data);
 		},
 		complete: function() {
 			console.log("complete")

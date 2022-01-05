@@ -120,6 +120,26 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return memberDao.insertPointHistory(param);
+	}
+
+
+	@Override
+	public List<Point> selectPointListByDate(int offset, int limit, Map<String, Object> param) {
+		return memberDao.selectPointListByDate(offset, limit, param);
+	}
+
+
+	@Override
+	public int selectPointTotalCountByDate(Map<String, Object> param) {
+		return memberDao.selectPointTotalCountByDate(param);
+	}
+
+
+
+
 
 
 	

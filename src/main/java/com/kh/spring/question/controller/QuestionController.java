@@ -163,12 +163,12 @@ public class QuestionController {
 			
 			// pagebar by user
 			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-			log.debug("pagebar ?{}", pagebar);
+//			log.debug("pagebar ?{}", pagebar);
 			model.addAttribute("pagebar", pagebar);
 			
 			// pagebar by admin
 			String pagebarByAdmin = HiSpringUtils.getPagebar(cPage, limit, totalContentByAdmin, url);
-			log.debug("pagebarByAdmin ? {}", pagebarByAdmin);
+//			log.debug("pagebarByAdmin ? {}", pagebarByAdmin);
 			model.addAttribute("pagebarByAdmin",pagebarByAdmin);
 			
 			
@@ -414,6 +414,24 @@ public class QuestionController {
 		
 		
 		return "redirect:/question/questionList.do";
+	}
+	
+	/**
+	 * [알람]
+	 */
+	
+	@PostMapping("/saveNotify.do")
+	@ResponseBody
+	public void saveNotify(@RequestParam(value = "target") String target, @RequestParam(value = "content") String content, @RequestParam(value = "type") String type, @RequestParam(value = "url") String url) {
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("target", target);
+		param.put("content", content);
+		param.put("type", type);
+		param.put("url", url);
+		log.debug("param = {}", param);
+		
+		questionService.insertSaveNotify(param);
 	}
 	
 }
