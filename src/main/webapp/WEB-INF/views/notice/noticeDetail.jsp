@@ -45,7 +45,7 @@
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="en">공지사항</h2>
+		<h2 class="en" style="margin: 0;">공지사항</h2>
 	</div>
 </div> 
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->

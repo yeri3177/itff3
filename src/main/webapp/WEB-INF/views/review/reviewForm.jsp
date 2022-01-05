@@ -36,7 +36,7 @@
 <section class="ink_board guest_mode">
 	<div class="sub_title_wrap">
 		<div class="container">
-			<h2 class="en">네티즌 리뷰</h2>
+			<h2 class="en" style="margin: 0;">네티즌 리뷰</h2>
 		</div>
 	</div>
 
