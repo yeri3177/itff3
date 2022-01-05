@@ -46,5 +46,9 @@ public interface MemberDao {
 
 	int insertPointHistory(Map<String, Object> param);
 
+	List<Point> selectPointListByDate(int offset, int limit, Map<String, Object> param);
+
+	int selectPointTotalCountByDate(Map<String, Object> param);
+
 
 }

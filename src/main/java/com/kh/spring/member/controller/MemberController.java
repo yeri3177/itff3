@@ -364,6 +364,55 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("memberPointByDate.do")
+	public String memberPointByDate(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String startDate,
+			@RequestParam String endDate,
+			Model model, 
+			HttpServletRequest request, 
+			Authentication authentication
+	) {
+		
+		//접속된 아이디 가져오기
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		log.debug("id = {}", id);
+		
+		log.debug("cPage = {}", cPage);
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		log.debug("startDate = {}", startDate);
+		log.debug("endDate = {}", endDate);
+								
+		Map<String, Object> param = new HashMap<>();
+		param.put("id", id);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		
+		// 1.전체 게시글 목록 가져오기
+		List<Point> list = memberService.selectPointListByDate(offset, limit, param);
+		log.debug("PointList = {}", list);
+		model.addAttribute("list", list);
+		
+		int totalPoint = list.get(0).getPoint();
+		model.addAttribute("totalPoint", totalPoint);
+		
+		// 2. 아이디별 포인트 총 게시물 수 가져오기
+		int totalContent = memberService.selectPointTotalCountByDate(param);
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
+		return "/member/memberPoint";
+	}
+	
 	@GetMapping("/memberWrittenBoardList.do")
 	public String memberWrittenBoard(
 			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
