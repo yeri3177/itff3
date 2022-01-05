@@ -1,6 +1,7 @@
 package com.kh.spring.goods.model.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,4 +19,5 @@ public class GoodsOrder implements Serializable {
 	private String orderNo;
 	private String memberId;
 	private int totalPrice;
+	private Date orderDate;
 }
