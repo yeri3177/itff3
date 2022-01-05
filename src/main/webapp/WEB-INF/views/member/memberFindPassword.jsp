@@ -25,18 +25,22 @@
 <!-- 제목 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="tit_sec txt-center txt-white en">LOGIN</h2>
+		<h2 class="tit_sec txt-center txt-white en">비밀번호 찾기</h2>
 	</div>
 </div>
-	
+
+<p class="desc txt-center mt50" style="color:rgba(255,255,255,.5);font-size:15px">
+	※ 신규 회원 가입시 입력한 정보를 정확히 입력해주시기 바랍니다.
+</p>
+
 	
 <div class="login_con">
-	<form:form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
+	<form:form action="${pageContext.request.contextPath}/member/memberFindByPassword.do" method="POST">
 			<div class="login_form_wrap">   
 					<div class="form_group wid100 on">
 						<div class="d_tbl">
 							<span class="form_txt">
-								<input type="text" name="id" id="strLoginID" style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;" placeholder="아이디 입력" title="아이디" value="">
+								<input type="text" name="id" id="id" style="-webkit-ime-mode:inactive;ime-mode:inactive;text-transform:lowercase;" placeholder="가입시 입력한 아이디를 입력해주세요" title="아이디" value="" required>
 							</span>
 						</div>
 					</div>
@@ -44,7 +48,7 @@
 					<div class="form_group wid100 ">  
 						<div class="d_tbl">
 							<span class="form_txt input_mouse">
-								<input type="password" name="password" id="strLoginPwd" placeholder="비밀번호 입력" title="비밀번호" enc="on" data-keypad-type="alpha" class="nppfs-npk nppfs-dynamic-field nppfs-npv" autocorrect="off" spellcheck="false" autocomplete="off" autocapitalize="off" data-keypad-next="__hide__" data-keypad-useyn-type="toggle" data-keypad-useyn-input="__KU_db4c02124ff6" nppfs-keypad-uuid="nppfs-keypad-loginPwd" style="color: rgb(0, 0, 0);" data-input-useyn-type="toggle" value="">
+								<input type="text" name="email" id="email" placeholder="가입시 입력한 이메일 입력해주세요" title="이메일" required enc="on" data-keypad-type="alpha" class="nppfs-npk nppfs-dynamic-field nppfs-npv" autocorrect="off" spellcheck="false" autocomplete="off" autocapitalize="off" data-keypad-next="__hide__" data-keypad-useyn-type="toggle" data-keypad-useyn-input="__KU_db4c02124ff6" nppfs-keypad-uuid="nppfs-keypad-loginPwd" style="color: rgb(0, 0, 0);" data-input-useyn-type="toggle" value="">
 							</span>
 						</div>
 					</div>  
@@ -58,7 +62,7 @@
 <!-- 	</div> -->
 
 				<div class="btn_wrap txt-center mt30">
-					<input type="submit" name="imageField" class="btn btn_member_login btn-m" value="로그인" alt="로그인">
+					<input type="submit" name="imageField" class="btn btn_member_login btn-m" value="비밀번호 찾기" alt="비밀번호 찾기">
 				</div>
 	</form:form>
 </div>
@@ -67,20 +71,12 @@
 <br/>
 
 <div class="list_link">
-				<a href="${pageContext.request.contextPath}/member/memberFindId.do" class="link_arrow txt-white" title="아이디/비밀번호 찾기">아이디 찾기 ></a>
-				<a href="${pageContext.request.contextPath}/member/memberFindPassword.do" class="link_arrow txt-white" title="아이디/비밀번호 찾기">비밀번호 찾기 ></a>
-				<a href="${pageContext.request.contextPath}/member/memberEnroll.do" class="link_arrow txt-white" title="회원가입">회원가입 ></a>
+	<a href="${pageContext.request.contextPath}/member/memberFindId.do" class="link_arrow txt-white" title="아이디/비밀번호 찾기">아이디 찾기 ></a>
+	<a href="${pageContext.request.contextPath}/member/memberEnroll.do" class="link_arrow txt-white" title="회원가입">회원가입 ></a>
 </div>
 
 <br/>
 <br/>
-
-			<p class="desc txt-center mt50" style="color:rgba(255,255,255,.5);font-size:15px">
-				아이디가 없으신 분은 회원가입 후 이용하실 수 있습니다. <br>
-				아이디/비밀번호를 분실하신 경우, 아이디/비밀번호 찾기를 이용해 주시기 바랍니다. <br>
-				공용PC를 이용하시는 경우 보안을 위하여 반드시 로그아웃해주시기 바랍니다.
-			</p>
-
 
 </section>
 

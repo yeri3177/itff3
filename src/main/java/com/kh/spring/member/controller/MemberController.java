@@ -140,10 +140,107 @@ public class MemberController {
 		// 포인트 기록 넣기
 		int result2 = memberService.insertPointHistory(param);
 		
-		return "member/memberEnrollComplete";
+		return "/member/memberEnrollComplete";
 	}
 		
+	@GetMapping("/memberFindId.do")
+	public String memberFindId() {
+		return "/member/memberFindId";
+	}
 	
+	@GetMapping("/memberFindById.do")
+	public String memberFindIdResult(
+			Model model,
+			@RequestParam String name,
+			@RequestParam String email) 
+	{
+		log.debug("name = {}", name);
+		log.debug("email = {}", email);
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("name", name);
+		param.put("email", email);
+		
+		// 업무로직
+		Member member = memberService.findMemberId(param);
+		model.addAttribute("member", member);
+		
+		if(member != null) {
+			return "/member/memberFindByIdSuccess";			
+		}
+		else {
+			return "/member/memberFindByIdFailure";			
+		}
+	}
+	
+	@GetMapping("/memberFindPassword.do")
+	public String memberFindPassword() {
+		return "/member/memberFindPassword";
+	}
+	
+	@PostMapping("/memberFindByPassword.do")
+	public String memberFindByPassword(
+			Model model,
+			@RequestParam String id,
+			@RequestParam String email
+			)
+	{		
+		log.debug("id = {}", id);
+		log.debug("email = {}", email);
+		
+		Map<String, Object> param1 = new HashMap<>();
+		param1.put("id", id);
+		param1.put("email", email);
+		
+		//전달된 아이디와 이메일이 db에 등록된 정보가 일치하는지 확인
+		Member member = memberService.findMemberByIdAndEmail(param1);
+		if(member == null) {
+			return "/member/memberFindByPasswordFailure";			
+		}
+		else {			
+			// 1. 기존 비밀번호 -> 임시 비밀번호 update
+			String newPassword = HiSpringUtils.getRandomChatId(); // 임시 비밀번호 생성
+			log.debug("newPassword = {}", newPassword);
+			
+			// 비밀번호 암호화 처리
+			log.info("{}", passwordEncoder);
+			String rawPassword = newPassword;
+			String encryptedPassword = passwordEncoder.encode(rawPassword);
+			log.info("{} -> {}", rawPassword, encryptedPassword);
+			
+			Map<String, Object> param2 = new HashMap<>();
+			param2.put("id", id);
+			param2.put("encryptedPassword", encryptedPassword);
+			int result = memberService.updateMemberPassword(param2);
+			
+			// 2. 임시 비밀번호를 메일로 보냄
+			String subject = "ITFF 임시 비밀번호 메일입니다.";
+	        String content = "임시 비밀번호 : " + newPassword;
+	        String from = "gproject0000@gmail.com";
+	        String to = email;
+	
+	        try {
+	            MimeMessage mail = mailSender.createMimeMessage();
+	            MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
+	            
+	            mailHelper.setFrom(from);
+	            mailHelper.setTo(to);
+	            mailHelper.setSubject(subject);
+	            mailHelper.setText(content, true);
+	            
+	            mailSender.send(mail);
+	            
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        log.debug("newPassword = {}", newPassword);    
+	        model.addAttribute("newPassword", newPassword);
+	        
+	        return "/member/memberFindByPasswordSuccess";
+		}
+	}
+
 	@PostMapping("/memberMailWaiting")
 	public void memberMailWaiting(Model model, @RequestParam String memberEmail) {
 		log.debug("memberEmail = {}", memberEmail);

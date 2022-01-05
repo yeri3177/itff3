@@ -48,6 +48,12 @@ public interface MemberService {
 
 	int selectPointTotalCountByDate(Map<String, Object> param);
 
+	Member findMemberId(Map<String, Object> param);
+
+	Member findMemberByIdAndEmail(Map<String, Object> param);
+
+	int updateMemberPassword(Map<String, Object> param2);
+
 
 
 }

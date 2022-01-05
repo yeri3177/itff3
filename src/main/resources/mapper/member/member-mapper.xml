@@ -219,4 +219,35 @@
 			reg_date
 				between to_date(#{startDate}, 'yyyy-mm-dd') and to_date(#{endDate}, 'yyyy-mm-dd')+1
 	</select>
+	
+	<select id="findMemberId" resultType="member">
+		select 
+		    id
+		from
+		    member
+		where
+		    name = #{name}
+		        and
+		    email = #{email}
+	</select>
+	
+	<select id="findMemberByIdAndEmail" resultType="member">
+		select
+			*
+		from
+			member
+		where
+			id = #{id} 
+				and 
+			email = #{email}
+	</select>
+	
+	<update id="updateMemberPassword">
+		update 
+			member
+		set
+			password = #{encryptedPassword}
+		where
+			id = #{id}
+	</update>
 </mapper>

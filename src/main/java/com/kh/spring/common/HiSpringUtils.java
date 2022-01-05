@@ -286,7 +286,7 @@ public class HiSpringUtils {
 	 * 
 	 * @return
 	 */
-	public static String getRandomChatId() {
+	public static String getRandomNumber() {
 		Random rnd = new Random();
 		StringBuffer sb = new StringBuffer();
 		
