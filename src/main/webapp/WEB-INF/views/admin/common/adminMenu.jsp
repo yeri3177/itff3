@@ -68,6 +68,18 @@
                              <a href="#" class="collapse__sublink">Members</a>
                          </ul> 
                      </div> 
+                     
+                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="help-outline"></ion-icon>
+                        <span class="nav_name">문의관리</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="${pageContext.request.contextPath}/admin/adminNewQuestion.do" class="collapse__sublink">신규문의</a><br />
+                             <a href="${pageContext.request.contextPath}/admin/adminQuestionList.do" class="collapse__sublink">문의 리스트</a><br />
+                         </ul> 
+                     </div> 
 
                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
                         <ion-icon name="alert-outline"></ion-icon>
@@ -80,20 +92,6 @@
                              <a href="${pageContext.request.contextPath}/admin/adminNoticeList.do" class="collapse__sublink">공지사항 조회</a><br />
                          </ul> 
                      </div> 
-
-                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="help-outline"></ion-icon>
-                        <span class="nav_name">문의사항</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="${pageContext.request.contextPath}/admin/adminNewQuestion.do" class="collapse__sublink">신규문의</a><br />
-                             <a href="${pageContext.request.contextPath}/admin/adminQuestionList.do" class="collapse__sublink">문의 리스트</a><br />
-                         </ul> 
-                     </div> 
-
-
                     
                           <a href="${pageContext.request.contextPath}/admin/chat.do" class="nav__link">
                         <ion-icon name="chatbubbles-outline"></ion-icon>

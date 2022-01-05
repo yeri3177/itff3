@@ -222,4 +222,6 @@ public interface AdminDao {
 
 	List<Goods> selectRecentTenGoodsList();
 
+	int adminSaleGoodsCount();
+
 }

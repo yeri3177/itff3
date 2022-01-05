@@ -216,5 +216,7 @@ public interface AdminService {
 
 	List<Goods> selectRecentTenGoodsList();
 
+	int adminSaleGoodsCount();
+
 	
 }
