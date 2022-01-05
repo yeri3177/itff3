@@ -20,7 +20,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="네티즌 리뷰 - ${review.reviewTitle}" name="title"/>   
 </jsp:include>
-
+ 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
 <div id="snb">
 	<div class="container-xl">
@@ -83,6 +83,7 @@
 						<br />
 					</c:forEach>
 				</c:if>
+				<%-- 글 작성할 때 엔터쳐서 넣은 공백문자를 살리려면 pre 태그로 감싸야 한다. --%>
 				<pre>${review.reviewContent}</pre>
 			</div>
 			<!--AfterDocument(71875352,45775485)-->		
@@ -367,6 +368,7 @@
 			name="reviewCommentDelFrm"
 			method="POST">
 			<input type="hidden" name="no" />
+			<input type="hidden" name="memberId" value="${loginMemberId}" />
 			<input type="hidden" name="reviewNo" value="${review.reviewNo}" />
 		</form:form>			
 
