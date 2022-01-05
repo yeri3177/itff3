@@ -54,27 +54,27 @@
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 <div class="biggerPoint">
-<div class="col-one-point">
-      	<h3>ITFF POINT</h3>
-	<ul>
-		<li>
-			<strong>사용가능 포인트</strong>
-			<span><em class="txt-maroon">${totalPoint }</em> 점</span>
-		</li>
-	</ul>
-       
-</div>
+	<div class="col-one-point">
+	      	<h3>ITFF POINT</h3>
+		<ul>
+			<li>
+				<strong>사용가능 포인트</strong>
+				<span><em class="txt-maroon">${totalPoint }</em> 점</span>
+			</li>
+		</ul>
+	       
+	</div>
 
+	<div style="text-align: center; margin-bottom: 13px;">
+		<form:form
+			action="${pageContext.request.contextPath}/member/memberPointByDate.do"
+			method="GET">
+			<input type="date" name="startDate" id="startDate"/> ~ <input type="date" name="endDate" id="endDate"/>
+			<input type="submit" value="조회하기" />
+		</form:form>
+	</div>
 <br />
 
-<div style="text-align: center;">
-	<form:form
-		action="${pageContext.request.contextPath}/member/memberPointByDate.do"
-		method="GET">
-		<input type="date" name="startDate" id="startDate"/> ~ <input type="date" name="endDate" id="endDate"/>
-		<input type="submit" value="조회하기" />
-	</form:form>
-</div>
 
 <div class="sub_sc">
 <div id="_listContentArea">
