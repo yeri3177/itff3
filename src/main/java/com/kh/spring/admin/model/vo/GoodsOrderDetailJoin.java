@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.kh.spring.goods.model.vo.Goods;
 import com.kh.spring.goods.model.vo.GoodsOption;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.goods.model.vo.OrderDetail;
 

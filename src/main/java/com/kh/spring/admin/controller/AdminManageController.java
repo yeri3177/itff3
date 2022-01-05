@@ -111,6 +111,18 @@ public class AdminManageController {
 	}
 
 	/**
+	 * [메인화면: 오늘 주문]
+	 */
+	
+	@GetMapping("/adminManageTodayOrderCount.do")
+	public void adminManageTodayOrderCount(Model model) {
+		int count = adminService.adminManageTodayOrderCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+
+	/**
 	 * [메인화면: 일주일 가입]
 	 */
 	
@@ -1262,6 +1274,9 @@ public class AdminManageController {
 	public void adminGoodsOrderDetail(@RequestParam("orderNo") String orderNo, Model model) {
 		log.debug("orderNo = {}", orderNo);
 		
+		GoodsOrder goodsOrder = adminService.selectOneGoodsOrder(orderNo);
+		log.debug("goodsOrder = {}", goodsOrder);
+		
 		List<GoodsOrderDetailJoin> list = adminService.selectOneGoodsOrderDetail(orderNo);
 		log.debug("list = {}", list);
 		
@@ -1277,6 +1292,7 @@ public class AdminManageController {
 		log.debug("payment = {}", payment);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("goodsOrder", goodsOrder);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
 	}

@@ -1917,5 +1917,29 @@ tbody::-webkit-scrollbar-track {
     border-bottom: 1px solid whitesmoke !important;
 }
 
+.text-number {
+    background-color: #ec7b65 !important
+}
+
+.text-number {
+    height: 16px;
+    font-size: 12px !important;
+}
+.text-number {
+    min-width: 16px;
+    margin-left: 8px;
+    padding: 2px 2px 2px 1px;
+    line-height: 1;
+    color: #fff !important;
+    background-color: #abaeb8;
+    border-radius: 10px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.alarm {
+	display: flex;
+	align-items: center;
+}
 
 

@@ -224,4 +224,8 @@ public interface AdminDao {
 
 	int adminSaleGoodsCount();
 
+	GoodsOrder selectOneGoodsOrder(String orderNo);
+
+	int adminManageTodayOrderCount();
+
 }
