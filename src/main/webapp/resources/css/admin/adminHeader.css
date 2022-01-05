@@ -53,12 +53,12 @@
 }
 
 .navbar-nav>li>a {
-    padding-top: 17.5px;
-    padding-bottom: 17.5px;
+/*     padding-top: 17.5px; */
+/*     padding-bottom: 17.5px; */
 }
 .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
+/*     padding-top: 10px; */
+/*     padding-bottom: 10px; */
     line-height: 20px;
 }
 
@@ -96,6 +96,9 @@
 
 .navbar-nav>li {
     float: left;
+    height: 54px;
+    display: flex;
+    align-items: center;
 }
 
 .logout_li {
@@ -112,7 +115,10 @@
 }
 
 .logout_btn {
-	background-color: rgb(43, 63, 107);
-	height: 39px;
+    background-color: rgb(43, 63, 107);
     border: 0;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
 }

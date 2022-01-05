@@ -163,7 +163,11 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<!-- 주소 -->
 										<td>
 											<div class="email">
-												<span>${list.address } ${list.detailAddress } ${list.postCode }</span>
+												<span>
+												${list.address } 
+												${list.detailAddress } 
+												${list.postCode }
+												</span>
 											</div>
 										</td>
 
