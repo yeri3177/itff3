@@ -107,6 +107,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int dailyCheckInsert(String id) {
 		return session.insert("member.dailyCheckInsert", id);
 	}
+
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return session.insert("member.insertPointHistory", param);
+	}
+
 	
 	
 	

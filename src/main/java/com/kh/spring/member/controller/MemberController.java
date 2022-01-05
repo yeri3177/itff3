@@ -119,9 +119,26 @@ public class MemberController {
 		log.info("{} -> {}", rawPassword, encryptedPassword);
 		
 		log.debug("member = {}", member);
+				
+		// 멤버 회원가입
+		int result1 = memberService.insertMember(member);
 		
-		// 1. 업무로직
-		int result = memberService.insertMember(member);
+		// 회원가입 축하 포인트 적립
+		String id = member.getId();
+		String reason = "회원가입 축하 포인트 지급";
+		String change = "+1000";
+		int point = 1000;
+						
+		Map<String, Object> param = new HashMap<>();
+		param.put("id", id);
+		param.put("reason", reason);
+		param.put("change", change);
+		param.put("point", point);
+		
+		log.debug("param = {}", param);
+				
+		// 포인트 기록 넣기
+		int result2 = memberService.insertPointHistory(param);
 		
 		return "member/memberEnrollComplete";
 	}

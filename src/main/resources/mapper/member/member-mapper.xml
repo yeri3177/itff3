@@ -187,4 +187,11 @@
 			(seq_dailyCalendar_no.nextval, #{id}, 'Y', default)
 	</select>
 	
+	<insert id="insertPointHistory">
+		insert into
+			point_history
+		values 
+			(seq_history_no.nextval, #{id}, #{reason}, #{change}, #{point}, default)
+	</insert>
+	
 </mapper>
