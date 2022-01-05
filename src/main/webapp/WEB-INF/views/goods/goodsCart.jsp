@@ -34,7 +34,6 @@
 	
 	System.out.println("전체가격 = " + allprice); 
 	pageContext.setAttribute("allprice", allprice);
-	
 %>
 
 <!-- css -->

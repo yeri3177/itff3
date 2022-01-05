@@ -396,7 +396,7 @@ public class GoodsController {
 		} else {
 			model.addAttribute("like", 0);
 		}
-		log.debug("model 데이터 ???? = {}", model.toString()); 
+		log.debug("model 데이터 = {}", model.toString()); 
 		
 		return "goods/goodsLikeDiv";
 	}
@@ -503,7 +503,16 @@ public class GoodsController {
 	 * 주문서 페이지
 	 */
 	@GetMapping("/goodsOrder.do")
-	public String goodsOrder() {
+	public String goodsOrder(Authentication authentication, Model model) {
+		// member -> 주문자정보 
+		Member member = (Member) authentication.getPrincipal();
+		String memberId = member.getId();
+		model.addAttribute("member", member);
+		
+		// cart -> 주문정보
+		List<CartJoin> cartList = goodsService.selectGoodsCartList(memberId);
+		log.debug("cartList = {}", cartList);
+		model.addAttribute("cartList", cartList);
 		
 		
 		
@@ -513,6 +522,17 @@ public class GoodsController {
 		
 		return "goods/goodsOrder";
 	}
+	
+	/**
+	 * [결제하기]버튼 클릭시
+	 * 
+	 * - payment 테이블 1행 추가 
+	 * - cart 테이블 레코드 전체 삭제 
+	 * - 주문이랑 주문상세 테이블 어떻게 해야할지 .... 
+	 */
+	
+	
+	
 	
 	
 	
