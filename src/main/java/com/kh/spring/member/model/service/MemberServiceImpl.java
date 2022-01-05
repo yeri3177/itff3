@@ -138,6 +138,24 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public Member findMemberId(Map<String, Object> param) {
+		return memberDao.findMemberId(param);
+	}
+
+
+	@Override
+	public Member findMemberByIdAndEmail(Map<String, Object> param) {
+		return memberDao.findMemberByIdAndEmail(param);
+	}
+
+
+	@Override
+	public int updateMemberPassword(Map<String, Object> param2) {
+		return memberDao.updateMemberPassword(param2);
+	}
+
+
 
 
 

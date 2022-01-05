@@ -124,6 +124,21 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("member.selectPointTotalCountByDate", param);
 	}
 
+	@Override
+	public Member findMemberId(Map<String, Object> param) {
+		return session.selectOne("member.findMemberId", param);
+	}
+
+	@Override
+	public Member findMemberByIdAndEmail(Map<String, Object> param) {
+		return session.selectOne("member.findMemberByIdAndEmail", param);
+	}
+
+	@Override
+	public int updateMemberPassword(Map<String, Object> param2) {
+		return session.update("member.updateMemberPassword", param2);
+	}
+
 	
 	
 	
