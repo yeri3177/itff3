@@ -25,9 +25,9 @@ public class BoardComment implements Serializable {
 	private int boardNo;
 	private String writer;
 	private String content;
+	private Date regDate;
 	private int commentLevel; // 댓글 1, 대댓글 2
 	private int commentRef;  // 댓글 null, 대댓글인 경우 부모댓글번호 no
-	private Date regDate;
 	
 	private Member member;
 	private String upperCommentWriter;
