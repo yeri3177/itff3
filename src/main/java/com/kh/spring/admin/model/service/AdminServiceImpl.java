@@ -584,7 +584,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<GoodsOrder> selectGoodsOrderList(int offset, int limit) {
+	public List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit) {
 		return adminDao.selectGoodsOrderList(offset, limit);
 	}
 

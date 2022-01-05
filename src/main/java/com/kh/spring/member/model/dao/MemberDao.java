@@ -44,4 +44,7 @@ public interface MemberDao {
 
 	int dailyCheckInsert(String id);
 
+	int insertPointHistory(Map<String, Object> param);
+
+
 }

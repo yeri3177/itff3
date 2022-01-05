@@ -551,7 +551,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<GoodsOrder> selectGoodsOrderList(int offset, int limit) {
+	public List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit) {
 		RowBounds rowBounds = new RowBounds(offset, limit); 
 		return session.selectList("admin.selectGoodsOrderList", null, rowBounds);
 	}

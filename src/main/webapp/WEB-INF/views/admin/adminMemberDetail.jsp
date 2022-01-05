@@ -36,7 +36,7 @@
 				    </tr>
 				    <tr>
 				      <th scope="row">주소</th>
-				      <td>${member.address }</td>
+				      <td>${member.address } ${member.detailAddress } ${member.postCode } </td>
 				      <th scope="row">가입일자</th>
 				      <td><fmt:formatDate value="${member.regDate }" pattern="yyyy-MM-dd"/></td>
 				    </tr>
