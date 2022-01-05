@@ -17,23 +17,35 @@ ul, ol {
     
 }
 
-.totalPoint {
-	text-align: center;
-    margin-bottom: 20px;
-    border: 1px solid grey;
-    width: 390px;
-    height: 93px;
+.col-one-point {
+	width: 250px;
+    height: 78px;
+    margin-left: 30px;
+    padding-left: 30px;
+    border-left: 1px solid #e1e1e1;
+        margin: 0 307px;
 }
 
-.totalPoint_title {
-	font-size: 18px;
-}
-.totalPoint_point {
-	font-size: 30px;
+.col-one-point h3 {
+	width: 216px;
+    background-position: 9px -27px;
+    font-size: 25px;
 }
 
-ion-icon {
-  font-size: 30px;
+.col-one-point> ul > li {
+	width: 246px;
+    margin-top: 13px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e1e1e1;
+    line-height: 16px;
+}
+
+.txt-maroon {
+	font-size: 20px;
+}
+
+.biggerPoint {
+	padding-bottom: 35px;
 }
 
 .item {
@@ -97,7 +109,6 @@ ion-icon {
     top: 50%;
     right: 0;
     width: 120px;
-    margin-top: -37px;
     font-size: 14px;
     line-height: 74px;
     text-align: right;
@@ -112,4 +123,9 @@ ion-icon {
 
 .item.sub .point {
     color: #676767;
+    font-size: 18px;
+}
+
+.list_area li {
+	border-bottom: 1px solid #e1e1e1;
 }

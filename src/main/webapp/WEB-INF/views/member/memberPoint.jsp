@@ -53,9 +53,18 @@
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-<div class="totalPoint">
-<ion-icon name="diamond-outline"></ion-icon> <span class="totalPoint_title">보유포인트</span> <br /> <br /> <span class="totalPoint_point">${totalPoint }</span>
+<div class="biggerPoint">
+<div class="col-one-point">
+      	<h3>ITFF POINT</h3>
+	<ul>
+		<li>
+			<strong>사용가능 포인트</strong>
+			<span><em class="txt-maroon">${totalPoint }</em> 점</span>
+		</li>
+	</ul>
+       
 </div>
+
 
 <div class="sub_sc">
 <div id="_listContentArea">
@@ -75,13 +84,13 @@
 	                <span class="date"><fmt:formatDate value="${point.regDate}" pattern="yyyy.MM.dd"/> </span>
 	                <strong class="title click _titleName">${point.reason }</strong>
 	            </div>
+		        <div class="amount_space">
+		            <div class="amount_inner">
+		                <span class="point">${point.change }</span>
+		            </div>
+		        </div>
 	        </a>
 	
-	        <div class="amount_space">
-	            <div class="amount_inner">
-	                <span class="point">${point.change }</span>
-	            </div>
-	        </div>
 	    </div>
 	</li>
 </c:forEach>
@@ -92,13 +101,15 @@
 
     </ul>
 
-
+	</div>
+</div>
 <div class="pagebar_footer">
 	${pagebar}
 	
 </div>
 
 
+</div>
 
 <script>
 const submitProcess = (name) => {
