@@ -109,8 +109,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public int selectPointTotalCount() {
-		return memberDao.selectPointTotalCount();
+	public int selectPointTotalCount(String id) {
+		return memberDao.selectPointTotalCount(id);
 	}
 
 

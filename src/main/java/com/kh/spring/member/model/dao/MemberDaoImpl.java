@@ -99,8 +99,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectPointTotalCount() {
-		return session.selectOne("member.selectPointTotalCount");
+	public int selectPointTotalCount(String id) {
+		return session.selectOne("member.selectPointTotalCount", id);
 	}
 
 	@Override

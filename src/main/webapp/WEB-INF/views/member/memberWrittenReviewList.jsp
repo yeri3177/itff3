@@ -25,7 +25,7 @@
 <fmt:requestEncoding value="utf-8" />
 <!-- 이거 없으면 이 밑에 jsp: -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="네티즌 리뷰" name="title" />
+	<jsp:param value="내가 쓴 게시글" name="title" />
 </jsp:include>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
@@ -36,13 +36,21 @@
 			<li class="on_"><a href="#">예매내역</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top" target="_top">장바구니</a></li>
 			<li class="on_"><a href="#" target="_top">상품구매내역</a></li>
-			<li class="on_"><a href="#" target="_top">포인트이용내역</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberPoint.do" target="_top">포인트이용내역</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberWrittenReviewList.do" target="_top">내가쓴게시글</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberUpdate.do" target="_top">정보수정</a></li>
 		</ul>
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
+
+<!-- 해당 페이지 큰 글씨 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">내가 쓴 게시글</h2>
+	</div>
+</div>
+<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
 <section class="ink_board guest_mode">
 	<div class="bd_header">
@@ -58,7 +66,7 @@
 			<br />
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			
-			<a href="${pageContext.request.contextPath}/review/reviewList.do">네티즌 리뷰 (작성하신 게시물 수는 ${totalContent }개 입니다. )</a>
+			<a href="${pageContext.request.contextPath}/review/reviewList.do">네티즌 리뷰 (총 ${totalContent }개 )</a>
 			
 		</h2>
 	</div>

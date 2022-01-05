@@ -337,8 +337,8 @@ public class MemberController {
 		log.debug("PointList = {}", list);
 		model.addAttribute("list", list);
 		
-		// 2. 총 게시물 수 가져오기
-		int totalContent = memberService.selectPointTotalCount();
+		// 2. 아이디별 포인트 총 게시물 수 가져오기
+		int totalContent = memberService.selectPointTotalCount(id);
 		log.debug("totalContent = {}", totalContent);
 		model.addAttribute("totalContent", totalContent);
 		
