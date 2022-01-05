@@ -144,6 +144,8 @@ $(document).ready(function(){
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap"
 	rel="stylesheet">
 
+<!-- favicon -->
+<link rel="icon" href="${pageContext.request.contextPath }/resources/upload/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 <body>
 	<div id="container">
