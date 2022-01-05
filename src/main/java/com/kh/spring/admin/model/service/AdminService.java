@@ -214,5 +214,7 @@ public interface AdminService {
 
 	GoodsPaymentJoin selectOnePayment(Map<String, Object> param);
 
+	List<Goods> selectRecentTenGoodsList();
+
 	
 }
