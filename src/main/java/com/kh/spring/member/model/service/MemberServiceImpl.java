@@ -120,6 +120,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int insertPointHistory(Map<String, Object> param) {
+		return memberDao.insertPointHistory(param);
+	}
+
+
+
+
 
 
 	
