@@ -83,9 +83,6 @@ public class AdminManageController {
 	
 	@GetMapping("/adminManage.do")
 	public void adminManage() {}
-
-
-
 	
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1238,7 +1235,7 @@ public class AdminManageController {
 		int offset = (cPage - 1) * limit;
 		
 		// 1.
-		List<GoodsOrder> list = adminService.selectGoodsOrderList(offset, limit);
+		List<GoodsPaymentJoin> list = adminService.selectGoodsOrderList(offset, limit);
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
 		
