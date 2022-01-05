@@ -468,6 +468,12 @@
 		<result column="option_rgb" property="optionRgb"/>
 	</resultMap>
 	
+	<resultMap type="goodsOrder" id="goodsOrderMap">
+		<id column="order_no" property="orderNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="total_price" property="totalPrice"/>
+	</resultMap>
+
 	<resultMap type="orderDetail" id="orderDetailMap">
 		<id column="order_detail_no" property="orderDetailNo"/>
 		<result column="order_no" property="orderNo"/>
@@ -1303,13 +1309,15 @@
 			p_id = #{pId}
 	</select>
 	
-	<select id="selectGoodsOrderList" resultType="goodsOrder">
+	<select id="selectGoodsOrderList" resultMap="GoodsPaymentJoinMap">
 		select
 			*
 		from
-			goods_order
-		order by
-			order_no desc
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+		order by 
+			o.order_no desc
 	</select>
 	
 	<select id="selectGoodsOrderTotalCount" resultType="_int">
@@ -1328,6 +1336,8 @@
 		<result column="email" property="email" />
 		<result column="birthday" property="birthday" />
 		<result column="address" property="address" />
+		<result column="postcode" property="postCode" />
+		<result column="detail_address" property="detailAddress" />
 		<result column="nickname" property="nickname" />
 		<result column="reg_date" property="regDate" />
 		<result column="point" property="point" />
@@ -1336,6 +1346,7 @@
  	</resultMap>
 	
 	<resultMap type="GoodsPaymentJoin" id="GoodsPaymentJoinMap">
+		<collection property="goodsOrder" resultMap="goodsOrderMap" />
 		<collection property="member" resultMap="memberMap2" />
 		<collection property="payment" resultMap="paymentMap" />
 	</resultMap>

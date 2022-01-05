@@ -204,7 +204,7 @@ public interface AdminService {
 
 	List<GoodsOption> selectOneGoodsOptionId(int pId);
 
-	List<GoodsOrder> selectGoodsOrderList(int offset, int limit);
+	List<GoodsPaymentJoin> selectGoodsOrderList(int offset, int limit);
 
 	int selectGoodsOrderTotalCount();
 

@@ -50,6 +50,7 @@
 						  	<th class="title_th">주문일자</th>
 						    <td class="receiver"><fmt:formatDate value="${payment.payment.paymentDate }" pattern="yy-MM-dd"/></td>
 						  </tr>
+						  
 					  		<tr>
 							  	<th class="title_th">주문자</th>
 								<td class="receiver">

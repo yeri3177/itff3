@@ -3,6 +3,7 @@ package com.kh.spring.admin.model.vo;
 import java.io.Serializable;
 
 import com.kh.spring.goods.model.vo.Goods;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.Payment;
@@ -21,6 +22,7 @@ public class GoodsPaymentJoin implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private GoodsOrder goodsOrder;
 	private Member member;
 	private Payment payment;
 	
