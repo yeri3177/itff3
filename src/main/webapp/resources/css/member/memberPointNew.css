@@ -19,13 +19,33 @@ ul, ol {
     
 }
 
+[name=startDate] {
+	font-size: 15px;
+	height: 35px;
+}
+[name=endDate] {
+	font-size: 15px;
+	height: 35px;
+	
+}
+[type=submit] {
+	font-size: 15px;
+	height: 35px;
+	border: 1px solid grey;
+	margin-left: 7px;
+}
+
+.pagebar_footer {
+	margin-top: 17px;
+}
+
 .col-one-point {
 	width: 250px;
     height: 78px;
     margin-left: 30px;
     padding-left: 30px;
     border-left: 1px solid #e1e1e1;
-        margin: 0 207px;
+        margin: auto;
 }
 
 .col-one-point h3 {

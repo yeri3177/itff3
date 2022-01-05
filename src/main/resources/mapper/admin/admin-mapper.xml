@@ -597,16 +597,22 @@
 	
 	<select id="adminManageRecentTenReviewList" resultMap="reviewMap"> 
 		select
-			m.image, r.member_id, r.reg_date, r.review_title
+			*
 		from
-			member m 
-		left join review_board r
-		on m.id = r.member_id
-		where 
-			<![CDATA[rownum <= 10 and to_char(r.reg_date) >= to_char(sysdate-7,'yyyymmdd')]]>
-		order by 
-			r.reg_date desc
+			(select
+				m.image, r.member_id, r.reg_date, r.review_title
+			from
+				member m 
+			left join review_board r
+			on m.id = r.member_id
+			where 
+				r.reg_date is not null 
+			order by 
+				r.reg_date desc
+			)
+		<![CDATA[where rownum <= 10 and to_char(reg_date, 'YYYYMMDD') >= to_char(sysdate-7,'YYYYMMDD')]]>
 	</select>
+			
 	
 	<resultMap type="review" id="reviewMap">
 		<id column="review_no" property="reviewNo"/>
@@ -1312,11 +1318,13 @@
 	
 	<select id="selectGoodsOrderList" resultMap="GoodsPaymentJoinMap">
 		select
-			*
+			o.order_no, m.name, o.total_price, o.order_date, p.payment_no
 		from
 			goods_order o
 		left join payment p
 		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
 		order by 
 			o.order_no desc
 	</select>
@@ -1429,5 +1437,115 @@
 		where
 			to_char(order_date,'YYYYMMDD') = to_char(SYSDATE,'YYYYMMDD')
 	</select>
+	
+	<select id="adminManageNoAnswerCount" resultType="_int">
+		select
+			count(*)
+		from 
+			question_board b left join member a
+                    on b.member_id = a.id
+        where 
+        	answer = 'N'	
+	</select>
+	
+	<select id="searchGoodsOrder" resultMap="GoodsPaymentJoinMap">
+	    select
+	        *
+	    from
+	        (select
+				o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+			from
+				goods_order o
+			left join payment p
+			on o.order_no = p.order_no
+	        left join member m 
+	        on o.member_id = m.id
+			order by 
+				o.order_no desc) o
+			<choose>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('orderNo')">
+					where 
+						order_no like #{searchKeyword}
+				</when>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+					where 
+						name like #{searchKeyword}
+				</when>
+			</choose>
+	</select>
+
+	<select id="searchGoodsOrderCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('orderNo')">
+	    select
+	        count(*)
+	    from
+	        (select
+				o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+			from
+				goods_order o
+			left join payment p
+			on o.order_no = p.order_no
+	        left join member m 
+	        on o.member_id = m.id
+			order by 
+				o.order_no desc) o
+			where 
+				order_no like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+	    select
+	        count(*)
+	    from
+	        (select
+				o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+			from
+				goods_order o
+			left join payment p
+			on o.order_no = p.order_no
+	        left join member m 
+	        on o.member_id = m.id
+			order by 
+				o.order_no desc) o
+			where 
+				name like #{searchKeyword}
+		</if>
+	</select>
+	
+	<select id="searchGoodsOrderDate" resultMap="GoodsPaymentJoinMap">
+    select
+        *
+    from
+        (select
+			o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+		from
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
+		order by 
+			o.order_no desc) o
+    where 
+        order_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+
+	<select id="searchGoodsOrderDateCount" resultType="int" parameterType="java.util.HashMap">
+	    select
+	        count(*)
+	    from
+	        (select
+				o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+			from
+				goods_order o
+			left join payment p
+			on o.order_no = p.order_no
+	        left join member m 
+	        on o.member_id = m.id
+			order by 
+				o.order_no desc) o
+		where 
+        	order_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
 
 </mapper>

@@ -257,9 +257,8 @@
 															<thead>
 																<tr>
 																	<th>
-																		<div class="alarm">
-																			<span>미답변 문의</span>
-																			<p class="text-number">0</p>
+																		<div class="alarm" id="noAnswer">
+
 																		</div>
 																	</th>
 																	<th>
@@ -404,7 +403,23 @@ $(document).ready(function () {
 	});
 });
 
-// 문의 최근 10개
+// 미답변 문의 카운트
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminManageNoAnswerCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#noAnswer").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+// 미답변 문의 최근 10개
 $(document).ready(function () {
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/adminManageRecentTenQuestionList.do",

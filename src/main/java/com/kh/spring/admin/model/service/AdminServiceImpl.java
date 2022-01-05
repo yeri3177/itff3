@@ -627,5 +627,30 @@ public class AdminServiceImpl implements AdminService {
 	public int adminManageTodayOrderCount() {
 		return adminDao.adminManageTodayOrderCount();
 	}
+
+	@Override
+	public int adminManageNoAnswerCount() {
+		return adminDao.adminManageNoAnswerCount();
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> searchGoodsOrder(Map<String, Object> param) {
+		return adminDao.searchGoodsOrder(param);
+	}
+
+	@Override
+	public int searchGoodsOrderCount(Map<String, Object> param) {
+		return adminDao.searchGoodsOrderCount(param);
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> searchGoodsOrderDate(Map<String, Object> param) {
+		return adminDao.searchGoodsOrderDate(param);
+	}
+
+	@Override
+	public int searchGoodsOrderDateCount(Map<String, Object> param) {
+		return adminDao.searchGoodsOrderDateCount(param);
+	}
 	
 }

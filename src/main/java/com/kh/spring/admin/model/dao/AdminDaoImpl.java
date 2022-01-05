@@ -596,4 +596,41 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.adminManageTodayOrderCount");
 	}
 
+	@Override
+	public int adminManageNoAnswerCount() {
+		return session.selectOne("admin.adminManageNoAnswerCount");
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> searchGoodsOrder(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchGoodsOrder", param, rowBounds);
+	}
+
+	@Override
+	public int searchGoodsOrderCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchGoodsOrderCount", param);
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> searchGoodsOrderDate(Map<String, Object> param) {
+		int offset = (int) param.get("start");
+		int limit = (int) param.get("end");
+		log.debug("offset, limit = {}", offset, limit);
+		log.debug("param = {}", param);
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+	return session.selectList("admin.searchGoodsOrderDate", param, rowBounds);
+	}
+
+	@Override
+	public int searchGoodsOrderDateCount(Map<String, Object> param) {
+		return session.selectOne("admin.searchGoodsOrderDateCount", param);
+	}
+
 }
