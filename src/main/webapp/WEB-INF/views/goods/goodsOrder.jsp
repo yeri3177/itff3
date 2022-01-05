@@ -1,15 +1,44 @@
+<%@page import="com.kh.spring.goods.model.vo.CartJoin"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%
+	List<CartJoin> list = (List<CartJoin>) request.getAttribute("cartList");
+	
+	int allcnt = 0;	
+	int allprice = 0;
+	int price = 0;
+	int cnt = 0;
+	
+	for(int i=0; i < list.size(); i++ ) {
+		price = list.get(i).getGoods().getPPrice();
+		cnt = list.get(i).getGoodsCart().getCartQuantity();
+		allcnt += list.get(i).getGoodsCart().getCartQuantity();
+				
+		allprice += (price*cnt);
+	}
+	
+	System.out.println("총 수량 = " + allcnt); 
+	pageContext.setAttribute("allcnt", allcnt);
+	
+	System.out.println("전체가격 = " + allprice); 
+	pageContext.setAttribute("allprice", allprice);
+%>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsCommon.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsOrder.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goodsCart.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsCart.css" />
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
@@ -19,14 +48,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
-<!-- header -->
+<!-- header title -->
 <title>ITFF</title>
-
 
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>  --%>
-
 
 <!-- 소메뉴 네비게이션 -->
 <%-- <div id="snb">
@@ -39,6 +66,7 @@
 	</div>
 </div> --%>
 
+<!-- 상단 컨테이너 -->
 <div class="top-container">
 	<div class="top-content-div">
 		<span class="col-gry">장바구니</span> 
@@ -63,29 +91,29 @@
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" placeholder="이름을 입력해 주세요.">
+			<input type="text" class="form-control" id="memberName" value ="${member.id }" placeholder="이름을 입력해 주세요.">
 		</div>
 	</div>
 	
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">연락처</label>
+			<label for="phone" class="form-label">연락처</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" placeholder="- 없이 01012345678">
+			<input type="text" class="form-control" id="phone" value ="${member.phone }" placeholder="- 없이 01012345678">
 		</div>
 	</div>
 	
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">이메일</label>
+			<label for="email" class="form-label">이메일</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" placeholder="abc@google.com">
+			<input type="text" class="form-control" id="email" value ="${member.email }" placeholder="abc@google.com">
 			<div class="sml-tex">
 				위 이메일로 주문 내역 메일이 전송됩니다. 사용 가능한 메일인지 확인해 주세요.
 			</div>
@@ -101,8 +129,8 @@
 	<div class="del-chk-group">
 		<div>
 			<span class="chk">
-		        <input type="checkbox" id="same-order-chk"> 
-		        <label for="same-order-chk">주문자와 동일</label> 
+		        <input type="checkbox" id="receiverSame-chk"> 
+		        <label for="receiverSame-chk">주문자와 동일</label> 
 		    </span>
 		</div>
 		<div style="margin-left: 15px;">			
@@ -116,29 +144,29 @@
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">수령인</label>
+			<label for="receiver" class="form-label">수령인</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" placeholder="이름을 입력해 주세요.">
+			<input type="text" class="form-control" id="receiver" placeholder="이름을 입력해 주세요.">
 		</div>
 	</div>
 	
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">연락처</label>
+			<label for="receiverPhone" class="form-label">연락처</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" placeholder="- 없이 01012345678">
+			<input type="text" class="form-control" id="receiverPhone" placeholder="- 없이 01012345678">
 		</div>
 	</div>
 	
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">배송지</label>
+			<label for="sample3_postcode" class="form-label">배송지</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
@@ -146,7 +174,6 @@
 			<button class="zip-code-btn" onclick="sample3_execDaumPostcode()">우편번호 검색</button>
 			<input type="text" class="form-control" id="sample3_address" placeholder="주소">
 			<input type="text" class="form-control" id="sample3_detailAddress" placeholder="상세 주소를 입력해 주세요.">
-			<!-- <input type="text" class="form-control" id="sample3_extraAddress" placeholder="참고항목"> -->
 		</div>
 	</div>
 	
@@ -157,23 +184,27 @@
 	
 	
 	
-	
-	
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">배송 메모</label>
+			<label for="comment-select" class="form-label">배송 메모</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<select class="form-select" aria-label="Default select example">
+			<select class="form-select" aria-label="Default select example" id="comment-select">
 			  <option selected>배송 메모를 선택해 주세요.</option>
-			  <option value="1">배송 전에 미리 연락 바랍니다.</option>
-			  <option value="2">부재시 경비실에 맡겨주세요.</option>
-			  <option value="3">부재시 전화 주시거나 문자 남겨주세요.</option>
+			  <option value="배송 전에 미리 연락 바랍니다.">
+			  	배송 전에 미리 연락 바랍니다.
+			  </option>
+			  <option value="부재시 경비실에 맡겨주세요.">
+			  	부재시 경비실에 맡겨주세요.
+			  </option>
+			  <option value="부재시 전화 주시거나 문자 남겨주세요.">
+			  	부재시 전화 주시거나 문자 남겨주세요.
+			  </option>
 			</select>
 			
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" id="orderComment" name="orderComment">
 		</div>
 	</div>
 	
@@ -184,18 +215,17 @@
 	<div class="input-div">
 		<!-- 라벨 -->
 		<div>
-			<label for="memberName" class="form-label">포인트</label>
+			<label for="points" class="form-label">포인트</label>
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="number" class="form-control point-input" readonly="readonly">
+			<input type="text" class="form-control point-input" id="points" readonly="readonly">
 			
 			<button class="point-btn">전액 사용</button>
 			
 			<div class="sml-tex">
-				보유 포인트: 0 (1,000 포인트부터 사용 가능합니다.)
+				보유 포인트: <span class="holdingPoints">${member.point}</span> (1,000 포인트부터 사용 가능합니다.)
 			</div>
-			
 		</div>
 	</div>
 	
@@ -253,7 +283,7 @@
 	<div>
 		<span class="chk"> 
 	        <input type="checkbox" id="chk1"> 
-	        <label for="chk1"><span style="font-size: 18px;">구매 동의</span></label> 
+	        <label for="chk1"><span class="accept-title">구매 동의</span></label> 
 	    </span>
 		
 		<div class="del-tex">
@@ -264,7 +294,7 @@
 	<div>
 		<span class="chk"> 
 	        <input type="checkbox" id="chk2"> 
-	        <label for="chk2"><span style="font-size: 18px;">배송 일정 확인 및 동의</span></label> 
+	        <label for="chk2"><span class="accept-title">배송 일정 확인 및 동의</span></label> 
 	    </span>
 		
 		<div class="del-tex">
@@ -276,7 +306,7 @@
 		<div>
 			<span class="chk"> 
 		        <input type="checkbox" id="chk3"> 
-		        <label for="chk3"><span style="font-size: 18px;">이용약관 동의</span></label> 
+		        <label for="chk3"><span class="accept-title">이용약관 동의</span></label> 
 		    </span>
 		</div>
 		<div 
@@ -290,7 +320,7 @@
 		<div>
 			<span class="chk"> 
 		        <input type="checkbox" id="chk4"> 
-		        <label for="chk4"><span style="font-size: 18px;">개인 정보 수집 및 이용 동의</span></label> 
+		        <label for="chk4"><span class="accept-title">개인 정보 수집 및 이용 동의</span></label> 
 		    </span>
 		</div>
 		<div
@@ -303,6 +333,7 @@
 	<button class="goodsBtn">결제하기</button>
 	
 </div> <!-- end of 왼쪽 컨테이너 -->
+
 
 <!-- modal1 : 이용약관 동의 -->
 <div class="modal fade" id="modal1" data-bs-backdrop="static" 
@@ -501,7 +532,7 @@
 </div> <!-- end of modal2 : 개인 정보 수집 및 이용 동의 -->
 
 
-
+<!-- 오른쪽 컨테이너 -->
 <div id="order-right-container">
 	<div class="title-text d-flex">
 		<div>주문 정보</div>
@@ -515,18 +546,15 @@
 		ITFF 굿즈마켓 
 	</div>
 	
-	
-	
-	
+
 	<!-- card 낱개 반복 -->
-	<%-- <c:forEach items="${list}" var="cart" varStatus="vs"> --%>
+	<c:forEach items="${cartList}" var="cart" varStatus="vs">
 	<div class="card-custom" style="margin-bottom: 40px;">
 		<!-- card-head -->
 		<div class="card-head">
 			<!-- card-head-left : cart-id -->
 			<div class="cardId-div">
-				<%-- No. ${cart.goodsCart.cartId } --%>
-				No.1111111
+				No. ${cart.goodsCart.cartId }
 			</div>
 		</div>
 		
@@ -535,25 +563,30 @@
 			<!-- 이미지 배경 -->
 			<div class="img-bg-div">
 				<!-- 상품 옵션 이미지 -->
-				<%-- <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}"><img src="${pageContext.request.contextPath}/resources/upload/goods/${cart.optionDetail.optionImg }"></a> --%>
+				<a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}">
+					<img src="${pageContext.request.contextPath}/resources/upload/goods/${cart.optionDetail.optionImg }">
+				</a>
 			</div>
 			
 			<!-- 텍스트 -->
 			<div class="card-body-right">
 				<!-- 상품명 -->
 				<div class="goodsName-div">
-					<%-- <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}">${cart.goods.PName}</a> --%>
-					행복한사람
+					<a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}">
+						${cart.goods.PName}
+					</a> 
 				</div>
+				
 				<!-- 서브 카테고리 -->
 				<div class="goodsCategory-div">
-					<%-- <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}">${cart.goods.PSubcategory }</a> --%>
-					반팔 티셔츠
+					<a href="${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${cart.goods.PId}">
+						${cart.goods.PSubcategory}
+					</a>
 				</div>
+				
 				<!-- 상품 가격 (상품낱개가격*장바구니수량) -->
 				<div class="goodsPrice-div">
-					<%-- <fmt:formatNumber value="${cart.goods.PPrice*cart.goodsCart.cartQuantity}" pattern="#,###원" /> --%>
-					25,000원
+					<fmt:formatNumber value="${cart.goods.PPrice*cart.goodsCart.cartQuantity}" pattern="#,###원" />
 				</div>
 			</div>
 		</div>
@@ -564,35 +597,31 @@
 			<div class="card-footer-left">
 				<!-- 옵션명 -->
 				<div>
-					<%-- ${cart.optionDetail.optionType }
+					${cart.optionDetail.optionType }
 					${cart.optionDetail.optionColor }
-					${cart.optionDetail.optionSize } --%>
-					S(90~95)
+					${cart.optionDetail.optionSize }
 				</div>
 				
 				<!-- 개수 -->
 				<div>
-					<%-- ${cart.goodsCart.cartQuantity }개 --%>
-					3개
+					${cart.goodsCart.cartQuantity }개
 				</div>
 			</div>
 		</div>
 	
 	</div>
-	<%-- </c:forEach> --%> <!-- end of card 낱개 반복 -->
+	</c:forEach> <!-- end of card 낱개 반복 -->
 	
 	
-	
-
 	<div id="summaryBody">
 		<div class="summary-row">
 			<div>총 수량</div>
-			<div><%-- ${allcnt }개 --%>5개</div>
+			<div>${allcnt }개</div>
 		</div>
 		
 		<div class="summary-row">
 			<div>총 상품 금액</div>
-			<div><fmt:formatNumber value="3333333" pattern="#,###원" /></div>
+			<div><fmt:formatNumber value="${allprice }" pattern="#,###원" /></div>
 		</div>
 		
 		<div class="summary-row">
@@ -602,7 +631,7 @@
 		
 		<div class="summary-row sum-row">
 			<div>최종 결제 금액</div>
-			<div><fmt:formatNumber value="323232312" pattern="#,###원" /></div>
+			<div><fmt:formatNumber value="${allprice+2500 }" pattern="#,###원" /></div>
 		</div>
 	</div> <!-- end of summaryBody -->
 	
@@ -611,38 +640,88 @@
 
 </section>
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 주소값 -->
+<input type="hidden" id="memberPostCode" value="${member.postCode }" />
+<input type="hidden" id="memberAddress" value="${member.address }" />
+<input type="hidden" id="memberDetailAddress" value="${member.detailAddress }" />
+
 <script>
-$(() => {
+// 로그인 회원 이름, 연락처
+const $memberName = $("#memberName");
+const $memberPhone = $("#phone");
+
+// 수령인 이름, 연락처 
+const $receiver = $("#receiver");
+const $receiverPhone = $("#receiverPhone");
+
+// 로그인 회원 주소값
+const $memberPostCode = $("#memberPostCode");
+const $memberAddress = $("#memberAddress");
+const $memberDetailAddress = $("#memberDetailAddress");
+
+// 배송지 주소값
+const $sample3_postcode = $("#sample3_postcode");
+const $sample3_address = $("#sample3_address");
+const $sample3_detailAddress = $("#sample3_detailAddress");
+
+
+/* 주문자와 동일 체크박스 클릭시 */
+$("#receiverSame-chk").change((e) => {	
 	
-	/* 결제및배송동의 체크박스 전체선택/전체해제 */
-    $("#chk-all").click(function(){
-        if($("#chk-all").prop("checked")){
-            $("input[id^='chk']").prop("checked",true);
-        }else{
-            $("input[id^='chk']").prop("checked",false);
-        }
-    })
+	if($("#receiverSame-chk").is(":checked")){
+		
+		$receiver.val($memberName.val());
+		$receiverPhone.val($memberPhone.val());
+		
+		$sample3_postcode.val($memberPostCode.val());
+		$sample3_address.val($memberAddress.val());
+		$sample3_detailAddress.val($memberDetailAddress.val());
+		
+	}else{
+		$receiver.val('');
+		$receiverPhone.val('');
+		
+		$sample3_postcode.val('');
+		$sample3_address.val('');
+		$sample3_detailAddress.val('');
+	}
 })
 
-/* 오른쪽 컨테이너 fixed 하는 함수 */ 
-/* $(function() {
-    $.fn.Scrolling = function(obj, tar) {
-        var _this = this;
-        $(window).scroll(function(e) {
-            var end = obj + tar;
-            $(window).scrollTop() >= obj ? _this.addClass("order-fixed") : _this.removeClass("order-fixed");
-            if($(window).scrollTop() >= end) _this.removeClass("order-fixed");
-        });
-    };
-    
-    $("#order-right-container").Scrolling(
-    		$("#order-right-container").offset().top,
-    		( ($("#goodsOrder-container").height())*0.7 ));
-			
-}); */
 
+
+/* 배송메모 select 클릭시 */
+$(".form-select").change((e) => {
+	
+	var selectedOption = $(".form-select").val();
+	
+	$("#orderComment").val(selectedOption);
+	
+})
+
+
+/* 포인트사용 버튼 클릭시 */
+$(".point-btn").click((e) => {
+	var holdingPoints = $(".holdingPoints").text();
+	
+	console.log(holdingPoints);
+	
+	if(holdingPoints>1000){
+		$(".point-input").val(holdingPoints);
+	} else{
+		$(".point-input").val("포인트가 부족합니다.");
+	}
+})
+
+
+ /* 결제및배송동의 체크박스 클릭시 전체선택/전체해제 */
+ $("#chk-all").click(function(){
+     if($("#chk-all").prop("checked")){
+         $("input[id^='chk']").prop("checked",true);
+     }else{
+         $("input[id^='chk']").prop("checked",false);
+     }
+ })
+ 
  
 // 우편번호 찾기 찾기 화면을 넣을 element
 var element_wrap = document.getElementById('daum-api-iframe');
