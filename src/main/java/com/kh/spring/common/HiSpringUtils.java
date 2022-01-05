@@ -286,7 +286,7 @@ public class HiSpringUtils {
 	 * 
 	 * @return
 	 */
-	public static String getRandomNumber() {
+	public static String getRandomChatId() {
 		Random rnd = new Random();
 		StringBuffer sb = new StringBuffer();
 		
@@ -296,6 +296,7 @@ public class HiSpringUtils {
 				boolean isUpperCase = rnd.nextBoolean();
 				char ch = (char)((isUpperCase ? 65 : 97) + rnd.nextInt(26));
 				sb.append(ch);
+				
 			}
 			else {
 				// 숫자
