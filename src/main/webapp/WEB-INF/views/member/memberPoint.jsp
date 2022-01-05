@@ -65,6 +65,16 @@
        
 </div>
 
+<br />
+
+<div style="text-align: center;">
+	<form:form
+		action="${pageContext.request.contextPath}/member/memberPointByDate.do"
+		method="GET">
+		<input type="date" name="startDate" id="startDate"/> ~ <input type="date" name="endDate" id="endDate"/>
+		<input type="submit" value="조회하기" />
+	</form:form>
+</div>
 
 <div class="sub_sc">
 <div id="_listContentArea">

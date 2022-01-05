@@ -113,6 +113,17 @@ public class MemberDaoImpl implements MemberDao {
 		return session.insert("member.insertPointHistory", param);
 	}
 
+	@Override
+	public List<Point> selectPointListByDate(int offset, int limit, Map<String, Object> param) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("member.selectPointListByDate", param, rowBounds);
+	}
+
+	@Override
+	public int selectPointTotalCountByDate(Map<String, Object> param) {
+		return session.selectOne("member.selectPointTotalCountByDate", param);
+	}
+
 	
 	
 	
