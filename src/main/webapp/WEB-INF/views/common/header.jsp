@@ -113,9 +113,8 @@ $('#info').on('click', function(){
 var socket  = null;
 
 $(document).ready(function(){
-	
-    // 웹소켓 연결
-    sock = new SockJS("<c:url value="/echo-ws"/>");
+	sock = new SockJS("<c:url value="/echo-ws"/>");
+	socket = sock;
 
     sock.onopen = function() {
    		console.log('Info: connection opened.');

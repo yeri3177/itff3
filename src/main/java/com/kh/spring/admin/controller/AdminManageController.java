@@ -90,13 +90,25 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * [메인화면: 판매중 상품 수]
+	 */
+	
+	@GetMapping("/adminSaleGoodsCount.do")
+	public void adminSaleGoodsCount(Model model) {
+		int count = adminService.adminSaleGoodsCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+	
+	/**
 	 * [메인화면: 판매중 상품 목록]
 	 */
 	
 	@GetMapping("/selectRecentTenGoodsList.do")
 	public void selectRecentTenGoodsList(Model model) {
 		List<Goods> list = adminService.selectRecentTenGoodsList();
-		log.debug("list = {}", list);
+//		log.debug("list = {}", list);
 		
 		model.addAttribute("list", list);
 	}

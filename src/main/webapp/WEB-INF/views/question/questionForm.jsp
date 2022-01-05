@@ -6,6 +6,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!-- 한글 깨지지 않게 처리 -->
+
 <fmt:requestEncoding value="utf-8"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="1:1 문의" name="title"/>
@@ -45,48 +46,6 @@
 </div> -->
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
-<script>
-
-/* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
-function boardValidate(){
-   var $content = $("[name=questionContent]");
-   var $title = $("[name=questionTitle]");
-   if(/^(.|\n)+$/.test($content.val()) == false){
-      alert("내용을 입력하세요");
-      return false;
-   }
-   else if(/^(.|\n)+$/.test($title.val()) == false) {
-	   alert("제목을 입력하세요.");
-	   return false;
-   }
-   return true;
-}
-
-/* 첨부파일 선택 시 파일명 보이게  */
-$(() => {
-   $("[name=upFile]").change((e) => {
-      
-      // 1. 파일명 가져오기
-      const file = $(e.target).prop("files")[0];
-      const filename = file?.name; // ?: optional chaining 객체가 undefined 경우에도 오류가 나지 않음
-      
-      console.dir(e.target);
-      console.log(filename);
-      
-      // 2. label에 설정하기
-      const $label = $(e.target).next(); // e.target의 다음 요소
-      
-      if(file != undefined) {
-         $label.html(filename);
-      }
-      else {
-         $label.html("파일을 선택하세요.");
-      }
-   })
-});
-
-</script>
-
 <sec:authorize access="isAuthenticated()">
 
 
@@ -104,6 +63,8 @@ $(() => {
 		
 			<form 
 				name="boardFrm" 
+				id="boardFrm"
+				class="boardFrm"
 				method="post" 
 				action="${pageContext.request.contextPath}/question/questionEnroll.do?${_csrf.parameterName}=${_csrf.token}"
 				enctype="multipart/form-data"
@@ -128,6 +89,7 @@ $(() => {
 					<div class="write_top">
 						<div class="inp_tit_wrap">
 							<input name="questionTitle" type="text" id="strSubject" class="inp_tit" maxlength="64" placeholder="제목을 입력해 주세요.">
+							<input type="hidden" name="admin" class="admin" value="admin" />
 						</div>
 					</div>
 		
@@ -178,7 +140,7 @@ $(() => {
 					</div>
 		
 					<div class="txt-center" id="writeButton">
-						<input type="submit" class="btn btn-m btn-primary" value="저장"> &nbsp;&nbsp;
+						<input type="submit" id="qa" class="btn btn-m btn-primary" value="저장"> &nbsp;&nbsp;
 						<a href="javascript:history.go(-1);" class="btn btn-m btn-secondary">취소</a>
 					</div>
 				</div>
@@ -186,8 +148,88 @@ $(() => {
 		</div>
 	</div>
 </div>
-		
-		
-		
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </sec:authorize>	
+		
+
+<script>
+
+	$('#qa').click(function(e){
+	    let type = '70';
+	    let target = $('.admin').val();
+	    let content = '새로운 문의사항이 등록되었습니다.'
+	    let url = '${contextPath}/question/saveNotify.do';
+	    	    
+	    console.log(type);
+	    console.log(target);
+	    console.log(content);
+	    console.log(url);
+	    
+	    // 전송한 정보를 db에 저장	
+	    $.ajax({
+	        type: "post",
+	        url:"${pageContext.request.contextPath}/question/saveNotify.do",
+	        dataType: "text",
+	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	        data: {
+	            target: target,
+	            content: content,
+	            type: type,
+	            url: url
+	        },
+	        beforeSend : function(xhr) {   
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	        },
+	        success:    // db전송 성공시 실시간 알림 전송
+	            // 소켓에 전달되는 메시지
+	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+	        	socket.send("관리자,"+target+","+content+","+url)
+// 			console.log("관리자,"+target+","+content+","+url)
+
+	    });
+	});
+
+</script>
+
+<script>
+
+/* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
+function boardValidate(){
+   var $content = $("[name=questionContent]");
+   var $title = $("[name=questionTitle]");
+   if(/^(.|\n)+$/.test($content.val()) == false){
+      alert("내용을 입력하세요");
+      return false;
+   }
+   else if(/^(.|\n)+$/.test($title.val()) == false) {
+	   alert("제목을 입력하세요.");
+	   return false;
+   }
+   return true;
+}
+
+/* 첨부파일 선택 시 파일명 보이게  */
+$(() => {
+   $("[name=upFile]").change((e) => {
+      
+      // 1. 파일명 가져오기
+      const file = $(e.target).prop("files")[0];
+      const filename = file?.name; // ?: optional chaining 객체가 undefined 경우에도 오류가 나지 않음
+      
+      console.dir(e.target);
+      console.log(filename);
+      
+      // 2. label에 설정하기
+      const $label = $(e.target).next(); // e.target의 다음 요소
+      
+      if(file != undefined) {
+         $label.html(filename);
+      }
+      else {
+         $label.html("파일을 선택하세요.");
+      }
+   })
+});
+
+</script>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

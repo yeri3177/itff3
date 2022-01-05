@@ -1392,5 +1392,12 @@
 			<![CDATA[rownum <= 10]]>
 		order by p_enroll desc
 	</select>
+	
+	<select id="adminSaleGoodsCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			goods
+	</select>
 
 </mapper>

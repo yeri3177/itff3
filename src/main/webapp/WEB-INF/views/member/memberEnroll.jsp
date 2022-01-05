@@ -258,9 +258,9 @@
 							<div class="form_group wid100" style="position:relative;"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="zipcode" type="text" size="7" maxlength="7" value="" class="inputTxt">
+										<input name="postCode" id="zipcode" type="text" size="7" maxlength="7" value="" class="inputTxt">
 										&nbsp;			
-										<input name="address" type="hidden" size="4" maxlength="3"   value="" class="inputTxt">
+										<!-- <input name="address" type="hidden" size="4" maxlength="3"   value="" class="inputTxt"> -->
 																				
 										<a href="javascript:findZip();" class="btn btn-s btn_cancel" style="position:absolute; right:5px; top:10px; z-index:1;">우편번호 찾기</a>
 					
@@ -271,8 +271,8 @@
 							<div class="form_group wid100" style="margin-top:5px"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address1" id="address1" type="text" size="50" required placeholder="주소 입력" class="inputTxt mt10">
-										<input name="address2" id="address2" type="text" size="50" required placeholder="상세주소 입력">
+										<input name="address" id="address1" type="text" size="50" required placeholder="주소 입력" class="inputTxt mt10">
+										<input name="detailAddress" id="address2" type="text" size="50" required placeholder="상세주소 입력">
 					
 									</span>
 								</div>

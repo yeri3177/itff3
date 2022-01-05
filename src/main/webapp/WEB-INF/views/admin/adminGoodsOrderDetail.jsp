@@ -32,6 +32,8 @@
 							  	<button 
 					      		type="button" 
 					      		class="btn btn-outline-secondary orderUpdateBtn"
+					      		data-toggle="modal"
+								data-target="#adminMemberDetail"
 								onclick="order_receiver_change_btn('${payment.payment.memberId }');">회원상세정보보기
 								</button>	
 							  	<button 
@@ -195,3 +197,27 @@
 					onclick="goodsDelete_btn('${orderNo}');">주문메모</button>
 				 -->
 		      </div>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+</script>

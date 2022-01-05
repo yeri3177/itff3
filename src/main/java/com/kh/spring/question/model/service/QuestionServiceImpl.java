@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.question.model.dao.QuestionDao;
 import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
@@ -139,6 +140,17 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public int updateQuestionAnswerToN(int questionNo) {
 		return questionDao.updateQuestionAnswerToN(questionNo);
+	}
+
+	@Override
+	public Member selectOneMember(String id) {
+		return questionDao.selectOneMember(id);
+	}
+
+	@Override
+	public int insertSaveNotify(Map<String, Object> param) {
+		return questionDao.insertSaveNotify(param);
+		
 	}
 	
 }
