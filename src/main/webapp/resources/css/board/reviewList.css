@@ -108,8 +108,8 @@ section#main-content {
 }
 
 .ink_board {
-    padding-top: 40px;
-    padding-bottom: 20px;
+    /* padding-top: 40px; */
+    padding-bottom: 70px;
 } 
 .ink_board li {
 	display: list-item;
@@ -536,9 +536,6 @@ td {
 	padding: 0 10px;
 }
 
-.ldn td.list_author { `: 80px;
-	
-}
 
 .ldn td.list_left {
 	text-align: left;
@@ -845,7 +842,7 @@ td {
 button {
 	appearance: auto;
 	-webkit-writing-mode: horizontal-tb !important;
-	font-style:;
+	/* font-style:;
 	font-variant-ligatures:;
 	font-variant-caps:;
 	font-variant-numeric:;
@@ -853,7 +850,7 @@ button {
 	font-weight:;
 	font-stretch:;
 	font-size:;
-	font-family:;
+	font-family:; */
 	text-rendering: auto;
 	color: -internal-light-dark(black, white);
 	letter-spacing: normal;
@@ -912,7 +909,7 @@ select:not(:-internal-list-box) {
 
 select {
 	-webkit-writing-mode: horizontal-tb !important;
-	font-style:;
+	/* font-style:;
 	font-variant-ligatures:;
 	font-variant-caps:;
 	font-variant-numeric:;
@@ -920,7 +917,7 @@ select {
 	font-weight:;
 	font-stretch:;
 	font-size:;
-	font-family:;
+	font-family:; */
 	text-rendering: auto;
 	color: -internal-light-dark(black, white);
 	letter-spacing: normal;
@@ -1072,6 +1069,12 @@ button:focus {
 #main-content {
 	background-color: #E6E6E6 !important;
 }
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
 #myBtn {
 	opacity: 0; /* Hidden by default */
 	position: fixed; /* Fixed/sticky position */

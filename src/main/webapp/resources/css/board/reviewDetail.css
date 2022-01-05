@@ -20,6 +20,12 @@ div#board-container{
 textarea.form-control {
 	height: 300px;
 }
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
 div#board-container input{margin-bottom:15px;}
 /* 부트스트랩 : 파일라벨명 정렬*/
 div#board-container label.custom-file-label{text-align:left;}
@@ -220,15 +226,6 @@ body, table, input, textarea, select, button {
 button {
     appearance: auto;
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;

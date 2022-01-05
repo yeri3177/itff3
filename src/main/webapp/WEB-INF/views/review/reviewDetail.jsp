@@ -32,20 +32,28 @@
 			<li class="on_"><a
 				href="${pageContext.request.contextPath}/sharing/boardList.do"
 				target="_top">티켓나눔터</a></li>
-			<li class="on_"><a href="#" target="_top">자주찾는 질문</a></li>
-			<li class="on_"><a href="#" target="_top">1:1 문의</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/question/faq.do" target="_top">자주찾는 질문</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/question/questionList.do" target="_top">1:1 문의</a></li>
 		</ul>
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
 
 <section class="ink_board guest_mode">
-	<div class="bd_header">
+
+<!-- 해당 페이지 큰 글씨 -->
+<div class="sub_title_wrap">
+	<div class="container">
+		<h2 class="en">네티즌 리뷰</h2>
+	</div>
+</div>
+
+	<%-- <div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			<a href="${pageContext.request.contextPath}/review/reviewList.do">네티즌 리뷰</a>
 		</h2>
-	</div>
+	</div> --%>
 	<div class="list_wrap">
 		<div class="ink_list ldn" style="background-color: #FFFFFF">
 	<article class="ink_atc round20 has_list">

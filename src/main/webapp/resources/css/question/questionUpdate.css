@@ -23,12 +23,7 @@ section#main-content {
     background-color: #E6E6E6;
     height: auto;
 }
-div#board-container{
-	width:800px; 
-	margin:0 auto; 
-	text-align:center;
-	padding-top: 40px;	
-}
+
 textarea.form-control {
 	height: 300px;
 }
@@ -62,7 +57,7 @@ div#board-container label.custom-file-label{text-align:left;}
 
 
 div#board-container{width:800px; margin:0 auto; text-align:center; padding: 27px 30px;
-    background-color: #e6e6e6;
+    background-color: #ffffff;
     border-radius: 5%;}
 
 
