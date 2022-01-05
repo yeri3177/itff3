@@ -18,8 +18,9 @@
 </jsp:include>
 
 <style>
-div#search-pId {display: ${searchType} == '' || ${searchType} == null || "pId".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "none";}
+div#search-orderDate {display: ${searchType} == '' || ${searchType} == null || "orderDate".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-orderNo {display: "orderNo".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
 <!-- 관리자 헤더 -->
@@ -30,7 +31,6 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 
 <!-- 관리자 공통 메뉴 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
-
 
 		<div class="container">
 			
@@ -44,32 +44,43 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 			<div class="row">
 				<div class="col-md-12">
 					<div class="table-wrap">
-					
-					
+		
 					<div class="search-total insert" style="justify-content: flex-end;">
-					
 					   <div class="input-group rounded">
 					        <select 
 					        	id="searchType" 
 					        	class="custom-select"
 					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
-					            <option value="pId" ${"pId".equals(searchType) ? "selected" : ""}>상품코드</option>		
-					            <option value="pName" ${"pName".equals(searchType) ? "selected" : ""}>상품명</option>
+					            <option value="orderDate" ${"date".equals(searchType) ? "selected" : ""}>주문날짜</option>
+					            <option value="orderNo" ${"orderNo".equals(searchType) ? "selected" : ""}>주문번호</option>		
+					            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>주문자</option>
 					        </select>
-					        <div id="search-pId" class="search-type" style="width: 500px !important;">
-					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					        <div id="search-orderNo" class="search-type" style="display: none; width: 500px !important;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderFinder.do">
 					            	<div style="display: flex;">
-					                <input type="hidden" name="searchType" value="pId"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품코드를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <input type="hidden" name="searchType" value="orderNo"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'orderNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
 					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
-					        <div id="search-pName" class="search-type" style="display: none;">
-					            <form action="${pageContext.request.contextPath}/admin/adminGoodsFinder.do">
+					        <div id="search-name" class="search-type" style="display: none;">
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderFinder.do">
 					            <div style="display: flex;">
-					                <input type="hidden" name="searchType" value="pName"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="상품명을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'pName' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <input type="hidden" name="searchType" value="name"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'name' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					            </div>
+					            </form>	
+					        </div>
+					        <div id="search-orderDate" class="search-type">
+				            	<input type="hidden" name="searchType" value="orderDate"/>
+				                 <input type="hidden" name="searchKeyword"  class="form-control rounded" aria-label="Search" aria-describedby="search-addon" value="${'orderDate' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderDateFinder.do">
+					            <div style="display: flex; align-items: center;">
+					                <input type="text" id="startDate" class="form-control" name="startDate" placeholder="시작일">
+					                ~
+					                <input type="text" id="endDate" class="form-control" name="endDate" placeholder="종료일">
 					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
@@ -109,7 +120,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<!-- 아이디 -->
 									<td>
 										<div class="email">
-												<span>${list.goodsOrder.memberId }</span> 
+												<span>${list.member.name }</span> 
 										</div>
 									</td>
 									
@@ -333,14 +344,14 @@ function goods_order_detail_btn(orderNo) {
 <script>
 
 // 주문 정보 수정
-function goodsUpdate_btn(pId) {
+function goodsUpdate_btn(orderNo) {
 	
-	console.log(pId);
-	var id = pId;
+	console.log(orderNo);
+	var id = orderNo;
 
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/adminGoodsUpdate.do",
-		data: {pId: id},
+		data: {orderNo: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
@@ -358,14 +369,14 @@ function goodsUpdate_btn(pId) {
 <script>
 
 // 주문 삭제
-function goodsDelete_btn(pId) {
+function goodsDelete_btn(orderNo) {
 	
-	console.log(pId);
-	var id = pId;
+	console.log(orderNo);
+	var id = orderNo;
 
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/adminGoodsDelete.do",
-		data: {pId: id},
+		data: {orderNo: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
