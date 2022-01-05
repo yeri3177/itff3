@@ -90,8 +90,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 					    </div>
 					</div>
 					    
-					<form name="theForm" method="post">
-
+					<form name="theForm" method="post" style="width: 1500px;">
 
 					<div class="brd_card_wrap">
 					<ul class="brd_card_list">

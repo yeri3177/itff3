@@ -228,4 +228,14 @@ public interface AdminDao {
 
 	int adminManageTodayOrderCount();
 
+	int adminManageNoAnswerCount();
+
+	List<GoodsPaymentJoin> searchGoodsOrder(Map<String, Object> param);
+
+	int searchGoodsOrderCount(Map<String, Object> param);
+
+	List<GoodsPaymentJoin> searchGoodsOrderDate(Map<String, Object> param);
+
+	int searchGoodsOrderDateCount(Map<String, Object> param);
+
 }

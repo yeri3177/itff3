@@ -255,9 +255,11 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .table tbody td .img {
-    width: 100px;
+	width: 80px;
     height: 80px;
     margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid whitesmoke;
 }
 .img {
     background-size: cover;

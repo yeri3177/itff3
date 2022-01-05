@@ -76,7 +76,7 @@
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
 
                         <ul class="collapse__menu">
-                            <a href="${pageContext.request.contextPath}/admin/adminNewQuestion.do" class="collapse__sublink">신규문의</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminNewQuestion.do" class="collapse__sublink">신규 문의</a><br />
                              <a href="${pageContext.request.contextPath}/admin/adminQuestionList.do" class="collapse__sublink">문의 리스트</a><br />
                          </ul> 
                      </div> 

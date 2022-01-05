@@ -161,7 +161,18 @@ public class AdminManageController {
 	}
 
 	/**
-	 * [메인화면: 최근 문의 10개]
+	 * [메인화면: 최근 미답변 문의 10개]
+	 */
+	
+	@GetMapping("/adminManageNoAnswerCount.do")
+	public void adminManageNoAnswerCount(Model model) {
+		int count = adminService.adminManageNoAnswerCount();
+		
+		model.addAttribute("count", count);
+	}
+
+	/**
+	 * [메인화면: 최근 미답변 문의 10개]
 	 */
 	
 	@GetMapping("/adminManageRecentTenQuestionList.do")
@@ -340,7 +351,6 @@ public class AdminManageController {
 		
 		return "admin/adminMemberList";
 	}
-	
 	
 	/**
 	 * [회원 상세]
@@ -1295,6 +1305,104 @@ public class AdminManageController {
 		model.addAttribute("goodsOrder", goodsOrder);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
+	}
+	
+	
+	/**
+	 * [굿즈 주문 목록 검색]
+	 */
+	
+	@GetMapping("/adminGoodsOrderFinder.do")
+	public String adminGoodsOrderFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<GoodsPaymentJoin> list = adminService.searchGoodsOrder(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchGoodsOrderCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsOrderList";
+	}
+	
+	/**
+	 * [굿즈 주문 목록 날짜 검색]
+	 */
+	
+	@GetMapping("/adminGoodsOrderDateFinder.do")
+	public String adminGoodsOrderDateFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String startDate,
+			@RequestParam String endDate,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<GoodsPaymentJoin> list = adminService.searchGoodsOrderDate(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchGoodsOrderDateCount(param);
+		log.debug("totalContents = {}", totalContents);
+		
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?startDate="+startDate+"&endDate="+endDate;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsOrderList";
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////
