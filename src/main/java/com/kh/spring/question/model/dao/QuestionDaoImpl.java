@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -104,6 +105,16 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public int updateQuestionAnswerToN(int questionNo) {
 		return session.update("question.updateQuestionAnswerToN", questionNo);
+	}
+
+	@Override
+	public Member selectOneMember(String id) {
+		return session.selectOne("question.selectOneMember", id);
+	}
+
+	@Override
+	public int insertSaveNotify(Map<String, Object> param) {
+		return session.insert("question.insertSaveNotify", param);
 	}
 
 

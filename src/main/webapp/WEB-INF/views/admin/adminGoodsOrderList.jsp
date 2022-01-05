@@ -178,22 +178,21 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 							</div>
 						</div>
 						<!-- 주문 삭제 -->
-						<!-- 옵션 상세 
-						<div class="modal fade" id="adminGoodsOptionDetail" tabindex="-1"
-							role="dialog" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
-							<div class="modal-dialog" role="document"
-								style="max-width: 1200px;">
-								<div class="modal-content"
-									style="text-align: left;">
-								  	<div class="modal-body" id="modal_ajax4">
-								    		  
-									</div>
+						<!-- 회원 상세 -->
+						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document"
+							style="max-width: 800px;">
+							<div class="modal-content" style="text-align: left;">
+							   	<div class="modal-body" id="modal_ajax4">
+							    		  
+								</div>
+
 								</div>
 							</div>
 						</div>
-						-->
-						<!-- 옵션 상세 끝 -->
+						<!-- 회원 상세 끝 -->
 						<!-- 옵션 추가 
 						<div class="modal fade" id="adminGoodsOptionInsert" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
@@ -388,28 +387,26 @@ function goods_insert_btn() {
 </script>
 
 <script>
-
-//옵션 수정
-function goods_option_update_btn(optionId) {
+// 회원 상세
+function order_receiver_change_btn(memberId) {
 	
-	console.log(optionId);
-	var id = optionId;
+	console.log(memberId);
+	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOptionUpdate.do",
-		data: {optionId: id},
+		url:"${pageContext.request.contextPath}/admin/adminMemberDetail.do",
+		data: {id: id},
 		method: "get",
 		contentType: "application/json",
 		dateType: "text",
 		success: function(data) {
-			$("#modal_ajax6").html(data);
+			$("#modal_ajax4").html(data);
 		},
 		complete: function() {
 			console.log("complete")
 		}
 	});
 }
-
 </script>
 
 <script>

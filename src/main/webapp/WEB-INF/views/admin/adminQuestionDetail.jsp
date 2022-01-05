@@ -10,6 +10,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <%
 SecurityContext securityContext = SecurityContextHolder.getContext();
 Authentication authentication = securityContext.getAuthentication();

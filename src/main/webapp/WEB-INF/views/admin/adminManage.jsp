@@ -218,10 +218,8 @@
 																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
 																</th>
 																<th style="padding: 15px 0 15px 9px;">
-																	<div class="border-list-wrap col-md-6 col-sm-6 col-xs-12">
-																		<span class="info-title" id="goods_count">판매중 상품</span> 
-																			<a href="" class="recent_goods_count">0</a>
-																		 <span>건</span>
+																	<div class="border-list-wrap col-md-6 col-sm-6 col-xs-12" id="goods_count">
+
 																	</div>
 																</th>
 															</tr>
@@ -308,6 +306,22 @@
 		<!-- //container -->
 
 <script>
+
+// 굿즈 판매중 상품 수
+$(document).ready(function () {
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminSaleGoodsCount.do",
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#goods_count").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
 
 // 굿즈 최근 10개
 $(document).ready(function () {

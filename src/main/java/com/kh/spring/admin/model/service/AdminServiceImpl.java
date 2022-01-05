@@ -612,5 +612,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<Goods> selectRecentTenGoodsList() {
 		return adminDao.selectRecentTenGoodsList();
 	}
+
+	@Override
+	public int adminSaleGoodsCount() {
+		return adminDao.adminSaleGoodsCount();
+	}
 	
 }

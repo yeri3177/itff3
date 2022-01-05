@@ -165,8 +165,19 @@
 		where question_no = #{questionNo}
 	</update>
 	
+	<insert id="insertSaveNotify">
+		insert into
+			save_notify
+		values(#{target}, #{content}, #{type}, #{url})
+	</insert>
 	
-	
-	
+	<select id="selectOneMember" resultType="member">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
 	
 </mapper>

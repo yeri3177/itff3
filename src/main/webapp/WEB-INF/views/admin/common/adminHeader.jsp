@@ -52,6 +52,44 @@
 	integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<!-- toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+toastr.options = {
+		  "debug": false,
+		  "newestOnTop": false,
+		  "progressBar": true,
+		  "positionClass": "toast-top-right",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "100",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+		
+$('#error').on('click', function(){
+	toastr.error('error');
+});
+$('#warning').on('click', function(){
+	toastr.warning('warning');
+});
+$('#success').on('click', function(){
+	toastr.success('success');
+});
+$('#info').on('click', function(){
+	toastr.info('info');
+});
+
+</script>
+
 <script>
 
 var socket = null;
@@ -64,8 +102,10 @@ $(document).ready(function() {
 	   		console.log('Info: connection opened.');
 		};
 
-		sock.onmessage = function(event) {
+		sock.onmessage = function(evt) {
 	   		console.log('Info: connection onmessage.');
+	   		console.log(evt.data);
+	   		toastr.info(evt.data);
 		};
 
 		sock.onclose = function(event) {

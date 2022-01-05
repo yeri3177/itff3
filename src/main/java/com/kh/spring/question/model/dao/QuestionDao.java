@@ -3,6 +3,7 @@ package com.kh.spring.question.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -40,6 +41,10 @@ public interface QuestionDao {
 	int updateQuestionAnswer(int questionNo);
 
 	int updateQuestionAnswerToN(int questionNo);
+
+	Member selectOneMember(String id);
+
+	int insertSaveNotify(Map<String, Object> param);
 
 
 
