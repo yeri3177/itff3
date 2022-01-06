@@ -49,6 +49,7 @@ import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
@@ -658,6 +659,85 @@ public class AdminManageController {
 		
 		model.addAttribute("oneDateSchedule", oneDateSchedule);		
 	}
+	
+
+	/**
+	 * [예매내역 조회]
+	 */
+	
+	@GetMapping("/adminMovieReservationList.do")
+	public String adminMovieReservationList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<MovieReservation> list = adminService.selectMovieReservationList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectMovieReservationTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationList";
+	}
+	
+	/**
+	 * [예매 상세]
+	 */
+	
+	@GetMapping("/adminMovieReservationDetail.do")
+	public void adminMovieReservationDetail(@RequestParam("movieReservationId") String movieReservationId, @RequestParam("movieId") String movieId, Model model) {
+		log.debug("movieReservationId = {}", movieReservationId);
+		log.debug("movieId = {}", movieId);
+		
+		// 예매 정보
+		MovieReservation movieReservation = adminService.selectOneMovieReservation(movieReservationId);
+		log.debug("movieReservation = {}", movieReservation);
+		
+		// 예매 좌석 모양 뿌리기
+		List<MovieJoin> list = adminService.selectOneMovieReservationSeat(movieReservationId);
+		log.debug("list = {}", list);
+		
+		List<Seat> seats = new ArrayList<Seat>();
+		
+		for(int i=0; i < list.size(); i++ ) {
+			Seat seat = new Seat();
+			
+			String seatNo = list.get(i).getSeat().getSeatNo();
+			int isBooked = list.get(i).getSeat().getIsBooked();
+			
+			seat.setSeatNo(seatNo);
+			seat.setIsBooked(isBooked);
+			
+			seats.add(seat);
+		}
+		
+		// 예매 영화
+		Movie movie = adminService.selectOneMovie(movieId);
+		log.debug("movie = {}", movie);
+		
+		model.addAttribute("movieReservation", movieReservation);
+		model.addAttribute("seats", seats);
+		model.addAttribute("movie", movie);
+		model.addAttribute("movieReservationId", movieReservationId);
+	}
+	
 	
 ///////////////////////////////////////////////////////////////////////////////
 	

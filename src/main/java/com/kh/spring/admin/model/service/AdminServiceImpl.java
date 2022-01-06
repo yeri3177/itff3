@@ -24,6 +24,7 @@ import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -651,6 +652,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int searchGoodsOrderDateCount(Map<String, Object> param) {
 		return adminDao.searchGoodsOrderDateCount(param);
+	}
+
+	@Override
+	public List<MovieReservation> selectMovieReservationList(int offset, int limit) {
+		return adminDao.selectMovieReservationList(offset, limit);
+	}
+
+	@Override
+	public int selectMovieReservationTotalCount() {
+		return adminDao.selectMovieReservationTotalCount();
+	}
+
+	@Override
+	public MovieReservation selectOneMovieReservation(String movieReservationId) {
+		return adminDao.selectOneMovieReservation(movieReservationId);
+	}
+
+	@Override
+	public List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId) {
+		return adminDao.selectOneMovieReservationSeat(movieReservationId);
 	}
 	
 }

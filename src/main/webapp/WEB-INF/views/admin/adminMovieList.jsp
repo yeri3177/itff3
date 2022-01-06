@@ -62,7 +62,7 @@
 									
 									<!-- 이미지 -->
 									<td>
-										<div class="img" style="height: 140px; background-image: url(${pageContext.request.contextPath}/resources/upload/poster/${list.image })"></div>
+										<div class="img" style="width:100px; height: 140px; background-image: url(${pageContext.request.contextPath}/resources/upload/poster/${list.image })"></div>
 									</td>
 									
 									<!-- 작품코드 -->
@@ -168,7 +168,7 @@ $("#searchType").change((e) => {
 
 <script>
 
-// 상품 상세
+// 작품정보
 function movieInfo_btn(movieId) {
 	
 	console.log(movieId);

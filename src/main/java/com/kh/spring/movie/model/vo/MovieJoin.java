@@ -21,6 +21,7 @@ public class MovieJoin implements Serializable  {
 	
 	private Movie movie;
 	private MovieSchedule movieSchedule;
+	private MovieReservation movieReservation;
 	private Seat seat;
 	private Theater theater;
 }
