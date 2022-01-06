@@ -1,0 +1,225 @@
+@charset "UTF-8";
+
+.detail_content_td {
+	display: flex !important;
+    align-items: center !important;
+}
+
+.title_tr {
+	width: 110px;
+	font-size: 17px !important;
+}
+
+.title_th {
+	font-size: 14px !important;
+    color: #9f9f9f;
+    font-weight: 700;
+    width: 110px;
+}
+
+.price {
+	font-weight: bold;
+}
+
+.table tbody th, .table tbody td {
+	border: 0;
+}
+
+.order_no_th {
+    width: 204px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
+
+.order_no_th, .order_no_td {
+	border-bottom: 10px solid #f8f9fd;
+}
+
+.option_content_div {
+	width: 600px;
+}
+
+.order_img {
+	width: 80px;
+	height: 80px; 
+	margin: 0 20px 0 0;
+	background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    border: 1px solid whitesmoke;
+    background-position: center center;
+}
+
+.optionSpan {
+	margin-right: 5px;
+    font-size: 12px;
+    color: #545454;
+}
+
+.quantity {
+	color: #a3a3a3 !important;
+}
+
+.goods_order_info {
+	text-align: left;
+    width: 185px;
+    margin: 0 auto;
+}
+
+.pay {
+	font-size: 14px !important;
+}
+
+.pd {
+	font-size: 14px !important;
+}
+
+.total {
+	font-size: 14px !important;
+}
+
+.pay_td {
+	font-size: 19px !important;
+	text-align: right;
+}
+
+.pd_td {
+	font-size: 14px !important;
+	text-align: right;
+}
+
+.total_td {
+	text-align: right;
+	font-size: 19px !important;
+	color: #ec7b65 !important;
+	font-weight: bold;
+}
+
+.trash {
+	padding: 0;
+    width: 1px;
+}
+
+.receiver {
+	text-align: left;
+	width: 300px;
+	padding-left: 30px !important;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orderUpdateBtn {
+    height: 27px;
+    display: flex !important;
+    align-items: center;
+    border-radius: 0 !important;
+    font-size: 12px !important;
+    border: 1px solid lightgray !important;
+    margin-right: 10px;
+}
+
+.table {
+	border: 1px solid whitesmoke;
+	-webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.form-select {
+	border: 1px solid whitesmoke;
+    padding: 5px;
+    width: 300px;
+}
+
+/* 좌석 */
+
+
+.shadow-lg {
+	margin-top: 100px;
+	width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(64, 64, 64) !important;
+}
+
+.col-sm {
+	margin: 10px;
+	background-color: #e7e7e7;
+	border: 1px solid #dfdfdf;
+	height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    
+}
+
+.col-sm:hover {
+	cursor: pointer;
+/* 	background-color: #8b8b8b; */
+/* 	border: 1px solid #8b8b8b; */
+/* 	color: white; */
+}
+
+.theaterId {
+	font-size: 20px;
+    font-weight: bold;
+    color: rgb(243, 156, 18);
+    background-color: white;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+}
+
+.heading-section {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 40px;
+    color: #212121;
+    font-weight: bold;
+}
+
+.seat {
+    margin: 10px;
+    background-color: #e7e7e7;
+/*     border: 1px solid #dfdfdf; */
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.row_seat {
+	height: 100%;
+    align-items: center;
+    width: 400px;
+    display: -ms-flexbox;
+    display: flex;
+    align-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin: 0 auto;
+    background-color: #212121;
+    border-radius: 20px;
+}	
+
+.seat_container {
+	border: 1px solid whitesmoke;
+	padding: 10px 10px 10px 10px;
+}
+
+.arrangement {
+	border: none;
+    font-size: 14px;
+    background: #fff;
+    /* border-bottom: 4px solid #f8f9fd; */
+    vertical-align: middle;
+    padding: 0.75rem;
+    width: 110px;
+    font-size: 17px !important;
+    font-weight: 700;
+}

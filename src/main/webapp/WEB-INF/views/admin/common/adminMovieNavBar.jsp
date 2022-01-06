@@ -17,7 +17,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do">상영관정보</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">영화</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMovieReservationList.do">예매관리</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">영화</a>
