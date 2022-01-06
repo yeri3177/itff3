@@ -108,7 +108,7 @@
 
 				      <c:forEach items="${seats }" var="seat" varStatus="vs">
 					    <div class="seat" style="color:white; background-color: ${seat.isBooked eq 1 ? '#ec7b65' : 'rgb(127, 127, 127)'}">
-					      <div style="font-size: 14px;">${seat.seatNo }</div>
+					      <div class="seatNo">${seat.seatNo }</div>
 					    </div>
 			   		    <c:if test="${fn:endsWith(seat.seatNo, '3')}">
 					    	<div style="width: 40px; height: 40px;"></div>

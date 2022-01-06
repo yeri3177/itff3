@@ -610,13 +610,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Goods> selectRecentTenGoodsList() {
+	public List<GoodsPaymentJoin> selectRecentTenGoodsList() {
 		return adminDao.selectRecentTenGoodsList();
-	}
-
-	@Override
-	public int adminSaleGoodsCount() {
-		return adminDao.adminSaleGoodsCount();
 	}
 
 	@Override
@@ -672,6 +667,36 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId) {
 		return adminDao.selectOneMovieReservationSeat(movieReservationId);
+	}
+
+	@Override
+	public List<MovieReservation> selectTodayMovieReservationList() {
+		return adminDao.selectTodayMovieReservationList();
+	}
+
+	@Override
+	public int adminManageTodayMovieReservationCount() {
+		return adminDao.adminManageTodayMovieReservationCount();
+	}
+
+	@Override
+	public List<MovieReservation> searchMovieReservation(Map<String, Object> param) {
+		return adminDao.searchMovieReservation(param);
+	}
+
+	@Override
+	public int searchMovieReservationCount(Map<String, Object> param) {
+		return adminDao.searchMovieReservationCount(param);
+	}
+
+	@Override
+	public List<MovieReservation> searchMovieReservationDate(Map<String, Object> param) {
+		return adminDao.searchMovieReservationDate(param);
+	}
+
+	@Override
+	public int searchMovieReservationDateCount(Map<String, Object> param) {
+		return adminDao.searchMovieReservationDateCount(param);
 	}
 	
 }

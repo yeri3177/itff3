@@ -179,22 +179,22 @@
 }
 
 .seat {
-    margin: 10px;
+    margin: 8px;
     background-color: #e7e7e7;
 /*     border: 1px solid #dfdfdf; */
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .row_seat {
 	height: 100%;
     align-items: center;
-    width: 400px;
+    width: 316px;
     display: -ms-flexbox;
     display: flex;
     align-content: center;
@@ -204,7 +204,7 @@
     margin-left: -15px;
     margin: 0 auto;
     background-color: #212121;
-    border-radius: 20px;
+    border-radius: 13px;
 }	
 
 .seat_container {
@@ -222,4 +222,9 @@
     width: 110px;
     font-size: 17px !important;
     font-weight: 700;
+}
+
+.seatNo {
+	font-size: 12px; 
+	font-family: 'Montserrat';
 }

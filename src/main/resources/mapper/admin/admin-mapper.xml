@@ -503,9 +503,12 @@
 		<result column="order_no" property="orderNo"/>
 		<result column="member_id" property="memberId"/>
 		<result column="receiver" property="receiver"/>
-		<result column="address" property="address"/>
 		<result column="phone" property="phone"/>
+		<result column="post_code" property="postCode"/>
+		<result column="address" property="address"/>
+		<result column="detail_address" property="detailAddress"/>
 		<result column="order_comment" property="orderComment"/>
+		<result column="used_points" property="usedPoints"/>
 		<result column="total_price" property="totalPrice"/>
 		<result column="payment_date" property="paymentDate"/>
 	</resultMap>
@@ -1345,10 +1348,16 @@
 	</select>
 	
 	<select id="selectGoodsOrderTotalCount" resultType="_int">
-		select 
-			count(*) 
-		from 
-			goods_order
+		select
+			count(*)
+		from
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
+		order by 
+			o.order_no desc
 	</select>
 	
 	<resultMap type="member" id="memberMap2">
@@ -1418,21 +1427,19 @@
 			order_no = #{orderNo}
 	</select>
 	
-	<select id="selectRecentTenGoodsList" resultType="goods"> 
-		select 
-			* 
-		from 
-			goods 
-		where 
-			<![CDATA[rownum <= 10]]>
-		order by p_enroll desc
-	</select>
-	
-	<select id="adminSaleGoodsCount" resultType="_int">
-		select 
-			count(*) 
-		from 
-			goods
+	<select id="selectRecentTenGoodsList" resultMap="GoodsPaymentJoinMap"> 
+		select
+			o.order_no, m.name, o.total_price, o.order_date, p.payment_no
+		from
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
+        where
+            to_char(order_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
+		order by 
+			o.order_no desc
 	</select>
 	
 	<select id="selectOneGoodsOrder" resultType="goodsOrder">
@@ -1598,6 +1605,98 @@
 		on r.movie_schedule_id = s.movie_schedule_id
 		where 
 			movie_reservation_id = #{movieReservationId}
+	</select>
+	
+	<select id="selectTodayMovieReservationList" resultType="movieReservation">
+		select
+			movie_reservation_id, member_id, title_kor, reg_date
+		from
+			movie_reservation
+		where
+			to_char(reg_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
+		order by
+			reg_date desc
+	</select>
+	
+	<select id="adminManageTodayMovieReservationCount" resultType="_int">
+		select
+			count(*)
+		from
+			movie_reservation
+		where
+			to_char(reg_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
+	</select>
+	
+	<select id="searchMovieReservation" resultType="movieReservation">
+	    select
+	        *
+	    from
+	       movie_reservation
+			<choose>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('movieReservationId')">
+					where 
+						movie_reservation_id like #{searchKeyword}
+				</when>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+					where 
+						memberId like #{searchKeyword}
+				</when>
+			</choose>
+	</select>
+
+	<select id="searchMovieReservationCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('movieReservationId')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+				movie_reservation_id like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+				member_id like #{searchKeyword}
+		</if>
+	</select>
+	
+	<select id="searchMovieReservationDate" resultType="movieReservation">
+	    select
+	        *
+	    from
+	       movie_reservation
+			<choose>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('regDate')">
+					where 
+        				reg_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+				</when>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('startDate')">
+					where 
+						start_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+				</when>
+			</choose>
+	</select>
+
+	<select id="searchMovieReservationDateCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('regDate')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+        		reg_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('startDate')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+        		start_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		</if>
 	</select>
 
 </mapper>

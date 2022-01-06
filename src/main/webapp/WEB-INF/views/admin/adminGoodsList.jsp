@@ -115,7 +115,7 @@ div#search-pName {display: "pName".equals(${searchType}) ? "inline-block" : "non
 									<!-- 상품코드 -->
 									<td>
 										<div class="email">
-											<span>${list.PId }</span> 
+											<span style="text-decoration: underline;">${list.PId }</span> 
 										</div>
 									</td>
 

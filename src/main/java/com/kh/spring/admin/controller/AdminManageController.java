@@ -88,31 +88,41 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * [메인화면: 판매중 상품 수]
+	 * [메인화면: 오늘 예매]
 	 */
 	
-	@GetMapping("/adminSaleGoodsCount.do")
-	public void adminSaleGoodsCount(Model model) {
-		int count = adminService.adminSaleGoodsCount();
-		log.debug("count = {}", count);
-		
-		model.addAttribute("count", count);
-	}
-	
-	/**
-	 * [메인화면: 판매중 상품 목록]
-	 */
-	
-	@GetMapping("/selectRecentTenGoodsList.do")
-	public void selectRecentTenGoodsList(Model model) {
-		List<Goods> list = adminService.selectRecentTenGoodsList();
-//		log.debug("list = {}", list);
+	@GetMapping("/selectTodayMovieReservationList.do")
+	public void selectTodayMovieReservationList(Model model) {
+		List<MovieReservation> list = adminService.selectTodayMovieReservationList();
 		
 		model.addAttribute("list", list);
 	}
 
 	/**
 	 * [메인화면: 오늘 주문]
+	 */
+	
+	@GetMapping("/selectRecentTenGoodsList.do")
+	public void selectRecentTenGoodsList(Model model) {
+		List<GoodsPaymentJoin> list = adminService.selectRecentTenGoodsList();
+		
+		model.addAttribute("list", list);
+	}
+
+	/**
+	 * [메인화면: 오늘 예매 수]
+	 */
+	
+	@GetMapping("/adminManageTodayMovieReservationCount.do")
+	public void adminManageTodayMovieReservationCount(Model model) {
+		int count = adminService.adminManageTodayMovieReservationCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+
+	/**
+	 * [메인화면: 오늘 주문 수]
 	 */
 	
 	@GetMapping("/adminManageTodayOrderCount.do")
@@ -737,6 +747,106 @@ public class AdminManageController {
 		model.addAttribute("movie", movie);
 		model.addAttribute("movieReservationId", movieReservationId);
 	}
+	
+	/**
+	 * [예매 내역 검색]
+	 */
+	
+	@GetMapping("/adminmovieReservationFinder.do")
+	public String adminmovieReservationFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		param.put("searchKeyword", newSearchKeyword);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<MovieReservation> list = adminService.searchMovieReservation(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchMovieReservationCount(param);
+		log.debug("totalContents = {}", totalContents);
+
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?searchType="+searchType+"&searchKeyword="+searchKeyword;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationList";
+	}
+	
+	/**
+	 * [예매 내역 날짜 검색]
+	 */
+	
+	@GetMapping("/adminMovieReservationDateFinder.do")
+	public String adminMovieReservationDateFinder(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String startDate,
+			@RequestParam String endDate,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1. 
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchType", searchType);
+		param.put("startDate", startDate);
+		param.put("endDate", endDate);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param1 = {}", param);
+		
+		// 1. 
+		List<MovieReservation> list = adminService.searchMovieReservationDate(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContents = adminService.searchMovieReservationDateCount(param);
+		log.debug("totalContents = {}", totalContents);
+		
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?startDate="+startDate+"&endDate="+endDate;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationList";
+	}
+	
 	
 	
 ///////////////////////////////////////////////////////////////////////////////

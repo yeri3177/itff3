@@ -113,7 +113,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									<!-- 주문번호 -->
 									<td>
 										<div class="email">
-											<span>${list.goodsOrder.orderNo}</span> 
+											<span style="text-decoration: underline;">${list.goodsOrder.orderNo}</span> 
 										</div>
 									</td>
 

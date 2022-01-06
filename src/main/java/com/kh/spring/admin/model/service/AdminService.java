@@ -215,9 +215,7 @@ public interface AdminService {
 
 	GoodsPaymentJoin selectOnePayment(Map<String, Object> param);
 
-	List<Goods> selectRecentTenGoodsList();
-
-	int adminSaleGoodsCount();
+	List<GoodsPaymentJoin> selectRecentTenGoodsList();
 
 	GoodsOrder selectOneGoodsOrder(String orderNo);
 
@@ -240,6 +238,18 @@ public interface AdminService {
 	MovieReservation selectOneMovieReservation(String movieReservationId);
 
 	List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId);
+
+	List<MovieReservation> selectTodayMovieReservationList();
+
+	int adminManageTodayMovieReservationCount();
+
+	List<MovieReservation> searchMovieReservation(Map<String, Object> param);
+
+	int searchMovieReservationCount(Map<String, Object> param);
+
+	List<MovieReservation> searchMovieReservationDate(Map<String, Object> param);
+
+	int searchMovieReservationDateCount(Map<String, Object> param);
 
 	
 }

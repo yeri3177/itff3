@@ -11,11 +11,14 @@
 
 
 <c:forEach items="${list }" var="list">
-	<tr>
-		<td class="title-td" style="width: 200px; text-align: left;">
-			<img src="${pageContext.request.contextPath}/resources/upload/member/${list.image }" alt="memberImage" style="width: 40px; height: 40px; border-radius: 30px; margin-right: 10px;"/>
-			<span class="file-title"> ${list.id } </span>
+	<tr style="width: 600px; font-size: 13px;">
+		<td class="second-cell">
+			<a class="no" href="${pageContext.request.contextPath }/admin/adminMovieReservationList.do">
+			${list.movieReservationId }
+			</a>
 		</td>
-		<td class="filesize-td" style="font-size: 13px;"><span style="font-family: 'Montserrat';"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></span></td>
+		<td class="second-cell">${list.memberId }</td>
+		<td class="second-cell">${list.titleKor }</td>
+		<td class="hits-cell" style="font-size: 13px; font-family: 'Montserrat';"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
 	</tr>
 </c:forEach>
