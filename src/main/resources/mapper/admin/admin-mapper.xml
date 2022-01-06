@@ -1626,5 +1626,77 @@
 		where
 			to_char(reg_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
 	</select>
+	
+	<select id="searchMovieReservation" resultType="movieReservation">
+	    select
+	        *
+	    from
+	       movie_reservation
+			<choose>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('movieReservationId')">
+					where 
+						movie_reservation_id like #{searchKeyword}
+				</when>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+					where 
+						memberId like #{searchKeyword}
+				</when>
+			</choose>
+	</select>
+
+	<select id="searchMovieReservationCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('movieReservationId')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+				movie_reservation_id like #{searchKeyword}
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('memberId')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+				member_id like #{searchKeyword}
+		</if>
+	</select>
+	
+	<select id="searchMovieReservationDate" resultType="movieReservation">
+	    select
+	        *
+	    from
+	       movie_reservation
+			<choose>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('regDate')">
+					where 
+        				reg_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+				</when>
+				<when test="searchType != null and !searchType.equals('') and searchType.equals('startDate')">
+					where 
+						start_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+				</when>
+			</choose>
+	</select>
+
+	<select id="searchMovieReservationDateCount" resultType="int" parameterType="java.util.HashMap">
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('regDate')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+        		reg_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		</if>
+		<if test="searchType != null and !searchType.equals('') and searchType.equals('startDate')">
+	   	    select
+		        count(*)
+		    from
+		       movie_reservation
+			where 
+        		start_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		</if>
+	</select>
 
 </mapper>
