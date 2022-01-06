@@ -243,5 +243,13 @@ public interface AdminService {
 
 	int adminManageTodayMovieReservationCount();
 
+	List<MovieReservation> searchMovieReservation(Map<String, Object> param);
+
+	int searchMovieReservationCount(Map<String, Object> param);
+
+	List<MovieReservation> searchMovieReservationDate(Map<String, Object> param);
+
+	int searchMovieReservationDateCount(Map<String, Object> param);
+
 	
 }

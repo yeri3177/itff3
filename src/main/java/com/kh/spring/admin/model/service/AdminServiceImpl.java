@@ -678,5 +678,25 @@ public class AdminServiceImpl implements AdminService {
 	public int adminManageTodayMovieReservationCount() {
 		return adminDao.adminManageTodayMovieReservationCount();
 	}
+
+	@Override
+	public List<MovieReservation> searchMovieReservation(Map<String, Object> param) {
+		return adminDao.searchMovieReservation(param);
+	}
+
+	@Override
+	public int searchMovieReservationCount(Map<String, Object> param) {
+		return adminDao.searchMovieReservationCount(param);
+	}
+
+	@Override
+	public List<MovieReservation> searchMovieReservationDate(Map<String, Object> param) {
+		return adminDao.searchMovieReservationDate(param);
+	}
+
+	@Override
+	public int searchMovieReservationDateCount(Map<String, Object> param) {
+		return adminDao.searchMovieReservationDateCount(param);
+	}
 	
 }
