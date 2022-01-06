@@ -692,4 +692,14 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.searchMovieReservationDateCount", param);
 	}
 
+	@Override
+	public int deleteMovieReservation(String movieReservationId) {
+		return session.delete("admin.deleteMovieReservation", movieReservationId);
+	}
+
+	@Override
+	public Payment selectOnePayment2(String orderNo) {
+		return session.selectOne("admin.selectOnePayment2", orderNo);
+	}
+
 }

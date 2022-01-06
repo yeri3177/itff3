@@ -27,7 +27,7 @@
 						  <!-- 주문 정보 -->
 						  
 						  <tr>
-						  	<th class="title_tr">주문 정보</th>
+						  	<th class="title_tr">주문정보</th>
 						  	<td class="receiver" style="justify-content: flex-start;">	
 							  	<button 
 					      		type="button" 
@@ -66,6 +66,8 @@
 								<th class="title_th">배송주소</th>
 								<td class="receiver">
 									${payment.payment.address }
+									${payment.payment.detailAddress }
+									${payment.payment.postCode }									
 								</td>
 								<th class="title_th">주문메모</th>
 								<td class="receiver">
@@ -117,6 +119,11 @@
 						  <tr>
 						  	<th class="title_th pay">결제날짜</th>
 							<td class="pay_td" style="font-size: 14px !important;"><fmt:formatDate value="${payment.payment.paymentDate }" pattern="yy-MM-dd HH:mm:ss"/></td>						  
+						  </tr>
+
+						  <tr>
+						  	<th class="title_th pay">사용포인트</th>
+							<td class="pay_td" style="font-size: 14px !important;"><fmt:formatNumber value="${payment.payment.usedPoints }" pattern="#,###"/></td>						  
 						  </tr>
 						  
 						  <tr>
@@ -195,13 +202,13 @@
 		      		data-toggle="modal"
 					data-target="#adminGoodsUpdate"
 					onclick="goodsUpdate_btn('${orderNo}');">주문자정보</button>
+				 -->
 		        <button 
 		        	type="button" 
 		        	class="btn btn-outline-secondary"
   			      	data-toggle="modal"
-					data-target="#adminGoodsDelete"
-					onclick="goodsDelete_btn('${orderNo}');">주문메모</button>
-				 -->
+					data-target="#adminGoodsOrderDelete"
+					onclick="goods_order_delete_btn('${orderNo}');">주문취소</button>
 		      </div>
 
 <script>

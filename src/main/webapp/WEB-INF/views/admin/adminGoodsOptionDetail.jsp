@@ -24,7 +24,7 @@
 					  <tbody>
 						  <tr>
 						      <th scope="row">상품이미지</th>
-						      <td><div class="img" style="height: 120px !important; background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg })"></div></td>
+						      <td><div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${goods.PImg })"></div></td>
 						  </tr>
 						   <tr>
 						     <th scope="row">상품번호</th>
@@ -47,7 +47,7 @@
 					  	  <tbody>
 						   <tr>
 						     <th scope="row">옵션별 이미지</th>
-						     <td><div class="img" style="height: 120px !important; background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${od.optionImg })"></div></td>
+						     <td><div class="img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${od.optionImg })"></div></td>
 						   </tr>
 						   <tr>
 						     <th scope="row">옵션코드</th>

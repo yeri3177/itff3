@@ -92,10 +92,10 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 							<thead class="thead-primary">
 								<tr>
 									<th>&nbsp;</th>
+									<th>주문일자</th>
 									<th>주문번호</th>
 									<th>주문자</th>
 									<th>주문금액</th>
-									<th>주문날짜</th>
 									<th>결제상태</th>
 									<th>&nbsp;</th>
 									<th>&nbsp;</th>
@@ -108,6 +108,13 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									<td><label class="checkbox-wrap checkbox-primary">
 
 									</label>
+									</td>
+									
+									<!-- 주문일자 -->
+									<td>
+										<div class="email">
+												<span><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yy-MM-dd HH:mm:ss"/></span> 
+										</div>
 									</td>
 
 									<!-- 주문번호 -->
@@ -126,13 +133,6 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									
 									<!-- 금액 -->
 									<td><fmt:formatNumber value="${list.goodsOrder.totalPrice }" pattern="#,###" /></td>
-
-									<!-- 주문날짜-->
-									<td>
-										<div class="email">
-												<span><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yyyy-MM-dd"/></span> 
-										</div>
-									</td>
 
 									<!-- 결제상태 -->
 									<td>
@@ -196,7 +196,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 						</div>
 						<!-- 주문 상세 끝 -->
 						<!-- 주문 삭제 -->
-						<div class="modal fade" id="adminGoodsDelete" tabindex="-1"
+						<div class="modal fade" id="adminGoodsOrderDelete" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -369,13 +369,13 @@ function goodsUpdate_btn(orderNo) {
 <script>
 
 // 주문 삭제
-function goodsDelete_btn(orderNo) {
+function goods_order_delete_btn(orderNo) {
 	
 	console.log(orderNo);
 	var id = orderNo;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsDelete.do",
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderDelete.do",
 		data: {orderNo: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",

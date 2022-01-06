@@ -698,5 +698,15 @@ public class AdminServiceImpl implements AdminService {
 	public int searchMovieReservationDateCount(Map<String, Object> param) {
 		return adminDao.searchMovieReservationDateCount(param);
 	}
-	
+
+	@Override
+	public int deleteMovieReservation(String movieReservationId) {
+		return adminDao.deleteMovieReservation(movieReservationId);
+	}
+
+	@Override
+	public Payment selectOnePayment2(String orderNo) {
+		return adminDao.selectOnePayment2(orderNo);
+	}
+
 }

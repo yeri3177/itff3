@@ -257,4 +257,7 @@ public interface AdminDao {
 
 	int searchMovieReservationDateCount(Map<String, Object> param);
 
+	int deleteMovieReservation(String movieReservationId);
+
+	Payment selectOnePayment2(String orderNo);
 }

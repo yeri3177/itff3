@@ -38,7 +38,6 @@ pageContext.setAttribute("loginMember", loginMember);
                             <a href="${pageContext.request.contextPath}/admin/adminMovieList.do" class="collapse__sublink">상영목록</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do" class="collapse__sublink">상영관정보</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminMovieReservationList.do" class="collapse__sublink">예매관리</a><br />
-                             <a href="#" class="collapse__sublink">Members</a> 
                         </ul> 
                      </div>
                       
@@ -51,22 +50,9 @@ pageContext.setAttribute("loginMember", loginMember);
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품관리</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do" class="collapse__sublink">주문관리</a><br />
-                             <a href="#" class="collapse__sublink">Members</a> 
                         </ul> 
                      </div> 
-
-                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span class="nav_name">회원관리</span>
-
-                        <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
-
-                        <ul class="collapse__menu">
-                            <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="collapse__sublink">회원목록</a><br />
-                             <a href="#" class="collapse__sublink">Group</a><br />
-                             <a href="#" class="collapse__sublink">Members</a>
-                         </ul> 
-                     </div> 
+                     
 
                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
                         <ion-icon name="list-outline"></ion-icon>
@@ -77,7 +63,6 @@ pageContext.setAttribute("loginMember", loginMember);
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminReviewList.do" class="collapse__sublink">리뷰게시판</a><br />
                              <a href="${pageContext.request.contextPath}/admin/adminSharingList.do" class="collapse__sublink">티켓나눔터</a><br />
-                             <a href="#" class="collapse__sublink">Members</a>
                          </ul> 
                      </div> 
                      
@@ -104,8 +89,13 @@ pageContext.setAttribute("loginMember", loginMember);
                              <a href="${pageContext.request.contextPath}/admin/adminNoticeList.do" class="collapse__sublink">공지사항 조회</a><br />
                          </ul> 
                      </div> 
+
+                    <a href="${pageContext.request.contextPath}/admin/adminMemberList.do" class="nav__link">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span class="nav_name">회원관리</span>
+                    </a> 
                     
-                          <a href="${pageContext.request.contextPath}/admin/chat.do" class="nav__link">
+                    <a href="${pageContext.request.contextPath}/admin/chat.do" class="nav__link">
                         <ion-icon name="chatbubbles-outline"></ion-icon>
                         <span class="nav_name">채팅</span>
                     </a>

@@ -11,7 +11,7 @@
 </jsp:include>
 
 		      <div class="modal-header">
-		        <h4 class="modal-title" id="exampleModalLabel">상품 정보</h4>
+		        <h4 class="modal-title" id="exampleModalLabel">상품정보</h4>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
@@ -41,11 +41,11 @@
 						     <td>${goods.PInfo }</td>
 						   </tr>
 						   <tr>
-						     <th scope="row" style="width: 100px;">카테고리</th>
+						     <th scope="row" style="width: 100px;">대분류</th>
 						     <td>${goods.PCategory }</td>
 						   </tr>
 						   <tr>
-						     <th scope="row" style="width: 120px;">세부 카테고리</th>
+						     <th scope="row" style="width: 120px;">소분류</th>
 						     <td>${goods.PSubcategory }</td>
 						   </tr>
 						   <tr>
