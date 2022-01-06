@@ -88,31 +88,41 @@ public class AdminManageController {
 ///////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * [메인화면: 판매중 상품 수]
+	 * [메인화면: 오늘 예매]
 	 */
 	
-	@GetMapping("/adminSaleGoodsCount.do")
-	public void adminSaleGoodsCount(Model model) {
-		int count = adminService.adminSaleGoodsCount();
-		log.debug("count = {}", count);
-		
-		model.addAttribute("count", count);
-	}
-	
-	/**
-	 * [메인화면: 판매중 상품 목록]
-	 */
-	
-	@GetMapping("/selectRecentTenGoodsList.do")
-	public void selectRecentTenGoodsList(Model model) {
-		List<Goods> list = adminService.selectRecentTenGoodsList();
-//		log.debug("list = {}", list);
+	@GetMapping("/selectTodayMovieReservationList.do")
+	public void selectTodayMovieReservationList(Model model) {
+		List<MovieReservation> list = adminService.selectTodayMovieReservationList();
 		
 		model.addAttribute("list", list);
 	}
 
 	/**
 	 * [메인화면: 오늘 주문]
+	 */
+	
+	@GetMapping("/selectRecentTenGoodsList.do")
+	public void selectRecentTenGoodsList(Model model) {
+		List<GoodsPaymentJoin> list = adminService.selectRecentTenGoodsList();
+		
+		model.addAttribute("list", list);
+	}
+
+	/**
+	 * [메인화면: 오늘 예매 수]
+	 */
+	
+	@GetMapping("/adminManageTodayMovieReservationCount.do")
+	public void adminManageTodayMovieReservationCount(Model model) {
+		int count = adminService.adminManageTodayMovieReservationCount();
+		log.debug("count = {}", count);
+		
+		model.addAttribute("count", count);
+	}
+
+	/**
+	 * [메인화면: 오늘 주문 수]
 	 */
 	
 	@GetMapping("/adminManageTodayOrderCount.do")

@@ -578,13 +578,8 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Goods> selectRecentTenGoodsList() {
+	public List<GoodsPaymentJoin> selectRecentTenGoodsList() {
 		return session.selectList("admin.selectRecentTenGoodsList");
-	}
-
-	@Override
-	public int adminSaleGoodsCount() {
-		return session.selectOne("admin.adminSaleGoodsCount");
 	}
 
 	@Override
@@ -653,6 +648,16 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId) {
 		return session.selectList("admin.selectOneMovieReservationSeat", movieReservationId);
+	}
+
+	@Override
+	public List<MovieReservation> selectTodayMovieReservationList() {
+		return session.selectList("admin.selectTodayMovieReservationList");
+	}
+
+	@Override
+	public int adminManageTodayMovieReservationCount() {
+		return session.selectOne("admin.adminManageTodayMovieReservationCount");
 	}
 
 }

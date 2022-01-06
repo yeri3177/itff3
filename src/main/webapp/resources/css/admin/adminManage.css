@@ -1505,7 +1505,7 @@ tbody, td, tfoot, th, thead, tr {
     color: var(--table-striped-color);
 }
 
-.view-paymentmethods .payment-methods-table .payment-methods-text-wrapper, .not-permitted-wrapper, .recent-gridbox-apps td a, .dashboard-content .title-cell a, .view-blogs .blog-layout .title-cell a {
+.view-paymentmethods .payment-methods-table .payment-methods-text-wrapper, .not-permitted-wrapper, .dashboard-content .title-cell a, .view-blogs .blog-layout .title-cell a {
     display: flex;
     align-items: center;
 }
@@ -1775,6 +1775,7 @@ h3, .h3 {
 
 .text-gray-500 {
     color: #adb5bd !important;
+    font-family: 'Montserrat';
 }
 
 small, .small {
@@ -1907,6 +1908,7 @@ tbody::-webkit-scrollbar-track {
 .recent_goods_count {
 	padding: 0 0 0 15px;
     color: #45a7b9 !important;
+    font-family: 'Montserrat';
 }
 
 .refresh_th {
@@ -1914,7 +1916,6 @@ tbody::-webkit-scrollbar-track {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid whitesmoke !important;
 }
 
 .text-number {
@@ -1942,4 +1943,8 @@ tbody::-webkit-scrollbar-track {
 	align-items: center;
 }
 
-
+.no {
+	font-weight: bold !important;
+    font-family: 'Montserrat';
+    text-decoration: underline;
+}

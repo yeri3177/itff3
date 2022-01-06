@@ -610,13 +610,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Goods> selectRecentTenGoodsList() {
+	public List<GoodsPaymentJoin> selectRecentTenGoodsList() {
 		return adminDao.selectRecentTenGoodsList();
-	}
-
-	@Override
-	public int adminSaleGoodsCount() {
-		return adminDao.adminSaleGoodsCount();
 	}
 
 	@Override
@@ -672,6 +667,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId) {
 		return adminDao.selectOneMovieReservationSeat(movieReservationId);
+	}
+
+	@Override
+	public List<MovieReservation> selectTodayMovieReservationList() {
+		return adminDao.selectTodayMovieReservationList();
+	}
+
+	@Override
+	public int adminManageTodayMovieReservationCount() {
+		return adminDao.adminManageTodayMovieReservationCount();
 	}
 	
 }

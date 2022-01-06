@@ -221,9 +221,7 @@ public interface AdminDao {
 
 	String selectOneGoodsOrderMember(String orderNo);
 
-	List<Goods> selectRecentTenGoodsList();
-
-	int adminSaleGoodsCount();
+	List<GoodsPaymentJoin> selectRecentTenGoodsList();
 
 	GoodsOrder selectOneGoodsOrder(String orderNo);
 
@@ -246,5 +244,9 @@ public interface AdminDao {
 	MovieReservation selectOneMovieReservation(String movieReservationId);
 
 	List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId);
+
+	List<MovieReservation> selectTodayMovieReservationList();
+
+	int adminManageTodayMovieReservationCount();
 
 }

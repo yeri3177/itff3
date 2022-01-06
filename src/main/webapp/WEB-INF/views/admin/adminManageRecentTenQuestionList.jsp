@@ -21,7 +21,7 @@
 			<input type="hidden" name="memberId" value="${list.memberId }" />
 			${list.memberId }
 			</span> 
-			<span class="comments-date"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </span>
+			<span class="comments-date" style="font-family: 'Montserrat';"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </span>
 			</span> 
 			<span class="comments-message">${list.questionTitle }</span>
 		</span>
