@@ -21,6 +21,7 @@ import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -631,6 +632,27 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int searchGoodsOrderDateCount(Map<String, Object> param) {
 		return session.selectOne("admin.searchGoodsOrderDateCount", param);
+	}
+
+	@Override
+	public List<MovieReservation> selectMovieReservationList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		return session.selectList("admin.selectMovieReservationList", null, rowBounds);
+	}
+
+	@Override
+	public int selectMovieReservationTotalCount() {
+		return session.selectOne("admin.selectMovieReservationTotalCount");
+	}
+
+	@Override
+	public MovieReservation selectOneMovieReservation(String movieReservationId) {
+		return session.selectOne("admin.selectOneMovieReservation", movieReservationId);
+	}
+
+	@Override
+	public List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId) {
+		return session.selectList("admin.selectOneMovieReservationSeat", movieReservationId);
 	}
 
 }

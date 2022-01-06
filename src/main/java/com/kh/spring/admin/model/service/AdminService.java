@@ -16,6 +16,7 @@ import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -231,6 +232,14 @@ public interface AdminService {
 	List<GoodsPaymentJoin> searchGoodsOrderDate(Map<String, Object> param);
 
 	int searchGoodsOrderDateCount(Map<String, Object> param);
+
+	List<MovieReservation> selectMovieReservationList(int offset, int limit);
+
+	int selectMovieReservationTotalCount();
+
+	MovieReservation selectOneMovieReservation(String movieReservationId);
+
+	List<MovieJoin> selectOneMovieReservationSeat(String movieReservationId);
 
 	
 }

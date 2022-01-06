@@ -296,6 +296,20 @@
 		<result column="imgage" property="image"/>
 	</resultMap>
 
+	<resultMap type="movieReservation" id="movieReservationMap">
+		<id column="movie_reservation_id" property="movieReservationId"/>
+		<result column="movie_schedule_id" property="movieScheduleId"/>
+		<result column="member_id" property="memberId"/>
+		<result column="movie_id" property="movieId"/>
+		<result column="title_kor" property="titleKor"/>
+		<result column="selected_seat" property="selectedSeat"/>
+		<result column="reg_date" property="regDate"/>
+		<result column="theater_id" property="theaterId"/>
+		<result column="start_date" property="startDate"/>
+		<result column="start_time" property="startTime"/>
+		<result column="amount" property="amount"/>
+	</resultMap>
+
 	<resultMap type="movieSchedule" id="movieScheduleMap">
 		<id column="movie_schedule_id" property="movieScheduleId"/>
 		<result column="theater_id" property="theaterId"/>
@@ -318,6 +332,7 @@
 	<resultMap type="movieJoin" id="movieJoinMap">
 		<collection property="movie" resultMap="movieMap" />
 		<collection property="movieSchedule" resultMap="movieScheduleMap" />
+		<collection property="movieReservation" resultMap="movieReservationMap" />
 		<collection property="theater" resultMap="theaterMap" />
 		<collection property="seat" resultMap="seatMap" />
 	</resultMap>
@@ -1547,5 +1562,42 @@
         	order_date between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate} || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
+	<select id="selectMovieReservationList" resultType="movieReservation">
+		select
+			*
+		from
+			movie_reservation
+		order by
+			movie_reservation_id desc
+	</select>
+	
+	<select id="selectMovieReservationTotalCount" resultType="_int">
+		select
+			count(*)
+		from
+			movie_reservation
+	</select>
+	
+	<select id="selectOneMovieReservation" resultType="movieReservation">
+		select
+			*
+		from
+			movie_reservation
+		where
+			movie_reservation_id = #{movieReservationId}
+		order by
+			movie_reservation_id desc
+	</select>
+	
+	<select id="selectOneMovieReservationSeat" resultMap="movieJoinMap">
+		select
+			s.seat_no, s.is_booked
+		from
+			movie_reservation r
+		left join seat s
+		on r.movie_schedule_id = s.movie_schedule_id
+		where 
+			movie_reservation_id = #{movieReservationId}
+	</select>
 
 </mapper>

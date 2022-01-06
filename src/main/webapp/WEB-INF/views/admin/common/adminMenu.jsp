@@ -1,5 +1,16 @@
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+Member loginMember = (Member) authentication.getPrincipal();
+pageContext.setAttribute("loginMember", loginMember);
+%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminMenu.css">
 
@@ -10,8 +21,8 @@
                     <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
                     <a href="#" class="nav__logo">ITFF</a>
                 </div>
-                
-				<div class="nav__list">
+
+			<div class="nav__list">
                     <a href="${pageContext.request.contextPath}/admin/adminManage.do" class="nav__link">
                         <ion-icon name="home-outline"></ion-icon>
                         <span class="nav_name">대시보드</span>
@@ -26,6 +37,7 @@
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminMovieList.do" class="collapse__sublink">상영목록</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do" class="collapse__sublink">상영관정보</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminMovieReservationList.do" class="collapse__sublink">예매관리</a><br />
                              <a href="#" class="collapse__sublink">Members</a> 
                         </ul> 
                      </div>

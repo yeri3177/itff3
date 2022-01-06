@@ -15,8 +15,6 @@
 <!-- 사용자 설정 css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/admin/adminManage.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/admin/adminTodo.css" />
 
 		<div class="container-fluid container-main">
 
@@ -137,41 +135,7 @@
 													</div>
 													<div class="five">
 
-													  <div class="flex-container">
-													  
-													  <!-- todo -->
-														<div class="app" id="app" style="display: none;">
-															<form class="form" v-on:submit="addTodo">
-																<input class="input form__input" v-model="inputVal" />
-																<button class="btn form__submit-btn" type="submit">Add</button>
-															</form>
-															<transition-group tag="ol" name="list" class="todo-list">
-															<li class="todo-list__item"
-																v-bind:class="{ complete: todo.complete }"
-																v-bind:key="index"
-																v-for="(todo, index) in filteredTodos">
-																<button class="todo-list__item-content"
-																	v-on:click="toggleTodo(todo)">{{ todo.text }}
-																</button>
-																<button class="btn todo-list__item-remove"
-																	v-on:click="deleteTodo(index)">
-																	<i class="fa"
-																		v-bind:class="[todo.complete ? 'fa-check' : 'fa-times']"></i>
-																</button>
-															</li>
-															</transition-group>
-															<div class="filters">
-																<button class="btn filters__btn filters__btn--all"
-																	v-on:click="filterTodos('all')">All</button>
-																<button class="btn filters__btn filters__btn--complete"
-																	v-on:click="filterTodos('complete')">
-																	Complete</button>
-																<button
-																	class="btn filters__btn filters__btn--incomplete"
-																	v-on:click="filterTodos('incomplete')">
-																	Incomplete</button>
-															</div>
-														</div>
+													  <div class="flex-container">													
 
 														<!-- 차트 -->
 													    <div class="flex__third h56 row1">
@@ -638,83 +602,6 @@ $( ".getfive" ).on( "click", function() {
 	  });
 	});
 
-</script>
-
-<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
-<script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
-
-<script>
-
-// todo
-var filters = {
-		  all: function(todos) {
-		    return todos;
-		  },
-		  complete: function(todos) {
-		    return todos.filter(function(todo) {
-		      return todo.complete;
-		    });
-		  },
-		  incomplete: function(todos) {
-		    return todos.filter(function(todo) {
-		      return !todo.complete;
-		    });
-		  }
-		}
-
-		var STORAGE_KEY = 'vue-js-todo-P7oZi9sL'
-		var todoStorage = {
-		  fetch: function () {
-		    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-		    return todos;
-		  },
-		  save: function (todos) {
-		    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-		  }
-		}
-
-		var app = new Vue({
-		  el: '#app',
-		  data: {
-		    inputVal: '',
-		    todos: todoStorage.fetch(),
-		    visibility: 'all'
-		  },
-		  watch: {
-		    todos: {
-		      handler: function(todos) {
-		        todoStorage.save(todos);
-		      }
-		    }
-		  },
-		  computed: {
-		    filteredTodos: function () {
-		      return filters[this.visibility](this.todos);
-		    }
-		  },
-		  methods: {
-		    addTodo: function(e) {
-		      e.preventDefault();
-		      if (this.inputVal) {
-		        this.todos.push({
-		          text: this.inputVal,
-		          complete: false
-		        });
-		      }
-		      this.inputVal = '';
-		    },
-		    toggleTodo: function(todo) {
-		      todo.complete = !todo.complete;
-		    },
-		    filterTodos: function(filter) {
-		      this.visibility = filter;
-		    },
-		    deleteTodo: function(index) {
-		      this.todos.splice(index, 1);
-		    }
-		  }
-		});
-		
 </script>
 
 <script>

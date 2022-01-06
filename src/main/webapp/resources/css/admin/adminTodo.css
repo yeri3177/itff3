@@ -21,6 +21,7 @@ button:hover {
   background: #fff;
   overflow: hidden;
   box-shadow: 0 0 5px rgba(25, 25, 25, 0.25);
+  font-family: 'Noto Sans KR';
 }
 
 .btn {
@@ -40,8 +41,8 @@ button:hover {
 }
 
 .btn:hover, .btn:focus {
-  color: #fff;
-  background: #29b1bf;
+  color: #fff !important;
+  background: #29b1bf !important;
 }
 
 .form {
@@ -105,22 +106,22 @@ button:hover {
   transform: scalex(0);
 }
 .todo-list__item-content:hover:after, .todo-list__item-content:focus:after {
-  transform: scalex(1);
+  transform: scalex(1) !important;
 }
 .todo-list__item-remove {
   margin-left: 0.5em;
-  background: none;
-  border: 1px solid;
-  color: inherit;
-  padding: 0;
-  line-height: 1;
+  background: none !important;
+  border: 1px solid !important;
+  color: inherit !important;
+  padding: 0 !important;
+  line-height: 1 !important;
   width: 2em;
   height: 2em;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 80%;
+  border-radius: 50% !important;
+  font-size: 80% !important;
 }
 
 .filters {
@@ -138,8 +139,8 @@ button:hover {
 
 .list-enter,
 .list-leave-active {
-  transform: translate(100%, 0);
-  opacity: 0;
+  transform: translate(100%, 0) !important;
+  opacity: 0 !important;
 }
 
 .todo-list__item-content {

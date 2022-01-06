@@ -147,6 +147,7 @@ $(document).ready(function(){
 <!-- favicon -->
 <link rel="icon" href="${pageContext.request.contextPath }/resources/upload/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
+
 <body>
 	<div id="container">
 		<header>
