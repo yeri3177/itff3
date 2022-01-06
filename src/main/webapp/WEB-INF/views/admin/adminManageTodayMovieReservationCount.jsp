@@ -9,6 +9,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<span class="info-title" id="goods_count">판매중 상품</span> 
-	<a href="" class="recent_goods_count">${count }</a>	
-<span>건</span>
+<h3 class="h4 text-dark text-uppercase fw-normal">예매</h3>
+<p class="text-gray-500 small">Today</p>
+<p class="display-6 mb-0">${count }</p>

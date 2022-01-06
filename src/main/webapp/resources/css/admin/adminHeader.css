@@ -25,10 +25,6 @@
     margin: 0;
 }
 
-.navbar-nav {
-    margin: 8.75px -5px;
-}
-
 .seller-navbar .nav-pull-right>li {
     float: left;
     margin-right: 0;
@@ -117,7 +113,6 @@
 .logout_btn {
     background-color: rgb(43, 63, 107);
     border: 0;
-    height: 54px;
     display: flex;
     align-items: center;
     margin-top: 4px;
