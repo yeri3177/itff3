@@ -847,7 +847,39 @@ public class AdminManageController {
 		return "admin/adminMovieReservationList";
 	}
 	
+	/**
+	 * [예매 취소]
+	 */
 	
+	@GetMapping("/adminMovieReservationDelete.do")
+	public void adminMovieReservationDelete(@RequestParam("movieReservationId") String movieReservationId, Model model) {
+		log.debug("movieReservationId = {}", movieReservationId);
+		
+		MovieReservation movieReservation = adminService.selectOneMovieReservation(movieReservationId);
+		log.debug("movieReservation = {}", movieReservation);
+		
+		model.addAttribute("movieReservation", movieReservation);
+	}
+	
+	@PostMapping("/adminMovieReservationDelete.do")
+	public String adminMovieReservationDelete(@RequestParam String movieReservationId, RedirectAttributes redirectAttr) {
+		log.debug("movieReservationId = {}", movieReservationId);
+		
+    	try {
+			int result = adminService.deleteMovieReservation(movieReservationId);
+			redirectAttr.addFlashAttribute("msg", "예매 취소");
+			
+    	} catch (InvalidParameterException e) {
+    		log.error(e.getMessage(), e);
+    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+    		
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+			
+		return "redirect:/admin/adminMovieReservationList.do";
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -1424,11 +1456,9 @@ public class AdminManageController {
 			log.error("다시 시도해주세요.", e);
 			throw e;
 		}
-		
-		
+			
 		return "redirect:/admin/adminGoodsList.do";
 	}
-	
 
 	/**
 	 * [굿즈 주문 목록]
@@ -1594,6 +1624,41 @@ public class AdminManageController {
 		
 		return "admin/adminGoodsOrderList";
 	}
+	
+	
+	/**
+	 * [주문 취소]
+	 */
+	
+	@GetMapping("/adminGoodsOrderDelete.do")
+	public void adminGoodsOrderDelete(@RequestParam("orderNo") String orderNo, Model model) {
+		log.debug("orderNo = {}", orderNo);
+		
+		Payment payment = adminService.selectOnePayment2(orderNo);
+		log.debug("payment = {}", payment);
+		
+		model.addAttribute("payment", payment);
+	}
+	
+//	@PostMapping("/adminGoodsOrderDelete.do")
+//	public String adminGoodsOrderDelete(@RequestParam("paymentNo") int paymentNo, RedirectAttributes redirectAttr) {
+//		log.debug("paymentNo = {}", paymentNo);
+//		
+//    	try {
+////			int result = adminService.deleteGoodsOrder(paymentNo);
+//			redirectAttr.addFlashAttribute("msg", "주문 취소 성공");
+//			
+//    	} catch (InvalidParameterException e) {
+//    		log.error(e.getMessage(), e);
+//    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+//    		
+//		} catch (Exception e) {
+//			log.error("다시 시도해주세요.", e);
+//			throw e;
+//		}
+//			
+//		return "redirect:/admin/adminGoodsOrderList.do";
+//	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	

@@ -109,7 +109,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 									<th>예매일자</th>
 									<th>예매번호</th>
 									<th>아이디</th>
-									<th>작품명</th>
+									<th>예매영화</th>
 									<th>상영일자</th>
 									<th>좌석정보</th>
 									<th>결제금액</th>
@@ -147,7 +147,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 										</div>
 									</td>
 
-									<!-- 작품명 -->
+									<!-- 예매영화 -->
 									<td>
 										<div class="email">
 											<span>${list.titleKor}</span>
@@ -220,7 +220,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 							</div>
 						</div>
 						<!-- 예매 정보 수정 끝 -->
-						<!-- 예매 삭제 -->
+						<!-- 예매 취소 -->
 						<div class="modal fade" id="adminMovieReservationDelete" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
@@ -234,7 +234,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 								</div>
 							</div>
 						</div>
-						<!-- 예매 삭제 -->
+						<!-- 예매 취소 -->
 						<!-- 회원 상세 -->
 						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
@@ -421,7 +421,7 @@ function movie_reservation_delete_btn(movieReservationId) {
 	var id = movieReservationId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsDelete.do",
+		url:"${pageContext.request.contextPath}/admin/adminMovieReservationDelete.do",
 		data: {movieReservationId: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",

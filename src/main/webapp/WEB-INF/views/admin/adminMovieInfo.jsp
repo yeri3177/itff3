@@ -37,6 +37,13 @@
 						     <td><fmt:formatDate value="${movie.openingDate }" pattern="yyyy-MM-dd"/></td>
 						   </tr>
 						   <tr>
+						     <th scope="row" style="width: 100px;">감독</th>
+						     <td>
+						     <img src="${pageContext.request.contextPath}/resources/upload/director/${movie.director }.jpg" alt="감독" style="width: 50px; height: 50px; border-radius: 50px; margin-right: 10px; object-fit: cover;"/>
+						     ${movie.director }
+						     </td>
+						   </tr>
+						   <tr>
 						     <th scope="row" style="width: 100px;">출연배우</th>
 						     <td>${movie.actors }</td>
 						   </tr>
@@ -50,7 +57,7 @@
 						   </tr>
 						   <tr>
 						     <th scope="row" style="width: 100px;">등급</th>
-						     <td>${movie.ageLimit }</td>
+						     <td><img src="${pageContext.request.contextPath}/resources/upload/screening_grade/${movie.ageLimit }.png" alt="상영등급" /></td>
 						   </tr>
 					  </tbody>
 					</table>

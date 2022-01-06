@@ -30,7 +30,7 @@
 						
 						  <!-- 예매 정보 -->  
 						  <tr>
-						  	<th class="title_tr">예매 정보</th>
+						  	<th class="title_tr">예매정보</th>
 						  	<td class="receiver" style="justify-content: flex-start;">	
 							  	<button 
 					      		type="button" 
@@ -61,7 +61,7 @@
 								<td class="receiver">
 									${movieReservation.memberId }
 								</td>
-								<th class="title_th">작품명</th>
+								<th class="title_th">예매영화</th>
 								<td class="receiver">
 									${movieReservation.titleKor }					
 								</td>
@@ -128,7 +128,7 @@
 		        	type="button" 
 		        	class="btn btn-outline-secondary"
   			      	data-toggle="modal"
-					data-target="#adminGoodsDelete"
+					data-target="#adminMovieReservationDelete"
 					onclick="movie_reservation_delete_btn('${movieReservationId}');">예매취소</button>
 		      </div>
 

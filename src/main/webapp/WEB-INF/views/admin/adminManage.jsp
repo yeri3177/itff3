@@ -160,7 +160,7 @@
 															<thead>
 															<tr class="goods_table_tr">
 																<th class="refresh_th">
-																	<span> 예매 </span>
+																	<span> 예매 현황 </span>
 																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
 																</th>
 																</tr>
@@ -177,7 +177,7 @@
 														<thead>
 															<tr class="goods_table_tr">
 																<th class="refresh_th">
-																	<span> 주문/클레임 </span>
+																	<span> 주문 현황 </span>
 																	<img class="refresh" src="https://i.imgur.com/W76W3sP.png" alt="" onclick="refreshPage()"/>
 																</th>
 															</tr>
