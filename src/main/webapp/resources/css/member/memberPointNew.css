@@ -152,6 +152,6 @@ ul, ol {
     font-size: 18px;
 }
 
-.list_area li {
+.list_area li:not(.list_area > li:first-child) {
 	border-top: 1px solid #e1e1e1;
 }

@@ -21,6 +21,7 @@
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/reviewList.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/member/memberWrittenList.css" />
 
 <fmt:requestEncoding value="utf-8" />
 <!-- 이거 없으면 이 밑에 jsp: -->
@@ -51,57 +52,7 @@
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-<style>
-.mytmall_tab1 {
-    position: relative;
-    margin: 29px 0 0 0;
-    height: 45px;
-    background: none;
-}
 
-.mytmall_tab1 ul {
-    height: 30px;
-    overflow: hidden;
-    background: url(https://c.011st.com/img/mytmall_v2/mytmall_dot11.gif) repeat-x left bottom;
-}
-
-.marT0 {
-    margin-top: 0 !important;
-}
-.mytmall_tab1 ul li {
-    float: left;
-    width: 158px;
-    list-style: none;
-}
-.mytmall_tab1 ul li.on {
-    position: relative;
-    width: 159px;
-    float: left;
-    
-}
-.mytmall_tab1 ul li.on a {
-    position: relative;
-    width: 159px;
-    height: 30px;
-    border: 2px solid #666;
-    border-bottom: none;
-    color: #4d4d4d;
-    font-weight: bold;
-    background: #e6e6e6;
-}
-.mytmall_tab1 ul li a {
-    display: block;
-    width: 158px;
-    height: 26px;
-    border: 1px solid #b9b9b9;
-    border-bottom: none;
-    text-align: center;
-    padding-top: 8px;
-    color: #666;
-    text-decoration: none !important;
-    background: #f8f8f8;
-}
-</style>
 <div class="mytmall_tab1 marT0">
 	<ul>
 		<li class="on"><a href="${pageContext.request.contextPath}/member/memberWrittenReviewList.do">내가 작성한 리뷰</a></li>
@@ -120,10 +71,10 @@
 					<label><input type="radio" name="searchBoard" value="티켓나눔터" onclick="submitProcess('memberWrittenBoardList');"  <c:if test="${searchBoard eq '티켓나눔터' }">checked</c:if>> 티켓나눔터 </label>
 				</form> --%>
 			
-			<br />
+			<%-- <br />
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			
-			<a href="#">네티즌 리뷰 (총 ${totalContent }개 )</a>
+			<a href="#">네티즌 리뷰 (총 ${totalContent }개 )</a> --%>
 			
 		</h2>
 	</div>
