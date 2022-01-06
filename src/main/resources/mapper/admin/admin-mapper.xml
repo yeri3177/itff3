@@ -278,7 +278,7 @@
 			left join seat s
 			on c.movie_schedule_id = s.movie_schedule_id
 		where 
-			t.theater_id = #{theaterId} and not s.seat_no is null
+			t.theater_id = #{theaterId} and not s.seat_no is null and s.is_booked = 0
 		order by s.seat_no asc
 	</select>
 	

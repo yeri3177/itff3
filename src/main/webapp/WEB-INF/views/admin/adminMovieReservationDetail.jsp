@@ -83,6 +83,23 @@
 						</tbody>					
 					</table>					  
 				</div>
+				
+					<!-- 결제 정보 -->
+					<table class="table">
+						<tbody> 
+						
+						  <tr>
+							<th class="title_tr">결제 정보</th>
+							<td></td>
+						  </tr>
+						  
+						  <tr>
+						  	<th class="title_th pay">결제금액</th>
+							<td class="pay_td" style="font-weight: 700;"><fmt:formatNumber value="${movieReservation.amount }" pattern="#,###" /></td>
+						  </tr>
+						  
+						</tbody>
+					</table>
 					
 					 <!-- 좌석 정보 -->
 					 <div class="seat_container">
