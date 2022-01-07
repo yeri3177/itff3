@@ -3,6 +3,7 @@ package com.kh.spring.member.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
@@ -42,7 +43,7 @@ public interface MemberDao {
 
 	int selectPointTotalCount(String id);
 
-	int dailyCheckInsert(String id);
+	int dailyCheckInsert(Map<String, Object> param);
 
 	int insertPointHistory(Map<String, Object> param);
 
@@ -55,6 +56,12 @@ public interface MemberDao {
 	Member findMemberByIdAndEmail(Map<String, Object> param);
 
 	int updateMemberPassword(Map<String, Object> param2);
+
+	int selectCountDailyCalendarByRegDate(Map<String, Object> param);
+
+	List<Calendar> selectListCalendarCheckByMemberId(String id);
+
+	String selectMemCheck(String id);
 
 
 }
