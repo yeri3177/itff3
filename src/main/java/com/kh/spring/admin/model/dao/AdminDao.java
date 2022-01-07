@@ -135,8 +135,6 @@ public interface AdminDao {
 
 	int adminManageTodayQuestionCount();
 
-	int insertSaveNotify(Map<String, Object> param);
-
 	List<Notice> searchNotice(Map<String, Object> param);
 
 	int searchNoticeCount(Map<String, Object> param);

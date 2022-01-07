@@ -329,11 +329,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int insertSaveNotify(Map<String, Object> param) {
-		return session.insert("admin.insertSaveNotify", param);
-	}
-
-	@Override
 	public List<Notice> searchNotice(Map<String, Object> param) {
 		int offset = (int) param.get("start");
 		int limit = (int) param.get("end");

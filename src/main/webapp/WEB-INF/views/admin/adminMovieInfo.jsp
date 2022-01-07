@@ -39,7 +39,7 @@
 						   <tr>
 						     <th scope="row" style="width: 100px;">감독</th>
 						     <td>
-						     <img src="${pageContext.request.contextPath}/resources/upload/director/${movie.director }.jpg" alt="감독" style="width: 50px; height: 50px; border-radius: 50px; margin-right: 10px; object-fit: cover;"/>
+						     <img src="${pageContext.request.contextPath}/resources/upload/director/${movie.director }.jpg" alt="감독" style="width: 40px; height: 40px; border-radius: 50px; margin-right: 10px; object-fit: cover;"/>
 						     ${movie.director }
 						     </td>
 						   </tr>

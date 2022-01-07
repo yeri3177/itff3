@@ -400,11 +400,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int insertSaveNotify(Map<String, Object> param) {
-		return adminDao.insertSaveNotify(param);
-	}
-
-	@Override
 	public List<Notice> searchNotice(Map<String, Object> param) {
 		return adminDao.searchNotice(param);
 	}

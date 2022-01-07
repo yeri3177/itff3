@@ -44,15 +44,15 @@
 
 	$('#notifySendBtn').click(function(e){
 	    let modal = $('.modal-content').has(e.target);
-	    let type = '70';
+	    let type = '개인메세지';
 	    let target = modal.find('.modal-body input').val();
 	    let content = modal.find('.modal-body textarea').val();
-	    let url = '${contextPath}/admin/saveNotify.do';
+	    let url = '${contextPath}/notify/saveNotify.do';
 	    
 	    // 전송한 정보를 db에 저장	
 	    $.ajax({
 	        type: "post",
-	        url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+	        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
 	        dataType: "text",
 	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	        data: {

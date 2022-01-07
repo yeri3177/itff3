@@ -247,33 +247,7 @@ public class AdminManageController {
 	
 	@GetMapping("/chart.do")
 	public void chart() {}
-	
-	/**
-	 * [알람]
-	 */
 
-	@GetMapping("/saveNotify.do")
-	public void saveNotify(@RequestParam String id, Model model) {
-		Member member = adminService.selectOneMember(id);
-		log.debug("member = {}", member);
-		
-		model.addAttribute("member", member);
-	}
-	
-	@PostMapping("/saveNotify.do")
-	@ResponseBody
-	public void saveNotify(@RequestParam String target, @RequestParam String content, @RequestParam String type, @RequestParam String url) {
-		
-		Map<String, Object> param = new HashMap<>();
-		param.put("target", target);
-		param.put("content", content);
-		param.put("type", type);
-		param.put("url", url);
-		log.debug("param = {}", param);
-		
-		adminService.insertSaveNotify(param);
-	}
-	
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**
