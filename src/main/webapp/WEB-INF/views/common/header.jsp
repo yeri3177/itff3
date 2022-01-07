@@ -178,12 +178,12 @@ $(document).ready(function(){
 								<%-- 로그인 했을 때 --%>
 														
 		    					<sec:authorize access="isAuthenticated()">
+									<li class="notify_li" id="notify" onclick="location.href='${pageContext.request.contextPath}/notify/notify.do';">
+										<input type="hidden" class="id" value="<sec:authentication property="principal.id"/>" />
+									</li>
 			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 			    					</sec:authorize>
-									<li class="notify_li" id="notify" onclick="location.href='${pageContext.request.contextPath}/notify/notify.do';">
-										<input type="hidden" class="id" value="<sec:authentication property="principal.username"/>" />
-									</li>
 									<button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
