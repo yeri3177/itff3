@@ -6,7 +6,7 @@
 
 		<insert id="insertSaveNotify">
 			insert into
-				save_notify
+				save_notify(n_id, target, content, time, checked, type, url)
 			values(LPAD(seq_n_id.NEXTVAL,5,'0'), #{target}, #{content}, TO_CHAR(sysdate, 'yyyy-mm-dd hh24:mi:ss'), '0', #{type}, #{url})
 		</insert>
 		
@@ -44,7 +44,6 @@
 				(target like #{id} OR target like 'all') AND checked like '0'
 	   	]]>
 	   	</select>
-	
 	
       	<!-- 읽은 알람 수 카운트 -->
    		<select id="selectOldNotifyCnt" resultType="_int">

@@ -44,7 +44,7 @@
 
 	$('#notifySendBtn').click(function(e){
 	    let modal = $('.modal-content').has(e.target);
-	    let type = '개인메세지';
+	    let type = '관리자';
 	    let target = modal.find('.modal-body input').val();
 	    let content = modal.find('.modal-body textarea').val();
 	    let url = '${contextPath}/notify/saveNotify.do';

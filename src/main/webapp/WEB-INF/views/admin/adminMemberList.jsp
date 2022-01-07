@@ -524,7 +524,7 @@ function save_btn(memberId) {
 $('#totalNotifySendBtn').click(function(e){
     let modal = $('.tt_msg_content').has(e.target);
     let target = 'all';
-    let type = '전체메세지';
+    let type = '관리자';
     let content = modal.find('.tt_msg_text').val();
     let url = '${contextPath}/notify/saveNotify.do';
     

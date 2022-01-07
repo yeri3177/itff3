@@ -114,11 +114,13 @@ public class NotifyController {
 	// 더보기 요청
 	@RequestMapping(value = "/searchMoreNotify.do", produces = "application/text;charset=UTF-8", method=RequestMethod.POST)
 	@ResponseBody
-	public String searchMoreNotify(@RequestParam Map<String,String> param) throws Exception {
+	public String searchMoreNotify(@RequestParam String startIndex, @RequestParam String endIndex, @RequestParam String m_id) throws Exception {
+		
 		Map<String, String> searchParam = new HashMap<String, String>();	// search 파라미터 생성
-		searchParam.put("startIndex", param.get("startIndex"));	
-		searchParam.put("endIndex", param.get("endIndex"));
-		searchParam.put("m_id", param.get("m_id"));
+		
+		searchParam.put("startIndex", startIndex);	
+		searchParam.put("endIndex", endIndex);
+		searchParam.put("m_id", m_id);
 		
 		// startIndex ~ endIndex 범위에 해당하는 list 조회 
 		List<SaveNotify> addList = notifyService.searchOldNotifyList(searchParam);

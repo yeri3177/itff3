@@ -276,4 +276,29 @@ $(document).ready(function(){
 				</header>
 				<!--//header-->
 
+<script>
+
+//알림 수
+$(document).ready(function () {
+	var mid = $(".id").val();
+	console.log(mid)
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/notify/notifyCount.do",
+		method: "get",
+		contentType: "application/json",
+		data: {id: mid},
+		dateType: "text",
+		success: function(data) {
+			$("#notify").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+
+</script>
+ 
+
 				<section id="main-content">
