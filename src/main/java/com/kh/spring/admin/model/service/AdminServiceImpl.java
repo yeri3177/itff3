@@ -704,4 +704,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectOnePayment2(orderNo);
 	}
 
+	@Override
+	public List<GoodsPaymentJoin> selectGoodsOrderNotPaymentList(int offset, int limit) {
+		return adminDao.selectGoodsOrderNotPaymentList(offset, limit);
+	}
+
+	@Override
+	public int selectGoodsOrderNotPaymentTotalCount() {
+		return adminDao.selectGoodsOrderNotPaymentTotalCount();
+	}
+
 }

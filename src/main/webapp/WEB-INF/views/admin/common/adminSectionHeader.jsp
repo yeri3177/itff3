@@ -14,7 +14,7 @@
 		</div>
 
 		<ul class="nav navbar-nav nav-pull-right" group-state-code="layout" action-id="gnb.account">
-			<li class="notify_li" id="notify" onclick="location.href='${pageContext.request.contextPath}/admin/adminNotify.do';">
+			<li ng-if="vm.loginInfo" class="notify_li" id="notify" onclick="location.href='${pageContext.request.contextPath}/admin/adminNotify.do';">
 				<input type="hidden" class="id" value="<sec:authentication property="principal.id"/>" />
 			</li>
 			
@@ -28,6 +28,7 @@
 			<li ng-if="vm.loginInfo">
 				<form:form
 	    		id="memberLogoutFrm"
+	    		class="admin_logout"
 	    		method="POST"
 	    		action="${pageContext.request.contextPath}/member/memberLogout.do">
 		    	<button class="logout_btn" type="submit">

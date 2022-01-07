@@ -10,4 +10,4 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <span>미답변 문의</span>
-<p class="text-number">${count }</p>
+<p class="text-number2">${count }</p>

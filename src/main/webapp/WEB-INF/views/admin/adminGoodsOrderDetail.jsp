@@ -122,6 +122,14 @@
 						  </tr>
 
 						  <tr>
+						  	<th class="title_th pay">결제수단</th>
+								<td class="pay_td" style="font-size: 14px !important;">
+									${payment.payment.cardName }
+									${payment.payment.cardNumber }
+								</td>						  
+						  </tr>
+
+						  <tr>
 						  	<th class="title_th pay">사용포인트</th>
 							<td class="pay_td" style="font-size: 14px !important;"><fmt:formatNumber value="${payment.payment.usedPoints }" pattern="#,###"/></td>						  
 						  </tr>

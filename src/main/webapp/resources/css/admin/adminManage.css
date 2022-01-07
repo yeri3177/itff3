@@ -1918,15 +1918,15 @@ tbody::-webkit-scrollbar-track {
     align-items: center;
 }
 
-.text-number {
+.text-number2 {
     background-color: #ec7b65 !important
 }
 
-.text-number {
+.text-number2 {
     height: 16px;
     font-size: 12px !important;
 }
-.text-number {
+.text-number2 {
     min-width: 16px;
     margin-left: 8px;
     padding: 2px 2px 2px 1px;
