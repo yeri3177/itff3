@@ -318,7 +318,7 @@ header {
 }
 
 .text-number {
-	background-color: #9f0000;
+    background-color: #c10000;
     border-radius: 35px;
     width: 13px;
     height: 13px;
@@ -326,15 +326,21 @@ header {
     font-size: 5px;
     color: white;
     padding: 1px;
+    font-family: 'Montserrat';
     position: absolute;
     z-index: 999;
+
+}
+.bi {
+    color: white;
+    margin-top: 10px;
+    margin-left: -13px;
 }
 
-.bell {
-	width: 25px;
-    height: 25px;
-    position: relative;
-    margin-top: 6px;
+.count-con {
+	display: flex;
+    align-items: center;
+    flex-direction: row;
 }
 
 /* header.jsp 끝 */

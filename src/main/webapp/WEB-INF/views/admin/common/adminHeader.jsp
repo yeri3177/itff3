@@ -294,3 +294,5 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 	<!-- 	//header -->
 
 	<section class="ftco-section">
+	
+	<input type="hidden" class="id" value="<sec:authentication property="principal.id"/>" />
