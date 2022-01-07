@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/noticeForm.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/question/questionForm.css" />
 <!-- reviewList.css도 이용했기 때문에 필요함 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/reviewList.css" />
 <link rel="stylesheet"
@@ -191,5 +191,6 @@ $(document).ready(function() {
           
 	});
 });
+
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

@@ -102,8 +102,8 @@
 										</c:if>
 									</div>
 								</td>
-								<td class="list_left list_author has_profile">
-									<a href="#popup_menu_area" class="member_66300686" onclick="return false">${question.memberId}</a>
+								<td class="list_left list_author has_profile" style="text-align: center;">
+									<a href="#popup_menu_area" class="member_66300686" onclick="return false" >${question.memberId}</a>
 								</td>
 								<td class="date text_en">
 									<span class="ink_time"><fmt:formatDate value="${question.regDate}" pattern="MM-dd"/></span>

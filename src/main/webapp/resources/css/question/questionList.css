@@ -534,9 +534,9 @@ td {
 }
 
 
-.ldn td.list_left {
+/* .ldn td.list_left {
 	text-align: left;
-}
+} */
 
 .ldn .list_author {
 	font-size: 13px;

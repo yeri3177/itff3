@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.note-insert {
+	display: none;
+}
 .bd_header {
     margin-bottom: -7px;
     padding-top: 40px;
