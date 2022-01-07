@@ -27,5 +27,7 @@ public class SaveNotify implements Serializable {
 	private String checked;
 	private String type;
 	private String url;
+	private String editor;
+	private String editDate;
 
 }

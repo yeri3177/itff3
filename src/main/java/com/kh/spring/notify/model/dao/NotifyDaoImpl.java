@@ -37,4 +37,24 @@ public class NotifyDaoImpl implements NotifyDao {
 		return session.selectList("notify.searchNewNotifyList", id);
 	}
 
+	@Override
+	public Object selectOldNotifyCnt(String id) {
+		return session.selectOne("notify.selectOldNotifyCnt", id);
+	}
+
+	@Override
+	public int updateNotifyChecked(Map<String, String> param) {
+		return session.update("notify.updateNotifyChecked", param);
+	}
+
+	@Override
+	public List<SaveNotify> searchOldNotifyList(Map<String, String> param) {
+		return session.selectList("notify.searchOldNotifyList", param);
+	}
+
+	@Override
+	public int notifyCount(String id) {
+		return session.selectOne("notify.notifyCount", id);
+	}
+
 }

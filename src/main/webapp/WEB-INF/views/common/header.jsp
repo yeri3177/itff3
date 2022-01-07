@@ -1,3 +1,7 @@
+<%@page import="com.kh.spring.member.model.vo.Member"%>
+<%@page import="org.springframework.security.core.Authentication"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@page import="org.springframework.security.core.context.SecurityContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -172,12 +176,21 @@ $(document).ready(function(){
 								</sec:authorize>
 								
 								<%-- 로그인 했을 때 --%>
+								
+<%
+SecurityContext securityContext = SecurityContextHolder.getContext();
+Authentication authentication = securityContext.getAuthentication();
+Member loginMember = (Member) authentication.getPrincipal();
+pageContext.setAttribute("loginMember", loginMember);
+%>
+								
 		    					<sec:authorize access="isAuthenticated()">
 			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 			    					</sec:authorize>
-									<li>
-									<button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/notify/notify.do';">test</button></li>
+									<li class="notify_li" id="notify" onclick="location.href='${pageContext.request.contextPath}/notify/notify.do';">
+										<input type="hidden" class="id" value="${loginMember.id}" />
+									</li>
 									<button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"

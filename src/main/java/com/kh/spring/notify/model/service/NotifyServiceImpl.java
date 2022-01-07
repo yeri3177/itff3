@@ -32,5 +32,26 @@ public class NotifyServiceImpl implements NotifyService {
 	public List<SaveNotify> searchNewNotifyList(String id) {
 		return notifyDao.searchNewNotifyList(id);
 	}
-	
+
+	@Override
+	public Object selectOldNotifyCnt(String id) {
+		return notifyDao.selectOldNotifyCnt(id);
+	}
+
+	@Override
+	public int updateNotifyChecked(Map<String, String> param) {
+		return notifyDao.updateNotifyChecked(param);
+		
+	}
+
+	@Override
+	public List<SaveNotify> searchOldNotifyList(Map<String, String> searchParam) {
+		return notifyDao.searchOldNotifyList(searchParam);
+	}
+
+	@Override
+	public int notifyCount(String id) {
+		return notifyDao.notifyCount(id);
+	}
+
 }

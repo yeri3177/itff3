@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,6 +33,7 @@ import com.kh.spring.notify.model.vo.SaveNotify;
 import lombok.extern.slf4j.Slf4j;
 
 
+
 @Controller
 @RequestMapping("/notify")
 @Slf4j
@@ -42,6 +45,17 @@ public class NotifyController {
 	@Autowired
 	private AdminService adminService;
 
+	/**
+	 * [메인화면: 알람수]
+	 */
+	
+	@GetMapping("/notifyCount.do")
+	public void notifyCount(@RequestParam String id, Model model) {
+		int count = notifyService.notifyCount(id);
+		
+		model.addAttribute("count", count);
+	}
+	
 	/**
 	 * [알림 조회]
 	 */
@@ -82,11 +96,43 @@ public class NotifyController {
 //			mav.addObject("pagination", pagination);
 			model.addAttribute("newList", newList);
 //			mav.addObject("oldList", oldList);
-//			model.addAttribute("oldListCnt", notifyService.selectOldNotifyCnt(id));
+			model.addAttribute("oldListCnt", notifyService.selectOldNotifyCnt(id));
 		}
 	}
-		
 	
+	// 읽음상태 변경 
+	@RequestMapping("/readNotify.do")
+	@ResponseBody
+	public void readNotify(@RequestParam String n_id, @RequestParam String m_id, HttpServletRequest request) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("n_id", n_id);
+		param.put("m_id", m_id);
+		
+		notifyService.updateNotifyChecked(param);
+	}
+	
+	// 더보기 요청
+	@RequestMapping(value = "/searchMoreNotify.do", produces = "application/text;charset=UTF-8", method=RequestMethod.POST)
+	@ResponseBody
+	public String searchMoreNotify(@RequestParam Map<String,String> param) throws Exception {
+		Map<String, String> searchParam = new HashMap<String, String>();	// search 파라미터 생성
+		searchParam.put("startIndex", param.get("startIndex"));	
+		searchParam.put("endIndex", param.get("endIndex"));
+		searchParam.put("m_id", param.get("m_id"));
+		
+		// startIndex ~ endIndex 범위에 해당하는 list 조회 
+		List<SaveNotify> addList = notifyService.searchOldNotifyList(searchParam);
+		
+		for(SaveNotify vo : addList) {	// 날짜 포맷 변경
+			vo.setTime(HiSpringUtils.formatTimeString(vo.getTime(), notifyService));
+		}
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonStr = mapper.writeValueAsString(addList);
+		
+		return jsonStr;
+	}
+		
 	/**
 	 * [알람 추가]
 	 */
