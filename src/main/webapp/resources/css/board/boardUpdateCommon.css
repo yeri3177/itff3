@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.note-insert {
+	display: none;
+}
 section#main-content {
     background-color: #E6E6E6;
     height: auto;

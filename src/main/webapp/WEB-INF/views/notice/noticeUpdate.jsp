@@ -13,6 +13,7 @@
 	<jsp:param value="공지사항" name="title"/>   
 </jsp:include>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/reviewList.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/boardUpdateCommon.css" />
@@ -34,7 +35,8 @@
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-
+<script src="${pageContext.request.contextPath }/resources/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 
 <section class="ink_board guest_mode">
 
@@ -63,7 +65,7 @@
 					<input type="hidden" name="noticeNo" value="${notice.noticeNo}" />
 					<input type="text" class="form-control" placeholder="제목" name="noticeTitle" id="title" value="${notice.noticeTitle}" required>
 					<input type="hidden" class="form-control" name="memberId" value="<sec:authentication property="principal.id"/>" readonly required>
-					<textarea class="form-control" name="noticeContent" required>${notice.noticeContent}</textarea>
+					<textarea id="summernote" name="noticeContent" required>${notice.noticeContent}</textarea>
 					<br />
 					<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
 					
@@ -124,11 +126,16 @@
 		
 <script>
 function boardValidate(){
-	var $content = $("[name=content]");
+	var $content = $("[name=noticeContent]");
+	var $title = $("[name=noticeTitle]");
 	if(/^(.|\n)+$/.test($content.val()) == false){
 		alert("내용을 입력하세요");
 		return false;
 	}
+	 else if(/^(.|\n)+$/.test($title.val()) == false) {
+		   alert("제목을 입력하세요.");
+		   return false;
+	   }
 	return true;
 }
 
@@ -160,5 +167,20 @@ $(() => {
 function formSubmit() {
 	document.noticeUpdateFrm.submit();
 }
+</script>
+
+<script>
+$(document).ready(function() {
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
