@@ -10,7 +10,7 @@
 
 	<div id="hd" class="hd">
 		<div>
-			<img src="https://i.imgur.com/b12DKk5.png" alt="logo" class="adminLogo" />
+			<img src="https://i.imgur.com/hP2Eu5C.jpg" alt="logo" class="adminLogo" />
 		</div>
 
 		<ul class="nav navbar-nav nav-pull-right" group-state-code="layout" action-id="gnb.account">
