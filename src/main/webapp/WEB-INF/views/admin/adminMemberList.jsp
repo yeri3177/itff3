@@ -50,13 +50,6 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					
 					<div class="search-total">
 					
-					<button 
-					type="button" 
-		      		class="btn btn-info"
-		      		data-toggle="modal"
-					data-target="#adminTotalMsg"
-					onclick="tt_msg_btn();">전체 메세지</button>
-					
 						<div class="input-group rounded">
 					        <select 
 					        	id="searchType" 
@@ -514,42 +507,6 @@ function save_btn(memberId) {
 		}
 	});
 }
-
-</script>
-
-<script>
-
-// 전체 메세지
-
-$('#totalNotifySendBtn').click(function(e){
-    let modal = $('.tt_msg_content').has(e.target);
-    let target = 'all';
-    let type = '관리자';
-    let content = modal.find('.tt_msg_text').val();
-    let url = '${contextPath}/notify/saveNotify.do';
-    
-    // 전송한 정보를 db에 저장	
-    $.ajax({
-        type: "post",
-        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
-        dataType: "text",
-        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-        data: {
-            target: target,
-            content: content,
-            type: type,
-            url: url
-        },
-        beforeSend : function(xhr) {   
-            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-        },
-        success:    // db전송 성공시 실시간 알림 전송
-            // 소켓에 전달되는 메시지
-            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
-        	socket.send("관리자,"+target+","+content+","+url)
-    });
-    modal.find('.modal-body textarea').val('');	// textarea 초기화
-});
 
 </script>
 

@@ -425,7 +425,7 @@ a:hover {
     width: 1600px;
     display: flex;
     min-width: 1600px;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: row;
     align-items: center;
 }

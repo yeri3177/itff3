@@ -123,7 +123,7 @@
 }
 
 .text-number {
-	background-color: #9f0000;
+    background-color: #ec7b65 !important;
     border-radius: 35px;
     width: 13px;
     height: 13px;
@@ -131,15 +131,21 @@
     font-size: 5px;
     color: white;
     padding: 1px;
+    font-family: 'Montserrat';
     position: absolute;
     z-index: 999;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
+    margin-left: 11px;
+
+}
+.bi {
+    color: white !important;
+/*     margin-top: 8px; */
 }
 
-.bell {
-	width: 25px;
-    height: 25px;
-    position: relative;
-    margin-top: 6px;
-    margin-right: 5px;
+.count-con {
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 11px;
 }

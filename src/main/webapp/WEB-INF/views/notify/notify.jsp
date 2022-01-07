@@ -50,7 +50,6 @@
 				<div class="newElem card form-group col-sm-10 mx-auto p-0">
 					<div class="card-body pt-3" onclick="window.open('${list.url}')">
 						<div class="row px-3 mb-2">
-					        <strong class="d-block text-gray-dark">${list.type}</strong>
 					        <span class="text-muted ml-auto">${list.time}</span>
 						</div>
 						<div class="row px-3 id-con">
@@ -179,7 +178,6 @@
 					for(i = 0; i < data.length; i++){
 						let newNode = "<div style='display: none;' class='card form-group col-sm-10 mx-auto p-0' onClick='window.open('"+data[i].n_url+"')>";
 						newNode += "<div class='card-body pt-3'><div class='row px-3 mb-2'>";
-						newNode += "<strong class='d-block text-gray-dark'>"+data[i].type+"</strong>";
 						newNode += "<span class='text-muted ml-auto'>"+data[i].time+"</span>";
 						newNode += "</div><span>"+data[i].content+"</span></div></div>";
 						NodeList += newNode;

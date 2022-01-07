@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +57,8 @@ import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
+import com.kh.spring.notify.model.service.NotifyService;
+import com.kh.spring.notify.model.vo.SaveNotify;
 import com.kh.spring.question.model.vo.Question;
 import com.kh.spring.question.model.vo.QuestionComment;
 import com.kh.spring.review.model.vo.Review;
@@ -71,6 +76,9 @@ public class AdminManageController {
 	private AdminService adminService;
 
 	@Autowired
+	private NotifyService notifyService;
+
+	@Autowired
 	private GoodsService goodsService;
 	
 	@Autowired
@@ -86,7 +94,52 @@ public class AdminManageController {
 	public void adminManage() {}
 	
 ///////////////////////////////////////////////////////////////////////////////
+	
+	
+	/**
+	 * [관리자 알림 조회]
+	 */
 
+	@RequestMapping("/adminNotify.do")
+	public void notify(Authentication authentication, Model model) throws Exception{
+		
+		// 2. HandlerMapping 으로부터 가져오기
+		log.debug("authentication = {}", authentication);
+		
+		Member member = (Member) authentication.getPrincipal();
+		log.debug("[principal] member = {}", member);
+		
+		Object credentials = authentication.getCredentials();
+		log.debug("[credentials] credentials = {}", credentials);
+		
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		log.debug("[authorities] authorities = {}", authorities);
+		
+		Member member2 = (Member) authentication.getPrincipal();
+		String id = member2.getId();
+		log.debug("id = {}", id);
+			
+		// id가 존재할 때 
+		if(id != null && !"".equals(id)){
+			
+			// 새로운 알람 조회
+			List<SaveNotify> newList = notifyService.searchNewNotifyList(id);
+			
+			for(SaveNotify vo : newList) {	// 날짜 포맷 변경
+				vo.setTime(HiSpringUtils.formatTimeString(vo.getTime(), notifyService));
+			}
+			
+			// 이전 알람 조회
+//			Map<String, String> searchParam = new HashMap<String, String>();
+			
+			// 정보 전달
+//			mav.addObject("pagination", pagination);
+			model.addAttribute("newList", newList);
+//			mav.addObject("oldList", oldList);
+			model.addAttribute("oldListCnt", notifyService.selectOldNotifyCnt(id));
+		}
+	}
+	
 	/**
 	 * [메인화면: 오늘 예매]
 	 */
@@ -1468,6 +1521,42 @@ public class AdminManageController {
 		model.addAttribute("pagebar", pagebar);
 		
 		return "admin/adminGoodsOrderList";
+	}
+	
+	/**
+	 * [굿즈 주문 미결제 목록]
+	 */
+	
+	@GetMapping("/adminGoodsOrderNotPaymentList.do")
+	public String adminGoodsOrderNotPaymentList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<GoodsPaymentJoin> list = adminService.selectGoodsOrderNotPaymentList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectGoodsOrderNotPaymentTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminGoodsOrderNotPaymentList";
 	}
 	
 	/**

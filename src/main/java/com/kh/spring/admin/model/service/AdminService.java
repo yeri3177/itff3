@@ -252,5 +252,9 @@ public interface AdminService {
 	int deleteMovieReservation(String movieReservationId);
 
 	Payment selectOnePayment2(String orderNo);
+
+	List<GoodsPaymentJoin> selectGoodsOrderNotPaymentList(int offset, int limit);
+
+	int selectGoodsOrderNotPaymentTotalCount();
 	
 }

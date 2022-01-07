@@ -508,9 +508,11 @@
 		<result column="address" property="address"/>
 		<result column="detail_address" property="detailAddress"/>
 		<result column="order_comment" property="orderComment"/>
-		<result column="used_points" property="usedPoints"/>
 		<result column="total_price" property="totalPrice"/>
+		<result column="used_points" property="usedPoints"/>
 		<result column="payment_date" property="paymentDate"/>
+		<result column="card_name" property="cardName"/>
+		<result column="card_number" property="cardNumber"/>
 	</resultMap>
 	
 	<resultMap type="goodsJoin" id="goodsJoinMap">
@@ -1337,6 +1339,8 @@
 		on o.order_no = p.order_no
         left join member m 
         on o.member_id = m.id
+        where 
+        	p.payment_no is not null
 		order by 
 			o.order_no desc
 	</select>
@@ -1350,6 +1354,38 @@
 		on o.order_no = p.order_no
         left join member m 
         on o.member_id = m.id
+        where 
+        	p.payment_no is not null
+		order by 
+			o.order_no desc
+	</select>
+
+	<select id="selectGoodsOrderNotPaymentList" resultMap="GoodsPaymentJoinMap">
+		select
+			o.order_no, m.name, o.member_id, o.total_price, o.order_date, p.payment_no
+		from
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
+        where 
+        	p.payment_no is null
+		order by 
+			o.order_no desc
+	</select>
+	
+	<select id="selectGoodsOrderNotPaymentTotalCount" resultType="_int">
+		select
+			count(*)
+		from
+			goods_order o
+		left join payment p
+		on o.order_no = p.order_no
+        left join member m 
+        on o.member_id = m.id
+        where 
+        	p.payment_no is null
 		order by 
 			o.order_no desc
 	</select>
@@ -1431,7 +1467,7 @@
         left join member m 
         on o.member_id = m.id
         where
-            to_char(payment_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
+            to_char(o.order_date,'YYYYMMDD') = to_char(sysdate,'YYYYMMDD')
 		order by 
 			o.order_no desc
 	</select>
