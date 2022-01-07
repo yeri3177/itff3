@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
@@ -104,11 +105,6 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int dailyCheckInsert(String id) {
-		return session.insert("member.dailyCheckInsert", id);
-	}
-
-	@Override
 	public int insertPointHistory(Map<String, Object> param) {
 		return session.insert("member.insertPointHistory", param);
 	}
@@ -137,6 +133,26 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updateMemberPassword(Map<String, Object> param2) {
 		return session.update("member.updateMemberPassword", param2);
+	}
+
+	@Override
+	public int selectCountDailyCalendarByRegDate(Map<String, Object> param) {
+		return session.selectOne("selectCountDailyCalendarByRegDate",param);
+	}
+
+	@Override
+	public List<Calendar> selectListCalendarCheckByMemberId(String id) {
+		return session.selectList("selectListCalendarCheckByMemberId", id);
+	}
+
+	@Override
+	public String selectMemCheck(String id) {
+		return session.selectOne("selectMemCheck", id);
+	}
+
+	@Override
+	public int dailyCheckInsert(Map<String, Object> param) {
+		return session.insert("member.dailyCheckInsert", param);
 	}
 
 	

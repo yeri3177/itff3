@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -42,6 +43,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
+import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
@@ -693,11 +695,33 @@ public class MemberController {
 	}
 	
 	@GetMapping("/dailyCheck.do")
-	public void dailyCheck() {}
+	public ModelAndView dailyCheck(
+			Calendar calendar,
+			HttpSession session,
+			Authentication authentication
+	) {
+		ModelAndView mv = new ModelAndView();
+		
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		
+		List<Calendar> ar = memberService.selectListCalendarCheckByMemberId(id);
+		
+		//String mcheck = memberService.selectMemCheck(id);
+		
+		
+		//mv.addObject("mcheck", mcheck);
+		mv.addObject("getCheck", ar);
+		mv.setViewName("member/dailyCheck");
+		
+		return mv;
+	}
 	
 	@ResponseBody
 	@PostMapping("/dailyCheckInsert.do")
 	public void dailyCheckInsert(
+			@RequestParam String checkDate,
+			Model model,
 			Authentication authentication
 	) {
 		
@@ -705,8 +729,24 @@ public class MemberController {
 		String id = member.getId();
 		
 		log.debug("id = {}", id);
+		log.debug("checkDate = {}", checkDate);
 		
-		int result = memberService.dailyCheckInsert(id);
+		Map<String, Object> param = new HashMap<>();
+		param.put("id", id);
+		param.put("checkDate", checkDate);
+		
+		//오늘 출석했는지 안 했는지 조회
+		int result1 = memberService.selectCountDailyCalendarByRegDate(param);
+		
+		if(result1 == 0) {
+			//출석 x -> 출석해야함
+			int result2 = memberService.dailyCheckInsert(param);			
+		}
+		else {
+			//출석 o -> 리턴
+			log.debug("이미 출석함 ㅇㅇ");
+		}
+		
 		
 //		Map<String, Object> map = new HashMap<>();
 //		

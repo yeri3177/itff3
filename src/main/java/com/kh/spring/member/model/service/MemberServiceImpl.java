@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.member.model.dao.MemberDao;
+import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
@@ -113,13 +114,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectPointTotalCount(id);
 	}
 
-
-	@Override
-	public int dailyCheckInsert(String id) {
-		return memberDao.dailyCheckInsert(id);
-	}
-
-
 	@Override
 	public int insertPointHistory(Map<String, Object> param) {
 		return memberDao.insertPointHistory(param);
@@ -156,6 +150,33 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int selectCountDailyCalendarByRegDate(Map<String, Object> param) {
+		return memberDao.selectCountDailyCalendarByRegDate(param);
+	}
+
+
+	@Override
+	public List<Calendar> selectListCalendarCheckByMemberId(String id) {
+		return memberDao.selectListCalendarCheckByMemberId(id);
+	}
+
+
+	@Override
+	public String selectMemCheck(String id) {
+		return memberDao.selectMemCheck(id);
+	}
+
+
+	@Override
+	public int dailyCheckInsert(Map<String, Object> param) {
+		return memberDao.dailyCheckInsert(param);
+	}
+
+
+
+
+	
 
 
 

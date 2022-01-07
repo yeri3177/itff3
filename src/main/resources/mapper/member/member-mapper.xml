@@ -180,13 +180,13 @@
 		where member_id = #{id}
 	</select>
 	
-	<select id="dailyCheckInsert">
+<!-- 	<select id="dailyCheckInsert">
 		insert into 
 			dailyCalendar 
 		values
-			(seq_dailyCalendar_no.nextval, #{id}, 'Y', default)
+			(seq_dailyCalendar_no.nextval, #{id}, 'Y', current_date, default)
 	</select>
-	
+ -->	
 	<insert id="insertPointHistory">
 		insert into
 			point_history
@@ -250,4 +250,43 @@
 		where
 			id = #{id}
 	</update>
+	
+	<select id="selectCountDailyCalendarByRegDate" resultType="_int">
+		select
+		    count(*)
+		from
+		    dailycalendar
+		where
+		    member_id = #{id}
+		        and
+		    reg_date between to_date(#{checkDate}, 'yyyy-mm-dd') and to_date(#{checkDate}, 'yyyy-mm-dd')+1
+	</select>
+	
+	<select id="selectListCalendarCheckByMemberId" resultType="calendar">
+		select
+			*
+		from
+			dailycalendar
+		where
+			member_id = #{id}
+				and
+			member_check = 'Y'
+	</select>
+
+	<select id="selectMemCheck" resultType="string">
+		select
+			member_check
+		from
+			dailycalendar
+		where
+			member_id = #{id}
+			
+	</select>
+	
+	<insert id="dailyCheckInsert">
+		insert into 
+			dailycalendar 
+		values
+			(seq_dailycalendar_no.nextval, #{id}, 'Y', #{checkDate}, current_date)
+	</insert>
 </mapper>
