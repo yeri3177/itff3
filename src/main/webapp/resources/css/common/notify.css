@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+.container {
+	height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.page1-2 {
+    padding: 50px 0 100px 0;
+}
+
+#newList, #oldList{
+	cursor: pointer;
+}
+#newList .card{
+   	background-color: whitesmoke;
+   	border-color: whitesmoke;
+}
+#newList .card:hover{
+   	background-color: #ebebeb;
+}
+
+.m-3 {
+	font-size: 17px;
+	font-weight: 700;
+}
+
+.card-body {
+    font-size: 15px;
+}
+
+.readNotifyBtn {
+	font-size: 14px !important;
+}
+
+.text-muted {
+	font-size: 12px;
+}

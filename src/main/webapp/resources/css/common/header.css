@@ -313,6 +313,30 @@ header {
     color: #212121 !important;
 }
 
+.notify_li {
+	cursor: pointer;
+}
+
+.text-number {
+	background-color: black;
+    border-radius: 35px;
+    width: 13px;
+    height: 13px;
+    text-align: center;
+    font-size: 5px;
+    color: white;
+    padding: 1px;
+    position: absolute;
+    z-index: 999;
+}
+
+.bell {
+	width: 25px;
+    height: 25px;
+    position: relative;
+    margin-top: 6px;
+}
+
 /* header.jsp 끝 */
 
 ::selection {

@@ -4,33 +4,86 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notify">
 
-	<insert id="insertSaveNotify">
-		insert into
-			save_notify
-		values(LPAD(seq_n_id.NEXTVAL,5,'0'), #{target}, #{content}, TO_CHAR(sysdate, 'yyyy-mm-dd hh24:mi:ss'), '0', #{type}, #{url})
-	</insert>
+		<insert id="insertSaveNotify">
+			insert into
+				save_notify
+			values(LPAD(seq_n_id.NEXTVAL,5,'0'), #{target}, #{content}, TO_CHAR(sysdate, 'yyyy-mm-dd hh24:mi:ss'), '0', #{type}, #{url})
+		</insert>
+		
+		<!-- 시간 방금전... 표시 -->
+	   	<select id="selectCompareTime" resultType="int" parameterType="String">
+	   		<![CDATA[
+	   			SELECT ((SELECT SYSDATE FROM DUAL) 
+	   			- (SELECT TO_DATE(#{regTime},'YYYY-MM-DD hh24:mi:ss') FROM DUAL ))*24*60*60
+				FROM DUAL
+	   		]]>
+	   	</select>
+	   	
+	 	<!-- 새로운 알람 조회 -->
+	   	<select id="searchNewNotifyList" resultType="saveNotify">
+	   	<![CDATA[
+	  		SELECT 
+			    content, time, checked, n_id, url
+			FROM 
+				save_notify
+			WHERE 
+				(target like #{id} OR target like 'all') AND checked like '0'
+			ORDER BY 
+				n_id desc
+	   	]]>
+	   	</select>
+	   	
+	   	<!-- 알람 카운트 -->
+		<select id="notifyCount" resultType="_int">
+	   	<![CDATA[
+	  		SELECT 
+			    count(*)
+			FROM 
+				save_notify
+			WHERE 
+				(target like #{id} OR target like 'all') AND checked like '0'
+	   	]]>
+	   	</select>
 	
-	<!-- 시간 방금전... 표시 -->
-   	<select id="selectCompareTime" resultType="int" parameterType="String">
+	
+      	<!-- 읽은 알람 수 카운트 -->
+   		<select id="selectOldNotifyCnt" resultType="_int">
    		<![CDATA[
-   			SELECT ((SELECT SYSDATE FROM DUAL) 
-   			- (SELECT TO_DATE(#{regTime},'YYYY-MM-DD hh24:mi:ss') FROM DUAL ))*24*60*60
-			FROM DUAL
+   			SELECT 
+   				COUNT(n_id)
+			FROM 
+				save_notify
+			WHERE 
+				target like #{id} AND checked like '1'
    		]]>
-   	</select>
-   	
- 	<!-- 새로운 알람 조회 -->
-   	<select id="searchNewNotifyList" resultType="saveNotify">
-   	<![CDATA[
-  		SELECT 
-		    content, time, checked, n_id, url
-		FROM 
-			save_notify
-		WHERE 
-			(target like #{id} OR target like 'all') AND checked like '0'
-		ORDER BY 
-			n_id desc
-   	]]>
-   	</select>
+   		</select>
+   		
+ 		<!-- 읽음 체크 업데이트 -->
+   		<update id="updateNotifyChecked" parameterType="java.util.HashMap">
+   		<![CDATA[
+	   		UPDATE 
+	   			save_notify
+			SET 
+				checked = '1', editor = #{m_id}, editdate = TO_CHAR(sysdate, 'yyyy-mm-dd hh24:mi:ss')
+			WHERE 
+				n_id like #{n_id}
+   		]]>
+   		</update>   
+   		
+ 		<!-- 이전 알림 목록 -->
+   		<select id="searchOldNotifyList" resultType="saveNotify"  parameterType="java.util.HashMap">
+   		<![CDATA[
+   			SELECT 
+   				*
+   			FROM 
+   				( SELECT
+			    content, time, checked, n_id, url, type,
+			    (ROW_NUMBER() OVER(ORDER BY n_id DESC))r_num
+				FROM save_notify
+				WHERE (target like #{m_id} OR target like 'all') AND checked like '1')
+			WHERE 
+				r_num BETWEEN #{startIndex} AND #{endIndex}
+   		]]>
+   		</select>
 	
 </mapper>

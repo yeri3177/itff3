@@ -16,4 +16,12 @@ public interface NotifyDao {
 
 	List<SaveNotify> searchNewNotifyList(String id);
 
+	Object selectOldNotifyCnt(String id);
+
+	int updateNotifyChecked(Map<String, String> param);
+
+	List<SaveNotify> searchOldNotifyList(Map<String, String> searchParam);
+
+	int notifyCount(String id);
+
 }
