@@ -37,7 +37,7 @@
 <!--//START: CONTENTS AREA-->
 
 <div class="container">
-<div>
+<div style="font-family: 'Noto Sans KR';">
 		<div class="msg_section" style="margin-bottom: 55px;">
 			<h2 class="m-3">
 			새로 온 알림
