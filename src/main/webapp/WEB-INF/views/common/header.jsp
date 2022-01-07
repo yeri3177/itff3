@@ -176,7 +176,9 @@ $(document).ready(function(){
 			    					<sec:authorize access="hasRole('ROLE_ADMIN')">
 										<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/admin/adminManage.do';">ADMIN</button></li>
 			    					</sec:authorize>
-									<li><button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
+									<li>
+									<button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/notify/notify.do';">test</button></li>
+									<button class="btn btn-link" onclick="location.href='${pageContext.request.contextPath}/member/memberDetail.do';">MYPAGE</button></li>
 									<form:form
 							    		id="memberLogoutFrm"
 							    		method="POST"

@@ -96,10 +96,10 @@
 <script>
 
 $('#qa').click(function(e){
-    let type = '70';
+    let type = '1:1문의';
     let target = $('.admin').val();
     let content = '새로운 문의사항이 등록되었습니다.'
-    let url = '${contextPath}/question/saveNotify.do';
+    let url = '${contextPath}/notify/saveNotify.do';
     	    
     console.log(type);
     console.log(target);

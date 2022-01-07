@@ -501,7 +501,7 @@ function save_btn(memberId) {
 	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+		url:"${pageContext.request.contextPath}/notify/saveNotify.do",
 		data: {id: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",
@@ -524,14 +524,14 @@ function save_btn(memberId) {
 $('#totalNotifySendBtn').click(function(e){
     let modal = $('.tt_msg_content').has(e.target);
     let target = 'all';
-    let type = '70';
+    let type = '전체메세지';
     let content = modal.find('.tt_msg_text').val();
-    let url = '${contextPath}/admin/saveNotify.do';
+    let url = '${contextPath}/notify/saveNotify.do';
     
     // 전송한 정보를 db에 저장	
     $.ajax({
         type: "post",
-        url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
         dataType: "text",
         contentType : "application/x-www-form-urlencoded; charset=UTF-8",
         data: {

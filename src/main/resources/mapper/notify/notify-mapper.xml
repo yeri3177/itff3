@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notify">
+
+	<insert id="insertSaveNotify">
+		insert into
+			save_notify
+		values(LPAD(seq_n_id.NEXTVAL,5,'0'), #{target}, #{content}, TO_CHAR(sysdate, 'yyyy-mm-dd hh24:mi:ss'), '0', #{type}, #{url})
+	</insert>
+	
+	<!-- 시간 방금전... 표시 -->
+   	<select id="selectCompareTime" resultType="int" parameterType="String">
+   		<![CDATA[
+   			SELECT ((SELECT SYSDATE FROM DUAL) 
+   			- (SELECT TO_DATE(#{regTime},'YYYY-MM-DD hh24:mi:ss') FROM DUAL ))*24*60*60
+			FROM DUAL
+   		]]>
+   	</select>
+   	
+ 	<!-- 새로운 알람 조회 -->
+   	<select id="searchNewNotifyList" resultType="saveNotify">
+   	<![CDATA[
+  		SELECT 
+		    content, time, checked, n_id, url
+		FROM 
+			save_notify
+		WHERE 
+			(target like #{id} OR target like 'all') AND checked like '0'
+		ORDER BY 
+			n_id desc
+   	]]>
+   	</select>
+	
+</mapper>

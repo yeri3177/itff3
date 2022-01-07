@@ -135,8 +135,6 @@ public interface AdminService {
 
 	int adminManageTodayQuestionCount();
 
-	int insertSaveNotify(Map<String, Object> param);
-
 	List<Question> searchQuestion(Map<String, Object> param);
 
 	int searchQuestionCount(Map<String, Object> param);
