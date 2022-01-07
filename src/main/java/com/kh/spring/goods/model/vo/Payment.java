@@ -20,9 +20,14 @@ public class Payment implements Serializable {
 	private String orderNo;
 	private String memberId;
 	private String receiver;
+	private String phone;	
+	private String postCode;
 	private String address;
-	private String phone;
+	private String detailAddress;
 	private String orderComment;
 	private int totalPrice;
+	private int usedPoints;
 	private Date paymentDate;
+	private String cardName;
+	private String cardNumber;
 }

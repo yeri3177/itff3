@@ -1,11 +1,14 @@
 package com.kh.spring.goods.controller;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +31,8 @@ import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
-import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -424,9 +427,10 @@ public class GoodsController {
 			param.put("userId", map.get("memberId"));
 		}
 		
-		log.debug("param = {}", param); // 로그인 안할시 {pId=69, userId=0717050127A1036754544481EB973D99}
+		log.debug("param = {}", param); 
 		
 		int result = 0;
+		
 		String heartClass = (String) map.get("heartClass");
 		//빈하트이면 레코드 추가하고 like 1로 하기 
 		if(heartClass.contains("far")) {
@@ -446,9 +450,10 @@ public class GoodsController {
 
 	/**
 	 * 주문, 주문상세 데이터 추가  
+	 * @throws IOException 
 	 */
 	@GetMapping("/insertOrder.do")
-	public String insertOrder(Authentication authentication, Model model) {
+	public void insertOrder(Authentication authentication, Model model, HttpServletResponse response) throws IOException {
 
 
 		// 1. 주문 테이블에 레코드 1행 추가하기 
@@ -490,13 +495,14 @@ public class GoodsController {
 		String orderNo = goodsService.selectOneOrderNo(param);
 		log.debug("orderNo = {}", orderNo); // order = order-0004
 		param.put("orderNo", orderNo);
+		//model.addAttribute("orderNo", orderNo);
 		
 		// 주문상세 테이블의 레코드 추가 
 		result = goodsService.insertOrderDetail(param);
 		log.debug("order_detail 삽입 result = {}", result); // order_detail 삽입 result = 6
 		
-		
-		return "redirect:/goods/goodsCart.do";
+
+		//return "redirect:/goods/goodsCart.do";
 	}
 	
 	/**
@@ -504,22 +510,16 @@ public class GoodsController {
 	 */
 	@GetMapping("/goodsOrder.do")
 	public String goodsOrder(Authentication authentication, Model model) {
+		
 		// member -> 주문자정보 
 		Member member = (Member) authentication.getPrincipal();
 		String memberId = member.getId();
 		model.addAttribute("member", member);
-		log.debug("member 회원정보 ~!!! = {}", member);
 		
 		// cart -> 주문정보
 		List<CartJoin> cartList = goodsService.selectGoodsCartList(memberId);
 		log.debug("cartList = {}", cartList);
 		model.addAttribute("cartList", cartList);
-		
-		
-		
-		
-		
-		
 		
 		return "goods/goodsOrder";
 	}
@@ -527,14 +527,105 @@ public class GoodsController {
 	/**
 	 * [결제하기]버튼 클릭시
 	 * 
-	 * - payment 테이블 1행 추가 
+	 * - payment 테이블 1행 추가
+	 * (결제번호, 주문번호, 회원아이디, 수령인, 연락처, 우편번호, 주소, 상세주소, 주문요청사항, 결제금액, 사용한포인트, 결제날짜) 
 	 * - cart 테이블 레코드 전체 삭제 
-	 * - 주문이랑 주문상세 테이블 어떻게 해야할지 .... 
+	 * - 배송지체크여부 1 -> member 주소 update
+	 * - usedPoints >0 -> point history 테이블 update 
+	 * 
+	 	memberId: "abcde"
+		receiver: "알파벳"
+		receiverPhone: "01012345678"
+		
+		postCode: "28456"
+		address: "충북 청주시 흥덕구 1순환로 384"
+		detailAddress: "한신빌라 103-22"
+		orderComment: "부재시 전화 주시거나 문자 남겨주세요." 또는 ""
+		booleanSaveAddressChk: 1
+		
+		totalPrice: "47000" <- 상품가격만
+		payPrice: "41500" <- 상품가격 -사용한포인트 +배송비 2500
+		usedPoints: "8000" <- 사용한 포인트 (또는 "")
+		
+		cardName : 신한카드
+		cardNumber : 941061*********8
 	 */
+	@PostMapping("/insertPayment.do")
+	public String insertPayment(@RequestParam Map<String, Object> map) {
+		log.debug("map = {}", map);
+
+		String orderNo = goodsService.selectOneOrderNo(map);
+		log.debug("orderNo = {}", orderNo);
+		map.put("orderNo", orderNo);
+		
+		int result = 0;
+		
+		if(map.get("usedPoints").toString() == "") {
+			map.put("usedPoints", "0");
+		}
+		
+		// payment 테이블 insert
+		result = goodsService.insertPayment(map);
+		log.debug("payment insert > result = {}", result);
+		
+		if(result > 0) {
+
+			int booleanSaveAddressChk = Integer.parseInt(map.get("booleanSaveAddressChk").toString());
+			int usedPoints = Integer.parseInt(map.get("usedPoints").toString());
+			int change = -usedPoints;
+			
+			log.debug("booleanSaveAddressChk = {}", booleanSaveAddressChk);
+			log.debug("usedPoints = {}", usedPoints);
+			
+			// member 테이블 주소 update
+			if(booleanSaveAddressChk > 0) {
+				result = goodsService.updateMemberAddress(map);
+				log.debug("member address update > result = {}", result);
+			}
+
+			// member 테이블 포인트 update
+			if(usedPoints > 0) {
+				result = goodsService.updateMemberPoint(map);
+				log.debug("member point update > result = {}", result);
+			}
+			
+			// cart 테이블 delete
+			//result = goodsService.deleteCartList(map);
+			log.debug("cart delete > result = {}", result);
+			
+			// point_history 테이블 insert
+			map.put("reason", "굿즈샵 포인트 사용");
+			map.put("change", change);
+			map.put("point", 0);
+			
+			result = goodsService.insertPointHistoryByPayment(map);
+			log.debug("point history insert > result = {}", result);
+			
+		}
+
+		return "redirect:/goods/completePayment.do";
+	}
 	
 	
-	
-	
+	/**
+	 * 결제완료 페이지 
+	 */
+	@GetMapping("/completePayment.do")
+	public String completePayment(Authentication authentication, Model model) {
+		Member member = (Member) authentication.getPrincipal();
+		Payment payment = goodsService.selectOnePayment(member.getId());
+		log.debug("payment = {}", payment);
+		model.addAttribute("payment", payment);
+		
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String paymentDate = sdf.format(payment.getPaymentDate());
+		log.debug("PaymentDate = {}", paymentDate);
+		
+		model.addAttribute("paymentDate", paymentDate);
+		
+		return "goods/completePayment";
+	}
 	
 	
 }
