@@ -244,10 +244,10 @@ $("#orderBtn").click((e) => {
 		method: "get",
 		contentType: "application/json",
 		dateType: "text",
-		success: function(data) {
+		success(data) {
 			
 			// 주문서 페이지로 이동 
-			location.href = `${pageContext.request.contextPath}/goods/goodsOrder.do`;
+			location.href = '${pageContext.request.contextPath}/goods/goodsOrder.do';
 		},
 		complete: function() {
 			console.log("complete")

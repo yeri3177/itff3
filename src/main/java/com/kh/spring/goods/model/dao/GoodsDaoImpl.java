@@ -16,6 +16,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 
 @Repository
 public class GoodsDaoImpl implements GoodsDao {
@@ -154,6 +155,36 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public int insertOrderDetail(Map<String, Object> param) {
 		return session.insert("goods.insertOrderDetail", param);
+	}
+
+	@Override
+	public int insertPayment(Map<String, Object> map) {
+		return session.insert("goods.insertPayment", map);
+	}
+
+	@Override
+	public int updateMemberAddress(Map<String, Object> map) {
+		return session.update("goods.updateMemberAddress", map);
+	}
+
+	@Override
+	public int updateMemberPoint(Map<String, Object> map) {
+		return session.update("goods.updateMemberPoint", map);
+	}
+
+	@Override
+	public int deleteCartList(Map<String, Object> map) {
+		return session.delete("goods.deleteCartList", map);
+	}
+
+	@Override
+	public int insertPointHistoryByPayment(Map<String, Object> map) {
+		return session.delete("goods.insertPointHistoryByPayment", map);
+	}
+
+	@Override
+	public Payment selectOnePayment(String id) {
+		return session.selectOne("goods.selectOnePayment", id);
 	}
 
 

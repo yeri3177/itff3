@@ -11,6 +11,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 
 public interface GoodsService {
 
@@ -65,6 +66,18 @@ public interface GoodsService {
 	String selectOneOrderNo(Map<String, Object> param);
 
 	int insertOrderDetail(Map<String, Object> param);
+
+	int insertPayment(Map<String, Object> map);
+
+	int updateMemberAddress(Map<String, Object> map);
+
+	int updateMemberPoint(Map<String, Object> map);
+
+	int deleteCartList(Map<String, Object> map);
+
+	int insertPointHistoryByPayment(Map<String, Object> map);
+
+	Payment selectOnePayment(String id);
 
 
 }

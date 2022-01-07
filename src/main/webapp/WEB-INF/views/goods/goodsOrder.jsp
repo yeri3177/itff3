@@ -29,8 +29,10 @@
 	pageContext.setAttribute("allprice", allprice);
 %>
 
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" ></script>
 
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header.css" />
@@ -91,7 +93,9 @@
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="memberName" value ="${member.id }" placeholder="이름을 입력해 주세요.">
+			<input type="text" class="form-control" id="memberName" value ="${member.name }" 
+				style="background-color: white!important" readonly
+				placeholder="이름을 입력해 주세요.">
 		</div>
 	</div>
 	
@@ -102,7 +106,9 @@
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="phone" value ="${member.phone }" placeholder="- 없이 01012345678">
+			<input type="text" class="form-control" id="phone" value ="${member.phone }" 
+				style="background-color: white!important" readonly
+				placeholder="- 없이 01012345678">
 		</div>
 	</div>
 	
@@ -113,7 +119,9 @@
 		</div>
 		<!-- input 태그 -->
 		<div>
-			<input type="text" class="form-control" id="email" value ="${member.email }" placeholder="abc@google.com">
+			<input type="text" class="form-control" id="email" value ="${member.email }" 
+				style="background-color: white!important" readonly
+				placeholder="abc@google.com">
 			<div class="sml-tex">
 				위 이메일로 주문 내역 메일이 전송됩니다. 사용 가능한 메일인지 확인해 주세요.
 			</div>
@@ -181,8 +189,6 @@
 	<div id="daum-api-iframe" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 	</div>
-	
-	
 	
 	<div class="input-div">
 		<!-- 라벨 -->
@@ -271,7 +277,9 @@
 	
 	<br /><br /><br />
 	
-	<div class="title-text">결제 및 배송 동의</div>
+	<div class="title-text">
+		결제 및 배송 동의
+	</div>
 	
 	<div>
 		<span class="chk"> 
@@ -330,7 +338,8 @@
 		</div>
 	</div>
 	
-	<button class="goodsBtn">결제하기</button>
+	<!-- data-bs-toggle="modal" data-bs-target="#modal3" -->
+	<button id="payBtn" class="goodsBtn" data-bs-toggle="modal" data-bs-target="#modal3" >결제하기</button>
 	
 </div> <!-- end of 왼쪽 컨테이너 -->
 
@@ -338,12 +347,8 @@
 <!-- modal1 : 이용약관 동의 -->
 <div class="modal fade" id="modal1" data-bs-backdrop="static" 
 	data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	
-	<div class="modal-dialog">
-	   
+	<div class="modal-dialog">	   
 		<div class="modal-content">
-		
-		    
 			<div class="modal-body">
 				<!-- 헤더 -->
 				<div class="con-header">
@@ -532,11 +537,31 @@
 </div> <!-- end of modal2 : 개인 정보 수집 및 이용 동의 -->
 
 
+<!-- modal3 : 유효성검사 -->
+<div class="modal fade" id="modal3" 
+	data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+	style="top: 20%!important; left: 15%!important;">
+	<div class="modal-dialog">
+		<div class="modal-content modal-content3" style="width: 450px!important;">
+			<div class="modal-body">
+
+				<div class="validation-body"></div> 
+				
+				<div class="con-footer">
+					<button class="goodsBtn confirm-btn" class="btn-close" data-bs-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- end of modal3 : 유효성검사 -->
+
+
+
 <!-- 오른쪽 컨테이너 -->
 <div id="order-right-container">
 	<div class="title-text d-flex">
 		<div>주문 정보</div>
-		<div>302,800원</div>	
+		<div class="totalPrice-div"><fmt:formatNumber value="${allprice+2500 }" pattern="#,###원" /></div>	
 	</div>
 	
 	<hr style="background-color: #c3c3c3;border-top: 0px solid rgba(0,0,0,.1); margin: 25px 0;"/>
@@ -621,7 +646,14 @@
 		
 		<div class="summary-row">
 			<div>총 상품 금액</div>
-			<div><fmt:formatNumber value="${allprice }" pattern="#,###원" /></div>
+			<div class="all-product-price">
+				<fmt:formatNumber value="${allprice }" pattern="#,###원" />
+			</div>
+		</div>
+		
+		<div class="summary-row">
+			<div>포인트 사용</div>
+			<div class="summary-points-val">0P</div>
 		</div>
 		
 		<div class="summary-row">
@@ -631,7 +663,10 @@
 		
 		<div class="summary-row sum-row">
 			<div>최종 결제 금액</div>
-			<div><fmt:formatNumber value="${allprice+2500 }" pattern="#,###원" /></div>
+			<!-- 총상품금액 - 사용한포인트 + 배송비(2500) -->
+			<div class="totalPrice-div">
+				<fmt:formatNumber value="${allprice+2500 }" pattern="#,###원" />
+			</div>
 		</div>
 	</div> <!-- end of summaryBody -->
 	
@@ -644,25 +679,211 @@
 <input type="hidden" id="memberPostCode" value="${member.postCode }" />
 <input type="hidden" id="memberAddress" value="${member.address }" />
 <input type="hidden" id="memberDetailAddress" value="${member.detailAddress }" />
+<input type="hidden" id="totalPrice" value="${allprice+2500 }"/>
 
 <script>
+
+// 최종결제금액
+const $totalPrice = $("#totalPrice");
+
 // 로그인 회원 이름, 연락처
 const $memberName = $("#memberName");
 const $memberPhone = $("#phone");
+
+//로그인 회원 주소값
+const $memberPostCode = $("#memberPostCode");
+const $memberAddress = $("#memberAddress");
+const $memberDetailAddress = $("#memberDetailAddress");
 
 // 수령인 이름, 연락처 
 const $receiver = $("#receiver");
 const $receiverPhone = $("#receiverPhone");
 
-// 로그인 회원 주소값
-const $memberPostCode = $("#memberPostCode");
-const $memberAddress = $("#memberAddress");
-const $memberDetailAddress = $("#memberDetailAddress");
-
 // 배송지 주소값
 const $sample3_postcode = $("#sample3_postcode");
 const $sample3_address = $("#sample3_address");
 const $sample3_detailAddress = $("#sample3_detailAddress");
+
+// 사용한 포인트
+const $userpoints = $("#points");
+
+
+/* [결제하기] 버튼 클릭시 */
+$("#payBtn").click((e) => {
+	//$("#modal3").show();
+	// 1. 배송지 정보 입력 유효성 검사
+	// 1.1 수령인 이름 
+	var regName = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{2,}$/;
+    if(!regExpTest(regName, $receiver, "입력되지 않은 필수 정보가 있습니다.")) {
+    	return false;
+    }
+    
+    // 1.2 연락처
+    var regPhone = /^01([0|1|6|7|8|9])?([0-9]{3,4})?([0-9]{4})$/;
+    if(!regExpTest(regPhone, $receiverPhone, "입력되지 않은 필수 정보가 있습니다.")) {
+        return false;
+    }
+    
+    // 1.3 배송지-우편번호
+    var regPostcode = /(\d{3}-\d{3}|\d{5})/;
+    if(!regExpTest(regPostcode, $sample3_postcode, "입력되지 않은 필수 정보가 있습니다.")) {
+        return false;
+    }
+    
+    // 1.4 배송지-주소
+    var regAddress = /^[가-힣a-zA-Z0-9\s()-]+$/;
+    if(!regExpTest(regAddress, $sample3_address, "입력되지 않은 필수 정보가 있습니다.")) {
+        return false;
+    }
+    
+    // 1.5 배송지-상세주소
+	if(!regExpTest(regAddress, $sample3_detailAddress, "입력되지 않은 필수 정보가 있습니다.")) {
+        return false;
+    }
+	
+	// 2. 결제 및 배송 동의 체크박스 유효성 검사 
+	if(!$("input[id='chk1']").is(":checked")){
+		$(".validation-body").text("모든 약관에 동의하셔야 결제 가능 합니다.");
+    	$(".validation-body").show();
+		return false;
+	}
+	if(!$("input[id='chk2']").is(":checked")){
+		$(".validation-body").text("모든 약관에 동의하셔야 결제 가능 합니다.");
+    	$(".validation-body").show();
+		return false;
+	}
+	if(!$("input[id='chk3']").is(":checked")){
+		$(".validation-body").text("모든 약관에 동의하셔야 결제 가능 합니다.");
+    	$(".validation-body").show();
+		return false;
+	}
+	if(!$("input[id='chk4']").is(":checked")){
+		$(".validation-body").text("모든 약관에 동의하셔야 결제 가능 합니다.");
+    	$(".validation-body").show();
+		return false;
+	}
+	
+	$(".modal-content3").css('display', 'none');
+	
+	// 이니시스 결제 실행하기 
+	inicisPay();
+})
+
+/* 유효성검사 함수 */
+function regExpTest(regExp, el, msg){
+	
+    if(regExp.test(el.val())){
+        return true;
+    }
+    else{    	
+	    $(".validation-body").text(msg);
+	    //$(".validation-body").show();
+	    $("#modal3").show();
+	    
+	    return false;
+    }
+    
+}
+
+
+/* 결제 api 실행 */
+function inicisPay() {
+
+	console.log("최종 결제 금액 = " + $totalPrice.val());
+	
+	// [배송지저장] 체크박스 체크여부
+	var booleanSaveAddressChk = 0;
+	if($("#save-adr-chk").is(":checked")){
+		booleanSaveAddressChk = 1;
+	}
+	
+	//첫번째 상품명
+	var firstPrdName = '${cartList.get(0).goods.PName }';
+	
+	//장바구니건수-1
+	var cartCnt_m1 = '${cartList.size()}'-1;
+	
+	// 주소
+	var address = '${member.address }' + ' ' + '${member.detailAddress }';
+	
+	// 결제 상품명 
+	var paymentProductName = firstPrdName +" 외 " + cartCnt_m1 +"건";
+	
+	// 컨트롤러에 보낼 데이터 
+	/* const payment_data = {
+		memberId : '${member.id}',
+		usedPoints : $userpoints.val(),
+		totalPrice : '${allprice}',
+    	payPrice : $totalPrice.val(),
+    	receiver : $receiver.val(),
+    	receiverPhone : $receiverPhone.val(),
+    	postCode : $sample3_postcode.val(),
+    	address : $sample3_address.val(),
+    	detailAddress : $sample3_detailAddress.val(),
+    	orderComment : $("#orderComment").val(),
+    	booleanSaveAddressChk : booleanSaveAddressChk
+	} */
+	
+	//console.log(payment_data);
+	//console.log(rsp);
+	
+	var IMP = window.IMP;
+    IMP.init("imp32315053");
+
+    IMP.request_pay({
+        //pg : 'html5_inicis',
+        pg: 'payco',
+        pay_method : 'card', 
+        name : paymentProductName,
+        amount : 110, //상품가격
+        buyer_name : '${member.name}',	// 구매자이름
+        buyer_tel : '${member.phone}',	// 구매자 전화번호
+        buyer_email : '${member.email}',	//구매자 이메일
+        buyer_addr : address,	//구매자 집주소
+        buyer_postcode : '${member.postCode}',	//구매자 우편번호 
+        //m_redirect_url : "${pageContext.request.contextPath}/goods/goodsList.do"
+    }, function(rsp) { 
+    	
+    	console.log(rsp);
+    	
+            if(rsp.success) {
+            	// 결제 성공 시 로직,
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/goods/insertPayment.do?${_csrf.parameterName}=${_csrf.token}",
+                    method: "post",
+                    /* data: payment_data, */
+                    data : {
+                    	
+                    		memberId : '${member.id}',
+                    		usedPoints : $userpoints.val(),
+                    		totalPrice : '${allprice}',
+                        	payPrice : $totalPrice.val(),
+                        	receiver : $receiver.val(),
+                        	receiverPhone : $receiverPhone.val(),
+                        	postCode : $sample3_postcode.val(),
+                        	address : $sample3_address.val(),
+                        	detailAddress : $sample3_detailAddress.val(),
+                        	orderComment : $("#orderComment").val(),
+                        	booleanSaveAddressChk : booleanSaveAddressChk,
+                        	cardName : rsp.card_name,
+                        	cardNumber : rsp.card_number
+                    	
+                    },
+                    success(data){
+						console.log("insertPayment ajax success");
+                    	
+						// 페이지 이동 
+						location.href = `${pageContext.request.contextPath}/goods/completePayment.do`;
+                    }
+                }).done(function (data) {
+                  // 가맹점 서버 결제 API 성공시 로직
+             })
+         } else {	
+         	// 결제 실패 시 로직
+             //alert("결제에 실패하였습니다.");
+         }
+    });
+};
 
 
 /* [주문자와 동일] 체크박스 클릭시 */
@@ -698,7 +919,6 @@ $(".form-select").change((e) => {
 	
 })
 
-
 /* 포인트사용 버튼 클릭시 */
 $(".point-btn").click((e) => {
 	var holdingPoints = $(".holdingPoints").text();
@@ -707,11 +927,22 @@ $(".point-btn").click((e) => {
 	
 	if(holdingPoints>1000){
 		$(".point-input").val(holdingPoints);
+		$(".summary-points-val").text(comma($userpoints.val())+"P");
+		$(".totalPrice-div").text((comma(parseInt(${allprice})-(parseInt($userpoints.val()))+2500))+"원");
+		$("#totalPrice").val(parseInt(${allprice})-(parseInt($userpoints.val()))+2500);
+		
+		
+		console.log("최종 결제 금액 = " + $totalPrice.val());
 	} else{
-		$(".point-input").val("포인트가 부족합니다.");
+		$(".point-input").val("0");
 	}
 })
 
+/* 숫자형식에 콤마 붙여주는 함수 */
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
 
  /* 결제및배송동의 체크박스 클릭시 전체선택/전체해제 */
  $("#chk-all").click(function(){
@@ -721,7 +952,6 @@ $(".point-btn").click((e) => {
          $("input[id^='chk']").prop("checked",false);
      }
  })
- 
  
 // 우편번호 찾기 찾기 화면을 넣을 element
 var element_wrap = document.getElementById('daum-api-iframe');
@@ -795,7 +1025,7 @@ function sample3_execDaumPostcode() {
 
     // iframe을 넣은 element를 보이게 한다.
     element_wrap.style.display = 'block';
-}
+};
 
 </script>
 

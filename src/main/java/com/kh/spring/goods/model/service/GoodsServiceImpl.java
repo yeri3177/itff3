@@ -15,6 +15,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.Payment;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -150,6 +151,36 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public int insertOrderDetail(Map<String, Object> param) {
 		return goodsDao.insertOrderDetail(param);
+	}
+
+	@Override
+	public int insertPayment(Map<String, Object> map) {
+		return goodsDao.insertPayment(map);
+	}
+
+	@Override
+	public int updateMemberAddress(Map<String, Object> map) {
+		return goodsDao.updateMemberAddress(map);
+	}
+
+	@Override
+	public int updateMemberPoint(Map<String, Object> map) {
+		return goodsDao.updateMemberPoint(map);
+	}
+
+	@Override
+	public int deleteCartList(Map<String, Object> map) {
+		return goodsDao.deleteCartList(map);
+	}
+
+	@Override
+	public int insertPointHistoryByPayment(Map<String, Object> map) {
+		return goodsDao.insertPointHistoryByPayment(map);
+	}
+
+	@Override
+	public Payment selectOnePayment(String id) {
+		return goodsDao.selectOnePayment(id);
 	}
 
 

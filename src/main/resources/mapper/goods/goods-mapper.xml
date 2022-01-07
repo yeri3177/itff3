@@ -527,5 +527,79 @@
 		where member_id = #{memberId}
 	</insert>
 	
+	<insert id="insertPayment">
+		insert into payment
+		values (
+			default,
+			#{orderNo},
+			#{memberId},
+			#{receiver},
+			#{receiverPhone},
+			#{postCode},
+			#{address},
+			#{detailAddress},
+			#{orderComment},
+			#{payPrice},
+			#{usedPoints},
+			#{cardName},
+			#{cardNumber},
+			default
+		)
+	</insert>
+	
+	<update id="updateMemberAddress">
+		update
+			member
+		set
+			post_code = #{postCode},
+			address = #{address},
+			detail_address = #{detailAddress}
+		where
+			id = #{memberId}
+	
+	</update>
+	
+	
+	<update id="updateMemberPoint">
+		update
+			member
+		set
+			point = 0
+		where
+			id = #{memberId}
+	
+	</update>
+	
+	<delete id="deleteCartList">
+		delete from goods_cart
+		where member_id = #{memberId}
+	
+	</delete>
+	
+	<insert id="insertPointHistoryByPayment">
+		insert into point_history
+		values (
+			seq_history_no.nextval,
+			#{memberId},
+			#{reason},
+			#{change},
+			#{point},
+			default
+		)
+	</insert>
+	
+	<select id="selectOnePayment" resultType="payment">
+		select * from (
+			select * from payment 
+			where member_id = 'abcde' 
+			order by payment_date desc) 
+		where rownum = 1
+	</select>
+	
+	
+	
+	
+	
+	
 	
 </mapper>
