@@ -20,7 +20,7 @@
 
 			<section id="content" class="content">
 			
-			<!-- 관리자 공통 메뉴 -->
+			<!-- 관리자 헤더 메뉴 -->
 			<jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
 
 				<div class="row">
