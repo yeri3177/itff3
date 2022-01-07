@@ -43,9 +43,6 @@
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-
-<section class="ink_board guest_mode">
-
 	<!-- 해당 페이지 큰 글씨 -->
 	<div class="sub_title_wrap">
 		<div class="container">
@@ -54,13 +51,16 @@
 	</div> 
 	<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 
+	<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
+<section class="ink_board guest_mode">
+
+
 	<%-- <div class="bd_header">
 		<h2 class="bd_title">
 			<img src="${pageContext.request.contextPath}/resources/upload/board/리뷰게시판 타이틀 로고.png" alt="" />
 			<a href="${pageContext.request.contextPath}/question/questionList.do">1:1 문의</a>
 		</h2>
 	</div> --%>
-	<sec:authorize access="hasRole('ROLE_USER') && !hasRole('ROLE_ADMIN')">
 		<div class="list_wrap">
 			<div class="ink_list ldn">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0"
@@ -125,10 +125,13 @@
 			</sec:authorize>	
 		</div>
 		
+		</section>
 		<div class="pagenation">${pagebar}</div>
 	</sec:authorize>
 	
+	
 	<sec:authorize access="hasRole('ROLE_ADMIN') && hasRole('ROLE_USER')">
+	<section class="ink_board guest_mode">
 		<div class="list_wrap">
 			<div class="ink_list ldn">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0"
@@ -194,11 +197,12 @@
 			</sec:authorize>	
 		</div>
 		
+		
+	</section>
 		<div class="pagenation">${pagebarByAdmin}</div>
 	</sec:authorize>
 	
-	
-</section>
+
 
 
 
