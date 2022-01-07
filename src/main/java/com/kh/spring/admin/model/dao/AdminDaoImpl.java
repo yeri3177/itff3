@@ -697,15 +697,4 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.selectOnePayment2", orderNo);
 	}
 
-	@Override
-	public List<GoodsPaymentJoin> selectGoodsOrderNotPaymentList(int offset, int limit) {
-		RowBounds rowBounds = new RowBounds(offset, limit); 
-		return session.selectList("admin.selectGoodsOrderNotPaymentList", null, rowBounds);
-	}
-
-	@Override
-	public int selectGoodsOrderNotPaymentTotalCount() {
-		return session.selectOne("admin.selectGoodsOrderNotPaymentTotalCount");
-	}
-
 }

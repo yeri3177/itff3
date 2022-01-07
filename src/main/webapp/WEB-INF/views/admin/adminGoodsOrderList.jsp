@@ -18,9 +18,9 @@
 </jsp:include>
 
 <style>
-div#search-orderDate {display: ${searchType} == '' || ${searchType} == null || "orderDate".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-orderNo {display: "orderNo".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none";}
+div#search-paymentDate {display: ${searchType} == '' || ${searchType} == null || "paymentDate".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-paymentNo {display: "paymentNo".equals(${searchType}) ? "inline-block" : "none"; }
+div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" : "none";}
 </style>
 
 <!-- 관리자 헤더 -->
@@ -51,31 +51,31 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					        	id="searchType" 
 					        	class="custom-select"
 					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
-					            <option value="orderDate" ${"date".equals(searchType) ? "selected" : ""}>주문날짜</option>
-					            <option value="orderNo" ${"orderNo".equals(searchType) ? "selected" : ""}>주문번호</option>		
-					            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>주문자</option>
+					            <option value="paymentDate" ${"date".equals(searchType) ? "selected" : ""}>주문날짜</option>
+					            <option value="paymentNo" ${"paymentNo".equals(searchType) ? "selected" : ""}>주문번호</option>		
+					            <option value="receiver" ${"receiver".equals(searchType) ? "selected" : ""}>주문자</option>
 					        </select>
-					        <div id="search-orderNo" class="search-type" style="display: none; width: 500px !important;">
+					        <div id="search-paymentNo" class="search-type" style="display: none; width: 500px !important;">
 					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderFinder.do">
 					            	<div style="display: flex;">
-					                <input type="hidden" name="searchType" value="orderNo"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'orderNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <input type="hidden" name="searchType" value="paymentNo"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'paymentNo' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
 					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
-					        <div id="search-name" class="search-type" style="display: none;">
+					        <div id="search-receiver" class="search-type" style="display: none;">
 					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderFinder.do">
 					            <div style="display: flex;">
-					                <input type="hidden" name="searchType" value="name"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'name' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					                <input type="hidden" name="searchType" value="receiver"/>
+					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="주문자를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'receiver' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
 					                <button type="submit" class="btn btn-outline-dark">search</button>		
 					            </div>
 					            </form>	
 					        </div>
-					        <div id="search-orderDate" class="search-type">
-				            	<input type="hidden" name="searchType" value="orderDate"/>
-				                 <input type="hidden" name="searchKeyword"  class="form-control rounded" aria-label="Search" aria-describedby="search-addon" value="${'orderDate' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
+					        <div id="search-paymentDate" class="search-type">
+				            	<input type="hidden" name="searchType" value="paymentDate"/>
+				                 <input type="hidden" name="searchKeyword"  class="form-control rounded" aria-label="Search" aria-describedby="search-addon" value="${'paymentDate' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
 					            <form action="${pageContext.request.contextPath}/admin/adminGoodsOrderDateFinder.do">
 					            <div style="display: flex; align-items: center;">
 					                <input type="text" id="startDate" class="form-control" name="startDate" placeholder="시작일">
@@ -113,47 +113,42 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 									<!-- 주문일자 -->
 									<td>
 										<div class="email">
-												<span><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yy-MM-dd HH:mm:ss"/></span> 
+												<span><fmt:formatDate value="${list.payment.paymentDate }" pattern="yy-MM-dd HH:mm:ss"/></span> 
 										</div>
 									</td>
 
 									<!-- 주문번호 -->
 									<td>
 										<div class="email">
-											<span style="text-decoration: underline;">${list.goodsOrder.orderNo}</span> 
+											<span style="text-decoration: underline;">${list.payment.paymentNo}</span> 
 										</div>
 									</td>
 
 									<!-- 아이디 -->
 									<td>
 										<div class="email">
-												<span>${list.member.name }</span> 
+												<span>${list.payment.receiver }</span> 
 										</div>
 									</td>
 									
 									<!-- 금액 -->
-									<td><fmt:formatNumber value="${list.goodsOrder.totalPrice }" pattern="#,###" /></td>
+									<td><fmt:formatNumber value="${list.payment.totalPrice }" pattern="#,###" /></td>
 
 									<!-- 결제상태 -->
 									<td>
 										<div class="email">
-											<c:if test="${list.payment.paymentNo eq '' }">
-												<span style="color: #45a7b9; font-weight: bold;">결제대기</span>
-											</c:if>
-											<c:if test="${list.payment.paymentNo ne '' }">
-												<span style="color: #ec7b65; font-weight: bold;">결제완료</span>
-											</c:if>
+											${list.orderDetail.status }
 										</div>
 									</td>
 
 									<td>
 										<button 
-										id="${list.goodsOrder.orderNo }" 
+										id="${list.orderDetail.orderNo }" 
 										type="button"
 										class="btn btn-outline-dark"
 										data-toggle="modal"
 										data-target="#adminGoodsOrderDetail"
-										onclick="goods_order_detail_btn('${list.goodsOrder.orderNo}');"
+										onclick="goods_order_detail_btn('${list.orderDetail.orderNo}');"
 										>주문상세</button>
 									</td>
 

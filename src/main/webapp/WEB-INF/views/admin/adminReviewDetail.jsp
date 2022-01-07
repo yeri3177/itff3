@@ -18,7 +18,7 @@
 		        <table class="table" id="modal_table">
 				  <tbody>
 				    <tr>
-				      <th scope="row">제목</th>
+				      <th scope="row" style="width: 100px;">제목</th>
 				      <td>${review.reviewTitle}</td>
 				    </tr>
 				    <tr>

@@ -33,6 +33,7 @@
     -webkit-box-shadow: 1px 1px 1px rgb(0 0 0 / 5%);
     transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 .brd_card_list .card_li:hover .card_box {

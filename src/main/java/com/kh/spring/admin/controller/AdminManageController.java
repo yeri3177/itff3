@@ -1527,37 +1527,6 @@ public class AdminManageController {
 	 * [굿즈 주문 미결제 목록]
 	 */
 	
-	@GetMapping("/adminGoodsOrderNotPaymentList.do")
-	public String adminGoodsOrderNotPaymentList(
-			@RequestParam(defaultValue = "1") int cPage, 
-			Model model,
-			HttpServletRequest request
-			) {
-		
-		log.debug("cPage = {}", cPage);
-		
-		int limit = 10;
-		int offset = (cPage - 1) * limit;
-		
-		// 1.
-		List<GoodsPaymentJoin> list = adminService.selectGoodsOrderNotPaymentList(offset, limit);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		
-		// 2. totalContent
-		int totalContent = adminService.selectGoodsOrderNotPaymentTotalCount();
-		log.debug("totalContent = {}", totalContent);
-		model.addAttribute("totalContent", totalContent);
-		
-		// 3. pagebar
-		String url = request.getRequestURI(); 
-		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-//		log.debug("pagebar = {}", pagebar);
-		
-		model.addAttribute("pagebar", pagebar);
-		
-		return "admin/adminGoodsOrderNotPaymentList";
-	}
 	
 	/**
 	 * [굿즈 주문 상세]

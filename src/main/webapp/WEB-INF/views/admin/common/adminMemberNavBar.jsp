@@ -10,9 +10,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMemberList.do">회원목록</a>
-      </li>
     </ul>
   </div>
 </nav>

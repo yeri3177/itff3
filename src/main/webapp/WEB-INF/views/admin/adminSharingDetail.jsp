@@ -18,7 +18,7 @@
 		        <table class="table" id="modal_table">
 				  <tbody>
 				    <tr>
-				      <th scope="row">카테고리</th>
+				      <th scope="row" style="width: 100px;">카테고리</th>
 				      <td>
      					<span class="badge badge-${list.category == 'P' ? 'danger' : (list.category == 'S' ? 'primary' : 'secondary') }">
 							<c:choose>

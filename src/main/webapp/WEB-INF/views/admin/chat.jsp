@@ -27,7 +27,7 @@ table.table th, table.table td {text-align: center;}
 <!-- 관리자 공통 메뉴 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 
-	<table id="chatList" class="table">
+	<table id="chatList" class="table" style="font-family: 'Noto Sans KR';">
 	  <thead>
 	    <tr>
 	      <th scope="col">회원아이디</th>

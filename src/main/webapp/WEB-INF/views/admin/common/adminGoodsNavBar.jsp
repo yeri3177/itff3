@@ -17,7 +17,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do">발주(주문)관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderNotPaymentList.do">미결제 확인</a>
+        <a class="nav-link" href="#">상품</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">상품</a>

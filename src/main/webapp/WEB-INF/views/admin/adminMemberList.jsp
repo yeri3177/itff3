@@ -39,7 +39,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 		
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">회원목록</h2>
+					<h2 class="heading-section">회원관리</h2>
 				</div>
 			</div>
 			
@@ -63,7 +63,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					            	<div style="display: flex;">
 					                <input type="hidden" name="searchType" value="id"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="ID를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 아이디를 입력하세요." value="${'id' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            	</div>
 					            </form>	
 					        </div>
@@ -72,7 +72,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 					            <div style="display: flex;">
 					                <input type="hidden" name="searchType" value="name"/>
 					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="이름을 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" placeholder="검색할 이름을 입력하세요." value="${'name' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
+					                <button type="submit" class="btn btn-outline-secondary">search</button>		
 					            </div>
 					            </form>	
 					        </div>
@@ -181,7 +181,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<td>
 											<button 
 												type="button"
-												class="btn btn-outline-dark"
+												class="btn btn-outline-secondary"
 												data-toggle="modal"
 												data-target="#adminMemberDetail"
 												onclick="memberDetail_btn('${list.id}');">상세</button>
@@ -267,45 +267,6 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										</div>
 									</div>
 								<!-- 회원 차단 해제 끝 -->
-								<!-- 전체 메세지 -->
-								<div class="modal fade" id="adminTotalMsg" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document"
-										style="max-width: 500px;" >
-									<div class="modal-content tt_msg_content" style="text-align: left;">
-								   	<div class="modal-body">				    		  									
-									      <div class="modal-header">
-									        <h4 class="modal-title" id="exampleModalLabel">전체 메세지</h4>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-							  				<form name="total_msg_frm">
-									      <div class="modal-body">
-									        <table class="table" id="modal_table">
-											  <tbody>
-											    <tr>
-											      <td>
-											      <textarea class="form-control modal-body textarea tt_msg_text" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
-											      </td>
-											    </tr>
-											  </tbody>
-											</table>
-									      </div>
-									      
-									      <div class="modal-footer">
-									        <button type="submit" id="totalNotifySendBtn" class="btn btn-dark">알림 전송</button>
-									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-									      </div>
-										    </form>
-										</div>			
-									</div>	
-									
-									</div>
-								</div>
-								
-								<!-- 전체 메세지 끝  -->
 								<!--  개별 메세지 -->
 								<div class="modal fade" id="adminSaveNotify" tabindex="-1"
 									role="dialog" aria-labelledby="exampleModalLabel"
