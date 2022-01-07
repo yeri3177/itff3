@@ -22,7 +22,7 @@ pageContext.setAttribute("loginMember", loginMember);
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="문의사항 수정" name="title" />
 </jsp:include>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/summernote/summernote-lite.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/header.css" />
 <link rel="stylesheet"
@@ -49,13 +49,14 @@ pageContext.setAttribute("loginMember", loginMember);
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-
+<script src="${pageContext.request.contextPath }/resources/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 
 <script>
 
 /* textarea에도 required 속성을 적용 가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function boardValidate(){
-   var $content = $("[name=content]");
+   var $content = $("[name=questionContent]");
    if(/^(.|\n)+$/.test($content.val()) == false){
       alert("내용을 입력하세요");
       return false;
@@ -169,7 +170,8 @@ $(() => {
 				</div>
 			</c:if>
 
-		<textarea class="form-control" name="questionContent" required>${question.questionContent}</textarea>
+		<textarea class="form-control" id="summernote" name="questionContent" required>${question.questionContent}</textarea>
+		<%-- <textarea  name="questionContent" required>${question.questionContent}</textarea> --%>
 
 		<br /> 
 		<input type="button" value="취소" onclick="history.go(-1);"class="cancelBtn" /> 
@@ -181,11 +183,18 @@ $(() => {
 </div>
 
 <script>
-
-/* $("[name=upFile]").change(e => {
-	
-}); */
-
+$(document).ready(function() {
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
