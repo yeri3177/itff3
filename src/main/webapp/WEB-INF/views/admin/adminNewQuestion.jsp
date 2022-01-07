@@ -106,9 +106,6 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 							<span class="press">${list.memberId }</span>
 							<span class="txt_box">
 								<p class="tit">[신규] ${list.questionTitle }</p>
-								<p class="desc ellipsis-multiline">
-									${list.questionContent }
-								</p>
 							</span>
 							<p class="date"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </p><i class="fas fa-link ico_link"></i>
 						</a>
@@ -133,7 +130,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 						role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document"
-							style="max-width: 800px;">
+							style="max-width: 900px;">
 							<div class="modal-content" style="text-align: left;">
 							   	<div class="modal-body" id="modal_ajax1">
 							    		  
@@ -149,7 +146,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
+								style="max-width: 900px;">
 								<div class="modal-content" style="text-align: left;">
 								   	<div class="modal-body" id="modal_ajax2">
 								    		  

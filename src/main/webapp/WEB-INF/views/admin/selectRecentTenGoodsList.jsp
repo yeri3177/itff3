@@ -14,20 +14,11 @@
 	<tr style="width: 600px; font-size: 13px;">
 		<td class="second-cell">
 			<a class="no" href="${pageContext.request.contextPath }/admin/adminGoodsOrderList.do">
-				${list.goodsOrder.orderNo }
+				${list.payment.paymentNo }
 			</a>
 		</td>
-		<td class="second-cell">${list.member.name }</td>
-		<td class="second-cell">
-			<div class="email">
-				<c:if test="${list.payment.paymentNo eq '' }">
-					<span style="color: #45a7b9; font-weight: bold;">결제대기</span>
-				</c:if>
-				<c:if test="${list.payment.paymentNo ne '' }">
-					<span style="color: #ec7b65; font-weight: bold;">결제완료</span>
-				</c:if>
-			</div>
-		</td>
-		<td class="hits-cell" style="font-size: 13px; font-family: 'Montserrat';"><fmt:formatDate value="${list.goodsOrder.orderDate }" pattern="yyyy-MM-dd"/></td>
+		<td class="second-cell">${list.payment.memberId }</td>
+		<td class="second-cell">${list.payment.totalPrice }</td>
+		<td class="hits-cell" style="font-size: 13px; font-family: 'Montserrat';"><fmt:formatDate value="${list.payment.paymentDate }" pattern="yyyy-MM-dd"/></td>
 	</tr>
 </c:forEach>

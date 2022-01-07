@@ -50,7 +50,6 @@ pageContext.setAttribute("loginMember", loginMember);
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품관리</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do" class="collapse__sublink">발주(주문)관리</a><br />
-                            <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderNotPaymentList.do" class="collapse__sublink">미결제 확인</a><br />
                         </ul> 
                      </div> 
                      

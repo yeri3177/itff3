@@ -169,7 +169,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 						role="dialog" aria-labelledby="exampleModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog" role="document"
-							style="max-width: 800px;">
+							style="max-width: 900px;">
 							<div class="modal-content" style="text-align: left;">
 							   	<div class="modal-body" id="modal_ajax1">
 							    		  
@@ -185,7 +185,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 800px;">
+								style="max-width: 900px;">
 								<div class="modal-content" style="text-align: left;">
 								   	<div class="modal-body" id="modal_ajax2">
 								    		  

@@ -22,7 +22,7 @@ public class GoodsPaymentJoin implements Serializable  {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private GoodsOrder goodsOrder;
+	private OrderDetail orderDetail;
 	private Member member;
 	private Payment payment;
 	

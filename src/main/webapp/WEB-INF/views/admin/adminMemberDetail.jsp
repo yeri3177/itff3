@@ -47,6 +47,7 @@
 		      <!-- 포인트 이력 -->
     		  <div class="modal-body">
 		        <h5 class="detail-modal-title" id="exampleModalLabel">포인트 이력</h5>
+		        <div style="height: 350px; overflow: auto;">
 					<table class="table">
 					  <thead>
 					  <c:choose>
@@ -77,6 +78,7 @@
 					  </c:forEach>
 					  </tbody>
 					</table>
+		        </div>
 		      </div>
 		      <div class="modal-footer">
 <!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->

@@ -85,11 +85,11 @@
 								<td class="receiver">
 									<select class="form-select" aria-label="Default select example">
 									  <option selected>선택</option>
-									  <option value="1">결제확인</option>
-									  <option value="2">상품준비중</option>
-									  <option value="3">배송중</option>
-									  <option value="3">배송완료</option>
-									  <option value="3">취소</option>
+									  <option value="상품준비중">상품준비중</option>
+									  <option value="배송준비중">배송준비중</option>
+									  <option value="배송중">배송중</option>
+									  <option value="배송완료">배송완료</option>
+									  <option value="구매확정">구매확정</option>
 									</select>
 								</td>
 								<th class="title_th">택배회사</th>

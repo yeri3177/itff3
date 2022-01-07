@@ -29,7 +29,8 @@ pageContext.setAttribute("loginMember", loginMember);
 		      <div class="modal-body">
 		      	<input type="hidden" name="questionNo1" value="${question.questionNo}" id="questionNo" />
 <!-- 		        <h5 class="detail-modal-title" id="exampleModalLabel">회원정보</h5> -->
-		        <table class="table" id="modal_table">
+		        <div>
+		        <table class="table" id="modal_table" style="width: 100% !important;">
 				  <tbody>
 				  
 				    <tr>
@@ -63,7 +64,7 @@ pageContext.setAttribute("loginMember", loginMember);
 					</tr>
 					<tr>
 						<th scope="row">내용</th>
-						<td style="display: inline-grid;"><c:forEach items="${question.attachments}" var="attach"
+						<td style="display: inline-grid; width: 700px; overflow: auto;"><c:forEach items="${question.attachments}" var="attach"
 								varStatus="vs">
 								<img
 									src="${pageContext.request.contextPath}/resources/upload/question/${attach.renamedFilename}"
@@ -75,6 +76,7 @@ pageContext.setAttribute("loginMember", loginMember);
 
 				  </tbody>
 				</table>
+		        </div>
 		      </div>
 		      
 		      <div class="comment-container" style="background-color: whitesmoke; padding: 20px; display: flex; justify-content: space-between; align-items: center;">
