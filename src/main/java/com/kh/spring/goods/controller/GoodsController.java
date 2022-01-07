@@ -526,13 +526,7 @@ public class GoodsController {
 	
 	/**
 	 * [결제하기]버튼 클릭시
-	 * 
-	 * - payment 테이블 1행 추가
-	 * (결제번호, 주문번호, 회원아이디, 수령인, 연락처, 우편번호, 주소, 상세주소, 주문요청사항, 결제금액, 사용한포인트, 결제날짜) 
-	 * - cart 테이블 레코드 전체 삭제 
-	 * - 배송지체크여부 1 -> member 주소 update
-	 * - usedPoints >0 -> point history 테이블 update 
-	 * 
+
 	 	memberId: "abcde"
 		receiver: "알파벳"
 		receiverPhone: "01012345678"
@@ -590,7 +584,7 @@ public class GoodsController {
 			}
 			
 			// cart 테이블 delete
-			//result = goodsService.deleteCartList(map);
+			result = goodsService.deleteCartList(map);
 			log.debug("cart delete > result = {}", result);
 			
 			// point_history 테이블 insert
@@ -617,7 +611,6 @@ public class GoodsController {
 		log.debug("payment = {}", payment);
 		model.addAttribute("payment", payment);
 		
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String paymentDate = sdf.format(payment.getPaymentDate());
 		log.debug("PaymentDate = {}", paymentDate);
