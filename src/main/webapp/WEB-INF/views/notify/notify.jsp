@@ -8,6 +8,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!-- 사용자작성 css -->
 <link rel="stylesheet"
@@ -16,13 +18,6 @@
 	href="${pageContext.request.contextPath }/resources/css/common/notify.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
-
-<%
-SecurityContext securityContext = SecurityContextHolder.getContext();
-Authentication authentication = securityContext.getAuthentication();
-Member loginMember = (Member) authentication.getPrincipal();
-pageContext.setAttribute("loginMember", loginMember);
-%>
 
 <!-- 한글 깨지지 않게 하는 설정-->
 <fmt:requestEncoding value="utf-8" />
@@ -39,7 +34,7 @@ pageContext.setAttribute("loginMember", loginMember);
 
 <div class="container">
 <div>
-		<div class="msg_section" style="margin-bottom: 20px;">
+		<div class="msg_section" style="margin-bottom: 55px;">
 			<h2 class="m-3">
 			새로 온 알림
 			</h2>
@@ -62,7 +57,6 @@ pageContext.setAttribute("loginMember", loginMember);
 					        <span>${list.content}</span>
 					        <button class="readNotifyBtn btn btn-secondary ml-auto">읽기</button>
 					        <span class="notifyId d-none">${list.NId}</span>
-					        <input type="hidden" id="memberId" name="memberId" value="${loginMember.id}" />
 						</div>
 				        
 				    </div>
@@ -70,6 +64,8 @@ pageContext.setAttribute("loginMember", loginMember);
 			</c:forEach>
 			</div>
 			</div>
+			
+			<hr />
 			
 			<div class="msg_section">	
 			<h2 class="m-3">
@@ -104,8 +100,8 @@ pageContext.setAttribute("loginMember", loginMember);
 		var searchStep = 5;	// 5걔씩 로딩
 		
 		// 아이디
-		var _m_id = $("#memberId").val();
-		console.log(_m_id);
+		var _m_id = $(".id").val();
+		console.log(_m_id)
 		
 		// 로딩시 실행 - 읽은 알림 5개 얻기 
 		readOldNotify(startIndex);
@@ -200,7 +196,6 @@ pageContext.setAttribute("loginMember", loginMember);
 	});
 
 </script>
-
 
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

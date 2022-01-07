@@ -374,29 +374,6 @@ function gosave() {
 
 </script>
 
-<script>
-
-//알림 수
-$(document).ready(function () {
-	var mid = $(".id").val();
-	
-	$.ajax({
-		url:"${pageContext.request.contextPath}/notify/notifyCount.do",
-		method: "get",
-		contentType: "application/json",
-		data: {id: mid},
-		dateType: "text",
-		success: function(data) {
-			$("#notify").html(data);
-		},
-		complete: function() {
-			console.log("complete")
-		}
-	});
-});
-
-</script>
- 
 <!-- //container -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/common/quickMenu.jsp"></jsp:include>
