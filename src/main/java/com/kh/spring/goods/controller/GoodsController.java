@@ -72,7 +72,7 @@ public class GoodsController {
 		
 		// limit : 한페이지에 표시할 게시글 수 
 		// offset : 건너뛰어야 할 게시글 수
-		int limit = 8;
+		int limit = 10;
 		int offset = (cPage - 1) * limit;
 		param.put("limit", limit);
 		param.put("offset", offset);
@@ -706,11 +706,22 @@ public class GoodsController {
 	 * 관심상품 페이지 
 	 */
 	@GetMapping("/likeItems.do")
-	public String likeItems() {
+	public String likeItems(Authentication authentication, Model model, HttpServletRequest request) {
 		
+		HttpSession session = request.getSession();
+		String loginId = "";
 		
+		if(authentication != null) {
+			// 로그인 되어 있을시 로그인한 아이디 넣기
+			loginId = (String)(((Member) authentication.getPrincipal()).getId());
+		} else {
+			// 로그인 안되어 있을시 세션 아이디 넣기 
+			loginId = session.getId();
+		}
 		
-		
+		List<GoodsLikeJoin> list = goodsService.selectGoodsLikeItems(loginId);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
 		
 		
 		return "goods/likeItems";

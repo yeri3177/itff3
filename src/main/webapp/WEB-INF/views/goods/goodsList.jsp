@@ -3,8 +3,7 @@
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@page import="org.springframework.security.core.context.SecurityContext"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -27,9 +26,8 @@
 	
 	System.out.println("야호 33333 = " + userId); // 90FD2F422433064696FE114356D7BD99
 	pageContext.setAttribute("userId", userId);
-	
-	
 %>
+
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
@@ -94,9 +92,10 @@
 		<!-- 상품 목록 카드 리스트-->
 		<div class="card-list">
 			
+						
 			<!-- 개별 상품 카드 -->
 			<c:forEach items="${list}" var="goods" varStatus="vs">
-			<div class="card" style="width: 18rem;" data-id="${goods.goods.PId}">
+			<div class="card" data-id="${goods.goods.PId}">
 				<!-- 로그인 아이디 -->
 				<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">
 				<!-- 대표 이미지 -->
@@ -125,8 +124,10 @@
 						<fmt:formatNumber value="${goods.goods.PPrice}" pattern="￦ #,###" />
 					</div>
 				</div> <!-- end of 상품텍스트 -->
-			</div> <!-- end of 개별 상품 카드 -->
-			</c:forEach>	
+			</div>
+			</c:forEach> <!-- end of 개별 상품 카드 -->
+			
+			
 		</div><!-- end of 상품 목록 카드 리스트-->
 	</div> <!-- 상품 목록 부분 끝 -->
 	<!-- 페이지바 -->

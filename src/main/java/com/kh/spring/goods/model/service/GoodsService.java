@@ -93,5 +93,7 @@ public interface GoodsService {
 
 	OrderDetailJoin selectOneOrderDetailJoin(int orderDetailNo);
 
+	List<GoodsLikeJoin> selectGoodsLikeItems(String loginId);
+
 
 }

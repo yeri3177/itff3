@@ -13,7 +13,7 @@ body {
 	text-align: center;
 	/* padding-bottom: 80px; */
 	display: block;
-	font-size: 17px;
+	font-size: 14px;
  }
  
  #pagebar {
@@ -97,17 +97,20 @@ body {
  }
  
  .img-div img {
- 	width: 250px;
+ 	width: 200px;
  	height: auto;
  	vertical-align: middle;
  }
  
  .img-div {
- 	width: 285px;
- 	height: 265px;
- 	line-height: 265px;
- 	background-color: #f6f6f6;
- 	position: relative;
+	width: 230px;
+    height: 230px;
+    line-height: 265px;
+    background-color: #f6f6f6;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
  }
  
@@ -125,10 +128,10 @@ body {
  }
  
  .middle-text {
- 	margin-top: 10px;
- 	margin-bottom: 20px;
- 	color: #585858;
- 	font-size: 20px;
+    margin-top: 1px;
+    margin-bottom: 14px;
+    color: #585858;
+    font-size: 16px;
  }
  
  .top-text {
@@ -137,28 +140,25 @@ body {
  }
  
  .bottom-text {
- 	font-size: 20px;
+ 	font-size: 18px;
  }
  
  .iconBg-div {
-	width: 40px;
-	height: 40px;
-	margin-left: 10px;
-	background: white;
-	opacity: 0.85;
-	border-radius: 50%;
-	text-align: center;
-	display: flex;
-	align-items: center!important;
-	justify-content: center;
-	
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
-	padding-top: 4px;
-	
-	
-	z-index: 999;
+	width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    background: white;
+    opacity: 0.85;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center!important;
+    justify-content: center;
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    padding-top: 4px;
+    z-index: 999;
 	
 }
 
