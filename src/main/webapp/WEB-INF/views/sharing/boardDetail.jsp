@@ -94,9 +94,9 @@
 				<br /><br />
 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
 					<div class="image-box">
-						<center><img class=""
-							src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}"
-							alt="" /></center>				
+						<center>
+							<img class="" src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}" alt="" />
+						</center>				
 					</div>
 				</c:forEach>
 				<br /><br />
@@ -137,9 +137,8 @@
 							class="btn_brd_del btn btn-xs btn-secondary">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
 					</sec:authorize>
 		
-					<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
-					<br />
 					</sec:authorize>
+					<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
 				</div>
 			</span>
 			</div>
