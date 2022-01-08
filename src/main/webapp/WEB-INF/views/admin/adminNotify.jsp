@@ -25,9 +25,6 @@
 <!-- 관리자 헤더 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
 
-<!-- 회원 nav -->
-<jsp:include page="/WEB-INF/views/admin/common/adminMemberNavBar.jsp"></jsp:include>
-
 <!-- 관리자 공통 메뉴 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminMenu.jsp"></jsp:include>
 
@@ -88,7 +85,7 @@
 <%-- 			</c:forEach> --%>
 			</div>
 			</div>
-			<button id="searchMoreNotify" class="btn btn-outline-primary btn-block col-sm-10 mx-auto">더 보기</button>
+			<button id="searchMoreNotify" class="btn btn-outline-secondary btn-block col-sm-10 mx-auto">더 보기</button>
 	</div>
 </div>
 </div><!-- // conwid80 -->

@@ -1627,19 +1627,19 @@ public class AdminManageController {
 		param.put("end", limit);
 		log.debug("param1 = {}", param);
 		
-		// 1. 
+		// 2. 
 		List<GoodsPaymentJoin> list = adminService.searchGoodsOrderDate(param);
 		log.debug("list = {}", list);
 		
 		model.addAttribute("list", list);
 		
-		// 2. totalContent
+		// 3. totalContent
 		int totalContents = adminService.searchGoodsOrderDateCount(param);
 		log.debug("totalContents = {}", totalContents);
 		
 		model.addAttribute("totalContents", totalContents);
 		
-		// 3. pagebar
+		// 4. pagebar
 		String url = request.getRequestURI()+"?startDate="+startDate+"&endDate="+endDate;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
 //		log.debug("pagebar = {}", pagebar);
@@ -1654,7 +1654,7 @@ public class AdminManageController {
 	 * [주문 취소]
 	 */
 	
-	@GetMapping("/adminGoodsOrderDelete.do")
+	@GetMapping("/adminGoodsOrderStatusUpdate.do")
 	public void adminGoodsOrderDelete(@RequestParam("orderNo") String orderNo, Model model) {
 		log.debug("orderNo = {}", orderNo);
 		
@@ -1665,15 +1665,19 @@ public class AdminManageController {
 		model.addAttribute("payment", payment);
 	}
 	
-	@PostMapping("/adminGoodsOrderDelete.do")
-	public String adminGoodsOrderDelete(@RequestParam("paymentNo") int paymentNo, @RequestParam("orderNo") String orderNo, RedirectAttributes redirectAttr) {
+	@PostMapping("/adminGoodsOrderStatusUpdate.do")
+	public String adminGoodsOrderDelete(@RequestParam("paymentNo") int paymentNo, @RequestParam("orderNo") String orderNo, @RequestParam String status, RedirectAttributes redirectAttr) {
 		log.debug("paymentNo = {}", paymentNo);
 		log.debug("paymentNo = {}", orderNo);
+		log.debug("status = {}", status);
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("orderNo", orderNo);
+		param.put("status", status);
+		log.debug("param = {}", param);
 		
     	try {
-    		int result1 = adminService.cancleGoodsOrderDetail(orderNo);
-//			int result2 = adminService.deletePayment(paymentNo);
-			redirectAttr.addFlashAttribute("msg", "주문 취소 성공");
+    		int result1 = adminService.adminGoodsOrderStatusUpdate(param);
 			
     	} catch (InvalidParameterException e) {
     		log.error(e.getMessage(), e);

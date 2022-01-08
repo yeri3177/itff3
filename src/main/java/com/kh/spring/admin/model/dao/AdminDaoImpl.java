@@ -694,11 +694,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int cancleGoodsOrderDetail(String orderNo) {
-		return session.update("admin.cancleGoodsOrderDetail", orderNo);
-	}
-
-	@Override
 	public int updateGoodsOrderDetailStatus(Map<String, Object> param) {
 		return session.update("admin.updateGoodsOrderDetailStatus", param);
 	}
@@ -722,6 +717,11 @@ public class AdminDaoImpl implements AdminDao {
 	public List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit) {
 		RowBounds rowBounds = new RowBounds(offset, limit); 
 		return session.selectList("admin.selectGoodsOrderCancelList", null, rowBounds);
+	}
+
+	@Override
+	public int adminGoodsOrderStatusUpdate(Map<String, Object> param) {
+		return session.update("admin.adminGoodsOrderStatusUpdate", param);
 	}
 
 //	@Override

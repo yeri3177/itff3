@@ -65,7 +65,7 @@ toastr.options = {
 		  "debug": false,
 		  "newestOnTop": false,
 		  "progressBar": true,
-		  "positionClass": "toast-top-right",
+		  "positionClass": "toast-bottom-right",
 		  "preventDuplicates": false,
 		  "onclick": null,
 		  "showDuration": "100",
@@ -108,7 +108,7 @@ $(document).ready(function() {
 		sock.onmessage = function(evt) {
 	   		console.log('Info: connection onmessage.');
 	   		console.log(evt.data);
-	   		toastr.info(evt.data);
+	   		toastr.success(evt.data);
 		};
 
 		sock.onclose = function(event) {

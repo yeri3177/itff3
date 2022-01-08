@@ -234,8 +234,8 @@
 		        	type="button" 
 		        	class="btn btn-outline-secondary"
   			      	data-toggle="modal"
-					data-target="#adminGoodsOrderDelete"
-					onclick="goods_order_delete_btn('${payment.payment.orderNo}', '${payment.payment.paymentNo}');">일괄주문취소
+					data-target="#adminGoodsOrderStatusUpdate"
+					onclick="goods_order_status_update_btn('${payment.payment.orderNo}', '${payment.payment.paymentNo}');">일괄상태변경
 				</button>
 		      </div>
 

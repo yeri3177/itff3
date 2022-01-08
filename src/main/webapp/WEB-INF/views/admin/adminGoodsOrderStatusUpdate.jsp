@@ -11,14 +11,14 @@
 </jsp:include>
 
 		      <div class="modal-header">
-		        <h4 class="modal-title" id="exampleModalLabel">주문취소</h4>
+		        <h4 class="modal-title" id="exampleModalLabel">일괄상태변경</h4>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      
     	    <form
-				action="${pageContext.request.contextPath}/admin/adminGoodsOrderDelete.do?${_csrf.parameterName}=${_csrf.token}"
+				action="${pageContext.request.contextPath}/admin/adminGoodsOrderStatusUpdate.do?${_csrf.parameterName}=${_csrf.token}"
 				name="goods_order_delete_frm"
 				method="post">
 		      
@@ -44,22 +44,38 @@
 						     <td>${payment.totalPrice }</td>
 						   </tr>
 					  </tbody>
+					  <tfoot>
+						  <th scope="row">진행상태</th>
+						  <td>
+						    <div>
+							    <select id="status-select" name="status" class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
+								  <option selected>선택</option>
+								  <option value="상품준비중">상품준비중</option>
+								  <option value="배송준비중">배송준비중</option>
+								  <option value="배송중">배송중</option>
+								  <option value="배송완료">배송완료</option>
+								  <option value="주문취소">주문취소</option>
+								</select>
+							</div>
+						  </td>
+					  </tfoot>
 					</table>
-					<p class="recheck">주문을 취소하시겠습니까?</p>
 		      </div>
 		      <div class="modal-footer">
-				<button type="submit" class="btn btn-danger cancel">주문취소</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">돌아가기</button>
+				<button type="submit" class="btn btn-outline-secondary">변경</button>
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 		      </div>
 			</form>
+			
 		<input type="hidden" name="memberId" class="memberId" value="${payment.memberId }" />
+
 <script>
 
-$("[name=goods_order_delete_frm]").submit(function(e){
-
+$("[name=goods_order_delete_frm]").submit((e) => {
     let type = '굿즈샵';
     let target = $(".memberId").val();
-    let content = '상품 주문이 취소되었습니다.'
+    let status = $("#status-select option:selected").val();
+    let content = '주문하신 상품의 진행 상태는 ['+status+'] 입니다.'
     let url = '${contextPath}/notify/saveNotify.do';
     
     // 전송한 정보를 db에 저장	
@@ -81,9 +97,7 @@ $("[name=goods_order_delete_frm]").submit(function(e){
             // 소켓에 전달되는 메시지
             // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
         	socket.send("ITFF,"+target+","+content+","+url)
-
     });
-    modal.find('.modal-body textarea').val('');	// textarea 초기화
 });
 
 </script>

@@ -252,8 +252,6 @@ public interface AdminService {
 
 	Payment selectOnePayment2(String orderNo);
 
-	int cancleGoodsOrderDetail(String orderNo);
-
 	int updateGoodsOrderDetailStatus(Map<String, Object> param);
 
 	Payment selectOnePayment3(int paymentNo);
@@ -263,6 +261,8 @@ public interface AdminService {
 	int selectGoodsOrderCancelTotalCount();
 
 	List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit);
+
+	int adminGoodsOrderStatusUpdate(Map<String, Object> param);
 
 //	int deletePayment(int paymentNo);
 	

@@ -84,7 +84,7 @@
 <%-- 			</c:forEach> --%>
 			</div>
 			</div>
-			<button id="searchMoreNotify" class="btn btn-outline-primary btn-block col-sm-10 mx-auto">더 보기</button>
+			<button id="searchMoreNotify" class="btn btn-outline-secondary btn-block col-sm-10 mx-auto">더 보기</button>
 	</div>
 </div>
 </div><!-- // conwid80 -->

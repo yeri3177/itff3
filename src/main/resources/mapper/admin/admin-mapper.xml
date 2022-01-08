@@ -1333,7 +1333,7 @@
 	
 	<select id="selectGoodsOrderList" resultMap="GoodsPaymentJoinMap">
 		select distinct
-			p.payment_date, p.payment_no, p.receiver, p.total_price, p.order_no
+			p.payment_date, p.payment_no, p.member_id, p.total_price, p.order_no
 		from
             order_detail o
 		left join payment p
@@ -1673,15 +1673,6 @@
 			order_no = #{orderNo}
 	</select>
 	
-	<update id="cancleGoodsOrderDetail">
-		update
-			order_detail
-		set
-			status = '주문취소'
-		where
-			order_no = #{orderNo}
-	</update>
-	
 <!-- 	<delete id="deletePayment"> -->
 <!-- 		delete from -->
 <!-- 			payment -->
@@ -1737,4 +1728,14 @@
 	        where 
 	        	p.payment_no is not null and status = '주문취소'
 	</select>
+	
+	<update id="adminGoodsOrderStatusUpdate">
+		update
+			order_detail
+		set
+			status = #{status}
+		where
+			order_no = #{orderNo}
+	</update>
+	
 </mapper>
