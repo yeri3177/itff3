@@ -40,9 +40,13 @@
 
 .img-bg img {
 	width: 105px;
-	background-color: aqua;
+	/* background-color: aqua; */
 }
 
 .order-item {
 	margin-bottom: 22px;
+}
+
+.moveGoodsDetail {
+	cursor: pointer;
 }

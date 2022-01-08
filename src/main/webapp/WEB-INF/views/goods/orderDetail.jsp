@@ -70,12 +70,12 @@
 		<div class="title-text">주문 상품 정보</div>
 		
 		<div class="d-flex order-item">
-			<div class="img-bg">
+			<div class="img-bg moveGoodsDetail">
 				<img src="${pageContext.request.contextPath}/resources/upload/goods/${order.optionDetail.optionImg}">	
 			</div>
 			
 			<div class="d-flex w-100 justify-content-between align-items-center">
-				<div>
+				<div class="moveGoodsDetail">
 					<div style="color: #a1a1a1;">No. ${order.goods.PId }</div>
 					<div style="font-weight: 555;">${order.goods.PName }</div>
 					<div>
@@ -188,7 +188,10 @@
 </section>
 
 <script>
-
+	
+$(".moveGoodsDetail").click((e) => {
+	location.href = '${pageContext.request.contextPath}/goods/goodsDetail.do?pid=${order.goods.PId }';
+})
 
 </script>
 
