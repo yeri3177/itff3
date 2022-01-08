@@ -94,7 +94,7 @@ if(authentication.getPrincipal() != "anonymousUser"){
 						<c:forEach items="${list}" var="board">
 							<tr data-no="${board.no}">
 								<td no text_en>
-									<span class="badge badge-${board.category == 'P' ? 'danger' : (board.category == 'S' ? 'primary' : 'secondary') }">
+									<span style="font-size: 12px;" class="badge badge-${board.category == 'P' ? 'danger' : (board.category == 'S' ? 'primary' : 'secondary') }">
 										<c:choose>
 											<c:when test="${board.category == 'P'}">티켓구함</c:when>
 											<c:when test="${board.category == 'S'}">티켓양도</c:when>
