@@ -112,16 +112,15 @@
 		var check = [];
 		$(".checkDate").each(function(){
 			var dateC = {};
-			dateC.title = "출석";
+			dateC.title = "✔️";
 			dateC.start = $(this).val();
-			dateC.imageurl="${pageContext.request.contextPath }/resources/fullcalendar/core/check2.png";
-			/* 
 			dateC.end = $(this).val();
-			dateC.className="test";
+			dateC.imageurl="${pageContext.request.contextPath }/resources/fullcalendar/core/check2.jpg";
 			dateC.color="";
-			dateC.url="${pageContext.request.contextPath }/resources/member/images/check2.jpg";
-			
-			dateC.title= "이미지야나와라";
+			dateC.className="test";
+			/* 
+			dateC.title= "🖕";
+			dateC.url="${pageContext.request.contextPath }/resources/member/images/check2.jpg";			
 			dateC.overlap= false;
 			dateC.rendering="background-image";
 			 dateC.title = "출석!";
@@ -165,7 +164,8 @@
 	                    	success(data) {
 	                			console.log(data);
 	                			$(".fc-checkBtn-button").prop('disabled', true);
-	                			$(".fc-checkBtn-button").html('출석완료');
+	                			//$(".fc-checkBtn-button").html('출석완료');
+	                			location.reload();
 	                		},
 	                		error: console.log
 	                    });
@@ -186,9 +186,9 @@
 	      //이벤트안에 체크배열을 넣어줌.
 	      events: check,
 	      eventRender:function(event, eventElement) {
-	    	  
+	    	  console.log(event);
               if(event.imageurl) {
-                  eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
+            	  eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
               }
           }
 	    });
