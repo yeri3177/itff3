@@ -48,3 +48,28 @@ div {
    	background-color: white;
    	width: 270px;
 }
+
+#quick-btn {
+	position: fixed;
+    z-index: 99999;
+    bottom: 5%;
+    right: 5%;
+}
+
+#quick-btn img {
+	width: 80px;
+    border-radius: 8px;
+    border: 4px outset #e7e7e7;
+    background-color: white;
+}
+
+.dropdown-menu {
+    top: -6px!important;
+    left: -9px!important;
+}
+
+
+
+
+
+
