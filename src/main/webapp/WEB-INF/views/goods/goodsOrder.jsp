@@ -825,7 +825,6 @@ function inicisPay() {
 	} */
 	
 	//console.log(payment_data);
-	//console.log(rsp);
 	
 	var IMP = window.IMP;
     IMP.init("imp32315053");
@@ -835,7 +834,7 @@ function inicisPay() {
         pg: 'payco',
         pay_method : 'card', 
         name : paymentProductName,
-        amount : 110, //상품가격
+        amount : 100, //상품가격 ( $totalPrice.val() )
         buyer_name : '${member.name}',	// 구매자이름
         buyer_tel : '${member.phone}',	// 구매자 전화번호
         buyer_email : '${member.email}',	//구매자 이메일
@@ -873,7 +872,7 @@ function inicisPay() {
 						console.log("insertPayment ajax success");
                     	
 						// 페이지 이동 
-						location.href = `${pageContext.request.contextPath}/goods/completePayment.do`;
+						location.href = `${pageContext.request.contextPath}/goods/completeOrder.do`;
                     }
                 }).done(function (data) {
                   // 가맹점 서버 결제 API 성공시 로직
@@ -925,7 +924,7 @@ $(".point-btn").click((e) => {
 	
 	console.log(holdingPoints);
 	
-	if(holdingPoints>1000){
+	if(holdingPoints>=1000){
 		$(".point-input").val(holdingPoints);
 		$(".summary-points-val").text(comma($userpoints.val())+"P");
 		$(".totalPrice-div").text((comma(parseInt(${allprice})-(parseInt($userpoints.val()))+2500))+"원");

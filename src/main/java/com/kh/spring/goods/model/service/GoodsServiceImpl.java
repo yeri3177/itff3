@@ -139,18 +139,18 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public int insertGoodsOrder(Map<String, Object> param) {
-		return goodsDao.insertGoodsOrder(param);
+	public int insertGoodsOrder(Map<String, Object> map) {
+		return goodsDao.insertGoodsOrder(map);
 	}
 
 	@Override
-	public String selectOneOrderNo(Map<String, Object> param) {
-		return goodsDao.selectOneOrderNo(param);
+	public String selectOneOrderNo(Map<String, Object> map) {
+		return goodsDao.selectOneOrderNo(map);
 	}
 
 	@Override
-	public int insertOrderDetail(Map<String, Object> param) {
-		return goodsDao.insertOrderDetail(param);
+	public int insertOrderDetail(Map<String, Object> map) {
+		return goodsDao.insertOrderDetail(map);
 	}
 
 	@Override
@@ -181,6 +181,16 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public Payment selectOnePayment(String id) {
 		return goodsDao.selectOnePayment(id);
+	}
+
+	@Override
+	public Payment selectPaymentByPaymentNo(int no) {
+		return goodsDao.selectPaymentByPaymentNo(no);
+	}
+
+	@Override
+	public GoodsOrder selectOneGoodsOrder(String id) {
+		return goodsDao.selectOneGoodsOrder(id);
 	}
 
 

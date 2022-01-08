@@ -1,6 +1,5 @@
 package com.kh.spring.goods.controller;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +29,7 @@ import com.kh.spring.goods.model.vo.GoodsCart;
 import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
+import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
 import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
@@ -449,11 +448,12 @@ public class GoodsController {
 	}
 
 	/**
-	 * 주문, 주문상세 데이터 추가  
-	 * @throws IOException 
+	 * 주문, 주문상세 데이터 추가 (사용안함)  
+	 * 
+	 * insertPayment에 통합함 
 	 */
 	@GetMapping("/insertOrder.do")
-	public void insertOrder(Authentication authentication, Model model, HttpServletResponse response) throws IOException {
+	public void insertOrder(Authentication authentication) {
 
 
 		// 1. 주문 테이블에 레코드 1행 추가하기 
@@ -483,7 +483,7 @@ public class GoodsController {
 		param.put("memberId", memberId);
 		param.put("totalPrice", totalPrice);
 		
-		// param -> goods_order 테이블에 1행 삽입
+		// goods_order 테이블에 1행 추가 / param : memberId, totalPrice
 		int result = goodsService.insertGoodsOrder(param);
 		log.debug("goods_order 삽입 result = {}", result); // goods_order 삽입 result = 1
 		
@@ -495,9 +495,8 @@ public class GoodsController {
 		String orderNo = goodsService.selectOneOrderNo(param);
 		log.debug("orderNo = {}", orderNo); // order = order-0004
 		param.put("orderNo", orderNo);
-		//model.addAttribute("orderNo", orderNo);
 		
-		// 주문상세 테이블의 레코드 추가 
+		// order_detail 테이블에 n행 추가 / param : memberId, orderNo
 		result = goodsService.insertOrderDetail(param);
 		log.debug("order_detail 삽입 result = {}", result); // order_detail 삽입 result = 6
 		
@@ -538,7 +537,7 @@ public class GoodsController {
 		booleanSaveAddressChk: 1
 		
 		totalPrice: "47000" <- 상품가격만
-		payPrice: "41500" <- 상품가격 -사용한포인트 +배송비 2500
+		payPrice: "41500" <- 상품가격(47000) - 사용한포인트(8000) + 배송비(2500)
 		usedPoints: "8000" <- 사용한 포인트 (또는 "")
 		
 		cardName : 신한카드
@@ -547,12 +546,23 @@ public class GoodsController {
 	@PostMapping("/insertPayment.do")
 	public String insertPayment(@RequestParam Map<String, Object> map) {
 		log.debug("map = {}", map);
-
+		
+		int result = 0;
+		
+		// goods_order 테이블에 1행 추가 / 필요 map : memberId, payPrice
+		result = goodsService.insertGoodsOrder(map);
+		log.debug("goods_order 삽입 result = {}", result); 
+		
+		// orderNo 찾기 
 		String orderNo = goodsService.selectOneOrderNo(map);
 		log.debug("orderNo = {}", orderNo);
 		map.put("orderNo", orderNo);
 		
-		int result = 0;
+		
+		// order_detail 테이블에 n행 추가 / 필요 map : memberId, orderNo
+		result = goodsService.insertOrderDetail(map);
+		log.debug("order_detail 삽입 result = {}", result);
+					
 		
 		if(map.get("usedPoints").toString() == "") {
 			map.put("usedPoints", "0");
@@ -562,6 +572,7 @@ public class GoodsController {
 		result = goodsService.insertPayment(map);
 		log.debug("payment insert > result = {}", result);
 		
+		// 결제 성공 및 결제 데이터 추가 성공시 
 		if(result > 0) {
 
 			int booleanSaveAddressChk = Integer.parseInt(map.get("booleanSaveAddressChk").toString());
@@ -583,7 +594,7 @@ public class GoodsController {
 				log.debug("member point update > result = {}", result);
 			}
 			
-			// cart 테이블 delete
+			// cart 테이블 전체 delete
 			result = goodsService.deleteCartList(map);
 			log.debug("cart delete > result = {}", result);
 			
@@ -594,31 +605,69 @@ public class GoodsController {
 			
 			result = goodsService.insertPointHistoryByPayment(map);
 			log.debug("point history insert > result = {}", result);
-			
+						
 		}
 
-		return "redirect:/goods/completePayment.do";
+		return "redirect:/goods/completeOrder.do";
 	}
 	
 	
 	/**
 	 * 결제완료 페이지 
 	 */
-	@GetMapping("/completePayment.do")
-	public String completePayment(Authentication authentication, Model model) {
+	@GetMapping("/completeOrder.do")
+	public String completeOrder(Authentication authentication, Model model) {
 		Member member = (Member) authentication.getPrincipal();
-		Payment payment = goodsService.selectOnePayment(member.getId());
-		log.debug("payment = {}", payment);
-		model.addAttribute("payment", payment);
+		
+		GoodsOrder order = goodsService.selectOneGoodsOrder(member.getId());
+		log.debug("order = {}", order);
+		model.addAttribute("order", order);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String paymentDate = sdf.format(payment.getPaymentDate());
-		log.debug("PaymentDate = {}", paymentDate);
+		String orderDate = sdf.format(order.getOrderDate());
+		log.debug("orderDate = {}", orderDate);
 		
-		model.addAttribute("paymentDate", paymentDate);
+		model.addAttribute("orderDate", orderDate);
 		
-		return "goods/completePayment";
+		return "goods/completeOrder";
 	}
+	
+	
+	/**
+	 * 주문 목록 페이지 
+	 * 
+	 * 주문(order) + 주문상세(order_detial) + 상품(goods) + 상품옵션(goods_option) 
+	 */
+	@GetMapping("/orderList.do")
+	public String orderList(Model model) {
+		
+		
+		
+		
+		
+		return "goods/orderList";
+	}
+	
+	
+	/**
+	 * 주문 상세 페이지 
+	 */
+	@GetMapping("/orderDetail.do")
+	public String purchaseDetail() {
+
+		
+		
+		
+		
+		
+		
+		
+		return "goods/orderDetail";
+	}
+	
+	
+	
+	
 	
 	
 }

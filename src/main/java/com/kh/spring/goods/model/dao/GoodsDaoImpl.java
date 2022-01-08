@@ -143,18 +143,18 @@ public class GoodsDaoImpl implements GoodsDao {
 	}
 
 	@Override
-	public int insertGoodsOrder(Map<String, Object> param) {
-		return session.insert("goods.insertGoodsOrder", param);
+	public int insertGoodsOrder(Map<String, Object> map) {
+		return session.insert("goods.insertGoodsOrder", map);
 	}
 
 	@Override
-	public String selectOneOrderNo(Map<String, Object> param) {
-		return session.selectOne("goods.selectOneOrderNo", param);
+	public String selectOneOrderNo(Map<String, Object> map) {
+		return session.selectOne("goods.selectOneOrderNo", map);
 	}
 
 	@Override
-	public int insertOrderDetail(Map<String, Object> param) {
-		return session.insert("goods.insertOrderDetail", param);
+	public int insertOrderDetail(Map<String, Object> map) {
+		return session.insert("goods.insertOrderDetail", map);
 	}
 
 	@Override
@@ -185,6 +185,16 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public Payment selectOnePayment(String id) {
 		return session.selectOne("goods.selectOnePayment", id);
+	}
+
+	@Override
+	public Payment selectPaymentByPaymentNo(int no) {
+		return session.selectOne("goods.selectPaymentByPaymentNo", no);
+	}
+
+	@Override
+	public GoodsOrder selectOneGoodsOrder(String id) {
+		return session.selectOne("goods.selectOneGoodsOrder", id);
 	}
 
 

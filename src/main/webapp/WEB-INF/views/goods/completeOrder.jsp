@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/goodsCommon.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/completePayment.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/goods/completeOrder.css" />
 
 <style>
 	canvas{z-index:10;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);}
@@ -37,7 +37,7 @@
 </div>
 
 <!-- 메인 콘텐츠 섹션 -->
-<section class="goods-container" id="completePayment-container">
+<section class="goods-container" id="completeOrder-container">
 
 <div id="top-container">
 	<div>
@@ -53,11 +53,11 @@
 		</div>
 		
 		<div>
-			주문번호 : ${payment.paymentNo }
+			주문번호 : ${order.orderNo }
 		</div>
 		
 		<div>
-			주문일자 : ${paymentDate }
+			주문일자 : ${orderDate }
 		</div>
 	
 	</div>
@@ -80,6 +80,9 @@
 
 <script src="https://tistory4.daumcdn.net/tistory/3134841/skin/images/confetti_v2.js"></script>
 <script>
+$(() => {
+	console.log('${payment.paymentNo}');
+})
 
 $(document).ready(function(){  
   function reAction(){
@@ -92,7 +95,7 @@ $(document).ready(function(){
 });
 
 $("#paychk-btn").click((e) => {
-	
+	location.href = '${pageContext.request.contextPath}/goods/orderList.do';
 })
 
 $("#shopping-btn").click((e) => {

@@ -493,7 +493,7 @@
 		values(
 			default,
 			#{memberId},
-			#{totalPrice},
+			#{payPrice},
 			default
 		)
 	</insert>
@@ -510,21 +510,26 @@
 			select order_no
 			from goods_order
 			where member_id = #{memberId}
-			and total_price = #{totalPrice}
+			and total_price = #{payPrice}
 			order by order_date desc
 		) where rownum = 1
 	</select>
 	
 	
 	<insert id="insertOrderDetail">
-		insert into order_detail
-		select seq_order_detail_no.nextval as order_detail_no, 
-		#{orderNo} as order_no, 
-		e.p_id, 
-		e.option_id, 
-		e.cart_quantity as quantity 
-		from goods_cart e 
-		where member_id = #{memberId}
+		insert into 
+			order_detail
+		select 
+			seq_order_detail_no.nextval as order_detail_no, 
+			#{orderNo} as order_no, 
+			e.p_id, 
+			e.option_id, 
+			e.cart_quantity as quantity,
+			'상품준비중' as status
+		from 
+			goods_cart e 
+		where 
+			member_id = #{memberId}
 	</insert>
 	
 	<insert id="insertPayment">
@@ -591,14 +596,23 @@
 	<select id="selectOnePayment" resultType="payment">
 		select * from (
 			select * from payment 
-			where member_id = 'abcde' 
+			where member_id = #{id}
 			order by payment_date desc) 
 		where rownum = 1
 	</select>
 	
+	<select id="selectPaymentByPaymentNo" resultType="payment">
+		select * from payment 
+		where payment_no = #{no}
+	</select>
 	
-	
-	
+	<select id="selectOneGoodsOrder" resultType="goodsOrder">
+		select * from (
+			select * from goods_order 
+			where member_id = #{id}
+			order by order_date desc) 
+		where rownum = 1
+	</select>
 	
 	
 	

@@ -238,21 +238,22 @@
 /* [주문서작성] 버튼 클릭시 */
 $("#orderBtn").click((e) => {
 	
-	$.ajax({
+	location.href = '${pageContext.request.contextPath}/goods/goodsOrder.do';
+	
+	
+/* 	$.ajax({
 		url:"${pageContext.request.contextPath}/goods/insertOrder.do",
-		/* data: {id: id}, */
 		method: "get",
 		contentType: "application/json",
 		dateType: "text",
 		success(data) {
 			
-			// 주문서 페이지로 이동 
 			location.href = '${pageContext.request.contextPath}/goods/goodsOrder.do';
 		},
 		complete: function() {
 			console.log("complete")
 		}
-	});
+	}); */
 
 });
 
