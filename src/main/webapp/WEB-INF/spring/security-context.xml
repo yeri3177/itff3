@@ -41,7 +41,11 @@
 			login-processing-url="/member/memberLogin.do"
 			username-parameter="id"
 			password-parameter="password"
+			authentication-failure-forward-url = "/member/memberLoginError.do"
 			/>
+		
+		
+
 		
 		<!-- logout-url : 핸들러 작성 불필요 -->
 		<!-- logout-success-url : 로그아웃 후 리다이렉트 url (기본값: /login?logout) -->
@@ -50,6 +54,7 @@
 			/>
 			
 		<access-denied-handler error-page="/error/accessDenied.do"/>
+		
 		
 		<!-- csrf 공격대비 기능(지금은 꺼놨지만 나중에 켜아함)(이거 true 해놓고 나서부터 주소창에 logout 써서 로그아웃 할 수 있음 -->
 		<!-- 
