@@ -67,7 +67,13 @@
 		</ul>
 	</div>
 </div>
-
+<!-- 해당 페이지 큰 글씨 -->
+	<div class="sub_title_wrap">
+		<div class="container">
+			<h2 class="en">티켓나눔터</h2>
+		</div>
+	</div> 
+	<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 <div class="ink_board guest_mode">
 	<div class="list_wrap">
 		<div class="ink_list ldn" style="background-color: #FFFFFF">
@@ -94,9 +100,9 @@
 				<br /><br />
 				<c:forEach items="${board.attachments}" var="attach" varStatus="vs">
 					<div class="image-box">
-						<center><img class=""
-							src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}"
-							alt="" /></center>				
+						<center>
+							<img class="" src="${pageContext.request.contextPath}/resources/upload/board/${attach.renamedFilename}" alt="" />
+						</center>				
 					</div>
 				</c:forEach>
 				<br /><br />
@@ -137,9 +143,8 @@
 							class="btn_brd_del btn btn-xs btn-secondary">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
 					</sec:authorize>
 		
-					<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
-					<br />
 					</sec:authorize>
+					<input type="button" value="목록보기" id="btn-add" class="btn btn-outline-success" onclick="goBoardList();"/>
 				</div>
 			</span>
 			</div>
