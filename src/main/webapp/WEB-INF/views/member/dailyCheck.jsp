@@ -118,7 +118,7 @@
 		var check = [];
 		$(".checkDate").each(function(){
 			var dateC = {};
-			dateC.title = "✔️";
+			dateC.title = "출석";
 			dateC.start = $(this).val();
 			dateC.end = $(this).val();
 			dateC.imageurl="${pageContext.request.contextPath }/resources/fullcalendar/core/check2.jpg";
