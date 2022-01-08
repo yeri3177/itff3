@@ -147,10 +147,4 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.selectOneMember(id);
 	}
 
-	@Override
-	public int insertSaveNotify(Map<String, Object> param) {
-		return questionDao.insertSaveNotify(param);
-		
-	}
-	
 }

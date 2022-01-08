@@ -17,6 +17,7 @@ import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -578,11 +579,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public GoodsOrder selectOneGoodsOrder(String orderNo) {
-		return session.selectOne("admin.selectOneGoodsOrder", orderNo);
-	}
-
-	@Override
 	public int adminManageTodayOrderCount() {
 		return session.selectOne("admin.adminManageTodayOrderCount");
 	}
@@ -696,5 +692,30 @@ public class AdminDaoImpl implements AdminDao {
 	public Payment selectOnePayment2(String orderNo) {
 		return session.selectOne("admin.selectOnePayment2", orderNo);
 	}
+
+	@Override
+	public int cancleGoodsOrderDetail(String orderNo) {
+		return session.update("admin.cancleGoodsOrderDetail", orderNo);
+	}
+
+	@Override
+	public int updateGoodsOrderDetailStatus(Map<String, Object> param) {
+		return session.update("admin.updateGoodsOrderDetailStatus", param);
+	}
+
+	@Override
+	public Payment selectOnePayment3(int paymentNo) {
+		return session.selectOne("admin.selectOnePayment3", paymentNo);
+	}
+
+	@Override
+	public int adminPaymentInfoUpdate(Map<String, Object> param) {
+		return session.update("admin.adminPaymentInfoUpdate", param);
+	}
+
+//	@Override
+//	public int deletePayment(int paymentNo) {
+//		return session.delete("admin.deletePayment", paymentNo);
+//	}
 
 }

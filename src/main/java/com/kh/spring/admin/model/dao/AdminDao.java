@@ -12,6 +12,7 @@ import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -221,8 +222,6 @@ public interface AdminDao {
 
 	List<GoodsPaymentJoin> selectRecentTenGoodsList();
 
-	GoodsOrder selectOneGoodsOrder(String orderNo);
-
 	int adminManageTodayOrderCount();
 
 	int adminManageNoAnswerCount();
@@ -258,4 +257,14 @@ public interface AdminDao {
 	int deleteMovieReservation(String movieReservationId);
 
 	Payment selectOnePayment2(String orderNo);
+
+	int cancleGoodsOrderDetail(String orderNo);
+
+	int updateGoodsOrderDetailStatus(Map<String, Object> param);
+
+	Payment selectOnePayment3(int paymentNo);
+
+	int adminPaymentInfoUpdate(Map<String, Object> param);
+
+//	int deletePayment(int paymentNo);
 }

@@ -43,7 +43,7 @@ pageContext.setAttribute("loginMember", loginMember);
 			<h3>[JUST ENJOY!] 하루에 단 한번만 즐길 수 있는 룰렛이벤트!</h3>
 
 			<div class="btns">
-				<span class="txt-date">2021.12.29 ~ 2022.01.14</span>
+				<span class="txt-date">2022.1.1 ~ 2022.1.31</span>
 			</div>
 		</div>
 		

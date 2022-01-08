@@ -496,6 +496,7 @@
 		<result column="p_id" property="pId"/>
 		<result column="option_id" property="optionId"/>
 		<result column="quantity" property="quantity"/>
+		<result column="status" property="status"/>
 	</resultMap>
 	
 	<resultMap type="payment" id="paymentMap">
@@ -1340,7 +1341,7 @@
         where 
         	p.payment_no is not null
 		order by 
-			o.order_no desc
+			p.payment_date desc
 	</select>
 	
 	<select id="selectGoodsOrderTotalCount" resultType="_int">
@@ -1352,8 +1353,6 @@
 		on o.order_no = p.order_no
         where 
         	p.payment_no is not null
-		order by 
-			o.order_no desc
 	</select>
 	
 	<resultMap type="member" id="memberMap2">
@@ -1441,15 +1440,6 @@
 			o.payment_no desc
 	</select>
 	
-	<select id="selectOneGoodsOrder" resultType="goodsOrder">
-		select
-			*
-		from
-			goods_order
-		where
-			order_no = #{orderNo}
-	</select>
-	
 	<select id="adminManageTodayOrderCount" resultType="_int">
 		select
 			count(*)
@@ -1471,7 +1461,7 @@
 	
 	<select id="searchGoodsOrder" resultMap="GoodsPaymentJoinMap">
         select distinct
-	       payment_no, receiver, total_price, payment_date
+	       payment_no, receiver, status, total_price, payment_date
 	    from
 	        (select distinct
 				*
@@ -1514,7 +1504,7 @@
 	
 	<select id="searchGoodsOrderDate" resultMap="GoodsPaymentJoinMap">
        select distinct
-	       payment_no, receiver, total_price, payment_date
+	       payment_no, receiver, status, total_price, payment_date
 	    from
 	        (select distinct
 				*
@@ -1682,5 +1672,47 @@
 		where
 			order_no = #{orderNo}
 	</select>
+	
+	<update id="cancleGoodsOrderDetail">
+		update
+			order_detail
+		set
+			status = '주문취소'
+		where
+			order_no = #{orderNo}
+	</update>
+	
+<!-- 	<delete id="deletePayment"> -->
+<!-- 		delete from -->
+<!-- 			payment -->
+<!-- 		where -->
+<!-- 			payment_no = #{paymentNo} -->
+<!-- 	</delete> -->
 
+	<update id="updateGoodsOrderDetailStatus">
+		update
+			order_detail
+		set
+			status = #{status}
+		where
+			order_detail_no = #{orderDetailNo}
+	</update>
+	
+	<select id="selectOnePayment3" resultType="payment">
+		select
+			*
+		from
+			payment
+		where
+			payment_no = #{paymentNo}
+	</select>
+	
+	<update id="adminPaymentInfoUpdate">
+		update
+			payment
+		set
+			receiver = #{receiver}, phone = #{phone}, address = #{address}, detail_address = #{detailAddress}, post_code = #{postCode}, order_comment = #{orderComment}
+		where
+			payment_no = #{paymentNo}
+	</update>
 </mapper>

@@ -134,18 +134,11 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									<!-- 금액 -->
 									<td><fmt:formatNumber value="${list.payment.totalPrice }" pattern="#,###" /></td>
 
-									<!-- 결제상태 -->
-									<td>
-										<div class="email">
-											${list.orderDetail.status }
-										</div>
-									</td>
-
 									<td>
 										<button 
 										id="${list.orderDetail.orderNo }" 
 										type="button"
-										class="btn btn-outline-dark"
+										class="btn btn-outline-secondary"
 										data-toggle="modal"
 										data-target="#adminGoodsOrderDetail"
 										onclick="goods_order_detail_btn('${list.orderDetail.orderNo}');"
@@ -174,8 +167,8 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 							</div>
 						</div>
 						<!-- 주문 상세 끝 -->
-						<!-- 주문 정보 수정 -->
-						<div class="modal fade" id="adminGoodsUpdate" tabindex="-1"
+						<!-- 수령인 정보 수정 -->
+						<div class="modal fade" id="adminPaymentInfoUpdate" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
@@ -189,7 +182,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 								</div>
 							</div>
 						</div>
-						<!-- 주문 상세 끝 -->
+						<!-- 수령인 정보 수정 끝 -->
 						<!-- 주문 삭제 -->
 						<div class="modal fade" id="adminGoodsOrderDelete" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
@@ -310,7 +303,6 @@ $("#searchType").change((e) => {
 });
 </script>
 
-
 <script>
 
 // 주문 상세
@@ -338,15 +330,15 @@ function goods_order_detail_btn(orderNo) {
 
 <script>
 
-// 주문 정보 수정
-function goodsUpdate_btn(orderNo) {
+// 주문자 정보 수정
+function payment_info_update_btn(paymentNo) {
 	
-	console.log(orderNo);
-	var id = orderNo;
+	console.log(paymentNo);
+	var id = paymentNo;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsUpdate.do",
-		data: {orderNo: id},
+		url:"${pageContext.request.contextPath}/admin/adminPaymentInfoUpdate.do",
+		data: {paymentNo: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
@@ -364,14 +356,20 @@ function goodsUpdate_btn(orderNo) {
 <script>
 
 // 주문 삭제
-function goods_order_delete_btn(orderNo) {
+function goods_order_delete_btn(orderNo, paymentNo) {
 	
 	console.log(orderNo);
-	var id = orderNo;
+	console.log(paymentNo);
+	
+	var oNo = orderNo;
+	var pNo = paymentNo;
 
 	$.ajax({
 		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderDelete.do",
-		data: {orderNo: id},
+		data: {
+			orderNo: oNo, 
+			paymentNo: pNo
+			},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",
 		dateType: "text",
@@ -518,7 +516,7 @@ function save_btn(memberId) {
 	var id = memberId;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/saveNotify.do",
+		url:"${pageContext.request.contextPath}/notify/saveNotify.do",
 		data: {id: id},
 		method: "get",
 		contentType: "application/json;charset=UTF-8",

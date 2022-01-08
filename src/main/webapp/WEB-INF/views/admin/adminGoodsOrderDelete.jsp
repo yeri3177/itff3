@@ -23,6 +23,7 @@
 				method="post">
 		      
     		  <div class="modal-body">
+				<input type="hidden" name="orderNo" value="${payment.orderNo }" />
     		  	<input type="hidden" name="paymentNo" value="${payment.paymentNo }" />
 					<table class="table">
 					  <tbody>
@@ -47,7 +48,42 @@
 					<p class="recheck">주문을 취소하시겠습니까?</p>
 		      </div>
 		      <div class="modal-footer">
-				<button type="submit" class="btn btn-danger">주문취소</button>
+				<button type="submit" class="btn btn-danger cancel">주문취소</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">돌아가기</button>
 		      </div>
 			</form>
+		<input type="hidden" name="memberId" class="memberId" value="${payment.memberId }" />
+<script>
+
+$("[name=goods_order_delete_frm]").submit(function(e){
+
+    let type = '굿즈샵';
+    let target = $(".memberId").val();
+    let content = '상품 주문이 취소되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+
+    });
+    modal.find('.modal-body textarea').val('');	// textarea 초기화
+});
+
+</script>

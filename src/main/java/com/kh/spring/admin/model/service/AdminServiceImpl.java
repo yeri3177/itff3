@@ -20,6 +20,7 @@ import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -610,11 +611,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public GoodsOrder selectOneGoodsOrder(String orderNo) {
-		return adminDao.selectOneGoodsOrder(orderNo);
-	}
-
-	@Override
 	public int adminManageTodayOrderCount() {
 		return adminDao.adminManageTodayOrderCount();
 	}
@@ -703,5 +699,30 @@ public class AdminServiceImpl implements AdminService {
 	public Payment selectOnePayment2(String orderNo) {
 		return adminDao.selectOnePayment2(orderNo);
 	}
+
+	@Override
+	public int cancleGoodsOrderDetail(String orderNo) {
+		return adminDao.cancleGoodsOrderDetail(orderNo);
+	}
+
+	@Override
+	public int updateGoodsOrderDetailStatus(Map<String, Object> param) {
+		return adminDao.updateGoodsOrderDetailStatus(param);
+	}
+
+	@Override
+	public Payment selectOnePayment3(int paymentNo) {
+		return adminDao.selectOnePayment3(paymentNo);
+	}
+
+	@Override
+	public int adminPaymentInfoUpdate(Map<String, Object> param) {
+		return adminDao.adminPaymentInfoUpdate(param);
+	}
+
+//	@Override
+//	public int deletePayment(int paymentNo) {
+//		return adminDao.deletePayment(paymentNo);
+//	}
 
 }
