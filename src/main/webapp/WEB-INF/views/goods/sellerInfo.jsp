@@ -19,26 +19,28 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 소메뉴 네비게이션 -->
+<!-- 서브메뉴 네비게이션 -->
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsList.do" target="_top">전체상품</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsQna.do" target="_top">묻고 답하기</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/likeItems.do" target="_top">관심상품</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top">장바구니</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/orderList.do" target="_top">구매목록</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" target="_top">판매자 정보</a></li>
 		</ul>
 	</div>
 </div>
 
 <!-- 메인 콘텐츠 섹션 -->
-<section class="goods-container py-5 text-left">
+<section class="goods-container text-left" id="sellerinfo-container">
 
 <!-- 전체 너비 80% 컨테이너-->
 <div class="container w-80"> 
-	<span class="text1 font-weight-bold">판매자 정보</span>
+	<!-- <span class="text1 font-weight-bold">판매자 정보</span>
 	
 	<hr class="bg-secondary"/>
-	<br />
+	<br /> -->
 	
 	
 	<div class="both-box">

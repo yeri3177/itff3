@@ -305,14 +305,7 @@ public class GoodsController {
 		return "goods/sellerInfo";
 	}
 	
-	/**
-	 * 묻고답하기 페이지 
-	 */
-	@GetMapping("/goodsQna.do")
-	public String goodsQna() {
-		
-		return "goods/goodsQna";
-	}
+	
 	
 	/**
 	 * 장바구니 [수량 변경] 모달  
@@ -666,7 +659,19 @@ public class GoodsController {
 	}
 	
 	
-	
+	/**
+	 * 관심상품 페이지 
+	 */
+	@GetMapping("/likeItems.do")
+	public String likeItems() {
+		
+		
+		
+		
+		
+		
+		return "goods/likeItems";
+	}
 	
 	
 	

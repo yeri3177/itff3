@@ -35,6 +35,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsList.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsCommon.css" />
+
 
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
@@ -53,12 +55,14 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
-<!-- 소메뉴 네비게이션 -->
+<!-- 서브메뉴 네비게이션 -->
 <div id="snb">
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsList.do" target="_top">전체상품</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsQna.do" target="_top">묻고 답하기</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/likeItems.do" target="_top">관심상품</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top">장바구니</a></li>
+			<li class="on_"><a href="${pageContext.request.contextPath}/goods/orderList.do" target="_top">구매목록</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" target="_top">판매자 정보</a></li>
 		</ul>
 	</div>
@@ -141,7 +145,6 @@
 		style="width:370px!important;">
 	  <div class="d-flex">
 	    <div class="toast-body">
-	      <span>
 	      	<i class="fas fa-check"></i>
 	      	<!-- 메세지 내용 -->
 	      <span class="cart-msg" style="margin-left:10px;"></span>
@@ -152,6 +155,30 @@
 	  </div>
 	</div>
 </div>
+
+
+<!-- 굿즈샵 고정 버튼 -->
+<%-- <div class="btn-group dropup">
+  
+  <div id="quick-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+    <img src="${pageContext.request.contextPath}/resources/images/goods/goodsshop_logo.png">
+  </div>
+  
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">
+    	관심상품
+    </a>
+
+    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/goodsCart.do">
+    	장바구니
+    </a>
+    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/orderList.do">
+    	구매내역
+    </a>
+    
+  </div>
+</div> --%>
+
 
 <script>
 
