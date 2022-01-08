@@ -1,6 +1,19 @@
 @charset "UTF-8";
-
-
+.btn-outline-success {
+    color: #000000 !important; 
+    background-color: transparent;
+    background-image: none;
+    border-color: #000000 !important;
+}
+.btn-outline-success:hover {
+	background-color: #ffffff !important;
+}
+.btn-outline-success:not(:disabled):not(.disabled):active {
+	background-color: #ffffff !important;
+}
+.btn-outline-success:focus {
+	box-shadow: 0 0 0 0.2rem rgb(252 252 252 / 0%) !important;
+}
 .reply{
 	color: #FFF;
     background-color: #686868;

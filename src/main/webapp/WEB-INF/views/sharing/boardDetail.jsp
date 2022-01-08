@@ -165,7 +165,7 @@
 						<div class="inkpf_wrap">
 							<span class="inkpf round"><img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${comment.member.image}" alt="" /></span>				
 						</div>
-						<div class="cmt_header">
+						<div class="cmt_header" style="margin-bottom: 6px;">
 							<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
 								${comment.member.nickname}
 							</a>
@@ -211,7 +211,7 @@
 						<div class="inkpf_wrap">
 							<span class="inkpf round"><img class="inkpf_img" src="${pageContext.request.contextPath}/resources/upload/member/${comment.member.image}" alt="" /></span>
 						</div>
-						<div class="cmt_header">
+						<div class="cmt_header" style="margin-bottom: 6px;">
 							<a href="#popup_menu_area" class="nickname member_25365243" onclick="return false">
 								${comment.member.nickname}
 							</a>
