@@ -72,22 +72,28 @@ dl, ul, ol, menu, li {
     border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
-.btn-link {
+.btn-link_ {
     display: block !important;
     padding: 10px 3px !important;
     color: #000 !important;
     font-size: 20px !important;
     margin: 0 !important;
+    background: none;
 }
+
 
 .arccordion {
 	margin: 0 45px;
     padding-bottom: 60px;
 }
 
-.btn-link:hover {
+.btn-link_:hover {
     color: black !important;
     text-decoration: none !important;
+}
+.btn:focus {
+	outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 25%);
 }
 
 .card-body {
@@ -99,7 +105,7 @@ dl, ul, ol, menu, li {
     line-height: 32px;
 }
 
-.btn-link span {
+.btn-link_ span {
 	float: left;
     display: inline-block;
     font-weight: bold;
@@ -114,7 +120,7 @@ dl, ul, ol, menu, li {
     box-sizing: border-box;
 }
 
-.btn-link p {
+.btn-link_ p {
 	float: left;
     width: calc(100% - 55px);
     line-height: 53px;
