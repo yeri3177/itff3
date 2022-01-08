@@ -61,6 +61,8 @@ public interface MemberService {
 
 	int dailyCheckInsert(Map<String, Object> param);
 
+	int updateMemberPointByIdAndNewPoint(Map<String, Object> param);
+
 
 
 }

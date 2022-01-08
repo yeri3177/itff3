@@ -63,5 +63,7 @@ public interface MemberDao {
 
 	String selectMemCheck(String id);
 
+	int updateMemberPointByIdAndNewPoint(Map<String, Object> param2);
+
 
 }

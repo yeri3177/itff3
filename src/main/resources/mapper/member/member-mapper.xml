@@ -289,4 +289,13 @@
 		values
 			(seq_dailycalendar_no.nextval, #{id}, 'Y', #{checkDate}, current_date)
 	</insert>
+	
+	<update id="updateMemberPointByIdAndNewPoint">
+		update
+			member
+		set
+			point = #{point}
+		where
+			id = #{id}
+	</update>
 </mapper>

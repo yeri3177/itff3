@@ -155,6 +155,11 @@ public class MemberDaoImpl implements MemberDao {
 		return session.insert("member.dailyCheckInsert", param);
 	}
 
+	@Override
+	public int updateMemberPointByIdAndNewPoint(Map<String, Object> param2) {
+		return session.update("member.updateMemberPointByIdAndNewPoint", param2);
+	}
+
 	
 	
 	

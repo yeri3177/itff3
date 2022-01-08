@@ -174,6 +174,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int updateMemberPointByIdAndNewPoint(Map<String, Object> param2) {
+		return memberDao.updateMemberPointByIdAndNewPoint(param2);
+	}
+
+
 
 
 	
