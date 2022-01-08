@@ -713,6 +713,17 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.adminPaymentInfoUpdate", param);
 	}
 
+	@Override
+	public int selectGoodsOrderCancelTotalCount() {
+		return session.selectOne("admin.selectGoodsOrderCancelTotalCount");
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		return session.selectList("admin.selectGoodsOrderCancelList", null, rowBounds);
+	}
+
 //	@Override
 //	public int deletePayment(int paymentNo) {
 //		return session.delete("admin.deletePayment", paymentNo);

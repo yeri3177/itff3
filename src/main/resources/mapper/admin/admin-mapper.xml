@@ -1333,15 +1333,15 @@
 	
 	<select id="selectGoodsOrderList" resultMap="GoodsPaymentJoinMap">
 		select distinct
-			o.order_no, p.receiver, p.total_price, p.payment_date, p.payment_no
+			p.payment_date, p.payment_no, p.receiver, p.total_price, p.order_no
 		from
             order_detail o
 		left join payment p
 		on o.order_no = p.order_no
         where 
-        	p.payment_no is not null
-		order by 
-			p.payment_date desc
+        	p.payment_no is not null and not status in '주문취소'
+        order by
+        	p.payment_no desc
 	</select>
 	
 	<select id="selectGoodsOrderTotalCount" resultType="_int">
@@ -1352,7 +1352,7 @@
 		left join payment p
 		on o.order_no = p.order_no
         where 
-        	p.payment_no is not null
+        	p.payment_no is not null and not status in '주문취소'
 	</select>
 	
 	<resultMap type="member" id="memberMap2">
@@ -1715,4 +1715,26 @@
 		where
 			payment_no = #{paymentNo}
 	</update>
+	
+	<select id="selectGoodsOrderCancelList" resultMap="GoodsPaymentJoinMap">
+			select distinct
+			*
+			from
+	            order_detail o
+			left join payment p
+			on o.order_no = p.order_no
+	        where 
+	        	p.payment_no is not null and status = '주문취소'
+	</select>
+	
+	<select id="selectGoodsOrderCancelTotalCount" resultType="_int">
+			select distinct
+				count(*)
+			from
+	            order_detail o
+			left join payment p
+			on o.order_no = p.order_no
+	        where 
+	        	p.payment_no is not null and status = '주문취소'
+	</select>
 </mapper>

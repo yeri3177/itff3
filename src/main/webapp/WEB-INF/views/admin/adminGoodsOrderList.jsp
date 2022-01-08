@@ -157,7 +157,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document"
-								style="max-width: 900px;">
+								style="max-width: 1000px;">
 								<div class="modal-content"
 									style="text-align: left;">
 								  	<div class="modal-body" id="modal_ajax1">

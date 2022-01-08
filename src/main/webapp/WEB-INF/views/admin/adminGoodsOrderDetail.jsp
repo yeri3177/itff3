@@ -204,6 +204,18 @@
 									</select>
 								    </div>
 							    </td>
+							    
+							    <c:if test="${list.orderDetail.status eq '배송준비중'}">
+							    <td>
+							     <button type="button" class="btn btn-outline-secondary" style="font-size: 12px !important;">
+		        					운송장 등록
+		        				</button>
+							    </td>
+							    </c:if>
+							    <c:if test="${list.orderDetail.status eq '배송준비중' || list.orderDetail.status eq '상품준비중' }">
+							    <td></td>
+							    </c:if>
+							    
 						  </tr>
 						  
 						  </c:forEach>
@@ -235,6 +247,7 @@
     	name="updateGoodsOrderDetailStatusFrm">
     	<input type="hidden" name="orderDetailNo" />
     	<input type="hidden" name="status" />
+    	<input type="hidden" name="memberId" class="memberId" value="${payment.payment.memberId }" />
     </form>
 
 <script>
@@ -255,6 +268,32 @@ $(".order_select").change((e) => {
 		$frm.find("[name=orderDetailNo]").val(orderDetailNo);
 		$frm.find("[name=status]").val(status);
 		$frm.submit();
+
+	    let type = '굿즈샵';
+	    let target = $(".memberId").val();
+	    let content = '주문하신 상품의 진행 상태는 ['+status+'] 입니다.'
+	    let url = '${contextPath}/notify/saveNotify.do';
+	    
+	    // 전송한 정보를 db에 저장	
+	    $.ajax({
+	        type: "post",
+	        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+	        dataType: "text",
+	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	        data: {
+	            target: target,
+	            content: content,
+	            type: type,
+	            url: url
+	        },
+	        beforeSend : function(xhr) {   
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	        },
+	        success:    // db전송 성공시 실시간 알림 전송
+	            // 소켓에 전달되는 메시지
+	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+	        	socket.send("ITFF,"+target+","+content+","+url)
+	    });
 	}
 	else {
 		// 초기값으로 복귀

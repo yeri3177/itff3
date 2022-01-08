@@ -266,5 +266,9 @@ public interface AdminDao {
 
 	int adminPaymentInfoUpdate(Map<String, Object> param);
 
+	int selectGoodsOrderCancelTotalCount();
+
+	List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit);
+
 //	int deletePayment(int paymentNo);
 }
