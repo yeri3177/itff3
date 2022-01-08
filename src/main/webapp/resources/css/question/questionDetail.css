@@ -4,6 +4,7 @@ div#board-container {
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 60px;
+	    width: 85%;
 
 }
 
@@ -43,7 +44,7 @@ div#board-container label.custom-file-label{text-align:left;}
     border-top: 0px solid #9c9c9c63;
     resize:none;
     padding-top: 50px;
-    height: 1000px;
+    height: auto;
 }
 
 [name=content] img {
@@ -200,7 +201,7 @@ table#tbl-comment {
 }
 
 table#tbl-comment {
-    width: 1110px;
+    width: 990px;
     margin: 0 auto;
     border-collapse: collapse;
     height: auto;

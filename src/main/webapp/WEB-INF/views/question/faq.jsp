@@ -65,7 +65,7 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <span>Q</span>
           <p>예매한 티켓 취소는 어떻게 하나요?</p> 
         </button>
@@ -89,7 +89,7 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <span>Q</span>
           <p>취소수수료는 얼마인가요?</p> 
         </button>
@@ -115,7 +115,7 @@
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <span>Q</span>
           <p>예매 취소 후, 환불은 언제 되나요?</p> 
         </button>
@@ -137,7 +137,7 @@
   <div class="card">
     <div class="card-header" id="headingFour">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
           <span>Q</span>
           <p>예매한 2장 중 1장만 취소하고 싶어요.</p> 
         </button>
@@ -160,7 +160,7 @@
   <div class="card">
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
           <span>Q</span>
           <p>결제 수단을 변경하려 합니다.</p> 
         </button>
@@ -183,7 +183,7 @@
   <div class="card">
     <div class="card-header" id="headingSix">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           <span>Q</span>
           <p>티켓 교환 창구 운영하나요?</p> 
         </button>
@@ -213,7 +213,7 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <span>Q</span>
           <p>제 1회(2022년도) ITFF 상영관</p> 
         </button>
@@ -236,7 +236,7 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <span>Q</span>
           <p>안내데스크</p> 
         </button>
@@ -258,7 +258,7 @@
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <span>Q</span>
           <p>장애인이나 노약자의 입장 방법은 어떻게 되나요?</p> 
         </button>
@@ -281,7 +281,7 @@
   <div class="card">
     <div class="card-header" id="headingFour">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
           <span>Q</span>
           <p>상영 시작 후에 입장 가능한가요?</p> 
         </button>
@@ -303,7 +303,7 @@
   <div class="card">
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
           <span>Q</span>
           <p>영화 관람 시 사진이나 동영상 촬영이 가능한가요?</p> 
         </button>
@@ -325,7 +325,7 @@
   <div class="card">
     <div class="card-header" id="headingSix">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           <span>Q</span>
           <p>상영 몇 분 전부터 입장하나요?</p> 
         </button>
@@ -347,7 +347,7 @@
   <div class="card">
     <div class="card-header" id="headingSeven">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
           <span>Q</span>
           <p>분실물은 어디에서 찾나요?</p> 
         </button>
@@ -369,7 +369,7 @@
   <div class="card">
     <div class="card-header" id="heading8">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
           <span>Q</span>
           <p>관람등급은 어떻게 되나요?</p> 
         </button>
@@ -399,7 +399,7 @@
   <div class="card">
     <div class="card-header" id="heading9">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
           <span>Q</span>
           <p>짐이 많은데, 잠시 안내데스크(자원봉사자)에 잠시 맡길 수 있을까요?</p> 
         </button>
@@ -421,7 +421,7 @@
   <div class="card">
     <div class="card-header" id="heading10">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
           <span>Q</span>
           <p>입장 가능 시간은 언제인가요?</p> 
         </button>
@@ -445,7 +445,7 @@
   <div class="card">
     <div class="card-header" id="heading11">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
           <span>Q</span>
           <p>주차장 위치와 주차요금 알려주세요.</p> 
         </button>
@@ -477,7 +477,7 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <span>Q</span>
           <p>복합결제가 가능한가요?</p> 
         </button>
@@ -500,7 +500,7 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <span>Q</span>
           <p>포인트 선 할인은 무엇인가요?</p> 
         </button>
@@ -523,7 +523,7 @@
   <div class="card">
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <span>Q</span>
           <p>배송은 어떻게 되나요?</p> 
         </button>
@@ -552,7 +552,7 @@
   <div class="card">
     <div class="card-header" id="headingFour">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
           <span>Q</span>
           <p>해외에 거주하고 있습니다. 해외 배송이 가능한가요?</p> 
         </button>
@@ -574,7 +574,7 @@
   <div class="card">
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
           <span>Q</span>
           <p>수령 시 부재로  반송된 경우 어떻게 하나요?</p> 
         </button>
@@ -597,7 +597,7 @@
   <div class="card">
     <div class="card-header" id="headingSix">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
           <span>Q</span>
           <p>입금 전 주문 취소는 어떻게 하나요?</p> 
         </button>
@@ -622,7 +622,7 @@
   <div class="card">
     <div class="card-header" id="headingSeven">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
           <span>Q</span>
           <p>재고가 없어요. 언제쯤 구입할 수 있을까요?</p> 
         </button>
@@ -644,7 +644,7 @@
   <div class="card">
     <div class="card-header" id="heading8">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
           <span>Q</span>
           <p>가격이 떨어져 예전에 구매했을 때 보다 싸게 팔고 있는 경우 차액 환불이 되나요?</p> 
         </button>
@@ -666,7 +666,7 @@
   <div class="card">
     <div class="card-header" id="heading9">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
           <span>Q</span>
           <p>사진과 제품의 실제 색상이 다른 것 같아요.</p> 
         </button>
@@ -696,7 +696,7 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link_" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <span>Q</span>
           <p>관람객이 아닌 일반 방문객도 영화제에 방문할 수 있나요?</p> 
         </button>
@@ -719,7 +719,7 @@
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link_ collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <span>Q</span>
           <p>방역 계획은 어떤가요?</p> 
         </button>
