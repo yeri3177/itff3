@@ -79,6 +79,10 @@ public interface GoodsDao {
 
 	Payment selectOnePayment(String id);
 
+	Payment selectPaymentByPaymentNo(int no);
+
+	GoodsOrder selectOneGoodsOrder(String id);
+
 
 
 }

@@ -20,4 +20,5 @@ public class OrderDetail implements Serializable {
 	private int pId;
 	private int optionId;
 	private int quantity;
+	private String status;
 }

@@ -61,11 +61,11 @@ public interface GoodsService {
 
 	List<GoodsLikeJoin> selectGoodsList(Map<String, Object> param);
 
-	int insertGoodsOrder(Map<String, Object> param);
+	int insertGoodsOrder(Map<String, Object> map);
 
-	String selectOneOrderNo(Map<String, Object> param);
+	String selectOneOrderNo(Map<String, Object> map);
 
-	int insertOrderDetail(Map<String, Object> param);
+	int insertOrderDetail(Map<String, Object> map);
 
 	int insertPayment(Map<String, Object> map);
 
@@ -78,6 +78,10 @@ public interface GoodsService {
 	int insertPointHistoryByPayment(Map<String, Object> map);
 
 	Payment selectOnePayment(String id);
+
+	Payment selectPaymentByPaymentNo(int no);
+
+	GoodsOrder selectOneGoodsOrder(String id);
 
 
 }
