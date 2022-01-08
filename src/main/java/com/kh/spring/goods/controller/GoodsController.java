@@ -1,6 +1,5 @@
 package com.kh.spring.goods.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +30,8 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
-import com.kh.spring.goods.model.vo.Payment;
+import com.kh.spring.goods.model.vo.OrderDetailJoin;
+import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -616,12 +616,6 @@ public class GoodsController {
 		log.debug("order = {}", order);
 		model.addAttribute("order", order);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String orderDate = sdf.format(order.getOrderDate());
-		log.debug("orderDate = {}", orderDate);
-		
-		model.addAttribute("orderDate", orderDate);
-		
 		return "goods/completeOrder";
 	}
 	
@@ -629,12 +623,17 @@ public class GoodsController {
 	/**
 	 * 주문 목록 페이지 
 	 * 
-	 * 주문(order) + 주문상세(order_detial) + 상품(goods) + 상품옵션(goods_option) 
+	 * 주문(goods_order) 주문상세(order_detail) + 굿즈(goods) + 옵션상세(option_detail)
 	 */
 	@GetMapping("/orderList.do")
-	public String orderList(Model model) {
+	public String orderList(Authentication authentication, Model model) {
 		
+		Member member = (Member) authentication.getPrincipal();
+		String memberId = member.getId();
 		
+		List<OrderJoin> list = goodsService.selectOrderList(memberId);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
 		
 		
 		
@@ -646,13 +645,57 @@ public class GoodsController {
 	 * 주문 상세 페이지 
 	 */
 	@GetMapping("/orderDetail.do")
-	public String purchaseDetail() {
-
+	public String orderDetail(@RequestParam int no, Model model) {
 		
+		// 주문상세번호 
+		int orderDetailNo = no;
+		log.debug("orderDetailNo = {}", orderDetailNo);
 		
+		// 주문상세번호 -> 주문번호 찾기 
+		int orderNo = goodsService.selectOrderNo(orderDetailNo);
+		log.debug("orderNo = {}", orderNo);
 		
+		// 주문번호 -> 첫번째 주문상세번호 찾기 
+		int firstOrderDetailNo = goodsService.selectFirstOrderDetailNo(orderNo);
+		log.debug("firstOrderDetailNo = {}", firstOrderDetailNo);
 		
+		// 주소의 주문상세번호 == 찾은첫번째주문상세번호 -> firstOrderDetailItem = 1 (아니면 0)
+		int booleanFirstOrder = (orderDetailNo == firstOrderDetailNo) ? 1 : 0 ;
+		model.addAttribute("booleanFirstOrder", booleanFirstOrder);
+		log.debug("booleanFirstOrder = {}", booleanFirstOrder);
 		
+		// 주문상세번호 -> 주문+주문상세+결제+굿즈+옵션상세 
+		OrderDetailJoin order = goodsService.selectOneOrderDetailJoin(orderDetailNo);
+		model.addAttribute("order", order);
+		log.debug("order = {}", order);
+		
+		String status = order.getOrderDetail().getStatus();
+		int statusPercent = 20;
+		
+		switch(status) {
+			case "상품준비중" :
+				statusPercent = 20;
+			break;
+			
+			case "배송준비중" :
+				statusPercent = 40;
+			break;
+			
+			case "배송중" :
+				statusPercent = 60;
+			break;
+			
+			case "배송완료" :
+				statusPercent = 80;
+			break;
+			
+			case "구매확정" :
+				statusPercent = 100;
+			break;
+		}
+		
+		log.debug("statusPercent = {}", statusPercent);
+		model.addAttribute("statusPercent", statusPercent);
 		
 		
 		return "goods/orderDetail";

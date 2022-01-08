@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 #orderDetail-container {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 150px;
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -41,4 +41,8 @@
 .img-bg img {
 	width: 105px;
 	background-color: aqua;
+}
+
+.order-item {
+	margin-bottom: 22px;
 }

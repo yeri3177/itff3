@@ -16,6 +16,8 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetailJoin;
+import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.goods.model.vo.Payment;
 
 @Repository
@@ -195,6 +197,26 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public GoodsOrder selectOneGoodsOrder(String id) {
 		return session.selectOne("goods.selectOneGoodsOrder", id);
+	}
+
+	@Override
+	public List<OrderJoin> selectOrderList(String memberId) {
+		return session.selectList("goods.selectOrderList", memberId);
+	}
+
+	@Override
+	public int selectOrderNo(int orderDetailNo) {
+		return session.selectOne("goods.selectOrderNo", orderDetailNo);
+	}
+
+	@Override
+	public int selectFirstOrderDetailNo(int orderNo) {
+		return session.selectOne("goods.selectFirstOrderDetailNo", orderNo);
+	}
+
+	@Override
+	public OrderDetailJoin selectOneOrderDetailJoin(int orderDetailNo) {
+		return session.selectOne("goods.selectOneOrderDetailJoin", orderDetailNo);
 	}
 
 

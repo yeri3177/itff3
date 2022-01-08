@@ -614,6 +614,106 @@
 		where rownum = 1
 	</select>
 	
+	<select id="selectOrderList" resultMap="orderJoinMap">
+		select *
+		from order_detail r
+		left join goods g
+		using (p_id)
+		left join option_detail p
+		using (option_id)
+		left join goods_order o
+		using (order_no)
+		where o.member_id = #{memberId}
+		order by order_detail_no desc
+	</select>
+	
+	<resultMap id="orderJoinMap" type="orderJoin">
+        <collection property="goodsOrder" resultMap="goodsOrderMap" />
+        <collection property="orderDetail" resultMap="orderDetailMap" />
+        <collection property="goods" resultMap="goodsMap" />
+        <collection property="optionDetail" resultMap="optionDetailMap" />
+    </resultMap>
+	
+	<resultMap type="orderDetail" id="orderDetailMap">
+        <id column="order_detail_no" property="orderDetailNo"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="p_id" property="pId"/>
+        <result column="option_id" property="optionId"/>
+        <result column="quantity" property="quantity"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    
+    <resultMap type="goodsOrder" id="goodsOrderMap">
+        <id column="order_no" property="orderNo"/>
+        <result column="member_id" property="memberId"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="order_date" property="orderDate"/>
+    </resultMap>
+	
+	<resultMap type="payment" id="paymentMap">
+        <id column="payment_no" property="paymentNo"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="member_id" property="memberId"/>
+        <result column="receiver" property="receiver"/>
+        <result column="phone" property="phone"/>
+        <result column="post_code" property="postCode"/>
+        <result column="address" property="address"/>
+        <result column="detail_address" property="detailAddress"/>
+        <result column="order_comment" property="orderComment"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="used_points" property="usedPoints"/>
+        <result column="payment_date" property="paymentDate"/>
+        <result column="card_name" property="cardName"/>
+        <result column="card_number" property="cardNumber"/>
+    </resultMap>
+	
+	<select id="selectOrderNo" resultType="_int">
+		select order_no
+		from order_detail
+		left join goods_order
+		using (order_no)
+		where order_detail_no = #{orderDetailNo}
+	</select>
+	
+	<select id="selectFirstOrderDetailNo" resultType="_int">
+		select order_detail_no from (
+		select * 
+		from goods_order
+		left join order_detail
+		using (order_no)
+		where order_no = #{orderNo}
+		order by order_detail_no asc
+		) where rownum = 1
+	</select>
+	
+	<select id="selectOneOrderDetailJoin" resultMap="orderDetailJoinMap">
+		select * 
+		from goods_order
+		left join order_detail
+		using (order_no)
+		left join payment
+		using (order_no)
+		left join goods
+		using (p_id)
+		left join option_detail
+		using (option_id)
+		where order_detail_no = #{orderDetailNo}
+	</select>
+	
+	<resultMap id="orderDetailJoinMap" type="OrderDetailJoin">
+        <collection property="goodsOrder" resultMap="goodsOrderMap" />
+        <collection property="orderDetail" resultMap="orderDetailMap" />
+        <collection property="payment" resultMap="paymentMap" />
+        <collection property="goods" resultMap="goodsMap" />
+        <collection property="optionDetail" resultMap="optionDetailMap" />
+    </resultMap>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>

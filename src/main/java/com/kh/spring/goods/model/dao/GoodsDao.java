@@ -11,6 +11,8 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetailJoin;
+import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.goods.model.vo.Payment;
 
 public interface GoodsDao {
@@ -82,6 +84,14 @@ public interface GoodsDao {
 	Payment selectPaymentByPaymentNo(int no);
 
 	GoodsOrder selectOneGoodsOrder(String id);
+
+	List<OrderJoin> selectOrderList(String memberId);
+
+	int selectOrderNo(int orderDetailNo);
+
+	int selectFirstOrderDetailNo(int orderNo);
+
+	OrderDetailJoin selectOneOrderDetailJoin(int orderDetailNo);
 
 
 
