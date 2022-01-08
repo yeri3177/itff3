@@ -25,5 +25,4 @@ public class GoodsPaymentJoin implements Serializable  {
 	private OrderDetail orderDetail;
 	private Member member;
 	private Payment payment;
-	
 }

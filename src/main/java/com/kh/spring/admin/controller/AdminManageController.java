@@ -1759,6 +1759,46 @@ public class AdminManageController {
 		return "redirect:/admin/adminGoodsOrderList.do";
 	}
 	
+	/**
+	 * [굿즈 주문 취소 목록]
+	 */
+	
+	@GetMapping("/adminGoodsOrderCancelList.do")
+	public String adminGoodsOrderCancelList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		try {
+			log.debug("cPage = {}", cPage);
+			
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			
+			// 1.
+			List<GoodsPaymentJoin> list = adminService.selectGoodsOrderCancelList(offset, limit);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			
+			// 2. totalContent
+			int totalContent = adminService.selectGoodsOrderCancelTotalCount();
+			log.debug("totalContent = {}", totalContent);
+			model.addAttribute("totalContent", totalContent);
+			
+			// 3. pagebar
+			String url = request.getRequestURI(); 
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			//		log.debug("pagebar = {}", pagebar);
+			
+			model.addAttribute("pagebar", pagebar);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "admin/adminGoodsOrderCancelList";
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**

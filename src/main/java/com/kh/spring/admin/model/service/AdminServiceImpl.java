@@ -720,6 +720,16 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.adminPaymentInfoUpdate(param);
 	}
 
+	@Override
+	public int selectGoodsOrderCancelTotalCount() {
+		return adminDao.selectGoodsOrderCancelTotalCount();
+	}
+
+	@Override
+	public List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit) {
+		return adminDao.selectGoodsOrderCancelList(offset, limit);
+	}
+
 //	@Override
 //	public int deletePayment(int paymentNo) {
 //		return adminDao.deletePayment(paymentNo);
