@@ -14,7 +14,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/guide/guide.css" />
+	href="${pageContext.request.contextPath }/resources/css/event/eventRoulette.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -28,14 +28,16 @@
 <script src='${pageContext.request.contextPath }/resources/fullcalendar/timegrid/main.min.js'></script>
 <script src='${pageContext.request.contextPath }/resources/fullcalendar/core/locales/ko.js'></script>
 
+		<div class="roulette_total_con">
+		<div class="inner title-area">
+			<h2 class="hidden">EVENT</h2>
 
-<!-- 해당 페이지 큰 글씨 -->
-<div class="sub_title_wrap">
-	<div class="container">
-		<h2 class="en">출석체크</h2>
-	</div>
-</div>
-<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
+			<h3>[Happy New Year!] 1월 출석체크 이벤트</h3>
+
+			<div class="btns">
+				<span class="txt-date">2022.01.01 ~ 2022.01.31</span>
+			</div>
+		</div>
 
  <div id="external-events">
  <!-- 
@@ -59,11 +61,15 @@
   <p>출석체크 버튼을 눌러야 </p>
   <p> 출석이 완료됩니다.</p>
    -->
-</div>
-<div class="container calendar-container">
-	<div id="calendar" style="max-width:900px; margin:40px auto; width: 100%; height: 100%;"></div>
-</div>
+		</div>
+		<div class="container calendar-container" style="background-color: whitesmoke; padding: 30px 0 30px 0; width: 1140px;">
+			<div id="calendar" style="max-width:900px; margin:40px auto; width: 100%; height: 100%;"></div>
+		</div>
 
+			<div class="btnbbs">
+				<a class="btn medium" onclick="location.href='${pageContext.request.contextPath}/event/eventMenu.do';">목록보기</a>
+			</div>
+					</div>
 
  <script type="text/javascript">
 

@@ -112,10 +112,4 @@ public class QuestionDaoImpl implements QuestionDao {
 		return session.selectOne("question.selectOneMember", id);
 	}
 
-	@Override
-	public int insertSaveNotify(Map<String, Object> param) {
-		return session.insert("question.insertSaveNotify", param);
-	}
-
-
 }

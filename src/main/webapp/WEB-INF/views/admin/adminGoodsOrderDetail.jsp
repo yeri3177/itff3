@@ -39,20 +39,22 @@
 							  	<button 
 					      		type="button" 
 					      		class="btn btn-outline-secondary orderUpdateBtn"
-								onclick="order_receiver_change_btn('${orderNo}, ${payment.payment.receiver }');">주문자정보수정
+					      		data-toggle="modal"
+								data-target="#adminPaymentInfoUpdate"
+								onclick="payment_info_update_btn('${payment.payment.paymentNo}');">주문자정보수정
 								</button>	
 							</td>
 						  </tr>
 						  
 						  <tr>
 						  	<th class="title_th">주문번호</th>
-						    <td class="receiver">${orderNo }</td>
+						    <td class="receiver">${payment.payment.paymentNo }</td>
 						  	<th class="title_th">주문일자</th>
-						    <td class="receiver"><fmt:formatDate value="${goodsOrder.orderDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+						    <td class="receiver"><fmt:formatDate value="${payment.payment.paymentDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
 						  </tr>
 						  
 					  		<tr>
-							  	<th class="title_th">주문자</th>
+							  	<th class="title_th">수령인</th>
 								<td class="receiver">
 									${payment.payment.receiver }
 								</td>
@@ -78,20 +80,10 @@
 						</tbody>					
 					</table>
 					
-					<table class="table">
+					<!-- 
+					<table class="table pay_info_tb">
 						<tbody>
 							<tr>
-								<th class="title_th">주문상태</th>
-								<td class="receiver">
-									<select class="form-select" aria-label="Default select example">
-									  <option selected>선택</option>
-									  <option value="상품준비중">상품준비중</option>
-									  <option value="배송준비중">배송준비중</option>
-									  <option value="배송중">배송중</option>
-									  <option value="배송완료">배송완료</option>
-									  <option value="구매확정">구매확정</option>
-									</select>
-								</td>
 								<th class="title_th">택배회사</th>
 								<td class="receiver">
 									<select class="form-select" aria-label="Default select example">
@@ -105,7 +97,8 @@
 								</td>
 							</tr>
 						</tbody>
-					</table>						  
+					</table>					  
+					 -->
 					
 					 <!-- 결제 정보 -->
 					<table class="table">
@@ -153,6 +146,8 @@
 								<th>상품명</th>
 								<th>수량</th>
 								<th>가격</th>
+								<th>진행상태</th>
+								<th></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -195,6 +190,20 @@
 								    	<span class=price><fmt:formatNumber value="${list.goods.PPrice }" pattern="#,###" />원</span>
 								    </div>
 							    </td>
+							    <td>
+								    <div>
+								    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
+									  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
+									  <option value="상품준비중" ${list.orderDetail.status eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
+									  <option value="배송준비중" ${list.orderDetail.status eq '배송준비중' ? 'selected' : ''}>배송준비중</option>
+									  <option value="배송중" ${list.orderDetail.status eq '배송중' ? 'selected' : ''}>배송중</option>
+									  <option value="배송완료" ${list.orderDetail.status eq '배송완료' ? 'selected' : ''}>배송완료</option>
+									  <option value="구매확정" ${list.orderDetail.status eq '구매확정' ? 'selected' : ''}>구매확정</option>
+									  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
+									  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
+									</select>
+								    </div>
+							    </td>
 						  </tr>
 						  
 						  </c:forEach>
@@ -216,8 +225,45 @@
 		        	class="btn btn-outline-secondary"
   			      	data-toggle="modal"
 					data-target="#adminGoodsOrderDelete"
-					onclick="goods_order_delete_btn('${orderNo}');">주문취소</button>
+					onclick="goods_order_delete_btn('${payment.payment.orderNo}', '${payment.payment.paymentNo}');">전체 주문 취소
+				</button>
 		      </div>
+
+    <form 
+    	action="${pageContext.request.contextPath }/admin/updateGoodsOrderDetailStatus.do?${_csrf.parameterName}=${_csrf.token}" 
+    	method="POST" 
+    	name="updateGoodsOrderDetailStatusFrm">
+    	<input type="hidden" name="orderDetailNo" />
+    	<input type="hidden" name="status" />
+    </form>
+
+<script>
+
+$(".order_select").change((e) => {
+	const $this = $(e.target);
+	const orderDetailNo = $this.data("orderDetailNo"); // data-속성의 키값을 camelcasing으로 처리
+	const status = $this.val();
+	
+	console.log("orderDetailNo = " + orderDetailNo)
+	console.log("status = " + status)
+	
+	// jsp의 EL문법과 js의 String Template 충돌. escaping처리 할것.
+	const msg = `상품 진행 상태를 [\${status}]로 변경하시겠습니까?`;
+	
+	if(confirm(msg)){
+		const $frm = $(document.updateGoodsOrderDetailStatusFrm);
+		$frm.find("[name=orderDetailNo]").val(orderDetailNo);
+		$frm.find("[name=status]").val(status);
+		$frm.submit();
+	}
+	else {
+		// 초기값으로 복귀
+		$this.find("[selected]").prop("selected", true);
+	}
+
+});
+
+</script>
 
 <script>
 

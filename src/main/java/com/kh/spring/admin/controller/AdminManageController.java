@@ -48,6 +48,7 @@ import com.kh.spring.goods.model.vo.GoodsJoin;
 import com.kh.spring.goods.model.vo.GoodsOption;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.Payment;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
@@ -1524,20 +1525,12 @@ public class AdminManageController {
 	}
 	
 	/**
-	 * [굿즈 주문 미결제 목록]
-	 */
-	
-	
-	/**
 	 * [굿즈 주문 상세]
 	 */
 	
 	@GetMapping("/adminGoodsOrderDetail.do")
 	public void adminGoodsOrderDetail(@RequestParam("orderNo") String orderNo, Model model) {
 		log.debug("orderNo = {}", orderNo);
-		
-		GoodsOrder goodsOrder = adminService.selectOneGoodsOrder(orderNo);
-		log.debug("goodsOrder = {}", goodsOrder);
 		
 		List<GoodsOrderDetailJoin> list = adminService.selectOneGoodsOrderDetail(orderNo);
 		log.debug("list = {}", list);
@@ -1554,7 +1547,7 @@ public class AdminManageController {
 		log.debug("payment = {}", payment);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("goodsOrder", goodsOrder);
+//		model.addAttribute("orderDetail", orderDetail);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
 	}
@@ -1667,30 +1660,104 @@ public class AdminManageController {
 		log.debug("orderNo = {}", orderNo);
 		
 		Payment payment = adminService.selectOnePayment2(orderNo);
+
 		log.debug("payment = {}", payment);
 		
 		model.addAttribute("payment", payment);
 	}
 	
-//	@PostMapping("/adminGoodsOrderDelete.do")
-//	public String adminGoodsOrderDelete(@RequestParam("paymentNo") int paymentNo, RedirectAttributes redirectAttr) {
-//		log.debug("paymentNo = {}", paymentNo);
-//		
-//    	try {
-////			int result = adminService.deleteGoodsOrder(paymentNo);
-//			redirectAttr.addFlashAttribute("msg", "주문 취소 성공");
-//			
-//    	} catch (InvalidParameterException e) {
-//    		log.error(e.getMessage(), e);
-//    		redirectAttr.addFlashAttribute("msg", e.getMessage());
-//    		
-//		} catch (Exception e) {
-//			log.error("다시 시도해주세요.", e);
-//			throw e;
-//		}
-//			
-//		return "redirect:/admin/adminGoodsOrderList.do";
-//	}
+	@PostMapping("/adminGoodsOrderDelete.do")
+	public String adminGoodsOrderDelete(@RequestParam("paymentNo") int paymentNo, @RequestParam("orderNo") String orderNo, RedirectAttributes redirectAttr) {
+		log.debug("paymentNo = {}", paymentNo);
+		log.debug("paymentNo = {}", orderNo);
+		
+    	try {
+    		int result1 = adminService.cancleGoodsOrderDetail(orderNo);
+//			int result2 = adminService.deletePayment(paymentNo);
+			redirectAttr.addFlashAttribute("msg", "주문 취소 성공");
+			
+    	} catch (InvalidParameterException e) {
+    		log.error(e.getMessage(), e);
+    		redirectAttr.addFlashAttribute("msg", e.getMessage());
+    		
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+			
+		return "redirect:/admin/adminGoodsOrderList.do";
+	}
+
+	/**
+	 * [상품 상태 개별 변경]
+	 */
+	
+	@PostMapping("/updateGoodsOrderDetailStatus.do")
+	public String updateGoodsOrderDetailStatus(@RequestParam("orderDetailNo") String orderDetailNo, @RequestParam("status") String status, RedirectAttributes redirectAttr) {
+		log.debug("paymentNo = {}", orderDetailNo);
+		log.debug("status = {}", status);
+		
+		try {
+			Map<String, Object> param = new HashMap<>();
+			param.put("orderDetailNo", orderDetailNo);
+			param.put("status", status);
+			log.debug("param = {}", param);
+			
+			int result = adminService.updateGoodsOrderDetailStatus(param);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderList.do";
+	}
+	
+	/**
+	 * [주문자 정보 수정]
+	 */
+	
+	@GetMapping("/adminPaymentInfoUpdate.do")
+	public void adminPaymentInfoUpdate(@RequestParam("paymentNo") int paymentNo, Model model) {
+		log.debug("paymentNo = {}", paymentNo);
+		
+		Payment payment = adminService.selectOnePayment3(paymentNo);
+
+		log.debug("payment = {}", payment);
+		
+		model.addAttribute("payment", payment);
+	}
+	
+	@PostMapping("/adminPaymentInfoUpdate.do")
+	public String adminPaymentInfoUpdate(@RequestParam String paymentNo, @RequestParam String receiver, @RequestParam String phone, @RequestParam String address, @RequestParam String detailAddress, @RequestParam String postCode, @RequestParam String orderComment, RedirectAttributes redirectAttr) {
+		log.debug("paymentNo = {}", paymentNo);
+		
+		try {
+			Map<String, Object> param = new HashMap<>();
+			param.put("paymentNo", paymentNo);
+			param.put("receiver", receiver);
+			param.put("phone", phone);
+			param.put("address", address);
+			param.put("detailAddress", detailAddress);
+			param.put("postCode", postCode);
+			param.put("orderComment", orderComment);
+			log.debug("param = {}", param);
+			
+			int result = adminService.adminPaymentInfoUpdate(param);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderList.do";
+	}
 	
 ///////////////////////////////////////////////////////////////////////////////
 	

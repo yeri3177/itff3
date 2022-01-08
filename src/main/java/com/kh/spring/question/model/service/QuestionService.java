@@ -42,6 +42,4 @@ public interface QuestionService {
 
 	Member selectOneMember(String id);
 
-	int insertSaveNotify(Map<String, Object> param);
-
 }

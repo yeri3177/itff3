@@ -416,22 +416,4 @@ public class QuestionController {
 		return "redirect:/question/questionList.do";
 	}
 	
-	/**
-	 * [알람]
-	 */
-	
-	@PostMapping("/saveNotify.do")
-	@ResponseBody
-	public void saveNotify(@RequestParam(value = "target") String target, @RequestParam(value = "content") String content, @RequestParam(value = "type") String type, @RequestParam(value = "url") String url) {
-		
-		Map<String, Object> param = new HashMap<>();
-		param.put("target", target);
-		param.put("content", content);
-		param.put("type", type);
-		param.put("url", url);
-		log.debug("param = {}", param);
-		
-		questionService.insertSaveNotify(param);
-	}
-	
 }

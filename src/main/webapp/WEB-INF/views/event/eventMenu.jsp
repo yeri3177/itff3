@@ -75,21 +75,23 @@ pageContext.setAttribute("loginMember", loginMember);
 
 			<div class="col-md-6 col-xs-12 ">
 				<div class="border_box2_out">
-				<div class="border_box2" onclick="location.href='${pageContext.request.contextPath}/event/eventOffline.do';">			
+				<div class="border_box2" onclick="location.href='${pageContext.request.contextPath}/member/dailyCheck.do';">			
 				<div class="evt-imgbox">
-					<img src="https://i.imgur.com/7NMBjZ6.jpg">	
+					<img src="https://i.imgur.com/dASerht.jpg">	
 				</div>
 
 				<div class="col-md-12 col-xs-12">
 					<div class="evt-txtbox">
-						<p class="evt-tit">[관객이벤트] </p>
-						<p class="evt-loc">SF 키워드로 컨셉친(concept+親)하라!</p>
-						<span class="txt-date">2022.1.7 ~ 2022.1.14</span>
+						<p class="evt-tit">[Happy New Year!]</p>
+						<p class="evt-loc">1월 출석체크 이벤트</p>
+						<span class="txt-date">2022.1.1 ~ 2022.1.31</span>
 					</div>
 				</div>
 				</div>
 				</div>
 			</div>
+			
+			
 		</div>
 
 		</div>

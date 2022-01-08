@@ -44,8 +44,4 @@ public interface QuestionDao {
 
 	Member selectOneMember(String id);
 
-	int insertSaveNotify(Map<String, Object> param);
-
-
-
 }

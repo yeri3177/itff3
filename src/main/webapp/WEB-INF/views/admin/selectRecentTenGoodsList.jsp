@@ -18,7 +18,7 @@
 			</a>
 		</td>
 		<td class="second-cell">${list.payment.memberId }</td>
-		<td class="second-cell">${list.payment.totalPrice }</td>
+		<td class="second-cell"><fmt:formatNumber value="${list.payment.totalPrice }" pattern="#,###" />원</td>
 		<td class="hits-cell" style="font-size: 13px; font-family: 'Montserrat';"><fmt:formatDate value="${list.payment.paymentDate }" pattern="yyyy-MM-dd"/></td>
 	</tr>
 </c:forEach>
