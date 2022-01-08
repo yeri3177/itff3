@@ -12,6 +12,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="네티즌 리뷰" name="title"/>   
 </jsp:include>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/summernote/summernote-lite.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board/reviewList.css" />
 
@@ -32,7 +33,8 @@
 	</div>
 </div>
 <!-- 여기까지 nav 입니다. -->
-
+<script src="${pageContext.request.contextPath }/resources/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/summernote/lang/summernote-ko-KR.js"></script>
 <section class="ink_board guest_mode">
 	<div class="sub_title_wrap">
 		<div class="container">
@@ -57,7 +59,8 @@
 					onsubmit="return boardValidate();">
 					<input type="text" class="form-control" placeholder="제목" name="reviewTitle" id="title" required>
 					<input type="hidden" class="form-control" name="memberId" value="<sec:authentication property="principal.id"/>" readonly required>
-					<textarea class="form-control" name="reviewContent" required></textarea>
+					<textarea id="summernote" name="reviewContent" required></textarea>
+					<!-- <textarea class="form-control" name="reviewContent" required></textarea> -->
 					<br />
 					<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
 					<div class="input-group mb-3" style="padding:0px;">
@@ -92,6 +95,9 @@
 		
 
 <style>
+.note-insert {
+	display: none;
+}
 section#main-content {
     background-color: #E6E6E6;
     height: auto;
@@ -166,5 +172,20 @@ $(() => {
 function formSubmit() {
 	document.reviewFrm.submit();
 }
+</script>
+
+<script>
+$(document).ready(function() {
+	//여기 아래 부분
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+          
+	});
+});
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
