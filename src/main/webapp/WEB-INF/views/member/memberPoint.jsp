@@ -57,7 +57,7 @@
 
 	<div class="dateAndPoint">
 		<div class="col-one-point">
-			<span>내 포인트 <em class="txt-maroon">${totalPoint }</em> 점</span>
+			<span style="font-size: 16px;">내 포인트 <em class="txt-maroon">${totalPoint }</em> 점</span>
 		</div>
 	
 		<div style="text-align: center; margin-bottom: 13px;">
@@ -66,8 +66,8 @@
 				action="${pageContext.request.contextPath}/member/memberPointByDate.do"
 				method="GET">
 				<input type="date" name="startDate" id="startDate" required/> ~ <input type="date" name="endDate" id="endDate" required/>
-				<input type="submit" value="조회하기" /> 
-				<button type="button" onclick="submitProcess();" class="list-group-item list-group-item-action">사진변경</button>
+				<!-- <input type="submit" value="조회하기" /> --> 
+				<button type="button" onclick="submitProcess();" class="btn btn-dark" style="position: relative; top: -3px;">조회하기</button>
 			</form:form>
 		</div>
 	</div>
