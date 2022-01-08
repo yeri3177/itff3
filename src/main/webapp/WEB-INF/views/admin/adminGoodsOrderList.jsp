@@ -36,7 +36,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">주문관리</h2>
+					<h2 class="heading-section">발주(주문)관리</h2>
 				</div>
 			</div>
 			
@@ -94,7 +94,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									<th>&nbsp;</th>
 									<th>주문일자</th>
 									<th>주문번호</th>
-									<th>주문자</th>
+									<th>아이디</th>
 									<th>주문금액</th>
 									<th>결제상태</th>
 									<th>&nbsp;</th>
@@ -127,7 +127,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									<!-- 아이디 -->
 									<td>
 										<div class="email">
-												<span>${list.payment.receiver }</span> 
+												<span>${list.payment.memberId }</span> 
 										</div>
 									</td>
 									
@@ -142,7 +142,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 										data-toggle="modal"
 										data-target="#adminGoodsOrderDetail"
 										onclick="goods_order_detail_btn('${list.orderDetail.orderNo}');"
-										>주문상세</button>
+										>상세</button>
 									</td>
 
 								</tr>
@@ -183,13 +183,13 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 							</div>
 						</div>
 						<!-- 수령인 정보 수정 끝 -->
-						<!-- 주문 삭제 -->
-						<div class="modal fade" id="adminGoodsOrderDelete" tabindex="-1"
+						<!-- 주문 상태 일괄 변경 -->
+						<div class="modal fade" id="adminGoodsOrderStatusUpdate" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content"
-									style="text-align: left;" id="modal_ajax3">
+									style="text-align: left;">
 									<div class="modal-body" id="modal_ajax3">
 									   		 
 									        
@@ -197,7 +197,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 								</div>
 							</div>
 						</div>
-						<!-- 주문 삭제 -->
+						<!-- 주문 상태 일괄 변경 -->
 						<!-- 회원 상세 -->
 						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalLabel"
@@ -356,7 +356,7 @@ function payment_info_update_btn(paymentNo) {
 <script>
 
 // 주문 삭제
-function goods_order_delete_btn(orderNo, paymentNo) {
+function goods_order_status_update_btn(orderNo, paymentNo) {
 	
 	console.log(orderNo);
 	console.log(paymentNo);
@@ -365,7 +365,7 @@ function goods_order_delete_btn(orderNo, paymentNo) {
 	var pNo = paymentNo;
 
 	$.ajax({
-		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderDelete.do",
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderStatusUpdate.do",
 		data: {
 			orderNo: oNo, 
 			paymentNo: pNo

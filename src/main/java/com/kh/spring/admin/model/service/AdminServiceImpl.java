@@ -701,11 +701,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int cancleGoodsOrderDetail(String orderNo) {
-		return adminDao.cancleGoodsOrderDetail(orderNo);
-	}
-
-	@Override
 	public int updateGoodsOrderDetailStatus(Map<String, Object> param) {
 		return adminDao.updateGoodsOrderDetailStatus(param);
 	}
@@ -728,6 +723,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<GoodsPaymentJoin> selectGoodsOrderCancelList(int offset, int limit) {
 		return adminDao.selectGoodsOrderCancelList(offset, limit);
+	}
+
+	@Override
+	public int adminGoodsOrderStatusUpdate(Map<String, Object> param) {
+		return adminDao.adminGoodsOrderStatusUpdate(param);
 	}
 
 //	@Override
