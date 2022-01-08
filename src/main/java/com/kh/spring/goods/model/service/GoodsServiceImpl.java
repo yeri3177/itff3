@@ -15,6 +15,8 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetailJoin;
+import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.goods.model.vo.Payment;
 
 @Service
@@ -191,6 +193,26 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public GoodsOrder selectOneGoodsOrder(String id) {
 		return goodsDao.selectOneGoodsOrder(id);
+	}
+
+	@Override
+	public List<OrderJoin> selectOrderList(String memberId) {
+		return goodsDao.selectOrderList(memberId);
+	}
+
+	@Override
+	public int selectOrderNo(int orderDetailNo) {
+		return goodsDao.selectOrderNo(orderDetailNo);
+	}
+
+	@Override
+	public int selectFirstOrderDetailNo(int orderNo) {
+		return goodsDao.selectFirstOrderDetailNo(orderNo);
+	}
+
+	@Override
+	public OrderDetailJoin selectOneOrderDetailJoin(int orderDetailNo) {
+		return goodsDao.selectOneOrderDetailJoin(orderDetailNo);
 	}
 
 

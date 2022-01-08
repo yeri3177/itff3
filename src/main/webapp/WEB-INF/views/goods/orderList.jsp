@@ -36,150 +36,68 @@
 
 <section class="goods-container" id="orderList-container">
 	
-	<!-- 반복되는 div -->
-	<div class="order-item">
-		<div class="top-div">
-			
-			<div>
-				주문 번호 979379 
-				<i class="fas fa-angle-right"></i>
-			</div>
-			
-			<div style="color: #a3a3a3;">
-				2022-01-07 21:51
-			</div>
-		</div>
-		
-		<div class="bottom-div">
-			<!-- 이미지 -->
-			<div class="image-bg">
-				<img src="${pageContext.request.contextPath}/resources/upload/goods/goods13_pink.png">		
-			</div>
-			
-			<!-- 이미지 아닌 오른쪽 영역 -->
-			<div class="bottom-right-div">
-				<div>망고잼빵 아이폰 케이스 </div>
-				<div>16,300원</div>
-				<div>상품준비중</div>
+	 <c:if test="${not empty list}">
+	
+		<!-- 반복되는 div -->
+		<c:forEach items="${list }" var="order" varStatus="vs">
+		<div class="order-item">
+			<div class="top-div">
 				
-				<div> <!-- 상세보기 버튼  -->
-					<div class="detail-btn">상세보기</div>
+				<div>
+					주문 번호 ${order.orderDetail.orderDetailNo } 
+					<i class="fas fa-angle-right"></i>
+				</div>
+				
+				<div style="color: #a3a3a3;">
+					<fmt:formatDate value="${order.goodsOrder.orderDate }" pattern="yyyy-MM-dd HH:mm"/>
 				</div>
 			</div>
-		</div> <!-- end of class="bottom-div" -->
-	</div> <!-- end of class="order-item" -->
-	
-	
-	
-	<!-- 반복되는 div -->
-	<div class="order-item">
-		<div class="top-div">
 			
-			<div>
-				주문 번호 979379 
-				<i class="fas fa-angle-right"></i>
-			</div>
-			
-			<div style="color: #a3a3a3;">
-				2022-01-07 21:51
-			</div>
-		</div>
-		
-		<div class="bottom-div">
-			<!-- 이미지 -->
-			<div class="image-bg">
-				<img src="${pageContext.request.contextPath}/resources/upload/goods/goods13_pink.png">		
-			</div>
-			
-			<!-- 이미지 아닌 오른쪽 영역 -->
-			<div class="bottom-right-div">
-				<div>망고잼빵 아이폰 케이스 </div>
-				<div>16,300원</div>
-				<div>상품준비중</div>
-				
-				<div> <!-- 상세보기 버튼  -->
-					<div class="detail-btn">상세보기</div>
+			<div class="bottom-div">
+				<!-- 이미지 -->
+				<div class="image-bg">
+					<img src="${pageContext.request.contextPath}/resources/upload/goods/${order.optionDetail.optionImg}">		
 				</div>
-			</div>
-		</div> <!-- end of class="bottom-div" -->
-	</div> <!-- end of class="order-item" -->
-	
-	
-	
-	
-	<!-- 반복되는 div -->
-	<div class="order-item">
-		<div class="top-div">
-			
-			<div>
-				주문 번호 979379 
-				<i class="fas fa-angle-right"></i>
-			</div>
-			
-			<div style="color: #a3a3a3;">
-				2022-01-07 21:51
-			</div>
-		</div>
-		
-		<div class="bottom-div">
-			<!-- 이미지 -->
-			<div class="image-bg">
-				<img src="${pageContext.request.contextPath}/resources/upload/goods/goods13_pink.png">		
-			</div>
-			
-			<!-- 이미지 아닌 오른쪽 영역 -->
-			<div class="bottom-right-div">
-				<div>망고잼빵 아이폰 케이스 </div>
-				<div>16,300원</div>
-				<div>상품준비중</div>
 				
-				<div> <!-- 상세보기 버튼  -->
-					<div class="detail-btn">상세보기</div>
+				<!-- 이미지 아닌 오른쪽 영역 -->
+				<div class="bottom-right-div">
+					<div>${order.goods.PName } </div>
+					<div><fmt:formatNumber value="${order.goods.PPrice }" pattern="#,###원"/></div>
+					<div>${order.orderDetail.status }</div>
+					
+					<div> <!-- 상세보기 버튼  -->
+						<div class="detail-btn detail-btn${vs.index }" data-order-detail-no="${order.orderDetail.orderDetailNo }">상세보기</div>
+					</div>
 				</div>
-			</div>
-		</div> <!-- end of class="bottom-div" -->
-	</div> <!-- end of class="order-item" -->
+			</div> <!-- end of class="bottom-div" -->
+		</div> <!-- end of class="order-item" -->
+		</c:forEach>
 	
-	
-	
-	<!-- 반복되는 div -->
-	<div class="order-item">
-		<div class="top-div">
-			
-			<div>
-				주문 번호 979379 
-				<i class="fas fa-angle-right"></i>
-			</div>
-			
-			<div style="color: #a3a3a3;">
-				2022-01-07 21:51
-			</div>
-		</div>
-		
-		<div class="bottom-div">
-			<!-- 이미지 -->
-			<div class="image-bg">
-				<img src="${pageContext.request.contextPath}/resources/upload/goods/goods13_pink.png">		
-			</div>
-			
-			<!-- 이미지 아닌 오른쪽 영역 -->
-			<div class="bottom-right-div">
-				<div>망고잼빵 아이폰 케이스 </div>
-				<div>16,300원</div>
-				<div>상품준비중</div>
-				
-				<div> <!-- 상세보기 버튼  -->
-					<div class="detail-btn">상세보기</div>
-				</div>
-			</div>
-		</div> <!-- end of class="bottom-div" -->
-	</div> <!-- end of class="order-item" -->
-
+	</c:if>
+	 
+	 <c:if test="${empty list}">
+	 	
+	 	<div>
+	 		<div style="font-size: 130px; font-weight: 600;">텅</div>
+	 		구매내역이 없습니다.
+	 	
+	 	</div>
+	 	
+	 </c:if>
 
 </section>
 
 <script>
-
+$(".detail-btn").click((e) => {
+	
+	const $this = $(e.target);
+	const orderDetailNo = $this.data("orderDetailNo");
+	
+	console.log(orderDetailNo);
+	
+	location.href = '${pageContext.request.contextPath}/goods/orderDetail.do?no='+orderDetailNo;
+	
+})
 
 </script>
 

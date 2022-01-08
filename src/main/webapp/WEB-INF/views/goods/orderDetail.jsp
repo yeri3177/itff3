@@ -43,18 +43,18 @@
 <section class="goods-container" id="orderDetail-container">
 
 	<div class="d-flex justify-content-between" style="margin-bottom: 50px;">
-		<div style="font-weight: 555;">주문번호 323123</div>
-		<div style="color:gray;">2022-01-07 21:51</div>
+		<div style="font-weight: 555;">주문번호 ${order.orderDetail.orderDetailNo }</div>
+		<div style="color:gray;"><fmt:formatDate value="${order.goodsOrder.orderDate }" pattern="yyyy-MM-dd HH:mm"/></div>
 	</div>
 
 	<!-- 상단 : 상품상태 -->
 	<div id="top-container">
 		
-		<div class="title-text">상품준비중</div>
+		<div class="title-text">${order.orderDetail.status }</div>
 		
 		<!-- 상품상태 프로그레스 -->
 		<div class="progress">
-		  <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+		  <div class="progress-bar" role="progressbar" style="width: ${statusPercent}%" aria-valuemin="0" aria-valuemax="100"></div>
 		</div>
 		
 		<!-- 상품상태 텍스트-->
@@ -69,71 +69,114 @@
 	<div id="middle-container">
 		<div class="title-text">주문 상품 정보</div>
 		
-		<div class="d-flex">
+		<div class="d-flex order-item">
 			<div class="img-bg">
-				<img src="${pageContext.request.contextPath}/resources/upload/goods/goods13_pink.png">	
+				<img src="${pageContext.request.contextPath}/resources/upload/goods/${order.optionDetail.optionImg}">	
 			</div>
 			
 			<div class="d-flex w-100 justify-content-between align-items-center">
 				<div>
-					<div style="color: #a1a1a1;">No. 323232</div>
-					<div style="font-weight: 555;">망고잼빵 아이폰 케이스</div>
-					<div>아이폰 13 그린</div>
+					<div style="color: #a1a1a1;">No. ${order.goods.PId }</div>
+					<div style="font-weight: 555;">${order.goods.PName }</div>
+					<div>
+						${order.optionDetail.optionType }
+						${order.optionDetail.optionColor }
+						${order.optionDetail.optionSize }
+					</div>
 				</div>
-				<div>3개</div>
-				<div>32,800원</div>
+				<div>${order.orderDetail.quantity }개</div>
+				<div><fmt:formatNumber value="${order.goods.PPrice }" pattern="#,###원"/></div>
 			
 			</div>
 		</div>
-	</div>
+		
+	</div> <!-- end of id="middle-container" -->
 	
 	
 	
 	<!-- 하단 : 배송지정보, 결제정보 -->
 	<div id="bottom-container" class="w-100">
 		<!-- 배송지정보 -->
-		<div class="w-50">
+		<div class="w-50 mr-5">
 			<div class="title-text">배송지 정보</div>
 			
-			<div>정예리</div>
-			<div>01012341234</div>
-			<div>부산 해운대구 APEC로 17</div>
-			<div>해운대 아파트 1105동 302호</div>
-			<div>부재시 경비실에 맡겨주세요.</div>
+			<div>${order.payment.receiver }</div>
+			<div>${order.payment.phone }</div>
+			<div>${order.payment.postCode }</div>
+			<div>${order.payment.address }</div>
+			<div>${order.payment.detailAddress }</div>
+			<div>${order.payment.orderComment }</div>
 		</div>
 	
 		<!-- 결제정보 -->
-		<div class="w-50 ml-5">
+		<div class="w-50">
 			<div class="title-text">결제 정보</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>카드번호</div>
-				<div>941061*********8</div>
+				<div>${order.payment.cardNumber }</div>
 			</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>결제수단</div>
-				<div>신한카드</div>
+				<div>${order.payment.cardName }</div>
 			</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>상품금액</div>
-				<div>4,7000원</div>
+				<div><fmt:formatNumber value="${order.goods.PPrice }" pattern="#,###원"/></div>
 			</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>사용한포인트</div>
-				<div>8,000P</div>
+				<div>
+					
+					<!-- 1이면 포인트, 배송비 적용함 -->
+					<c:if test="${booleanFirstOrder eq 1}">
+						<div><fmt:formatNumber value="${order.payment.usedPoints }" pattern="#,###P"/></div>
+					</c:if>
+					
+					<!-- 0이면 포인트, 배송비 적용 안함 -->
+					<c:if test="${booleanFirstOrder eq 0}">
+						<div>0P</div>
+					</c:if>
+					
+				</div>
 			</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>배송비</div>
-				<div>2,500원</div>
+				<div>
+					<!-- 1이면 포인트, 배송비 적용함 -->
+					<c:if test="${booleanFirstOrder eq 1}">
+						<div>2,500원</div>
+					</c:if>
+					
+					<!-- 0이면 포인트, 배송비 적용 안함 -->
+					<c:if test="${booleanFirstOrder eq 0}">
+						<div>0원</div>
+					</c:if>
+				</div>
 			</div>
 			
 			<div class="d-flex justify-content-between">
 				<div>결제금액</div>
-				<div>4,1500원</div>
+				<div>
+					<!-- 1이면 포인트, 배송비 적용함 -->
+					<c:if test="${booleanFirstOrder eq 1}">
+						<div>
+							<div><fmt:formatNumber value="${order.goods.PPrice-order.payment.usedPoints+2500 }" pattern="#,###원"/></div>
+						</div>
+					</c:if>
+					
+					<!-- 0이면 포인트, 배송비 적용 안함 -->
+					<c:if test="${booleanFirstOrder eq 0}">
+						<div>
+							<div><fmt:formatNumber value="${order.goods.PPrice }" pattern="#,###원"/></div>
+						</div>
+					</c:if>
+				
+				</div>
 			</div>
 	
 		</div> <!-- end of 결제정보 -->

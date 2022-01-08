@@ -57,7 +57,7 @@
 		</div>
 		
 		<div>
-			주문일자 : ${orderDate }
+			주문일자 : <fmt:formatDate value="${order.orderDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
 		</div>
 	
 	</div>
