@@ -93,9 +93,9 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 								<tr>
 									<th>&nbsp;</th>
 									<th>주문번호</th>
-									<th>주문자</th>
 									<th>주문금액</th>
 									<th>처리상태</th>
+									<th>&nbsp;</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -114,33 +114,27 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 											<span style="text-decoration: underline;">${list.payment.paymentNo}</span> 
 										</div>
 									</td>
-
-									<!-- 수령인 -->
-									<td>
-										<div class="email">
-												<span>${list.payment.receiver }</span> 
-										</div>
-									</td>
 									
 									<!-- 금액 -->
 									<td><fmt:formatNumber value="${list.payment.totalPrice }" pattern="#,###" /></td>
-									
-									<!-- 주문상품 -->
+
+									<!-- 상태 -->
 									<td>
 										<div class="email">
-											<span>${list.orderDetail.status }</span> 
+											<span>${list.orderDetail.status}</span> 
 										</div>
 									</td>
-									
-									<!-- 
+
 									<td>
 										<button 
 										id="${list.orderDetail.orderNo }" 
 										type="button"
 										class="btn btn-outline-secondary"
-										>고객상담</button>
+										data-toggle="modal"
+										data-target="#adminGoodsOrderCancelDetail"
+										onclick="goods_order_cancel_detail_btn('${list.orderDetail.orderNo}');"
+										>상세</button>
 									</td>
-									 -->
 
 								</tr>
 								</c:forEach>
@@ -148,16 +142,106 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 							</tbody>
 						</table>
 						</div>
-
-						<!--  개별 메세지 -->
-						<div class="modal fade" id="adminSaveNotify" tabindex="-1"
+						
+						<!-- 주문 상세 -->
+						<div class="modal fade" id="adminGoodsOrderCancelDetail" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
-							<div id="modal_ajax9" class="modal-dialog" role="document"
-								style="max-width: 500px;" >
+							<div class="modal-dialog" role="document"
+								style="max-width: 1000px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax1">
+								    		  
+									</div>
+								</div>
 							</div>
 						</div>
-						<!-- 개별 메세지 끝 -->
+						<!-- 주문 상세 끝 -->
+						<!-- 회원 상세 -->
+						<div class="modal fade" id="adminMemberDetail" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document"
+							style="max-width: 800px;">
+							<div class="modal-content" style="text-align: left;">
+							   	<div class="modal-body" id="modal_ajax4">
+							    		  
+								</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 회원 상세 끝 -->
+						<!-- 회원 정보 수정 -->
+						<div class="modal fade" id="adminMemberUpdate" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 1000px;">
+								<div class="modal-content" style="text-align: left;">
+								   	<div class="modal-body" id="modal_ajax5">
+								    		  
+									</div>
+	
+									</div>
+								</div>
+							</div>
+							<!-- 회원 정보 수정 끝 -->
+							<!-- 회원 포인트 지급 -->
+							<div class="modal fade" id="adminMemberPoint" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog" role="document"
+									style="max-width: 500px;">
+									<div class="modal-content" style="text-align: left;">
+									   	<div class="modal-body" id="modal_ajax6">
+									    		  
+										</div>
+		
+										</div>
+									</div>
+								</div>
+								<!-- 회원 포인트 지급 끝 -->
+								<!-- 회원 차단 -->
+								<div class="modal fade" id="adminMemberCut" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax7">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+								<!-- 회원 차단 끝 -->
+								<!-- 회원 차단 해제 -->
+								<div class="modal fade" id="adminMemberUnblock" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 500px;">
+										<div class="modal-content" style="text-align: left;">
+										   	<div class="modal-body" id="modal_ajax8">
+										    		  
+											</div>
+			
+											</div>
+										</div>
+									</div>
+								<!-- 회원 차단 해제 끝 -->
+								<!--  개별 메세지 -->
+								<div class="modal fade" id="adminSaveNotify" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div id="modal_ajax9" class="modal-dialog" role="document"
+										style="max-width: 500px;" >
+									</div>
+								</div>
+								<!-- 개별 메세지 끝 -->
 						
 					</div>
 				</div>	
@@ -165,32 +249,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 		</div>
 
 ${pagebar}
-
-<script>
-$("tr[id]").click((e) => {
-	const $tr = $(e.target).parent("tr");
-	const chatId = $tr.attr("id");
-	const memberId = $tr.data("memberId"); // getter camelcasing으로 참조하기
-	console.log(chatId, memberId);
 	
-		$.ajax({
-			url:"${pageContext.request.contextPath}/admin/"+chatId+"/"+memberId+"/chat.do",
-			method: "get",
-			contentType: "application/json",
-			dateType: "text",
-			success: function(data) {
-				$("#modal_ajax1").html(data);
-				$('#chat').modal('show');
-			},
-			complete: function() {
-				console.log("complete")
-			}
-		});
-
-
-});
-</script>
-
 <script>
 $("#searchType").change((e) => {
 	// e.target 이벤트발생객체 -> #searchType
@@ -202,6 +261,154 @@ $("#searchType").change((e) => {
 	// 2. #search-${type} 보여주기(display:inline-block)
 	$(`#search-\${type}`).css("display", "inline-block");
 });
+</script>
+
+<script>
+
+// 주문 상세
+function goods_order_cancel_detail_btn(orderNo) {
+	
+	console.log(orderNo);
+	var id = orderNo;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderCancelDetail.do",
+		data: {orderNo: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 회원 상세
+function order_receiver_change_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberDetail.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax4").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+</script>
+
+<script>
+// 회원 정보 수정
+function memberUpdate_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberUpdate.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax5").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 포인트 지급
+function memberPoint_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberPoint.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax6").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 회원 차단
+function member_cut_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberCut.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax7").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 회원 차단 해제
+function member_unblock_btn(memberId) {
+	
+	console.log(memberId);
+	var id = memberId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMemberUnblock.do",
+		data: {id: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax8").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
 </script>
 
 <script>
@@ -226,6 +433,32 @@ function save_btn(memberId) {
 		}
 	});
 }
+
+</script>
+
+<script>
+
+// 파일명 바꾸기 & 이미지 이름
+$(() => {
+	$("[name=upFile]").change((e) => {
+		
+		// 1.파일명 가져오기
+		const file = $(e.target).prop("files")[0];
+		const filename = file?.name; // optional chaining 객체가 undefined경우에도 오류가 나지 않는다.
+		console.dir(e.target);
+		console.log(file);
+		console.log(filename);
+		
+		// 2.label에 설정하기
+		const $label = $(e.target).next();
+		console.log($label);
+		
+		if(file != undefined) {
+			$label.html(filename);
+			$("[name=pImg]").val(filename);			
+		}
+	});	
+});
 
 </script>
 
