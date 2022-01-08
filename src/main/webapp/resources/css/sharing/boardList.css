@@ -114,8 +114,8 @@ section#main-content {
 }
 
 .ink_board {
-    padding-top: 40px;
-    padding-bottom: 20px;
+    /* padding-top: 40px; */
+    padding-bottom: 50px;
 } 
 .ink_board li {
 	display: list-item;

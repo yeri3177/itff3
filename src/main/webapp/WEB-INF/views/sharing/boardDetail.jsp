@@ -67,7 +67,13 @@
 		</ul>
 	</div>
 </div>
-
+<!-- 해당 페이지 큰 글씨 -->
+	<div class="sub_title_wrap">
+		<div class="container">
+			<h2 class="en">티켓나눔터</h2>
+		</div>
+	</div> 
+	<!-- 여기까지 해당 페이지 큰 글씨입니다. -->
 <div class="ink_board guest_mode">
 	<div class="list_wrap">
 		<div class="ink_list ldn" style="background-color: #FFFFFF">
