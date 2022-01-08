@@ -112,7 +112,7 @@
 									</c:choose>
 								</div>
 								<div class="title_area">
-										<a href="${pageContext.request.contextPath}/board/boardDetail.do?no=${board.no}"
+										<a href="${pageContext.request.contextPath}/sharing/boardDetail.do?no=${board.no}"
 											class="title_link"> ${board.title}
 										</a>
 								</div>
@@ -163,7 +163,7 @@
 	</div>
 	<div class="bt_area bt_left clearfix">
 		<sec:authorize access="isAuthenticated()">
-			<a class="ib ib2 ib_color bt_write" href="${pageContext.request.contextPath}/board/boardForm.do" style="color: white"><i class="fas fa-pen"></i><span>글쓰기</span></a>
+			<a class="ib ib2 ib_color bt_write" href="${pageContext.request.contextPath}/sharing/boardForm.do" style="color: white"><i class="fas fa-pen"></i><span>글쓰기</span></a>
 		</sec:authorize>	
 	</div>
 	<div class="ink_align_center"></div>
