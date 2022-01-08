@@ -37,7 +37,8 @@
 					id="memberEnrollFrm"
 					name="memberEnrollFrm"
 					action="${pageContext.request.contextPath}/member/memberEnroll.do" 
-					class="chk_member" 
+					class="chk_member"
+					autocomplete="off" 
 					method="post">
 					<input type="hidden" name="strBirthdayR"> 
 
@@ -87,8 +88,8 @@
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="password"
 										id="password" type="password" maxlength="30" size="20"
-										value="" placeholder="비밀번호를 입력해 주세요."
-										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
+										 value="" placeholder="비밀번호를 입력해 주세요."
+										style="-webkit-ime-mode: inactive; ime-mode: inactive;" autocomplete="new-password";>
 									</span>
 								</div>
 							</div>
