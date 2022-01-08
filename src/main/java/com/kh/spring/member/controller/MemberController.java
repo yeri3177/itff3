@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
@@ -307,6 +308,13 @@ public class MemberController {
 	 */
 	@GetMapping("/memberLogin.do")
 	public void memberLogin() {}
+	
+	@PostMapping("/memberLoginError.do")
+	public String memberLoginError() {
+		
+		return "/member/memberLoginError";
+	}
+	
 	
 	@GetMapping("/test.do")
 	public void test() {}
@@ -727,8 +735,10 @@ public class MemberController {
 		
 		Member member = (Member) authentication.getPrincipal();
 		String id = member.getId();
+		int oldPoint = member.getPoint();
 		
 		log.debug("id = {}", id);
+		log.debug("oldPoint = {}", oldPoint);
 		log.debug("checkDate = {}", checkDate);
 		
 		Map<String, Object> param = new HashMap<>();
@@ -740,7 +750,39 @@ public class MemberController {
 		
 		if(result1 == 0) {
 			//출석 x -> 출석해야함
-			int result2 = memberService.dailyCheckInsert(param);			
+			int result2 = memberService.dailyCheckInsert(param);
+			
+			//출석 후 포인트 지급
+			//포인트 생성 : 최소 100p, 공차 50p, 최대 500p
+			Random rnd = new Random();
+			int createdPoint = (rnd.nextInt(9) + 2) * 50; //100~500p
+			log.debug("createdPoint = {}", createdPoint);
+			
+			//member에서 oldPoint를 가져온 후 생성된 포인트를 더함
+			int point = oldPoint + createdPoint;
+			log.debug("newPoint = {}", point);
+			
+			//member point컬럼 update
+			String reason = "출석체크";
+			String change = "+" + createdPoint; // "+300"이런식
+			Map<String, Object>param2 = new HashMap<>();
+			param2.put("id", id);
+			param2.put("reason", reason);
+			param2.put("change", change);
+			param2.put("createdPoint", createdPoint);
+			param2.put("point", point);
+			log.debug("param = {}", param);
+			
+			//포인트 넣기
+			int result3 = memberService.updateMemberPointByIdAndNewPoint(param2);
+			
+			//포인트 기록함
+			int result4 = memberService.insertPointHistory(param2);							
+			
+			//Authentication 정보 갱신
+			Member principal = (Member) authentication.getPrincipal();
+			principal.setPoint(point);
+			
 		}
 		else {
 			//출석 o -> 리턴
