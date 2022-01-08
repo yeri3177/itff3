@@ -36,13 +36,6 @@
 								data-target="#adminMemberDetail"
 								onclick="order_receiver_change_btn('${payment.payment.memberId }');">회원상세정보보기
 								</button>	
-							  	<button 
-					      		type="button" 
-					      		class="btn btn-outline-secondary orderUpdateBtn"
-					      		data-toggle="modal"
-								data-target="#adminPaymentInfoUpdate"
-								onclick="payment_info_update_btn('${payment.payment.paymentNo}');">주문자정보수정
-								</button>	
 							</td>
 						  </tr>
 						  
@@ -79,26 +72,6 @@
 
 						</tbody>					
 					</table>
-					
-					<!-- 
-					<table class="table pay_info_tb">
-						<tbody>
-							<tr>
-								<th class="title_th">택배회사</th>
-								<td class="receiver">
-									<select class="form-select" aria-label="Default select example">
-									  <option selected>선택</option>
-									  <option value="1">CJ대한통운</option>
-									  <option value="2">한진택배</option>
-									  <option value="3">우체국택배</option>
-									  <option value="3">롯데택배</option>
-									  <option value="3">로젠택배</option>
-									</select>
-								</td>
-							</tr>
-						</tbody>
-					</table>					  
-					 -->
 					
 					 <!-- 결제 정보 -->
 					<table class="table">
@@ -153,7 +126,7 @@
 						</thead>
 		 				<tbody>
 						  <c:forEach items="${list }" var="list">
-						  <c:if test="${list.orderDetail.status ne '주문취소'}">			  
+						  <c:if test="${list.orderDetail.status eq '주문취소' || list.orderDetail.status eq '환불완료'}">
    						  <tr>
 						    	<td>
 							    	<div class="order_img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${list.goods.PImg })"></div>
@@ -194,28 +167,14 @@
 								    <div>
 								    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
 									  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
-									  <option value="상품준비중" ${list.orderDetail.status eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
-									  <option value="배송준비중" ${list.orderDetail.status eq '배송준비중' ? 'selected' : ''}>배송준비중</option>
-									  <option value="배송중" ${list.orderDetail.status eq '배송중' ? 'selected' : ''}>배송중</option>
-									  <option value="배송완료" ${list.orderDetail.status eq '배송완료' ? 'selected' : ''}>배송완료</option>
 									  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
+									  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
 									</select>
 								    </div>
 							    </td>
 							    
-							    <c:if test="${list.orderDetail.status eq '배송준비중'}">
-							    <td>
-							     <button type="button" class="btn btn-outline-secondary orderUpdateBtn" style="font-size: 12px !important;">
-		        					운송장 등록
-		        				</button>
-							    </td>
-							    </c:if>
-							    <c:if test="${list.orderDetail.status eq '배송준비중' || list.orderDetail.status eq '상품준비중' }">
-							    <td></td>
-							    </c:if>
-							    
-						  </tr>
-						  </c:if>						  
+						  </tr>						  
+						  </c:if>
 						  </c:forEach>
 					  </tbody>
 					  </table>
@@ -230,6 +189,7 @@
 					data-target="#adminGoodsUpdate"
 					onclick="goodsUpdate_btn('${orderNo}');">주문자정보</button>
 				 -->
+				 <!-- 
 		        <button 
 		        	type="button" 
 		        	class="btn btn-outline-secondary"
@@ -237,6 +197,7 @@
 					data-target="#adminGoodsOrderDelete"
 					onclick="goods_order_delete_btn('${payment.payment.orderNo}', '${payment.payment.paymentNo}');">일괄주문취소
 				</button>
+				  -->
 		      </div>
 
     <form 

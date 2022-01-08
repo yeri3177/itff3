@@ -1550,8 +1550,7 @@ public class AdminManageController {
 //		model.addAttribute("orderDetail", orderDetail);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
-	}
-	
+	}	
 	
 	/**
 	 * [굿즈 주문 목록 검색]
@@ -1797,6 +1796,35 @@ public class AdminManageController {
 		}
 		
 		return "admin/adminGoodsOrderCancelList";
+	}
+	
+	
+	/**
+	 * [굿즈 취소 주문 상세]
+	 */
+	
+	@GetMapping("/adminGoodsOrderCancelDetail.do")
+	public void adminGoodsOrderCancelDetail(@RequestParam("orderNo") String orderNo, Model model) {
+		log.debug("orderNo = {}", orderNo);
+		
+		List<GoodsOrderDetailJoin> list = adminService.selectOneGoodsOrderDetail(orderNo);
+		log.debug("list = {}", list);
+		
+		// 주문번호에 맞는 memberId 불러오기
+		String memberId = adminService.selectOneGoodsOrderMember(orderNo);
+		log.debug("memberId = {}", memberId);
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("memberId", memberId);
+		param.put("orderNo", orderNo);
+		
+		GoodsPaymentJoin payment = adminService.selectOnePayment(param);
+		log.debug("payment = {}", payment);
+		
+		model.addAttribute("list", list);
+//		model.addAttribute("orderDetail", orderDetail);
+		model.addAttribute("payment", payment);
+		model.addAttribute("orderNo", orderNo);
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////
