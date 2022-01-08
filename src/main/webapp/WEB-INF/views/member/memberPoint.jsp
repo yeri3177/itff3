@@ -62,10 +62,12 @@
 	
 		<div style="text-align: center; margin-bottom: 13px;">
 			<form:form
+				id="memberPointByDateFrm"
 				action="${pageContext.request.contextPath}/member/memberPointByDate.do"
 				method="GET">
-				<input type="date" name="startDate" id="startDate"/> ~ <input type="date" name="endDate" id="endDate"/>
-				<input type="submit" value="조회하기" />
+				<input type="date" name="startDate" id="startDate" required/> ~ <input type="date" name="endDate" id="endDate" required/>
+				<input type="submit" value="조회하기" /> 
+				<button type="button" onclick="submitProcess();" class="list-group-item list-group-item-action">사진변경</button>
 			</form:form>
 		</div>
 	</div>
@@ -118,9 +120,31 @@
 </div>
 
 <script>
-const submitProcess = (name) => {
-	$(devFrm)
-		.attr("action", `${pageContext.request.contextPath}/member/\${name}.do?${_csrf.parameterName}=${_csrf.token}`)
+	
+</script>
+
+<script>
+const submitProcess = () => {
+	const startDate = $('#startDate').val();
+	const endDate = $('#endDate').val();
+	
+	if(startDate == ""){
+		alert("시작날짜를 입력해주세요.");
+		return;
+	}
+	
+	if(endDate == ""){
+		alert("종료날짜를 입력해주세요.");
+		return;
+	}
+	
+	if(startDate > endDate){
+		alert("조회할 수 있는 날짜가 아닙니다. 다시 입력해주세요.");
+		return;
+	}
+	
+	$(memberPointByDateFrm)
+		.attr("action", `${pageContext.request.contextPath}/member/memberPointByDate.do`)
 		.submit();
 };
 </script>
