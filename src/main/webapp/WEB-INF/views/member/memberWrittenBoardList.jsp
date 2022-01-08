@@ -98,7 +98,7 @@
 					<!-- LIST -->
 					<c:forEach items="${list}" var="board" varStatus="vs">
 						<tr>
-							<td class="no text_en">${board.boardNo}</td>
+							<td class="no text_en">${board.no}</td>
 							<td class="list_left list_title" style="display: flex;">
 								<div class="article_type">
 									<c:choose>
@@ -112,13 +112,12 @@
 									</c:choose>
 								</div>
 								<div class="title_area">
-										<a href="${pageContext.request.contextPath}/board/boardDetail.do?no=${board.boardNo}"
-											class="title_link"> ${board.boardTitle}
+										<a href="${pageContext.request.contextPath}/board/boardDetail.do?no=${board.no}"
+											class="title_link"> ${board.title}
 										</a>
 								</div>
 							</td>
-							<td class="list_left list_author has_profile">
-								<span class="inkpf round"></span> 
+							<td class="list_left list_author has_profile" style="text-align:center;">
 								<a href="#popup_menu_area" class="member_66300686" onclick="return false">${board.memberId }</a>
 							</td>
 							<td class="date text_en">
