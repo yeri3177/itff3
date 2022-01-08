@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#likeItems-container {
+	/* background-color: aqua; */
+	
+	padding-top: 60px;
+	padding-bottom: 150px;
+	height: 1100px;
+}
+
+.like-title {
+	width: 72%;
+    text-align: left;
+    font-size: 23px;
+    margin: 0 auto;
+}

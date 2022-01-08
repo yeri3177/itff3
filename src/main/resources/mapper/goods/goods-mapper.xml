@@ -709,7 +709,13 @@
     </resultMap>
 	
 	
-	
+	<select id="selectGoodsLikeItems" resultMap="goodsLikeJoinMap">
+		select * 
+		from goods_like 
+		left join goods
+		using (p_id)
+		where user_id = #{loginId}
+	</select>
 	
 	
 	

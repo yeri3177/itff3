@@ -93,6 +93,8 @@ public interface GoodsDao {
 
 	OrderDetailJoin selectOneOrderDetailJoin(int orderDetailNo);
 
+	List<GoodsLikeJoin> selectGoodsLikeItems(String loginId);
+
 
 
 }

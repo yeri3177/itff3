@@ -215,6 +215,11 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.selectOneOrderDetailJoin(orderDetailNo);
 	}
 
+	@Override
+	public List<GoodsLikeJoin> selectGoodsLikeItems(String loginId) {
+		return goodsDao.selectGoodsLikeItems(loginId);
+	}
+
 
 	
 	

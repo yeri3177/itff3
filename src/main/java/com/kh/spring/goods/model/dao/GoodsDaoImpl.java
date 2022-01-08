@@ -219,5 +219,10 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectOne("goods.selectOneOrderDetailJoin", orderDetailNo);
 	}
 
+	@Override
+	public List<GoodsLikeJoin> selectGoodsLikeItems(String loginId) {
+		return session.selectList("goods.selectGoodsLikeItems", loginId);
+	}
+
 
 }
