@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+.info_space:hover {
+	color: black;
+	cursor: context-menu;
+}
+
 .sub_sc {
     position: relative;
     z-index: 10;
