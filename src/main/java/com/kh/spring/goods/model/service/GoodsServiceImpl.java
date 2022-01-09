@@ -26,11 +26,6 @@ public class GoodsServiceImpl implements GoodsService {
 	private GoodsDao goodsDao;
 
 	@Override
-	public List<Goods> selectGoodsList(int offset, int limit) {
-		return goodsDao.selectGoodsList(offset, limit);
-	}
-
-	@Override
 	public int selectGoodsTotalCount() {
 		return goodsDao.selectGoodsTotalCount();
 	}
@@ -233,6 +228,11 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<String> selectAgeNumber() {
 		return goodsDao.selectAgeNumber();
+	}
+
+	@Override
+	public List<GoodsLikeJoin> selectGoodsListBySortType(Map<String, Object> param) {
+		return goodsDao.selectGoodsListBySortType(param);
 	}
 
 

@@ -3,4 +3,4 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<img src="${pageContext.request.contextPath}/resources/upload/goods/${optionDetail.optionImg}" />
+<img src="${pageContext.request.contextPath}/resources/upload/goods/${img.optionImg}" />

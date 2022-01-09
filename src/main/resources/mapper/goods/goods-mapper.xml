@@ -743,7 +743,121 @@
 		    age asc
 	</select>
 	
+	<select id="selectGoodsListBySortType" resultMap="goodsLikeJoinMap">
+		select * from (
+	        (
+	        select * from (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            GROUP by p_id 
+	            HAVING COUNT(p_id) > 1
+	            )
+	        and user_id != #{loginId}
+	        and p_id not in 
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            where p_id in
+	                (
+	                SELECT p_id
+	                from goods
+	                left join goods_like
+	                using (p_id)
+	                GROUP by p_id 
+	                HAVING COUNT(p_id) > 1
+	                )
+	            and user_id = #{loginId}
+	            )
+	        )
+	        where rowid in (select max(rowid) from (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            GROUP by p_id 
+	            HAVING COUNT(p_id) > 1
+	            )
+	        and user_id != #{loginId}
+	        and p_id not in 
+	            (
+	            SELECT p_id
+	            from goods
+	            left join goods_like
+	            using (p_id)
+	            where p_id in
+	                (
+	                SELECT p_id
+	                from goods
+	                left join goods_like
+	                using (p_id)
+	                GROUP by p_id 
+	                HAVING COUNT(p_id) > 1
+	                )
+	            and user_id = #{loginId}
+	            )) group by p_id)
+	        )
+		union
+	        (SELECT *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id in
+	        (
+	        SELECT p_id
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        GROUP by p_id 
+	        HAVING COUNT(p_id) > 1
+	        )
+	        and user_id = #{loginId}
+	        )
+		union
+	        (select *
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        where p_id not in 
+	        (
+	        SELECT p_id
+	        from goods
+	        left join goods_like
+	        using (p_id)
+	        GROUP by p_id 
+	        HAVING COUNT(p_id) > 1)
+		) 
+	) where p_id in (select distinct p_id from goods_option)
 	
+	<if test="sortType == '낮은가격순'">
+		order by p_price asc
+	</if>
+	
+	<if test="sortType == '높은가격순'">
+		order by p_price desc
+	</if>
+	
+	<if test="sortType == '최신등록순'">
+		order by p_enroll desc
+	</if>
+	
+	<if test="sortType == '상품명순'">
+		order by p_name desc
+	</if>
+	</select>
 	
 	
 	
