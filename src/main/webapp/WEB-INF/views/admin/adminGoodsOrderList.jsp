@@ -103,6 +103,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 							</thead>
 							<tbody>
 							<c:forEach items="${list}" var="list" varStatus="vs">
+							<c:if test="${list.payment.totalPrice ne 2500 }">
 								<tr class="alert" role="alert">
 									<!-- 체크박스 -->
 									<td><label class="checkbox-wrap checkbox-primary">
@@ -146,6 +147,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									</td>
 
 								</tr>
+								</c:if>
 								</c:forEach>
 								
 							</tbody>

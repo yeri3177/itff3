@@ -768,4 +768,14 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.adminDeliveryUpdate", orderDetailNo);
 	}
 
+	@Override
+	public int updateGoodsCancelOrderDetailStatus(Map<String, Object> param) {
+		return session.update("admin.updateGoodsCancelOrderDetailStatus", param);
+	}
+
+	@Override
+	public int updateNewTotalPrice(Map<String, Object> param) {
+		return session.update("admin.updateNewTotalPrice", param);
+	}
+
 }

@@ -284,4 +284,8 @@ public interface AdminDao {
 
 	int adminDeliveryUpdate(int orderDetailNo);
 
+	int updateGoodsCancelOrderDetailStatus(Map<String, Object> param);
+
+	int updateNewTotalPrice(Map<String, Object> param);
+
 }
