@@ -613,7 +613,7 @@
 		from 
 			movie_schedule 
 		where 
-			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
+			<![CDATA[start_date = to_char(sysdate, 'YYYY-MM-DD')]]>
 	</select>
 	
 	<select id="adminManageRecentTenReviewList" resultMap="reviewMap"> 
