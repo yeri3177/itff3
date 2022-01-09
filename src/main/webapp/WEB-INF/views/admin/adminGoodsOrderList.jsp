@@ -36,7 +36,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">발주(주문)관리</h2>
+					<h2 class="heading-section">주문관리</h2>
 				</div>
 			</div>
 			
@@ -282,6 +282,22 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									</div>
 								</div>
 								<!-- 개별 메세지 끝 -->
+								<!--  운송장 등록 -->
+								<div class="modal fade" id="adminGoodsOrderWaybill" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalLabel"
+									aria-hidden="true">
+									<div class="modal-dialog" role="document"
+										style="max-width: 800px;">
+										<div class="modal-content"
+											style="text-align: left;">
+											<div class="modal-body" id="modal_ajax10">
+											   		 
+											        
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 운송장 등록 끝 -->
 						
 					</div>
 				</div>	
@@ -523,6 +539,31 @@ function save_btn(memberId) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax9").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 운송장 등록
+function order_waybill_btn(orderDetailNo) {
+	
+	console.log(orderDetailNo);
+	var id = orderDetailNo;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminGoodsOrderWaybill.do",
+		data: {orderDetailNo: id},
+		method: "get",
+		contentType: "application/json;charset=UTF-8",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax10").html(data);
 		},
 		complete: function() {
 			console.log("complete")

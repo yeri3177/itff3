@@ -14,6 +14,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
+/*     margin-left: auto; */
+/*     margin-left: 60px !important; */
 }
 
 .justify-content-center {
@@ -119,7 +121,7 @@ h5, .h5 {
 
 .table {
 /*     min-width: 1000px!important; */
-/* 	width: 1600px !important; */
+	width: 1600px !important;
     background: #fff;
     -webkit-box-shadow: 0 5px 12px -12px rgb(0 0 0 / 29%);
     -moz-box-shadow: 0 5px 12px -12px rgba(0,0,0,.29);
@@ -139,11 +141,6 @@ table {
 .table thead.thead-primary {
     background: #444444;
     font-weight: bold;
-}
-
-*, *::before, *::after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 .table thead th {
@@ -186,7 +183,7 @@ th {
 /*     padding: 30px; */
     font-size: 14px;
     background: #fff;
-    border-bottom: 4px solid #f8f9fd;
+/*     border-bottom: 4px solid #f8f9fd; */
     vertical-align: middle;
 }
 
@@ -255,11 +252,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .table tbody td .img {
-	width: 80px;
+    width: 100px;
     height: 80px;
     margin: 0 auto;
-    border-radius: 20px;
-    border: 1px solid whitesmoke;
 }
 .img {
     background-size: cover;
@@ -414,10 +409,13 @@ a:hover {
 }
 
 .input-group {
-	display: flex;
-	flex-wrap: nowrap !important;
-	flex-direction: row !important;
-	width: 500px !important;
+	position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    width: 900px !important;
+    justify-content: space-between;
 }
 
 .search-total {
@@ -425,7 +423,7 @@ a:hover {
     width: 1600px;
     display: flex;
     min-width: 1600px;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
 }
@@ -437,8 +435,8 @@ a:hover {
 
 .insert {
 	display: flex; 
-	justify-content: 
-	space-between; align-items: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .profile_img {
@@ -446,4 +444,117 @@ a:hover {
 	height: 50px;
 	border-radius: 30px;
     border: 1px solid whitesmoke;
+}
+
+/* datepicker */
+
+.ui-datepicker-header {
+  height: 50px !important;
+  line-height: 50px !important;
+  color: #f26a63 !important;
+  margin-bottom: 10px !important;
+}
+.ui-datepicker-prev,
+.ui-datepicker-next {
+  width: 20px !important;
+  height: 20px !important;
+  text-indent: 9999px !important;
+  border-radius: 100% !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  margin-top: 12px !important;
+}
+.ui-datepicker-prev {
+  float: left !important;
+  margin-left: 12px !important;
+}
+.ui-datepicker-prev:after {
+  transform: rotate(45deg) !important;
+  margin: -43px 0px 0px 8px !important;
+}
+.ui-datepicker-next {
+  float: right !important;
+  margin-right: 12px !important;
+}
+.ui-datepicker-next:after {
+  transform: rotate(-135deg) !important;
+  margin: -43px 0px 0px 6px !important;
+}
+.ui-datepicker-prev:after,
+.ui-datepicker-next:after {
+  content: '';
+  position: absolute !important;
+  display: block !important;
+  width: 4px !important;
+  height: 4px !important;
+  border-left: 2px solid #b0aead !important;
+  border-bottom: 2px solid #b0aead !important;
+}
+.ui-datepicker-title {
+  text-align: center !important;
+}
+.ui-datepicker-calendar {
+  width: 100% !important;
+  text-align: center !important;
+}
+.ui-datepicker-calendar thead tr th span {
+  display: block !important;
+  width: 40px !important;
+  color: #212121 !important;
+  margin-bottom: 5px !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+}
+.ui-state-default {
+  display: block !important;
+  text-decoration: none !important;
+  color: #212121 !important;
+  line-height: 40px !important;
+  font-size: 12px !important;
+  background-color: white !important;
+  border: 0 !important;
+  text-align: center !important;
+}
+.ui-state-default:hover {
+  background: rgb(43, 63, 107) !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+  text-align: center !important;
+}
+.ui-state-highlight {
+  color: #4da036 !important;
+  font-weight: bold !important;
+}
+.ui-state-active {
+  background: rgb(43, 63, 107) !important;
+  color: #fff !important;
+  border-radius: 20px !important;
+}
+.ui-datepicker-unselectable .ui-state-default {
+  color: #eee !important;
+  border: 2px solid #808080 !important;
+}
+
+.ui-datepicker {
+  position: absolute;
+  width: 380px !important;
+  left: 50%;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.ui-datepicker-header {
+	background-color: white !important;
+	border: 0 !important; 
+}
+
+.ui-datepicker-month, .ui-datepicker-year {
+	border: 1px solid whitesmoke !important;
+    font-family: 'Noto Sans KR' !important;
+}
+
+.reservationId {
+    text-decoration: underline;
 }

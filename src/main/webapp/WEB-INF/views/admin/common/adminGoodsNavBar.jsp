@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<div class="shadow-sm p-3 mb-5 bg-body" style="width: 800px;">
+<div class="shadow-sm p-3 mb-5 bg-body" style="width: 100%;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Noto Sans KR'; height: 45px;">
   <a class="navbar-brand" href="#" style="font-weight: bold; color: #45a7b9;">상품/주문관리</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,23 +14,10 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsList.do">상품관리</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do">발주(주문)관리</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do">주문관리</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminGoodsOrderCancelList.do">취소관리</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">상품</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </li>
     </ul>
   </div>

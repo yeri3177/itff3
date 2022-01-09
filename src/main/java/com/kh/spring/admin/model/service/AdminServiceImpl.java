@@ -26,6 +26,8 @@ import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieReservation;
+import com.kh.spring.movie.model.vo.MovieSchedule;
+import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -730,9 +732,38 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.adminGoodsOrderStatusUpdate(param);
 	}
 
-//	@Override
-//	public int deletePayment(int paymentNo) {
-//		return adminDao.deletePayment(paymentNo);
-//	}
+	@Override
+	public List<MovieJoin> selectMovieReservationStatusList(int offset, int limit) {
+		return adminDao.selectMovieReservationStatusList(offset, limit);
+	}
 
+	@Override
+	public int selectMovieReservationStatusTotalCount() {
+		return adminDao.selectMovieReservationStatusTotalCount();
+	}
+
+	@Override
+	public List<Seat> selectOneSeat(String movieScheduleId) {
+		return adminDao.selectOneSeat(movieScheduleId);
+	}
+
+	@Override
+	public List<MovieSchedule> selectMovieScheduleDate() {
+		return adminDao.selectMovieScheduleDate();
+	}
+
+	@Override
+	public List<MovieReservation> adminMovieReserStatusSearchDate(Map<String, Object> param) {
+		return adminDao.adminMovieReserStatusSearchDate(param);
+	}
+
+	@Override
+	public int adminMovieReserStatusSearchDateCount(Map<String, Object> param) {
+		return adminDao.adminMovieReserStatusSearchDateCount(param);
+	}
+
+	@Override
+	public int adminDeliveryUpdate(int orderDetailNo) {
+		return adminDao.adminDeliveryUpdate(orderDetailNo);
+	}
 }

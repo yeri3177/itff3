@@ -37,6 +37,7 @@ pageContext.setAttribute("loginMember", loginMember);
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminMovieList.do" class="collapse__sublink">상영목록</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do" class="collapse__sublink">상영관정보</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminMovieReservationStatusList.do" class="collapse__sublink">예매현황</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminMovieReservationList.do" class="collapse__sublink">예매관리</a><br />
                         </ul> 
                      </div>
@@ -49,7 +50,7 @@ pageContext.setAttribute("loginMember", loginMember);
 
                         <ul class="collapse__menu">
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsList.do" class="collapse__sublink">상품관리</a><br />
-                            <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do" class="collapse__sublink">발주(주문)관리</a><br />
+                            <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderList.do" class="collapse__sublink">주문관리</a><br />
                             <a href="${pageContext.request.contextPath}/admin/adminGoodsOrderCancelList.do" class="collapse__sublink">취소관리</a><br />
                         </ul> 
                      </div> 
