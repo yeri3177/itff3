@@ -220,6 +220,21 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.selectGoodsLikeItems(loginId);
 	}
 
+	@Override
+	public int selectAllMemberCount() {
+		return goodsDao.selectAllMemberCount();
+	}
+
+	@Override
+	public int selectOrderMemberCount() {
+		return goodsDao.selectOrderMemberCount();
+	}
+
+	@Override
+	public List<String> selectAgeNumber() {
+		return goodsDao.selectAgeNumber();
+	}
+
 
 	
 	

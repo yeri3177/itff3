@@ -717,6 +717,31 @@
 		where user_id = #{loginId}
 	</select>
 	
+	<select id="selectAllMemberCount" resultType="_int">
+		select count(*) from member
+	
+	</select>
+	
+	<select id="selectOrderMemberCount" resultType="_int">
+		select count(distinct member_id) from goods_order
+	
+	</select>
+	
+	<select id="selectAgeNumber" resultType="string">
+		select 
+		     extract(year from sysdate)-extract(year from m.birthday) age,
+		     m.id
+		from 
+		    member m 
+		inner join 
+		    goods_order g
+		on 
+		    m.id = g.member_id
+		group by
+		    (extract(year from sysdate)-extract(year from m.birthday)), id
+		order by
+		    age asc
+	</select>
 	
 	
 	

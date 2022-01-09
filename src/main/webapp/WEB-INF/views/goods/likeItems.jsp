@@ -71,7 +71,7 @@
 
 <br /><hr style="color: #e6e6e6;"/><br />
 
-<div class="w-80" style="padding: 0 200px 0 200px;">
+<div class="w-80" style="padding: 0 270px 0 300px;">
 	
 	<c:if test="${not empty list}">
 		<!-- 개별 상품 카드 -->

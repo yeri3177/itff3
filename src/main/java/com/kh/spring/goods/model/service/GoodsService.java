@@ -95,5 +95,11 @@ public interface GoodsService {
 
 	List<GoodsLikeJoin> selectGoodsLikeItems(String loginId);
 
+	int selectAllMemberCount();
+
+	int selectOrderMemberCount();
+
+	List<String> selectAgeNumber();
+
 
 }

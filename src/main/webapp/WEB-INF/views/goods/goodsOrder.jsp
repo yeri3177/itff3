@@ -75,7 +75,7 @@
 		<i class="fas fa-chevron-right"></i>
 		주문서 작성 
 		<i class="fas fa-chevron-right"></i>
-		<span class="col-gry">결제완료</span> 
+		<span class="col-gry">주문완료</span> 
 	</div>
 </div>
 
