@@ -32,7 +32,7 @@
 						  <div class="form-group" style="display: flex; flex-direction: column;">
 						    <input type="hidden" name="orderDetailNo" value="${orderDetailNo }">
 
-						    <label for="exampleFormControlInput1">택배회사</label>
+						    <label for="exampleFormControlInput1" style="font-weight: 700;">택배회사</label>
 	 							<select class="form-select order_select" id="exampleFormControlInput1" name="delivery" aria-label="Default select example">
 								  <option selected>선택</option>
 								  <option value="우체국택배">우체국택배</option>
@@ -44,7 +44,7 @@
 						  </div>
 				  
 						  <div class="form-group">
-						    <label for="exampleFormControlInput1">운송장번호</label>
+						    <label for="exampleFormControlInput1" style="font-weight: 700;">운송장번호</label>
 						    <input type="text" name="waybill" class="form-control order_select" id="exampleFormControlInput1" style="border: 1px solid whitesmoke; border-radius: 0;">
 						  </div>
 
@@ -59,3 +59,27 @@
 		      </div>
 		      
 		     </form>
+
+<script>
+
+//Bootstrap multiple modal
+var count = 0; // 모달이 열릴 때 마다 count 해서  z-index값을 높여줌
+
+$(document).on('show.bs.modal', '.modal', function () {
+    var zIndex = 1040 + (10 * count);
+
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+
+    count = count + 1
+
+});
+
+// multiple modal Scrollbar fix
+$(document).on('hidden.bs.modal', '.modal', function () {
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+});
+
+</script>
