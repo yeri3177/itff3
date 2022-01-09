@@ -151,7 +151,8 @@
 			#{startDate},
 			#{startTime},
 			#{amount},
-			#{theaterId}
+			#{theaterId},
+			#{count}
 		)
 	</insert>
 	

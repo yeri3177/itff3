@@ -141,6 +141,7 @@ public class MovieController {
 		
 		// 예약 테이블에 insert
 		reservation.setSelectedSeat(seatsStr);
+		reservation.setCount(count);
 		int result = movieService.insertReservation(reservation);
 		
 		// 방금 들어간 예약의 예약번호 가져오기
