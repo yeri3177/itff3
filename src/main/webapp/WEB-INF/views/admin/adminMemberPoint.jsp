@@ -20,6 +20,7 @@
   				<form
 					action="${pageContext.request.contextPath}/admin/adminMemberPoint.do?${_csrf.parameterName}=${_csrf.token}"
 					name="member_point_frm"
+					id="member_point_frm"
 					method="post">
 		      <div class="modal-body">
 <!-- 		        <h5 class="detail-modal-title" id="exampleModalLabel">회원정보</h5> -->
@@ -29,13 +30,13 @@
 				      <th scope="row">지급사유</th>
 				      <td>
 				      	<input class="form-control" name="reason" type="text">
-				      	<input type="hidden" name="id" value="${member.id }"/>
+				      	<input type="hidden" name="id" class="memberId" value="${member.id }"/>
 				      	<input type="hidden" name="point" value="${member.point }"/>
 				      </td>
 				      </tr>
 				      <tr>
 				      <th scope="row">지급포인트</th>
-				      <td><input class="form-control" name="change" type="text"></td>
+				      <td><input class="form-control" name="change" id="point" type="text"></td>
 				    </tr>
 				  </tbody>
 				</table>
@@ -46,3 +47,43 @@
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 		      </div>
 			    </form>
+
+<script>
+
+$('#member_point_frm').submit(function(e){
+    let type = '포인트지급';
+    let target = $('.memberId').val();
+    let point = $('#point').val();
+    let content = point+'포인트가 지급되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
+
+    });
+});
+
+</script>

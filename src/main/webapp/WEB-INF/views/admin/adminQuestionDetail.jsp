@@ -108,11 +108,12 @@ pageContext.setAttribute("loginMember", loginMember);
 						<form 
 							action="${pageContext.request.contextPath }/admin/adminQuestionCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}" 
 							name="boardCommentFrm" 
+							class="boardCommentFrm"
 							method="POST" 
 							style="display: flex;">
 							<input type="text" name="content" class="form-control" id="exampleFormControlTextarea1"></input>
 							<!-- <input type="hidden" name="no" value=""> -->
-							<input type="hidden" name="writer" value="${loginMember.id}">
+							<input type="hidden" name="writer" class="writer" value="${loginMember.id}">
 							<input type="hidden" name="questionNo" value="${question.questionNo}">
 							<!-- <input type="hidden" name="regDate" value="0"> -->
 							<button type="submit" id="question_btn" class="btn btn-outline-secondary" style="font-size: 14px; background-color: white;">등록</button> 							
@@ -120,7 +121,46 @@ pageContext.setAttribute("loginMember", loginMember);
 					</div>
 				</c:if>
 			</div>
-		      
+
+<script>
+
+$('.boardCommentFrm').submit(function(e){
+    let type = '1:1문의';
+    let target = $('.memberId').val();
+    let content = '문의하신 글에 답변이 등록되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
+
+    });
+});
+
+</script>
+     
 <script>
 
 $(".attach").click((e) => {

@@ -213,15 +213,6 @@
 					  </table>
 		      </div>
 		      <div class="modal-footer">
-<!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-				<!-- 
-		      	<button 
-		      		type="button" 
-		      		class="btn btn-outline-secondary"
-		      		data-toggle="modal"
-					data-target="#adminGoodsUpdate"
-					onclick="goodsUpdate_btn('${orderNo}');">주문자정보</button>
-				 -->
 		        <button 
 		        	type="button" 
 		        	class="btn btn-outline-secondary"
