@@ -203,15 +203,22 @@
 								    </div>
 							    </td>
 							    
-							    <c:if test="${list.orderDetail.status eq '배송준비중'}">
-							    <td>
-							     <button type="button" class="btn btn-outline-secondary orderUpdateBtn" style="font-size: 12px !important;">
-		        					운송장 등록
-		        				</button>
-							    </td>
+							    <c:if test="${list.orderDetail.status eq '상품준비중' }">
+							   		<td></td>
 							    </c:if>
-							    <c:if test="${list.orderDetail.status eq '배송준비중' || list.orderDetail.status eq '상품준비중' }">
-							    <td></td>
+
+							    <c:if test="${list.orderDetail.status eq '배송준비중'}">
+								    <td>
+									     <button type="button" class="btn btn-outline-secondary orderUpdateBtn" style="font-size: 12px !important;">
+				        					운송장 등록
+				        				</button>
+								    </td>
+							    </c:if>
+							    
+							    <c:if test="${list.orderDetail.status eq '배송중' }">
+								    <td>
+								    	<a href="https://tracker.delivery/#/kr.cjlogistics/3497135798751" target="_blank">배송조회</a>
+								    </td>
 							    </c:if>
 							    
 						  </tr>
@@ -269,7 +276,26 @@ $(".order_select").change((e) => {
 
 	    let type = '굿즈샵';
 	    let target = $(".memberId").val();
-	    let content = '주문하신 상품의 진행 상태는 ['+status+'] 입니다.'
+	    let content = "";
+	    
+	    switch(status) {
+		    case '상품준비중':
+		    	content = '주문하신 상품을 준비중입니다.';
+		    	break;
+		    case '배송준비중':
+		    	content = '상품이 배송준비중입니다.';
+		    	break;
+		    case '배송중':
+		    	content = '주문하신 상품의 배송이 시작되었습니다.';
+		    	break;
+		    case '배송완료':
+		    	content = '상품 배송이 완료되었습니다.';
+		    	break;
+		    case '주문취소':
+		    	content = '상품 주문이 취소되었습니다.';
+		    	break;
+	    }
+	    
 	    let url = '${contextPath}/notify/saveNotify.do';
 	    
 	    // 전송한 정보를 db에 저장	
