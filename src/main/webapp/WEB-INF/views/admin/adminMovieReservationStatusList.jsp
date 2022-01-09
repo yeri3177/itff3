@@ -94,7 +94,14 @@
 									<!-- 상영작 -->
 									<td>
 										<div class="email">
-											<span><strong>${list.movie.titleKor}</strong>(${list.movie.titleEng })</span> 
+											<span 	
+											style="cursor: pointer;"				      		
+											data-toggle="modal"
+											data-target="#adminMovieInfo"
+											onclick="movieInfo_btn('${list.movie.movieId}');">
+											<strong>${list.movie.titleKor}</strong>
+											(${list.movie.titleEng })
+											</span> 
 										</div>
 									</td>
 
@@ -149,6 +156,21 @@
 							</div>
 						</div>
 						<!-- 예매 상세 끝 -->
+						<!-- 작품 정보 -->
+						<div class="modal fade" id="adminMovieInfo" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document"
+								style="max-width: 1000px;">
+								<div class="modal-content"
+									style="text-align: left;">
+								  	<div class="modal-body" id="modal_ajax2">
+								    		  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 작품 정보 끝 -->
 
 					</div>
 				</div>	
@@ -176,6 +198,31 @@ function movie_reservation_status_detail_btn(movieScheduleId) {
 		dateType: "text",
 		success: function(data) {
 			$("#modal_ajax1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+}
+
+</script>
+
+<script>
+
+// 작품정보
+function movieInfo_btn(movieId) {
+	
+	console.log(movieId);
+	var id = movieId;
+
+	$.ajax({
+		url:"${pageContext.request.contextPath}/admin/adminMovieInfo.do",
+		data: {movieId: id},
+		method: "get",
+		contentType: "application/json",
+		dateType: "text",
+		success: function(data) {
+			$("#modal_ajax2").html(data);
 		},
 		complete: function() {
 			console.log("complete")

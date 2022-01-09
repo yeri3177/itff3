@@ -1740,7 +1740,7 @@
 	
 	<select id="selectMovieReservationStatusList" resultMap="movieJoinMap">
 		select distinct
-			c.movie_schedule_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
+			c.movie_schedule_id, m.movie_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
 		from
 			movie_schedule c
 		left join seat s
@@ -1782,7 +1782,7 @@
 	
 	<select id="adminMovieReserStatusSearchDate" resultMap="movieJoinMap">
 		select distinct
-			c.movie_schedule_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
+			c.movie_schedule_id, m.movie_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
 		from
 			movie_schedule c
 		left join seat s
