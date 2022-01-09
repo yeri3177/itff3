@@ -313,7 +313,7 @@ public class NoticeController {
 		
 	}
 	
-	@GetMapping("/noticeDelete.do")
+	@PostMapping("/noticeDelete.do")
 	public String noticeDelete(@RequestParam int no, Notice notice) {
 		
 		log.debug("no? {}", no);
