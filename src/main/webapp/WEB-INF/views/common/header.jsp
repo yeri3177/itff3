@@ -2,8 +2,7 @@
 <%@page import="org.springframework.security.core.Authentication"%>
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@page import="org.springframework.security.core.context.SecurityContext"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- taglib는 사용 시 jsp마다 넣어야 함 -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -246,6 +245,7 @@ $(document).ready(function(){
 											<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="" target="_top">굿즈샵</a>
 												<ul>
 													<li><a href="${pageContext.request.contextPath}/goods/goodsList.do" class="menu_drop">전체상품</a></li>
+													<li class="on_"><a href="${pageContext.request.contextPath}/goods/likeItems.do" target="_top">관심상품</a></li>
 													<li><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" class="menu_drop">판매자정보</a></li>
 												</ul>
 											</li>

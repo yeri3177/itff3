@@ -23,8 +23,6 @@
 	else{
 		userId = sess.getId();
 	}
-	
-	System.out.println("야호 33333 = " + userId); // 90FD2F422433064696FE114356D7BD99
 	pageContext.setAttribute("userId", userId);
 %>
 
@@ -58,8 +56,10 @@
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsList.do" target="_top">전체상품</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/likeItems.do" target="_top">관심상품</a></li>
+		<c:if test="${loginMember != null }">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top">장바구니</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/orderList.do" target="_top">구매목록</a></li>
+		</c:if>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" target="_top">판매자 정보</a></li>
 		</ul>
 	</div>
