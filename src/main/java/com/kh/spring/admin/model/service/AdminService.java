@@ -18,6 +18,7 @@ import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieReservation;
+import com.kh.spring.movie.model.vo.MovieSchedule;
 import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
@@ -270,5 +271,11 @@ public interface AdminService {
 	int selectMovieReservationStatusTotalCount();
 
 	List<Seat> selectOneSeat(String movieScheduleId);
+
+	List<MovieSchedule> selectMovieScheduleDate();
+
+	List<MovieReservation> adminMovieReserStatusSearchDate(Map<String, Object> param);
+
+	int adminMovieReserStatusSearchDateCount(Map<String, Object> param);
 	
 }
