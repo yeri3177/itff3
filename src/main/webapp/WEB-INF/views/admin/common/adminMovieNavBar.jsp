@@ -17,23 +17,10 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminTheaterInfo.do">상영관정보</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMovieReservationStatusList.do">예매현황</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMovieReservationList.do">예매관리</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">영화</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">영화</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </li>
     </ul>
   </div>

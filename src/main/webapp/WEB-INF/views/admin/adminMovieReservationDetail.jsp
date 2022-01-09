@@ -107,9 +107,11 @@
 					<div class="row_seat">
 
 				      <c:forEach items="${seats }" var="seat" varStatus="vs">
-					    <div class="seat" style="color:white; background-color: ${seat.isBooked eq 1 ? '#ec7b65' : 'rgb(127, 127, 127)'}">
+					    
+					    <div class="seat" style="color:white; background-color: ${seatList.contains(seat.seatNo) ? '#ec7b65' : 'rgb(127, 127, 127)'}">
 					      <div class="seatNo">${seat.seatNo }</div>
-					    </div>
+					    </div>			
+					    
 			   		    <c:if test="${fn:endsWith(seat.seatNo, '3')}">
 					    	<div style="width: 40px; height: 40px;"></div>
 					    </c:if>
@@ -122,14 +124,18 @@
 				</div>
 
 		      <div class="modal-footer">
-<!-- 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-
-		        <button 
-		        	type="button" 
-		        	class="btn btn-outline-secondary"
-  			      	data-toggle="modal"
-					data-target="#adminMovieReservationDelete"
-					onclick="movie_reservation_delete_btn('${movieReservationId}');">예매취소</button>
+			
+				<!-- 상영일자가 오늘보다 이전일 때만 보이게 -->
+				<jsp:useBean id="now" class="java.util.Date"/>
+				<c:if test="${movieReservation.startDate > now }">
+			        <button 
+			        	type="button" 
+			        	class="btn btn-outline-secondary"
+	  			      	data-toggle="modal"
+						data-target="#adminMovieReservationDelete"
+						onclick="movie_reservation_delete_btn('${movieReservationId}');">예매취소</button>
+				</c:if>
+			
 		      </div>
 
 <script>

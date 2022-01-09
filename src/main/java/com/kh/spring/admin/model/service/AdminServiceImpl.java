@@ -26,6 +26,7 @@ import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieReservation;
+import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -730,9 +731,19 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.adminGoodsOrderStatusUpdate(param);
 	}
 
-//	@Override
-//	public int deletePayment(int paymentNo) {
-//		return adminDao.deletePayment(paymentNo);
-//	}
+	@Override
+	public List<MovieJoin> selectMovieReservationStatusList(int offset, int limit) {
+		return adminDao.selectMovieReservationStatusList(offset, limit);
+	}
+
+	@Override
+	public int selectMovieReservationStatusTotalCount() {
+		return adminDao.selectMovieReservationStatusTotalCount();
+	}
+
+	@Override
+	public List<Seat> selectOneSeat(String movieScheduleId) {
+		return adminDao.selectOneSeat(movieScheduleId);
+	}
 
 }

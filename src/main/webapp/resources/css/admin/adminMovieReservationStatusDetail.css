@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'Noto Sans KR';
+}
+
+.shadow-lg {
+	margin-top: 100px;
+	width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(64, 64, 64) !important;
+}
+
+.col-sm {
+	margin: 10px;
+	background-color: #e7e7e7;
+	border: 1px solid #dfdfdf;
+	height: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    
+}
+
+.col-sm:hover {
+	cursor: pointer;
+/* 	background-color: #8b8b8b; */
+/* 	border: 1px solid #8b8b8b; */
+/* 	color: white; */
+}
+
+.container {
+	height: 500px;
+}
+
+.row {
+	height: 100%;
+	align-items: center;
+}
+
+.theaterId {
+	font-size: 20px;
+    font-weight: bold;
+    color: rgb(243, 156, 18);
+    background-color: white;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+}
+
+.heading-section {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 40px;
+    color: #212121;
+    font-weight: bold;
+}
+
+.seat {
+    margin: 10px;
+    background-color: #e7e7e7;
+/*     border: 1px solid #dfdfdf; */
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 12px !important;
+}
+
+.row_seat {
+	height: 100%;
+    align-items: center;
+    width: 400px;
+    display: -ms-flexbox;
+    display: flex;
+    align-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
