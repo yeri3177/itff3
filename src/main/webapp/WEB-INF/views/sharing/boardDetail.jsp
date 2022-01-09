@@ -129,7 +129,7 @@
 							class="btn btn-outline-success">삭제하기</a> -->
 					<button class="btn btn-outline-success" 
 							type="button"  
-							onclick="location.href='${pageContext.request.contextPath}/sharing/boardDelete.do?no=${board.no}';">삭제하기</button>&nbsp&nbsp
+							onclick="deleteBoard()">삭제하기</button>&nbsp&nbsp
 							
 				<% 	} %>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -140,7 +140,7 @@
 							type="button">수정하기</button>&nbsp&nbsp
 						
 						<a href="javascript:goDeleteBoard();" 
-							class="btn_brd_del btn btn-xs btn-secondary">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
+							class="btn_brd_del btn btn-xs btn-secondary" onclick="deleteBoard()">삭제하기</a>&nbsp&nbsp&nbsp&nbsp	
 					</sec:authorize>
 		
 					</sec:authorize>
@@ -259,14 +259,20 @@
 			action="${pageContext.request.contextPath}/sharing/boardCommentDelete.do?${_csrf.parameterName}=${_csrf.token}" 
 			name="boardCommentDelFrm"
 			method="POST">
-			<input type="hidden" name="no" />
-			<input type="hidden" name="boardNo" value="${board.no}" />
+			<input type="hidden" name="no" value="${board.no}" />
 		</form:form>			
 
 		</div> <!-- cmt_list -->
 		
 	</div> <!-- cmt_wrap -->
 	 	
+	<!-- 게시글 삭제용 폼 -->		
+	<form:form 
+		action="${pageContext.request.contextPath}/sharing/boardDelete.do?${_csrf.parameterName}=${_csrf.token}"
+		name="deleteBoardFrm"
+		method="POST">
+		<input type="hidden" name="no" value="${board.no}"
+	</form:form>			
 				
 	<!-- 로그인 후 댓글쓰기 가능 -->
 	<sec:authorize access="isAuthenticated()">
@@ -304,7 +310,7 @@
 		</div>
 	</sec:authorize> --%>
 
-	<div class="ink_message ink_warn cmt_delete">
+	<%-- <div class="ink_message ink_warn cmt_delete">
 		<div>
 			<h3>댓글 삭제</h3>
 			<button class="bt_close bt_xclose" type="button"><svg viewBox="0 0 1024 1024"><title>close</title><path class="path1" d="M548.203 537.6l289.099-289.098c9.998-9.998 9.998-26.206 0-36.205-9.997-9.997-26.206-9.997-36.203 0l-289.099 289.099-289.098-289.099c-9.998-9.997-26.206-9.997-36.205 0-9.997 9.998-9.997 26.206 0 36.205l289.099 289.098-289.099 289.099c-9.997 9.997-9.997 26.206 0 36.203 5 4.998 11.55 7.498 18.102 7.498s13.102-2.499 18.102-7.499l289.098-289.098 289.099 289.099c4.998 4.998 11.549 7.498 18.101 7.498s13.102-2.499 18.101-7.499c9.998-9.997 9.998-26.206 0-36.203l-289.098-289.098z"></path></svg></button>
@@ -324,7 +330,7 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div> --%>
 	</div> <!-- cmt --> 
 	</div> <!-- class="ink_atc round20 has_list" -->
 	</div>
@@ -442,12 +448,18 @@ function goBoardList() {
 	location.href = `${pageContext.request.contextPath}/sharing/boardUpdate.do?no=\${boardNo}`;
 };
  */
-function goDeleteBoard() {
+/* function goDeleteBoard() {
 	var delBoard = confirm("게시글을 삭제하시겠습니까?");
 	if(delBoard) {
 		const boardNo = $("[name=no]").val();
 		console.log("boardNo = ", boardNo);
 		location.href = `${pageContext.request.contextPath}/sharing/boardDelete.do?no=\${boardNo}`;
+	}
+}; */
+
+const deleteBoard = () => {
+	if(confirm("정말 이 게시물을 삭제하시겠습니까?")){
+		$(document.deleteBoardFrm).submit();
 	}
 };
 

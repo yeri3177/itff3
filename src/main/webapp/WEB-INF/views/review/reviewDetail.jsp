@@ -392,6 +392,7 @@
 			<form:form 
 				action="${pageContext.request.contextPath}/review/reviewCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}"
 				name="reviewCommentFrm" 
+				id="reviewCommentFrm" 
 				method="post" 
 				class="cmt_form">
 				<input type="hidden" name="writer" value="${loginMemberId}" />
@@ -441,6 +442,8 @@
 	</article>
 	</div>
 </div>
+
+<input type="hidden" class="ws_id" value="${review.memberId }" />
 	
 </section>		
 
@@ -689,6 +692,39 @@ $(document).ready(function () {
                      $("#heartButton")
                      		.css("background-color", "#ec5e5e")
                      		.css("color", "#FFF");
+                     
+                     let type = '리뷰게시판';
+                     let target = $('.ws_id').val();
+                     let content = '작성하신 리뷰에 누군가가 하트를 눌렀어요.'
+                     let url = '${contextPath}/notify/saveNotify.do';
+                     	    
+                     console.log(type);
+                     console.log(target);
+                     console.log(content);
+                     console.log(url);
+                     
+                     // 전송한 정보를 db에 저장	
+                     $.ajax({
+                         type: "post",
+                         url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+                         dataType: "text",
+                         contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+                         data: {
+                             target: target,
+                             content: content,
+                             type: type,
+                             url: url
+                         },
+                         beforeSend : function(xhr) {   
+                             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                         },
+                         success:    // db전송 성공시 실시간 알림 전송
+                             // 소켓에 전달되는 메시지
+                             // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+                         	socket.send("ITFF,"+target+","+content+","+url)
+//                 			console.log("관리자,"+target+","+content+","+url)
+
+                     });
                  }
                  else{
                 	 /* console.log("heart is");
@@ -699,6 +735,7 @@ $(document).ready(function () {
                      $("#heartButton")
                      		.css("background-color", "#fbdfdf")
             				.css("color", "#ec5e5e");
+                     
                  }
 
              }
@@ -707,6 +744,44 @@ $(document).ready(function () {
 });
 </script>
 
+<script>
+
+$('#reviewCommentFrm').submit(function(e){
+    let type = '리뷰게시판';
+    let target = $('.ws_id').val();
+    let content = '작성하신 리뷰에 댓글이 등록되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
+
+    });
+});
+
+</script>
 		
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 

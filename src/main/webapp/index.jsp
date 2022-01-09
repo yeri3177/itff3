@@ -34,17 +34,6 @@ section#main-content {
 	<div id="msgStack"></div>
 	<div id="visual">
 		<div class="visual-slider slick-initialized slick-slider slick-dotted">
-
-			<div class="slick-list draggable">
-				<div class="slick-track" style="opacity: 1; width: 1548px;">
-					<div class="slick-slide slick-current slick-active"
-						data-slick-index="0" aria-hidden="false" tabindex="0"
-						role="tabpanel" id="slick-slide00"
-						aria-describedby="slick-slide-control00"
-						style="width: 1528px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; margin: 0px;">
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	</div>

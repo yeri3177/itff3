@@ -161,17 +161,25 @@
 							    <td>
 								    <div>
 								    	<span class=price><fmt:formatNumber value="${list.goods.PPrice }" pattern="#,###" />원</span>
+								    	<input type="hidden" name="totalPrice" class="totalPrice" value="${payment.payment.totalPrice }" />
+								    	<input type="hidden" name="productPrice" class="productPrice" value="${list.goods.PPrice }" />				    	
 								    </div>
 							    </td>
 							    <td>
 								    <div>
-								    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
-									  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
-									  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
-									  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
-									</select>
+									    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;" ${list.orderDetail.status eq '환불완료' ? 'disabled' : '' }>
+										  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
+										  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
+										  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
+										</select>
 								    </div>
 							    </td>
+							    
+							    <c:if test="${list.orderDetail.status eq '주문취소' }">
+								    <td>
+								    	<a href="https://admin.iamport.kr/users/login">환불처리</a>
+								    </td>
+							    </c:if>
 							    
 						  </tr>						  
 						  </c:if>
@@ -201,11 +209,14 @@
 		      </div>
 
     <form 
-    	action="${pageContext.request.contextPath }/admin/updateGoodsOrderDetailStatus.do?${_csrf.parameterName}=${_csrf.token}" 
+    	action="${pageContext.request.contextPath }/admin/updateGoodsCancelOrderDetailStatus.do?${_csrf.parameterName}=${_csrf.token}" 
     	method="POST" 
-    	name="updateGoodsOrderDetailStatusFrm">
+    	name="updateGoodsCancelOrderDetailStatusFrm">
+    	<input type="hidden" name="paymentNo" value="${payment.payment.paymentNo }"/>
     	<input type="hidden" name="orderDetailNo" />
     	<input type="hidden" name="status" />
+    	<input type="hidden" name="tPrice" />
+    	<input type="hidden" name="pPrice" />
     	<input type="hidden" name="memberId" class="memberId" value="${payment.payment.memberId }" />
     </form>
 
@@ -215,6 +226,8 @@ $(".order_select").change((e) => {
 	const $this = $(e.target);
 	const orderDetailNo = $this.data("orderDetailNo"); // data-속성의 키값을 camelcasing으로 처리
 	const status = $this.val();
+	const tPrice = $('.totalPrice').val();
+	const pPrice = $('.productPrice').val();
 	
 	console.log("orderDetailNo = " + orderDetailNo)
 	console.log("status = " + status)
@@ -223,14 +236,26 @@ $(".order_select").change((e) => {
 	const msg = `상품 진행 상태를 [\${status}]로 변경하시겠습니까?`;
 	
 	if(confirm(msg)){
-		const $frm = $(document.updateGoodsOrderDetailStatusFrm);
+		const $frm = $(document.updateGoodsCancelOrderDetailStatusFrm);
 		$frm.find("[name=orderDetailNo]").val(orderDetailNo);
 		$frm.find("[name=status]").val(status);
+		$frm.find("[name=tPrice]").val(tPrice);
+		$frm.find("[name=pPrice]").val(pPrice);
 		$frm.submit();
 
 	    let type = '굿즈샵';
 	    let target = $(".memberId").val();
-	    let content = '주문하신 상품의 진행 상태는 ['+status+'] 입니다.'
+	    let content = "";
+	    
+	    switch(status) {
+		    case '주문취소':
+		    	content = '상품 주문이 취소되었습니다.';
+		    	break;
+		    case '환불완료':
+		    	content = '환불처리가 완료되었습니다.';
+		    	break;
+	    }
+	    
 	    let url = '${contextPath}/notify/saveNotify.do';
 	    
 	    // 전송한 정보를 db에 저장	

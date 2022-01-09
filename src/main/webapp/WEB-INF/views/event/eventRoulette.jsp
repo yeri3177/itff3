@@ -85,7 +85,7 @@ pageContext.setAttribute("loginMember", loginMember);
 			
 			<form action="" class="point_frm">
 				<input type="hidden" class="id" name="id" value="${member.id }" />
-				<input type="hidden" class="point"  name="point" value="${member.point }" />
+				<input type="hidden" class="point" name="point" value="${member.point }" />
 			</form>
 
 		</div>
@@ -195,6 +195,39 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 	        },
 	        success: 
 	        	window.location.href = "${pageContext.request.contextPath}/event/eventMenu.do?id=" + id
+	    });
+	    
+	    let type = '룰렛이벤트';
+	    let target = $('.id').val();
+	    let content = change+'포인트가 지급되었습니다.'
+	    let url = '${contextPath}/notify/saveNotify.do';
+	    	    
+	    console.log(type);
+	    console.log(target);
+	    console.log(content);
+	    console.log(url);
+	    
+	    // 전송한 정보를 db에 저장	
+	    $.ajax({
+	        type: "post",
+	        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+	        dataType: "text",
+	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	        data: {
+	            target: target,
+	            content: content,
+	            type: type,
+	            url: url
+	        },
+	        beforeSend : function(xhr) {   
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	        },
+	        success:    // db전송 성공시 실시간 알림 전송
+	            // 소켓에 전달되는 메시지
+	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+	        	socket.send("ITFF,"+target+","+content+","+url)
+//				console.log("관리자,"+target+","+content+","+url)
+
 	    });
 	
 	}

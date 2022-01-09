@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -698,7 +699,6 @@ public class AdminManageController {
 		model.addAttribute("oneDateSchedule", oneDateSchedule);		
 	}
 	
-
 	/**
 	 * [예매내역 조회]
 	 */
@@ -766,11 +766,16 @@ public class AdminManageController {
 			seats.add(seat);
 		}
 		
+		// 좌석 리스트 담기
+		List<String> seatList = Arrays.asList((movieReservation.getSelectedSeat()).split(", "));
+		log.debug("seatList = {}", seatList);
+		
 		// 예매 영화
 		Movie movie = adminService.selectOneMovie(movieId);
 		log.debug("movie = {}", movie);
 		
 		model.addAttribute("movieReservation", movieReservation);
+		model.addAttribute("seatList", seatList);
 		model.addAttribute("seats", seats);
 		model.addAttribute("movie", movie);
 		model.addAttribute("movieReservationId", movieReservationId);
@@ -908,6 +913,114 @@ public class AdminManageController {
 			
 		return "redirect:/admin/adminMovieReservationList.do";
 	}
+	
+	
+	/**
+	 * [예매현황 조회]
+	 */
+	
+	@GetMapping("/adminMovieReservationStatusList.do")
+	public String adminMovieReservationStatusList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<MovieJoin> list = adminService.selectMovieReservationStatusList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 날짜
+		List<MovieSchedule> schedule = adminService.selectMovieScheduleDate(); 
+		log.debug("schedule = {}", schedule);
+		model.addAttribute("schedule", schedule);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectMovieReservationStatusTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationStatusList";
+	}
+		
+	/**
+	 * [예매현황 검색]
+	 */
+	
+	@GetMapping("/adminMovieReserStatusSearchDate.do")
+	public String adminMovieReserStatusSearchDate(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String startDate,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("startDate", startDate);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param = {}", param);
+		
+		// 1. 
+		List<MovieReservation> list = adminService.adminMovieReserStatusSearchDate(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 날짜
+		List<MovieSchedule> schedule = adminService.selectMovieScheduleDate(); 
+		log.debug("schedule = {}", schedule);
+		model.addAttribute("schedule", schedule);
+		
+		// 2. totalContent
+		int totalContents = adminService.adminMovieReserStatusSearchDateCount(param);
+		log.debug("totalContents = {}", totalContents);
+		
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?startDate="+startDate;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationStatusList";
+	}
+	
+	/**
+	 * [예매 현황 상세]
+	 */
+	
+	@GetMapping("/adminMovieReservationStatusDetail.do")
+	public void adminMovieReservationStatusDetail(@RequestParam String movieScheduleId, Model model) {
+		log.debug("movieScheduleId = {}", movieScheduleId);
+		
+		// 예매 정보
+		List<Seat> list = adminService.selectOneSeat(movieScheduleId);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
+	
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
@@ -1720,6 +1833,50 @@ public class AdminManageController {
 	}
 	
 	/**
+	 * [취소 상품 상태 개별 변경]
+	 */
+	
+	@PostMapping("/updateGoodsCancelOrderDetailStatus.do")
+	public String updateGoodsCancelOrderDetailStatus(@RequestParam("orderDetailNo") String orderDetailNo, @RequestParam("status") String status, @RequestParam int tPrice, @RequestParam int pPrice, @RequestParam int paymentNo, RedirectAttributes redirectAttr) {
+		log.debug("paymentNo = {}", orderDetailNo);
+		log.debug("status = {}", status);
+		log.debug("tPrice = {}", tPrice);
+		log.debug("pPrice = {}", pPrice);
+		log.debug("paymentNo = {}", paymentNo);
+		
+		try {
+			// status가 환불완료라면 t에서 p를 뺀 가격을 payment의 total_price로 업데이트 시킨다.
+			if("환불완료".equals(status)) {
+				int newTotalPrice = tPrice - pPrice;
+				log.debug("newTotalPrice = {}", newTotalPrice);
+				
+				Map<String, Object> param = new HashMap<>();
+				param.put("paymentNo", paymentNo);
+				param.put("newTotalPrice", newTotalPrice);
+				log.debug("param = {}", param);
+				
+				int result = adminService.updateNewTotalPrice(param);
+			}
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("orderDetailNo", orderDetailNo);
+			param.put("status", status);
+			log.debug("param = {}", param);
+			
+			int result = adminService.updateGoodsCancelOrderDetailStatus(param);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderCancelList.do";
+	}
+	
+	/**
 	 * [주문자 정보 수정]
 	 */
 	
@@ -1829,6 +1986,35 @@ public class AdminManageController {
 //		model.addAttribute("orderDetail", orderDetail);
 		model.addAttribute("payment", payment);
 		model.addAttribute("orderNo", orderNo);
+	}
+	
+	/**
+	 * [굿즈 운송장 등록]
+	 */
+	
+	@GetMapping("/adminGoodsOrderWaybill.do")
+	public void adminGoodsOrderWaybill(@RequestParam int orderDetailNo, Model model) {
+		log.debug("orderDetailNo = {}", orderDetailNo);
+		
+		model.addAttribute("orderDetailNo", orderDetailNo);
+	}
+
+	@PostMapping("/adminGoodsOrderWaybill.do")
+	public String adminGoodsOrderWaybill(@RequestParam int orderDetailNo, RedirectAttributes redirectAttr) {
+		log.debug("orderDetailNo = {}", orderDetailNo);
+		
+		try {
+			int result = adminService.adminDeliveryUpdate(orderDetailNo);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderList.do";
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////

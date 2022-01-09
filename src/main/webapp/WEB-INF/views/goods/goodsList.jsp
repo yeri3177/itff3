@@ -23,8 +23,6 @@
 	else{
 		userId = sess.getId();
 	}
-	
-	System.out.println("야호 33333 = " + userId); // 90FD2F422433064696FE114356D7BD99
 	pageContext.setAttribute("userId", userId);
 %>
 
@@ -59,8 +57,10 @@
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsList.do" target="_top">전체상품</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/likeItems.do" target="_top">관심상품</a></li>
+		<c:if test="${loginMember != null }">
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top">장바구니</a></li>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/orderList.do" target="_top">구매목록</a></li>
+		</c:if>
 			<li class="on_"><a href="${pageContext.request.contextPath}/goods/sellerInfo.do" target="_top">판매자 정보</a></li>
 		</ul>
 	</div>
@@ -81,60 +81,75 @@
 			
 			<!-- 상품 정렬 리스트 -->
 			<ul id="goods-sort-ul">
-				<li>인기도순</li>
-				<li>낮은가격순</li>
-				<li>높은가격순</li>
-				<li>누적판매순</li>
-				<li>최신등록순</li>
+				<li><span>최신등록순</span></li>
+				<li><span>낮은가격순</span></li>
+				<li><span>높은가격순</span></li>
+				<li><span>상품명순</span></li>
+				
 			</ul>
 		</div>
 		<br /><br /><br />
 		
 		<!-- 상품 목록 카드 리스트-->
 		<div class="card-list">
-			
+		
+			<div class="div_order_LatestRegistration">
 						
-			<!-- 개별 상품 카드 -->
-			<c:forEach items="${list}" var="goods" varStatus="vs">
-			<div class="card" data-id="${goods.goods.PId}">
-				<!-- 로그인 아이디 -->
-				<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">
-				<!-- 대표 이미지 -->
-				<div class="img-div">
-					<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.goods.PImg}">
-					<!-- 찜하기버튼 -->
-					<div class="iconBg-div" id="goodsLike-btn${vs.count }" data-goods-id="${goods.goods.PId}">
-						<!-- 좋아요 X -->
-						<c:if test="${goods.goodsLike.userId != userId or goods.goodsLike.userId == null }">
-							<i class="far fa-heart"></i>
-						</c:if>
-						<!-- 좋아요 O -->
-						<c:if test="${goods.goodsLike.userId eq userId and goods.goodsLike.userId != null }">
-							<i class="fas fa-heart" id="full-heart"></i>
-						</c:if>
+				<!-- 개별 상품 카드 -->
+				<c:forEach items="${list}" var="goods" varStatus="vs">
+				<div class="card" data-id="${goods.goods.PId}">
+					<!-- 로그인 아이디 -->
+					<input type=hidden name="memberId" id="memberId" value="${loginMember.id}">
+					<!-- 대표 이미지 -->
+					<div class="img-div">
+						<img src="${pageContext.request.contextPath}/resources/upload/goods/${goods.goods.PImg}">
+						<!-- 찜하기버튼 -->
+						<div class="iconBg-div" id="goodsLike-btn${vs.count }" data-goods-id="${goods.goods.PId}">
+							<!-- 좋아요 X -->
+							<c:if test="${goods.goodsLike.userId != userId or goods.goodsLike.userId == null }">
+								<i class="far fa-heart"></i>
+							</c:if>
+							<!-- 좋아요 O -->
+							<c:if test="${goods.goodsLike.userId eq userId and goods.goodsLike.userId != null }">
+								<i class="fas fa-heart" id="full-heart"></i>
+							</c:if>
+						</div>
 					</div>
+					<!-- 상품텍스트 -->
+					<div class="card-body">
+						<!-- 메인 카테고리 -->
+						<div class="card-text top-text">${goods.goods.PCategory}</div>
+						<!-- 상품명 -->
+						<div class="card-text middle-text">${goods.goods.PName}</div>
+						<!--상품가격 -->
+						<div class="card-text bottom-text">
+							<fmt:formatNumber value="${goods.goods.PPrice}" pattern="￦ #,###" />
+						</div>
+					</div> <!-- end of 상품텍스트 -->
 				</div>
-				<!-- 상품텍스트 -->
-				<div class="card-body">
-					<!-- 메인 카테고리 -->
-					<div class="card-text top-text">${goods.goods.PCategory}</div>
-					<!-- 상품명 -->
-					<div class="card-text middle-text">${goods.goods.PName}</div>
-					<!--상품가격 -->
-					<div class="card-text bottom-text">
-						<fmt:formatNumber value="${goods.goods.PPrice}" pattern="￦ #,###" />
-					</div>
-				</div> <!-- end of 상품텍스트 -->
-			</div>
-			</c:forEach> <!-- end of 개별 상품 카드 -->
+				</c:forEach> <!-- end of 개별 상품 카드 -->
+				
+				<div id="pagebar">
+					${pagebar}
+				</div>
 			
+			
+			</div>  <!-- end of div_order_LatestRegistration -->
+			
+			
+			<!-- 정렬타입 ajax 결과 -->
+			<div class="div_order_ajaxResult"></div>
 			
 		</div><!-- end of 상품 목록 카드 리스트-->
+		
+		
+		
 	</div> <!-- 상품 목록 부분 끝 -->
-	<!-- 페이지바 -->
-	<div id="pagebar">
-		${pagebar}
-	</div>
+	
+	
+	<div id="pagebar"></div>
+	
+	
 </section>
 
 <!-- toasts -->
@@ -161,23 +176,13 @@
 
 <!-- 굿즈샵 고정 버튼 -->
 <%-- <div class="btn-group dropup">
-  
   <div id="quick-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
     <img src="${pageContext.request.contextPath}/resources/images/goods/goodsshop_logo.png">
   </div>
-  
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">
-    	관심상품
-    </a>
-
-    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/goodsCart.do">
-    	장바구니
-    </a>
-    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/orderList.do">
-    	구매내역
-    </a>
-    
+    <a class="dropdown-item" href="#">관심상품</a>
+    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/goodsCart.do">장바구니</a>
+    <a class="dropdown-item" href="${pageContext.request.contextPath}/goods/orderList.do">구매내역</a>
   </div>
 </div> --%>
 
@@ -198,10 +203,13 @@ $("#goods-sort-ul li").click((e) => {
 		data: {sortType : sortType},
 		type : "post",
         
-		success (data){
-			console.log("success~!!!!!");
-			//console.log(data);
-        	
+		success : function(result) {
+			
+			
+			$(".div_order_LatestRegistration").hide();
+			
+			$(".div_order_ajaxResult").html(result);
+			
 			
         },
         error: console.log

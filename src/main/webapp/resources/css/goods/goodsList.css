@@ -14,6 +14,7 @@ body {
 	/* padding-bottom: 80px; */
 	display: block;
 	font-size: 14px;
+    padding-bottom: 100px;
  }
  
  #pagebar {
@@ -42,7 +43,7 @@ body {
  
  #goods-banner-img {
  	margin: 80px auto 20px auto;
- 	width: 360px;
+ 	width: 310px;
  }
  
  #goods-sort-ul {
@@ -52,11 +53,18 @@ body {
  
   #goods-sort-ul li {
   	display: inline-block;
-  	/* border-right: 1px solid gray; */
-  	padding-right: 6px;
-  	margin: 50px left;
   	cursor: pointer;
+  	border-right: 1px solid #d6d6d6;
+    height: 12px;
+    padding-left: 5px;
+    padding-right: 9px;
   }
+  
+  #goods-sort-ul li span {
+  	position: relative;
+    bottom: 5px;
+  }
+  
   
   #goods-sort-ul li:last-child {
   	border: none;

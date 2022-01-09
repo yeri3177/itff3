@@ -25,13 +25,7 @@ public class GoodsDaoImpl implements GoodsDao {
 
 	@Autowired
 	private SqlSession session;
-
-	@Override
-	public List<Goods> selectGoodsList(int offset, int limit) {
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		return session.selectList("goods.selectGoodsList", null, rowBounds);
-	}
-
+	
 	@Override
 	public int selectGoodsTotalCount() {
 		return session.selectOne("goods.selectGoodsTotalCount");
@@ -139,8 +133,11 @@ public class GoodsDaoImpl implements GoodsDao {
 
 	@Override
 	public List<GoodsLikeJoin> selectGoodsList(Map<String, Object> param) {
-		//RowBounds rowBounds = new RowBounds(offset, limit);
-		RowBounds rowBounds = new RowBounds((int)param.get("offset"), (int)param.get("limit"));
+		int offset = (int)param.get("offset");
+		int limit = (int)param.get("limit");
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
 		return session.selectList("goods.selectGoodsList", param, rowBounds);
 	}
 
@@ -237,6 +234,15 @@ public class GoodsDaoImpl implements GoodsDao {
 	@Override
 	public List<String> selectAgeNumber() {
 		return session.selectList("goods.selectAgeNumber");
+	}
+
+	@Override
+	public List<GoodsLikeJoin> selectGoodsListBySortType(Map<String, Object> param) {
+		int offset = (int)param.get("offset");
+		int limit = (int)param.get("limit");
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("goods.selectGoodsListBySortType", param, rowBounds);
 	}
 
 

@@ -72,8 +72,6 @@
 					</div>
 
  <script type="text/javascript">
-
-
 	 //출석체크 
 /* 	 $('#ckbtn11').click(function(){
 		var d = new Date();
@@ -93,7 +91,6 @@
 		});
 	});
  */
-
  	//풀캘린더
  	document.addEventListener('DOMContentLoaded', function() {
 	    var Calendar = FullCalendar.Calendar;
@@ -112,7 +109,6 @@
 	        };
 	      }
 	    });
-
 	    /*2.출석체크 */
 		//db에있는 출석날짜를 가져와서 화면에 출력하는 폼에 넣은 후 check라는 배열에 넣음(push).
 		var check = [];
@@ -136,7 +132,6 @@
 			console.log(check);
 			
 		});
-
 		
 	    // initialize the calendar(캘린더초기화)
 	    var calendar = new Calendar(calendarEl, {
@@ -168,9 +163,17 @@
 	                    		checkDate: currentDate
 	                    	},
 	                    	success(data) {
-	                			console.log(data);
-	                			$(".fc-checkBtn-button").prop('disabled', true);
+	                    		//alert(data);
+ 	                    		if(data == 1){
+	                    			alert("출석체크 완료!");
+	                    		}
+	                    		if(data == 0){
+	                    			alert("이미 출석하셨습니다. 내일 다시 참여해주세요.");
+	                			//$(".fc-checkBtn-button").prop('disabled', true);
 	                			//$(".fc-checkBtn-button").html('출석완료');
+	                    		}
+	                			console.log(data);
+	                			
 	                			location.reload();
 	                		},
 	                		error: console.log
@@ -200,12 +203,9 @@
 	    });
 	    calendar.render();
 	  });
-
  	$(".test").parent().addClass("test2");
  	
 </script>
 
 
-
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-		

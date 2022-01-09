@@ -274,22 +274,27 @@ public class BoardController {
 		return "redirect:/sharing/boardDetail.do?no="+board.getNo();
 	}
 	
-	@GetMapping("/boardDelete.do")
+	@PostMapping("/boardDelete.do")
 	public String deleteBoard(@RequestParam int no) {
 		
 		try {
 			log.debug("no = {}", no);
-
-			//첨부파일 삭제
+			
+			// 전달될 글번호로 글 찾아서 가져오기
 			Board board = boardService.selectOneBoardCollection(no);
+			
+			// 가져온 글의 첨부파일 목록
 			List<Attachment> attach = board.getAttachments();
 			log.debug("attach = {}", attach);
 			
-			if(attach != null && attach.size() != 0) {
-				String saveDirectory = application.getRealPath("/resources/upload/board");
-				File targetFile = new File(saveDirectory, attach.get(0).getRenamedFilename());
-				boolean delete = targetFile.delete();
-				log.debug("파일 삭제 여부 = {}", delete);
+			String saveDirectory = application.getRealPath("/resources/upload/board");
+			
+			for(Attachment _attach : attach) {
+				log.debug("attach = {}", attach);
+				if(_attach.getAttachNo() != 0) {
+					File targetFile = new File(saveDirectory, _attach.getRenamedFilename());
+					targetFile.delete();
+				}
 			}
 			
 			int result = boardService.deleteOneBoard(no);

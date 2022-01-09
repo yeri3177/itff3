@@ -19,11 +19,13 @@
 		      
     	    <form
 				action="${pageContext.request.contextPath}/admin/adminMovieReservationDelete.do?${_csrf.parameterName}=${_csrf.token}"
-				name="goods_delete_frm"
+				name="movie_reser_delete_frm"
+				id="movie_reser_delete_frm"
 				method="post">
 		      
     		  <div class="modal-body">
     		  	<input type="hidden" name="movieReservationId" value="${movieReservation.movieReservationId }" />
+    		  	<input type="hidden" name="memberId" class="memberId" value="${movieReservation.memberId }" />
 					<table class="table">
 					  <tbody>
 						   <tr>
@@ -65,3 +67,42 @@
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">돌아가기</button>
 		      </div>
 			</form>
+
+<script>
+
+$('#movie_reser_delete_frm').submit(function(e){
+    let type = '예매취소';
+    let target = $('.memberId').val();
+    let content = '예매가 취소되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
+
+    });
+});
+
+</script>

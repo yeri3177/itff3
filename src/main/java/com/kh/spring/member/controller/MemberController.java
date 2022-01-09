@@ -2,6 +2,7 @@ package com.kh.spring.member.controller;
 
 import java.beans.PropertyEditor;
 import java.io.File;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -578,7 +578,7 @@ public class MemberController {
 		
 		log.debug("cPage = {}", cPage);
 
-		int limit = 20;
+		int limit = 10;
 		int offset = (cPage - 1) * limit;
 	
 		// 1. 전체 게시물 목록 가져오기(첨부파일 갯수 포함)
@@ -727,7 +727,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@PostMapping("/dailyCheckInsert.do")
-	public void dailyCheckInsert(
+	public int dailyCheckInsert(
 			@RequestParam String checkDate,
 			Model model,
 			Authentication authentication
@@ -783,10 +783,17 @@ public class MemberController {
 			Member principal = (Member) authentication.getPrincipal();
 			principal.setPoint(point);
 			
+			String msg = "출석체크 완료!";
+			
+			return 1;
 		}
 		else {
 			//출석 o -> 리턴
 			log.debug("이미 출석함 ㅇㅇ");
+			
+			String msg = "이미 출석하셨습니다.";
+			
+			return 0;
 		}
 		
 		

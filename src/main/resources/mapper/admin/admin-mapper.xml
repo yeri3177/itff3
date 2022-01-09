@@ -293,7 +293,7 @@
 		<result column="genre" property="genre"/>
 		<result column="running_time" property="runningTime"/>
 		<result column="age_limit" property="ageLimit"/>
-		<result column="imgage" property="image"/>
+		<result column="image" property="image"/>
 	</resultMap>
 
 	<resultMap type="movieReservation" id="movieReservationMap">
@@ -613,7 +613,7 @@
 		from 
 			movie_schedule 
 		where 
-			<![CDATA[to_date(start_date, 'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')]]>
+			<![CDATA[start_date = to_char(sysdate, 'YYYY-MM-DD')]]>
 	</select>
 	
 	<select id="adminManageRecentTenReviewList" resultMap="reviewMap"> 
@@ -1715,7 +1715,7 @@
 			left join payment p
 			on o.order_no = p.order_no
 	        where 
-	        	p.payment_no is not null and status = '주문취소'
+	        	p.payment_no is not null and (status = '주문취소' or status = '환불완료')
 	</select>
 	
 	<select id="selectGoodsOrderCancelTotalCount" resultType="_int">
@@ -1726,7 +1726,7 @@
 			left join payment p
 			on o.order_no = p.order_no
 	        where 
-	        	p.payment_no is not null and status = '주문취소'
+	        	p.payment_no is not null and (status = '주문취소' or status = '환불완료')
 	</select>
 	
 	<update id="adminGoodsOrderStatusUpdate">
@@ -1736,6 +1736,99 @@
 			status = #{status}
 		where
 			order_no = #{orderNo}
+	</update>
+	
+	<select id="selectMovieReservationStatusList" resultMap="movieJoinMap">
+		select distinct
+			c.movie_schedule_id, m.movie_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
+		from
+			movie_schedule c
+		left join seat s
+		on c.movie_schedule_id = s.movie_schedule_id
+		left join movie m
+		on c.movie_id = m.movie_id
+		where 
+			c.start_date = '2022-01-07'
+		order by 
+			c.start_time asc
+	</select>
+	
+	<select id="selectMovieReservationStatusTotalCount" resultType="_int">
+        select distinct
+			count(*)
+		from
+			movie_schedule
+		where 
+			start_date = '2022-01-07'
+	</select>
+	
+	<select id="selectOneSeat" resultType="seat">
+		select
+			seat_no, is_booked
+		from
+			seat
+		where 
+			movie_schedule_id = #{movieScheduleId}
+	</select>
+	
+	<select id="selectMovieScheduleDate" resultType="movieSchedule">
+		select distinct 
+			start_date 
+		from 
+			movie_schedule 
+		order by 
+			start_date
+	</select>
+	
+	<select id="adminMovieReserStatusSearchDate" resultMap="movieJoinMap">
+		select distinct
+			c.movie_schedule_id, m.movie_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
+		from
+			movie_schedule c
+		left join seat s
+		on c.movie_schedule_id = s.movie_schedule_id
+		left join movie m
+		on c.movie_id = m.movie_id
+		where 
+			c.start_date = #{startDate}
+		order by 
+			c.start_time asc
+	</select>
+	
+	<select id="adminMovieReserStatusSearchDateCount" resultType="_int">
+        select distinct
+			count(*)
+		from
+			movie_schedule
+		where 
+			start_date = #{startDate}
+	</select>
+	
+	<update id="adminDeliveryUpdate">
+		update
+			order_detail
+		set
+			status = '배송중'
+		where
+			order_detail_no = #{orderDetailNo}
+	</update>
+	
+	<update id="updateGoodsCancelOrderDetailStatus">
+		update
+			order_detail
+		set
+			status = #{status}
+		where
+			order_detail_no = #{orderDetailNo}
+	</update>
+	
+	<update id="updateNewTotalPrice">
+		update
+			payment 
+		set
+			total_price = #{newTotalPrice}
+		where
+			payment_no = #{paymentNo}
 	</update>
 	
 </mapper>

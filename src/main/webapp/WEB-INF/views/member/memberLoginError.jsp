@@ -25,7 +25,7 @@
 <!-- 제목 -->
 <div class="sub_title_wrap">
 	<div class="container">
-		<h2 class="tit_sec txt-center txt-white en">로그인실패!!!!!!!!</h2>
+		<h2 class="tit_sec txt-center txt-white en">로그인실패</h2>
 	</div>
 </div>
 	
