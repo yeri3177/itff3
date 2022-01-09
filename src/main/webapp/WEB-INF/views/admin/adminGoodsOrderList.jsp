@@ -36,7 +36,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 			
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-4">
-					<h2 class="heading-section">발주(주문)관리</h2>
+					<h2 class="heading-section">주문관리</h2>
 				</div>
 			</div>
 			

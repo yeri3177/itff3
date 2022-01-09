@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<div class="shadow-sm p-3 mb-5 bg-body" style="width: 800px;">
+<div class="shadow-sm p-3 mb-5 bg-body" style="width: 100%;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="font-family: 'Noto Sans KR'; height: 45px;">
   <a class="navbar-brand" href="#" style="font-weight: bold; color: #45a7b9;">상영/예매관리</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
