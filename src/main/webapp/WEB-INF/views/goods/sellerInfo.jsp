@@ -81,7 +81,8 @@
 		
 		<!-- 오른쪽 데이터랩 차트 -->
 		<div class=right-box>
-			<div><span>DataLab </span><span>연령별/성별 인기도</span></div>
+			<!-- <div><span>DataLab </span><span>연령별/성별 인기도</span></div> -->
+			<div>DataLab<span style="color: #283ba3; font-size: 2px;">◼</span> ITFF 회원의 굿즈샵 사용율</div>
 			
 			<div class="chart-div">
   				<canvas id="ageChart" height="260"></canvas>
@@ -119,17 +120,23 @@
 </section> <!-- 메인 콘텐츠 섹션 -->
 
 <script>
+
 /**
  * 연령별 회원수 
- * - y축 제거하기, 그리드 제거하기
  */
 const ctx1 = document.getElementById('ageChart');
 const ageChart = new Chart(ctx1, {
     type: 'bar',
     data: {
-        labels: ['10', '20', '30', '40', '50', '60'],
+        labels: ['10', '20', '30', '40', '50'],
         datasets: [{
-            data: [12, 19, 54, 88, 2, 3], /* el로 데이터값 불러오기 */
+            data: [
+            	'${ageMap.get("10대")}', 
+            	'${ageMap.get("20대")}', 
+            	'${ageMap.get("30대")}', 
+            	'${ageMap.get("40대")}', 
+            	'${ageMap.get("50대")}'
+            ], 
             backgroundColor: ['#73A2E4'],
         }]
     },
@@ -141,17 +148,18 @@ const ageChart = new Chart(ctx1, {
 		},
 	},
 });
+
+
 /**
  * 성별 회원수 
- * - 퍼센티지 표시하기 
  */
 const ctx2 = document.getElementById('genderChart');
 const genderChart = new Chart(ctx2, {
     type: 'doughnut',
     data: {
-        labels: ['남자', '여자'],
+        labels: ['O', 'X'],
         datasets: [{
-            data: [10, 90], /* el로 데이터값 불러오기 */
+            data: ['${usingPercent}', '${100-usingPercent}'], /* el로 데이터값 불러오기 */
             backgroundColor: ['#ABD8FF', '#FF6D6D'],
             hoverOffset: 3, /* 마우스 호버 효과 */
         }]

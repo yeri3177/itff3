@@ -300,7 +300,49 @@ public class GoodsController {
 	 * 판매자정보 페이지 
 	 */
 	@GetMapping("/sellerInfo.do")
-	public String sellerInfo() {
+	public String sellerInfo(Model model) {
+		
+		// 1. 굿즈샵 이용률 구하기
+		
+		//// 1-1. 전체회원수
+		int memberAllCnt = goodsService.selectAllMemberCount();
+		log.debug("memberAllCnt = {}", memberAllCnt); // 49
+		
+		//// 1-2. 주문한회원수
+		int orderMemberCnt = goodsService.selectOrderMemberCount();
+		log.debug("orderMemberCnt = {}", orderMemberCnt); // 4
+		
+		//// 1-3. 굿즈샵 이용율
+		double usingPercent = ((double)orderMemberCnt/memberAllCnt)*100;
+		log.debug("usingPercent = {}", usingPercent);
+		model.addAttribute("usingPercent", usingPercent);
+		
+		/////////////////////////////
+		
+		// 2. 굿즈샵 주문자들의 나이대별 회원수 구하기 
+		List<String> ageList = goodsService.selectAgeNumber();
+		log.debug("ageList = {}", ageList); // ageList = [12, 20, 22, 25]
+		
+		Map<String, Integer> ageMap = new HashMap<>();
+		ageMap.put("10대", 0);
+		ageMap.put("20대", 0);
+		ageMap.put("30대", 0);
+		ageMap.put("40대", 0);
+		ageMap.put("50대", 0);
+		
+		for(int i=0; i<ageList.size(); i++) {
+			
+			switch(ageList.get(i).substring(0, 1)) {
+			case "1": ageMap.put("10대", ageMap.get("10대")+1); break;
+			case "2": ageMap.put("20대", ageMap.get("20대")+1); break;
+			case "3": ageMap.put("30대", ageMap.get("30대")+1); break;
+			case "4": ageMap.put("40대", ageMap.get("40대")+1); break;
+			case "5": ageMap.put("50대", ageMap.get("50대")+1); break;
+			
+			}
+		}
+		log.debug("ageMap = {}", ageMap); 
+		model.addAttribute("ageMap", ageMap);
 		
 		return "goods/sellerInfo";
 	}
@@ -727,6 +769,20 @@ public class GoodsController {
 		return "goods/likeItems";
 	}
 	
+	/**
+	 * 굿즈 목록 정렬
+	 */
+	@PostMapping("/goodsListSort.do")
+	public String goodsListSort(@RequestParam String sortType) {
+		
+		log.debug("sortType = {}", sortType);
+		
+		
+		
+		
+		
+		return "goods/goodsList";
+	}
 	
 	
 }

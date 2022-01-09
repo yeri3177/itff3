@@ -81,10 +81,11 @@
 			
 			<!-- 상품 정렬 리스트 -->
 			<ul id="goods-sort-ul">
-				<li><a href="#">인기도순</a></li>
-				<li><a href="#">낮은가격순</a></li>
-				<li><a href="#">높은가격순</a></li>
-				<li><a href="#">평점높은순</a></li>
+				<li>인기도순</li>
+				<li>낮은가격순</li>
+				<li>높은가격순</li>
+				<li>누적판매순</li>
+				<li>최신등록순</li>
 			</ul>
 		</div>
 		<br /><br /><br />
@@ -183,79 +184,99 @@
 
 <script>
 
+/* 정렬 텍스트 클릭 이벤트 */
+$("#goods-sort-ul li").click((e) => {
+	
+	const $this = $(e.target);
+	const sortType = $this.text();
+
+	console.log("정렬기준 = " + sortType);
+	
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/goodsListSort.do?${_csrf.parameterName}=${_csrf.token}",
+		data: {sortType : sortType},
+		type : "post",
+        
+		success (data){
+			console.log("success~!!!!!");
+			//console.log(data);
+        	
+			
+        },
+        error: console.log
+    });
+
+})
+
+
 const $toast = $("#toasts");
 
-$(() => {
-	//토스트 확인용
-	//fn_toast("내가 좋아요 한 상품 목록에 삭제 하였습니다.");
+/* 하트 아이콘 클릭시 이벤트 발생 */
+$("[id^=goodsLike-btn").click((e) => {
 	
-	/* 하트 아이콘 클릭시 이벤트 발생 */
-	$("[id^=goodsLike-btn").click((e) => {
-		// 카드 클릭 이벤트 막기 
-		e.stopPropagation();
-		
-		const $this = $(e.target);
-		const goodsId = $this.parent().data("goodsId");
-		
-		/* console.log($this); */
-		console.log("goodsId = " + goodsId);
-		
-		const like = {
-			goodsId : goodsId,
-			memberId : $("[name=memberId]").val(),
-			heartClass : $this.attr('class')
-		}
-		
-		console.log(like);
-		
-		// ajax로 goods_like 레코드 삽입 또는 삭제 처리 
-		$.ajax({
-			url : "${pageContext.request.contextPath}/goods/updateGoodsLike.do?${_csrf.parameterName}=${_csrf.token}",
-			data: like,
-			type : "post",
-	        
-			success : function(result){
-
-	        	console.log($this.parent());
-	        	
-	        	$this.parent().html(result);
-	        	
-	        	
-	        	if(result.includes("far")){
-	        		fn_toast("내가 좋아요 한 상품 목록에 삭제 하였습니다.")
-	        	}
-	        	else if(result.includes("fas")){
-	        		fn_toast("내가 좋아요 한 상품 목록에 추가 하였습니다.")
-	        	}
-				
-	        },
-	        error: console.log
-	    });
-		
-	});
 	
-	 /* card div 클릭시 상품 상세 페이지 이동함 */
-	$(".card").click((e) => {
-		//console.log(e.target);
-		
-		const $card = $(e.target).parents(".card");
-		const pid = $card.data("id");
-		
-		console.log(pid);
-		location.href = `${pageContext.request.contextPath}/goods/goodsDetail.do?pid=\${pid}`;
-		
-	});
+	// 카드 클릭 이벤트 막기 
+	e.stopPropagation();
+	
+	const $this = $(e.target);
+	const goodsId = $this.parent().data("goodsId");
+	
+	/* console.log($this); */
+	console.log("goodsId = " + goodsId);
+	
+	const like = {
+		goodsId : goodsId,
+		memberId : $("[name=memberId]").val(),
+		heartClass : $this.attr('class')
+	}
+	
+	console.log(like);
+	
+	// ajax로 goods_like 레코드 삽입 또는 삭제 처리 
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/updateGoodsLike.do?${_csrf.parameterName}=${_csrf.token}",
+		data: like,
+		type : "post",
+        
+		success : function(result){
 
+        	console.log($this.parent());
+        	
+        	$this.parent().html(result);
+        	
+        	
+        	if(result.includes("far")){
+        		fn_toast("내가 좋아요 한 상품 목록에 삭제 하였습니다.")
+        	}
+        	else if(result.includes("fas")){
+        		fn_toast("내가 좋아요 한 상품 목록에 추가 하였습니다.")
+        	}
+			
+        },
+        error: console.log
+    });
+
+});	
+
+ /* card div 클릭시 상품 상세 페이지 이동함 */
+$(".card").click((e) => {
+	//console.log(e.target);
+	
+	const $card = $(e.target).parents(".card");
+	const pid = $card.data("id");
+	
+	console.log(pid);
+	location.href = `${pageContext.request.contextPath}/goods/goodsDetail.do?pid=\${pid}`;
+	
 });
+
 
 /* 토스트에 메세지 넣는 함수 */
 function fn_toast(msg) {
 	
 	// 토스트 메세지 넣기
 	$(".cart-msg").text(msg);
-	
-	// 스크롤 맨위로 이동 
-	/* $('html,body').scrollTop(0); */
 	
 	// 토스트 메세지 보이게하기 
 	$toast.show();
@@ -264,8 +285,6 @@ function fn_toast(msg) {
 	setTimeout(function(){
 	    $toast.hide();		
 	},2000);
-	
-	
 }	
 
 </script>
