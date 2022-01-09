@@ -165,13 +165,19 @@
 							    </td>
 							    <td>
 								    <div>
-								    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
-									  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
-									  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
-									  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
-									</select>
+									    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
+										  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
+										  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
+										  <option value="환불완료" ${list.orderDetail.status eq '환불완료' ? 'selected' : ''}>환불완료</option>
+										</select>
 								    </div>
 							    </td>
+							    
+							    <c:if test="${list.orderDetail.status eq '주문취소' }">
+								    <td>
+								    	<a href="https://admin.iamport.kr/users/login">환불처리</a>
+								    </td>
+							    </c:if>
 							    
 						  </tr>						  
 						  </c:if>
