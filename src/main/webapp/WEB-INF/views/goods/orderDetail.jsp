@@ -49,8 +49,15 @@
 
 	<!-- 상단 : 상품상태 -->
 	<div id="top-container">
-		
-		<div class="title-text">${order.orderDetail.status }</div>
+		<div class="d-flex justify-content-between">
+			<div class="title-text">${order.orderDetail.status }</div>
+			
+			<c:if test="${order.orderDetail.status eq '배송중'}">
+				<div class="delivery-btn-div">
+					<a href="https://tracker.delivery/#/kr.cjlogistics/3497135798751" target="_blank">배송조회</a>
+				</div>
+			</c:if>
+		</div>
 		
 		<!-- 상품상태 프로그레스 -->
 		<div class="progress">

@@ -48,7 +48,11 @@ public class GoodsController {
 	 * 상품 목록 페이지
 	 */
 	@GetMapping("/goodsList.do")
-	public String goodsList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, Authentication authentication) {
+	public String goodsList(
+			@RequestParam(defaultValue = "1") int cPage, Model model, 
+			HttpServletRequest request, 
+			Authentication authentication
+		) {
 
 		HttpSession session = request.getSession();
 		
@@ -65,10 +69,10 @@ public class GoodsController {
 		
 		// 로그인X -> param = {loginId=441129F1C9D26CF52CF5155665EEFBC3}
 		// 로그인O -> param = {loginId=abcde}
-		log.debug("param = {}", param); 
+		//log.debug("param = {}", param); 
 		
 		// 현재 페이지 번호 
-		log.debug("cPage = {}", cPage);
+		//log.debug("cPage = {}", cPage);
 		
 		// limit : 한페이지에 표시할 게시글 수 
 		// offset : 건너뛰어야 할 게시글 수
@@ -79,7 +83,6 @@ public class GoodsController {
 		
 		
 		// 1. 상품 리스트 
-		//List<Goods> list = goodsService.selectGoodsList(offset, limit);
 		List<GoodsLikeJoin> list = goodsService.selectGoodsList(param);
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
@@ -88,8 +91,8 @@ public class GoodsController {
 		int totalContent = goodsService.selectGoodsTotalCount();
 		model.addAttribute("totalContent", totalContent);
 		
-		// 3. pagebar
-		String url = request.getRequestURI(); // /spring/board/boardList.do
+		// 3. 페이지바
+		String url = request.getRequestURI(); 
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 		model.addAttribute("pagebar", pagebar);
 		
@@ -180,12 +183,12 @@ public class GoodsController {
 	public String selectOneImg(@RequestParam Map<String, Object> map, Model model) {
 		log.debug("map = {}", map);
 		
-		OptionDetail optionDetail = goodsService.selectOneOptionDetail(map);
-		log.debug("프리뷰 이미지 찾기 = {}", optionDetail);
+		OptionDetail img = goodsService.selectOneOptionDetail(map);
+		log.debug("프리뷰 이미지 찾기 = {}", img);
 		
-		model.addAttribute("optionDetail", optionDetail);
+		model.addAttribute("img", img);
 	
-		return "goods/PreviewImgDiv";
+		return "goods/previewImgDiv";
 	}
 	
 	/**
@@ -677,8 +680,6 @@ public class GoodsController {
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
 		
-		
-		
 		return "goods/orderList";
 	}
 	
@@ -711,34 +712,21 @@ public class GoodsController {
 		model.addAttribute("order", order);
 		log.debug("order = {}", order);
 		
+		// status 데이터 -> statusPercent 상품상태 프로그레스바 퍼센티지 
 		String status = order.getOrderDetail().getStatus();
 		int statusPercent = 20;
 		
 		switch(status) {
-			case "상품준비중" :
-				statusPercent = 20;
-			break;
-			
-			case "배송준비중" :
-				statusPercent = 40;
-			break;
-			
-			case "배송중" :
-				statusPercent = 60;
-			break;
-			
-			case "배송완료" :
-				statusPercent = 80;
-			break;
-			
-			case "구매확정" :
-				statusPercent = 100;
-			break;
+			case "주문취소" : statusPercent = 0; break;
+			case "상품준비중" : statusPercent = 20; break;
+			case "배송준비중" : statusPercent = 40; break;	
+			case "배송중" : statusPercent = 60; break;
+			case "배송완료" : statusPercent = 80; break;
+			case "구매확정" : statusPercent = 100; break;
 		}
 		
 		log.debug("statusPercent = {}", statusPercent);
 		model.addAttribute("statusPercent", statusPercent);
-		
 		
 		return "goods/orderDetail";
 	}
@@ -773,15 +761,45 @@ public class GoodsController {
 	 * 굿즈 목록 정렬
 	 */
 	@PostMapping("/goodsListSort.do")
-	public String goodsListSort(@RequestParam String sortType) {
+	public String goodsListSort(@RequestParam String sortType, @RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, Authentication authentication) {
 		
 		log.debug("sortType = {}", sortType);
 		
 		
+		HttpSession session = request.getSession();
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("sortType", sortType);
+		
+		if(authentication != null) {
+			param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
+		} else {
+			param.put("loginId", session.getId());
+		}
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		param.put("limit", limit);
+		param.put("offset", offset);
 		
 		
+		// 1. 상품 리스트 
+		List<GoodsLikeJoin> list = goodsService.selectGoodsListBySortType(param);
 		
-		return "goods/goodsList";
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 전체게시물수 
+		int totalContent = goodsService.selectGoodsTotalCount();
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. 페이지바
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		model.addAttribute("pagebar", pagebar);
+		
+		
+		return "goods/goodsListSortDiv";
 	}
 	
 	

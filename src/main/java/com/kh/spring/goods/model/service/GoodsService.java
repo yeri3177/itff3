@@ -17,8 +17,6 @@ import com.kh.spring.goods.model.vo.Payment;
 
 public interface GoodsService {
 
-	List<Goods> selectGoodsList(int offset, int limit);
-
 	int selectGoodsTotalCount();
 
 	List<Integer> selectOptionId(int pid);
@@ -100,6 +98,8 @@ public interface GoodsService {
 	int selectOrderMemberCount();
 
 	List<String> selectAgeNumber();
+
+	List<GoodsLikeJoin> selectGoodsListBySortType(Map<String, Object> param);
 
 
 }
