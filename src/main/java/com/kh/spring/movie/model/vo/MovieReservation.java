@@ -31,5 +31,6 @@ public class MovieReservation implements Serializable {
 	private String startDate;
 	private String startTime;
 	private int amount;
+	private int count;
 	
 }
