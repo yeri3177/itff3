@@ -82,22 +82,13 @@
 		    	  </div>
 				      
 		      <div class="modal-footer">
-		      	<button type="submit" class="btn btn-primary">등록</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		      	<button type="submit" class="btn btn-outline-secondary">등록</button>
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 		      </div>
 		      
 		     </form>
 		     
 <script>
-
-// window.onload = function(){
-//     target = document.getElementById('myFile');
-//     target.addEventListener('change', function(){
-//         target2 = document.getElementById('showFiles');
-//         $label.html(filename);
-//         target2.innerHTML = fileList;
-//     });
-// }
 
 //파일명 바꾸기 & 이미지 이름
 $(() => {
