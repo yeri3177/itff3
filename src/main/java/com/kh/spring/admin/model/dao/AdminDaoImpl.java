@@ -23,6 +23,7 @@ import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.vo.Movie;
 import com.kh.spring.movie.model.vo.MovieJoin;
 import com.kh.spring.movie.model.vo.MovieReservation;
+import com.kh.spring.movie.model.vo.Seat;
 import com.kh.spring.movie.model.vo.Theater;
 import com.kh.spring.notice.model.vo.Notice;
 import com.kh.spring.question.model.vo.Question;
@@ -724,9 +725,20 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.adminGoodsOrderStatusUpdate", param);
 	}
 
-//	@Override
-//	public int deletePayment(int paymentNo) {
-//		return session.delete("admin.deletePayment", paymentNo);
-//	}
+	@Override
+	public List<MovieJoin> selectMovieReservationStatusList(int offset, int limit) {
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		return session.selectList("admin.selectMovieReservationStatusList", null, rowBounds);
+	}
+
+	@Override
+	public int selectMovieReservationStatusTotalCount() {
+		return session.selectOne("admin.selectMovieReservationStatusTotalCount");
+	}
+
+	@Override
+	public List<Seat> selectOneSeat(String movieScheduleId) {
+		return session.selectList("admin.selectOneSeat", movieScheduleId);
+	}
 
 }

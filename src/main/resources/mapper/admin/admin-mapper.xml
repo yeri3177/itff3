@@ -293,7 +293,7 @@
 		<result column="genre" property="genre"/>
 		<result column="running_time" property="runningTime"/>
 		<result column="age_limit" property="ageLimit"/>
-		<result column="imgage" property="image"/>
+		<result column="image" property="image"/>
 	</resultMap>
 
 	<resultMap type="movieReservation" id="movieReservationMap">
@@ -1737,5 +1737,38 @@
 		where
 			order_no = #{orderNo}
 	</update>
+	
+	<select id="selectMovieReservationStatusList" resultMap="movieJoinMap">
+		select distinct
+			c.movie_schedule_id, m.image, m.title_kor, m.title_eng, c.theater_id, c.start_date, c.start_time
+		from
+			movie_schedule c
+		left join seat s
+		on c.movie_schedule_id = s.movie_schedule_id
+		left join movie m
+		on c.movie_id = m.movie_id
+		order by 
+			c.start_date asc
+	</select>
+	
+	<select id="selectMovieReservationStatusTotalCount" resultType="_int">
+		select distinct
+			count(*)
+		from
+			movie_schedule c
+		left join seat s
+		on c.movie_schedule_id = s.movie_schedule_id
+		left join movie m
+		on c.movie_id = m.movie_id
+	</select>
+	
+	<select id="selectOneSeat" resultType="seat">
+		select
+			seat_no, is_booked
+		from
+			seat
+		where 
+			movie_schedule_id = #{movieScheduleId}
+	</select>
 	
 </mapper>

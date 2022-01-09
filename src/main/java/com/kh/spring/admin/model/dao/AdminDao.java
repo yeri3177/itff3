@@ -270,5 +270,10 @@ public interface AdminDao {
 
 	int adminGoodsOrderStatusUpdate(Map<String, Object> param);
 
-//	int deletePayment(int paymentNo);
+	List<MovieJoin> selectMovieReservationStatusList(int offset, int limit);
+
+	int selectMovieReservationStatusTotalCount();
+
+	List<Seat> selectOneSeat(String movieScheduleId);
+
 }

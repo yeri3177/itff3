@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -698,7 +699,6 @@ public class AdminManageController {
 		model.addAttribute("oneDateSchedule", oneDateSchedule);		
 	}
 	
-
 	/**
 	 * [예매내역 조회]
 	 */
@@ -766,11 +766,16 @@ public class AdminManageController {
 			seats.add(seat);
 		}
 		
+		// 좌석 리스트 담기
+		List<String> seatList = Arrays.asList((movieReservation.getSelectedSeat()).split(", "));
+		log.debug("seatList = {}", seatList);
+		
 		// 예매 영화
 		Movie movie = adminService.selectOneMovie(movieId);
 		log.debug("movie = {}", movie);
 		
 		model.addAttribute("movieReservation", movieReservation);
+		model.addAttribute("seatList", seatList);
 		model.addAttribute("seats", seats);
 		model.addAttribute("movie", movie);
 		model.addAttribute("movieReservationId", movieReservationId);
@@ -908,6 +913,60 @@ public class AdminManageController {
 			
 		return "redirect:/admin/adminMovieReservationList.do";
 	}
+	
+	
+	/**
+	 * [예매현황 조회]
+	 */
+	
+	@GetMapping("/adminMovieReservationStatusList.do")
+	public String adminMovieReservationStatusList(
+			@RequestParam(defaultValue = "1") int cPage, 
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		// 1.
+		List<MovieJoin> list = adminService.selectMovieReservationStatusList(offset, limit);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. totalContent
+		int totalContent = adminService.selectMovieReservationStatusTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationStatusList";
+	}
+	
+	
+	/**
+	 * [예매 현황 상세]
+	 */
+	
+	@GetMapping("/adminMovieReservationStatusDetail.do")
+	public void adminMovieReservationStatusDetail(@RequestParam String movieScheduleId, Model model) {
+		log.debug("movieScheduleId = {}", movieScheduleId);
+		
+		// 예매 정보
+		List<Seat> list = adminService.selectOneSeat(movieScheduleId);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+	}
+	
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
