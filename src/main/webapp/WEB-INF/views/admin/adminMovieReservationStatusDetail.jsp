@@ -14,7 +14,7 @@
 </jsp:include>
 
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">예매상세현황</h4>
+        <h4 class="modal-title" id="exampleModalLabel">예매현황상세</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -29,7 +29,7 @@
 			 -->
 	      <c:forEach items="${list }" var="seat" varStatus="vs">
 		    <div class="seat" style="color:white; background-color: ${seat.isBooked eq 1 ? '#ec7b65' : 'rgb(127, 127, 127)'}">
-		      <div style="font-family: 'Montserrat';">${seat.seatNo }</div>
+		      <div style="font-family: 'Montserrat'; font-size: 12px;">${seat.seatNo }</div>
 		    </div>
    		    <c:if test="${fn:endsWith(seat.seatNo, '3')}">
 		    	<div style="width: 40px; height: 40px;"></div>

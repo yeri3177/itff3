@@ -276,4 +276,10 @@ public interface AdminDao {
 
 	List<Seat> selectOneSeat(String movieScheduleId);
 
+	List<MovieSchedule> selectMovieScheduleDate();
+
+	List<MovieReservation> adminMovieReserStatusSearchDate(Map<String, Object> param);
+
+	int adminMovieReserStatusSearchDateCount(Map<String, Object> param);
+
 }

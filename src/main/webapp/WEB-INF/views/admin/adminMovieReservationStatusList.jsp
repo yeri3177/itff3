@@ -11,18 +11,11 @@
 <!DOCTYPE html>
 
 <!-- 사용자작성 css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminMovieReservationList.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/admin/adminMovieReservationStatusList.css" />
 
 <jsp:include page="/WEB-INF/views/admin/common/adminHeader.jsp">
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
-
-<style>
-div#search-regDate {display: ${searchType} == '' || ${searchType} == null || "regDate".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-movieReservationId {display: "movieReservationId".equals(${searchType}) ? "inline-block" : "none"; }
-div#search-memberId {display: "name".equals(${searchType}) ? "inline-block" : "none";}
-div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "none";}
-</style>
 
 <!-- 관리자 헤더 -->
 <jsp:include page="/WEB-INF/views/admin/common/adminSectionHeader.jsp"></jsp:include>
@@ -46,59 +39,21 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 				<div class="col-md-12">
 					<div class="table-wrap">
 		
-					<div class="search-total insert" style="justify-content: flex-end;">
+					<div class="search-total insert">
 					   <div class="input-group rounded">
-					        <select 
-					        	id="searchType" 
-					        	class="custom-select"
-					        	style="display: block; padding: 0.375rem 2.25rem 0.375rem 0.75rem; -moz-padding-start: calc(0.75rem - 3px); font-size: 1rem; font-weight: 400; line-height: 1.5; color: #212529; border: 1px solid #ced4da; border-radius: 0.25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; -webkit-appearance: none; -moz-appearance: none; appearance: none; width: 150px;">
-					            <option value="regDate" ${"date".equals(searchType) ? "selected" : ""}>예매일자</option>
-					            <option value="movieReservationId" ${"movieReservationId".equals(searchType) ? "selected" : ""}>예매번호</option>		
-					            <option value="memberId" ${"memberId".equals(searchType) ? "selected" : ""}>아이디</option>
-					            <option value="startDate" ${"startDate".equals(searchType) ? "selected" : ""}>상영일자</option>
-					        </select>
-					        <div id="search-movieReservationId" class="search-type" style="display: none; width: 500px !important;">
-					            <form action="${pageContext.request.contextPath}/admin/adminmovieReservationFinder.do">
-					            	<div style="display: flex;">
-					                <input type="hidden" name="searchType" value="movieReservationId"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="예매번호를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'movieReservationId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
-					            	</div>
-					            </form>	
-					        </div>
-					        <div id="search-memberId" class="search-type" style="display: none;">
-					            <form action="${pageContext.request.contextPath}/admin/adminmovieReservationFinder.do">
-					            <div style="display: flex;">
-					                <input type="hidden" name="searchType" value="memberId"/>
-					                <input type="search" name="searchKeyword"  class="form-control rounded" placeholder="아이디를 입력하세요." aria-label="Search" aria-describedby="search-addon" size="25" value="${'memberId' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
-					            </div>
-					            </form>	
-					        </div>
-					        <div id="search-regDate" class="search-type">
-				                 <input type="hidden" name="searchKeyword"  class="form-control rounded" aria-label="Search" aria-describedby="search-addon" value="${'regDate' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					            <form action="${pageContext.request.contextPath}/admin/adminMovieReservationDateFinder.do">
-				            	<input type="hidden" name="searchType" value="regDate"/>
-					            <div style="display: flex; align-items: center;">
-					                <input type="text" id="startDate" class="form-control" name="startDate" placeholder="시작일">
-					                ~
-					                <input type="text" id="endDate" class="form-control" name="endDate" placeholder="종료일">
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
-					            </div>
-					            </form>	
-					        </div>
-					        <div id="search-startDate" class="search-type" style="display: none;">
-				                 <input type="hidden" name="searchKeyword"  class="form-control rounded" aria-label="Search" aria-describedby="search-addon" value="${'startDate' eq searchType ? searchKeyword : ''}" style="margin: 0 auto;"/>
-					            <form action="${pageContext.request.contextPath}/admin/adminMovieReservationDateFinder.do">
-				            	<input type="hidden" name="searchType" value="startDate"/>
-					            <div style="display: flex; align-items: center;">
-					                <input type="text" id="startDate2" class="form-control" name="startDate" placeholder="시작일">
-					                ~
-					                <input type="text" id="endDate2" class="form-control" name="endDate" placeholder="종료일">
-					                <button type="submit" class="btn btn-outline-dark">search</button>		
-					            </div>
-					            </form>	
-					        </div>
+						
+						<c:forEach items="${schedule }" var="schedule" varStatus="vs">
+							<form action="${pageContext.request.contextPath}/admin/adminMovieReserStatusSearchDate.do">
+							<input type="hidden" name="startDate" value="${schedule.startDate }" />
+							<button 
+			    		  		type="submit" 
+			    		  		class="btn btn-outline-dark"
+			    		  		style="border-radius: 0; font-family: 'Montserrat';">
+			    		  		${schedule.startDate }
+			    		  	</button>
+			    		  </form>
+						</c:forEach>
+
 					    </div>
 					  </div>
 					
@@ -169,7 +124,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 										data-toggle="modal"
 										data-target="#adminMovieReservationStatusDetail"
 										onclick="movie_reservation_status_detail_btn('${list.movieSchedule.movieScheduleId}');"
-										>상세현황</button>
+										>상세</button>
 									</td>
 
 								</tr>
@@ -202,20 +157,6 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 
 ${pagebar}
 	
-<script>
-$("#searchType").change((e) => {
-	// e.target 이벤트발생객체 -> #searchType
-	const type = $(e.target).val();
-	
-	// 1. .search-type 감추기
-	$(".search-type").hide();
-	
-	// 2. #search-${type} 보여주기(display:inline-block)
-	$(`#search-\${type}`).css("display", "inline-block");
-});
-</script>
-
-
 <script>
 
 // 예매 상세

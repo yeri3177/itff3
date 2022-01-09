@@ -936,6 +936,11 @@ public class AdminManageController {
 		log.debug("list = {}", list);
 		model.addAttribute("list", list);
 		
+		// 날짜
+		List<MovieSchedule> schedule = adminService.selectMovieScheduleDate(); 
+		log.debug("schedule = {}", schedule);
+		model.addAttribute("schedule", schedule);
+		
 		// 2. totalContent
 		int totalContent = adminService.selectMovieReservationStatusTotalCount();
 		log.debug("totalContent = {}", totalContent);
@@ -950,7 +955,56 @@ public class AdminManageController {
 		
 		return "admin/adminMovieReservationStatusList";
 	}
+		
+	/**
+	 * [예매현황 검색]
+	 */
 	
+	@GetMapping("/adminMovieReserStatusSearchDate.do")
+	public String adminMovieReserStatusSearchDate(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String startDate,		
+			Model model,
+			HttpServletRequest request
+			) {
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("startDate", startDate);
+		param.put("start", offset);
+		param.put("end", limit);
+		log.debug("param = {}", param);
+		
+		// 1. 
+		List<MovieReservation> list = adminService.adminMovieReserStatusSearchDate(param);
+		log.debug("list = {}", list);
+		
+		model.addAttribute("list", list);
+		
+		// 날짜
+		List<MovieSchedule> schedule = adminService.selectMovieScheduleDate(); 
+		log.debug("schedule = {}", schedule);
+		model.addAttribute("schedule", schedule);
+		
+		// 2. totalContent
+		int totalContents = adminService.adminMovieReserStatusSearchDateCount(param);
+		log.debug("totalContents = {}", totalContents);
+		
+		model.addAttribute("totalContents", totalContents);
+		
+		// 3. pagebar
+		String url = request.getRequestURI()+"?startDate="+startDate;
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
+//		log.debug("pagebar = {}", pagebar);
+		
+		model.addAttribute("pagebar", pagebar);
+		
+		return "admin/adminMovieReservationStatusList";
+	}
 	
 	/**
 	 * [예매 현황 상세]
