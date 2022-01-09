@@ -761,4 +761,9 @@ public class AdminServiceImpl implements AdminService {
 	public int adminMovieReserStatusSearchDateCount(Map<String, Object> param) {
 		return adminDao.adminMovieReserStatusSearchDateCount(param);
 	}
+
+	@Override
+	public int adminDeliveryUpdate(int orderDetailNo) {
+		return adminDao.adminDeliveryUpdate(orderDetailNo);
+	}
 }

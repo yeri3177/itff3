@@ -1944,6 +1944,35 @@ public class AdminManageController {
 		model.addAttribute("orderNo", orderNo);
 	}
 	
+	/**
+	 * [굿즈 운송장 등록]
+	 */
+	
+	@GetMapping("/adminGoodsOrderWaybill.do")
+	public void adminGoodsOrderWaybill(@RequestParam int orderDetailNo, Model model) {
+		log.debug("orderDetailNo = {}", orderDetailNo);
+		
+		model.addAttribute("orderDetailNo", orderDetailNo);
+	}
+
+	@PostMapping("/adminGoodsOrderWaybill.do")
+	public String adminGoodsOrderWaybill(@RequestParam int orderDetailNo, RedirectAttributes redirectAttr) {
+		log.debug("orderDetailNo = {}", orderDetailNo);
+		
+		try {
+			int result = adminService.adminDeliveryUpdate(orderDetailNo);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderList.do";
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////
 	
 	/**

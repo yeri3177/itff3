@@ -1804,4 +1804,13 @@
 			start_date = #{startDate}
 	</select>
 	
+	<update id="adminDeliveryUpdate">
+		update
+			order_detail
+		set
+			status = '배송중'
+		where
+			order_detail_no = #{orderDetailNo}
+	</update>
+	
 </mapper>

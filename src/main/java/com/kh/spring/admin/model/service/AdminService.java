@@ -277,5 +277,7 @@ public interface AdminService {
 	List<MovieReservation> adminMovieReserStatusSearchDate(Map<String, Object> param);
 
 	int adminMovieReserStatusSearchDateCount(Map<String, Object> param);
+
+	int adminDeliveryUpdate(int orderDetailNo);
 	
 }
