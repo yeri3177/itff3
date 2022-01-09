@@ -131,7 +131,7 @@ public class ReviewController {
 			throw e;   // spring container에게 던짐
 		}
 		
-		return "redirect:/review/reviewDetail.do?reviewNo=" + review.getReviewNo();
+		return "redirect:/review/reviewDetail.do?reviewNo=" + review.getReviewNo() + "&memberId=" + review.getMemberId();
 	}	
 	
 	
@@ -370,18 +370,19 @@ public class ReviewController {
 		int result = reviewService.insertReviewComment(reviewComment);
 		log.debug("result = {}", result);
 		
-		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewComment.getReviewNo();
+		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewComment.getReviewNo() + "&memberId=" + reviewComment.getWriter();
 	}
 	
 	
 	@PostMapping("/reviewCommentDelete.do")
-	public String reviewCommentDelete(@RequestParam int no, @RequestParam int reviewNo) {
+	public String reviewCommentDelete(@RequestParam int no, @RequestParam int reviewNo, @RequestParam String memberId) {
 		log.debug("no = {}", no);
+		log.debug("loginMemberId = {}", memberId);
 		
 		int result = reviewService.deleteReviewComment(no);
 		log.debug("result = {}", result);
 		
-		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewNo;
+		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewNo + "&memberId=" + memberId;
 	}
 	
 	
