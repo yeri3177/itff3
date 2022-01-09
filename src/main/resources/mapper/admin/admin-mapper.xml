@@ -1715,7 +1715,7 @@
 			left join payment p
 			on o.order_no = p.order_no
 	        where 
-	        	p.payment_no is not null and status = '주문취소'
+	        	p.payment_no is not null and (status = '주문취소' or status = '환불완료')
 	</select>
 	
 	<select id="selectGoodsOrderCancelTotalCount" resultType="_int">
@@ -1726,7 +1726,7 @@
 			left join payment p
 			on o.order_no = p.order_no
 	        where 
-	        	p.payment_no is not null and status = '주문취소'
+	        	p.payment_no is not null and (status = '주문취소' or status = '환불완료')
 	</select>
 	
 	<update id="adminGoodsOrderStatusUpdate">
@@ -1811,6 +1811,24 @@
 			status = '배송중'
 		where
 			order_detail_no = #{orderDetailNo}
+	</update>
+	
+	<update id="updateGoodsCancelOrderDetailStatus">
+		update
+			order_detail
+		set
+			status = #{status}
+		where
+			order_detail_no = #{orderDetailNo}
+	</update>
+	
+	<update id="updateNewTotalPrice">
+		update
+			payment 
+		set
+			total_price = #{newTotalPrice}
+		where
+			payment_no = #{paymentNo}
 	</update>
 	
 </mapper>

@@ -1833,6 +1833,50 @@ public class AdminManageController {
 	}
 	
 	/**
+	 * [취소 상품 상태 개별 변경]
+	 */
+	
+	@PostMapping("/updateGoodsCancelOrderDetailStatus.do")
+	public String updateGoodsCancelOrderDetailStatus(@RequestParam("orderDetailNo") String orderDetailNo, @RequestParam("status") String status, @RequestParam int tPrice, @RequestParam int pPrice, @RequestParam int paymentNo, RedirectAttributes redirectAttr) {
+		log.debug("paymentNo = {}", orderDetailNo);
+		log.debug("status = {}", status);
+		log.debug("tPrice = {}", tPrice);
+		log.debug("pPrice = {}", pPrice);
+		log.debug("paymentNo = {}", paymentNo);
+		
+		try {
+			// status가 환불완료라면 t에서 p를 뺀 가격을 payment의 total_price로 업데이트 시킨다.
+			if("환불완료".equals(status)) {
+				int newTotalPrice = tPrice - pPrice;
+				log.debug("newTotalPrice = {}", newTotalPrice);
+				
+				Map<String, Object> param = new HashMap<>();
+				param.put("paymentNo", paymentNo);
+				param.put("newTotalPrice", newTotalPrice);
+				log.debug("param = {}", param);
+				
+				int result = adminService.updateNewTotalPrice(param);
+			}
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("orderDetailNo", orderDetailNo);
+			param.put("status", status);
+			log.debug("param = {}", param);
+			
+			int result = adminService.updateGoodsCancelOrderDetailStatus(param);
+			
+		} catch (InvalidParameterException e) {
+			log.error(e.getMessage(), e);
+			
+		} catch (Exception e) {
+			log.error("다시 시도해주세요.", e);
+			throw e;
+		}
+		
+		return "redirect:/admin/adminGoodsOrderCancelList.do";
+	}
+	
+	/**
 	 * [주문자 정보 수정]
 	 */
 	

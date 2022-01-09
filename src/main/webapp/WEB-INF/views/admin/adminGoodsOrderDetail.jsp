@@ -133,7 +133,7 @@
 						</thead>
 		 				<tbody>
 						  <c:forEach items="${list }" var="list">
-						  <c:if test="${list.orderDetail.status ne '주문취소'}">			  
+						  <c:if test="${list.orderDetail.status ne '주문취소' and list.orderDetail.status ne '환불완료'}">			  
    						  <tr>
 						    	<td>
 							    	<div class="order_img" style="background-image: url(${pageContext.request.contextPath}/resources/upload/goods/${list.goods.PImg })"></div>

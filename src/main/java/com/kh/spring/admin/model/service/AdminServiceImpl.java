@@ -766,4 +766,14 @@ public class AdminServiceImpl implements AdminService {
 	public int adminDeliveryUpdate(int orderDetailNo) {
 		return adminDao.adminDeliveryUpdate(orderDetailNo);
 	}
+
+	@Override
+	public int updateGoodsCancelOrderDetailStatus(Map<String, Object> param) {
+		return adminDao.updateGoodsCancelOrderDetailStatus(param);
+	}
+
+	@Override
+	public int updateNewTotalPrice(Map<String, Object> param) {
+		return adminDao.updateNewTotalPrice(param);
+	}
 }

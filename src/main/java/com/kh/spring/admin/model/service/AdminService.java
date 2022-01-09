@@ -279,5 +279,9 @@ public interface AdminService {
 	int adminMovieReserStatusSearchDateCount(Map<String, Object> param);
 
 	int adminDeliveryUpdate(int orderDetailNo);
+
+	int updateGoodsCancelOrderDetailStatus(Map<String, Object> param);
+
+	int updateNewTotalPrice(Map<String, Object> param);
 	
 }
