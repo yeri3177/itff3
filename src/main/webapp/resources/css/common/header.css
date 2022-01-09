@@ -100,9 +100,9 @@ a {
 }
 
 .container-visual {
-	background: url("https://i.imgur.com/ab73xHH.jpg");
+	background: url("https://i.imgur.com/AMLClHM.jpg");
 	display: flow-root;
-	background-repeat: round;
+	background-repeat: repeat;
 }
 
 #hd .util {
