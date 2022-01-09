@@ -763,4 +763,9 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectOne("admin.adminMovieReserStatusSearchDateCount", param);
 	}
 
+	@Override
+	public int adminDeliveryUpdate(int orderDetailNo) {
+		return session.update("admin.adminDeliveryUpdate", orderDetailNo);
+	}
+
 }

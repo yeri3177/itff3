@@ -282,4 +282,6 @@ public interface AdminDao {
 
 	int adminMovieReserStatusSearchDateCount(Map<String, Object> param);
 
+	int adminDeliveryUpdate(int orderDetailNo);
+
 }
