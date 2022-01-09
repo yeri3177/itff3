@@ -76,7 +76,7 @@
 									<img src="https://i.imgur.com/vVMNP1i.png" alt="" class="row_icon"/>
 								</div>
 								<div>
-								<a href="#" class="btn_buying">상품구매내역</a>
+								<a href="${pageContext.request.contextPath }/goods/orderList.do" class="btn_buying">상품구매내역</a>
 								</div>
 							</div>	
 													

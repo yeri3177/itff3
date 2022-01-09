@@ -28,19 +28,9 @@
 </jsp:include>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
-<div id="snb">
-	<div class="container-xl">
-		<ul class="list-inline snb_ul" id="snbul1">
-			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberProfile.do" target="_top">프로필사진변경</a></li>
-			<li class="on_"><a href="#">예매내역</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath}/goods/goodsCart.do" target="_top" target="_top">장바구니</a></li>
-			<li class="on_"><a href="#" target="_top">상품구매내역</a></li>
-			<li class="on_"><a href="#" target="_top">포인트이용내역</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberWrittenReviewList.do" target="_top">내가쓴게시글</a></li>
-			<li class="on_"><a href="${pageContext.request.contextPath}/member/memberUpdate.do" target="_top">정보수정</a></li>
-		</ul>
-	</div>
-</div>
+<jsp:include page="/WEB-INF/views/member/common/memberNav.jsp">
+	<jsp:param value="멤버 네베게이션 바" name="nav" />
+</jsp:include>
 <!-- 여기까지 nav 입니다. -->
 
 
