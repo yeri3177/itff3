@@ -115,7 +115,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<!-- 아이디 -->
 										<td>
 											<div class="email" data-id="${list.id }">
-												<span>${list.id }</span> 
+												<span style="font-family: 'Montserrat'; font-weight: 700;">${list.id }</span> 
 												<input type="hidden" name=id${status.index} value="${list.id }" />
 											</div>
 										</td>
@@ -176,7 +176,7 @@ div#search-name {display: "name".equals(${searchType}) ? "inline-block" : "none"
 										<td>${list.authorities eq "[ROLE_USER]" ? "회원" : "관리자" }</td>
 
 										<!-- 활성화 여부 -->
-										<td>${list.enabled}</td>
+										<td style="color: #ec7b65; font-weight: 700;">${list.enabled eq true ? 'O' : 'X'}</td>
 
 										<td>
 											<button 

@@ -124,7 +124,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 									<!-- 글번호 -->
 									<td>
 										<div class="email" data-id="${list.no }">
-											<span>${list.no }</span> 
+											<span style="font-family: 'Montserrat';">${list.no }</span> 
 											<input type="hidden" name=id${status.index} value="${No }" />
 										</div>
 									</td>
