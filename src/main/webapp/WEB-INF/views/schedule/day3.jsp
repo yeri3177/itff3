@@ -178,7 +178,7 @@
 									<p class="time en">09:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/looper.do?movieId=013"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-013"><span
 											class="film_tit_kor">루퍼</span><span
 											class="film_tit_eng en">Looper</span>
 										</a>
@@ -195,7 +195,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/erin.do?movieId=012"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-012"><span
 											class="film_tit_kor">에린 브로코비치</span><span
 											class="film_tit_eng en">Erin Brockovich</span></a>
 									</div>
@@ -211,7 +211,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/password.do?movieId=004"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-004"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>
@@ -227,7 +227,7 @@
 									<p class="time en">11:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-006"><span
 											class="film_tit_kor">13층</span><span
 											class="film_tit_eng en">The thirteenth floor</span></a>
 									</div>
@@ -243,7 +243,7 @@
 									<p class="time en">11:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-002"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -259,7 +259,7 @@
 									<p class="time en">12:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/matrix.do?movieId=007"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-007"><span
 											class="film_tit_kor">매트릭스</span><span
 											class="film_tit_eng en">The Matrix</span></a>
 									</div>
@@ -275,7 +275,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/citizenFour.do?movieId=009"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-009"><span
 											class="film_tit_kor">시티즌포</span><span
 											class="film_tit_eng en">Citizenfour</span></a>
 									</div>
@@ -291,7 +291,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-003"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -307,7 +307,7 @@
 									<p class="time en">14:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/gattaca.do?movieId=005"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-005"><span
 											class="film_tit_kor">가타카</span><span
 											class="film_tit_eng en">Gattaka</span></a>
 									</div>
@@ -323,7 +323,7 @@
 									<p class="time en">14:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/citizenFour.do?movieId=009"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-009"><span
 											class="film_tit_kor">시티즌포</span><span
 											class="film_tit_eng en">Citizenfour</span></a>
 									</div>
@@ -348,7 +348,7 @@
 									<p class="time en">16:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-003"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -364,7 +364,7 @@
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/her.do?movieId=008"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-008"><span
 											class="film_tit_kor">그녀</span><span
 											class="film_tit_eng en">Her</span></a>
 									</div>
@@ -380,7 +380,7 @@
 									<p class="time en">17:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-002"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -396,7 +396,7 @@
 									<p class="time en">18:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/looper.do?movieId=013"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-09&movieId=movie-013"><span
 											class="film_tit_kor">루퍼</span><span
 											class="film_tit_eng en">Looper</span></a>
 									</div>

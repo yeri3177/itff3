@@ -45,7 +45,7 @@
 			<ul>
 				<li class="active step01" id="step01">
 					<a style="cursor: default;"> 
-						<strong class="tit"><span>01</span><br>상영시간</strong>
+						<strong class="tit" style="font-weight: normal;"><span>01</span><br>상영시간</strong>
 						<div class="bx_con step01">
 							<dl>
 								<dt>선택한 영화 제목</dt>
@@ -64,7 +64,7 @@
 				</li>
 				<li class="disabled step02" id="step02">
 					<a style="cursor: default;"> 
-						<strong class="tit"><span>02</span><br>인원/좌석</strong>
+						<strong class="tit" style="font-weight: normal;"><span>02</span><br>인원/좌석</strong>
 						<div class="bx_con step02">
 							<dl>
 								<dt>선택한 인원</dt>
@@ -78,7 +78,7 @@
 				</li>
 				<li class="disabled step03" id="step03">
 					<a style="cursor: default;"> 
-						<strong	class="tit"><span>03</span><br>결제</strong>
+						<strong	class="tit" style="font-weight: normal;"><span>03</span><br>결제</strong>
 						<div class="bx_con step03">
 							<dl>
 								<dt>티켓금액</dt>
@@ -93,7 +93,7 @@
 				</li>
 				<li class="disabled step04" id="step04">
 					<a style="cursor: default;">
-						<strong	class="tit"> <span>04</span><br>결제완료</strong> 
+						<strong	class="tit" style="font-weight: normal;"> <span>04</span><br>결제완료</strong> 
 					</a>
 				</li>
 			</ul>
@@ -378,7 +378,7 @@
 						<li class="active">
 							<button type="button" class="tab_tit"
 								style="width: 16.6667%; left: 0%;">
-								<span>전체</span>
+								<span>상영일정</span>
 							</button>
 							<div class="tab_con ty5">
 								<h5 class="hidden">상영일정</h5>

@@ -193,7 +193,24 @@
 			<div class="saveInfoBtn">
 				<input type="button" value="마일리지 사용 취소" class="licenseRegisterBtn" id="mileageCancelBtn" style="width: 125px; display: none; color: #FF2628; border-color: #FF2628;"/>
 			</div> -->
+			
+			<br /><br /><br />
+			<div class="col-md-2 col-xs-12" style="box-sizing: initial;">
+				<p class="tit tit-sec bold mt10" style="width: 100px; font-size: 20px;">※ 유의사항</p>
+			</div>
+			<div class="col-md-10 col-xs-12" style="font-size: 13px; line-height: 23px;">
+				<ul class="list_secondary mt10">
+					
+					<li>- 5세 미만의 어린이는 입장하실 수 없습니다.</li>
+					<li>- 모든 촬영기기는 저작권 보호법에 의해 상영관 내 반 입하실 수 없으며, 촬영을 금지합니다.</li>
+					<li>- 상영 시작 이후 15분까지 입장을 허용합니다. <!-- (단, 영화 상영 시작 이후에는 환불이 불가능합니다.) -->	</li>
+				</ul>
+			</div>
+			
 		</div>
+		
+		
+		
 		
 		<div class="payment_sum_wrap">
 			<dl>
@@ -203,13 +220,13 @@
 				</dd>
 			</dl>
 			<dl>
-				<dt>할인금액1</dt>
+				<dt>할인금액</dt>
 				<dd>
 					-<strong id="usedPoints">0</strong>원
 				</dd>
 			</dl>
 			<dl>
-				<dt>결제금액</dt>
+				<dt>결제금액</dt> 
 				<dd>
 					총<strong id="finalAmount"><fmt:formatNumber value="${total}" pattern="#,###" /></strong>원
 				</dd>
@@ -238,85 +255,151 @@
 
 <script>
 // 02단계 호버시 나오는 값을 세팅
-$(() => {
+$(() => { 
 	$("#bx_step02_count").html($("#selectedCnt").html());
 	$("#bx_step02_seats").html($("#finalSeat").val());
 });
 
 
-$("#usingMileage").keyup((e) => {
+$("#usingMileage").blur((e) => {
 	var val = $("#usingMileage").val();
 	console.log($("#myMileage").val());
 	console.log(val);
-	/* if(val > $("#myMileage").val()) {
-		alert("보유한 포인트 범위 내에서 사용하실 수 있습니다.");
-		return false;
-	}
-	else { */
-	console.log(val);
-	console.log($("#ticketFee").html());
-	$("#finalAmount").html((parseInt($("#hiddenTicketFee").val()) - val).toLocaleString());	
 	
-	$("#usedPoints").html(val);
+	if(val < 0) {
+		alert("0보다 큰 숫자를 입력해주세요.");
+		<%-- 그냥 alert 다음 focus() 하니까 alert가 무한으로 뜬다. 찾아보니까 setTimeout 안에 focus 넣으면 된다고 한다. --%>
+		setTimeout(function() {
+			$("#usingMileage").focus();
+		}, 10);
+	}
+	else if(parseInt($("#hiddenTicketFee").val()) - val <= 0) {
+		alert("결제금액 이상으로 사용하실 수 없습니다.");	
+		setTimeout(function() {
+			$("#usingMileage").focus();
+		}, 10);
+	}
+	else if(val % 100 != 0) {
+		alert("100원 단위로 사용할 수 있습니다.");	
+		setTimeout(function() {
+			$("#usingMileage").focus();
+		}, 10);
+	}
+	else if(val > $("#myMileage").val()) {
+		alert("보유한 마일리지 범위 내에서 사용하실 수 있습니다.");	
+		setTimeout(function() {
+			$("#usingMileage").focus();
+		}, 10);
+	}
+	else {
+		console.log($("#ticketFee").html());
+		$("#finalAmount").html((parseInt($("#hiddenTicketFee").val()) - val).toLocaleString());	
+		
+		$("#usedPoints").html((parseInt(val)).toLocaleString());
+	}
 });
+
+<%-- //사용할 마일리지 입력란에 적은 숫자를 결제금액 에리어의 사용 마일리지 란에 넣는다. 입력한 숫자가 보유 마일리지보다 크면 alert를 띄운다.
+$("#mileageBtn").click((e) => {
+	var val = $("#usingMileage").val();
+	
+	if(val == "") {
+		alert("0보다 큰 숫자를 입력해주세요.");
+	}
+	else if(val > $("#myMileage").val() || val < 0) {
+		alert("보유한 포인트 범위 내에서 사용하실 수 있습니다.");
+	} 
+	else if((parseInt($("#hiddenTicketFee").val() - val) <= 0) {
+		alert("결제금액보다 많이 사용하실 수 없습니다.");
+	}
+	else if(val % 100 != 0) {
+		alert("100원 단위로 사용하실 수 있습니다.");
+	} 
+	else {
+		// 마일리지 사용 버튼을 사용불가로 만들고 없앤다. 동시에 마일리지 사용 취소 버튼을 나타나게 한다.
+		$("#mileageBtn")
+			.prop('disabled', true)
+			.css('display', 'none');
+		$("#mileageCancelBtn").css('display', 'block');
+		
+		// 결제내역 에리어의 마일리지 사용란에 나오게 한다.
+		$("#finalAmount").html((parseInt($("#hiddenTicketFee").val()) - val).toLocaleString());	
+		$("#usedPoints").html(val);
+	}
+}); 
+
+
+// 마일리지 사용 취소 버튼
+$("#mileageCancelBtn").click((e) => {
+	// 마일리지 사용 취소 버튼을 안보이게 하고, 마일리지 사용 버튼을 사용가능하게 하고 보이게 한다.
+	$("#mileageCancelBtn").css('display', 'none');
+	$("#mileageBtn")
+		.prop('disabled', false)
+		.css('display', 'block');
+	
+	// 사용할 마일리지 입력란과 결제금액 에리어의 마일리지 란을 초기화하고 총 결제금액에서도 마일리지 계산을 뺀다.
+	$("#usingMileage").val("");
+	$("#usedPoints").html("");
+	$("#finalAmount").html((parseInt($("#hiddenTicketFee").val()).toLocaleString());
+});   --%>
+
+
 
 function inicisPay() {
 	
-<%-- 결제하기 버튼 클릭시 보여줄 확인창. p태그 등 html 태그 섞어서 써야한다고 생각했는데 그냥 글자 쓰는거였다. <%= %> 이거는 그냥 쓰면 되고, js 변수들은 \${} 이거 안에 쓰면 된다. --%>
-
-		var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
-		IMP.init("imp32315053");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
-		
-		IMP.request_pay({
-		    pg : 'html5_inicis',
-		    pay_method : 'card', //생략 가능
-		    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
-		    name : $("#movieTitle").val(),   
-		    amount : parseInt($("#hiddenTicketFee").val() - $("#usingMileage").val()),
-		    buyer_name : $("#memberName").val(),    // 따옴표 안에 넣으면 브라우저 콘솔에 뭐라 뜨면서 결제창이 뜨자마자 꺼진다.
-		    buyer_tel : $("#memberPhone").val(),
-		    buyer_email : $("#memberEmail").val(),
-		    /* buyer_email : 'iamport@siot.do', */
-		    /* buyer_addr : '서울특별시 강남구 삼성동', */
-		    /* buyer_postcode : '123-456' */
-		}, function(rsp) { // callback 로직
-				if(rsp.success) {
-					// jQuery로 HTTP 요청
-					$.ajax({
-						url: "${pageContext.request.contextPath}/movie/reservation.do?${_csrf.parameterName}=${_csrf.token}",
-					    method: "POST",
-					    data: {
-					        movieScheduleId : $("#scheduleId").val(),
-					        memberId : $("#memberId").val(),
-					        movieId: $("#movieId").val(),
-					        movieImage: $("#movieImage").val(),
-					        titleKor : $("#movieTitle").val(),
-					        finalSeat : $("#finalSeat").val(),
-					        startDate: $("#startDate").val(),
-					        startTime: $("#startTime").val(),
-					        amount: parseInt($("#hiddenTicketFee").val() - $("#usingMileage").val()),
-					        totalPoint: $("#memberPoint").val(),
-					        usedPoint: $("#usingMileage").val(),
-					        theaterId : $("#theaterId").val()
-					    },
-					    success(data){
-					    	$("#reserveStep04").html(data);
-					    	$("#reserveStep04").show();
-					    	$("#step03").removeClass("active");
-							$("#step03").addClass("prev");
-							
-							$("#step04").removeClass("disabled");
-							$("#step04").addClass("active");
-							
-							console.log("complete")
-					    }
-					}).done(function (data) {
-					  // 가맹점 서버 결제 API 성공시 로직
-					})
-				} else {
-					alert("결제에 실패하였습니다.");				
-				}
-		});
+	var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
+	IMP.init("imp32315053");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
+	
+	IMP.request_pay({
+	    pg : 'html5_inicis',
+	    pay_method : 'card', //생략 가능
+	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
+	    name : $("#movieTitle").val(),   
+	    amount : parseInt($("#hiddenTicketFee").val() - $("#usingMileage").val()),
+	    buyer_name : $("#memberName").val(),    // 따옴표 안에 넣으면 브라우저 콘솔에 뭐라 뜨면서 결제창이 뜨자마자 꺼진다.
+	    buyer_tel : $("#memberPhone").val(),
+	    buyer_email : $("#memberEmail").val(),
+	    /* buyer_email : 'iamport@siot.do', */
+	    /* buyer_addr : '서울특별시 강남구 삼성동', */
+	    /* buyer_postcode : '123-456' */
+	}, function(rsp) { // callback 로직
+			if(rsp.success) {
+				// jQuery로 HTTP 요청
+				$.ajax({
+					url: "${pageContext.request.contextPath}/movie/reservation.do?${_csrf.parameterName}=${_csrf.token}",
+				    method: "POST",
+				    data: {
+				        movieScheduleId : $("#scheduleId").val(),
+				        memberId : $("#memberId").val(),
+				        movieId: $("#movieId").val(),
+				        movieImage: $("#movieImage").val(),
+				        titleKor : $("#movieTitle").val(),
+				        finalSeat : $("#finalSeat").val(),
+				        startDate: $("#startDate").val(),
+				        startTime: $("#startTime").val(),
+				        amount: parseInt($("#hiddenTicketFee").val() - $("#usingMileage").val()),
+				        totalPoint: $("#memberPoint").val(),
+				        usedPoint: $("#usingMileage").val(),
+				        theaterId : $("#theaterId").val()
+				    },
+				    success(data){
+				    	$("#reserveStep04").html(data);
+				    	$("#reserveStep04").show();
+				    	$("#step03").removeClass("active");
+						$("#step03").addClass("prev");
+						
+						$("#step04").removeClass("disabled");
+						$("#step04").addClass("active");
+						
+						console.log("complete")
+				    }
+				}).done(function (data) {
+				  // 가맹점 서버 결제 API 성공시 로직
+				})
+			} else {
+				alert("결제에 실패하였습니다.");				
+			}
+	});
 	
 }
 </script>
