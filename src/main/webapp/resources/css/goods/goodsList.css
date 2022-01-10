@@ -171,6 +171,23 @@ body {
 	
 }
 
+.tag-mark-div {
+	width: 52px;
+    height: 28px;
+    background: #48a4ce;
+    opacity: 0.85;
+    text-align: center;
+    display: flex;
+    align-items: center!important;
+    justify-content: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    color: white;
+    border-radius: 0 0 8px 0;
+}
+
 .iconBg-div i {
 	font-size: 23px;
 	width: 30px;
