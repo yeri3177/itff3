@@ -30,6 +30,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.OrderDetailJoin;
 import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.member.model.vo.Member;
@@ -177,7 +178,7 @@ public class GoodsController {
 	}
 	
 	/**
-	 * 상품상세 이미지 찾기 
+	 * goodsDetail 페이지 > preview 이미지 찾기 
 	 */
 	@PostMapping("/selectOneImg.do")
 	public String selectOneImg(@RequestParam Map<String, Object> map, Model model) {
@@ -632,6 +633,15 @@ public class GoodsController {
 				log.debug("member point update > result = {}", result);
 			}
 			
+			// goods 테이블 재고량 update (order_no -> order_detail_no -> option_id)
+			List<OrderDetail> orderDetail = goodsService.selectOrderDetailList(orderNo);
+			log.debug("orderDetail = {}", orderDetail);
+			
+			orderDetail.get(0).getOptionId();
+			
+			result = goodsService.updateGoodsStock(orderDetail);
+			log.debug("updateGoodsStock > result = {}", result);
+			
 			// cart 테이블 전체 delete
 			result = goodsService.deleteCartList(map);
 			log.debug("cart delete > result = {}", result);
@@ -800,6 +810,23 @@ public class GoodsController {
 		
 		
 		return "goods/goodsListSortDiv";
+	}
+	
+	
+	/**
+	 * goodsDetail 페이지 > 옵션별 재고량 찾기  
+	 */
+	@PostMapping("/selectGoodsOptionStock.do")
+	public String selectGoodsOptionStock(@RequestParam Map<String, Object> map, Model model) {
+		log.debug("map = {}", map);
+		
+		OptionDetail optionDetail = goodsService.selectOneOptionDetail(map);
+		log.debug("optionDetail = {}", optionDetail);
+		log.debug("옵션 재고량 = {}", optionDetail.getOptionStock());
+		
+		model.addAttribute("optionDetail", optionDetail);
+	
+		return "goods/soldoutDiv";
 	}
 	
 	

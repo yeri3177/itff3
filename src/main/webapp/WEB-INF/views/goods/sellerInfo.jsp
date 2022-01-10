@@ -144,7 +144,7 @@ const ctx1 = document.getElementById('ageChart');
 const ageChart = new Chart(ctx1, {
     type: 'bar',
     data: {
-        labels: ['10', '20', '30', '40', '50'],
+        labels: ['10대', '20대', '30대', '40대', '50대'],
         datasets: [{
             data: [
             	'${ageMap.get("10대")}', 

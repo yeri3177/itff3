@@ -221,39 +221,39 @@
 	</select>
 	
 	<select id="selectColorByFirstType" resultType="optionDetail">
-	select * 
-	from option_detail o
-	left join goods_option g
-	using (option_id)
-	where option_type = (
-		select option_type
-		from (
-			select * 
-			from goods_option
-			left join option_detail
-			using (option_id)
-			where goods_option.p_id = #{pid}
-			order by option_type
-		) where rownum= 1
-	) and g.p_id = #{pid}
+		select * 
+		from option_detail o
+		left join goods_option g
+		using (option_id)
+		where option_type = (
+			select option_type
+			from (
+				select * 
+				from goods_option
+				left join option_detail
+				using (option_id)
+				where goods_option.p_id = #{pid}
+				order by option_type
+			) where rownum= 1
+		) and g.p_id = #{pid}
 	</select>
 	
 	<select id="selectSizeByFirstColor" resultType="optionDetail">
-	select * 
-	from option_detail o
-	left join goods_option g
-	using (option_id)
-	where option_color = (
-	    select option_color
-	    from (
-	        select distinct option_color
-	        from goods_option
-	        left join option_detail
-	        using (option_id)
-	        where goods_option.p_id =  #{pid} 
-	        order by option_color asc
-	    ) where rownum= 1
-	) and g.p_id =  #{pid}
+		select * 
+		from option_detail o
+		left join goods_option g
+		using (option_id)
+		where option_color = (
+		    select option_color
+		    from (
+		        select distinct option_color
+		        from goods_option
+		        left join option_detail
+		        using (option_id)
+		        where goods_option.p_id =  #{pid} 
+		        order by option_color asc
+		    ) where rownum= 1
+		) and g.p_id =  #{pid}
 	</select>
 	
 	<resultMap type="goods" id="goodsMap">
@@ -810,55 +810,73 @@
 	            and user_id = #{loginId}
 	            )) group by p_id)
 	        )
-		union
-	        (SELECT *
-	        from goods
-	        left join goods_like
-	        using (p_id)
-	        where p_id in
-	        (
-	        SELECT p_id
-	        from goods
-	        left join goods_like
-	        using (p_id)
-	        GROUP by p_id 
-	        HAVING COUNT(p_id) > 1
-	        )
-	        and user_id = #{loginId}
-	        )
-		union
-	        (select *
-	        from goods
-	        left join goods_like
-	        using (p_id)
-	        where p_id not in 
-	        (
-	        SELECT p_id
-	        from goods
-	        left join goods_like
-	        using (p_id)
-	        GROUP by p_id 
-	        HAVING COUNT(p_id) > 1)
-		) 
-	) where p_id in (select distinct p_id from goods_option)
-	
-	<if test="sortType == '낮은가격순'">
-		order by p_price asc
-	</if>
-	
-	<if test="sortType == '높은가격순'">
-		order by p_price desc
-	</if>
-	
-	<if test="sortType == '최신등록순'">
-		order by p_enroll desc
-	</if>
-	
-	<if test="sortType == '상품명순'">
-		order by p_name desc
-	</if>
+			union
+		        (SELECT *
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where p_id in
+		        (
+		        SELECT p_id
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        GROUP by p_id 
+		        HAVING COUNT(p_id) > 1
+		        )
+		        and user_id = #{loginId}
+		        )
+			union
+		        (select *
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        where p_id not in 
+		        (
+		        SELECT p_id
+		        from goods
+		        left join goods_like
+		        using (p_id)
+		        GROUP by p_id 
+		        HAVING COUNT(p_id) > 1)
+			) 
+		) where p_id in (select distinct p_id from goods_option)
+		
+		<if test="sortType == '낮은가격순'">
+			order by p_price asc
+		</if>
+		
+		<if test="sortType == '높은가격순'">
+			order by p_price desc
+		</if>
+		
+		<if test="sortType == '최신등록순'">
+			order by p_enroll desc
+		</if>
+		
+		<if test="sortType == '상품명순'">
+			order by p_name asc
+		</if>
 	</select>
 	
 	
+	<select id="selectOrderDetailList" resultType="orderDetail">
+		select * 
+		from goods_order
+		left join order_detail
+		using (order_no)
+		where order_no = #{orderNo}
+	</select>
+	
+	<update id="updateGoodsStock">
+		update
+			option_detail
+		set
+			option_stock = option_stock-1
+		where
+			option_id = #{optionId}
+	
+	</update>
+
 	
 </mapper>
