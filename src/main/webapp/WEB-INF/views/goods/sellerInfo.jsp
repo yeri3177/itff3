@@ -98,7 +98,7 @@
 		<!-- 오른쪽 데이터랩 차트 -->
 		<div class=right-box>
 			<!-- <div><span>DataLab </span><span>연령별/성별 인기도</span></div> -->
-			<div>DataLab<span style="color: #283ba3; font-size: 2px;">◼</span> ITFF 회원의 굿즈샵 사용율</div>
+			<div>DataLab<span style="color: #283ba3; font-size: 2px;">◼</span> ITFF 회원의 굿즈샵 이용율</div>
 			
 			<div class="chart-div">
   				<canvas id="ageChart" height="260"></canvas>

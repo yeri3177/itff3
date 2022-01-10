@@ -75,7 +75,26 @@ $("[name=goods_order_delete_frm]").submit((e) => {
     let type = '굿즈샵';
     let target = $(".memberId").val();
     let status = $("#status-select option:selected").val();
-    let content = '주문하신 상품의 진행 상태는 ['+status+'] 입니다.'
+    let content = "";
+    
+    switch(status) {
+    case '상품준비중':
+    	content = '[굿즈샵] 주문하신 상품을 준비중입니다.';
+    	break;
+    case '배송준비중':
+    	content = '[굿즈샵] 상품이 배송준비중입니다.';
+    	break;
+    case '배송중':
+    	content = '[굿즈샵] 주문하신 상품의 배송이 시작되었습니다.';
+    	break;
+    case '배송완료':
+    	content = '[굿즈샵] 상품 배송이 완료되었습니다.';
+    	break;
+    case '주문취소':
+    	content = '[굿즈샵] 상품 주문이 취소되었습니다.';
+    	break;
+	}
+    
     let url = '${contextPath}/notify/saveNotify.do';
     
     // 전송한 정보를 db에 저장	

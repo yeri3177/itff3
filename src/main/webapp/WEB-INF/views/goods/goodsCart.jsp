@@ -299,7 +299,7 @@ $(function() {
 
 });
 
-
+/* 장바구니 상품 삭제 */
 $(".btn-close").click((e) => {
 	const $this = $(e.target);
 	const cartId = $this.data("cartId");

@@ -830,4 +830,27 @@ public class GoodsController {
 	}
 	
 	
+	
+	/**
+	 * goodsDetail 페이지 > 옵션별 재고량 찾기  
+	 */
+	@PostMapping("/updateOrderStatusConfirm.do")
+	public String updateOrderStatusConfirm(@RequestParam int orderDetailNo) {
+
+		log.debug("orderDetailNo = {}", orderDetailNo);
+		
+		int result = goodsService.updateOrderDetailStatus(orderDetailNo);
+		log.debug("result = {}", result);
+		
+	
+		return "redirect:/goods/orderList.do";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

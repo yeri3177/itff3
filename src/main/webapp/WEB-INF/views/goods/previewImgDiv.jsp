@@ -4,3 +4,4 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <img src="${pageContext.request.contextPath}/resources/upload/goods/${img.optionImg}" />
+

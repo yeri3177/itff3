@@ -54,7 +54,7 @@ $('#member_point_frm').submit(function(e){
     let type = '포인트지급';
     let target = $('.memberId').val();
     let point = $('#point').val();
-    let content = point+'포인트가 지급되었습니다.'
+    let content = '[ITFF] '+point+'포인트가 지급되었습니다.'
     let url = '${contextPath}/notify/saveNotify.do';
     	    
     console.log(type);
