@@ -395,7 +395,7 @@ public class QuestionController {
 	/*
 	 * 문의글 삭제
 	 */
-	@GetMapping("/questionDelete.do")
+	@PostMapping("/questionDelete.do")
 	public String questionDelete(@RequestParam int no) {
 		Attachment attach = questionService.selectOneAttachment(no);
 		log.debug("attach : {}", attach);
