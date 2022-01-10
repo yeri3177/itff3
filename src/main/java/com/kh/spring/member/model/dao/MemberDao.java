@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.MemberMovieReservation;
 import com.kh.spring.member.model.vo.Point;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Board;
 
@@ -64,6 +66,10 @@ public interface MemberDao {
 	String selectMemCheck(String id);
 
 	int updateMemberPointByIdAndNewPoint(Map<String, Object> param2);
+
+	List<MemberMovieReservation> selectMemberMovieReservationByMemberId(int offset, int limit, String id);
+
+	int selectMemberMovieReservationCount(String id);
 
 
 }

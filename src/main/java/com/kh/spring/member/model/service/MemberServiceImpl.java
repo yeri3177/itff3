@@ -10,7 +10,9 @@ import com.kh.spring.admin.exception.AdminException;
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.MemberMovieReservation;
 import com.kh.spring.member.model.vo.Point;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
 import com.kh.spring.sharing.model.vo.Board;
@@ -177,6 +179,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updateMemberPointByIdAndNewPoint(Map<String, Object> param2) {
 		return memberDao.updateMemberPointByIdAndNewPoint(param2);
+	}
+
+
+	@Override
+	public List<MemberMovieReservation> selectMemberMovieReservationByMemberId(int offset, int limit, String id) {
+		return memberDao.selectMemberMovieReservationByMemberId(offset, limit, id);
+	}
+
+
+	@Override
+	public int selectMemberMovieReservationCount(String id) {
+		return memberDao.selectMemberMovieReservationCount(id);
 	}
 
 
