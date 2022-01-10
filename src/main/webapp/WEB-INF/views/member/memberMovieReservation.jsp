@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/nav.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/member/memberPoint.css" />
+	href="${pageContext.request.contextPath }/resources/css/member/memberMovieReservation.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/css/common/footer.css" />
 
@@ -30,7 +30,7 @@
 <fmt:requestEncoding value="utf-8" />
 <!-- 이거 없으면 이 밑에 jsp: -->
 <jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="포인트 내역" name="title" />
+	<jsp:param value="예매내역" name="title" />
 </jsp:include>
 
 <!-- 메뉴 아래 nav? 영역입니다. nav 메뉴 가지고 있는 페이지는 전부 복사해주세요. -->
@@ -46,16 +46,7 @@
 	</div>
 </div>
 <!-- 여기까지 해당 페이지 큰 글씨입니다. -->
-<div class="biggerPoint">
-
-<br />
-
-
-<div class="sub_sc">
-<div id="_listContentArea">
-
-
-	<style>
+	<!-- <style>
 		table {
 		border:8px solid black; 
 		/* border:선두께 선모양 선색상;
@@ -69,6 +60,77 @@
     	padding:20px; 		/* 셀테두리와 셀속에 들어있는 내용물 사이의 간격(셀여백) - cellpadding을 대체함 */
 	}
 	</style>
+	 -->
+<!-- 예매내역 -->
+<div class="biggerPoint">
+	<c:forEach items="${list }" var="mv" varStatus="vs">
+		<div class="sub_sc">
+			<div id="_listContentArea">
+				<div class="booking_history">
+					<div class="history_list clear">
+						<input id="hidden${vs.count}" type="hidden" value="${mv.movieReservationId}" />
+						<div class="img_box">
+							<img src="${pageContext.request.contextPath}/resources/upload/poster/${mv.image}" alt="">
+						</div>
+						<ul class="history_info clear">
+							<li>
+								<b>예매번호</b>
+								<strong>${mv.movieReservationId }</strong>
+							</li>
+							<li>
+								<b>영화</b>
+								<span>${mv.titleKor }</span>
+							</li>
+							<li>
+								<b>영화관</b>
+								<span>KH극장 ${mv.theaterId }관</span>
+							</li>
+							<li>
+								<b>일시</b>
+								<span>${mv.startDate } ${mv.startTime }</span>
+							</li>
+							<li>
+								<b>인원</b>
+								<span>일반 ${mv.count }인</span>
+							</li>
+							<li>
+								<b>좌석</b>
+								<span>${mv.selectedSeat }</span>
+							</li>
+							<li>
+								<b>결제금액</b>
+								<span>${mv.amount }원(카드결제)</span>
+							</li>
+							<li>
+								<b>결제일</b>
+								<span><fmt:formatDate value="${mv.regDate}" pattern="yyyy-MM-dd"/></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="qrcode${vs.count}" title="QR" class="qrcode"></div>
+		</div>
+	</c:forEach>
+		<div class="pagebar_footer">
+			${pagebar}
+		</div>
+</div>
+	
+	
+	
+	
+	
+	
+<%-- <div class="biggerPoint">
+
+<br />
+
+
+<div class="sub_sc">
+<div id="_listContentArea">
+
+
 	<c:forEach items="${list }" var="mv" varStatus="vs">
 		<table>
 			<input id="hidden${vs.count}" type="hidden" value="${mv.movieReservationId}" />
@@ -100,53 +162,22 @@
 						
 			
 		</table>
-	</c:forEach>
+		</c:forEach>
 	
 	
 	
-    <ul class="list_area  ">
+    
 
-    </ul>
-
+		</div>
 	</div>
-</div>
-<div class="pagebar_footer">
-	${pagebar}
-	
-</div>
+	<div class="pagebar_footer">
+		${pagebar}
+		
+	</div>
 
 
-</div>
+</div> --%>
 
-<script>
-	
-</script>
-
-<script>
-const submitProcess = () => {
-	const startDate = $('#startDate').val();
-	const endDate = $('#endDate').val();
-	
-	if(startDate == ""){
-		alert("시작날짜를 입력해주세요.");
-		return;
-	}
-	
-	if(endDate == ""){
-		alert("종료날짜를 입력해주세요.");
-		return;
-	}
-	
-	if(startDate > endDate){
-		alert("조회할 수 있는 날짜가 아닙니다. 다시 입력해주세요.");
-		return;
-	}
-	
-	$(memberPointByDateFrm)
-		.attr("action", `${pageContext.request.contextPath}/member/memberPointByDate.do`)
-		.submit();
-};
-</script>
 
 
 <script>
