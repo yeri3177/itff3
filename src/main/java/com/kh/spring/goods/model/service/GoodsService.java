@@ -106,6 +106,8 @@ public interface GoodsService {
 
 	int updateGoodsStock(List<OrderDetail> orderDetail);
 
+	int updateOrderDetailStatus(int orderDetailNo);
+
 
 
 }

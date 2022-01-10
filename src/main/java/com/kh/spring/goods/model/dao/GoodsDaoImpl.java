@@ -263,5 +263,10 @@ public class GoodsDaoImpl implements GoodsDao {
 		
 	}
 
+	@Override
+	public int updateOrderDetailStatus(int orderDetailNo) {
+		return session.update("goods.updateOrderDetailStatus", orderDetailNo);
+	}
+
 
 }

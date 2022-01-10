@@ -878,5 +878,11 @@
 	
 	</update>
 
+	<update id="updateOrderDetailStatus">
+		update order_detail 
+		set status = '구매확정' 
+		where order_detail_no = #{orderDetailNo}
+	
+	</update>
 	
 </mapper>

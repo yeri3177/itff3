@@ -245,6 +245,11 @@ public class GoodsServiceImpl implements GoodsService {
 	public int updateGoodsStock(List<OrderDetail> orderDetail) {
 		return goodsDao.updateGoodsStock(orderDetail);
 	}
+
+	@Override
+	public int updateOrderDetailStatus(int orderDetailNo) {
+		return goodsDao.updateOrderDetailStatus(orderDetailNo);
+	}
 	
 	
 }
