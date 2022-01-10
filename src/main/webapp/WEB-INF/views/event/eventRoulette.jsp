@@ -199,7 +199,7 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 	    
 	    let type = '룰렛이벤트';
 	    let target = $('.id').val();
-	    let content = change+'포인트가 지급되었습니다.'
+	    let content = '[ITFF] '+change+'포인트가 지급되었습니다.'
 	    let url = '${contextPath}/notify/saveNotify.do';
 	    	    
 	    console.log(type);

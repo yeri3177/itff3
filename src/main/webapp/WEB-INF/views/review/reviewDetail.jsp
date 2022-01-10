@@ -695,7 +695,7 @@ $(document).ready(function () {
                      
                      let type = '리뷰게시판';
                      let target = $('.ws_id').val();
-                     let content = '작성하신 리뷰에 누군가가 하트를 눌렀어요.'
+                     let content = '[리뷰게시판] 작성하신 글에 누군가 하트를 보냈습니다.'
                      let url = '${contextPath}/notify/saveNotify.do';
                      	    
                      console.log(type);
@@ -749,7 +749,7 @@ $(document).ready(function () {
 $('#reviewCommentFrm').submit(function(e){
     let type = '리뷰게시판';
     let target = $('.ws_id').val();
-    let content = '작성하신 리뷰에 댓글이 등록되었습니다.'
+    let content = '[리뷰게시판] 작성하신 글에 댓글이 등록되었습니다.'
     let url = '${contextPath}/notify/saveNotify.do';
     	    
     console.log(type);

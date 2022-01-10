@@ -127,7 +127,7 @@ pageContext.setAttribute("loginMember", loginMember);
 $('.boardCommentFrm').submit(function(e){
     let type = '1:1문의';
     let target = $('.memberId').val();
-    let content = '문의하신 글에 답변이 등록되었습니다.'
+    let content = '[1:1문의] 문의하신 글에 답변이 등록되었습니다.'
     let url = '${contextPath}/notify/saveNotify.do';
     	    
     console.log(type);
@@ -187,40 +187,5 @@ $('.btn-delete').click(function (e){
 		
 	}
 })
-
-</script>
-
-<script>
-
-	$('#question_btn').click(function(e){
-	    let modal = $('.modal-content').has(e.target);
-	    let type = '70';
-	    let target = modal.find('.memberId').val();
-	    let content = '문의하신 글에 답변이 등록되었습니다.'
-	    let url = '${contextPath}/admin/saveNotify.do';
-	    
-	    // 전송한 정보를 db에 저장	
-	    $.ajax({
-	        type: "post",
-	        url:"${pageContext.request.contextPath}/admin/saveNotify.do",
-	        dataType: "text",
-	        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-	        data: {
-	            target: target,
-	            content: content,
-	            type: type,
-	            url: url
-	        },
-	        beforeSend : function(xhr) {   
-	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	        },
-	        success:    // db전송 성공시 실시간 알림 전송
-	            // 소켓에 전달되는 메시지
-	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
-	        	socket.send("관리자,"+target+","+content+","+url)
-
-	    });
-	    modal.find('.modal-body textarea').val('');	// textarea 초기화
-	});
 
 </script>

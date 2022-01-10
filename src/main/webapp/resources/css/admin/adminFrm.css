@@ -21,6 +21,7 @@
 .form_side_container {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .form_side_container2 {
