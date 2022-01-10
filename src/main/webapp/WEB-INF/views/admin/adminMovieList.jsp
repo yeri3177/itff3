@@ -68,7 +68,7 @@
 									<!-- 작품코드 -->
 									<td>
 										<div class="email">
-											<span>${list.movieId }</span> 
+											<span style="font-family: 'Montserrat';">${list.movieId }</span> 
 										</div>
 									</td>
 									

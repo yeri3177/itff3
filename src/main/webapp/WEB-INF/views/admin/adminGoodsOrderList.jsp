@@ -121,7 +121,7 @@ div#search-receiver {display: "receiver".equals(${searchType}) ? "inline-block" 
 									<!-- 주문번호 -->
 									<td>
 										<div class="email">
-											<span style="text-decoration: underline;">${list.payment.paymentNo}</span> 
+											<span style="text-decoration: underline; font-family: 'Montserrat';">${list.payment.paymentNo}</span> 
 										</div>
 									</td>
 

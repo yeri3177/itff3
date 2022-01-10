@@ -53,17 +53,17 @@
 						  	<th class="title_th">예매번호</th>
 						    <td class="receiver">${movieReservation.movieReservationId }</td>
 						  	<th class="title_th">예매일자</th>
-						    <td class="receiver"><fmt:formatDate value="${movieReservation.regDate }" pattern="yy-MM-dd HH:mm:ss"/></td>
+						    <td class="receiver"><fmt:formatDate value="${movieReservation.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						  </tr>
 						  
 					  		<tr>
-							  	<th class="title_th">아이디</th>
-								<td class="receiver">
-									${movieReservation.memberId }
-								</td>
 								<th class="title_th">예매영화</th>
 								<td class="receiver">
 									${movieReservation.titleKor }					
+								</td>
+							  	<th class="title_th">아이디</th>
+								<td class="receiver">
+									${movieReservation.memberId }
 								</td>
 						  	</tr>	
 
@@ -74,9 +74,12 @@
 									${movieReservation.startTime }
 								</td>
 								<th class="title_th">좌석정보</th>
-								<td class="receiver">
+								<td class="receiver" style="display: flex; justify-content: flex-start;">
 									${movieReservation.theaterId }관 
-									${movieReservation.selectedSeat }					
+									${movieReservation.selectedSeat }&nbsp; 
+									<span style="font-size: 12px; color: #7e7e7e;">
+									 (일반 ${movieReservation.count }명)
+									</span>					
 								</td>
 						  	</tr>	
 

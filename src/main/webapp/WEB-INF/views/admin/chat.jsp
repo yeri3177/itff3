@@ -38,8 +38,8 @@ table.table th, table.table td {text-align: center;}
 	  <tbody>
 	  	<c:forEach items="${list}" var="chatLog">
 		  	<tr id="${chatLog.chatId}" data-chat-id="${chatLog.chatId}" data-member-id="admin">
-		  		<td>${chatLog.memberId}</td>
-		  		<td class="msg">${chatLog.msg}</td>
+		  		<td style="font-family: 'Montserrat';">${chatLog.memberId}</td>
+		  		<td class="msg" style="cursor: pointer;">${chatLog.msg}</td>
 		  		<td>
 		  			<span class="unread-count badge badge-danger ${chatLog.unreadCount eq 0 ? 'd-none' : ''}">${chatLog.unreadCount}</span>
 		  		</td>
