@@ -28,8 +28,8 @@ pageContext.setAttribute("loginMember", loginMember);
                         <span class="nav_name">대시보드</span>
                     </a>
 
-                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                       <ion-icon name="film-outline"></ion-icon>
+                     <div class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                       <ion-icon name="film-outline" onclick="location.href='${pageContext.request.contextPath}/admin/adminMovieList.do';"></ion-icon>
                         <span class="nav_name">상영/예매관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
@@ -42,8 +42,8 @@ pageContext.setAttribute("loginMember", loginMember);
                         </ul> 
                      </div>
                       
-                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+                     <div class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="file-tray-stacked-outline" onclick="location.href='${pageContext.request.contextPath}/admin/adminGoodsList.do';"></ion-icon>
                         <span class="nav_name">상품/주문관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
@@ -56,8 +56,8 @@ pageContext.setAttribute("loginMember", loginMember);
                      </div> 
                      
 
-                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="list-outline"></ion-icon>
+                    <div class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="list-outline" onclick="location.href='${pageContext.request.contextPath}/admin/adminReviewList.do';"></ion-icon>
                         <span class="nav_name">게시판관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
@@ -68,8 +68,8 @@ pageContext.setAttribute("loginMember", loginMember);
                          </ul> 
                      </div> 
                      
-                     <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="help-outline"></ion-icon>
+                     <div class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="help-outline" onclick="location.href='${pageContext.request.contextPath}/admin/adminNewQuestion.do';"></ion-icon>
                         <span class="nav_name">문의관리</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
@@ -80,8 +80,8 @@ pageContext.setAttribute("loginMember", loginMember);
                          </ul> 
                      </div> 
 
-                    <div href="#" class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
-                        <ion-icon name="alert-outline"></ion-icon>
+                    <div class="nav__link collapse" style="grid-template-columns: 20px max-content 1fr; display: grid; align-items: center; column-gap: 0.75rem; padding: 0.75rem; color: var(--white-color); border-radius: 0.5rem; margin-bottom: 1rem; transition: .3s; cursor: pointer;">
+                        <ion-icon name="alert-outline" onclick="location.href='${pageContext.request.contextPath}/admin/adminNoticeForm.do';"></ion-icon>
                         <span class="nav_name">공지사항</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link md hydrated rotate" role="img" aria-label="chevron down outline"></ion-icon>
