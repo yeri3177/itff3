@@ -582,6 +582,37 @@ $(() => {
 	fn_selectOptionStock();
 });
 
+/* 프리뷰 이미지 찾기  */
+function fn_searchImg(){
+
+	const options = {
+			optionType : $("select[name='optionType'] option:selected").text(),
+			optionColor : $("input[name=optionColor]:checked").attr('id'),
+			optionSize : $("input[name=optionSize]:checked").attr('id'),
+			goodsId : $("#goodsId").val()
+	}
+	
+	//console.log(options);
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/selectOneImg.do?${_csrf.parameterName}=${_csrf.token}",
+		data : options,
+		type : "post",
+        error: function(xhr, status, error){
+            console.log(error);
+        },
+        success : function(result){
+        	$("#preview-img-div").html(result);
+        }
+    });
+};
+
+/* 색상옵션 변경시 프리뷰 이미지찾기 함수 실행 */
+$(".colorRadio").change((e) => {
+	fn_searchImg();
+});
+
+
 /* 재고량 찾기 */
 function fn_selectOptionStock(){
 
@@ -592,7 +623,7 @@ function fn_selectOptionStock(){
 			goodsId : $("#goodsId").val()
 	}
 	
-	console.log(options);
+	//console.log(options);
 	
 	$.ajax({
 		url : "${pageContext.request.contextPath}/goods/selectGoodsOptionStock.do?${_csrf.parameterName}=${_csrf.token}",
@@ -602,9 +633,8 @@ function fn_selectOptionStock(){
             console.log(error);
         },
         success : function(result){
-        	console.log(result);
-        	
-        	console.log(result.includes("soldout-btn"));
+        	//console.log(result);
+        	//console.log(result.includes("soldout-btn"));
         	
         	if(result.includes("soldout-btn")){
         		
@@ -774,41 +804,6 @@ $(".cart-btn").click((e) => {
            },
            error: console.log
      });
-});
-
-
-/* 프리뷰 이미지 찾기  */
-function fn_searchImg(){
-
-	const options = {
-			optionType : $("select[name='optionType'] option:selected").text(),
-			optionColor : $("input[name=optionColor]:checked").attr('id'),
-			optionSize : $("input[name=optionSize]:checked").attr('id'),
-			goodsId : $("#goodsId").val()
-	}
-	
-	console.log(options);
-	
-	$.ajax({
-		url : "${pageContext.request.contextPath}/goods/selectOneImg.do?${_csrf.parameterName}=${_csrf.token}",
-		data : options,
-		type : "post",
-        error: function(xhr, status, error){
-            console.log(error);
-        },
-        success : function(result){
-        	$("#preview-img-div").html(result);
-        }
-    });
-};
-
-
-
-
-
-/* 색상옵션 변경시 프리뷰 이미지찾기 함수 실행 */
-$(".colorRadio").change((e) => {
-	fn_searchImg();
 });
 
 
