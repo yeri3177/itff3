@@ -106,6 +106,8 @@ public interface GoodsDao {
 
 	int updateGoodsStock(List<OrderDetail> orderDetail);
 
+	int updateOrderDetailStatus(int orderDetailNo);
+
 
 
 }
