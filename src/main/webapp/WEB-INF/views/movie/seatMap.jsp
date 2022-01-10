@@ -318,6 +318,7 @@ function min () {
 	}
 }
 
+
 function payment(scheduleId, movieId) {
 	console.log(scheduleId);
 	console.log(movieId);
@@ -327,34 +328,40 @@ function payment(scheduleId, movieId) {
 		var seat = $(this).val();
 		checkArr.push(seat);
 	})
-	console.log(checkArr);
-	console.log(checkArr.join(', '));
-	
-	$.ajax ({
-		url: "${pageContext.request.contextPath}/movie/payment.do",
-		data: {
-			scheduleId : scheduleId,
-			movieId : movieId,
-			selectedSeats : checkArr.join(', '),
-			total : 1000 * $("[name=seatNo]:checked").length
-		  },
-		method: "GET", 
-		contentType: "application/json",
-		success: function(data) {
-			$("#reserveStep03").html(data);
-			
-		},
-		complete: function() {
-			$("#reserveStep03").show();
-			$("#step02").removeClass("active");
-			$("#step02").addClass("prev");
-			
-			$("#step03").removeClass("disabled");
-			$("#step03").addClass("active");
-			
-			console.log("complete")
-		}	
-	});
+		console.log(checkArr);
+		console.log(checkArr.join(', '));
+		console.log(checkArr.length);
+		
+	if(checkArr.length != parseInt($("#count").html())) {
+		alert("좌석을 선택해주세요.");
+	} 
+	else {
+		$.ajax ({
+			url: "${pageContext.request.contextPath}/movie/payment.do",
+			data: {
+				scheduleId : scheduleId,
+				movieId : movieId,
+				selectedSeats : checkArr.join(', '),
+				total : 1000 * $("[name=seatNo]:checked").length
+			  },
+			method: "GET", 
+			contentType: "application/json",
+			success: function(data) {
+				$("#reserveStep03").html(data);
+				
+			},
+			complete: function() {
+				$("#reserveStep03").show();
+				$("#step02").removeClass("active");
+				$("#step02").addClass("prev");
+				
+				$("#step03").removeClass("disabled");
+				$("#step03").addClass("active");
+				
+				console.log("complete")
+			}	
+		});
+	}
 }
 
 	
