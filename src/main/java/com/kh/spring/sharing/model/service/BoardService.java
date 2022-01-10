@@ -12,7 +12,7 @@ public interface BoardService {
 
 	int selectBoardTotalCount();
 
-	int insertBoard(Board board);
+	int updateBoard(Board board);
 
 	Board selectOneBoard(int no);
 
@@ -33,5 +33,7 @@ public interface BoardService {
 	int insertBoardComment(BoardComment boardComment);
 
 	int deleteBoardComment(int no);
+
+	int updateBoardReadCount(int no);
 
 }

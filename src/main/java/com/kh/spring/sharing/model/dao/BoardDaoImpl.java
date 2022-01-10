@@ -32,11 +32,6 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int insertBoard(Board board) {
-		return session.insert("board.insertBoard", board);
-	}
-
-	@Override
 	public int insertAttachment(Attachment attach) {
 		return session.insert("board.insertAttachment", attach);
 	}
@@ -90,6 +85,16 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int deleteBoardComment(int no) {
 		return session.delete("board.deleteBoardComment",no);
+	}
+
+	@Override
+	public int updateBoard(Board board) {
+		return session.update("board.updateBoard", board);
+	}
+
+	@Override
+	public int updateBoardReadCount(int no) {
+		return session.update("board.updateBoardReadCount", no);
 	}
 
 	

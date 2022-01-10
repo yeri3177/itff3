@@ -156,14 +156,14 @@ $(() => {
 			<c:if test="${attach.attachNo ne 0 }">
 			<div class="input-group mb-3" style="padding:0px;">
 				<div class="input-group-prepend" style="padding:0px;">
-				  <span class="input-group-text">첨부파일</span>
+				  <span class="input-group-text">첨부파일${vs.count }</span>
 				</div>
 				<div class="custom-file">
-				  <input type="file" class="custom-file-input" name="upFile" id="upFile" multiple>
+				  <input type="file" class="custom-file-input" name="upFile" id="upFile${vs.count }" data-no="${vs.count }" multiple>
 				  <label class="custom-file-label" for="upFile1">${board.attachments[0].originalFilename}</label>
 				</div>
 		   		<div class="delFileArea" style="margin-left: 12px;">
-				  <input type="checkbox" name="delFile" id="delFile${vs.count}" value="${attach.attachNo}" style="position: relative; top: 11px;"/>
+				  <input type="checkbox" name="delFile" id="delFile" value="${attach.attachNo}" style="position: relative; top: 11px;"/>
 				  <label for="delFile" style="position: relative; top: 11px;">기존파일삭제</label>
 			    </div>
 				</div>

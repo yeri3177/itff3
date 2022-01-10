@@ -117,12 +117,14 @@
 </select>
 
 <update id="updateBoard">
-	update ticket_sharing_board
+	update 
+		ticket_sharing_board
 	set
 		category = #{category},
 		title = #{title},
 		content = #{content}
-	where no = #{no}
+	where 
+		no = #{no}
 </update>
 
 <delete id="deleteBoardAttachment">
@@ -192,5 +194,14 @@
 	where
 		no = #{no}
 </delete>
+
+<update id="updateBoardReadCount">
+	update
+		ticket_sharing_board
+	set
+		read_count = read_count + 1
+	where
+		no = #{no}
+</update>
 
 </mapper>

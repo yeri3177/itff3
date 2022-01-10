@@ -44,11 +44,11 @@ public class BoardServiceImpl implements BoardService {
 			isolation = Isolation.READ_COMMITTED, 
 			rollbackFor = Exception.class
 	)
-	public int insertBoard(Board board) {
+	public int updateBoard(Board board) {
 		int result = 0;
 		// board insert
 		try {
-			result = boardDao.insertBoard(board);
+			result = boardDao.updateBoard(board);
 			log.debug("BoardServiceImpl_board.no = {}", board.getNo());
 			// attachment insert
 			List<Attachment> attachments = board.getAttachments();
@@ -124,6 +124,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteBoardComment(int no) {
 		return boardDao.deleteBoardComment(no);
+	}
+
+	@Override
+	public int updateBoardReadCount(int no) {
+		return boardDao.updateBoardReadCount(no);
 	}
 
 	

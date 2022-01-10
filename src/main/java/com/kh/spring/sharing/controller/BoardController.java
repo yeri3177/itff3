@@ -1,5 +1,7 @@
 package com.kh.spring.sharing.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -143,7 +146,7 @@ public class BoardController {
 			if(!attachments.isEmpty())
 				board.setAttachments(attachments);
 			
-			int result = boardService.insertBoard(board);
+			int result = boardService.updateBoard(board);
 			String msg = result > 0 ? "게시글 등록 성공!" : "게시글 등록 실패!";
 			redirectAttr.addFlashAttribute("msg", msg);
 		} catch(Exception e) {
@@ -154,8 +157,45 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardDetail.do")
-	public void boardDetail(@RequestParam int no, @RequestParam(required = false) String memberId, Model model) {
+	public String boardDetail(HttpServletRequest request, HttpServletResponse response, @RequestParam int no, @RequestParam(required = false) String memberId, Model model) {
 		log.debug("no = {}", no);
+		log.debug("memberId = {}", memberId);
+		
+		Cookie[] cookies = request.getCookies();
+		log.debug("cookies = {}", cookies);
+		boolean hasRead = false;
+		String boardValue = "";
+		
+		System.out.println(cookies == null ? "null" : "not null");
+		if(cookies != null) {
+			for(Cookie c : cookies) {
+				String name = c.getName();
+				String value = c.getValue();
+				System.out.println(name + " : " + value);
+				
+				if("board".equals(name)) {
+					boardValue = value;
+					if(value.contains("|"+ no + "|")) {
+						hasRead = true;
+					}
+					break;
+				}
+ 			}
+		}
+		//게시글을 처음 읽는 경우
+		int result = 0;
+		if(!hasRead) {
+			//게시글 Cookie
+			Cookie cookie = new Cookie("board", boardValue + "|" + no + "|" );
+			cookie.setMaxAge(365 * 24 * 60 * 60 );
+			cookie.setPath(request.getContextPath() + "/sharing/boardDetail.do"); 
+			System.out.println("new cookie" + cookie.getName() + " : " + cookie.getValue());
+			response.addCookie(cookie);
+			
+			// 조회수 증가
+			result = boardService.updateBoardReadCount(no);
+		}
+		
 		
 		// 업무로직
 		//Board board = boardService.selectOneBoard(no);
@@ -168,6 +208,8 @@ public class BoardController {
 		
 		model.addAttribute("board", board);
 		model.addAttribute("commentList", commentList);
+		
+		return "sharing/boardDetail";
 	}
 	
 	@PostMapping("/boardCommentEnroll.do")
@@ -220,7 +262,6 @@ public class BoardController {
 			log.debug("saveDirectory = {}", saveDirectory);
 			
 			for(MultipartFile upFile : upFiles) {
-				
 				if(!upFile.isEmpty() && upFile.getSize() != 0) {
 					
 					log.debug("upFile = {}", upFile);
@@ -237,6 +278,7 @@ public class BoardController {
 					
 					// 2. DB attachment 레코드 등록
 					Attachment attach = new Attachment();
+					attach.setMarketNo(board.getNo());
 					attach.setRenamedFilename(renamedFilename);
 					attach.setOriginalFilename(originalFilename);
 					attachments.add(attach);
@@ -262,7 +304,7 @@ public class BoardController {
 			if(!attachments.isEmpty())
 				board.setAttachments(attachments);
 			
-			result = boardService.insertBoard(board);
+			result = boardService.updateBoard(board);
 //			String msg = result > 0 ? "게시글 업로드 성공!" : "게시글 업로드 실패!";
 //			redirectAttr.addFlashAttribute("msg", msg);
 			
