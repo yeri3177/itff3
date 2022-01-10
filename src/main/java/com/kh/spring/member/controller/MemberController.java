@@ -2,7 +2,7 @@ package com.kh.spring.member.controller;
 
 import java.beans.PropertyEditor;
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,10 +42,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.zxing.WriterException;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.MemberMovieReservation;
 import com.kh.spring.member.model.vo.Point;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Attachment;
@@ -430,6 +432,43 @@ public class MemberController {
 		}
 		
 		return "redirect:/member/memberDetail.do";
+	}
+	
+	@GetMapping("/memberMovieReservation.do")
+	public void memberMovieReservation(
+			@RequestParam(defaultValue = "1") int cPage,
+			Model model,
+			HttpServletRequest request,
+			Authentication authentication
+	) {
+		
+		//접속된 아이디 가져오기
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		log.debug("id = {}", id);
+		
+		log.debug("cPage = {}", cPage);
+		
+		int limit = 10;
+		int offset = (cPage - 1) * limit;
+		
+		
+		// 1. 해당 아이디로 예약 했던 영화 가져오기
+		List<MemberMovieReservation> list = memberService.selectMemberMovieReservationByMemberId(offset, limit, id);
+		log.debug("list = {}", list);
+		model.addAttribute("list", list);
+				
+		// 2. 아이디별 예약영화 총 게시물 수 가져오기
+		int totalContent = memberService.selectMemberMovieReservationCount(id);
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI(); 
+		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		
 	}
 	
 	@GetMapping("/memberPoint.do")

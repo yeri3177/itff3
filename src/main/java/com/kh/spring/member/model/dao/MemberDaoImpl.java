@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring.member.model.vo.Calendar;
 import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.member.model.vo.MemberMovieReservation;
 import com.kh.spring.member.model.vo.Point;
+import com.kh.spring.movie.model.vo.MovieReservation;
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.sharing.model.vo.Board;
 
@@ -158,6 +160,17 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updateMemberPointByIdAndNewPoint(Map<String, Object> param2) {
 		return session.update("member.updateMemberPointByIdAndNewPoint", param2);
+	}
+
+	@Override
+	public List<MemberMovieReservation> selectMemberMovieReservationByMemberId(int offset, int limit, String id) {
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("member.selectMemberMovieReservationByMemberId", id, rowBounds);
+	}
+
+	@Override
+	public int selectMemberMovieReservationCount(String id) {
+		return session.selectOne("member.selectMemberMovieReservationCount", id);
 	}
 
 	

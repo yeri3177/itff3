@@ -298,4 +298,26 @@
 		where
 			id = #{id}
 	</update>
+	
+	<select id="selectMemberMovieReservationByMemberId" resultType="membermoviereservation">
+		select  
+		    mr.*,
+		    n.image
+		from 
+		    movie_reservation mr join movie n
+		        on mr.movie_id = n.movie_id
+		where
+		    member_id = #{id}
+	</select>
+	
+	<select id="selectMemberMovieReservationCount" resultType="_int">
+		select
+		    count(*)
+		from
+		    movie_reservation
+		where
+			member_id = #{id}
+		order by
+			start_date desc
+	</select>
 </mapper>
