@@ -98,7 +98,7 @@
 				<th colspan="2">결제 금액 : ${mv.amount }원(카드결제)</th>
 			</tr>
 						
-			
+			<br />
 		</table>
 	</c:forEach>
 	

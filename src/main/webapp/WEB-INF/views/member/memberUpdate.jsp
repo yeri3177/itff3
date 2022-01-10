@@ -99,7 +99,7 @@
 								<div class="d_tbl">
 									<span class="form_txt"> <input name="password"
 										id="password" type="password" maxlength="30" size="20"
-										value="" placeholder="비밀번호를 입력해 주세요."
+										value='' placeholder="비밀번호를 입력해 주세요."
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 									</span>
 								</div>
@@ -134,6 +134,7 @@
 										id="nickname" type="text"
 										maxlength="64" size="40"
 										placeholder="닉네임을 입력해 주세요."
+										value='<sec:authentication property="principal.nickname"/>'
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 										<span class="guide1  ok1">이 닉네임은 사용가능합니다.</span>
 										<span class="guide1 error1">이 닉네임은 이미 사용중입니다.</span>
@@ -156,6 +157,7 @@
 											<span class="form_txt"> 
 											<input name="birthday1"
 												type="text" onblur="onlynum(this, '1');" size="4"
+												value='<fmt:formatDate value="${member.birthday }" pattern="yyyy"/>'
 												maxlength="4" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
 												placeholder="년 ex)2000" >
 											</span>
@@ -169,6 +171,7 @@
 											<span class="form_txt"> 
 											<input name="birthday2"
 												type="text" onblur="onlynum(this, '1');" size="2"
+												value='<fmt:formatDate value="${member.birthday }" pattern="MM"/>'
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
 												placeholder="월" >
 											</span>
@@ -181,6 +184,7 @@
 										<div class="d_tbl">
 											<span class="form_txt"> <input name="birthday3"
 												type="text" onblur="onlynum(this, '1');" size="2"
+												value='<fmt:formatDate value="${member.birthday }" pattern="dd"/>'
 												maxlength="2" style="-webkit-ime-mode: inactive; ime-mode: inactive;"
 												placeholder="일" >
 											</span>
@@ -206,6 +210,7 @@
 										<input name="email"
 										id="email" type="text" 
 										maxlength="64" size="40" placeholder="이메일을 입력해 주세요."
+										value='<sec:authentication property="principal.email"/>'
 										style="-webkit-ime-mode: inactive; ime-mode: inactive;">
 										<span><button type="button" id="emailCheck" class="btn btn-secondary btn-lg guide2 ok2" onclick="checkEmail();">이메일 인증코드 전송</button></span>
 										<span class="guide2 error2">이 이메일은 이미 사용중입니다.</span>
@@ -218,6 +223,8 @@
 					</div>
 
 					<!-- 휴대폰번호 입력양식이라면 -->
+
+					<c:set var="phoneNum" value='dd'/>
 
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<div class="form_group_wrap">
@@ -247,7 +254,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone1" type="text" placeholder="ex)010" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone1" type="text" placeholder="ex)010" value="${fn:substring(member.phone,0,3) }" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -256,7 +263,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone2" type="text" placeholder="1234" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone2" type="text" placeholder="1234" value="${fn:substring(member.phone,3,7) }" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -265,7 +272,7 @@
 								<div class="form_group wid100"> <!-- // focus 시 on 클래스 -->
 									<div class="d_tbl">
 										<span class="form_txt">
-											<input name="phone3" type="text" placeholder="5678" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
+											<input name="phone3" type="text" placeholder="5678" value="${fn:substring(member.phone,7,11) }" onblur="onlynum(this, '1');" size="4" maxlength="4"  style="-webkit-ime-mode:inactive;ime-mode:inactive;">
 										</span>
 									</div>
 								</div>
@@ -281,9 +288,9 @@
 							<div class="form_group wid100" style="position:relative;"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address" id="zipcode" type="text" size="7" maxlength="7" value="" class="inputTxt">
+										<input name="address" id="zipcode" type="text" size="7" maxlength="7" value='<sec:authentication property="principal.postCode"/>' class="inputTxt">
 										&nbsp;			
-										<input name="address" type="hidden" size="4" maxlength="3"   value="" class="inputTxt">
+										<input name="address" type="hidden" size="4" maxlength="3" value="" class="inputTxt">
 																				
 										<a href="javascript:findZip();" class="btn btn-s btn_cancel" style="position:absolute; right:5px; top:10px; z-index:1;">우편번호 찾기</a>
 					
@@ -294,8 +301,8 @@
 							<div class="form_group wid100" style="margin-top:5px"> <!-- // focus 시 on 클래스 -->
 								<div class="d_tbl">
 									<span class="form_txt">
-										<input name="address1" id="address1" type="text" size="50"  placeholder="주소 입력" class="inputTxt mt10">
-										<input name="address2" id="address2" type="text" size="50"  placeholder="상세주소 입력">
+										<input name="address1" id="address1" type="text" size="50" value='<sec:authentication property="principal.address"/>' placeholder="주소 입력" class="inputTxt mt10">
+										<input name="address2" id="address2" type="text" size="50" value='<sec:authentication property="principal.detailAddress"/>' placeholder="상세주소 입력">
 					
 									</span>
 								</div>

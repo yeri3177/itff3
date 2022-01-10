@@ -19,6 +19,13 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<c:if test="${not empty msg}">
+<script>
+	alert("${msg}");
+</script>
+</c:if>
+
+
 <!-- 메인 콘텐츠 섹션 -->
 <section class="main-content">
 
