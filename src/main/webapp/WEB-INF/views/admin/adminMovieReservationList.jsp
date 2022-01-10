@@ -136,7 +136,7 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 									<!-- 예매번호 -->
 									<td>
 										<div class="email">
-											<span class="reservationId">${list.movieReservationId}</span> 
+											<span class="reservationId" style="font-family: 'Montserrat';">${list.movieReservationId}</span> 
 										</div>
 									</td>
 
@@ -164,7 +164,15 @@ div#search-startDate {display: "name".equals(${searchType}) ? "inline-block" : "
 									<!-- 좌석 -->
 									<td>
 										<div class="email">
-											<span>${list.theaterId}관 ${list.selectedSeat}</span> 
+											<span>
+											${list.theaterId}관 
+											</span>
+											<span>
+											${list.selectedSeat}
+											</span>
+											<span style="font-size: 12px; color: #7e7e7e;">
+											(일반 ${list.count }명)
+											</span> 
 										</div>
 									</td>
 

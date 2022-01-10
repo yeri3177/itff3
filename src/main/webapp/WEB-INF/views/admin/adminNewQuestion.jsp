@@ -107,7 +107,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 							<span class="txt_box">
 								<p class="tit">[신규] ${list.questionTitle }</p>
 							</span>
-							<p class="date"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </p><i class="fas fa-link ico_link"></i>
+							<p class="date" style="font-family: 'Montserrat';"><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/> </p><i class="fas fa-link ico_link"></i>
 						</a>
 
 					</li>

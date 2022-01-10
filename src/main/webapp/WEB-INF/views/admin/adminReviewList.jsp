@@ -110,7 +110,7 @@ div#search-memberId {display: "memberId".equals(${searchType}) ? "inline-block" 
 									<!-- 글번호 -->
 									<td>
 										<div class="email" data-id="${list.reviewNo }">
-											<span>${list.reviewNo }</span> 
+											<span style="font-family: 'Montserrat';">${list.reviewNo }</span> 
 											<input type="hidden" name=id${status.index} value="${reviewNo }" />
 										</div>
 									</td>

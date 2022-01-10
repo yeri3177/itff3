@@ -308,6 +308,8 @@
 		<result column="start_date" property="startDate"/>
 		<result column="start_time" property="startTime"/>
 		<result column="amount" property="amount"/>
+		<result column="theater_id" property="theaterId"/>
+		<result column="count" property="count"/>
 	</resultMap>
 
 	<resultMap type="movieSchedule" id="movieScheduleMap">

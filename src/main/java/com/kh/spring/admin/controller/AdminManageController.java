@@ -871,7 +871,7 @@ public class AdminManageController {
 		model.addAttribute("totalContents", totalContents);
 		
 		// 3. pagebar
-		String url = request.getRequestURI()+"?startDate="+startDate+"&endDate="+endDate;
+		String url = request.getRequestURI()+"?searchType="+searchType+"&startDate="+startDate+"&endDate="+endDate;
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContents, url);
 //		log.debug("pagebar = {}", pagebar);
 		

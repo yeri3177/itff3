@@ -87,7 +87,7 @@
 									<!-- 상영번호 -->
 									<td>
 										<div class="email">
-											<span class="reservationId">${list.movieSchedule.movieScheduleId}</span> 
+											<span class="reservationId" style="font-family: 'Montserrat';">${list.movieSchedule.movieScheduleId}</span> 
 										</div>
 									</td>
 
