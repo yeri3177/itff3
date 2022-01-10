@@ -26,7 +26,7 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_">
-				<a href="#" target="_top">빠른예매</a>
+				<a href="${pageContext.request.contextPath}/movie/booking.do" target="_top">빠른예매</a>
 			</li>	
 			<li class="on_">
 				<a href="${pageContext.request.contextPath}/schedule/day1.do" target="_top" style="font-weight: bold;">상영시간표</a>
@@ -39,34 +39,63 @@
 <!-- 코드 한줄로 되어있는건 ctrl shift f 누르면 펴진다. -->
 
 <div id="contents" class="contents_full contents_reserve">
-	<div class="wrap_reserve">
+	<div class="wrap_reserve" id="wrap1">	
 		<h2 class="hidden">예매하기</h2>
 		<div class="section_step_tit">
 			<ul>
-				<li class="active step01" id="step01"><a href="#reserveStep01"> <strong
-						class="tit"><span>01</span><br>상영시간</strong>
-						<div class="bx_con">
+				<li class="active step01" id="step01">
+					<a style="cursor: default;"> 
+						<strong class="tit"><span>01</span><br>상영시간</strong>
+						<div class="bx_con step01">
 							<dl>
 								<dt>선택한 영화 제목</dt>
-								<dd></dd>
+								<dd id="bx_step01_title"></dd>
 								<dt>선택한 상영관</dt>
-								<dd>용산</dd>
+								<dd id="bx_step01_theater"></dd>
 								<dt>선택한 상영 날짜</dt>
-								<dd>2022-01-02(일)</dd>
+								<dd id="bx_step01_startDate"></dd>
 								<dt>선택한 시간</dt>
-								<dd></dd>
+								<dd id="bx_step01_startTime"></dd>
 							</dl>
 						</div>
-				</a></li>
-				<li class="disabled step02" id="step02"><a style="cursor: default;"> <strong
-						class="tit"><span>02</span><br>인원/좌석</strong>
-				</a></li>
-				<li class="disabled step03" id="step03"><a style="cursor: default;"> <strong
-						class="tit"><span>03</span><br>결제</strong>
-				</a></li>
-				<li class="disabled step04" id="step04"><a style="cursor: default;"><strong
-						class="tit"> <span>04</span><br>결제완료
-					</strong> </a></li>
+
+							
+					</a>
+				</li>
+				<li class="disabled step02" id="step02">
+					<a style="cursor: default;"> 
+						<strong class="tit"><span>02</span><br>인원/좌석</strong>
+						<div class="bx_con step02">
+							<dl>
+								<dt>선택한 인원</dt>
+								<dd id="bx_step02_count"></dd>
+								<dt>선택한 좌석</dt>
+								<dd id="bx_step02_seats"></dd>
+							</dl>
+						</div>
+				
+					</a>
+				</li>
+				<li class="disabled step03" id="step03">
+					<a style="cursor: default;"> 
+						<strong	class="tit"><span>03</span><br>결제</strong>
+						<div class="bx_con step03">
+							<dl>
+								<dt>티켓금액</dt>
+								<dd>10,000원</dd>
+								<dt>할인금액</dt>
+								<dd>0원</dd>
+								<dt>총합계</dt>
+								<dd>10,000원</dd>
+							</dl>
+						</div>
+					</a>
+				</li>
+				<li class="disabled step04" id="step04">
+					<a style="cursor: default;">
+						<strong	class="tit"> <span>04</span><br>결제완료</strong> 
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div id="reserveStep01" class="section_step_con step01 active" style="position: absolute;">
@@ -352,7 +381,7 @@
 								<span>전체</span>
 							</button>
 							<div class="tab_con ty5">
-								<h5 class="hidden">전체</h5>
+								<h5 class="hidden">상영일정</h5>
 								<div class="timeScroll mCustomScrollbar _mCS_71 mCS-autoHide"
 									data-mcs-theme="minimal-dark"
 									style="position: relative; overflow: visible;">
@@ -449,6 +478,7 @@
 		</div>
 		
 	</div>
+	<!-- <div class="wrap_reserve" id="wrap2" style="z-index: 1; background-color: white;"></div> -->
 </div>
 
 <script>
@@ -585,6 +615,14 @@ function selectSeats(scheduleId, movieId) {
 	});
 }
 
+// .step02.prev 안먹혀서 할수없이 아이디로
+$("#step02").hover(
+	e => {
+		$(".bx_con.step02").show();   
+	},
+	e => {
+		$(".bx_con.step02").hide();   
+});
 
 
 </script>

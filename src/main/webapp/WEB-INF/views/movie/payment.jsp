@@ -34,12 +34,12 @@
 				<dt>상영관</dt>
 				<dd>${schedule.theaterId}관</dd>
 				<dt>인원</dt>
-				<dd>일반 ${fn:length(selectedSeats)}인</dd>
+				<dd id="selectedCnt">일반 ${fn:length(selectedSeats)}인</dd>
 			</dl>
 		</div>
 		<div class="seat_infor" style="padding-left: 241px; font-size: 14px;"> 
 				<dt style="float: left;">좌석&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</dt>
-				<dd>
+				<dd id="selectedSeats">
 					<strong>
 						<c:forEach items="${selectedSeats}" var="seat" varStatus="vs">
 							<c:if test="${vs.first}">
@@ -203,7 +203,7 @@
 				</dd>
 			</dl>
 			<dl>
-				<dt>할인금액</dt>
+				<dt>할인금액1</dt>
 				<dd>
 					-<strong id="usedPoints">0</strong>원
 				</dd>
@@ -237,6 +237,13 @@
 
 
 <script>
+// 02단계 호버시 나오는 값을 세팅
+$(() => {
+	$("#bx_step02_count").html($("#selectedCnt").html());
+	$("#bx_step02_seats").html($("#finalSeat").val());
+});
+
+
 $("#usingMileage").keyup((e) => {
 	var val = $("#usingMileage").val();
 	console.log($("#myMileage").val());
