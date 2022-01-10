@@ -227,6 +227,7 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .cart-btn {
@@ -235,6 +236,14 @@ body {
 	background-color: black;
 	color: white;
 }
+
+.soldout-btn {
+	width: 100%;
+	height: 67px;
+	background-color: black;
+	color: white;
+}
+
 .price-box input {
 	border : 0 solid black;
 }
@@ -250,12 +259,12 @@ body {
 }
 
 .cnt-box2 {
-	font-size: 25px;
+	font-size: 22px;
 	font-weight: bold;
 }
 
 .cnt-box1 {
-	font-size: 18px;
+	font-size: 17px;
 	color:gray;
 }
 

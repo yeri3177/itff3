@@ -15,6 +15,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.OrderDetailJoin;
 import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.goods.model.vo.Payment;
@@ -235,7 +236,15 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDao.selectGoodsListBySortType(param);
 	}
 
+	@Override
+	public List<OrderDetail> selectOrderDetailList(String orderNo) {
+		return goodsDao.selectOrderDetailList(orderNo);
+	}
 
+	@Override
+	public int updateGoodsStock(List<OrderDetail> orderDetail) {
+		return goodsDao.updateGoodsStock(orderDetail);
+	}
 	
 	
 }

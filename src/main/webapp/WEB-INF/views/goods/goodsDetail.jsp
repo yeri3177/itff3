@@ -316,26 +316,28 @@
 				    </div>
 				  </div>
 				  
-				<div class="accordion-item">
-			    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-			        상품을 받았는데 교환이나 환불이 가능한가요?
-			      </button>
-			    </h2>
-			    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-			      <div class="accordion-body">
-			        주문 제작 오더메이드 상품 특성상 단순변심으로 인한 교환/환불 및 반품이 불가합니다.<br />
-					단, 수령하신 상품이 불량인 경우 “전자상거래등에서의 소비자 보호에 관한 법률"에 따라 교환/환불 및 반품이 가능하오니
-					잇프굿즈샵 고객센터(1566-5496) 또는 1:1 문의하기를 통해 문의 부탁드립니다.<br />
-					수령하신 상품의 불량 부분이 보이는 사진 2장 이상을 첨부하여 문의해 주시면 빠르게 확인 도와드리겠습니다.<br />
-					주문하셨던 상품이 아닌 다른 상품으로의 교환은 불가하며 세탁 부주의로 인한 상품 변형 및 인쇄 손상에 따른
-					교환/환불은 불가하므로 상품 상세 페이지의 세탁 방법을 꼭 확인해 주세요.
-			      </div>
-			    </div>
-			  </div>  
+					<div class="accordion-item">
+				    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+				      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+				        상품을 받았는데 교환이나 환불이 가능한가요?
+				      </button>
+				    </h2>
+				    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+				      <div class="accordion-body">
+				        주문 제작 오더메이드 상품 특성상 단순변심으로 인한 교환/환불 및 반품이 불가합니다.<br />
+						단, 수령하신 상품이 불량인 경우 “전자상거래등에서의 소비자 보호에 관한 법률"에 따라 교환/환불 및 반품이 가능하오니
+						잇프굿즈샵 고객센터(1566-5496) 또는 1:1 문의하기를 통해 문의 부탁드립니다.<br />
+						수령하신 상품의 불량 부분이 보이는 사진 2장 이상을 첨부하여 문의해 주시면 빠르게 확인 도와드리겠습니다.<br />
+						주문하셨던 상품이 아닌 다른 상품으로의 교환은 불가하며 세탁 부주의로 인한 상품 변형 및 인쇄 손상에 따른
+						교환/환불은 불가하므로 상품 상세 페이지의 세탁 방법을 꼭 확인해 주세요.
+				      </div>
+				    </div>
+				  </div>  
 				  
 				  
 				</div> <!-- end of accordion -->
+				
+				<button class="circleBtn" style="margin: 40px auto;">FAQ 전체 보러가기</button>
 				
 				
 			</div> <!-- end of tab4_content -->
@@ -526,9 +528,9 @@
 		</div>
 		
 		<!-- 장바구니 버튼 -->
-		<!-- <input type="submit" value="장바구니" class="cart-btn"/> -->
-		<input type="button" value="장바구니" class="cart-btn"/>
-
+		<div class="cart-btn-div"><input type="button" value="장바구니" class="cart-btn"/></div>
+		<div class="soldout-div"></div>
+		
 	</div> <!-- end of 상단 > 오른쪽 영역 -->
 	
 </section>
@@ -572,25 +574,65 @@ $(() => {
 	
 	/* 최초로딩시 -> 프리뷰이미지 */
 	fn_searchImg();
-	
-	/* 색상변경시 -> 프리뷰이미지 */
-	fn_colorChange();
-	
-	/* 장바구니 버튼 클릭시 */
-	fn_cartBtn();
-	
-	/* fn_sizeChange(); */
-	
-	/* 토스트 확인용 */
-	//fn_toast("URL 복사 되었습니다.");
-	
+		
 	/* 좋아요 버튼 눌렀는지 찾기 */
 	fn_selectGoodsLike();
 	
-	
-	
-    
+	/* 재고량 찾기 */
+	fn_selectOptionStock();
 });
+
+/* 재고량 찾기 */
+function fn_selectOptionStock(){
+
+	const options = {
+			optionType : $("select[name='optionType'] option:selected").text(),
+			optionColor : $("input[name=optionColor]:checked").attr('id'),
+			optionSize : $("input[name=optionSize]:checked").attr('id'),
+			goodsId : $("#goodsId").val()
+	}
+	
+	console.log(options);
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/selectGoodsOptionStock.do?${_csrf.parameterName}=${_csrf.token}",
+		data : options,
+		type : "post",
+        error: function(xhr, status, error){
+            console.log(error);
+        },
+        success : function(result){
+        	console.log(result);
+        	
+        	console.log(result.includes("soldout-btn"));
+        	
+        	if(result.includes("soldout-btn")){
+        		
+        		$(".cart-btn-div").hide();
+        		$(".soldout-div").html(result);
+        		$(".soldout-div").show();
+        		
+        	}
+        	else {
+        		
+        		$(".soldout-div").hide();
+        		$(".cart-btn-div").show();
+        		 
+        	}
+        }
+    });
+};
+
+/* 색상옵션 변경시 재고량 찾기 */
+$(".colorRadio").change((e) => {
+	fn_selectOptionStock();
+});
+
+/* 사이즈 변경시 재고량 찾기 */
+$(".sizeChange input[type='radio']").change((e) => {
+	fn_selectOptionStock();
+});
+
 
 /* 페이지 로드시 좋아요 버튼 눌렀는지 찾기 */
 function fn_selectGoodsLike(){
@@ -705,44 +747,34 @@ function fn_toast(msg) {
 
 
 /* 장바구니버튼 */
-function fn_cartBtn(){
-	$(".cart-btn").click((e) => {
+$(".cart-btn").click((e) => {
 
-		
-		// 전달값 
-		const cart = {
-			goodsId : $("[name=goodsId]").val(),
-			optionType : $("select[name='optionType'] option:selected").text(),
-			optionColor : $("input[name=optionColor]:checked").attr('id'),
-			optionSize : $("input[name=optionSize]:checked").attr('id'),
-			memberId : $("[name=memberId]").val(),
-			goodsQty : $("[name=amount]").val()
-		}
-		
-		console.log(cart);
-		
-		//const jsonStr = JSON.stringify(cart);
-		//console.log(jsonStr);
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/goods/InsertCart.do?${_csrf.parameterName}=${_csrf.token}",
-			data: cart,
-			/* data: jsonStr,
-			contentType: "application/json; charset=utf-8", */
-			type : "post",
-            
-            success(data) {
-            	console.log(data); //{msg: '상품을 장바구니에 담았습니다.'}
-            	
-            	var msg = Object.values(data);
-            	
-            	fn_toast(msg);
-            	
-            },
-            error: console.log
-        });
-	});
-};
+	// 전달값 
+	const cart = {
+		goodsId : $("[name=goodsId]").val(),
+		optionType : $("select[name='optionType'] option:selected").text(),
+		optionColor : $("input[name=optionColor]:checked").attr('id'),
+		optionSize : $("input[name=optionSize]:checked").attr('id'),
+		memberId : $("[name=memberId]").val(),
+		goodsQty : $("[name=amount]").val()
+	}
+	
+	console.log(cart);
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/goods/InsertCart.do?${_csrf.parameterName}=${_csrf.token}",
+		data: cart,
+		type : "post",   
+        success(data) {
+           	console.log(data); //{msg: '상품을 장바구니에 담았습니다.'}
+           	
+           	var msg = Object.values(data);
+           	
+           	fn_toast(msg);
+           },
+           error: console.log
+     });
+});
 
 
 /* 프리뷰 이미지 찾기  */
@@ -757,7 +789,6 @@ function fn_searchImg(){
 	
 	console.log(options);
 	
-	
 	$.ajax({
 		url : "${pageContext.request.contextPath}/goods/selectOneImg.do?${_csrf.parameterName}=${_csrf.token}",
 		data : options,
@@ -766,22 +797,20 @@ function fn_searchImg(){
             console.log(error);
         },
         success : function(result){
-        	//console.log(result);
-        	
-        	/* 이미지 넣기 */
         	$("#preview-img-div").html(result);
-
         }
     });
 };
 
+
+
+
+
 /* 색상옵션 변경시 프리뷰 이미지찾기 함수 실행 */
-function fn_colorChange(){
-	
-	$(".colorRadio").change((e) => {
-		fn_searchImg();
-	});
-}
+$(".colorRadio").change((e) => {
+	fn_searchImg();
+});
+
 
 /* 사이즈 옵션 변경시 */
 /* function fn_sizeChange(){

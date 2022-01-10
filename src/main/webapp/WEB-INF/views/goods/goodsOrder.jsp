@@ -42,6 +42,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsOrder.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/goods/goodsCart.css" />
 
+<!-- favicon -->
+<link rel="icon" href="${pageContext.request.contextPath }/resources/upload/favicon.ico" type="image/x-icon" sizes="16x16">
+
 <!-- fontawesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 

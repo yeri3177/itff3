@@ -16,6 +16,7 @@ import com.kh.spring.goods.model.vo.GoodsLike;
 import com.kh.spring.goods.model.vo.GoodsLikeJoin;
 import com.kh.spring.goods.model.vo.GoodsOrder;
 import com.kh.spring.goods.model.vo.OptionDetail;
+import com.kh.spring.goods.model.vo.OrderDetail;
 import com.kh.spring.goods.model.vo.OrderDetailJoin;
 import com.kh.spring.goods.model.vo.OrderJoin;
 import com.kh.spring.goods.model.vo.Payment;
@@ -243,6 +244,23 @@ public class GoodsDaoImpl implements GoodsDao {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		return session.selectList("goods.selectGoodsListBySortType", param, rowBounds);
+	}
+
+	@Override
+	public List<OrderDetail> selectOrderDetailList(String orderNo) {
+		return session.selectList("goods.selectOrderDetailList", orderNo);
+	}
+
+	@Override
+	public int updateGoodsStock(List<OrderDetail> orderDetail) {
+		int result = 0;
+		
+		for(int i=0; i<orderDetail.size(); i++) {
+			int optionId = orderDetail.get(i).getOptionId();
+			result +=  session.update("goods.updateGoodsStock", optionId);
+		}
+		return result;
+		
 	}
 
 
