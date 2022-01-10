@@ -114,6 +114,13 @@
 								<i class="fas fa-heart" id="full-heart"></i>
 							</c:if>
 						</div>
+						
+						<!-- 태그표시 -->
+						<c:if test="${goods.goods.PSubcategory.contains('한정') }">
+						<div class="tag-mark-div">
+							한정
+						</div>
+						</c:if>
 					</div>
 					<!-- 상품텍스트 -->
 					<div class="card-body">
