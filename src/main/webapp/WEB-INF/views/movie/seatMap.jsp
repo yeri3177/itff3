@@ -184,7 +184,7 @@
 						<div class="select_seat_result">
 							<div class="group_lft">
 								<dl class="total_price">
-									<dt>총 합계1</dt>
+									<dt>총 합계</dt>
 									<dd>
 										<strong id="total_step2">0</strong>원
 									</dd>
@@ -202,8 +202,62 @@
  
 				</div>
             </div>
-             
+        
+        <input type="hidden" id="selectedTitle" value="${movie.titleKor}"/>     
+        <input type="hidden" id="selectedTheater" value="${schedule.theaterId}관"/>     
+        <input type="hidden" id="selectedStartDate" value="${schedule.startDate}"/>     
+        <input type="hidden" id="selectedStartTime" value="${schedule.startTime} 시작"/>     
 <script>
+$(() => {
+	$("#bx_step01_title").html($("#selectedTitle").val());
+	$("#bx_step01_theater").html($("#selectedTheater").val());
+	$("#bx_step01_startDate").html($("#selectedStartDate").val());
+	$("#bx_step01_startTime").html($("#selectedStartTime").val()); 
+});
+
+// 1단계 지나간 다음 마우스 올리면 선택한 내용 나옴
+$(".step01.prev").hover(
+	e => {
+		$(".bx_con.step01").show();   /* .animate({opacity: 1}, 300) */
+	},
+	e => {
+		$(".bx_con.step01").hide();   /* $(".bx_con").animate({opacity: 0}, 300); */
+});
+
+// 이거 클래스명으로 대체 왜 안되냐? .step02의 id값으로 셀렉터 하면 작동하는데, 이 클래스값으로 하면 안된다. 바로 위의 step1 prev는 되면서 왜 이건 안되냐고
+// 할수없이 일단 id로 해놓고 발표할때 제대로 되는 척 해야겠네 (booking.jsp에 이거 아이디 호버 있음)
+$(".step02.prev").hover( 
+	e => {
+		$(".bx_con.step02").show();   
+	},
+	e => {
+		$(".bx_con.step02").hide();   
+});
+
+
+// 1단계 지나간 다음 1단계 클릭하면 처음 화면으로 돌아감
+$(".step01.prev").click(e => {
+	$("#reserveStep02").hide();
+	$("#reserveStep03").hide();
+	
+	$("#step01").removeClass("prev").addClass("active");
+	
+	$("#step02").removeClass("active prev").addClass("disabled");
+	
+	$("#step03").removeClass("active").addClass("disabled");
+});
+
+$("#step02").click(e => {
+	$("#reserveStep03").hide();
+	
+	$("#step02").removeClass("prev").addClass("active");
+	
+	$("#step03").removeClass("active").addClass("disabled");
+});
+
+
+
+
 // 좌석 선택시
 $("[name=seatNo]").change((e) => {
 		

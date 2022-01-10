@@ -3692,3 +3692,14 @@ a, a:link, a:visited, a:active, a:hover {
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
 }
+.wrap_reserve .section_step_tit ul li > a .bx_con dl dd:before {
+    content: "";
+    overflow: hidden;
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin: 4px 5px 0 0;
+    border-radius: 3px;
+    vertical-align: top;
+    background: #fff;
+}
