@@ -12,8 +12,6 @@ public interface BoardDao {
 
 	int selectBoardTotalCount();
 
-	int insertBoard(Board board);
-
 	int insertAttachment(Attachment attach);
 
 	Board selectOneBoard(int no);
@@ -35,5 +33,9 @@ public interface BoardDao {
 	int insertBoardComment(BoardComment boardComment);
 
 	int deleteBoardComment(int no);
+
+	int updateBoard(Board board);
+
+	int updateBoardReadCount(int no);
 
 }
