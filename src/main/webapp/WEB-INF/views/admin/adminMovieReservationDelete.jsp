@@ -73,7 +73,7 @@
 $('#movie_reser_delete_frm').submit(function(e){
     let type = '예매취소';
     let target = $('.memberId').val();
-    let content = '예매가 취소되었습니다.'
+    let content = target+'님, 예매가 취소되었습니다.'
     let url = '${contextPath}/notify/saveNotify.do';
     	    
     console.log(type);

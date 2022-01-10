@@ -1,4 +1,4 @@
-<%@page import="com.kh.spring.sharing.model.vo.BoardComment"%>
+    <%@page import="com.kh.spring.sharing.model.vo.BoardComment"%>
 <%@page import="com.kh.spring.sharing.model.vo.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.spring.member.model.vo.Member"%>
@@ -271,7 +271,7 @@
 		action="${pageContext.request.contextPath}/sharing/boardDelete.do?${_csrf.parameterName}=${_csrf.token}"
 		name="deleteBoardFrm"
 		method="POST">
-		<input type="hidden" name="no" value="${board.no}"
+		<input type="hidden" name="no" value="${board.no}" />
 	</form:form>			
 				
 	<!-- 로그인 후 댓글쓰기 가능 -->
@@ -282,8 +282,9 @@
 				action="${pageContext.request.contextPath}/sharing/boardCommentEnroll.do?${_csrf.parameterName}=${_csrf.token}"
 				name="boardCommentFrm" 
 				method="post" 
+				id="ws_comment_frm1"
 				class="cmt_form">
-				<input type="hidden" name="writer" value="${loginMemberId}" />
+				<input type="hidden" name="writer" class="writer" value="${loginMemberId}" />
 				<input type="hidden" name="boardNo" value="${board.no}" />
 				<input type="hidden" name="commentLevel" value="1">
 				<input type="hidden" name="commentRef" value="0">
@@ -336,7 +337,48 @@
 	</div>
 </div>
 	
-</div>		
+</div>	
+
+<input type="hidden" class="ws_id" value="${board.memberId }" />
+
+<script>
+
+$('#ws_comment_frm1').submit(function(e){
+    let type = '티켓나눔터';
+    let target = $('.ws_id').val();
+    let content = '[티켓나눔터] 작성하신 글에 댓글이 등록되었습니다.'
+    let url = '${contextPath}/notify/saveNotify.do';
+    	    
+    console.log(type);
+    console.log(target);
+    console.log(content);
+    console.log(url);
+    
+    // 전송한 정보를 db에 저장	
+    $.ajax({
+        type: "post",
+        url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            target: target,
+            content: content,
+            type: type,
+            url: url
+        },
+        beforeSend : function(xhr) {   
+            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+        },
+        success:    // db전송 성공시 실시간 알림 전송
+            // 소켓에 전달되는 메시지
+            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+        	socket.send("ITFF,"+target+","+content+","+url)
+//			console.log("관리자,"+target+","+content+","+url)
+
+    });
+});
+
+</script>	
 
 <script>
 $(".anonymous").click((e) => {
@@ -470,3 +512,5 @@ const deleteBoard = () => {
 
 </script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
+    
