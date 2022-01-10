@@ -211,7 +211,6 @@ $(document).ready(function(){
 													<li><a href="${pageContext.request.contextPath }/intro/outline.do" class="menu_drop">개요</a></li>
 													<li><a href="${pageContext.request.contextPath }/intro/program.do" class="menu_drop">프로그램 소개</a></li>
 													<li><a href="${pageContext.request.contextPath }/intro/greeting.do" class="menu_drop">집행위원장 인사말</a></li>
-													<li><a href="#" class="menu_drop">포스터</a></li>
 												</ul>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/program/openClose.do" class="" target="_top">프로그램</a>
