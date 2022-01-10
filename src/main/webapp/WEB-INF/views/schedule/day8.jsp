@@ -178,7 +178,7 @@
 									<p class="time en">09:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/thirteen.do?movieId=006"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-14&movieId=movie-006"><span
 											class="film_tit_kor">13층</span><span
 											class="film_tit_eng en">The thirteenth floor</span>
 										</a>
@@ -195,7 +195,7 @@
 									<p class="time en">10:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-14&movieId=movie-002"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -219,7 +219,7 @@
 									<p class="time en">12:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/password.do?movieId=004"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-14&movieId=movie-004"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>
@@ -239,7 +239,7 @@
 									<p class="time en">13:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-14&movieId=movie-003"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>
 									</div>
@@ -275,7 +275,7 @@
 									<p class="time en">16:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/aiSynopsis.do?movieId=003"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-14&movieId=movie-003"><span
 											class="film_tit_kor">에이 아이</span><span
 											class="film_tit_eng en">A.I.</span></a>(폐막작)
 									</div>

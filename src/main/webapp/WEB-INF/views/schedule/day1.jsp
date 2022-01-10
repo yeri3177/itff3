@@ -221,7 +221,7 @@
 									<p class="time en">15:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/matrix.do?movieId=007"><span
+											href="${pageContext.request.contextPath}/movie/booking.do?playdate=2022-01-07&movieId=movie-007"><span
 											class="film_tit_kor">매트릭스</span><span
 											class="film_tit_eng en">The Matrix</span></a>
 											(개막작)
@@ -238,7 +238,7 @@
 									<p class="time en">15:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/iRobot.do?movieId=001"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-07&movieId=movie-001"><span
 											class="film_tit_kor">아이, 로봇</span><span
 											class="film_tit_eng en">I, Robot</span></a>
 									</div>
@@ -254,7 +254,7 @@
 									<p class="time en">16:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/eagleEye.do?movieId=002"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-07&movieId=movie-002"><span
 											class="film_tit_kor">이글아이</span><span
 											class="film_tit_eng en">Eagle Eye</span></a>
 									</div>
@@ -283,7 +283,7 @@
 									<p class="time en">18:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/looper.do?movieId=013"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-07&movieId=movie-013"><span
 											class="film_tit_kor">루퍼</span><span
 											class="film_tit_eng en">Looper</span></a>
 									</div>
@@ -299,7 +299,7 @@
 									<p class="time en">19:00</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/her.do?movieId=008"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-07&movieId=movie-008"><span
 											class="film_tit_kor">그녀</span><span
 											class="film_tit_eng en">Her</span></a>
 									</div>
@@ -315,7 +315,7 @@
 									<p class="time en">19:30</p>
 									<div class="film_tit">
 										<a
-											href="${pageContext.request.contextPath }/program/synopsis/password.do?movieId=004"><span
+											href="${pageContext.request.contextPath }/movie/booking.do?playdate=2022-01-07&movieId=movie-004"><span
 											class="film_tit_kor">패스워드</span><span
 											class="film_tit_eng en">Antitrust</span></a>
 									</div>
