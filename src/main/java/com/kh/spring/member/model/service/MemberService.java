@@ -69,6 +69,8 @@ public interface MemberService {
 
 	int selectMemberMovieReservationCount(String id);
 
+	int deleteReservationByMovieReservationId(String movieReservationId);
+
 
 
 }

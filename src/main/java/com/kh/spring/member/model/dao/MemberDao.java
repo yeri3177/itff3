@@ -71,5 +71,7 @@ public interface MemberDao {
 
 	int selectMemberMovieReservationCount(String id);
 
+	int deleteReservationByMovieReservationId(String movieReservationId);
+
 
 }

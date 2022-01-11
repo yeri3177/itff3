@@ -39,6 +39,14 @@
 </jsp:include>
 <!-- 여기까지 nav 입니다. -->
 
+<c:if test="${not empty msg}">
+<script>
+	alert("${msg}");
+	location.reload();
+</script>
+</c:if>
+
+
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
@@ -63,54 +71,72 @@
 	 -->
 <!-- 예매내역 -->
 <div class="biggerPoint">
+
+	<c:if test="${empty list}">
+		<div class="sub_sc">예매내역이 없습니다.</div>	
+	</c:if>
+
+
 	<c:forEach items="${list }" var="mv" varStatus="vs">
-		<div class="sub_sc">
-			<div id="_listContentArea">
-				<div class="booking_history">
-					<div class="history_list clear">
-						<input id="hidden${vs.count}" type="hidden" value="${mv.movieReservationId}" />
-						<div class="img_box">
-							<img src="${pageContext.request.contextPath}/resources/upload/poster/${mv.image}" alt="">
+		<form
+			id="memberMovieReservationFrm"
+			name="memberMovieReservationFrm"
+			method="POST"
+			action="${pageContext.request.contextPath }/member/memberMovieReservationCansel">
+			<s:csrfInput />
+			<div class="sub_sc">
+				<div id="_listContentArea">
+					<div class="booking_history">
+						<div class="history_list clear">
+							<input id="hidden${vs.count}" type="hidden" value="${mv.movieReservationId}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input type="hidden" id="movieReservationId" name="movieReservationId" value="${mv.movieReservationId }"/>
+							<div class="img_box">
+								<img src="${pageContext.request.contextPath}/resources/upload/poster/${mv.image}" alt="">
+							</div>
+							<ul class="history_info clear">
+								<li>
+									<b>예매번호</b>
+									<strong>${mv.movieReservationId }</strong>
+								</li>
+								<li>
+									<b>영화</b>
+									<span>${mv.titleKor }</span>
+								</li>
+								<li>
+									<b>영화관</b>
+									<span>KH극장 ${mv.theaterId }관</span>
+								</li>
+								<li>
+									<b>일시</b>
+									<span>${mv.startDate } ${mv.startTime }</span>
+								</li>
+								<li>
+									<b>인원</b>
+									<span>일반 ${mv.count }인</span>
+								</li>
+								<li>
+									<b>좌석</b>
+									<span>${mv.selectedSeat }</span>
+								</li>
+								<li>
+									<b>결제금액</b>
+									<span>${mv.amount }원(카드결제)</span>
+								</li>
+								<li>
+									<b>결제일</b>
+									<span><fmt:formatDate value="${mv.regDate}" pattern="yyyy-MM-dd"/></span>
+								</li>
+								<li>
+									<input type="submit" value="예매 취소"/>
+								</li>
+							</ul>
 						</div>
-						<ul class="history_info clear">
-							<li>
-								<b>예매번호</b>
-								<strong>${mv.movieReservationId }</strong>
-							</li>
-							<li>
-								<b>영화</b>
-								<span>${mv.titleKor }</span>
-							</li>
-							<li>
-								<b>영화관</b>
-								<span>KH극장 ${mv.theaterId }관</span>
-							</li>
-							<li>
-								<b>일시</b>
-								<span>${mv.startDate } ${mv.startTime }</span>
-							</li>
-							<li>
-								<b>인원</b>
-								<span>일반 ${mv.count }인</span>
-							</li>
-							<li>
-								<b>좌석</b>
-								<span>${mv.selectedSeat }</span>
-							</li>
-							<li>
-								<b>결제금액</b>
-								<span>${mv.amount }원(카드결제)</span>
-							</li>
-							<li>
-								<b>결제일</b>
-								<span><fmt:formatDate value="${mv.regDate}" pattern="yyyy-MM-dd"/></span>
-							</li>
-						</ul>
 					</div>
 				</div>
+				<div id="qrcode${vs.count}" title="QR" class="qrcode"></div>
 			</div>
-			<div id="qrcode${vs.count}" title="QR" class="qrcode"></div>
-		</div>
+		</form>
 	</c:forEach>
 		<div class="pagebar_footer">
 			${pagebar}
@@ -196,6 +222,8 @@ for(var i = 1; i < 11; i++){
 	makeCode();
 }
 </script>
+
+
 
 <!-- </body> -->
 
