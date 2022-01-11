@@ -1718,6 +1718,7 @@
 			on o.order_no = p.order_no
 	        where 
 	        	p.payment_no is not null and (status = '주문취소' or status = '환불완료')
+	        order by p.payment_no desc
 	</select>
 	
 	<select id="selectGoodsOrderCancelTotalCount" resultType="_int">
