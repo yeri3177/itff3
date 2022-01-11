@@ -32,7 +32,7 @@ table.table th, table.table td {text-align: center;}
 	    <tr>
 	      <th scope="col">회원아이디</th>
 	      <th scope="col">메세지</th>
-	      <th scope="col">안읽은 메세지</th>
+<!-- 	      <th scope="col">안읽은 메세지</th> -->
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -40,9 +40,9 @@ table.table th, table.table td {text-align: center;}
 		  	<tr id="${chatLog.chatId}" data-chat-id="${chatLog.chatId}" data-member-id="admin">
 		  		<td style="font-family: 'Montserrat';">${chatLog.memberId}</td>
 		  		<td class="msg" style="cursor: pointer;">${chatLog.msg}</td>
-		  		<td>
-		  			<span class="unread-count badge badge-danger ${chatLog.unreadCount eq 0 ? 'd-none' : ''}">${chatLog.unreadCount}</span>
-		  		</td>
+<!-- 		  		<td> -->
+<%-- 		  			<span class="unread-count badge badge-danger ${chatLog.unreadCount eq 0 ? 'd-none' : ''}">${chatLog.unreadCount}</span> --%>
+<!-- 		  		</td> -->
 		  	</tr>
 	  	</c:forEach>
 	  </tbody>
