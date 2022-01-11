@@ -152,8 +152,8 @@
 		    <input id="tab-btn-1" type="radio" name="tab_item" checked>
 		    <label class="tab_item" for="tab-btn-1">상품 정보</label>
 		    
-		    <input id="tab-btn-2" type="radio" name="tab_item">
-		    <label class="tab_item" for="tab-btn-2">리뷰</label>
+		    <!-- <input id="tab-btn-2" type="radio" name="tab_item">
+		    <label class="tab_item" for="tab-btn-2">리뷰</label> -->
 		    
 		    <input id="tab-btn-3" type="radio" name="tab_item">
 		    <label class="tab_item" for="tab-btn-3">구매 안내</label>
@@ -169,9 +169,9 @@
 		    </div>
 		    
 		    <!-- 리뷰탭 내용 -->
-		    <div class="tab_content" id="tab2_content">
-		        22222222222
-			</div>
+		    <!-- <div class="tab_content" id="tab2_content">
+		        리뷰
+			</div> -->
 		    
 		    <!-- 구매안내탭 내용 -->
 		    <div class="tab_content" id="tab3_content">
@@ -615,7 +615,7 @@ function fn_searchImg(){
             console.log(error);
         },
         success : function(result){
-        	$("#preview-img-div").append(result);
+        	$("#preview-img-div").html(result);
         	
         	
         }

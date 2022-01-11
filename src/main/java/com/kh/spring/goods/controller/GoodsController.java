@@ -770,10 +770,11 @@ public class GoodsController {
 	/**
 	 * 굿즈 목록 정렬
 	 */
-	@PostMapping("/goodsListSort.do")
+	@GetMapping("/goodsListSort.do")
 	public String goodsListSort(@RequestParam String sortType, @RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, Authentication authentication) {
 		
 		log.debug("sortType = {}", sortType);
+		log.debug("cPage = {}", cPage);
 		
 		
 		HttpSession session = request.getSession();
@@ -804,7 +805,9 @@ public class GoodsController {
 		model.addAttribute("totalContent", totalContent);
 		
 		// 3. 페이지바
-		String url = request.getRequestURI(); 
+		//String url = request.getRequestURI(); 
+		String url = request.getRequestURI()+"?sortType="+sortType; 
+		log.debug("url 1111111111 = {}", url);
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 		model.addAttribute("pagebar", pagebar);
 		
