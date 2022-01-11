@@ -145,7 +145,7 @@ $(() => {
 		    <option value="${board.category}" selected>${board.category == 'P' ? '티켓구함' : (board.category == 'S' ? '티켓양도' : '티켓교환') }</option>		    
 		    <option value="P">티켓구함</option>
 		    <option value="S">티켓양도</option>
-		    <option value="R">티켓교환</option>
+		    <option value="R">거래완료</option>
 		  </select>
 		</div>
 		<input type="text" class="form-control"

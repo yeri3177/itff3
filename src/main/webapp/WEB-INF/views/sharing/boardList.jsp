@@ -98,7 +98,7 @@ if(authentication.getPrincipal() != "anonymousUser"){
 										<c:choose>
 											<c:when test="${board.category == 'P'}">티켓구함</c:when>
 											<c:when test="${board.category == 'S'}">티켓양도</c:when>
-											<c:otherwise>티켓교환</c:otherwise>
+											<c:otherwise>거래완료</c:otherwise>
 										</c:choose>
 									</span>
 								</td>
