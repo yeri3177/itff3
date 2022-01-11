@@ -19,11 +19,11 @@
 	<img src="https://i.imgur.com/DmuXppF.png" title="챗봇" class="quick_img">
 	</a>
 	
-	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
+	<a href="${pageContext.request.contextPath }/movie/booking.do" class="wviewT">
 	<img src="https://i.imgur.com/nM5ACcZ.png" title="티켓 예매 바로가기" class="quick_img">
 	</a>
 	
-	<a href="javascript:alert('예매 기간이 아닙니다.');" class="wviewT">
+	<a href="${pageContext.request.contextPath }/member/memberMovieReservation.do" class="wviewT">
 	<img src="https://i.imgur.com/QhnGPsj.png" title="예매내역 확인하기" class="quick_img">
 	</a>
 

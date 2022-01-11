@@ -29,6 +29,7 @@
 		<intercept-url pattern="/question/questionList.do" access="isAuthenticated()"/>
 		<intercept-url pattern="/goods/goodsCart.do" access="isAuthenticated()"/>
 		<intercept-url pattern="/goods/goodsOrder.do" access="isAuthenticated()"/>
+		<intercept-url pattern="/movie/booking.do" access="isAuthenticated()"/>
 		<intercept-url pattern="/member/memberLogin.do" access="permitAll"/>
 		<intercept-url pattern="/member/memberEnroll.do" access="permitAll"/>
 		<intercept-url pattern="/member/memberFindId.do" access="permitAll"/>
