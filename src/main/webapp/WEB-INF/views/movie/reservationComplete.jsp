@@ -95,10 +95,10 @@
 					<li><strong>반드시 전체 취소만 가능하며, 예매나 추가상품중 부분 취소는 불가능합니다.</strong></li>
 					<li>예고편 상영 등 사정에 의해 본 영화 시작이 10여분 정도 차이 날 수 있습니다.</li>
 					<li>개인정보 보호 정책에 따라 주민번호로 예매 티켓을 찾을 수 없습니다. 꼭 예매번호를 확인해 주세요.</li>
-					<li>구매한 상품은 마이페이지 &gt; 예매/구매 내역에서 확인 및 사용할 수 있습니다.</li>
+					<li>구매한 상품은 마이페이지 &gt; 예매내역에서 확인 및 사용할 수 있습니다.</li>
 				</ul>
 				<div class="btn_btm_wrap mb50 pb50">
-					<a href="${pageContext.request.contextPath}/member/memberDetail.do" class="btn_col3 ty5">결제내역</a>
+					<a href="${pageContext.request.contextPath}/member/memberMovieReservation.do" class="btn_col3 ty5">예매내역 확인</a>
 					<!-- <a href="#none"	class="btn_col2 ty5">스토어 바로가기</a> -->
 					<a href="${pageContext.request.contextPath}" class="btn_col1 ty5">홈으로 바로가기</a>
 				</div>

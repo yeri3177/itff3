@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
 import com.kh.spring.movie.model.service.MovieService;
 import com.kh.spring.movie.model.vo.Movie;
@@ -31,6 +32,9 @@ public class MovieController {
 	@Autowired
 	private MovieService movieService;
 	
+	@Autowired
+	private MemberService memberService;
+	
 	@GetMapping("/booking.do")
 	public String booking(@RequestParam(required=false) String playdate, @RequestParam(required=false) String movieId, Model model) {
 		List<Movie> totalMovieList = movieService.selectTotalMovieList();
@@ -40,6 +44,9 @@ public class MovieController {
 		
 		if(playdate != null) {
 			param.put("playdate", playdate);
+			if(movieId != null) {
+				param.put("movieId", movieId);
+			}	
 			List<MoviePlus> list = movieService.selectMovieSchedule(param);
 			log.debug("list = {}", list);
 			model.addAttribute("list", list);
@@ -162,6 +169,17 @@ public class MovieController {
 		int result2 = movieService.updatePoint(param2);
 		Member principal = (Member) oldAuthentication.getPrincipal();
 		principal.setPoint(Integer.parseInt(totalPoint) - Integer.parseInt(usedPoint));
+		
+		// 포인트 이용내역 db에 기록
+		if(Integer.parseInt(usedPoint) != 0) {
+			Map<String, Object> history = new HashMap<>();
+			history.put("id", reservation.getMemberId());
+			history.put("reason", "영화 예매 포인트 사용	" );
+			history.put("change", "-" + usedPoint);
+			history.put("point", Integer.parseInt(totalPoint) - Integer.parseInt(usedPoint));
+			memberService.insertPointHistory(history);
+		}
+		
 		
 		log.debug("reservation = {}", reservation);
 		log.debug("param3 = {}", param3);
