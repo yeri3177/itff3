@@ -812,7 +812,9 @@ public class GoodsController {
 		model.addAttribute("pagebar", pagebar);
 		
 		
-		return "goods/goodsListSortDiv";
+		//return "goods/goodsListSortDiv";
+		
+		return "goods/goodsList";
 	}
 	
 	
