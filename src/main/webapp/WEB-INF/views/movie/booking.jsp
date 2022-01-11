@@ -26,10 +26,10 @@
 	<div class="container-xl">
 		<ul class="list-inline snb_ul" id="snbul1">
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/movie/booking.do" target="_top">빠른예매</a>
+				<a href="${pageContext.request.contextPath}/movie/booking.do" target="_top" style="font-weight: bold;">빠른예매</a>
 			</li>	
 			<li class="on_">
-				<a href="${pageContext.request.contextPath}/schedule/day1.do" target="_top" style="font-weight: bold;">상영시간표</a>
+				<a href="${pageContext.request.contextPath}/schedule/day1.do" target="_top">상영시간표</a>
 			</li>
 		</ul>
 	</div>
