@@ -80,8 +80,6 @@ public class MemberController {
 	@GetMapping("/memberEnroll.do")
 	public void memberEnroll() {}
 	
-
-	
 	/**
 	 * 회원가입 폼 제출받는 메소드
 	 * memberEnroll.jsp의 날짜 입력 폼이 string이라서 그대로 member로 받으려니까 오류가 났다. 그래서 requestparam 으로 날짜값을 받아서 여기서 Date로 만들었다.
