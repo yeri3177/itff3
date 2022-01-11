@@ -118,7 +118,15 @@
 		
 		<!-- 상품 프리뷰 이미지 -->
 		<div id="preview-img-div" class="d-inline-block">
-
+			
+			
+			<!-- 태그표시 -->
+			<c:if test="${goods.PSubcategory.contains('한정') }">
+			<div class="tag-mark-div">
+				한정
+			</div>
+			</c:if>
+			
 			
 		</div>
 		
@@ -589,8 +597,6 @@ $(() => {
 
 /* 프리뷰 이미지 찾기  */
 function fn_searchImg(){
-	
-	const $previewDiv = $("#preview-img-div");
 
 	const options = {
 			optionType : $("select[name='optionType'] option:selected").text(),
@@ -609,7 +615,7 @@ function fn_searchImg(){
             console.log(error);
         },
         success : function(result){
-        	$previewDiv.html(result);
+        	$("#preview-img-div").append(result);
         	
         	
         }

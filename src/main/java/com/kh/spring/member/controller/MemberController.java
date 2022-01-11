@@ -42,7 +42,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.zxing.WriterException;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Calendar;
@@ -153,7 +152,7 @@ public class MemberController {
 		return "/member/memberFindId";
 	}
 	
-	@GetMapping("/memberFindById.do")
+	@PostMapping("/memberFindById.do")
 	public String memberFindIdResult(
 			Model model,
 			@RequestParam String name,
@@ -174,6 +173,7 @@ public class MemberController {
 			return "/member/memberFindByIdSuccess";			
 		}
 		else {
+			model.addAttribute("msg", "※ 일치하는 정보가 없습니다. 다시 입력해주세요.");
 			return "/member/memberFindByIdFailure";			
 		}
 	}
@@ -200,7 +200,8 @@ public class MemberController {
 		//전달된 아이디와 이메일이 db에 등록된 정보가 일치하는지 확인
 		Member member = memberService.findMemberByIdAndEmail(param1);
 		if(member == null) {
-			return "/member/memberFindByPasswordFailure";			
+			model.addAttribute("msg", "※ 일치하는 정보가 없습니다. 다시 입력해주세요.");
+			return "/member/memberFindByPasswordFailure";		
 		}
 		else {			
 			// 1. 기존 비밀번호 -> 임시 비밀번호 update
@@ -242,6 +243,7 @@ public class MemberController {
 	        log.debug("newPassword = {}", newPassword);    
 	        model.addAttribute("newPassword", newPassword);
 	        
+	        model.addAttribute("msg", "※ 가입 시 입력한 이메일에 비밀번호를 전송했습니다. 확인해주세요.");
 	        return "/member/memberFindByPasswordSuccess";
 		}
 	}
@@ -345,7 +347,16 @@ public class MemberController {
 	}
 	
 	@GetMapping("/memberUpdate.do")
-	public void memberUpdate() {}
+	public void memberUpdate(Authentication authentication, Model model) {
+		//접속된 아이디 가져오기
+		Member member = (Member) authentication.getPrincipal();
+		String id = member.getId();
+		log.debug("id = {}", id);
+		
+		Member mem = memberService.selectOneMember(id);
+		model.addAttribute("member", mem);
+		
+	}
 	
 	// memberUpdate 선생님 풀이
 	@PostMapping("/memberUpdate.do")

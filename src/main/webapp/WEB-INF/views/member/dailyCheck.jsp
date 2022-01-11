@@ -40,15 +40,6 @@
 		</div>
 
  <div id="external-events">
- <!-- 
-	<c:set value="y" var="y"/>
-	<c:if test="${mcheck ne 'Y' }">
-   	<button id="ckbtn11" type="button" class="btnCheck1" name="memCheck" value="y" style="display: inline">출석체크</button>
-	</c:if>
-	<c:if test="${mcheck eq 'Y' }">
-   	<button id="ckbtn22" type="button" class="btnCheck2" style="display: inline">출석완료</button>
-	</c:if>
-  -->
 	
     <input type="hidden" id="memNum" class="memNumber" name="memNum" value="${member.member_id}">
     	
@@ -72,25 +63,6 @@
 					</div>
 
  <script type="text/javascript">
-	 //출석체크 
-/* 	 $('#ckbtn11').click(function(){
-		var d = new Date();
-	    var currentDate = d.getFullYear() + "-" + ( d.getMonth() + 1 ) + "-" + d.getDate(); 
-		$.ajax({
-			url: "checkInsert",
-			type: "POST",
-			data:{
-				memNum: $(".memNumber").val(),
-				memCheck: $(".btnCheck1").val(),
-				checkDate: currentDate
-			},
-			success: function(data){
-				alert(data);
-				location.reload();	
-			}
-		});
-	});
- */
  	//풀캘린더
  	document.addEventListener('DOMContentLoaded', function() {
 	    var Calendar = FullCalendar.Calendar;
@@ -118,16 +90,6 @@
 			dateC.start = $(this).val();
 			dateC.end = $(this).val();
 			dateC.imageurl="${pageContext.request.contextPath }/resources/fullcalendar/core/check2.jpg";
-			dateC.color="";
-			dateC.className="test";
-			/* 
-			dateC.title= "🖕";
-			dateC.url="${pageContext.request.contextPath }/resources/member/images/check2.jpg";			
-			dateC.overlap= false;
-			dateC.rendering="background-image";
-			 dateC.title = "출석!";
-			 dateC.start = "2022-01-09";
-			 */
 			check.push(dateC);
 			console.log(check);
 			
@@ -146,9 +108,6 @@
 		          text: '출석체크하기',
 		          id: 'check',
 		          click: function() {	
-	                    // ajax 통신으로 출석 정보 저장하기 
-	                    // POST "/users/attendances" -> { status: "success", date:"2018-07-01"}
-	                    // 통신 성공시 버튼 바꾸고, property disabled 만들기 
 	                    var today = new Date();
 	                    var today = new Date();
 	                    var year = today.getFullYear();

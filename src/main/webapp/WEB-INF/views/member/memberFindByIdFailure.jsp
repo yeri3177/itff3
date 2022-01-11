@@ -19,6 +19,12 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<c:if test="${not empty msg}">
+<script>
+	alert("${msg}");
+</script>
+</c:if>
+
 <!-- 메인 콘텐츠 섹션 -->
 <section class="main-content">
 
@@ -28,6 +34,9 @@
 		<h2 class="tit_sec txt-center txt-white en">아이디 찾기</h2>
 	</div>
 </div>
+
+<c:if test=""></c:if>
+<input type="hidden" id="msg" value="${msg }" />
 
 <p class="desc txt-center mt50" style="color:rgba(255,255,255,.5);font-size:15px">
 	※ 일치하는 정보가 없습니다. 다시 입력해주세요.

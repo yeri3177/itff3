@@ -19,6 +19,12 @@
 	<jsp:param value="ITFF" name="title" />
 </jsp:include>
 
+<c:if test="${not empty msg}">
+<script>
+	alert("${msg}");
+</script>
+</c:if>
+
 <!-- 메인 콘텐츠 섹션 -->
 <section class="main-content">
 
@@ -62,6 +68,7 @@
 <br/>
 
 <div class="list_link">
+	<a href="${pageContext.request.contextPath}/member/memberLogin.do" class="link_arrow txt-white" title="로그인">로그인 ></a>
 	<a href="${pageContext.request.contextPath}/member/memberFindPassword.do" class="link_arrow txt-white" title="아이디/비밀번호 찾기">비밀번호 찾기 ></a>
 	<a href="${pageContext.request.contextPath}/member/memberEnroll.do" class="link_arrow txt-white" title="회원가입">회원가입 ></a>
 </div>
