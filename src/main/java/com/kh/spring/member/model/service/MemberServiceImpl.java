@@ -194,6 +194,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public int deleteReservationByMovieReservationId(String movieReservationId) {
+		return memberDao.deleteReservationByMovieReservationId(movieReservationId);
+	}
+
+
 
 
 	
