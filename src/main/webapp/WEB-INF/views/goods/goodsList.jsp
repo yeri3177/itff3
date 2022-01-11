@@ -81,10 +81,10 @@
 			
 			<!-- 상품 정렬 리스트 -->
 			<ul id="goods-sort-ul">
-				<li><span>최신등록순</span></li>
-				<li><span>낮은가격순</span></li>
-				<li><span>높은가격순</span></li>
-				<li><span>상품명순</span></li>
+				<li class="latestReg"><span>최신등록순</span></li>
+				<li class="rowPrice"><span>낮은가격순</span></li>
+				<li class="highPrice"><span>높은가격순</span></li>
+				<li class="naming"><span>상품명순</span></li>
 				
 			</ul>
 		</div>
@@ -194,6 +194,15 @@
 </div> --%>
 
 
+<form
+	action="${pageContext.request.contextPath}/goods/goodsListSort.do"
+	method="GET" 
+	name="sortFrm">
+	
+	<input type="hidden" name="sortType" />
+</form>
+
+
 <script>
 
 /* 정렬 텍스트 클릭 이벤트 */
@@ -201,10 +210,22 @@ $("#goods-sort-ul li").click((e) => {
 	
 	const $this = $(e.target);
 	const sortType = $this.text();
+	//const sortType = $this.parent().attr('class')
+	
+	
 
+	console.log($this.parent().attr('class'));
 	console.log("정렬기준 = " + sortType);
 	
+	const $frm = $(document.sortFrm);
+	$frm.find("[name=sortType]").val(sortType);
+	$frm.submit();
 	
+	
+
+	
+	
+	/* 
 	$.ajax({
 		//url : "${pageContext.request.contextPath}/goods/goodsListSort.do?${_csrf.parameterName}=${_csrf.token}",
 		url : "${pageContext.request.contextPath}/goods/goodsListSort.do?sortType="+sortType,
@@ -222,7 +243,7 @@ $("#goods-sort-ul li").click((e) => {
         },
         error: console.log
     });
-
+	 */
 })
 
 
