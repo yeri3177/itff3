@@ -343,16 +343,22 @@
 
 <script>
 
-$('#ws_comment_frm1').submit(function(e){
+$("#ws_comment_frm1").submit(function(e){
     let type = '티켓나눔터';
-    let target = $('.ws_id').val();
+    let target = $(".ws_id").val();
     let content = '[티켓나눔터] 작성하신 글에 댓글이 등록되었습니다.'
     let url = '${contextPath}/notify/saveNotify.do';
+    let writer = $(".writer").val();
     	    
     console.log(type);
     console.log(target);
     console.log(content);
     console.log(url);
+    
+    // 글 작성자와 댓글 작성자가 같으면 알림 보내지 않게
+    if(target == writer) {
+    	target = null;
+    }
     
     // 전송한 정보를 db에 저장	
     $.ajax({

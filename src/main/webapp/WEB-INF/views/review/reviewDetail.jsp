@@ -757,6 +757,11 @@ $('#reviewCommentFrm').submit(function(e){
     console.log(content);
     console.log(url);
     
+    // 글 작성자와 댓글 작성자가 같으면 알림 보내지 않게
+    if(target == writer) {
+    	target = null;
+    }
+    
     // 전송한 정보를 db에 저장	
     $.ajax({
         type: "post",

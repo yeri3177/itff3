@@ -138,6 +138,8 @@
 </footer>
 </body>
 
+<input type="hidden" class="ws_id" value="${chatLog.memberId }" />
+
 <script>
 // /chat/chat_mk0L0UJ93P50409 구독
 // 1. Stomp Client객체 생성(websocket)
@@ -149,13 +151,11 @@ stompClient.connect({}, (frame) => {
 	console.log("Stomp Client Connect : ", frame);
 	
 	// 3.구독요청
-	stompClient.subscribe("/chat/admin", (message) => {
+	stompClient.subscribe("/chat/${chatId}", (message) => {
 		console.log("message : ", message);
 		
-		const obj = JSON.parse(message.body);
-		console.log(obj);
+		const {memberId, msg} = JSON.parse(message.body);
 		
-		const {memberId, msg} = obj;
 		$(data).append(
 				`
 				<div class="message-data" id=\${memberId != "admin" ? "align-right" : "align-left"}>
@@ -202,3 +202,46 @@ $(document).ready(function() {
 });
 
 </script>
+<!-- 
+<script>
+
+// 채팅 보낸 처음 한 번만 실행되도록 하는 one 
+$(sendBtn).one("click", function() {
+	
+let type = '채팅';
+let target = 'admin';
+let content = '[채팅] 새로운 채팅이 있습니다.'
+let url = '${contextPath}/notify/saveNotify.do';
+	    
+console.log(type);
+console.log(target);
+console.log(content);
+console.log(url);
+
+// 전송한 정보를 db에 저장	
+$.ajax({
+    type: "post",
+    url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+    dataType: "text",
+    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+    data: {
+        target: target,
+        content: content,
+        type: type,
+        url: url
+    },
+    beforeSend : function(xhr) {   
+        xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+    },
+    success:    // db전송 성공시 실시간 알림 전송
+        // 소켓에 전달되는 메시지
+        // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+    	socket.send("ITFF,"+target+","+content+","+url)
+//		console.log("관리자,"+target+","+content+","+url)
+
+}, {once:true});
+
+});
+
+</script>
+ -->

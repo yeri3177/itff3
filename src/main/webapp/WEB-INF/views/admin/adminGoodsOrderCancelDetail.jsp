@@ -252,7 +252,7 @@ $(".order_select").change((e) => {
 		    	content = '상품 주문이 취소되었습니다.';
 		    	break;
 		    case '환불완료':
-		    	content = '환불처리가 완료되었습니다.';
+		    	content = '환불 처리가 완료되었습니다.';
 		    	break;
 	    }
 	    

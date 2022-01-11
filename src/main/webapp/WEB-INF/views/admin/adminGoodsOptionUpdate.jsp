@@ -79,8 +79,8 @@
 		    	  </div>
 				      
 		      <div class="modal-footer">
-		      	<button type="submit" class="btn btn-success">수정</button>
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		      	<button type="submit" class="btn btn-outline-secondary">수정</button>
+		        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">취소</button>
 		      </div>
 		      
 		     </form>

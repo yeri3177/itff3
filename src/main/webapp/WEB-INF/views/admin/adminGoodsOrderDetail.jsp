@@ -172,12 +172,18 @@
 							    </td>
 							    <td>
 								    <div>
-								    <select class="form-select order_select"  data-order-detail-no="${list.orderDetail.orderDetailNo }" aria-label="Default select example" style="width: 100px;">
+								    <select 
+								    	class="form-select order_select"  
+								    	data-order-detail-no="${list.orderDetail.orderDetailNo }" 
+								    	aria-label="Default select example" 
+								    	style="width: 100px;"
+								    	${list.orderDetail.status eq '구매확정' ? 'disabled' : ''}>
 									  <option ${list.orderDetail.status eq null ? 'selected' : '' }>선택</option>
 									  <option value="상품준비중" ${list.orderDetail.status eq '상품준비중' ? 'selected' : ''}>상품준비중</option>
 									  <option value="배송준비중" ${list.orderDetail.status eq '배송준비중' ? 'selected' : ''}>배송준비중</option>
 									  <option value="배송중" ${list.orderDetail.status eq '배송중' ? 'selected' : ''}>배송중</option>
 									  <option value="배송완료" ${list.orderDetail.status eq '배송완료' ? 'selected' : ''}>배송완료</option>
+									  <option value="구매확정" ${list.orderDetail.status eq '구매확정' ? 'selected' : ''}>구매확정</option>
 									  <option value="주문취소" ${list.orderDetail.status eq '주문취소' ? 'selected' : ''}>주문취소</option>
 									</select>
 								    </div>
@@ -265,7 +271,7 @@ $(".order_select").change((e) => {
 		    	content = '[굿즈샵] 주문하신 상품의 배송이 시작되었습니다.';
 		    	break;
 		    case '배송완료':
-		    	content = '[굿즈샵] 상품 배송이 완료되었습니다.';
+		    	content = '[굿즈샵] 상품 배송이 완료되었습니다. 구매확정을 진행해주세요.';
 		    	break;
 		    case '주문취소':
 		    	content = '[굿즈샵] 상품 주문이 취소되었습니다.';

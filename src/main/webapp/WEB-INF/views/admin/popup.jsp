@@ -99,48 +99,53 @@
 
 <script>
 
-// websocket 연결(SockJS)
-const ws = new SockJS(`http://\${location.host}${pageContext.request.contextPath}/stomp`);
+// // websocket 연결(SockJS)
+// const ws = new SockJS(`http://\${location.host}${pageContext.request.contextPath}/stomp`);
 
-// StompClient객체 생성
-const stompClient = Stomp.over(ws);
+// // StompClient객체 생성
+// const stompClient = Stomp.over(ws);
 
-// connect
-stompClient.connect({}, (frame) => {
+// // connect
+// stompClient.connect({}, (frame) => {
 	
-	// 구독신청 및 핸들러 등록
-	stompClient.subscribe("/chat/${chatId}", (message) => {
-		console.log("message : ", message);
+// 	// 구독신청 및 핸들러 등록
+// 	stompClient.subscribe("/chat/${chatId}", (message) => {
+// 		console.log("[popup] message: ", message);
+// 		console.log("[popup] message.headers: ", message.headers)
 		
-		const {memberId, msg} = JSON.parse(message.body);
+// 		const {memberId, msg} = JSON.parse(message.body);
 		
-		//$(data).append(`<div class="message-data align-left"><span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>\${memberId}</span></div>`);
-		$(data).append(
-				`
-				<div class="message-data" id=\${memberId == "admin" ? "align-right" : "align-left"}>
-				<span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>
-				\${memberId == "admin" ? "ITFF" : memberId}
-				</span>
-				</div>
-				<li class="list-group-item" id=\${memberId == "admin" ? "admin" : "user"}>
-				\${msg}
-				</li>
-				`
-				);
-	});	
+// 		//$(data).append(`<div class="message-data align-left"><span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>\${memberId}</span></div>`);
+		
+// // 		if(message.headers.destination != '/chat/admin') {
+			
+// 		$(data).append(
+// 				`
+// 				<div class="message-data" id=\${memberId == "admin" ? "align-right" : "align-left"}>
+// 				<span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>
+// 				\${memberId == "admin" ? "ITFF" : memberId}
+// 				</span>
+// 				</div>
+// 				<li class="list-group-item" id=\${memberId == "admin" ? "admin" : "user"}>
+// 				\${msg}
+// 				</li>
+// 				`
+// 				);
+// // 		}
+// 	});	
 
-	// 팝업생성, stompClient가 연결되면 chat_member.last_check컬럼을 update한다.
-	// 위치주의 : connect된 이후 호출되어야한다.
-	lastCheck();
-});
+// 	// 팝업생성, stompClient가 연결되면 chat_member.last_check컬럼을 update한다.
+// 	// 위치주의 : connect된 이후 호출되어야한다.
+// 	lastCheck();
+// });
 
 /**
  * 팝업창이 활성화(focus)되면 chat_member.last_check컬럼을 update한다.
  */
-$(window).focus((e) => {
-	console.log("WINDOW FOCUS");
-	lastCheck();
-});
+// $(window).focus((e) => {
+// 	console.log("WINDOW FOCUS");
+// 	lastCheck();
+// });
 
 // #sendBtn 클릭시 적절한 주소를 msg publish!
 $(sendBtn).click((e) => {

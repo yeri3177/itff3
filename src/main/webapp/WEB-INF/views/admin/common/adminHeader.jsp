@@ -101,21 +101,21 @@ $(document).ready(function() {
 		sock = new SockJS("<c:url value="/echo-ws"/>");
 		socket = sock;
 		
-		sock.onopen = function() {
+		socket.onopen = function() {
 	   		console.log('Info: connection opened.');
 		};
 
-		sock.onmessage = function(evt) {
+		socket.onmessage = function(evt) {
 	   		console.log('Info: connection onmessage.');
 	   		console.log(evt.data);
 	   		toastr.success(evt.data);
 		};
 
-		sock.onclose = function(event) {
+		socket.onclose = function(event) {
 	   		console.log('Info: connection closed');
 		};
 	    
-		sock.onerror = function(err) {
+		socket.onerror = function(err) {
 	   		console.log('Error:', err);
 		};
 
