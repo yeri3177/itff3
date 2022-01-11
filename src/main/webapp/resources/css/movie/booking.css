@@ -412,19 +412,10 @@ body, input, button, select, textarea {
     font-size: 12px;
     color: #000;
 }
-사용자 에이전트 스타일시트
+/* 사용자 에이전트 스타일시트 */
 button {
     appearance: auto;
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;
@@ -777,15 +768,6 @@ body, input, button, select, textarea {
 button {
     appearance: auto;
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;
@@ -1029,15 +1011,6 @@ select:not(:-internal-list-box) {
 사용자 에이전트 스타일시트
 select {
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;
@@ -1613,15 +1586,6 @@ input[type="radio" i] {
 }
 input {
     -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
     text-rendering: auto;
     color: -internal-light-dark(black, white);
     letter-spacing: normal;

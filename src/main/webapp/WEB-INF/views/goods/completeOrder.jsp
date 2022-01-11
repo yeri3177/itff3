@@ -76,6 +76,8 @@
 	<button class="canvasBtn" id="startButton">Drop Confetti</button>	
 </div>
 
+<input type="hidden" class="ws_id" value="${order.memberId }" />
+
 <canvas id="canvas"></canvas>
 
 </section>
@@ -104,6 +106,44 @@ $("#shopping-btn").click((e) => {
 	location.href = '${pageContext.request.contextPath}/goods/goodsList.do';
 })
 
+</script>
+
+<script>
+
+window.onload = function () {
+	let type = '굿즈샵';
+	  let target = $('.ws_id').val();
+	  let content = '[굿즈샵] 상품 구매가 완료되었습니다. 빠르게 배송해드릴게요!'
+	  let url = '${contextPath}/notify/saveNotify.do';
+	  	    
+	  console.log(type);
+	  console.log(target);
+	  console.log(content);
+	  console.log(url);
+	  
+	  // 전송한 정보를 db에 저장	
+	  $.ajax({
+	      type: "post",
+	      url:"${pageContext.request.contextPath}/notify/saveNotify.do",
+	      dataType: "text",
+	      contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	      data: {
+	          target: target,
+	          content: content,
+	          type: type,
+	          url: url
+	      },
+	      beforeSend : function(xhr) {   
+	          xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	      },
+	      success:    // db전송 성공시 실시간 알림 전송
+	          // 소켓에 전달되는 메시지
+	          // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+	      	socket.send("ITFF,"+target+","+content+","+url)
+//				console.log("관리자,"+target+","+content+","+url)
+
+	  });
+};
 </script>
 
 <!-- footer -->
