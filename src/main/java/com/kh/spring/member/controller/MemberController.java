@@ -42,7 +42,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.google.zxing.WriterException;
 import com.kh.spring.common.HiSpringUtils;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Calendar;
