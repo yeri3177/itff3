@@ -30,7 +30,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
 		
-		log.debug("[현재 세션 수 {}] {} 연결!", sessionList.size(), session.getId());
+		log.debug("[[EchoHandler] 현재 세션 수 {}] {} 연결!", sessionList.size(), session.getId());
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		sessionList.add(session);
-		log.debug("[현재 세션 수 {}] {} 연결해제!", sessionList.size(), session.getId());
+		log.debug("[[EchoHandler] 현재 세션 수 {}] {} 연결 해제!", sessionList.size(), session.getId());
 	}
 
 }

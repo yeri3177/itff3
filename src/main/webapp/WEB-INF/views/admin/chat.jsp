@@ -76,7 +76,7 @@ stompClient.connect({}, (frame) => {
 	
 	// 구독신청 및 핸들러 등록
 	stompClient.subscribe("/chat/admin", (message) => {
-		console.log("message : ", message);
+		console.log("[chat] message : ", message);
 		
 		// type속성으로  MESSAGE(chatLog), LAST_CHECK을 구분한다.
 		const obj = JSON.parse(message.body);
@@ -109,7 +109,22 @@ stompClient.connect({}, (frame) => {
 				break;
 		}
 		
+		$(data).append(
+				`
+				<div class="message-data" id=\${memberId == "admin" ? "align-right" : "align-left"}>
+				<span class="message-data-name" id=\${memberId == "admin" ? "name_admin" : "name_user"}>
+				\${memberId == "admin" ? "ITFF" : memberId}
+				</span>
+				</div>
+				<li class="list-group-item" id=\${memberId == "admin" ? "admin" : "user"}>
+				\${msg}
+				</li>
+				`
+				);
+		
 	});	
+	
+	lastCheck();
 });
 
 $("tr[id]").click((e) => {

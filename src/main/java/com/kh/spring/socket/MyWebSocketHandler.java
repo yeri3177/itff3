@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
 		sessionList.add(session);
-		log.debug("[현재 세션 수: {}] {} 연결!", sessionList.size(), session.getPrincipal().getName());
+		log.debug("[[MyWebSocketHandler] 현재 세션 수: {}] {} 연결!", sessionList.size(), session.getPrincipal().getName());
 		
 		String senderId = session.getPrincipal().getName();
 		
@@ -48,7 +48,7 @@ import lombok.extern.slf4j.Slf4j;
 	// 클라이언트가 Data 전송 시
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		log.debug("Info: handleTextMessage 통과");
+		log.debug("[MyWebSocketHandler] Info: handleTextMessage 통과");
 		
 		String senderId = session.getPrincipal().getName();
 		
