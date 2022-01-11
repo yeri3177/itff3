@@ -252,14 +252,8 @@ public class GoodsDaoImpl implements GoodsDao {
 	}
 
 	@Override
-	public int updateGoodsStock(List<OrderDetail> orderDetail) {
-		int result = 0;
-		
-		for(int i=0; i<orderDetail.size(); i++) {
-			int optionId = orderDetail.get(i).getOptionId();
-			result +=  session.update("goods.updateGoodsStock", optionId);
-		}
-		return result;
+	public int updateGoodsStock(int optionId) {
+		return session.update("goods.updateGoodsStock", optionId);
 		
 	}
 

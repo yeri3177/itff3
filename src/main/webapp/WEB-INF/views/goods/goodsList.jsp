@@ -206,9 +206,10 @@ $("#goods-sort-ul li").click((e) => {
 	
 	
 	$.ajax({
-		url : "${pageContext.request.contextPath}/goods/goodsListSort.do?${_csrf.parameterName}=${_csrf.token}",
-		data: {sortType : sortType},
-		type : "post",
+		//url : "${pageContext.request.contextPath}/goods/goodsListSort.do?${_csrf.parameterName}=${_csrf.token}",
+		url : "${pageContext.request.contextPath}/goods/goodsListSort.do?sortType="+sortType,
+		//data: {sortType : sortType},
+		type : "get",
         
 		success : function(result) {
 			

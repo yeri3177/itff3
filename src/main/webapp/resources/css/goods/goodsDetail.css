@@ -389,7 +389,8 @@ body {
 
 /* 탭 스타일 */
 .tab_item {
-  width: calc(100%/4);
+  /* width: calc(100%/4); */
+  width: calc(100%/3);
   height: 50px;
   /* border-bottom: 3px solid #333333; */
   border-bottom: 2px solid #d5d5d5;
