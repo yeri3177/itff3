@@ -282,7 +282,7 @@ section#main-content {
 <!-- 굿즈샵 배너 끝 -->
 
 <!-- 공지사항 -->
-<div class="sec news">
+<div class="sec news" style="padding-bottom: 140px;">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-xs-12">
