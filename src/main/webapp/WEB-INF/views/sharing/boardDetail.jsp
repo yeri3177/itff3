@@ -259,7 +259,8 @@
 			action="${pageContext.request.contextPath}/sharing/boardCommentDelete.do?${_csrf.parameterName}=${_csrf.token}" 
 			name="boardCommentDelFrm"
 			method="POST">
-			<input type="hidden" name="no" value="${board.no}" />
+			<input type="hidden" name="no" />
+			<input type="hidden" name="boardNo" value="${board.no}" />
 		</form:form>			
 
 		</div> <!-- cmt_list -->
