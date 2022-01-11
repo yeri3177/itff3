@@ -173,6 +173,11 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("member.selectMemberMovieReservationCount", id);
 	}
 
+	@Override
+	public int deleteReservationByMovieReservationId(String movieReservationId) {
+		return session.delete("member.deleteReservationByMovieReservationId", movieReservationId);
+	}
+
 	
 	
 	

@@ -27,6 +27,7 @@
 </jsp:include>
 <!-- 여기까지 nav 입니다. -->
 
+
 <div class="join" style="padding-top: 100px; margin: 0;">
 	<div class="container">
 

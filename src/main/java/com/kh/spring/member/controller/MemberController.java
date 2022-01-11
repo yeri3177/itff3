@@ -480,6 +480,23 @@ public class MemberController {
 		
 	}
 	
+	@PostMapping("/memberMovieReservationCansel")
+	public String memberMovieReservationCansel(Model model, @RequestParam String movieReservationId) {
+		
+		log.debug("MOVIE_RESERVATION_ID = {}", movieReservationId);
+		
+		int result = memberService.deleteReservationByMovieReservationId(movieReservationId);
+		
+		if(result == 1) {
+			model.addAttribute("msg", "예매가 취소 되었습니다.");
+		}
+		else {
+			model.addAttribute("msg", "예매취소 실패!");
+		}
+		
+		return "/member/memberMovieReservation";
+	}
+	
 	@GetMapping("/memberPoint.do")
 	public void memberPoint(
 			@RequestParam(defaultValue = "1") int cPage, // cPage가 넘어오지 않으면 에러나기때문에 기본값을 주어야 한다.
