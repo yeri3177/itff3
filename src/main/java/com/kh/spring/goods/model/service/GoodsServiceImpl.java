@@ -5,7 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.spring.goods.exception.GoodsException;
 import com.kh.spring.goods.model.dao.GoodsDao;
 import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
@@ -242,8 +246,25 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
+	@Transactional (
+		propagation = Propagation.REQUIRED, 
+		isolation = Isolation.READ_COMMITTED,
+		rollbackFor = Exception.class
+	)
 	public int updateGoodsStock(List<OrderDetail> orderDetail) {
-		return goodsDao.updateGoodsStock(orderDetail);
+		int result = 0;
+		
+		try {
+			for(int i=0; i<orderDetail.size(); i++) {
+				int optionId = orderDetail.get(i).getOptionId();
+				result +=  goodsDao.updateGoodsStock(optionId);
+			}
+		} catch (Exception e) {
+			throw new GoodsException("updateGoodsStock 오류", e);
+		}
+		
+		//return goodsDao.updateGoodsStock(orderDetail);
+		return result;
 	}
 
 	@Override
