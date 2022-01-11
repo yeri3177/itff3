@@ -105,8 +105,12 @@ public interface GoodsDao {
 	List<OrderDetail> selectOrderDetailList(String orderNo);
 
 	int updateGoodsStock(List<OrderDetail> orderDetail);
+	
+	int updateGoodsStock(int optionId);
 
 	int updateOrderDetailStatus(int orderDetailNo);
+
+	
 
 
 
