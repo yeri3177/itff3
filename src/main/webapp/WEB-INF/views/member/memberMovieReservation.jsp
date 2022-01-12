@@ -73,7 +73,9 @@
 <div class="biggerPoint">
 
 	<c:if test="${empty list}">
-		<div class="sub_sc">예매내역이 없습니다.</div>	
+		<div class="sub_ex">
+			<p class="ex">예매내역이 없습니다.</p>
+		</div>	
 	</c:if>
 
 
