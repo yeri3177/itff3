@@ -136,7 +136,7 @@
 			</tr></thead>
 			<tbody>
 				<c:forEach var="schedule" items="${movieSchedule}" varStatus="vs" >
-					<tr>
+					<tr onclick="goBooking('${schedule.startDate}', '${schedule.movieId}');">
 						<td class="code en"><span class="code_wrap">${fn:substring(schedule.movieScheduleId,9,12) }</span></td>
 						<th class="time en">${schedule.startDate} | ${schedule.startTime }</th>
 						<td class="theater">KH ITFF ${schedule.theaterId}관</td>
@@ -280,7 +280,10 @@ $(document).ready(function() {
 	// document ready  
 	});
 
-
+	// 상영일정 클릭하면 해당 정보를 담은 예매페이지로 이동
+	function goBooking(startDate, movieId) {
+		window.location.href=`${pageContext.request.contextPath}/movie/booking.do?playdate=\${startDate}&movieId=\${movieId}`;
+	};
 
 
 </script>

@@ -134,26 +134,26 @@
 			</thead>
 			<tbody>
 					<c:forEach var="schedule" items="${movieSchedule}" varStatus="vs" >
-					<tr>
-						<td class="code en"><span class="code_wrap">${fn:substring(schedule.movieScheduleId,9,12) }</span></td>
-						<th class="time en">${schedule.startDate} | ${schedule.startTime }</th>
-						<td class="theater">KH ITFF ${schedule.theaterId}관</td>
-						<td class="film_tit">
-							<c:if test="${ageLimit eq 'all' }">
-								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_G_x2.png" style="width:40px" alt="관람가">
-							</c:if>
-							<c:if test="${ageLimit eq '12 +'}">
-								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
-							</c:if>
-							<c:if test="${ageLimit eq '15 +'}">
-								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
-							</c:if>
-							<c:if test="${ageLimit eq '19 +'}">
-								<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_18_x2.png" style="width:40px" alt="관람가"> 
-							</c:if>
-							<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
-						</td>
-					</tr>				
+						<tr onclick="goBooking('${schedule.startDate}', '${schedule.movieId}');">
+							<td class="code en"><span class="code_wrap">${fn:substring(schedule.movieScheduleId,9,12) }</span></td>
+							<th class="time en">${schedule.startDate} | ${schedule.startTime }</th>
+							<td class="theater">KH ITFF ${schedule.theaterId}관</td>
+							<td class="film_tit">
+								<c:if test="${ageLimit eq 'all' }">
+									<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_G_x2.png" style="width:40px" alt="관람가">
+								</c:if>
+								<c:if test="${ageLimit eq '12 +'}">
+									<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_12_x2.png" style="width:40px" alt="관람가"> 
+								</c:if>
+								<c:if test="${ageLimit eq '15 +'}">
+									<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_15_x2.png" style="width:40px" alt="관람가"> 
+								</c:if>
+								<c:if test="${ageLimit eq '19 +'}">
+									<img src="https://siwff.or.kr/kor/img/cont/schedule/ico_18_x2.png" style="width:40px" alt="관람가"> 
+								</c:if>
+								<img src="https://siwff.or.kr/kor/img/cont/schedule/A.png" style="width:40px" alt="언어">&nbsp;
+							</td>
+						</tr>	
 					</c:forEach>
 			</tbody>
 		</table>
@@ -281,7 +281,25 @@ $(document).ready(function() {
 	});
 
 
-
+	// 상영일정 클릭하면 해당 정보를 담은 예매페이지로 이동
+	function goBooking(startDate, movieId) {
+		window.location.href=`${pageContext.request.contextPath}/movie/booking.do?playdate=\${startDate}&movieId=\${movieId}`;
+	};
+	
+	// 수업때 했던 event bubbling 핸들링으로 하려고 했는데 data가 계속 undefined로 나와서 머리 뜯다가 안돼서 onclick 만들어서 해보니까 바로 되더라. 이거 포기함
+	/*$("tr[data-startDate]").click(e => {
+		console.log('클릭');
+		const $tr = $(e.target).parents("tr");
+		console.log($tr);
+		
+		var startDate = $tr.data("startDate");
+		var movieId = $tr.data("movieId");
+		
+		console.log(startDate);
+		console.log(movieId);
+		
+	    window.location.href=`${pageContext.request.contextPath}/movie/booking.do?playdate=\${startDate}&movieId=\${movieId}`;
+	}); */
 
 </script>
 
