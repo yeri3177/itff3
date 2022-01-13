@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.spring.common.HiSpringUtils;
+import com.kh.spring.goods.exception.GoodsException;
 import com.kh.spring.goods.model.service.GoodsService;
 import com.kh.spring.goods.model.vo.CartJoin;
 import com.kh.spring.goods.model.vo.Goods;
@@ -49,53 +53,53 @@ public class GoodsController {
 	 * 상품 목록 페이지
 	 */
 	@GetMapping("/goodsList.do")
-	public String goodsList(
-			@RequestParam(defaultValue = "1") int cPage, Model model, 
-			HttpServletRequest request, 
-			Authentication authentication
-		) {
+	public String goodsList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, Authentication authentication) {
 
-		HttpSession session = request.getSession();
-		
-		Map<String, Object> param = new HashMap<>();
-		
-		
-		if(authentication != null) {
-			// 로그인 되어 있을시 로그인한 아이디 넣기
-			param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
-		} else {
-			// 로그인 안되어 있을시 세션 아이디 넣기 
-			param.put("loginId", session.getId());
+		try {
+			HttpSession session = request.getSession();
+			
+			Map<String, Object> param = new HashMap<>();
+			
+			
+			if(authentication != null) {
+				// 로그인 되어 있을시 로그인한 아이디 넣기
+				param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
+			} else {
+				// 로그인 안되어 있을시 세션 아이디 넣기 
+				param.put("loginId", session.getId());
+			}
+			
+			// 로그인X -> param = {loginId=441129F1C9D26CF52CF5155665EEFBC3}
+			// 로그인O -> param = {loginId=abcde}
+			//log.debug("param = {}", param); 
+			
+			// 현재 페이지 번호 
+			//log.debug("cPage = {}", cPage);
+			
+			// limit : 한페이지에 표시할 게시글 수 
+			// offset : 건너뛰어야 할 게시글 수
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			param.put("limit", limit);
+			param.put("offset", offset);
+			
+			
+			// 1. 상품 리스트 
+			List<GoodsLikeJoin> list = goodsService.selectGoodsList(param);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			
+			// 2. 전체게시물수 
+			int totalContent = goodsService.selectGoodsTotalCount();
+			model.addAttribute("totalContent", totalContent);
+			
+			// 3. 페이지바
+			String url = request.getRequestURI(); 
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			model.addAttribute("pagebar", pagebar);
+		} catch (Exception e) {
+			throw new GoodsException("goodsList 오류", e);
 		}
-		
-		// 로그인X -> param = {loginId=441129F1C9D26CF52CF5155665EEFBC3}
-		// 로그인O -> param = {loginId=abcde}
-		//log.debug("param = {}", param); 
-		
-		// 현재 페이지 번호 
-		//log.debug("cPage = {}", cPage);
-		
-		// limit : 한페이지에 표시할 게시글 수 
-		// offset : 건너뛰어야 할 게시글 수
-		int limit = 10;
-		int offset = (cPage - 1) * limit;
-		param.put("limit", limit);
-		param.put("offset", offset);
-		
-		
-		// 1. 상품 리스트 
-		List<GoodsLikeJoin> list = goodsService.selectGoodsList(param);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		
-		// 2. 전체게시물수 
-		int totalContent = goodsService.selectGoodsTotalCount();
-		model.addAttribute("totalContent", totalContent);
-		
-		// 3. 페이지바
-		String url = request.getRequestURI(); 
-		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		model.addAttribute("pagebar", pagebar);
 		
 		return "goods/goodsList";
 	}
@@ -108,32 +112,36 @@ public class GoodsController {
 		// 상품 아이디 확인 
 		log.debug("pid = {}", pid);
 		
-		// pid -> GoodsJoin (Goods+GoodsOptioin+OptionDetail)
-		List<GoodsJoin> list = goodsService.selectOneGoodsDetail(pid);
-		log.debug("list = {}", list);
-		
-		List<OptionDetail> optionDetail = new ArrayList<>();
-		
-		for(int i=0; i < list.size(); i++ ) {
-			optionDetail.add(list.get(i).getOptionDetail());
+		try {
+			// pid -> GoodsJoin (Goods+GoodsOptioin+OptionDetail)
+			List<GoodsJoin> list = goodsService.selectOneGoodsDetail(pid);
+			log.debug("list = {}", list);
+			
+			List<OptionDetail> optionDetail = new ArrayList<>();
+			
+			for(int i=0; i < list.size(); i++ ) {
+				optionDetail.add(list.get(i).getOptionDetail());
+			}
+			
+			Goods goods = list.get(0).getGoods();
+			
+			log.debug("optionDetail = {}", optionDetail);
+			log.debug("goods = {}", goods);
+			
+			model.addAttribute("goods", goods);
+			model.addAttribute("optionDetail", optionDetail);
+			request.setAttribute("optionDetail", optionDetail);
+			
+			// [기종 -> 색상] 최초 옵션리스트
+			List<OptionDetail> colorList = goodsService.selectColorByFirstType(pid);
+			request.setAttribute("colorList", colorList);
+			
+			// [색상 -> 사이즈] 최초 옵션리스트
+			List<OptionDetail> sizeList = goodsService.selectSizeByFirstColor(pid);
+			request.setAttribute("sizeList", sizeList);
+		} catch (Exception e) {
+			throw new GoodsException("goodsDetail 오류", e);
 		}
-		
-		Goods goods = list.get(0).getGoods();
-		
-		log.debug("optionDetail = {}", optionDetail);
-		log.debug("goods = {}", goods);
-		
-		model.addAttribute("goods", goods);
-		model.addAttribute("optionDetail", optionDetail);
-		request.setAttribute("optionDetail", optionDetail);
-		
-		// [기종 -> 색상] 최초 옵션리스트
-		List<OptionDetail> colorList = goodsService.selectColorByFirstType(pid);
-		request.setAttribute("colorList", colorList);
-		
-		// [색상 -> 사이즈] 최초 옵션리스트
-		List<OptionDetail> sizeList = goodsService.selectSizeByFirstColor(pid);
-		request.setAttribute("sizeList", sizeList);
 		
 	}
 	
@@ -145,14 +153,18 @@ public class GoodsController {
 		log.debug("goodsId = {}", goodsId);
 		log.debug("optionType = {}", optionType);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("goodsId", goodsId);
-		map.put("optionType", optionType);
-		
-		List<OptionDetail> searchColorList = goodsService.selectColorByType(map);
-		log.debug("searchColorList = {}", searchColorList);
-		
-		model.addAttribute("searchColorList", searchColorList);
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("goodsId", goodsId);
+			map.put("optionType", optionType);
+			
+			List<OptionDetail> searchColorList = goodsService.selectColorByType(map);
+			log.debug("searchColorList = {}", searchColorList);
+			
+			model.addAttribute("searchColorList", searchColorList);
+		} catch (Exception e) {
+			throw new GoodsException("selectColorByType 오류", e);
+		}
 	
 		return "goods/optionColorDiv";
 	}
@@ -165,14 +177,18 @@ public class GoodsController {
 		log.debug("goodsId = {}", goodsId);
 		log.debug("optionColor = {}", optionColor);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("goodsId", goodsId);
-		map.put("optionColor", optionColor);
-		
-		List<OptionDetail> searchSizeList = goodsService.selectSizeByColor(map);
-		log.debug("searchSizeList = {}", searchSizeList);
-		
-		model.addAttribute("searchSizeList", searchSizeList);
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("goodsId", goodsId);
+			map.put("optionColor", optionColor);
+			
+			List<OptionDetail> searchSizeList = goodsService.selectSizeByColor(map);
+			log.debug("searchSizeList = {}", searchSizeList);
+			
+			model.addAttribute("searchSizeList", searchSizeList);
+		} catch (Exception e) {
+			throw new GoodsException("selectSizeByColor 오류", e);
+		}
 	
 		return "goods/optionSizeDiv";
 	}
@@ -184,10 +200,14 @@ public class GoodsController {
 	public String selectOneImg(@RequestParam Map<String, Object> map, Model model) {
 		log.debug("map = {}", map);
 		
-		OptionDetail img = goodsService.selectOneOptionDetail(map);
-		log.debug("프리뷰 이미지 찾기 = {}", img);
-		
-		model.addAttribute("img", img);
+		try {
+			OptionDetail img = goodsService.selectOneOptionDetail(map);
+			log.debug("프리뷰 이미지 찾기 = {}", img);
+			
+			model.addAttribute("img", img);
+		} catch (Exception e) {
+			throw new GoodsException("selectOneImg 오류", e);
+		}
 	
 		return "goods/previewImgDiv";
 	}
@@ -271,15 +291,19 @@ public class GoodsController {
 		
 		log.debug("authentication = {}", authentication);
 		
-		Member member = (Member) authentication.getPrincipal();
-		log.debug("[principal] member = {}", member);
-		
-		// 장바구니 DB 조회
-		List<CartJoin> list = goodsService.selectGoodsCartList(member.getId());
-		log.debug("list = {}", list);
-		
-		model.addAttribute("list", list);
-		request.setAttribute("list", list);
+		try {
+			Member member = (Member) authentication.getPrincipal();
+			log.debug("[principal] member = {}", member);
+			
+			// 장바구니 DB 조회
+			List<CartJoin> list = goodsService.selectGoodsCartList(member.getId());
+			log.debug("list = {}", list);
+			
+			model.addAttribute("list", list);
+			request.setAttribute("list", list);
+		} catch (Exception e) {
+			throw new GoodsException("goodsCart 오류", e);
+		}
 		
 		return "goods/goodsCart";
 	}
@@ -291,10 +315,14 @@ public class GoodsController {
 	public String deleteCart(@RequestParam String cartId, RedirectAttributes redirectAttr) {
 		log.debug("cartId = {}", cartId);
 		
-		int result = goodsService.deleteCart(cartId);
-		log.debug("장바구니 삭제 result = {}", result);
-		
-		redirectAttr.addFlashAttribute("msg", "장바구니 삭제 성공!");
+		try {
+			int result = goodsService.deleteCart(cartId);
+			log.debug("장바구니 삭제 result = {}", result);
+			
+			redirectAttr.addFlashAttribute("msg", "장바구니 삭제 성공!");
+		} catch (Exception e) {
+			throw new GoodsException("deleteCart 오류", e);
+		}
 		
 		return "redirect:/goods/goodsCart.do";
 	}
@@ -306,47 +334,51 @@ public class GoodsController {
 	@GetMapping("/sellerInfo.do")
 	public String sellerInfo(Model model) {
 		
-		// 1. 굿즈샵 이용률 구하기
-		
-		//// 1-1. 전체회원수
-		int memberAllCnt = goodsService.selectAllMemberCount();
-		log.debug("memberAllCnt = {}", memberAllCnt); // 49
-		
-		//// 1-2. 주문한회원수
-		int orderMemberCnt = goodsService.selectOrderMemberCount();
-		log.debug("orderMemberCnt = {}", orderMemberCnt); // 4
-		
-		//// 1-3. 굿즈샵 이용율
-		double usingPercent = ((double)orderMemberCnt/memberAllCnt)*100;
-		log.debug("usingPercent = {}", usingPercent);
-		model.addAttribute("usingPercent", usingPercent);
-		
-		/////////////////////////////
-		
-		// 2. 굿즈샵 주문자들의 나이대별 회원수 구하기 
-		List<String> ageList = goodsService.selectAgeNumber();
-		log.debug("ageList = {}", ageList); // ageList = [12, 20, 22, 25]
-		
-		Map<String, Integer> ageMap = new HashMap<>();
-		ageMap.put("10대", 0);
-		ageMap.put("20대", 0);
-		ageMap.put("30대", 0);
-		ageMap.put("40대", 0);
-		ageMap.put("50대", 0);
-		
-		for(int i=0; i<ageList.size(); i++) {
+		try {
+			// 1. 굿즈샵 이용률 구하기
 			
-			switch(ageList.get(i).substring(0, 1)) {
-			case "1": ageMap.put("10대", ageMap.get("10대")+1); break;
-			case "2": ageMap.put("20대", ageMap.get("20대")+1); break;
-			case "3": ageMap.put("30대", ageMap.get("30대")+1); break;
-			case "4": ageMap.put("40대", ageMap.get("40대")+1); break;
-			case "5": ageMap.put("50대", ageMap.get("50대")+1); break;
+			//// 1-1. 전체회원수
+			int memberAllCnt = goodsService.selectAllMemberCount();
+			log.debug("memberAllCnt = {}", memberAllCnt); // 49
 			
+			//// 1-2. 주문한회원수
+			int orderMemberCnt = goodsService.selectOrderMemberCount();
+			log.debug("orderMemberCnt = {}", orderMemberCnt); // 4
+			
+			//// 1-3. 굿즈샵 이용율
+			double usingPercent = ((double)orderMemberCnt/memberAllCnt)*100;
+			log.debug("usingPercent = {}", usingPercent);
+			model.addAttribute("usingPercent", usingPercent);
+			
+			/////////////////////////////
+			
+			// 2. 굿즈샵 주문자들의 나이대별 회원수 구하기 
+			List<String> ageList = goodsService.selectAgeNumber();
+			log.debug("ageList = {}", ageList); // ageList = [12, 20, 22, 25]
+			
+			Map<String, Integer> ageMap = new HashMap<>();
+			ageMap.put("10대", 0);
+			ageMap.put("20대", 0);
+			ageMap.put("30대", 0);
+			ageMap.put("40대", 0);
+			ageMap.put("50대", 0);
+			
+			for(int i=0; i<ageList.size(); i++) {
+				
+				switch(ageList.get(i).substring(0, 1)) {
+				case "1": ageMap.put("10대", ageMap.get("10대")+1); break;
+				case "2": ageMap.put("20대", ageMap.get("20대")+1); break;
+				case "3": ageMap.put("30대", ageMap.get("30대")+1); break;
+				case "4": ageMap.put("40대", ageMap.get("40대")+1); break;
+				case "5": ageMap.put("50대", ageMap.get("50대")+1); break;
+				
+				}
 			}
+			log.debug("ageMap = {}", ageMap); 
+			model.addAttribute("ageMap", ageMap);
+		} catch (Exception e) {
+			throw new GoodsException("sellerInfo 오류", e);
 		}
-		log.debug("ageMap = {}", ageMap); 
-		model.addAttribute("ageMap", ageMap);
 		
 		return "goods/sellerInfo";
 	}
@@ -360,11 +392,15 @@ public class GoodsController {
 	public String goodsCartQtyModal(@RequestParam String id, Model model) {
 		log.debug("id = {}", id);
 		
-		// 장바구니 DB 조회
-		CartJoin cart = goodsService.selectGoodsCartQtyModal(id);
-		log.debug("cart = {}", cart);
-		
-		model.addAttribute("cart", cart);
+		try {
+			// 장바구니 DB 조회
+			CartJoin cart = goodsService.selectGoodsCartQtyModal(id);
+			log.debug("cart = {}", cart);
+			
+			model.addAttribute("cart", cart);
+		} catch (Exception e) {
+			throw new GoodsException("goodsCartQtyModal 오류", e);
+		}
 		
 		
 		return "goods/goodsCartQtyModal";
@@ -380,14 +416,18 @@ public class GoodsController {
 		log.debug("cartId = {}", cartId);
 		log.debug("qty = {}", qty);
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("cartId", cartId);
-		map.put("qty", qty);
-		
-		
-		// 장바구니 수량 변경
-		int result = goodsService.updateCart(map);
-		log.debug("장바구니 수량 변경 result = {}", result);
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("cartId", cartId);
+			map.put("qty", qty);
+			
+			
+			// 장바구니 수량 변경
+			int result = goodsService.updateCart(map);
+			log.debug("장바구니 수량 변경 result = {}", result);
+		} catch (Exception e) {
+			throw new GoodsException("updateCart 오류", e);
+		}
 		
 		
 		return "redirect:/goods/goodsCart.do";
@@ -400,44 +440,48 @@ public class GoodsController {
 	public String selectGoodsLike(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model) {
 		log.debug("map = {}", map); // map = {_csrf=5961090e-f0ea-48b2-bcab-3fd08a4fc787, goodsId=69, memberId=abcde}
 		
-		String goodsId = (String) map.get("goodsId");	
-		String memberId = (String) map.get("memberId");
+		try {
+			String goodsId = (String) map.get("goodsId");	
+			String memberId = (String) map.get("memberId");
 
-		//log.debug("goodsId = {}", goodsId); // goodsId = 69
-		//log.debug("memberId = {}", memberId); // memberId = abcde 또는 "" 
-		
-		HttpSession session = request.getSession();
-		String sessionId = session.getId();
-		log.debug("세션아이디 = {}", sessionId);
-		
-		// 회원 아이디 
-		String userId ="";
-		
-		if(memberId == "") {
-			userId = sessionId;
-		}else {
-			userId = memberId;
-		}
-		
-		Map<String, Object> param = new HashMap<>();
-		param.put("pId", goodsId);
-		param.put("userId", userId);
-		
-		
-		// 로그인 안하면 -> {pid=69, userId=06B7864EDD3E6299CC717E3B757ECF48}
-		// 로그인 하면 -> {pid=69, userId=abcde}
-		log.debug("selectGoodsLike의 param = {}", param); 
-		
-		// 업무로직 
-		GoodsLike like = goodsService.selectOneGoodsLike(param);
-		log.debug("like = {}", like); // GoodsLike(goodsLikeId=21, pId=69, userId=abcde) 또는 null 
-		
-		if(like != null) {
-			model.addAttribute("like", 1);
-		} else {
-			model.addAttribute("like", 0);
-		}
-		log.debug("model 데이터 = {}", model.toString()); 
+			//log.debug("goodsId = {}", goodsId); // goodsId = 69
+			//log.debug("memberId = {}", memberId); // memberId = abcde 또는 "" 
+			
+			HttpSession session = request.getSession();
+			String sessionId = session.getId();
+			log.debug("세션아이디 = {}", sessionId);
+			
+			// 회원 아이디 
+			String userId ="";
+			
+			if(memberId == "") {
+				userId = sessionId;
+			}else {
+				userId = memberId;
+			}
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("pId", goodsId);
+			param.put("userId", userId);
+			
+			
+			// 로그인 안하면 -> {pid=69, userId=06B7864EDD3E6299CC717E3B757ECF48}
+			// 로그인 하면 -> {pid=69, userId=abcde}
+			log.debug("selectGoodsLike의 param = {}", param); 
+			
+			// 업무로직 
+			GoodsLike like = goodsService.selectOneGoodsLike(param);
+			log.debug("like = {}", like); // GoodsLike(goodsLikeId=21, pId=69, userId=abcde) 또는 null 
+			
+			if(like != null) {
+				model.addAttribute("like", 1);
+			} else {
+				model.addAttribute("like", 0);
+			}
+			log.debug("model 데이터 = {}", model.toString());
+		} catch (Exception e) {
+			throw new GoodsException("selectGoodsLike 오류", e);
+		} 
 		
 		return "goods/goodsLikeDiv";
 	}
@@ -452,35 +496,39 @@ public class GoodsController {
 	public String updateGoodsLike(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model) {
 		log.debug("map = {}", map); // map = {_csrf=a5ce0b62-0ce7-4a8b-bc91-7a6b40548fe5, goodsId=69, memberId=, heartClass=far fa-heart}
 		
-		// 업무로직 매개변수로 사용할 map 
-		Map<String, Object> param = new HashMap<>();
-		param.put("pId", map.get("goodsId"));
-		
-		HttpSession session = request.getSession();
-		
-		//memberId값 없으면 세션아이디값 넣기 
-		if(map.get("memberId") == "") {
-			param.put("userId", session.getId());
-		}else {
-			param.put("userId", map.get("memberId"));
-		}
-		
-		log.debug("param = {}", param); 
-		
-		int result = 0;
-		
-		String heartClass = (String) map.get("heartClass");
-		//빈하트이면 레코드 추가하고 like 1로 하기 
-		if(heartClass.contains("far")) {
-			result = goodsService.insertGoodsLike(param);
-			model.addAttribute("like", 1);
-		}
-		
-		
-		//풀하트이면 레코드 삭제하고 like 0으로 하기 
-		if(heartClass.contains("fas")) {
-			result = goodsService.deleteGoodsLike(param);
-			model.addAttribute("like", 0);
+		try {
+			// 업무로직 매개변수로 사용할 map 
+			Map<String, Object> param = new HashMap<>();
+			param.put("pId", map.get("goodsId"));
+			
+			HttpSession session = request.getSession();
+			
+			//memberId값 없으면 세션아이디값 넣기 
+			if(map.get("memberId") == "") {
+				param.put("userId", session.getId());
+			}else {
+				param.put("userId", map.get("memberId"));
+			}
+			
+			log.debug("param = {}", param); 
+			
+			int result = 0;
+			
+			String heartClass = (String) map.get("heartClass");
+			//빈하트이면 레코드 추가하고 like 1로 하기 
+			if(heartClass.contains("far")) {
+				result = goodsService.insertGoodsLike(param);
+				model.addAttribute("like", 1);
+			}
+			
+			
+			//풀하트이면 레코드 삭제하고 like 0으로 하기 
+			if(heartClass.contains("fas")) {
+				result = goodsService.deleteGoodsLike(param);
+				model.addAttribute("like", 0);
+			}
+		} catch (Exception e) {
+			throw new GoodsException("updateGoodsLike 오류", e);
 		}
 		
 		return "goods/goodsLikeDiv";
@@ -494,50 +542,54 @@ public class GoodsController {
 	@GetMapping("/insertOrder.do")
 	public void insertOrder(Authentication authentication) {
 
-
-		// 1. 주문 테이블에 레코드 1행 추가하기 
-		// 회원아이디 : memberId
-		Member member = (Member) authentication.getPrincipal();
-		String memberId = member.getId();
-		log.debug("memberId = {}", memberId);
 		
-		// 총주문금액 
-		List<CartJoin> list = goodsService.selectGoodsCartList(memberId);
-		log.debug("list = {}", list);
-		
-		int totalPrice = 0;
-		int price = 0;
-		int cnt = 0;
-		
-		for(int i=0; i < list.size(); i++ ) {
-			price = list.get(i).getGoods().getPPrice();
-			cnt = list.get(i).getGoodsCart().getCartQuantity();
-					
-			totalPrice += (price*cnt);
+		try {
+			// 1. 주문 테이블에 레코드 1행 추가하기 
+			// 회원아이디 : memberId
+			Member member = (Member) authentication.getPrincipal();
+			String memberId = member.getId();
+			log.debug("memberId = {}", memberId);
+			
+			// 총주문금액 
+			List<CartJoin> list = goodsService.selectGoodsCartList(memberId);
+			log.debug("list = {}", list);
+			
+			int totalPrice = 0;
+			int price = 0;
+			int cnt = 0;
+			
+			for(int i=0; i < list.size(); i++ ) {
+				price = list.get(i).getGoods().getPPrice();
+				cnt = list.get(i).getGoodsCart().getCartQuantity();
+						
+				totalPrice += (price*cnt);
+			}
+			log.debug("totalPrice = {}", totalPrice); // totalPrice = 321100 (배송비 포함X)
+			
+			// 매개변수
+			Map<String, Object> param = new HashMap<>();
+			param.put("memberId", memberId);
+			param.put("totalPrice", totalPrice);
+			
+			// goods_order 테이블에 1행 추가 / param : memberId, totalPrice
+			int result = goodsService.insertGoodsOrder(param);
+			log.debug("goods_order 삽입 result = {}", result); // goods_order 삽입 result = 1
+			
+			////////////////////////////////////////////
+			
+			// 2. 주문상세 테이블에 레코드 n행 추가하기 
+			
+			// 주문번호 찾기 
+			String orderNo = goodsService.selectOneOrderNo(param);
+			log.debug("orderNo = {}", orderNo); // order = order-0004
+			param.put("orderNo", orderNo);
+			
+			// order_detail 테이블에 n행 추가 / param : memberId, orderNo
+			result = goodsService.insertOrderDetail(param);
+			log.debug("order_detail 삽입 result = {}", result); // order_detail 삽입 result = 6
+		} catch (Exception e) {
+			throw new GoodsException("insertOrder 오류", e);
 		}
-		log.debug("totalPrice = {}", totalPrice); // totalPrice = 321100 (배송비 포함X)
-		
-		// 매개변수
-		Map<String, Object> param = new HashMap<>();
-		param.put("memberId", memberId);
-		param.put("totalPrice", totalPrice);
-		
-		// goods_order 테이블에 1행 추가 / param : memberId, totalPrice
-		int result = goodsService.insertGoodsOrder(param);
-		log.debug("goods_order 삽입 result = {}", result); // goods_order 삽입 result = 1
-		
-		////////////////////////////////////////////
-		
-		// 2. 주문상세 테이블에 레코드 n행 추가하기 
-		
-		// 주문번호 찾기 
-		String orderNo = goodsService.selectOneOrderNo(param);
-		log.debug("orderNo = {}", orderNo); // order = order-0004
-		param.put("orderNo", orderNo);
-		
-		// order_detail 테이블에 n행 추가 / param : memberId, orderNo
-		result = goodsService.insertOrderDetail(param);
-		log.debug("order_detail 삽입 result = {}", result); // order_detail 삽입 result = 6
 		
 
 		//return "redirect:/goods/goodsCart.do";
@@ -549,15 +601,19 @@ public class GoodsController {
 	@GetMapping("/goodsOrder.do")
 	public String goodsOrder(Authentication authentication, Model model) {
 		
-		// member -> 주문자정보 
-		Member member = (Member) authentication.getPrincipal();
-		String memberId = member.getId();
-		model.addAttribute("member", member);
-		
-		// cart -> 주문정보
-		List<CartJoin> cartList = goodsService.selectGoodsCartList(memberId);
-		log.debug("cartList = {}", cartList);
-		model.addAttribute("cartList", cartList);
+		try {
+			// member -> 주문자정보 
+			Member member = (Member) authentication.getPrincipal();
+			String memberId = member.getId();
+			model.addAttribute("member", member);
+			
+			// cart -> 주문정보
+			List<CartJoin> cartList = goodsService.selectGoodsCartList(memberId);
+			log.debug("cartList = {}", cartList);
+			model.addAttribute("cartList", cartList);
+		} catch (Exception e) {
+			throw new GoodsException("goodsOrder 오류", e);
+		}
 		
 		return "goods/goodsOrder";
 	}
@@ -583,36 +639,39 @@ public class GoodsController {
 		cardNumber : 941061*********8
 	 */
 	@PostMapping("/insertPayment.do")
+	@Transactional (
+		propagation = Propagation.REQUIRED, 
+		isolation = Isolation.READ_COMMITTED,
+		rollbackFor = Exception.class
+	)
 	public String insertPayment(@RequestParam Map<String, Object> map) {
 		log.debug("map = {}", map);
 		
 		int result = 0;
 		
-		// goods_order 테이블에 1행 추가 / 필요 map : memberId, payPrice
-		result = goodsService.insertGoodsOrder(map);
-		log.debug("goods_order 삽입 result = {}", result); 
-		
-		// orderNo 찾기 
-		String orderNo = goodsService.selectOneOrderNo(map);
-		log.debug("orderNo = {}", orderNo);
-		map.put("orderNo", orderNo);
-		
-		
-		// order_detail 테이블에 n행 추가 / 필요 map : memberId, orderNo
-		result = goodsService.insertOrderDetail(map);
-		log.debug("order_detail 삽입 result = {}", result);
-					
-		
-		if(map.get("usedPoints").toString() == "") {
-			map.put("usedPoints", "0");
-		}
-		
-		// payment 테이블 insert
-		result = goodsService.insertPayment(map);
-		log.debug("payment insert > result = {}", result);
-		
-		// 결제 성공 및 결제 데이터 추가 성공시 
-		if(result > 0) {
+		try {
+			// goods_order 테이블에 1행 추가 / 필요 map : memberId, payPrice
+			result = goodsService.insertGoodsOrder(map);
+			log.debug("goods_order 삽입 result = {}", result); 
+			
+			// orderNo 찾기 
+			String orderNo = goodsService.selectOneOrderNo(map);
+			log.debug("orderNo = {}", orderNo);
+			map.put("orderNo", orderNo);
+			
+			
+			// order_detail 테이블에 n행 추가 / 필요 map : memberId, orderNo
+			result = goodsService.insertOrderDetail(map);
+			log.debug("order_detail 삽입 result = {}", result);
+						
+			
+			if(map.get("usedPoints").toString() == "") {
+				map.put("usedPoints", "0");
+			}
+			
+			// payment 테이블 insert
+			result = goodsService.insertPayment(map);
+			log.debug("payment insert > result = {}", result);
 
 			int booleanSaveAddressChk = Integer.parseInt(map.get("booleanSaveAddressChk").toString());
 			int usedPoints = Integer.parseInt(map.get("usedPoints").toString());
@@ -621,40 +680,47 @@ public class GoodsController {
 			log.debug("booleanSaveAddressChk = {}", booleanSaveAddressChk);
 			log.debug("usedPoints = {}", usedPoints);
 			
-			// member 테이블 주소 update
+			// 배송지저장 버튼 클릭 했으면 
 			if(booleanSaveAddressChk > 0) {
+				// member 테이블 주소 컬럼 update
 				result = goodsService.updateMemberAddress(map);
 				log.debug("member address update > result = {}", result);
 			}
 
-			// member 테이블 포인트 update
+			// 사용한 포인트가 있으면 
 			if(usedPoints > 0) {
+				// member 테이블 point 컬럼 update
 				result = goodsService.updateMemberPoint(map);
 				log.debug("member point update > result = {}", result);
+				
+				// point_history에 넣을 컬럼내용 추가 
+				map.put("reason", "굿즈샵 포인트 사용");
+				map.put("change", change);
+				map.put("point", 0);
+				
+				// point_history 테이블 1행 insert
+				result = goodsService.insertPointHistoryByPayment(map);
+				log.debug("point history insert > result = {}", result);
 			}
 			
-			// goods 테이블 재고량 update (order_no -> order_detail_no -> option_id)
+			
 			List<OrderDetail> orderDetail = goodsService.selectOrderDetailList(orderNo);
 			log.debug("orderDetail = {}", orderDetail);
 			
 			orderDetail.get(0).getOptionId();
 			
+			// goods 테이블 재고량 컬럼 update (order_no -> order_detail_no -> option_id)
 			result = goodsService.updateGoodsStock(orderDetail);
 			log.debug("updateGoodsStock > result = {}", result);
 			
 			// cart 테이블 전체 delete
 			result = goodsService.deleteCartList(map);
 			log.debug("cart delete > result = {}", result);
-			
-			// point_history 테이블 insert
-			map.put("reason", "굿즈샵 포인트 사용");
-			map.put("change", change);
-			map.put("point", 0);
-			
-			result = goodsService.insertPointHistoryByPayment(map);
-			log.debug("point history insert > result = {}", result);
-						
+		} catch (NumberFormatException e) {
+			throw new GoodsException("insertPayment 오류", e);
 		}
+			
+	
 
 		return "redirect:/goods/completeOrder.do";
 	}
@@ -665,11 +731,15 @@ public class GoodsController {
 	 */
 	@GetMapping("/completeOrder.do")
 	public String completeOrder(Authentication authentication, Model model) {
-		Member member = (Member) authentication.getPrincipal();
-		
-		GoodsOrder order = goodsService.selectOneGoodsOrder(member.getId());
-		log.debug("order = {}", order);
-		model.addAttribute("order", order);
+		try {
+			Member member = (Member) authentication.getPrincipal();
+			
+			GoodsOrder order = goodsService.selectOneGoodsOrder(member.getId());
+			log.debug("order = {}", order);
+			model.addAttribute("order", order);
+		} catch (Exception e) {
+			throw new GoodsException("completeOrder 오류", e);
+		}
 		
 		return "goods/completeOrder";
 	}
@@ -683,12 +753,16 @@ public class GoodsController {
 	@GetMapping("/orderList.do")
 	public String orderList(Authentication authentication, Model model) {
 		
-		Member member = (Member) authentication.getPrincipal();
-		String memberId = member.getId();
-		
-		List<OrderJoin> list = goodsService.selectOrderList(memberId);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
+		try {
+			Member member = (Member) authentication.getPrincipal();
+			String memberId = member.getId();
+			
+			List<OrderJoin> list = goodsService.selectOrderList(memberId);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			throw new GoodsException("orderList 오류", e);
+		}
 		
 		return "goods/orderList";
 	}
@@ -700,43 +774,48 @@ public class GoodsController {
 	@GetMapping("/orderDetail.do")
 	public String orderDetail(@RequestParam int no, Model model) {
 		
-		// 주문상세번호 
-		int orderDetailNo = no;
-		log.debug("orderDetailNo = {}", orderDetailNo);
-		
-		// 주문상세번호 -> 주문번호 찾기 
-		int orderNo = goodsService.selectOrderNo(orderDetailNo);
-		log.debug("orderNo = {}", orderNo);
-		
-		// 주문번호 -> 첫번째 주문상세번호 찾기 
-		int firstOrderDetailNo = goodsService.selectFirstOrderDetailNo(orderNo);
-		log.debug("firstOrderDetailNo = {}", firstOrderDetailNo);
-		
-		// 주소의 주문상세번호 == 찾은첫번째주문상세번호 -> firstOrderDetailItem = 1 (아니면 0)
-		int booleanFirstOrder = (orderDetailNo == firstOrderDetailNo) ? 1 : 0 ;
-		model.addAttribute("booleanFirstOrder", booleanFirstOrder);
-		log.debug("booleanFirstOrder = {}", booleanFirstOrder);
-		
-		// 주문상세번호 -> 주문+주문상세+결제+굿즈+옵션상세 
-		OrderDetailJoin order = goodsService.selectOneOrderDetailJoin(orderDetailNo);
-		model.addAttribute("order", order);
-		log.debug("order = {}", order);
-		
-		// status 데이터 -> statusPercent 상품상태 프로그레스바 퍼센티지 
-		String status = order.getOrderDetail().getStatus();
-		int statusPercent = 20;
-		
-		switch(status) {
-			case "주문취소" : statusPercent = 0; break;
-			case "상품준비중" : statusPercent = 20; break;
-			case "배송준비중" : statusPercent = 40; break;	
-			case "배송중" : statusPercent = 60; break;
-			case "배송완료" : statusPercent = 80; break;
-			case "구매확정" : statusPercent = 100; break;
+		try {
+			// 주문상세번호 
+			int orderDetailNo = no;
+			log.debug("orderDetailNo = {}", orderDetailNo);
+			
+			// 주문상세번호 -> 주문번호 찾기 
+			int orderNo = goodsService.selectOrderNo(orderDetailNo);
+			log.debug("orderNo = {}", orderNo);
+			
+			// 주문번호 -> 첫번째 주문상세번호 찾기 
+			int firstOrderDetailNo = goodsService.selectFirstOrderDetailNo(orderNo);
+			log.debug("firstOrderDetailNo = {}", firstOrderDetailNo);
+			
+			// 주소의 주문상세번호 == 찾은첫번째주문상세번호 -> firstOrderDetailItem = 1 (아니면 0)
+			int booleanFirstOrder = (orderDetailNo == firstOrderDetailNo) ? 1 : 0 ;
+			model.addAttribute("booleanFirstOrder", booleanFirstOrder);
+			log.debug("booleanFirstOrder = {}", booleanFirstOrder);
+			
+			// 주문상세번호 -> 주문+주문상세+결제+굿즈+옵션상세 
+			OrderDetailJoin order = goodsService.selectOneOrderDetailJoin(orderDetailNo);
+			model.addAttribute("order", order);
+			log.debug("order = {}", order);
+			
+			// status 데이터 -> statusPercent 상품상태 프로그레스바 퍼센티지 
+			String status = order.getOrderDetail().getStatus();
+			int statusPercent = 20;
+			
+			switch(status) {
+				case "환불완료" : statusPercent = 0; break;
+				case "주문취소" : statusPercent = 0; break;
+				case "상품준비중" : statusPercent = 20; break;
+				case "배송준비중" : statusPercent = 40; break;	
+				case "배송중" : statusPercent = 60; break;
+				case "배송완료" : statusPercent = 80; break;
+				case "구매확정" : statusPercent = 100; break;
+			}
+			
+			log.debug("statusPercent = {}", statusPercent);
+			model.addAttribute("statusPercent", statusPercent);
+		} catch (Exception e) {
+			throw new GoodsException("orderDetail 오류", e);
 		}
-		
-		log.debug("statusPercent = {}", statusPercent);
-		model.addAttribute("statusPercent", statusPercent);
 		
 		return "goods/orderDetail";
 	}
@@ -748,20 +827,24 @@ public class GoodsController {
 	@GetMapping("/likeItems.do")
 	public String likeItems(Authentication authentication, Model model, HttpServletRequest request) {
 		
-		HttpSession session = request.getSession();
-		String loginId = "";
-		
-		if(authentication != null) {
-			// 로그인 되어 있을시 로그인한 아이디 넣기
-			loginId = (String)(((Member) authentication.getPrincipal()).getId());
-		} else {
-			// 로그인 안되어 있을시 세션 아이디 넣기 
-			loginId = session.getId();
+		try {
+			HttpSession session = request.getSession();
+			String loginId = "";
+			
+			if(authentication != null) {
+				// 로그인 되어 있을시 로그인한 아이디 넣기
+				loginId = (String)(((Member) authentication.getPrincipal()).getId());
+			} else {
+				// 로그인 안되어 있을시 세션 아이디 넣기 
+				loginId = session.getId();
+			}
+			
+			List<GoodsLikeJoin> list = goodsService.selectGoodsLikeItems(loginId);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+		} catch (Exception e) {
+			throw new GoodsException("likeItems 오류", e);
 		}
-		
-		List<GoodsLikeJoin> list = goodsService.selectGoodsLikeItems(loginId);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
 		
 		
 		return "goods/likeItems";
@@ -777,39 +860,43 @@ public class GoodsController {
 		log.debug("cPage = {}", cPage);
 		
 		
-		HttpSession session = request.getSession();
-		
-		Map<String, Object> param = new HashMap<>();
-		param.put("sortType", sortType);
-		
-		if(authentication != null) {
-			param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
-		} else {
-			param.put("loginId", session.getId());
+		try {
+			HttpSession session = request.getSession();
+			
+			Map<String, Object> param = new HashMap<>();
+			param.put("sortType", sortType);
+			
+			if(authentication != null) {
+				param.put("loginId", (String)(((Member) authentication.getPrincipal()).getId()));
+			} else {
+				param.put("loginId", session.getId());
+			}
+			
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			param.put("limit", limit);
+			param.put("offset", offset);
+			
+			
+			// 1. 상품 리스트 
+			List<GoodsLikeJoin> list = goodsService.selectGoodsListBySortType(param);
+			
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			
+			// 2. 전체게시물수 
+			int totalContent = goodsService.selectGoodsTotalCount();
+			model.addAttribute("totalContent", totalContent);
+			
+			// 3. 페이지바
+			//String url = request.getRequestURI(); 
+			String url = request.getRequestURI()+"?sortType="+sortType; 
+			log.debug("url 1111111111 = {}", url);
+			String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
+			model.addAttribute("pagebar", pagebar);
+		} catch (Exception e) {
+			throw new GoodsException("goodsListSort 오류", e);
 		}
-		
-		int limit = 10;
-		int offset = (cPage - 1) * limit;
-		param.put("limit", limit);
-		param.put("offset", offset);
-		
-		
-		// 1. 상품 리스트 
-		List<GoodsLikeJoin> list = goodsService.selectGoodsListBySortType(param);
-		
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		
-		// 2. 전체게시물수 
-		int totalContent = goodsService.selectGoodsTotalCount();
-		model.addAttribute("totalContent", totalContent);
-		
-		// 3. 페이지바
-		//String url = request.getRequestURI(); 
-		String url = request.getRequestURI()+"?sortType="+sortType; 
-		log.debug("url 1111111111 = {}", url);
-		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
-		model.addAttribute("pagebar", pagebar);
 		
 		
 		//return "goods/goodsListSortDiv";
@@ -825,11 +912,15 @@ public class GoodsController {
 	public String selectGoodsOptionStock(@RequestParam Map<String, Object> map, Model model) {
 		log.debug("map = {}", map);
 		
-		OptionDetail optionDetail = goodsService.selectOneOptionDetail(map);
-		log.debug("optionDetail = {}", optionDetail);
-		log.debug("옵션 재고량 = {}", optionDetail.getOptionStock());
-		
-		model.addAttribute("optionDetail", optionDetail);
+		try {
+			OptionDetail optionDetail = goodsService.selectOneOptionDetail(map);
+			log.debug("optionDetail = {}", optionDetail);
+			log.debug("옵션 재고량 = {}", optionDetail.getOptionStock());
+			
+			model.addAttribute("optionDetail", optionDetail);
+		} catch (Exception e) {
+			throw new GoodsException("selectGoodsOptionStock 오류", e);
+		}
 	
 		return "goods/soldoutDiv";
 	}
@@ -837,15 +928,19 @@ public class GoodsController {
 	
 	
 	/**
-	 * goodsDetail 페이지 > 옵션별 재고량 찾기  
+	 * orderDetail 상품상태 변경 
 	 */
 	@PostMapping("/updateOrderStatusConfirm.do")
 	public String updateOrderStatusConfirm(@RequestParam int orderDetailNo) {
 
 		log.debug("orderDetailNo = {}", orderDetailNo);
 		
-		int result = goodsService.updateOrderDetailStatus(orderDetailNo);
-		log.debug("result = {}", result);
+		try {
+			int result = goodsService.updateOrderDetailStatus(orderDetailNo);
+			log.debug("result = {}", result);
+		} catch (Exception e) {
+			throw new GoodsException("updateOrderStatusConfirm 오류", e);
+		}
 		
 	
 		return "redirect:/goods/orderList.do";
