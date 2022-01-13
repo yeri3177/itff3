@@ -1,6 +1,7 @@
 package com.kh.spring.review.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -102,6 +103,15 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public int updateReviewLike(int reviewNo) {
 		return session.update("review.updateReviewLike", reviewNo);
+	}
+
+	@Override
+	public List<Review> searchReview(Map<String, Object> searchParam) {
+		int offset = (int)searchParam.get("start");
+		int limit = (int)searchParam.get("end");
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return session.selectList("review.searchReview", searchParam, rowBounds);
 	}
 	
 	

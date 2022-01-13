@@ -1,6 +1,7 @@
 package com.kh.spring.review.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -148,6 +149,11 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<Review> searchReview(Map<String, Object> searchParam) {
+		return reviewDao.searchReview(searchParam);
 	}
 	
 	

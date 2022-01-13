@@ -1,6 +1,7 @@
 package com.kh.spring.review.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.review.model.vo.ReviewComment;
@@ -42,5 +43,7 @@ public interface ReviewDao {
 	int insertReviewLike(ReviewLike reviewLike);
 
 	int updateReviewLike(int reviewNo);
+
+	List<Review> searchReview(Map<String, Object> searchParam);
 
 }

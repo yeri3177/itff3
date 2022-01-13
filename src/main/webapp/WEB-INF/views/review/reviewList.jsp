@@ -45,7 +45,7 @@
 <!-- 여기까지 nav 입니다. -->
 
 
-<section class="ink_board guest_mode">
+<section class="ink_board guest_mode" style="padding-bottom: 0">
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
@@ -195,11 +195,27 @@
 	</div>
 	<div class="ink_align_center"></div>
 </section>
+
+<!-- 페이지바 -->
 <div class="pagebar_footer">
 	${pagebar}
-	
 </div>
 
+<!-- 검색바 -->
+<div class="search_wrapper" style="width:352px">
+	<form action="${pageContext.request.contextPath}/review/reviewSearch.do">
+		<div class="board_search">
+			<select class="search_select col" name="searchType" style="width:82px; padding-right: 5px; padding-left: 5px;">
+	            <option value="title" ${"title".equals(searchType) || searchType eq null ? "selected" : ""}>제목</option>
+	            <option value="content" ${"content".equals(searchType) ? "selected" : ""}>본문</option>
+	            <option value="title_content" ${"title_content".equals(searchType) ? "selected" : ""}>제목+본문</option>
+	            <option value="name" ${"name".equals(searchType) ? "selected" : ""}>글쓴이</option>
+			</select>
+	        <input type="text" class="search_input col" name="searchKeyword" value="${searchKeyword}" style="width: 210px;">
+	        <button class="search_btn col" style="width: 55px;" onclick="return app.board_search()">검색</button>
+		</div>
+	</form>
+</div>
 
 <!-- 페이지 제일 위로 가는 버튼 -->
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
