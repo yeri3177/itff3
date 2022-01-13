@@ -39,13 +39,13 @@
 </jsp:include>
 <!-- 여기까지 nav 입니다. -->
 
-<c:if test="${not empty msg}">
+
+<%-- <c:if test="${not empty msg}">
 <script>
-	alert("${msg}");
+	alert(${msg});
 </script>
 </c:if>
-
-
+ --%>
 <!-- 해당 페이지 큰 글씨 -->
 <div class="sub_title_wrap">
 	<div class="container">
@@ -77,6 +77,7 @@
 		</div>	
 	</c:if>
 
+	<input type="hidden" id="msg" class="msg" value="<%= request.getParameter("msg") %>" />
 
 	<c:forEach items="${list }" var="mv" varStatus="vs">
 		<form
@@ -224,6 +225,19 @@ for(var i = 1; i < 11; i++){
 }
 </script>
  
+ <script>
+ 	const msg = $('.msg').val();
+ 	
+ 	
+ 	if(msg == "null"){
+ 		console.log(1);
+ 	}
+ 	else{
+ 		alert(msg);
+ 	}
+ 	
+ 
+ </script>
 
 
 <!-- </body> -->
