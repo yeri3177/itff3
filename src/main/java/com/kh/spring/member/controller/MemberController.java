@@ -477,24 +477,24 @@ public class MemberController {
 		String pagebar = HiSpringUtils.getPagebar(cPage, limit, totalContent, url);
 		log.debug("pagebar = {}", pagebar);
 		model.addAttribute("pagebar", pagebar);
-		
+						
 	}
 	
 	@PostMapping("/memberMovieReservationCansel")
-	public String memberMovieReservationCansel(Model model, @RequestParam String movieReservationId) {
+	public String memberMovieReservationCansel(Model model, @RequestParam String movieReservationId, RedirectAttributes redirectAttr) {
 		
 		log.debug("MOVIE_RESERVATION_ID = {}", movieReservationId);
 		
 		int result = memberService.deleteReservationByMovieReservationId(movieReservationId);
 		
 		if(result == 1) {
-			model.addAttribute("msg", "예매가 취소 되었습니다.");
+			redirectAttr.addAttribute("msg", "예매가 취소 되었습니다.");
 		}
 		else {
-			model.addAttribute("msg", "예매취소 실패!");
+			redirectAttr.addAttribute("msg", "예매취소 실패!");
 		}
 		
-		return "/member/memberMovieReservation";
+		return "redirect:/member/memberMovieReservation.do";
 	}
 	
 	@GetMapping("/memberPoint.do")
