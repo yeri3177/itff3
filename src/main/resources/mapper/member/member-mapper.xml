@@ -327,4 +327,5 @@
 		where
 			movie_reservation_id = #{movieReservationId}
 	</delete>
+	
 </mapper>

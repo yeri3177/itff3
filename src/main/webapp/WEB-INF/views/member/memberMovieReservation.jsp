@@ -42,7 +42,6 @@
 <c:if test="${not empty msg}">
 <script>
 	alert("${msg}");
-	location.reload();
 </script>
 </c:if>
 
