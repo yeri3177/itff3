@@ -389,6 +389,9 @@ public class AdminManageController {
 		
 		model.addAttribute("pagebar", pagebar);
 		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminMemberList";
 	}
 	
@@ -827,6 +830,9 @@ public class AdminManageController {
 		
 		model.addAttribute("pagebar", pagebar);
 		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminMovieReservationList";
 	}
 	
@@ -876,6 +882,10 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		
 		return "admin/adminMovieReservationList";
 	}
@@ -1105,6 +1115,9 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
 		
 		return "admin/adminGoodsList";
 	}
@@ -1711,6 +1724,9 @@ public class AdminManageController {
 		
 		model.addAttribute("pagebar", pagebar);
 		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminGoodsOrderList";
 	}
 	
@@ -1758,6 +1774,9 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		
 		return "admin/adminGoodsOrderList";
 	}
@@ -2234,6 +2253,9 @@ public class AdminManageController {
 		
 		model.addAttribute("pagebar", pagebar);
 		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminReviewList";
 	}
 
@@ -2386,6 +2408,9 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
 		
 		return "admin/adminSharingList";
 	}
@@ -2688,6 +2713,9 @@ public class AdminManageController {
 		
 		model.addAttribute("pagebar", pagebar);
 		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
 		return "admin/adminNoticeList";
 	}
 	
@@ -2777,6 +2805,9 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
 		
 		return "admin/adminNewQuestion";
 	}
@@ -2938,6 +2969,9 @@ public class AdminManageController {
 //		log.debug("pagebar = {}", pagebar);
 		
 		model.addAttribute("pagebar", pagebar);
+		
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
 		
 		return "admin/adminQuestionList";
 	}

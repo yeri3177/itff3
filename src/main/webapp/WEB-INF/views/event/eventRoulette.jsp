@@ -222,11 +222,8 @@ TweenMax.to( _roll_bg, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut,
 	        beforeSend : function(xhr) {   
 	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 	        },
-	        success:    // db전송 성공시 실시간 알림 전송
-	            // 소켓에 전달되는 메시지
-	            // 위에 기술한 EchoHandler에서 ,(comma)를 이용하여 분리시킨다.
+	        success:
 	        	socket.send("ITFF,"+target+","+content+","+url)
-//				console.log("관리자,"+target+","+content+","+url)
 
 	    });
 	
