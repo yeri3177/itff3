@@ -124,7 +124,7 @@ public class AdminServiceImpl implements AdminService {
 			if(attachments != null) {
 				for(Attachment attach : attachments) {
 //					attach.setAttachNo(goods.getPId()); // fk컬럼값 세팅(필수)
-					result = adminDao.insertAttachment(attach);
+					result = adminDao.insertGoodsAttachment(attach);
 				}
 			}
 		} catch (Exception e) {
