@@ -170,7 +170,7 @@ $("#usingMileage").blur((e) => {
 			$("#usingMileage").focus();
 		}, 10);
 	}
-	else if(val > $("#myMileage").val()) {
+	else if(parseInt(val) > parseInt($("#myMileage").val())) {
 		alert("보유한 마일리지 범위 내에서 사용하실 수 있습니다.");	
 		setTimeout(function() {
 			$("#usingMileage").focus();
