@@ -1,6 +1,7 @@
 package com.kh.spring.review.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.spring.review.model.vo.Review;
 import com.kh.spring.review.model.vo.ReviewComment;
@@ -38,5 +39,7 @@ public interface ReviewService {
 	int deleteReviewLike(ReviewLike reviewLike);
 
 	int insertReviewLike(ReviewLike reviewLike);
+
+	List<Review> searchReview(Map<String, Object> searchParam);
 
 }
