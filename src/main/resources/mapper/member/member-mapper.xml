@@ -320,4 +320,12 @@
 		order by
 			start_date desc
 	</select>
+	
+	<delete id="deleteReservationByMovieReservationId">
+		delete from
+			movie_reservation
+		where
+			movie_reservation_id = #{movieReservationId}
+	</delete>
+	
 </mapper>
