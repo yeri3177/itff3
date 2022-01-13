@@ -837,7 +837,7 @@ function inicisPay() {
         pg: 'payco',
         pay_method : 'card', 
         name : paymentProductName,
-        amount : 100, //상품가격 ( $totalPrice.val() )
+        amount : $totalPrice.val(), //상품가격 ( $totalPrice.val() )
         buyer_name : '${member.name}',	// 구매자이름
         buyer_tel : '${member.phone}',	// 구매자 전화번호
         buyer_email : '${member.email}',	//구매자 이메일
@@ -924,10 +924,12 @@ $(".form-select").change((e) => {
 /* 포인트사용 버튼 클릭시 */
 $(".point-btn").click((e) => {
 	var holdingPoints = $(".holdingPoints").text();
+	var totalPrice = parseInt($totalPrice.val());
 	
 	console.log(holdingPoints);
 	
-	if(holdingPoints>=1000){
+	
+	if(holdingPoints>=1000 && holdingPoints<= totalPrice){
 		$(".point-input").val(holdingPoints);
 		$(".summary-points-val").text(comma($userpoints.val())+"P");
 		$(".totalPrice-div").text((comma(parseInt(${allprice})-(parseInt($userpoints.val()))+2500))+"원");
@@ -935,7 +937,16 @@ $(".point-btn").click((e) => {
 		
 		
 		console.log("최종 결제 금액 = " + $totalPrice.val());
-	} else{
+	} else if(holdingPoints > totalPrice){
+		$(".point-input").val(totalPrice-1000);
+		
+		$(".summary-points-val").text(comma($userpoints.val())+"P");
+		$(".totalPrice-div").text((comma(parseInt(${allprice})-(parseInt($userpoints.val()))+2500))+"원");
+		$("#totalPrice").val(parseInt(${allprice})-(parseInt($userpoints.val()))+2500);
+		
+		
+		
+	} else {
 		$(".point-input").val("0");
 	}
 })

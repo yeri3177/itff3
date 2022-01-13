@@ -271,6 +271,7 @@ public class GoodsServiceImpl implements GoodsService {
 	public int updateOrderDetailStatus(int orderDetailNo) {
 		return goodsDao.updateOrderDetailStatus(orderDetailNo);
 	}
+
 	
 	
 }
