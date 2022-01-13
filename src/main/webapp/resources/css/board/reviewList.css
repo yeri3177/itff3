@@ -1096,3 +1096,51 @@ a:hover {
 #myBtn:hover {
 	background-color: #555; /* Add a dark-grey background on hover */
 }
+
+.search_wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 15px auto;
+    margin-bottom: 0;
+    padding-bottom: 30px;
+    width: 293px;
+}
+.search_wrapper .search_select {
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #D0D0D0;
+    background: #F5F5F5;
+    color: #666;
+    font-size: 11px;
+    margin-right: -1px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.search_wrapper .search_input {
+    float: left;
+    width: 170px;
+    padding: 0px;
+    height: 22px;
+    padding-left: 6px;
+    background-color: #F5F5F5;
+    border: 1px solid #D0D0D0;
+}
+.search_wrapper .search_btn {
+    float: left;
+    position: relative;
+    width: 35px;
+    height: 22px;
+    font-size: 12px;
+    color: #fff;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background-color: #acacac;
+}

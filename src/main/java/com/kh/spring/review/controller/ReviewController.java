@@ -3,7 +3,9 @@ package com.kh.spring.review.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -383,6 +385,50 @@ public class ReviewController {
 		log.debug("result = {}", result);
 		
 		return "redirect:/review/reviewDetail.do?reviewNo=" + reviewNo + "&memberId=" + memberId;
+	}
+	
+	@GetMapping("/reviewSearch.do")
+	public String reviewSearch(
+			@RequestParam(defaultValue = "1") int cPage,
+			@RequestParam String searchType,
+			@RequestParam String searchKeyword,
+			Model model,
+			HttpServletRequest request) {
+		
+		log.debug("cPage = {}", cPage);
+		log.debug("searchType = {}", searchType);
+		log.debug("searchKeyword = {}", searchKeyword);
+
+		int limit = 20;
+		int offset = (cPage - 1) * limit;
+	
+		// 0. Map에 검색값들 담기
+		Map<String, Object> searchParam = new HashMap<>();
+		searchParam.put("searchType", searchType);
+		String newSearchKeyword = "%" + searchKeyword + "%";
+		searchParam.put("searchKeyword", newSearchKeyword);
+		searchParam.put("start", offset);
+		searchParam.put("end", limit);
+		
+		// 1. 전체 게시물 목록 가져오기(첨부파일 갯수 포함)
+		List<Review> list = reviewService.searchReview(searchParam);
+		log.debug("SearchList = {}", list);
+		model.addAttribute("list", list);
+		
+		// 2. 총 게시물 수 가져오기
+		int totalContent = reviewService.selectReviewTotalCount();
+		log.debug("totalContent = {}", totalContent);
+		model.addAttribute("totalContent", totalContent);
+		
+		// 3. pagebar
+		String url = request.getRequestURI() + "?searchType=" + searchType + "&searchKeyword=" + searchKeyword;   // /spring/board/boardList.do
+		String pagebar = HiSpringUtils.getReviewPagebar(cPage, limit, totalContent, url);
+		log.debug("pagebar = {}", pagebar);
+		model.addAttribute("pagebar", pagebar);
+		model.addAttribute("searchType", searchType);
+		model.addAttribute("searchKeyword", searchKeyword);
+		
+		return "review/reviewList";
 	}
 	
 	

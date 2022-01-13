@@ -272,4 +272,38 @@
 			review_no = #{reviewNo}
 	</update>
 	
+	<select id="searchReview" resultMap="reviewMap">
+		select
+		    r.*,
+		    m.*,
+		    (select count(*) from attachment where review_no = r.review_no) attach_count,
+		    (select count(*) from review_comment where review_no = r.review_no) rc_count
+		from
+		    review_board r join member m
+		        on r.member_id = m.id
+		<choose>
+		<when test="searchType != null and !searchType.equals('') and searchType.equals('title')">
+			where
+				review_title like #{searchKeyword}
+		</when>
+		<when test="searchType != null and !searchType.equals('') and searchType.equals('content')">
+			where
+				review_content like #{searchKeyword}
+		</when>
+		<when test="searchType != null and !searchType.equals('') and searchType.equals('title_content')">
+			where
+				review_title like #{searchKeyword} or review_content like #{searchKeyword}
+		</when>
+		<when test="searchType != null and !searchType.equals('') and searchType.equals('name')">
+			where
+				nickname like #{searchKeyword}
+		</when>
+		</choose>
+		order by
+		    review_no desc
+		
+		
+		
+	</select>
+	
 </mapper>
