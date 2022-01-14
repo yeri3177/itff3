@@ -5,9 +5,9 @@
 ![메인 날짜 없는 남색](https://user-images.githubusercontent.com/85632733/149429117-10d17d49-1edd-4540-bda8-1060d182e7f6.jpg)
 
 
-## Getting Started / 어떻게 시작하나요?
+## Explain
 
-이 곳에서 설치에 관련된 이야기를 해주시면 좋습니다.
+ITFF는 IT Film Festival의 약자로 한글로 '정보기술영화제'라는 뜻입니다. IT 영화들을 주제로 하는 영화제 웹사이트입니다.
 
 ### Prerequisites / 선행 조건
 
@@ -27,7 +27,7 @@
 
 ## Account / 계정
 
-관리자 계정 : admin / 1234 | 테스트 계정 : qwerty / 1234
+관리자 계정 : admin / 1234 | 테스트 계정 : abcde / 1234
 
 
 ## Deployment / 배포
