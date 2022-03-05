@@ -171,8 +171,8 @@
 																									
 										<c:forEach items="${totalMovieList}" var="movie" varStatus="vs">
 											<!-- 영화 아이디가 전달되었을 경우 페이지 로드시 해당 영화가 선택되어있게 함 -->
-											<li class="movieList ${oneMovie.movieId eq movie.movieId ? 'active' : ''}" data-id="${movie.movieId}" data-title="${movie.titleKor}">
-												<a href="#none" class="moviearea" <%-- onclick="movieTitle('${movie.movieId}');" --%>>
+											<li id="${vs.count}title" class="movieList ${oneMovie.movieId eq movie.movieId ? 'active' : ''}" data-id="${movie.movieId}" data-title="${movie.titleKor}" onclick="movieTitle('${movie.movieId}', '${movie.titleKor}', '${vs.count}title');">
+												<a href="#none" class="moviearea" <%-- 끝난 후에 이걸 이 윗줄 li태그에 넣어서 해보자. onclick="movieTitle('${movie.movieId}');" --%>>
 													<div class="bx_thm" style="float: left;">
 														<span class="rank">
 															<span class="hidden">순위</span>
@@ -259,7 +259,7 @@
 			</div>
 			<div class="article article_time">
 				<div class="group_top">
-					<h4 class="tit" id="date" style="position: relative; top: 16px;">2022-01-07(월)</h4>
+					<h4 class="tit" id="date" style="position: relative; top: 16px;">2022-01-07</h4>
 				</div>
 				<div class="inner">
 					<div class="date_select_wrap dateReserveWrap">
@@ -482,14 +482,65 @@
 </div>
 
 <script>
-// 영화제목 클릭하면 선택되게 하려는데, a태그 범위랑 그 안의 strong태그가 따로 논다. 뭔 짓을 해도 한놈이 되면 다른놈이 안된다. 일단 strong이 안되는 상태로 뒀다.
-const movieTitle = ((movieId) => {
-	console.log(movieId);
-});
+// 영화제목 클릭하면 선택되게 하려는데, a태그 범위랑 그 안의 strong태그가 따로 논다. 뭔 짓을 해도 하나가 되면 다른게 안된다. 일단 strong이 안되는 상태로 뒀다.
 
-$(() => {
-	<%-- click 함수 계속 안되길래 ready function에 넣으니까 작동한다. 전에는 그냥 됐던거같은데 아닌가? --%>
-	$(".moviearea").click((e) => {
+// 교육과정 수료 후 onclick함수를 새로 만들어서 고쳤다. 이제 정상적으로 영화제목 클릭이 된다. 22/01/26
+// 영화목록에서 제목을 클릭하면 체크되고 영화정보가 뜨게 하는 function
+function movieTitle(movieId, movieTitle, liId){
+	console.log(movieId);          // 영화id
+	console.log(movieTitle);       // 영화 한국어제목
+	console.log(liId);             // 클릭한 li의 id값
+	
+	$(".movie_select_wrap ul > li.active").removeClass("active");   // 모든 영화목록 li의 active 클래스 제거
+	$(`#\${liId}`).addClass("active");  // 선택한 영화제목 li에 active 클래스를 붙여서 체크된 상태로 보이게 함. 매개인자로 받아온 값을 id 셀렉터로 쓰려면 이렇게 작성해야 한다. 
+	$("h4.movie_name").html(movieTitle);   // 영화목록 div 제일 위에 선택한 영화제목이 나오게 함
+	
+	
+	// 선택한 날짜와 영화제목으로 상영일정을 조회함. 날짜를 선택하지 않은 경우 조회하지 않음.
+	var playdate = $("[name=radioDate1]:checked").data("playdate");
+	console.log(playdate);
+	
+	// 날짜와 영화제목으로 상영일정을 조회한다. 조회결과를 mCSB_71_container 여기에 담는다.
+	if(playdate != null) {
+		$.ajax ({
+			url: "${pageContext.request.contextPath}/movie/selectMovieSchedule.do",
+			data: {
+					playdate : playdate,
+					movieId : movieId
+				  },
+			method: "GET", 
+			contentType: "application/json",
+			success: function(data) {
+				$("#mCSB_71_container").html(data);
+				
+			},
+			complete: function() {
+				console.log("complete")
+			}
+		});
+	}
+	
+	// 선택한 영화의 정보를 movieInfo 에 담는다.
+	$.ajax ({
+		url: "${pageContext.request.contextPath}/movie/selectMovieInfo.do",
+		data: {
+				movieId : movieId
+			  },
+		method: "GET", 
+		contentType: "application/json",
+		success: function(data) {
+			$("#movieInfo").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+	
+};
+	
+/* $(() => {
+	click 함수 계속 안되길래 ready function에 넣으니까 작동한다. 전에는 그냥 됐던거같은데 아닌가?
+ 	$(".moviearea").click((e) => {
 		const $li = $(e.target).parent("li");
 		console.log($li.data("title"));
 		$(".movie_select_wrap ul > li.active").removeClass("active");
@@ -536,22 +587,20 @@ $(() => {
 			}
 		});
 		
-	});
+	}); */
 	
-	$("strong.tit").click((e) => {
+	/* $("strong.tit").click((e) => {
 		console.log("strong");
 		const $li = $("li").has($(e.target));
 		console.log($li.val());
 		$(".movie_select_wrap ul > li.active").removeClass("active");
 		$li.addClass("active");
-	});
+	}); 
 	
-	
-	
-})
+}) */
 
 
-// 날짜 선택하면 해당일의 상영일정 전부 표시
+// 날짜 선택하면 해당일의 상영일정을 조회하여 표시한다. 영화를 선택하지 않은 경우 movieId가 null인데, 이 경우에도 에러가 나지 않도록 컨트롤러를 만들었다.
 $("[name=radioDate1]").change((e) => {
 	var playdate = $(e.target).data("playdate");
 	var movieId = $(".movieList.active").data("id");  // class="movieList active" 인 dom객체를 지정하는 셀렉터는 이렇게 쓰면 된다. 
@@ -579,12 +628,14 @@ $("[name=radioDate1]").change((e) => {
 });
 
 
+// 로그인하지 않은 상태로 상영일정을 클릭하면 로그인하라는 alert가 뜨고 로그인페이지로 이동 
 function loginplz() {
 	alert("로그인이 필요한 서비스입니다.");
 	window.location.href="${pageContext.request.contextPath}/member/memberLogin.do";
 }
 
 
+// 상영일정을 클릭하면 해당 상영일정의 정보를 조회하여 2단계 영역에 표시하고 좌측의 예매 1단계와 2단계 탭의 클래스를 변경한다.
 function selectSeats(scheduleId, movieId) {
 	/* console.log(memberId); */
 	console.log(scheduleId);
